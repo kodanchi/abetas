@@ -29,25 +29,25 @@
     <img src="cinqueterre.jpg" class="img-responsive" alt="Cinque Terre" width="304" height="236">
 
     <h1>Insert</h1>
-    <form name="myform" action="Insert1" method="post">
+    <form name="myform" action="/Insert" method="post">
       <label>name: </label><input type="text" name="name" value="" size="50"/>
       <label>logo: </label><input type="text" name="logo" value="" size="50"/>
       <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
     </form>
     <h1>Update</h1>
-    <form name="myform" action="Update1" method="post">
+    <form name="myform" action="/Update" method="post">
       <label>name: </label><input type="text" name="name" value="" size="50"/>
       <label>logo: </label><input type="text" name="logo" value="" size="50"/>
       <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
     </form>
     <h1>Delete</h1>
-    <form name="myform" action="Delete1" method="post">
+    <form name="myform" action="/Delete" method="post">
       <label>name: </label><input type="text" name="name" value="" size="50"/>
       <label>logo: </label><input type="text" name="logo" value="" size="50"/>
       <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
     </form>
     <h1>Select</h1>
-    <form name="myform" action="Select1" method="post">
+    <form name="myform" action="/Select" method="post">
       <label>name: </label><input type="text" name="name" value="" size="50"/>
       <label>logo: </label><input type="text" name="logo" value="" size="50"/>
       <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>

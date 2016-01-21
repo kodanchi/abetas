@@ -12,13 +12,13 @@ import java.io.PrintWriter;
  * Created by Ibrahim Abuaqel on 1/19/2016.
  */
 @WebServlet(name = "Insert",
-        urlPatterns = {"Insert1"})
+        urlPatterns = {"/Insert"})
 public class Insert extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
         DBAccess dba=new DBAccess();
         try {
-            dba.insert();
+            dba.insert(request.getParameter("name"),request.getParameter("logo"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
