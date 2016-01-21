@@ -18,7 +18,7 @@ public class Insert extends HttpServlet {
         System.out.println("##########################################################");
         DBAccess dba=new DBAccess();
         try {
-            dba.insert(request.getParameter("name"),request.getParameter("logo"));
+            dba.insert("insert into university (Uni_name, Uni_logo)\" + \" values (name, logo)");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -29,7 +29,7 @@ public class Insert extends HttpServlet {
         //out.println("logo: " + request.getParameter("logo"));
         out.println("Insert");
 
-        response.sendRedirect("http://localhost:8081/");
+        response.sendRedirect("http://localhost:8080/");
         // New location to be redirected
         // String site = new String("http://localhost:8081/");
         // response.setHeader("Location", site);

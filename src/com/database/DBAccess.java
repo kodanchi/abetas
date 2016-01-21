@@ -1,5 +1,8 @@
 package com.database;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.*;
 
 /**
@@ -10,19 +13,88 @@ public class DBAccess {
     private Connection conn;
     private Statement stmt;
     private ResultSet result;
+    DataSource dataSource = null;
+
+
 
     public void connect() throws ClassNotFoundException, SQLException {
 
-        Class.forName("com.mysql.jdbc.Driver");
+        try
+        {
+            /*
+             *  Using JDNI lookup get the DataSource.
+             */
 
-        conn=DriverManager.getConnection("jdbc:mysql://localhost/abetasdb?user=root&password=abetas");
+            Context initContext = new InitialContext();
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            dataSource = (DataSource) envContext.lookup("jdbc/worldDB");
+
+        }
+        catch( Exception exe )
+        {
+            exe.printStackTrace();
+        }
+
 
     }
 
-    public void select(String name, String logo) throws ClassNotFoundException, SQLException {
+    public ResultSet select(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
-        //stmt=conn.createStatement();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            //String sql = "select * from city limit ?";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(sql);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //rs.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rs;
+
+        }
+
+
+
+
+        /*//stmt=conn.createStatement();
         //result=stmt.executeQuery("select * from university");
         String query = "select * from university";
 
@@ -32,13 +104,61 @@ public class DBAccess {
         while (result.next()){
             System.out.println(result.getString(1)+" "+result.getString(2));
         }
-        conn.close();
+        conn.close();*/
     }
 
-    public void insert(String name, String logo) throws ClassNotFoundException, SQLException {
+    public void insert(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
-        // the mysql insert statement
+
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(sql);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            rs.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+
+        /*// the mysql insert statement
         String query = " insert into university (Uni_name, Uni_logo)" + " values (?, ?)";
 
         PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -48,31 +168,125 @@ public class DBAccess {
         preparedStmt.execute();
 
         //or insert into university (first_name, last_name) values ('Fred', 'Flinstone');
-        conn.close();
+        conn.close();*/
     }
 
-    public void update(String name, String logo) throws ClassNotFoundException, SQLException {
+    public void update(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
-        String query = "update university set Uni_logo = ? where Uni_name = ?";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        //ResultSet rs = null;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(sql);
+            //preparedStatement.setInt(1, 10);
+
+            preparedStatement.executeUpdate();
+
+            //rs.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+        /*String query = "update university set Uni_logo = ? where Uni_name = ?";
         PreparedStatement preparedStmt = conn.prepareStatement(query);
         preparedStmt.setString(1, logo);
         preparedStmt.setString(2, name);
 
         preparedStmt.execute();
         //or update users set Uni_logo = "Changed" where Uni_name = a;
-        conn.close();
+        conn.close();*/
 
     }
 
-    public void delete(String name, String logo) throws ClassNotFoundException, SQLException {
+    public void delete(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
-        String query = "delete from university where Uni_name = ?";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        //ResultSet rs = null;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(sql);
+            //preparedStatement.setInt(1, 10);
+
+            preparedStatement.executeUpdate();
+
+            //rs.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+
+
+        /*String query = "delete from university where Uni_name = ?";
         PreparedStatement preparedStmt = conn.prepareStatement(query);
         preparedStmt.setString(1, name);
 
-        preparedStmt.execute();
+        preparedStmt.execute();*/
 
     }
 }
