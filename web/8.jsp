@@ -36,25 +36,25 @@
     <div style="width: 50%; margin-left: auto; margin-right: auto">
 
 
-        <form>
+        <form name="myform" method="post" action="/Insert">
 
             <div class="form-group">
                 <label>University Name</label>
-                <input type="text" class="form-control" placeholder="University Name" required>
+                <input type="text" class="form-control" placeholder="University Name" name="name" required>
             </div>
 
             <div class="form-group">
 
                 <label>College Name</label>
 
-                <input type="text" class="form-control" placeholder="College Name" required>
+                <input type="text" class="form-control" placeholder="College Name" name="college name" required>
 
             </div>
 
             <br>
             <br>
 
-            <button type="button" class="btn btn-default" value="Next" style="float:right">Next</button>
+            <button type="submit" class="btn btn-default" value="Next" style="float:right">Next</button>
 
 
         </form>

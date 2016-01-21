@@ -16,7 +16,7 @@ public class Select extends HttpServlet {
         System.out.println("##########################################################");
         DBAccess dba=new DBAccess();
         try {
-            dba.select();
+            dba.select(request.getParameter("name"),request.getParameter("logo"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

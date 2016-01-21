@@ -31,9 +31,21 @@
 <body>
 
 
+
+
+
+
 <div style="width: 70%; margin-left: auto; margin-right: auto">
 
+
+
+
+
     <div style="width: 50%; margin-left: auto; margin-right: auto">
+
+
+
+
 
         <ol class="breadcrumb">
             <li><a href="#">Home</a></li>
@@ -41,40 +53,78 @@
             <li class="active">Data</li>
         </ol>
 
+
+
+
+
         <p>Fill the following required field to create Administrator</p>
 
-        <form>
+
+
+
+
+        <form name="myform" action="/InsertAdmin" method="post">
+
+
+
+
 
             <div class="form-group">
                 <label>Admin Username</label>
-                <input type="text" class="form-control" placeholder="Admin Username" required>
+                <input name="adminUsername" type="text" class="form-control" placeholder="Admin Username" required>
             </div>
+
+
+
 
             <div class="form-group">
 
                 <label>Admin Password</label>
 
-                <input type="password" class="form-control" placeholder="Admin Password" required>
+                <input name="password" id="txtPassword" type="password" class="form-control" placeholder="Admin Password" required>
 
             </div>
+
+
+
+
 
             <div class="form-group">
 
                 <label>Re-Enter Password</label>
 
-                <input type="password" class="form-control" placeholder="Re-Enter Password" required>
+                <input name="rePassword" id="txtConfirmPassword" type="password" class="form-control" placeholder="Re-Enter Password" onchange="checkPasswordMatch();" required>
 
             </div>
+
+            <script type="text/javascript">
+                function Validate() {
+                    var password = document.getElementById("txtPassword").value;
+                    var confirmPassword = document.getElementById("txtConfirmPassword").value;
+                    if (password != confirmPassword) {
+                        alert("Passwords do not match.");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+
+
 
             <div class="form-group">
                 <label>Admin Email</label>
-                <input type="email" class="form-control" placeholder="Admin Email" required>
+                <input name="email" type="email" class="form-control" placeholder="Admin Email" required>
             </div>
 
+
+
+
+
+
             <br>
             <br>
 
-            <a href="11.jsp"><button type="button" class="btn btn-default" value="Finish" style="float:right">Finish</button></a>
+            <a href="11.jsp"><button type="submit" class="btn btn-default" value="Finish" style="float:right" onclick="return Validate()">Finish</button></a>
             <a href="9.jsp"><button type="button" class="btn btn-default" value="Previous" style="float:right">Previous</button></a>
 
 

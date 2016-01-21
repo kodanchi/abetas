@@ -17,11 +17,15 @@ public class DBAccess {
 
     }
 
-    public void select() throws ClassNotFoundException, SQLException {
+    public void select(String name, String logo) throws ClassNotFoundException, SQLException {
 
         connect();
-        stmt=conn.createStatement();
-        result=stmt.executeQuery("select * from university");
+        //stmt=conn.createStatement();
+        //result=stmt.executeQuery("select * from university");
+        String query = "select * from university";
+
+        PreparedStatement preparedStmt = conn.prepareStatement(query);
+        result=preparedStmt.executeQuery();
 
         while (result.next()){
             System.out.println(result.getString(1)+" "+result.getString(2));
@@ -29,15 +33,15 @@ public class DBAccess {
         conn.close();
     }
 
-    public void insert() throws ClassNotFoundException, SQLException {
+    public void insert(String name, String logo) throws ClassNotFoundException, SQLException {
 
         connect();
         // the mysql insert statement
-        String query = " insert into university (Uni_name, Uni_logo)" + " values (?, ?)";
+        String query = " insert into university (Uni_name, College_name)" + " values (?, ?)";
 
         PreparedStatement preparedStmt = conn.prepareStatement(query);
-        preparedStmt.setString (1, "UOD");
-        preparedStmt.setString (2, "UDLOGO");
+        preparedStmt.setString (1, name);
+        preparedStmt.setString (2, logo);
 
         preparedStmt.execute();
 
@@ -45,26 +49,28 @@ public class DBAccess {
         conn.close();
     }
 
-    public void update() throws ClassNotFoundException, SQLException {
+    public void update(String name, String logo) throws ClassNotFoundException, SQLException {
 
         connect();
         String query = "update university set Uni_logo = ? where Uni_name = ?";
         PreparedStatement preparedStmt = conn.prepareStatement(query);
-        preparedStmt.setString(1, "Changed");
-        preparedStmt.setString(2, "a");
+        preparedStmt.setString(1, logo);
+        preparedStmt.setString(2, name);
 
         preparedStmt.execute();
         //or update users set Uni_logo = "Changed" where Uni_name = a;
         conn.close();
+
     }
 
-    public void delete() throws ClassNotFoundException, SQLException {
+    public void delete(String name, String logo) throws ClassNotFoundException, SQLException {
 
         connect();
         String query = "delete from university where Uni_name = ?";
         PreparedStatement preparedStmt = conn.prepareStatement(query);
-        preparedStmt.setString(1, "z");
+        preparedStmt.setString(1, name);
 
         preparedStmt.execute();
+
     }
 }

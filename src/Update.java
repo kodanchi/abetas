@@ -10,13 +10,13 @@ import java.io.PrintWriter;
  * Created by Ibrahim Abuaqel on 1/19/2016.
  */
 @WebServlet(name = "Update",
-        urlPatterns = {"/Update1"})
+        urlPatterns = {"/Update"})
 public class Update extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
         DBAccess dba=new DBAccess();
         try {
-            dba.update();
+            dba.update(request.getParameter("name"),request.getParameter("logo"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
