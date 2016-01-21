@@ -13,7 +13,7 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "Delete",
         urlPatterns = {"Delete1"})
-public class Delete extends HttpServlet {
+ public class Delete extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
         DBAccess dba=new DBAccess();
