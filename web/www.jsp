@@ -61,16 +61,50 @@
 
         <hr>
         <br>
+
+
+
+
+
+
+        <p>Please select the university logo be uploaded.</p>
+        <img src="..." alt="..." class="img-rounded" style="float: right">
+        <form>
+            <div class="form-group">
+
+                <label>University logo</label>
+
+                <input type="text" class="form-control" placeholder="University Logo" name="universityLogo" required>
+
+            </div>
+            <button class="btn btn-default" type="submit">Browse</button>
+
+        </form>
+
+        <div>
+            <button class="btn btn-default" type="submit" style="float: right">Next</button>
+            <button class="btn btn-default" type="submit" style="float: right">Previous</button>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <br>
         <hr>
 
 
 
 
-        <ol class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Library</a></li>
-            <li class="active">Data</li>
-        </ol>
 
 
 
