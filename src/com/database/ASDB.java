@@ -7,6 +7,7 @@ import java.sql.*;
 
 /**
  * Created by Ibrahim Abuaqel on 1/24/2016.
+ * source : http://tomcat.apache.org/tomcat-6.0-doc/jndi-datasource-examples-howto.html#MySQL_DBCP_Example
  */
 public class ASDB {
     private Connection conn;
