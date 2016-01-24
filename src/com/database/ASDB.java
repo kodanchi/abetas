@@ -4,6 +4,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Ibrahim Abuaqel on 1/24/2016.
@@ -34,9 +38,14 @@ public class ASDB {
         }
 
     }
+    public void closRS(ResultSet rs) throws SQLException {
+        rs.close();
+    }
 
-    public ResultSet select(String sql) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectUsers() throws ClassNotFoundException, SQLException {
 
+        ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> rowDate;
         connect();
 
         Connection connection = null;
@@ -45,7 +54,7 @@ public class ASDB {
         ResultSet rs = null;
         try {
 
-            String query = "select * from university";
+            String query = "select * FROM superuser";
 
             /*
              *  Get connection from the DataSource
@@ -61,18 +70,26 @@ public class ASDB {
 
             rs = preparedStatement.executeQuery();
 
-            //rs.close();
-
-            while (result.next()){
-                System.out.println(result.getString(1)+" "+result.getString(2));
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(8));
+                rsArr.add(rowDate);
             }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */
+             */rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -88,7 +105,7 @@ public class ASDB {
                 sqlException.printStackTrace();
             }
 
-            return rs;
+             return rsArr;
 
         }
 
@@ -173,6 +190,7 @@ public class ASDB {
             preparedStatement.setString (6, Lname);
             preparedStatement.setInt (7, 1);
             rs = preparedStatement.executeUpdate();
+
 
         } catch (Exception e) {
             e.printStackTrace();
