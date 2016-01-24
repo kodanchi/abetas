@@ -31,18 +31,37 @@
 <body>
 
 
-
-
-
-
 <div style="width: 70%; margin-left: auto; margin-right: auto">
-
-
-
-
 
     <div style="width: 50%; margin-left: auto; margin-right: auto">
 
+
+        <form name="myform" method="post" action="/Insert">
+
+            <div class="form-group">
+                <label>University Name</label>
+                <input type="text" class="form-control" placeholder="University Name" name="name" required>
+            </div>
+
+            <div class="form-group">
+
+                <label>College Name</label>
+
+                <input type="text" class="form-control" placeholder="College Name" name="college name" required>
+
+            </div>
+
+            <br>
+            <br>
+
+            <button type="submit" class="btn btn-default" value="Next" style="float:right">Next</button>
+
+
+        </form>
+
+        <hr>
+        <br>
+        <hr>
 
 
 
@@ -147,11 +166,12 @@
 
             <a href="11.jsp"><button type="submit" class="btn btn-default" value="Finish" style="float:right" onclick="return Validate()">Finish</button></a>
             <a href="9.jsp"><button type="button" class="btn btn-default" value="Previous" style="float:right">Previous</button></a>
+            </form>
 
 
-        </form>
     </div>
 </div>
+
 
 
 
