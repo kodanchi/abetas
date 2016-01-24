@@ -25,7 +25,7 @@ public class ASDB {
 
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
-            dataSource = (DataSource) envContext.lookup("jdbc/worldDB");
+            dataSource = (DataSource) envContext.lookup("jdbc/abetasDB");
 
         }
         catch( Exception exe )
@@ -162,17 +162,16 @@ public class ASDB {
             /*
              * Execute the query
              */
-            String query = " insert into superuser (Super_ID, Super_Username, Super_Password, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into superuser (Super_Username, Super_Password, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID)" + " values (?, ?, ?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (2, Username);
-            preparedStatement.setString (3, password);
-            preparedStatement.setString (4, email);
-            preparedStatement.setString (5, Fname);
-            preparedStatement.setString (6, Mname);
-            preparedStatement.setString (7, Lname);
-            preparedStatement.setInt (8, 1);
-
+            preparedStatement.setString (1, Username);
+            preparedStatement.setString (2, password);
+            preparedStatement.setString (3, email);
+            preparedStatement.setString (4, Fname);
+            preparedStatement.setString (5, Mname);
+            preparedStatement.setString (6, Lname);
+            preparedStatement.setInt (7, 1);
             rs = preparedStatement.executeUpdate();
 
         } catch (Exception e) {
