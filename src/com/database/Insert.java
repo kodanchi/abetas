@@ -1,4 +1,4 @@
-/*
+
 package com.database;
 
 import javax.servlet.ServletException;
@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-*/
+
 /**
  * Created by Ibrahim Abuaqel on 1/19/2016.
- *//*
+ */
 
 @WebServlet(name = "Insert",
         urlPatterns = {"/Insert"})
@@ -21,7 +21,7 @@ public class Insert extends HttpServlet {
         System.out.println("##########################################################");
         ASDB dba=new ASDB();
         try {
-            dba.insert("insert into university (Uni_name, Uni_logo)\" + \" values (name, logo)");
+            dba.initialization(request.getParameter("uname"), request.getParameter("cname"), request.getParameter("universityLogo"), request.getParameter("adminFirstName"), request.getParameter("adminMiddleName"), request.getParameter("adminLastName"), request.getParameter("adminUsername"), request.getParameter("adminpassword"), request.getParameter("adminemail"));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -42,4 +42,4 @@ public class Insert extends HttpServlet {
 
     }
 }
-*/
+
