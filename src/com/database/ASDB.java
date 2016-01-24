@@ -199,14 +199,18 @@ public class ASDB {
 
     }
 
-    public void addUser(String sql) throws ClassNotFoundException, SQLException {
+    public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
 
         connect();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
+        SessionIdentifierGenerator randomPassword = new SessionIdentifierGenerator();
+        String rn = randomPassword.nextSessionId().substring(0, 8);
+
         int rs = 0;
+        if (type == 0) {
         try {
 
             /*
@@ -218,36 +222,162 @@ public class ASDB {
             /*
              * Execute the query
              */
-            String query = "update university set Uni_logo = ? where Uni_name = ?";
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setString(1, logo);
-           // preparedStatement.setString(2, name);
+                String query = " insert into superuser (Super_Username, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID, Super_Password)" + " values (?, ?, ?, ?, ?, ?, ?)";
 
-            rs = preparedStatement.executeUpdate();
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, Uname);
+                preparedStatement.setString(2, email);
+                preparedStatement.setString(3, Fname);
+                preparedStatement.setString(4, Mname);
+                preparedStatement.setString(5, Lname);
+                preparedStatement.setInt(6, 0);
+                preparedStatement.setString(7, rn);
+                rs = preparedStatement.executeUpdate();
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
+
+
+
+
+
+
+
+            ////Need to display the temp password to the screen
+
+
+
+
+
+
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
             /*
              * finally block used to close resources
              */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.close();
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
                 }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
                 }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
 
+            }
+        }else if (type==1){
+            try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+                connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faclty_Password)" + " values (?, ?, ?, ?, ?, ?)";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, Uname);
+                preparedStatement.setString(2, email);
+                preparedStatement.setString(3, Fname);
+                preparedStatement.setString(4, Mname);
+                preparedStatement.setString(5, Lname);
+                preparedStatement.setString(6, rn);
+                rs = preparedStatement.executeUpdate();
+
+
+
+
+
+
+
+
+                ////Need to display the temp password to the screen
+
+
+
+
+
+
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+            /*
+             * finally block used to close resources
+             */
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.close();
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+
+            }
+        }else if(type==2){
+            try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+                connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+                String query = " insert into evaluator (E_Username, E_Fname, E_Mname, E_Lname, E_Password)" + " values (?, ?, ?, ?, ?)";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, Uname);
+                preparedStatement.setString(2, Fname);
+                preparedStatement.setString(3, Mname);
+                preparedStatement.setString(4, Lname);
+                preparedStatement.setString(5, rn);
+                rs = preparedStatement.executeUpdate();
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }finally{
+            /*
+             * finally block used to close resources
+             */
+                try {
+                    if (preparedStatement != null) {
+                        preparedStatement.close();
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+                try {
+                    if (connection != null) {
+                        connection.close();
+                    }
+                } catch (SQLException sqlException) {
+                    sqlException.printStackTrace();
+                }
+
+            }
         }
-
     }
 
     public void delete(String sql) throws ClassNotFoundException, SQLException {
@@ -274,6 +404,22 @@ public class ASDB {
             //preparedStatement.setString(1, name);
 
             rs = preparedStatement.executeUpdate();
+
+
+
+
+
+
+
+
+            ////Need to display the temp password to the screen
+
+
+
+
+
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
