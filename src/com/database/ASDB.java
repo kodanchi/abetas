@@ -217,7 +217,7 @@ public class ASDB {
 
     }
 
-    public void update(String sql) throws ClassNotFoundException, SQLException {
+    public void addUser(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
 
