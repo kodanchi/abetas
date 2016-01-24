@@ -1,3 +1,4 @@
+/*
 package com.database;
 
 import javax.servlet.ServletException;
@@ -8,15 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+*/
 /**
  * Created by Ibrahim Abuaqel on 1/19/2016.
- */
+ *//*
+
 @WebServlet(name = "Insert",
         urlPatterns = {"/Insert"})
 public class Insert extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
-        DBAccess dba=new DBAccess();
+        ASDB dba=new ASDB();
         try {
             dba.insert("insert into university (Uni_name, Uni_logo)\" + \" values (name, logo)");
         } catch (ClassNotFoundException e) {
@@ -39,3 +42,4 @@ public class Insert extends HttpServlet {
 
     }
 }
+*/
