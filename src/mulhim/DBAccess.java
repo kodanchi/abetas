@@ -7,9 +7,9 @@ import java.sql.*;
  */
 public class DBAccess {
 
-    private Connection conn;
+    public Connection conn;
     private Statement stmt;
-    private ResultSet result;
+    public ResultSet result;
 
     public void connect() throws ClassNotFoundException, SQLException {
 

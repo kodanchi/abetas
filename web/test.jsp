@@ -1,4 +1,4 @@
-<%@ page import="mulhim.SendHTML" %>
+
 <%@ page import="mulhim.SendEmail" %><%--
   Created by IntelliJ IDEA.
   User: Mohammed
