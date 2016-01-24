@@ -1,4 +1,3 @@
-/*
 package com.database;
 
 import javax.naming.Context;
@@ -6,11 +5,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
 
-*/
 /**
  * Created by Ibrahim Abuaqel on 1/24/2016.
- *//*
-
+ */
 public class ASDB {
     private Connection conn;
     private Statement stmt;
@@ -21,11 +18,9 @@ public class ASDB {
 
         try
         {
-            */
-/*
+            /*
              *  Using JDNI lookup get the DataSource.
-             *//*
-
+             */
 
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
@@ -51,19 +46,15 @@ public class ASDB {
 
             String query = "select * from university";
 
-            */
-/*
+            /*
              *  Get connection from the DataSource
-             *//*
-
+             */
 
             connection = dataSource.getConnection();
 
-            */
-/*
+            /*
              * Execute the query
-             *//*
-
+             */
             preparedStatement = connection.prepareStatement(query);
             //preparedStatement.setInt(1, 10);
 
@@ -78,11 +69,9 @@ public class ASDB {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            */
-/*
+            /*
              * finally block used to close resources
-             *//*
-
+             */
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -114,19 +103,15 @@ public class ASDB {
         int rs = 0;
         try {
 
-            */
-/*
+            /*
              *  Get connection from the DataSource
-             *//*
-
+             */
 
             connection = dataSource.getConnection();
 
-            */
-/*
+            /*
              * Execute the query
-             *//*
-
+             */
             String query = " insert into university (Uni_name, Uni_logo)" + " values (?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
@@ -139,11 +124,9 @@ public class ASDB {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            */
-/*
+            /*
              * finally block used to close resources
-             *//*
-
+             */
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -173,19 +156,15 @@ public class ASDB {
         int rs = 0;
         try {
 
-            */
-/*
+            /*
              *  Get connection from the DataSource
-             *//*
-
+             */
 
             connection = dataSource.getConnection();
 
-            */
-/*
+            /*
              * Execute the query
-             *//*
-
+             */
             String query = "update university set Uni_logo = ? where Uni_name = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, logo);
@@ -196,11 +175,9 @@ public class ASDB {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            */
-/*
+            /*
              * finally block used to close resources
-             *//*
-
+             */
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -230,19 +207,15 @@ public class ASDB {
         int rs = 0;
         try {
 
-            */
-/*
+            /*
              *  Get connection from the DataSource
-             *//*
-
+             */
 
             connection = dataSource.getConnection();
 
-            */
-/*
+            /*
              * Execute the query
-             *//*
-
+             */
             String query = "delete from university where Uni_name = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
@@ -252,11 +225,9 @@ public class ASDB {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            */
-/*
+            /*
              * finally block used to close resources
-             *//*
-
+             */
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -276,4 +247,3 @@ public class ASDB {
 
     }
 }
-*/
