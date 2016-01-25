@@ -2,11 +2,10 @@
   Created by IntelliJ IDEA.
   User: Mohammed
   Date: 1/25/2016
-  Time: 3:59 PM
+  Time: 7:49 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
 <html>
 
 <head>
@@ -26,17 +25,14 @@
 <div class="row">
     <div class="col-md-6 col-xs-6 col-md-offset-3 well base">
         <h1>ABETAS</h1>
-        <p>Enter your registered email to send you a recovery passcode.</p>
+        <p>Enter the code you just recieved in your email.</p>
 
-        <form method="post" action="/enterPasscode.jsp">
+        <form method="post" action="">
             <div class="form-group">
-                <input type="email" class="form-control" name="exampleInputEmail1" placeholder="Email" size="25" required>
-                <p style="color:#c0392b;">This email is not registered!</p>
-                <p style="color:#2980b9;">Now check your email</p>
-
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Passcode" size="25" required>
             </div>
-            <button type="button" class="btn btn-warning">cancel</button>
-            <button type="submit" class="btn btn-success">Retrieve password</button>
+            <button type="submit" class="btn btn-warning">cancel</button>
+            <button type="button" class="btn btn-success">Enter the new password</button>
         </form>
 
 
