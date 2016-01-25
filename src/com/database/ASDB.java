@@ -685,9 +685,7 @@ public class ASDB {
 
     }
 
-<<<<<<< HEAD
 
-=======
     public ArrayList<ArrayList<String>> selectProgram() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
@@ -752,8 +750,6 @@ public class ASDB {
         }
 
     }
-<<<<<<< HEAD
-
 
 
 
@@ -823,7 +819,5 @@ public class ASDB {
         }
 
     }
-=======
->>>>>>> 2198f123d293b8126ba921bcd8e61253e3200e78
->>>>>>> 4c9b4ee2bf3a00eee7c8e1d0d25be030dfae2576
+
 }
