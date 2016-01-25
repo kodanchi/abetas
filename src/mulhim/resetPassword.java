@@ -21,9 +21,9 @@ import java.util.Scanner;
         urlPatterns = {"/Reset"})
 public class resetPassword extends HttpServlet {
     Scanner in = new Scanner(System.in);
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("#######################################################");
-
+    request.getParameter("exampleInputEmail1");
         try {
             select("","");
         } catch (ClassNotFoundException e) {
