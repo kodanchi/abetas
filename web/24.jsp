@@ -7,20 +7,22 @@
 --%>
 <%! %>
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="js/bootstrap.min.js"></script>
+
+
+<script src="js/users.js"></script>
 
 
 
 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-2.2.0.min.js"></script>
 
 
 
@@ -59,7 +61,7 @@
             <div class="form-group">
                 <label class="col-xs-3 control-label">User Type</label>
                 <div class="col-xs-5 selectContainer">
-                    <select class="form-control" name="userType" id="userType">
+                    <select class="form-control"  id="userType" onchange="onUserTypeChng()" >
                         <option value="">User Type</option>
                         <option value="Superuser">Superuser</option>
                         <option value="Faculty_Member">Faculty Member</option>
@@ -95,8 +97,8 @@
             <br>
 
             <div class="form-group" id="emailDiv">
-                <label>Email address</label>
-                <input type='email' class='form-control' placeholder='Email' name="email" required>
+
+
             </div>
 
             <button type="submit" class="btn btn-default" value="Add">Add</button>
@@ -108,9 +110,9 @@
 </div>
 
 <!-- Include Bootstrap Combobox -->
-<link rel="stylesheet" href="/vendor/bootstrap-combobox/css/bootstrap-combobox.css">
+<link rel="stylesheet" href="css/bootstrap-combobox.css">
 
-<script src="/vendor/bootstrap-combobox/js/bootstrap-combobox.js"></script>
+<script src="js/bootstrap-combobox.js"></script>
 
 <style type="text/css">
     /* Adjust feedback icon position */
@@ -119,78 +121,6 @@
         right: -15px;
     }
 </style>
-
-<script>if(document.getElementById("userType").options[document.getElementById("userType").selectedIndex].text=="Superuser"){document.getElementById("w").value = "Johnny Bravo";
-    document.getElementById("emailDiv").innerHTML="<label>Email address</label><input type='email' class='form-control' placeholder='Email' required>";}</script>
-
-<script>
-    $(document).ready(function() {
-        $('#UserAddForm')
-                .formValidation({
-                    framework: 'bootstrap',
-                    icon: {
-                        valid: 'glyphicon glyphicon-ok',
-                        invalid: 'glyphicon glyphicon-remove',
-                        validating: 'glyphicon glyphicon-refresh'
-                    },
-                    excluded: ':disabled',
-                    fields: {
-                        name: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The name is required'
-                                },
-                                stringLength: {
-                                    min: 6,
-                                    max: 30,
-                                    message: 'The name must be more than 6 and less than 30 characters long'
-                                }
-                            }
-                        },
-                        description: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The description is required'
-                                },
-                                stringLength: {
-                                    min: 50,
-                                    max: 1000,
-                                    message: 'The description must be more than 50 and less than 1000 characters'
-                                }
-                            }
-                        },
-                        price: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The price is required'
-                                },
-                                numeric: {
-                                    message: 'The price must be a number'
-                                }
-                            }
-                        },
-                        size: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The size is required'
-                                }
-                            }
-                        },
-                        color: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'The color is required'
-                                }
-                            }
-                        }
-                    }
-                })
-                // Using Bootbox for color and size select elements
-                .find('[name="color"], [name="size"]')
-                .combobox()
-                .end()
-    });
-</script>
 
 
 
