@@ -767,7 +767,7 @@ public class ASDB {
         ResultSet rs = null;
         try {
 
-            String query = "select * FROM p_objective";
+            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective;";
 
             /*
              *  Get connection from the DataSource
@@ -786,6 +786,7 @@ public class ASDB {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
 
                 RsArr.add(RowDate);
