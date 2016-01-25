@@ -83,7 +83,6 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -398,6 +397,228 @@ public class ASDB {
         }
     }
 
+    public void addProgramm(String pName, String mission) throws ClassNotFoundException, SQLException {
+        //public void addProgramm(String pName, String mission, String sOutcome, String pObj, String outcomeLable, String objectiveLable ) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into superuser (P_name, P_mission)" + " values (?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, pName);
+            preparedStatement.setString(2, mission);
+
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+    public void addObject(String Objective_label, String Objective, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into p_objective (Objective_label, Objective, FK_P_ID)" + " values (?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, Objective_label);
+            preparedStatement.setString(2, Objective);
+            preparedStatement.setInt(3, FK_P_ID);
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+    public void addOutcome(String Outcome_label, String Student_outcome, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into p_student_outcome (Outcome_label, Student_outcome, FK_P_ID)" + " values (?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, Outcome_label);
+            preparedStatement.setString(2, Student_outcome);
+            preparedStatement.setInt(3, FK_P_ID);
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+    public void addLinkObj_Out(String Outcome_label, String Student_outcome, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into link_out_obj (Outcome_label, Student_outcome, FK_P_ID)" + " values (?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, Outcome_label);
+            preparedStatement.setString(2, Student_outcome);
+            preparedStatement.setInt(3, FK_P_ID);
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
     public void delete(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -463,4 +684,6 @@ public class ASDB {
         }
 
     }
+
+
 }
