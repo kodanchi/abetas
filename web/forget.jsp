@@ -28,7 +28,7 @@
         <h1>ABETAS</h1>
         <p>Enter your registered email to send you a recovery passcode.</p>
 
-        <form method="post" action="/enterPasscode.jsp">
+        <form method="post" action="/Reset">
             <div class="form-group">
                 <input type="email" class="form-control" name="exampleInputEmail1" placeholder="Email" size="25" required>
                 <p style="color:#c0392b;">This email is not registered!</p>

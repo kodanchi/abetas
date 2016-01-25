@@ -41,7 +41,7 @@ public class resetPassword extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        response.sendRedirect("forget.jsp");
+        response.sendRedirect("enterPasscode.jsp");
     }
     public void select(String name, String logo) throws ClassNotFoundException, SQLException {
     DBAccess co =new DBAccess();
