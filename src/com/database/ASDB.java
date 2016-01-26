@@ -1201,6 +1201,7 @@ public class ASDB {
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
                 RowDate.add(rs.getString(4));
+                RowDate.add(rs.getString(5));
 
 
                 RsArr.add(RowDate);
