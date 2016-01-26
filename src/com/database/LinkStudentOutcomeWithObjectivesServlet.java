@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Abdullah on 1/25/2016.
+ * Created by Abdullah on 1/26/2016.
  */
-@WebServlet(name = "ProgramObjectiveServlet",
-        urlPatterns = {"/32"})
-public class ProgramObjectiveServlet extends HttpServlet {
+@WebServlet(name = "LinkStudentOutcomeWithObjectivesServlet",
+        urlPatterns = {"/42"})
+public class LinkStudentOutcomeWithObjectivesServlet extends HttpServlet {
     ASDB dba;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,6 +23,7 @@ public class ProgramObjectiveServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 
 
         PrintWriter out = response.getWriter();
@@ -42,13 +43,13 @@ public class ProgramObjectiveServlet extends HttpServlet {
                 "<div class=\"container\">\n" +
                 "    <div>\n" +
                 "        <p>Program >> Objectives >></p>\n" +
-                "        <h1>Add Program Objective</h1>\n" +
-                "        <p>You need to add program objectives or upload excel file.</p>\n" +
+                "        <h1>Link Student Outcome with Objectives</h1>\n" +
+                "        <p>You need to add Student Outcome or upload excel file.</p>\n" +
                 "        <table class=\"table table-bordered\">\n" +
                 "            <thead>\n" +
                 "            <tr>\n" +
-                "                <th>Program</th>\n" +
-                "                <th>Objective</th>\n" +
+                "                <th>Objectives</th>\n" +
+                "                <th>Outcome</th>\n" +
                 "                <th>Edit</th>\n" +
                 "                <th>Delete</th>\n" +
                 "            </tr>\n" +
@@ -59,7 +60,7 @@ public class ProgramObjectiveServlet extends HttpServlet {
 
         dba=new ASDB();
         try {
-            ArrayList<ArrayList<String>> rs = dba.selectObjective();
+            ArrayList<ArrayList<String>> rs = dba.selectStudentOutcomeWithObjectives();
             ArrayList<String> rsRow ;
 
             for (int i=0; i<rs.size();i++){
@@ -89,7 +90,7 @@ public class ProgramObjectiveServlet extends HttpServlet {
         out.print( "</tr>\n" +
                 "            </tbody>\n" +
                 "        </table>\n" +
-                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Add objective</a></p>\n" +
+                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Add Link</a></p>\n" +
                 "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Cancel</a>\n" +
                 "        <a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Next</a></p>\n" +
                 "\n" +
