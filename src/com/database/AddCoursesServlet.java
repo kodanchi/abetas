@@ -7,29 +7,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Abdullah on 1/24/2016.
+ * Created by Abdullah on 1/26/2016.
  */
-@WebServlet(name = "userManagementServlet",
-        urlPatterns = {"/22"})
-public class userManagementServlet extends HttpServlet {
+@WebServlet(name = "AddCoursesServlet",
+        urlPatterns = {"/44"})
+public class AddCoursesServlet extends HttpServlet {
     ASDB dba;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         PrintWriter out = response.getWriter();
 
-        out.println("\n" +
-                "<!DOCTYPE html>\n" +
+        out.println("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
                 "<head>\n" +
                 "    <title>Bootstrap Example</title>\n" +
@@ -43,26 +39,25 @@ public class userManagementServlet extends HttpServlet {
                 "\n" +
                 "<div class=\"container\">\n" +
                 "    <div>\n" +
-                "\n" +
-                "        <h1>User Management</h1>\n" +
+                "        <p>Program >> Objectives >>outcomes>>Link>>Courses>>finish</p>\n" +
+                "        <h1>Add Courses</h1>\n" +
                 "        <table class=\"table table-bordered\">\n" +
                 "            <thead>\n" +
                 "            <tr>\n" +
-                "                <th>Firstname</th>\n" +
-                "                <th>Middlename</th>\n" +
-                "                <th>Lastname</th>\n" +
-                "                <th>Username</th>\n" +
-                "                <th>Email</th>\n" +
-                "                <th>Access level</th>\n" +
+                "                <th>Course Name</th>\n" +
+                "                <th>Code</th>\n" +
+                "                <th>Level</th>\n" +
+                "                <th>Edit</th>\n" +
+                "                <th>Delete</th>\n" +
                 "            </tr>\n" +
                 "            </thead>\n" +
                 "            <tbody>\n" +
-                "            <tr>\n" );
+                "            <tr>" );
 
 
-                dba=new ASDB();
+        dba=new ASDB();
         try {
-            ArrayList<ArrayList<String>> rs = dba.selectUsers();
+            ArrayList<ArrayList<String>> rs = dba.selectCourses();
             ArrayList<String> rsRow ;
 
             for (int i=0; i<rs.size();i++){
@@ -71,7 +66,10 @@ public class userManagementServlet extends HttpServlet {
                 out.print("<tr>");
                 for (int j=0; j<rsRow.size();j++) {
                     out.print("<td>"+rsRow.get(j)+"</td>");
+
                 }
+                out.print("<td><span class=\"glyphicon glyphicon-edit\"></span>\n </td>");
+                out.print("<td><span class=\"glyphicon glyphicon-remove\"></span>\n</td>");
                 out.print("</tr>");
             }
 
@@ -86,11 +84,12 @@ public class userManagementServlet extends HttpServlet {
 
 
 
-               out.print( "</tr>\n" +
+        out.print( "</tr>\n" +
                 "            </tbody>\n" +
                 "        </table>\n" +
-                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Add user</a></p>\n" +
-                "        <P><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Back</a></p>\n" +
+                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Add Course</a></p>\n" +
+                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Cancel</a>\n" +
+                "        <a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Finish</a></p>\n" +
                 "\n" +
                 "    </div>\n" +
                 "</div>\n" +

@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Created by Abdullah on 1/25/2016.
  */
 @WebServlet(name = "ProgramManagementServlet",
-        urlPatterns = {"/ss"})
+        urlPatterns = {"/28"})
 public class ProgramManagementServlet extends HttpServlet {
     ASDB dba;
 
