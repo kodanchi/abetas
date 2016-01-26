@@ -6,98 +6,133 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!doctype html>
-<html lang="en" class="no-js">
-
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/wizardStyle.css">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-
-    <title>ABETAS Setup Wizard</title>
+    <title>Wizard With Form Validation</title>
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/prettify.css" rel="stylesheet">
 </head>
-
 <body>
+<div class='container'>
 
-<div class="row">
-    <div id="nav" class="col-md-8 col-md-offset-2">
-        <section>
-            <h2>System setting</h2>
-            <nav>
-                <ol class="cd-breadcrumb custom-separator">
-                    <li class="current"><a href="#0">Welcome</a></li>
-                    <li><a href="#0">College information</a></li>
-                    <li><a href="#0">Logo</a></li>
-                </ol>
-            </nav>
-        </section>
-
-        <div id="welcome" class="col-md-6 col-md-offset-3 jumbotron" style="background-color:#ecf0f1;">
-            <h2>Welcome to ABETAS</h2>
-            <p>This is the setup wizard of the system, this wizard will require set of some information. use the navigator ubove to move around, or you can fill them later by going to system setting area.</p>
-            <button class="btn btn-warning">Skip it!</button>
-        </div>
-    </div>
-    <div id="setting" class="col-md-6 col-md-offset-3" style="background-color:#cacfd2;">
+    <section id="wizard">
         <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">University Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="University Name" size="25">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">College Name</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="College Name">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Dean First Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Dean First Name" size="25">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Dean Middle Name</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Dean Middle Name">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Dean Last Name</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Dean Last Name" size="25">
+            <div class="page-header">
+                <h1>Wizard With Form Validation</h1>
             </div>
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-default">Save</button>
+            <div id="rootwizard">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <div class="container">
+                            <ul>
+                                <li><a href="#tab1" data-toggle="tab">Welcome</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Second</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Third</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Fourth</a></li>
+                                <li><a href="#tab5" data-toggle="tab">Fifth</a></li>
+                                <li><a href="#tab6" data-toggle="tab">Sixth</a></li>
+                                <li><a href="#tab7" data-toggle="tab">Seventh</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="bar" class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane" id="tab1">
+                        <div id="welcome" class="col-md-6 col-md-offset-3 jumbotron" style="background-color:#ecf0f1;">
+                            <h2>Welcome to ABETAS</h2>
+                            <p>This is the setup wizard of the system, this wizard will require set of some information. use the navigator ubove to move around, or you can fill them later by going to system setting area.</p>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab2">
+                        <div class="form-group">
+                            <label for="uniName">University Name</label>
+                            <input type="text" class="form-control" id="uniName" placeholder="University Name" size="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="collegeName">College Name</label>
+                            <input type="password" class="form-control" id="collegeName" placeholder="College Name">
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab3">
+                        <div class="form-group">
+                            <label for="dfn">Dean First Name</label>
+                            <input type="text" class="form-control" id="dfn" placeholder="Dean First Name" size="25">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Dean Middle Name</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Dean Middle Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Dean Last Name</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Dean Last Name" size="25">
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Save</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab4">
+                        4
+                    </div>
+                    <div class="tab-pane" id="tab5">
+                        5
+                    </div>
+                    <div class="tab-pane" id="tab6">
+                        6
+                    </div>
+                    <div class="tab-pane" id="tab7">
+                        7
+                    </div>
+                    <ul class="pager wizard">
+                        <li class="previous first" style="display:none;"><a href="#">First</a></li>
+                        <li class="previous"><a href="#">Previous</a></li>
+                        <li class="next last" style="display:none;"><a href="#">Last</a></li>
+                        <li class="next"><a href="#">Next</a></li>
+                    </ul>
+                </div>
             </div>
+
         </form>
-
-    </div>
-
-    <div id="logo" class="col-md-6 col-md-offset-3" style="background-color:#ecf0f1;">
-        <form>
-            <div class="form-group">
-                <label for="exampleInputEmail1">University Logo</label>
-                </br>
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">maximum file size 10MB.</p>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default">Upload</button>
-                    <button type="submit" class="btn btn-success">Start ABETAS</button>
-                </div></div>
-        </form>
-
-    </div>
+    </section>
 </div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.bootstrap.wizard.js"></script>
+<script src="/js/prettify.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
+            if(index==2) {
+                // Make sure we entered the name
+                if(!$('#UniName').val()) {
+                    alert('You must enter university name');
+                    $('#UniName').focus();
+                    return false;
+                }else if(!$('#collegeName').val()) {
+                    alert('You must enter college name');
+                    $('#collegeName').focus();
+                    return false;
+                }
+            }
 
-<div id="congrats" class="col-md-6 col-md-offset-3 jumbotron" style="background-color:#ecf0f1;">
-    <h2>Congratulations</h2>
-    <p>ABETAS setup done successfuly, now you need to add a superuser so he/she can enter the programs, courses, create an evaluation cycle.</br>Click on User Management to add and manage users.</p>
-    <button class="btn btn-primary">User Management</button>
-    <button class="btn btn-primary">Home Page</button>
-</div>
+            // Set the name for the next tab
+            $('#tab3').html('Please Enter dean\'s of ' + $('#collegeName').val() + ' full name');
 
-
+        }, onTabShow: function(tab, navigation, index) {
+            var $total = navigation.find('li').length;
+            var $current = index+1;
+            var $percent = ($current/$total) * 100;
+            $('#rootwizard .progress-bar').css({width:$percent+'%'});
+        }});
+        window.prettyPrint && prettyPrint()
+    });
+</script>
 </body>
-
 </html>
