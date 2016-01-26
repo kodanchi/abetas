@@ -48,7 +48,7 @@ public class ProgramObjectiveServlet extends HttpServlet {
                 "            <thead>\n" +
                 "            <tr>\n" +
                 "                <th>Program</th>\n" +
-                "                <th>Obj</th>\n" +
+                "                <th>Objective</th>\n" +
                 "                <th>Edit</th>\n" +
                 "                <th>Delete</th>\n" +
                 "            </tr>\n" +
@@ -68,7 +68,10 @@ public class ProgramObjectiveServlet extends HttpServlet {
                 out.print("<tr>");
                 for (int j=0; j<rsRow.size();j++) {
                     out.print("<td>"+rsRow.get(j)+"</td>");
+
                 }
+                out.print("<td><span class=\"glyphicon glyphicon-edit\"></span>\n </td>");
+                out.print("<td><span class=\"glyphicon glyphicon-remove\"></span>\n</td>");
                 out.print("</tr>");
             }
 
