@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.database.ASDB" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/26/2016
@@ -18,7 +18,7 @@
 <div class='container'>
 
     <section id="wizard">
-        <form>
+        <form name="myform" id="setUpForm" method="post" action="/Insert">
             <div class="page-header">
                 <h1>Wizard With Form Validation</h1>
             </div>
@@ -29,12 +29,12 @@
                         <div class="container">
                             <ul>
                                 <li><a href="#tab1" data-toggle="tab">Welcome</a></li>
-                                <li><a href="#tab2" data-toggle="tab">Second</a></li>
-                                <li><a href="#tab3" data-toggle="tab">Third</a></li>
-                                <li><a href="#tab4" data-toggle="tab">Fourth</a></li>
-                                <li><a href="#tab5" data-toggle="tab">Fifth</a></li>
-                                <li><a href="#tab6" data-toggle="tab">Sixth</a></li>
-                                <li><a href="#tab7" data-toggle="tab">Seventh</a></li>
+                                <li><a href="#tab2" data-toggle="tab">University</a></li>
+                                <li><a href="#tab3" data-toggle="tab">Logo</a></li>
+                                <li><a href="#tab4" data-toggle="tab">Admin sign up</a></li>
+                                <li><a href="#tab5" data-toggle="tab">Admin details</a></li>
+                                <li><a href="#tab6" data-toggle="tab">Confirm</a></li>
+
                             </ul>
                         </div>
                     </div>
@@ -44,57 +44,109 @@
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane" id="tab1">
-                        <div id="welcome" class="col-md-6 col-md-offset-3 jumbotron" style="background-color:#ecf0f1;">
+                        <div id="welcome">
                             <h2>Welcome to ABETAS</h2>
                             <p>This is the setup wizard of the system, this wizard will require set of some information. use the navigator ubove to move around, or you can fill them later by going to system setting area.</p>
 
                         </div>
                     </div>
+
                     <div class="tab-pane" id="tab2">
                         <div class="form-group">
-                            <label for="uniName">University Name</label>
-                            <input type="text" class="form-control" id="uniName" placeholder="University Name" size="25">
+                            <label for="uname">University Name</label>
+                            <input type="text" id="uname" class="form-control" placeholder="University Name" name="uname" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="collegeName">College Name</label>
-                            <input type="password" class="form-control" id="collegeName" placeholder="College Name">
+
+                            <label for="cname">College Name</label>
+
+                            <input type="text" id="cname" class="form-control" placeholder="College Name" name="cname" required>
+
                         </div>
                     </div>
                     <div class="tab-pane" id="tab3">
                         <div class="form-group">
-                            <label for="dfn">Dean First Name</label>
-                            <input type="text" class="form-control" id="dfn" placeholder="Dean First Name" size="25">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Dean Middle Name</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Dean Middle Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Dean Last Name</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Dean Last Name" size="25">
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-default">Save</button>
-                        </div>
+                            <label for="ulogo" >University Logo</label>
+                            </br>
+                            <input  type="file" id="ulogo" accept="image/png">
+                            <p class="help-block">maximum file size 10MB.</p>
+                            </div>
                     </div>
                     <div class="tab-pane" id="tab4">
-                        4
+                        <div>
+                            <p>Fill the following required field to create Administrator</p>
+
+                            <div class="form-group">
+                                <label for="adminUsername">Admin Username</label>
+                                <input id="adminUsername" name="adminUsername" type="text" class="form-control" placeholder="Admin Username" required>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="txtPassword">Admin Password</label>
+
+                                <input name="adminpassword" id="txtPassword" type="password" class="form-control" placeholder="Admin Password" required>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="txtConfirmPassword">Re-Enter Password</label>
+
+                                <input name="rePassword" id="txtConfirmPassword" type="password" class="form-control" placeholder="Re-Enter Password" required>
+
+                            </div>
+
+                            <script type="text/javascript">
+                                function Validate() {
+                                    var password = document.getElementById("txtPassword").value;
+                                    var confirmPassword = document.getElementById("txtConfirmPassword").value;
+                                    if (password != confirmPassword) {
+                                        alert("Passwords do not match.");
+                                        return false;
+                                    }
+                                    return true;
+                                }
+                            </script>
+
+                            <div class="form-group">
+                                <label for="adminemail">Admin Email</label>
+                                <input id="adminemail" name="adminemail" type="email" class="form-control" placeholder="Admin Email" required>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="tab-pane" id="tab5">
-                        5
+                        <div >
+                            <div class="form-group">
+                                <label>Admin First Name</label>
+                                <input id="adminFirstName" name="adminFirstName" type="text" class="form-control" placeholder="Admin First Name" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Admin Middle Name</label>
+                                <input id="adminMiddleName" name="adminMiddleName" type="text" class="form-control" placeholder="Admin Middle Name" required>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>Admin Last Name</label>
+                                <input id="adminLastName" name="adminLastName" type="text" class="form-control" placeholder="Admin Last Name" required>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="tab6">
                         6
                     </div>
-                    <div class="tab-pane" id="tab7">
-                        7
-                    </div>
+
                     <ul class="pager wizard">
                         <li class="previous first" style="display:none;"><a href="#">First</a></li>
                         <li class="previous"><a href="#">Previous</a></li>
                         <li class="next last" style="display:none;"><a href="#">Last</a></li>
                         <li class="next"><a href="#">Next</a></li>
+                        <li class="finish"><a href="javascript:;">Finish</a></li>
                     </ul>
                 </div>
             </div>
@@ -108,22 +160,27 @@
 <script src="/js/prettify.js"></script>
 <script>
     $(document).ready(function() {
+
         $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
             if(index==2) {
                 // Make sure we entered the name
-                if(!$('#UniName').val()) {
+                if(!$('#uname').val()) {
                     alert('You must enter university name');
-                    $('#UniName').focus();
+                    $('#uname').focus();
                     return false;
-                }else if(!$('#collegeName').val()) {
+                }else if(!$('#cname').val()) {
                     alert('You must enter college name');
-                    $('#collegeName').focus();
+                    $('#cname').focus();
                     return false;
                 }
             }
+            if(index==6) {
+
+
+            }
 
             // Set the name for the next tab
-            $('#tab3').html('Please Enter dean\'s of ' + $('#collegeName').val() + ' full name');
+            //$('#tab3').html('Please Enter dean\'s of ' + $('#collegeName').val() + ' full name');
 
         }, onTabShow: function(tab, navigation, index) {
             var $total = navigation.find('li').length;
@@ -131,7 +188,83 @@
             var $percent = ($current/$total) * 100;
             $('#rootwizard .progress-bar').css({width:$percent+'%'});
         }});
-        window.prettyPrint && prettyPrint()
+        $('#rootwizard .finish').click(function() {
+            //alert('Finished!, Starting over!');
+            //$('#rootwizard').find("a[href*='tab1']").trigger('click');
+
+
+            var cnaSubmit = false;
+            if(!$('#uname').val()) {
+                alert('You must enter university name');
+                $('#rootwizard').find("a[href*='tab2']").trigger('click');
+                $('#uname').focus();
+                return false;
+            }else if(!$('#cname').val()) {
+                alert('You must enter college name');
+                $('#rootwizard').find("a[href*='tab2']").trigger('click');
+                $('#cname').focus();
+                return false;
+            }else if(!$('#ulogo').val()) {
+                alert('You must enter university logo');
+                $('#rootwizard').find("a[href*='tab3']").trigger('click');
+                $('#ulogo').focus();
+                return false;
+            }else if(!$('#adminUsername').val()) {
+                alert('You must enter admin username');
+                $('#rootwizard').find("a[href*='tab4']").trigger('click');
+                $('#adminUsername').focus();
+                return false;
+            }else if(!$('#txtPassword').val()) {
+                alert('You must enter admin password');
+                $('#rootwizard').find("a[href*='tab4']").trigger('click');
+                $('#ulogo').focus();
+                return false;
+            }else if(!$('#txtPassword').val() == $('#txtConfirmPassword').val()) {
+                alert('You must re-enter the same new password');
+                $('#rootwizard').find("a[href*='tab4']").trigger('click');
+                $('#txtConfirmPassword').focus();
+                return false;
+            }else if(!$('#adminemail').val()) {
+                alert('You must enter admin email');
+                $('#rootwizard').find("a[href*='tab4']").trigger('click');
+                $('#adminemail').focus();
+                return false;
+            }else if(!$('#adminFirstName').val()) {
+                alert('You must enter admin first name');
+                $('#rootwizard').find("a[href*='tab5']").trigger('click');
+                $('#adminFirstName').focus();
+                return false;
+            }else if(!$('#adminMiddleName').val()) {
+                alert('You must enter admin middle name');
+                $('#rootwizard').find("a[href*='tab5']").trigger('click');
+                $('#adminMiddleName').focus();
+                return false;
+            }else if(!$('#adminLastName').val()) {
+                alert('You must enter admin last name');
+                $('#rootwizard').find("a[href*='tab5']").trigger('click');
+                $('#adminLastName').focus();
+                return false;
+            }
+
+            if($('#adminemail').val()) {
+                var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if(!re.test($('#adminemail').val())){
+                    alert('You must enter valid admin email');
+                    $('#rootwizard').find("a[href*='tab4']").trigger('click');
+                    $('#adminemail').focus();
+                }else {
+                    canSubmit = true;
+                }
+            }
+
+
+            if(canSubmit){
+                $('#setUpForm').submit();
+            }
+
+
+
+        });
     });
 </script>
 </body>
