@@ -20,10 +20,11 @@
     <section id="wizard">
         <form name="myform" id="setUpForm" method="post" action="/Insert">
             <div class="page-header">
-                <h1>Wizard With Form Validation</h1>
+                <h1>ABETAS SETUP</h1>
             </div>
 
             <div id="rootwizard">
+                <div id="alert"  class="alert alert-danger "  role="alert" ></div>
                 <div class="navbar">
                     <div class="navbar-inner">
                         <div class="container">
@@ -40,11 +41,12 @@
                     </div>
                 </div>
                 <div id="bar" class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
                 </div>
+
                 <div class="tab-content">
                     <div class="tab-pane" id="tab1">
-                        <div id="welcome">
+                        <div class="jumbotron">
                             <h2>Welcome to ABETAS</h2>
                             <p>This is the setup wizard of the system, this wizard will require set of some information. use the navigator ubove to move around, or you can fill them later by going to system setting area.</p>
 
@@ -52,37 +54,39 @@
                     </div>
 
                     <div class="tab-pane" id="tab2">
-                        <div class="form-group">
-                            <label for="uname">University Name</label>
-                            <input type="text" id="uname" class="form-control" placeholder="University Name" name="uname" required>
-                        </div>
+                        <div class="jumbotron">
+                            <div class="form-group">
+                                <label for="uname">University Name</label>
+                                <input type="text" id="uname" class="form-control" placeholder="University Name" name="uname" required>
+                            </div>
 
-                        <div class="form-group">
+                            <div class="form-group">
 
-                            <label for="cname">College Name</label>
+                                <label for="cname">College Name</label>
 
-                            <input type="text" id="cname" class="form-control" placeholder="College Name" name="cname" required>
+                                <input type="text" id="cname" class="form-control" placeholder="College Name" name="cname" required>
 
+                            </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="tab3">
-                        <div class="form-group">
+                        <div class="jumbotron form-group">
+                            <h4>Choose the logo of the university to be uploaded</h4>
                             <label for="ulogo" >University Logo</label>
-                            </br>
                             <input  type="file" id="ulogo" accept="image/png">
                             <p class="help-block">maximum file size 10MB.</p>
-                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="tab4">
-                        <div>
+                        <div class="jumbotron">
                             <p>Fill the following required field to create Administrator</p>
 
-                            <div class="form-group">
+                            <div class=" form-group">
                                 <label for="adminUsername">Admin Username</label>
                                 <input id="adminUsername" name="adminUsername" type="text" class="form-control" placeholder="Admin Username" required>
                             </div>
 
-                            <div class="form-group">
+                            <div class=" form-group">
 
                                 <label for="txtPassword">Admin Password</label>
 
@@ -90,7 +94,7 @@
 
                             </div>
 
-                            <div class="form-group">
+                            <div class=" form-group">
 
                                 <label for="txtConfirmPassword">Re-Enter Password</label>
 
@@ -110,7 +114,7 @@
                                 }
                             </script>
 
-                            <div class="form-group">
+                            <div class=" form-group">
                                 <label for="adminemail">Admin Email</label>
                                 <input id="adminemail" name="adminemail" type="email" class="form-control" placeholder="Admin Email" required>
                             </div>
@@ -118,27 +122,31 @@
                         </div>
                     </div>
                     <div class="tab-pane" id="tab5">
-                        <div >
-                            <div class="form-group">
+                        <div class="jumbotron" >
+                            <div class=" form-group">
                                 <label>Admin First Name</label>
                                 <input id="adminFirstName" name="adminFirstName" type="text" class="form-control" placeholder="Admin First Name" required>
                             </div>
 
 
-                            <div class="form-group">
+                            <div class=" form-group">
                                 <label>Admin Middle Name</label>
                                 <input id="adminMiddleName" name="adminMiddleName" type="text" class="form-control" placeholder="Admin Middle Name" required>
                             </div>
 
 
-                            <div class="form-group">
+                            <div class=" form-group">
                                 <label>Admin Last Name</label>
                                 <input id="adminLastName" name="adminLastName" type="text" class="form-control" placeholder="Admin Last Name" required>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="tab6">
-                        6
+                        <div class="jumbotron">
+                            <h3>
+                                Please confirm all the previous data you entered, and then click finish to begin setting up the database.
+                            </h3>
+                        </div>
                     </div>
 
                     <ul class="pager wizard">
@@ -161,15 +169,19 @@
 <script>
     $(document).ready(function() {
 
+        document.getElementById("alert").style.visibility = "hidden";
         $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
+
             if(index==2) {
                 // Make sure we entered the name
                 if(!$('#uname').val()) {
-                    alert('You must enter university name');
+                    document.getElementById("alert").style.visibility = "visible";
+                    $('#alert').html('You must enter university name');
                     $('#uname').focus();
                     return false;
                 }else if(!$('#cname').val()) {
-                    alert('You must enter college name');
+                    document.getElementById("alert").style.visibility = "visible";
+                    $('#alert').html('You must enter college name');
                     $('#cname').focus();
                     return false;
                 }
@@ -187,6 +199,7 @@
             var $current = index+1;
             var $percent = ($current/$total) * 100;
             $('#rootwizard .progress-bar').css({width:$percent+'%'});
+
         }});
         $('#rootwizard .finish').click(function() {
             //alert('Finished!, Starting over!');
@@ -195,61 +208,71 @@
 
             var cnaSubmit = false;
             if(!$('#uname').val()) {
-                alert('You must enter university name');
+
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alert').html('You must enter university name');
                 $('#rootwizard').find("a[href*='tab2']").trigger('click');
                 $('#uname').focus();
                 return false;
             }else if(!$('#cname').val()) {
-                alert('You must enter college name');
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alert').html('You must enter college name');
                 $('#rootwizard').find("a[href*='tab2']").trigger('click');
                 $('#cname').focus();
                 return false;
             }else if(!$('#ulogo').val()) {
-                alert('You must enter university logo');
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alert').html('You must enter university logo');
                 $('#rootwizard').find("a[href*='tab3']").trigger('click');
                 $('#ulogo').focus();
                 return false;
             }else if(!$('#adminUsername').val()) {
-                alert('You must enter admin username');
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alert').html('You must enter admin username');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#adminUsername').focus();
                 return false;
             }else if(!$('#txtPassword').val()) {
-                alert('You must enter admin password');
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alert').html('You must enter admin password');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#ulogo').focus();
                 return false;
             }else if(!$('#txtPassword').val() == $('#txtConfirmPassword').val()) {
-                alert('You must re-enter the same new password');
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alert').html('You must re-enter the same new password');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#txtConfirmPassword').focus();
                 return false;
             }else if(!$('#adminemail').val()) {
-                alert('You must enter admin email');
+                $('#alert').html('You must enter admin email').className = "alert alert-danger";
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#adminemail').focus();
                 return false;
             }else if(!$('#adminFirstName').val()) {
-                alert('You must enter admin first name');
+                $('#alert').html('You must enter admin first name').className = "alert alert-danger";
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminFirstName').focus();
                 return false;
             }else if(!$('#adminMiddleName').val()) {
-                alert('You must enter admin middle name');
+                $('#alert').html('You must enter admin middle name').className = "alert alert-danger";
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminMiddleName').focus();
                 return false;
             }else if(!$('#adminLastName').val()) {
-                alert('You must enter admin last name');
+                $('#alert').html('You must enter admin last name').className = "alert alert-danger";
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminLastName').focus();
                 return false;
+            }else {
+                $('#alert').html('').className = "alert alert-danger hidden";
             }
 
             if($('#adminemail').val()) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if(!re.test($('#adminemail').val())){
-                    alert('You must enter valid admin email');
+                    $('#alert').html('You must enter valid admin email').className = "alert alert-danger";
+                    //alert('You must enter valid admin email');
                     $('#rootwizard').find("a[href*='tab4']").trigger('click');
                     $('#adminemail').focus();
                 }else {
