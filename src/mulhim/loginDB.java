@@ -79,13 +79,14 @@ public class loginDB {
             }
             if(PassCodeMap.checkKey(selEmail)){
 
-                System.out.println("Exist !!!!");
+                System.out.println("Exist !!!!    "+selEmail);
                 System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
             }
             else {
                 PassCodeMap.setPassCode(selEmail,randNumber);
                 System.out.println(PassCodeMap.getMapSize());
             }
+
 
 
         } catch (Exception e) {
@@ -114,6 +115,8 @@ public class loginDB {
         }
 
     }
+
+
 
 //    public void initialization(String Uname, String Cname, String logo, String Fname, String Mname, String Lname, String Username, String password, String email) throws ClassNotFoundException, SQLException {
 //

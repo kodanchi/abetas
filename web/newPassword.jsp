@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Mohammed
-  Date: 1/25/2016
-  Time: 7:49 PM
+  Date: 1/26/2016
+  Time: 3:36 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -25,15 +25,16 @@
 <div class="row">
     <div class="col-md-6 col-xs-6 col-md-offset-3 well base">
         <h1>ABETAS</h1>
-        <p>Enter the code you just recieved in your email.</p>
+        <p>Enter the new password two times please.</p>
 
-        <form method="post" action="/Passcode">
+        <form>
             <div class="form-group">
-                <input type="email" class="form-control" name="emailReset" placeholder="email" size="25" required>
-                <input type="number" class="form-control" name="emailPassCode" placeholder="Passcode" size="25" required>
+                <input type="password" class="form-control" name="newPassword" placeholder="New password" size="25">
+                <input type="password" class="form-control" name="newPasswordconfirm" placeholder="Re-enter new password" size="25">
+
             </div>
-            <button type="submit" class="btn btn-warning">cancel</button>
-            <button type="button" class="btn btn-success">Enter the new password</button>
+            <button type="submit" class="btn btn-warning">Cancel</button>
+            <button type="submit" class="btn btn-success">Login</button>
         </form>
 
 
