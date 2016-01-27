@@ -15,8 +15,8 @@
     <meta name="description" content="An interactive getting started guide for Brackets.">
 
     <link rel="stylesheet" href="css/loginPage.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
 
 
 </head>
