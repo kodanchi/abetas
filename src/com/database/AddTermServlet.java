@@ -37,7 +37,6 @@ public class AddTermServlet extends HttpServlet {
                 "\n" +
                 "    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />\n" +
                 "    <meta name=\"viewport\" content=\"width=device-width\" />\n" +
-                "    \n" +
                 "\n" +
                 "    <link href=\"css/bootstrap.css\" rel=\"stylesheet\" />\n" +
                 "    <link href=\"css/ct-paper.css\" rel=\"stylesheet\" />\n" +
@@ -48,19 +47,15 @@ public class AddTermServlet extends HttpServlet {
                 "    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>\n" +
                 "    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>\n" +
                 "\n" +
-                "\n" +
-                "\n" +
-                "\n" +
                 "</head>\n" +
                 "\n" +
                 "<body>\n" +
-                "    <!-- Navbar start -->\n" +
-                "<div id=\"header\"></div>\n" +
+                "    <div id=\"header\"></div>\n" +
                 "\n" +
                 "    <div class=\"main\">\n" +
                 "        <div class=\"section\">\n" +
                 "            <div class=\"container\">\n" +
-                "                <!--         what is row -->\n" +
+                "                <!-- what is row -->\n" +
                 "                <div class=\"row tim-row\">\n" +
                 "                    <h2 class=\"text-center\">Cycle Configuration</h2>\n" +
                 "                    <legend></legend>\n" +
@@ -78,27 +73,27 @@ public class AddTermServlet extends HttpServlet {
                 "                                            <div class=\"col-md-6\">\n" +
                 "                                                <div class=\"form-group\">\n" +
                 "                                                    <label>Name</label>\n" +
-                "                                                <input type=\"text\" name=\"termsname\" class=\"form-control\" required>\n" +
+                "                                                    <input type=\"text\" name=\"termsname\" class=\"form-control\" required>\n" +
                 "\n" +
                 "                                                </div>\n" +
                 "                                            </div>\n" +
                 "\n" +
                 "                                            <div class=\"col-md-6\">\n" +
-                "                                            <div class=\"form-group\">\n" +
-                "                                                <label>Year</label>\n" +
-                "                <div class=\"dropdown\">\n" +
-                "                  <a href=\"#\" class=\"btn dropdown-toggle\" data-toggle=\"dropdown\">\n" +
+                "                                                <div class=\"form-group\">\n" +
+                "                                                    <label>Year</label>\n" +
+                "                                                    <div class=\"dropdown\">\n" +
+                "                                                        <a href=\"#\" class=\"btn dropdown-toggle\" data-toggle=\"dropdown\">\n" +
                 "                      Year \n" +
                 "                      <b class=\"caret\"></b>\n" +
                 "                  </a>\n" +
-                "                  <ul class=\"dropdown-menu\">\n" +
-                "                    <li><a href=\"#\">2014-2015</a></li>\n" +
-                "                    <li><a href=\"#\">2015-2016</a></li>\n" +
-                "                  </ul>\n" +
-                "                </div>\n" +
+                "                                                        <ul class=\"dropdown-menu\">\n" +
+                "                                                            <li><a href=\"#\">2014-2015</a></li>\n" +
+                "                                                            <li><a href=\"#\">2015-2016</a></li>\n" +
+                "                                                        </ul>\n" +
+                "                                                    </div>\n" +
                 "\n" +
+                "                                                </div>\n" +
                 "                                            </div>\n" +
-                "                                        </div>\n" +
                 "\n" +
                 "                                        </div>\n" +
                 "                                        <button type=\"submit\" class=\"btn btn-success\">Add</button>\n" +
@@ -114,7 +109,7 @@ public class AddTermServlet extends HttpServlet {
                 "                                            <th>edit</th>\n" +
                 "                                            <th>delete</th>\n" +
                 "                                        </tr>\n" +
-                "                                        <tr>\n" );
+                "                                        <tr>" );
 
 
 
@@ -162,7 +157,7 @@ public class AddTermServlet extends HttpServlet {
 
 
 
-        out.println("                                        </tr>\n" +
+        out.println("</tr>\n" +
                 "                                    </table>\n" +
                 "                                </div>\n" +
                 "                            </div>\n" +
@@ -186,50 +181,46 @@ public class AddTermServlet extends HttpServlet {
                 "            </div>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
+                "    <!--   end modal  -->\n" +
                 "\n" +
-                "<!--   end modal  -->\n" +
-                "\n" +
-                "<div id=\"footer\"></div>\n" +
+                "    <div id=\"footer\"></div>\n" +
                 "\n" +
                 "</body>\n" +
                 "\n" +
-                "    <script src=\"js/jquery-1.10.2.js\" type=\"text/javascript\"></script>    \n" +
-                "\t<script src=\"js/jquery-ui-1.10.4.custom.min.js\" type=\"text/javascript\"></script>\n" +
-                "    <!-- <script src=\"code.jquery.com/jquery-1.10.2.js\"></script> -->\n" +
-                "\t<script src=\"js/bootstrap.js\" type=\"text/javascript\"></script>\n" +
-                "\t\n" +
-                "\t<!--  Plugins -->\n" +
-                "\t<script src=\"js/ct-paper-checkbox.js\"></script>\n" +
-                "\t<script src=\"js/ct-paper-radio.js\"></script>\n" +
-                "\t<script src=\"js/bootstrap-select.js\"></script>\n" +
-                "\t<script src=\"js/bootstrap-datepicker.js\"></script>\n" +
-                "   \n" +
-                "    <script type=\"text/javascript\" src=\"https://maps.googleapis.com/maps/api/js?v=3.exp\"></script>\n" +
-                "\t\n" +
-                "\t<script src=\"js/ct-paper.js\"></script>    \n" +
-                "\t<script>\n" +
+                "<script src=\"js/jquery-1.10.2.js\" type=\"text/javascript\"></script>\n" +
+                "<script src=\"js/jquery-ui-1.10.4.custom.min.js\" type=\"text/javascript\"></script>\n" +
+                "<script src=\"js/bootstrap.js\" type=\"text/javascript\"></script>\n" +
                 "\n" +
-                "    $( \"#slider-range\" ).slider({\n" +
-                "    \trange: true,\n" +
-                "    \tmin: 0,\n" +
-                "    \tmax: 500,\n" +
-                "    \tvalues: [ 75, 300 ],\n" +
+                "<!--  Plugins -->\n" +
+                "<script src=\"js/ct-paper-checkbox.js\"></script>\n" +
+                "<script src=\"js/ct-paper-radio.js\"></script>\n" +
+                "<script src=\"js/bootstrap-select.js\"></script>\n" +
+                "<script src=\"js/bootstrap-datepicker.js\"></script>\n" +
+                "\n" +
+                "<script type=\"text/javascript\" src=\"https://maps.googleapis.com/maps/api/js?v=3.exp\"></script>\n" +
+                "\n" +
+                "<script src=\"js/ct-paper.js\"></script>\n" +
+                "<script>\n" +
+                "    $(\"#slider-range\").slider({\n" +
+                "        range: true,\n" +
+                "        min: 0,\n" +
+                "        max: 500,\n" +
+                "        values: [75, 300],\n" +
                 "    });\n" +
-                "    $( \"#slider-default\" ).slider({\n" +
-                "    \t\tvalue: 70,\n" +
-                "    \t\torientation: \"horizontal\",\n" +
-                "    \t\trange: \"min\",\n" +
-                "    \t\tanimate: true\n" +
+                "    $(\"#slider-default\").slider({\n" +
+                "        value: 70,\n" +
+                "        orientation: \"horizontal\",\n" +
+                "        range: \"min\",\n" +
+                "        animate: true\n" +
                 "    });\n" +
                 "    $('.btn-tooltip').tooltip('show');\n" +
-                "    $('.radio').on('toggle', function() { });\n" +
-                "            \n" +
+                "    $('.radio').on('toggle', function () {});\n" +
                 "\n" +
-                "$(function(){\n" +
-                "  $(\"#header\").load(\"header.html\"); \n" +
-                "  $(\"#footer\").load(\"footer.html\"); \n" +
-                "});\n" +
-                "    \n" +
+                "\n" +
+                "    $(function () {\n" +
+                "        $(\"#header\").load(\"header.html\");\n" +
+                "        $(\"#footer\").load(\"footer.html\");\n" +
+                "    });\n" +
                 "</script>\n" +
                 "\n" +
                 "</html>");
