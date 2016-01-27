@@ -126,7 +126,6 @@
 
             <a href="11.jsp"><button type="submit" class="btn btn-default" value="Finish" style="float:right" onclick="return Validate()">Finish</button></a>
             </form>
-
     </div>
 </div>
 

@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Abdullah on 1/25/2016.
+ * Created by Abdullah on 1/26/2016.
  */
-@WebServlet(name = "ProgramObjectiveServlet",
-        urlPatterns = {"/32"})
-public class ProgramObjectiveServlet extends HttpServlet {
+@WebServlet(name = "AddCoursesServlet",
+        urlPatterns = {"/44"})
+public class AddCoursesServlet extends HttpServlet {
     ASDB dba;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,8 +23,6 @@ public class ProgramObjectiveServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         PrintWriter out = response.getWriter();
 
         out.println("<!DOCTYPE html>\n" +
@@ -41,14 +39,14 @@ public class ProgramObjectiveServlet extends HttpServlet {
                 "\n" +
                 "<div class=\"container\">\n" +
                 "    <div>\n" +
-                "        <p>Program >> Objectives >></p>\n" +
-                "        <h1>Add Program Objective</h1>\n" +
-                "        <p>You need to add program objectives or upload excel file.</p>\n" +
+                "        <p>Program >> Objectives >>outcomes>>Link>>Courses>>finish</p>\n" +
+                "        <h1>Add Courses</h1>\n" +
                 "        <table class=\"table table-bordered\">\n" +
                 "            <thead>\n" +
                 "            <tr>\n" +
-                "                <th>Program</th>\n" +
-                "                <th>Objective</th>\n" +
+                "                <th>Course Name</th>\n" +
+                "                <th>Code</th>\n" +
+                "                <th>Level</th>\n" +
                 "                <th>Edit</th>\n" +
                 "                <th>Delete</th>\n" +
                 "            </tr>\n" +
@@ -59,7 +57,7 @@ public class ProgramObjectiveServlet extends HttpServlet {
 
         dba=new ASDB();
         try {
-            ArrayList<ArrayList<String>> rs = dba.selectObjective();
+            ArrayList<ArrayList<String>> rs = dba.selectCourses();
             ArrayList<String> rsRow ;
 
             for (int i=0; i<rs.size();i++){
@@ -89,9 +87,9 @@ public class ProgramObjectiveServlet extends HttpServlet {
         out.print( "</tr>\n" +
                 "            </tbody>\n" +
                 "        </table>\n" +
-                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Add objective</a></p>\n" +
+                "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Add Course</a></p>\n" +
                 "        <p><a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Cancel</a>\n" +
-                "        <a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Next</a></p>\n" +
+                "        <a class=\"btn btn-lg btn-success\" href=\"#\" role=\"button\">Finish</a></p>\n" +
                 "\n" +
                 "    </div>\n" +
                 "</div>\n" +
