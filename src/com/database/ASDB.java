@@ -18,11 +18,11 @@ public class ASDB {
     private Statement stmt;
     private ResultSet result;
     DataSource dataSource = null;
-
+    private static String jdbcDriver = "com.mysql.jdbc.Driver";
+    private static String dbName = "abetasdb";
     public void connect() throws ClassNotFoundException, SQLException {
 
-        try
-        {
+        try {
             /*
              *  Using JDNI lookup get the DataSource.
              */
@@ -31,16 +31,12 @@ public class ASDB {
             Context envContext = (Context) initContext.lookup("java:/comp/env");
             dataSource = (DataSource) envContext.lookup("jdbc/abetasDB");
 
-        }
-        catch( Exception exe )
-        {
+        } catch (Exception exe) {
             exe.printStackTrace();
         }
 
     }
-    public void closRS(ResultSet rs) throws SQLException {
-        rs.close();
-    }
+
 
     public ArrayList<ArrayList<String>> selectUsers() throws ClassNotFoundException, SQLException {
 
@@ -71,7 +67,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 rowDate = new ArrayList<String>();
                 rowDate.add(rs.getString(5));
                 rowDate.add(rs.getString(6));
@@ -88,7 +84,8 @@ public class ASDB {
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -104,117 +101,12 @@ public class ASDB {
                 sqlException.printStackTrace();
             }
 
-             return rsArr;
+            return rsArr;
 
         }
 
     }
 
-    public void initialization(String Uname, String Cname, String logo, String Fname, String Mname, String Lname, String Username, String password, String email) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = " insert into university (Uni_name, College_name, Uni_logo)" + " values (?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (1, Uname);
-            preparedStatement.setString (2, Cname);
-            preparedStatement.setString (3, logo);
-
-            rs = preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-        connect();
-
-        connection = null;
-        preparedStatement = null;
-
-        rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = " insert into superuser (Super_Username, Super_Password, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID)" + " values (?, ?, ?, ?, ?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (1, Username);
-            preparedStatement.setString (2, password);
-            preparedStatement.setString (3, email);
-            preparedStatement.setString (4, Fname);
-            preparedStatement.setString (5, Mname);
-            preparedStatement.setString (6, Lname);
-            preparedStatement.setInt (7, 1);
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
 
     public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
 
@@ -228,13 +120,13 @@ public class ASDB {
 
         int rs = 0;
         if (type == 0) {
-        try {
+            try {
 
             /*
              *  Get connection from the DataSource
              */
 
-            connection = dataSource.getConnection();
+                connection = dataSource.getConnection();
 
             /*
              * Execute the query
@@ -252,24 +144,12 @@ public class ASDB {
                 rs = preparedStatement.executeUpdate();
 
 
+                ////Need to display the temp password to the screen
 
 
-
-
-
-
-            ////Need to display the temp password to the screen
-
-
-
-
-
-
-
-
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-            }finally{
+            } finally {
             /*
              * finally block used to close resources
              */
@@ -289,7 +169,7 @@ public class ASDB {
                 }
 
             }
-        }else if (type==1){
+        } else if (type == 1) {
             try {
 
             /*
@@ -313,24 +193,12 @@ public class ASDB {
                 rs = preparedStatement.executeUpdate();
 
 
-
-
-
-
-
-
                 ////Need to display the temp password to the screen
 
 
-
-
-
-
-
-
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-            }finally{
+            } finally {
             /*
              * finally block used to close resources
              */
@@ -350,7 +218,7 @@ public class ASDB {
                 }
 
             }
-        }else if(type==2){
+        } else if (type == 2) {
             try {
 
             /*
@@ -372,9 +240,9 @@ public class ASDB {
                 preparedStatement.setString(5, rn);
                 rs = preparedStatement.executeUpdate();
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
-            }finally{
+            } finally {
             /*
              * finally block used to close resources
              */
@@ -703,11 +571,11 @@ public class ASDB {
 
             rsSelect = preparedStatement.executeQuery();
 
-            if (rsSelect.next()){
+            if (rsSelect.next()) {
                 id = rsSelect.getInt(1);
             }
 
-            if (id!=0) {
+            if (id != 0) {
                 String query = " insert into cycle (Cycle_ID)" + " values (?)";
                 id++;
                 preparedStatement = connection.prepareStatement(query);
@@ -910,129 +778,129 @@ public class ASDB {
     public void addPI(String name, String label, int type, int threshold) throws ClassNotFoundException, SQLException {
 
 
-            connect();
+        connect();
 
-            Connection connection = null;
-            PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
-            int piid=0;
-            ResultSet rsSelect = null;
-            int rs = 0;
-            try {
+        int piid = 0;
+        ResultSet rsSelect = null;
+        int rs = 0;
+        try {
 
             /*
              *  Get connection from the DataSource
              */
 
-                connection = dataSource.getConnection();
+            connection = dataSource.getConnection();
 
             /*
              * Execute the query
              */
-                String query = " insert into performance_indicator (PI_name, PI_label)" + " values (?, ?)";
+            String query = " insert into performance_indicator (PI_name, PI_label)" + " values (?, ?)";
 
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, label);
-                rs = preparedStatement.executeUpdate();
-
-
-                ////Need to display the temp password to the screen
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, label);
+            rs = preparedStatement.executeUpdate();
 
 
-                String querySelect = " SELECT PI_ID FROM performance_indicator ORDER BY PI_ID DESC LIMIT 1";
-
-                preparedStatement = connection.prepareStatement(querySelect);
-
-                rsSelect = preparedStatement.executeQuery();
-
-                if (rsSelect.next()){
-                    piid = rsSelect.getInt(1);
-                }
-
-                if (piid!=0) {
-                    if (type==0){
-                        int rsInsertS = 0;
-                        ResultSet rsSelectS = null;
-                        int sid=0;
-                        String queryInsertS = " insert into summative (Sum_threshold)" + " values (?)";
-
-                        preparedStatement = connection.prepareStatement(queryInsertS);
-                        preparedStatement.setInt(1, threshold);
-                        rsInsertS = preparedStatement.executeUpdate();
+            ////Need to display the temp password to the screen
 
 
-                        String querySelectS = " SELECT Summative_ID FROM summative ORDER BY Summative_ID DESC LIMIT 1";
+            String querySelect = " SELECT PI_ID FROM performance_indicator ORDER BY PI_ID DESC LIMIT 1";
 
-                        preparedStatement = connection.prepareStatement(querySelectS);
+            preparedStatement = connection.prepareStatement(querySelect);
 
-                        rsSelectS = preparedStatement.executeQuery();
+            rsSelect = preparedStatement.executeQuery();
 
-                        if (rsSelectS.next()){
-                            sid = rsSelect.getInt(1);
-                        }
+            if (rsSelect.next()) {
+                piid = rsSelect.getInt(1);
+            }
 
-                        int rsSummative = 0;
-                        String querySummative = " insert into pi_type_summative (FK_Summative_ID, FK_PI_ID)" + " values (?, ?)";
+            if (piid != 0) {
+                if (type == 0) {
+                    int rsInsertS = 0;
+                    ResultSet rsSelectS = null;
+                    int sid = 0;
+                    String queryInsertS = " insert into summative (Sum_threshold)" + " values (?)";
 
-                        preparedStatement = connection.prepareStatement(querySummative);
-                        preparedStatement.setInt(1, piid);
-                        preparedStatement.setInt(2, sid);
-                        rs = preparedStatement.executeUpdate();
-
-                    }else if (type==1){
-                        int rsFormative = 0;
-                        ResultSet rsSelectF = null;
-                        int fid=0;
-
-                        String queryInsertF = " insert into formative (F_written_rubic)" + " values (?)";
-
-                        preparedStatement = connection.prepareStatement(queryInsertF);
-                        preparedStatement.setString(1, "");
-                        rsFormative = preparedStatement.executeUpdate();
+                    preparedStatement = connection.prepareStatement(queryInsertS);
+                    preparedStatement.setInt(1, threshold);
+                    rsInsertS = preparedStatement.executeUpdate();
 
 
-                        String querySelectF = " SELECT Formative_ID FROM formative ORDER BY Formative_ID DESC LIMIT 1";
+                    String querySelectS = " SELECT Summative_ID FROM summative ORDER BY Summative_ID DESC LIMIT 1";
 
-                        preparedStatement = connection.prepareStatement(querySelectF);
+                    preparedStatement = connection.prepareStatement(querySelectS);
 
-                        rsSelectF = preparedStatement.executeQuery();
+                    rsSelectS = preparedStatement.executeQuery();
 
-                        if (rsSelectF.next()){
-                            fid = rsSelect.getInt(1);
-                        }
+                    if (rsSelectS.next()) {
+                        sid = rsSelect.getInt(1);
+                    }
 
-                        String queryFormative = " insert into pi_type_formative (FK_Formative_ID, FK_PI_ID)" + " values (?, ?)";
+                    int rsSummative = 0;
+                    String querySummative = " insert into pi_type_summative (FK_Summative_ID, FK_PI_ID)" + " values (?, ?)";
 
-                        preparedStatement = connection.prepareStatement(queryFormative);
-                        preparedStatement.setInt(1, piid);
-                        preparedStatement.setInt(2, fid);
-                        rs = preparedStatement.executeUpdate();
-                    }//else display a message to the user that type is not set.
-                }
+                    preparedStatement = connection.prepareStatement(querySummative);
+                    preparedStatement.setInt(1, piid);
+                    preparedStatement.setInt(2, sid);
+                    rs = preparedStatement.executeUpdate();
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
+                } else if (type == 1) {
+                    int rsFormative = 0;
+                    ResultSet rsSelectF = null;
+                    int fid = 0;
+
+                    String queryInsertF = " insert into formative (F_written_rubic)" + " values (?)";
+
+                    preparedStatement = connection.prepareStatement(queryInsertF);
+                    preparedStatement.setString(1, "");
+                    rsFormative = preparedStatement.executeUpdate();
+
+
+                    String querySelectF = " SELECT Formative_ID FROM formative ORDER BY Formative_ID DESC LIMIT 1";
+
+                    preparedStatement = connection.prepareStatement(querySelectF);
+
+                    rsSelectF = preparedStatement.executeQuery();
+
+                    if (rsSelectF.next()) {
+                        fid = rsSelect.getInt(1);
+                    }
+
+                    String queryFormative = " insert into pi_type_formative (FK_Formative_ID, FK_PI_ID)" + " values (?, ?)";
+
+                    preparedStatement = connection.prepareStatement(queryFormative);
+                    preparedStatement.setInt(1, piid);
+                    preparedStatement.setInt(2, fid);
+                    rs = preparedStatement.executeUpdate();
+                }//else display a message to the user that type is not set.
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             /*
              * finally block used to close resources
              */
-                try {
-                    if (preparedStatement != null) {
-                        preparedStatement.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
-                try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
-
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
             }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
     }
 
     public void link_pi_course(int PI_ID, String C_code, String relation) throws ClassNotFoundException, SQLException {
@@ -1116,19 +984,7 @@ public class ASDB {
             rs = preparedStatement.executeUpdate();
 
 
-
-
-
-
-
-
             ////Need to display the temp password to the screen
-
-
-
-
-
-
 
 
         } catch (Exception e) {
@@ -1186,7 +1042,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(2));
 
@@ -1194,13 +1050,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1221,10 +1077,6 @@ public class ASDB {
         }
 
     }
-
-
-
-
 
 
     public ArrayList<ArrayList<String>> selectObjective() throws ClassNotFoundException, SQLException {
@@ -1256,7 +1108,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
@@ -1265,13 +1117,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1292,7 +1144,6 @@ public class ASDB {
         }
 
     }
-
 
 
     public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives() throws ClassNotFoundException, SQLException {
@@ -1324,7 +1175,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
@@ -1333,13 +1184,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1360,8 +1211,6 @@ public class ASDB {
         }
 
     }
-
-
 
 
     public ArrayList<ArrayList<String>> selectStudentOutcomes() throws ClassNotFoundException, SQLException {
@@ -1393,7 +1242,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(2));
 
@@ -1401,13 +1250,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1428,7 +1277,6 @@ public class ASDB {
         }
 
     }
-
 
 
     public ArrayList<ArrayList<String>> selectCourses() throws ClassNotFoundException, SQLException {
@@ -1460,7 +1308,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(3));
                 RowDate.add(rs.getString(1));
@@ -1471,13 +1319,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1529,7 +1377,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
 
@@ -1538,13 +1386,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1565,7 +1413,6 @@ public class ASDB {
         }
 
     }
-
 
 
     public ArrayList<ArrayList<String>> selectStudents() throws ClassNotFoundException, SQLException {
@@ -1597,7 +1444,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(3));
                 RowDate.add(rs.getString(4));
@@ -1609,13 +1456,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1667,7 +1514,7 @@ public class ASDB {
             rs = preparedStatement.executeQuery();
 
             //
-            while (rs.next()){
+            while (rs.next()) {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
@@ -1680,13 +1527,13 @@ public class ASDB {
             }
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
              * finally block used to close resources
-             */rs.close();
+             */
+            rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();

@@ -5,6 +5,13 @@
   Time: 3:19 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%
+/*ASDB dbCon = new ASDB();
+    if(dbCon.setUpChk() !=0){
+        System.out.println("insiiiiiide");
+        response.sendRedirect("http://localhost:8080/");
+    }*/
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -18,13 +25,16 @@
 <div class='container'>
 
     <section id="wizard">
-        <form name="myform" id="setUpForm" method="post" action="/Insert">
+        <form name="myform" id="setUpForm" method="post" enctype="multipart/form-data" action="/install">
             <div class="page-header">
                 <h1>ABETAS SETUP</h1>
             </div>
 
             <div id="rootwizard">
-                <div id="alert"  class="alert alert-danger "  role="alert" ></div>
+                <div id="alert"  class="alert alert-danger fade in"  role="alert" >
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <strong id="alertt" ></strong>
+                </div>
                 <div class="navbar">
                     <div class="navbar-inner">
                         <div class="container">
@@ -73,7 +83,7 @@
                         <div class="jumbotron form-group">
                             <h4>Choose the logo of the university to be uploaded</h4>
                             <label for="ulogo" >University Logo</label>
-                            <input  type="file" id="ulogo" accept="image/png">
+                            <input  type="file" id="ulogo" name="ulogo" accept="image/png">
                             <p class="help-block">maximum file size 10MB.</p>
                         </div>
                     </div>
@@ -101,18 +111,6 @@
                                 <input name="rePassword" id="txtConfirmPassword" type="password" class="form-control" placeholder="Re-Enter Password" required>
 
                             </div>
-
-                            <script type="text/javascript">
-                                function Validate() {
-                                    var password = document.getElementById("txtPassword").value;
-                                    var confirmPassword = document.getElementById("txtConfirmPassword").value;
-                                    if (password != confirmPassword) {
-                                        alert("Passwords do not match.");
-                                        return false;
-                                    }
-                                    return true;
-                                }
-                            </script>
 
                             <div class=" form-group">
                                 <label for="adminemail">Admin Email</label>
@@ -176,12 +174,12 @@
                 // Make sure we entered the name
                 if(!$('#uname').val()) {
                     document.getElementById("alert").style.visibility = "visible";
-                    $('#alert').html('You must enter university name');
+                    $('#alertt').html('You must enter university name');
                     $('#uname').focus();
                     return false;
                 }else if(!$('#cname').val()) {
                     document.getElementById("alert").style.visibility = "visible";
-                    $('#alert').html('You must enter college name');
+                    $('#alertt').html('You must enter college name');
                     $('#cname').focus();
                     return false;
                 }
@@ -210,68 +208,73 @@
             if(!$('#uname').val()) {
 
                 document.getElementById("alert").style.visibility = "visible";
-                $('#alert').html('You must enter university name');
+                $('#alertt').html('You must enter university name');
                 $('#rootwizard').find("a[href*='tab2']").trigger('click');
                 $('#uname').focus();
                 return false;
             }else if(!$('#cname').val()) {
                 document.getElementById("alert").style.visibility = "visible";
-                $('#alert').html('You must enter college name');
+                $('#alertt').html('You must enter college name');
                 $('#rootwizard').find("a[href*='tab2']").trigger('click');
                 $('#cname').focus();
                 return false;
             }else if(!$('#ulogo').val()) {
                 document.getElementById("alert").style.visibility = "visible";
-                $('#alert').html('You must enter university logo');
+                $('#alertt').html('You must enter university logo');
                 $('#rootwizard').find("a[href*='tab3']").trigger('click');
                 $('#ulogo').focus();
                 return false;
             }else if(!$('#adminUsername').val()) {
                 document.getElementById("alert").style.visibility = "visible";
-                $('#alert').html('You must enter admin username');
+                $('#alertt').html('You must enter admin username');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#adminUsername').focus();
                 return false;
             }else if(!$('#txtPassword').val()) {
                 document.getElementById("alert").style.visibility = "visible";
-                $('#alert').html('You must enter admin password');
+                $('#alertt').html('You must enter admin password');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#ulogo').focus();
                 return false;
             }else if(!$('#txtPassword').val() == $('#txtConfirmPassword').val()) {
                 document.getElementById("alert").style.visibility = "visible";
-                $('#alert').html('You must re-enter the same new password');
+                $('#alertt').html('You must re-enter the same new password');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#txtConfirmPassword').focus();
                 return false;
             }else if(!$('#adminemail').val()) {
-                $('#alert').html('You must enter admin email').className = "alert alert-danger";
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alertt').html('You must enter admin email');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#adminemail').focus();
                 return false;
             }else if(!$('#adminFirstName').val()) {
-                $('#alert').html('You must enter admin first name').className = "alert alert-danger";
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alertt').html('You must enter admin first name');
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminFirstName').focus();
                 return false;
             }else if(!$('#adminMiddleName').val()) {
-                $('#alert').html('You must enter admin middle name').className = "alert alert-danger";
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alertt').html('You must enter admin middle name');
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminMiddleName').focus();
                 return false;
             }else if(!$('#adminLastName').val()) {
-                $('#alert').html('You must enter admin last name').className = "alert alert-danger";
+                document.getElementById("alert").style.visibility = "visible";
+                $('#alertt').html('You must enter admin last name');
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminLastName').focus();
                 return false;
             }else {
-                $('#alert').html('').className = "alert alert-danger hidden";
+                $('#alertt').html('').className = "alert alert-danger hidden";
             }
 
             if($('#adminemail').val()) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if(!re.test($('#adminemail').val())){
-                    $('#alert').html('You must enter valid admin email').className = "alert alert-danger";
+                    document.getElementById("alert").style.visibility = "visible";
+                    $('#alertt').html('You must enter valid admin email');
                     //alert('You must enter valid admin email');
                     $('#rootwizard').find("a[href*='tab4']").trigger('click');
                     $('#adminemail').focus();
