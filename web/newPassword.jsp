@@ -1,4 +1,4 @@
-<%--
+<%@ page import="mulhim.PassCodeMap" %><%--
   Created by IntelliJ IDEA.
   User: Mohammed
   Date: 1/26/2016
@@ -47,3 +47,45 @@
 </body>
 
 </html>
+<%
+    if(request.getParameter("code") != null && request.getParameter("email")!=null ){
+
+        int code = Integer.parseInt(request.getParameter("code"));
+        String email=request.getParameter("email");
+
+        if(PassCodeMap.checkKey(request.getParameter("code"))){
+            if(PassCodeMap.getpassKey(email)==code){
+
+            }
+            System.out.println("Correct  " +d +n);
+            System.out.print("");
+            r.sendRedirect("newPassword.jsp?code="+d+"&email="+n);
+        }
+
+    }else {
+
+    }
+    System.out.println("AccountId: " + request.getParameter("IDToken1"));
+    System.out.println("goto: " + request.getParameter("goto"));
+    System.out.println("plaingoto: " + request.getParameter("plaingoto"));
+    String account = request.getParameter("emailReset");
+    int accountId = Integer.parseInt(request.getParameter("emailPassCode"));
+
+    String gotoURL = request.getParameter("plaingoto");
+
+    String redirectURL =
+            "http://HostName.DomainName:6480/idm/authutil/anonResetPassword.jsp";
+    if(accountId == PassCodeMap.getpassKey("")){
+        redirectURL = redirectURL + "?accountId=" + accountId;
+    }
+    if(gotoURL != null && !gotoURL.equals("null") && (gotoURL.length() > 0)){
+        if(accountId == null){
+            redirectURL = redirectURL + "?goto=" + gotoURL;
+        }else{
+            redirectURL = redirectURL + "&goto=" + gotoURL;
+        }
+    }
+    System.out.println("Redirect URL is:" + redirectURL);
+    response.sendRedirect(redirectURL);
+
+%>

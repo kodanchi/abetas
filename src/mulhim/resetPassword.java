@@ -43,13 +43,13 @@ public class resetPassword extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //response.sendRedirect("enterPasscode.jsp");
+        response.sendRedirect("enterPasscode.jsp");
     }
     public void select(String name, String logo) throws ClassNotFoundException, SQLException {
     DBAccess co =new DBAccess();
         Random rand = new Random();
         int randNumber=randNumber=rand.nextInt(100000);
-        Map<String,Integer> myMap = new HashMap<String,Integer>();
+        //Map<String,Integer> myMap = new HashMap<String,Integer>();
         String inp;
 
     System.out.print("Please enter the email");
@@ -69,8 +69,8 @@ public class resetPassword extends HttpServlet {
            // ArrayList al= new ArrayList();
 
                // al.add(re);
-            myMap.put(re,randNumber);
-            System.out.println(myMap.size());
+           // myMap.put(re,randNumber);
+            //System.out.println(myMap.size());
 
 
 

@@ -51,7 +51,7 @@ public class loginDB {
         ResultSet rs = null;
         try {
 
-            String query = "select Uni_name from university where Uni_logo=\""+d+"\"";
+            String query = "select Uni_name from university where Uni_name=\""+d+"\"";
 
             /*
              *  Get connection from the DataSource

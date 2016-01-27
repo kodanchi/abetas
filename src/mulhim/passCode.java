@@ -3,6 +3,8 @@ package mulhim;
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
+import javax.ws.rs.core.Response;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -23,14 +25,16 @@ public class passCode extends HttpServlet {
 
 
         try {
-            checkPassCode(getFromUser2,getFromUser3);
+            checkPassCode(getFromUser2,getFromUser3,response);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        //response.
     }
-    public void checkPassCode(String d,int n) throws ClassNotFoundException, SQLException {
+    public void checkPassCode(String d, int n, HttpServletResponse r) throws ClassNotFoundException, SQLException, IOException {
 
        //System.out.println(d);
         //System.out.println(n);
@@ -40,14 +44,17 @@ public class passCode extends HttpServlet {
         //System.out.println(n);
         //DBAccess co =new DBAccess();
   //  System.out.println(PassCodeMap.getpassKey(d));
-//        if(PassCodeMap.checkKey(d)){
-//
-//            System.out.println("Correct" +d);
-//        }
-//        else {
-//            System.out.println("Wrong !!!!!   "+d);
-//           // PassCodeMap.setPassCode(d.trim(),n);
-//        }
+
+        if(PassCodeMap.checkKey(d)){
+if(PassCodeMap.getpassKey(d)==n)
+            System.out.println("Correct  " +d +n);
+System.out.print("");
+            r.sendRedirect("newPassword.jsp?code="+d+"&email="+n);
+        }
+        else {
+            System.out.println("Wrong !!!!!   "+d);
+           // PassCodeMap.setPassCode(d.trim(),n);
+        }
 
 
 
