@@ -10,7 +10,6 @@
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-    
 
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/ct-paper.css" rel="stylesheet" />
@@ -21,18 +20,15 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
-
-
-
 </head>
 
 <body>
-<div id="header"></div>
+    <div id="header"></div>
 
     <div class="main">
         <div class="section">
             <div class="container">
-                <!--         what is row -->
+                <!-- what is row -->
                 <div class="row tim-row">
                     <h2 class="text-center">Cycle Configuration</h2>
                     <legend></legend>
@@ -50,27 +46,27 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Name</label>
-                                                <input type="text" name="termsname" class="form-control" required>
+                                                    <input type="text" name="termsname" class="form-control" required>
 
                                                 </div>
                                             </div>
 
                                             <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Year</label>
-                <div class="dropdown">
-                  <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                                                <div class="form-group">
+                                                    <label>Year</label>
+                                                    <div class="dropdown">
+                                                        <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                       Year 
                       <b class="caret"></b>
                   </a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">2014-2015</a></li>
-                    <li><a href="#">2015-2016</a></li>
-                  </ul>
-                </div>
+                                                        <ul class="dropdown-menu">
+                                                            <li><a href="#">2014-2015</a></li>
+                                                            <li><a href="#">2015-2016</a></li>
+                                                        </ul>
+                                                    </div>
 
+                                                </div>
                                             </div>
-                                        </div>
 
                                         </div>
                                         <button type="submit" class="btn btn-success">Add</button>
@@ -127,49 +123,46 @@
             </div>
         </div>
     </div>
+    <!--   end modal  -->
 
-<!--   end modal  -->
-
-<div id="footer"></div>
+    <div id="footer"></div>
 
 </body>
 
-    <script src="js/jquery-1.10.2.js" type="text/javascript"></script>    
-	<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-	<script src="js/bootstrap.js" type="text/javascript"></script>
-	
-	<!--  Plugins -->
-	<script src="js/ct-paper-checkbox.js"></script>
-	<script src="js/ct-paper-radio.js"></script>
-	<script src="js/bootstrap-select.js"></script>
-	<script src="js/bootstrap-datepicker.js"></script>
-   
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-	
-	<script src="js/ct-paper.js"></script>    
-	<script>
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
 
-    $( "#slider-range" ).slider({
-    	range: true,
-    	min: 0,
-    	max: 500,
-    	values: [ 75, 300 ],
+<!--  Plugins -->
+<script src="js/ct-paper-checkbox.js"></script>
+<script src="js/ct-paper-radio.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="js/ct-paper.js"></script>
+<script>
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [75, 300],
     });
-    $( "#slider-default" ).slider({
-    		value: 70,
-    		orientation: "horizontal",
-    		range: "min",
-    		animate: true
+    $("#slider-default").slider({
+        value: 70,
+        orientation: "horizontal",
+        range: "min",
+        animate: true
     });
     $('.btn-tooltip').tooltip('show');
-    $('.radio').on('toggle', function() { });
-            
+    $('.radio').on('toggle', function () {});
 
-$(function(){
-  $("#header").load("header.html"); 
-  $("#footer").load("footer.html"); 
-});
-    
+
+    $(function () {
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+    });
 </script>
 
 </html>
