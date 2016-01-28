@@ -40,6 +40,7 @@ public class resetPassword extends HttpServlet {
         try {
             if(d.selectEmail(getFromUser)){
                 SendEmail msg = new SendEmail();
+                msg.mu("The code is"+PassCodeMap.getpassKey(getFromUser));
                 response.sendRedirect("enterPasscode.jsp");
 
 
