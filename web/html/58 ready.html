@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	
-    <title>Link Student Outcome with Objectives</title>
+    <title>Term Management</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -28,10 +28,22 @@
         <div class="container">
 <!--         what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Link Student Outcome with Objectives</h2>
+                <h2 class="text-center">Term Management</h2>
+                <h4 class="text-center">Term Name</h4>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                                   <p>Click "Add" to add a link</p>
+                                  <ul class="list-inline">
+  <li><p class="lead">Year: </p></li>
+  <li><p class="lead">2015-2016</p></li>
+  <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+</ul>
+                                  
+                                                                    <ul class="list-inline" style="margin-bottom:-10px;">
+  <li><p>Courses: </p></li>
+  <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+</ul>
+
+                                   
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
@@ -39,34 +51,28 @@
             <!-- Table -->
             <table class="table">
                 <tr>
-                    <th>Objectives</th>
-                    <th>Outcome</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <th>Course Name</th>
+                    <th>Code</th>
+                    <th>Level</th>
+                    <th>Group</th>
+                    <th>Include</th>
                 </tr>
                 <tr>
-                    <td>1</td>
-                    <td>A</td>
-                    <td><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></td>
-                    <td><a class="btn btn-danger btn-simple" href="#"><i class="fa fa-trash-o fa-2x"></i></a></td>
+                    <td>Here is the Course Name</td>
+                    <td>2438</td>
+                    <td>5</td>
+                    <td><a class="btn btn-danger btn-simple" href="#"><i class="fa  fa-plus fa-2x"></i></a></td>
+                    <td>
+                    <label class="checkbox checkbox-azure center-block" for="checkbox2" style="margin-left:10px;">
+        <input type="checkbox" value="" id="checkbox2" data-toggle="checkbox" checked>    
+    </label>
+                    </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>B</td>
-                    <td><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></td>
-                    <td><a class="btn btn-danger btn-simple" href="#"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>C</td>
-                    <td><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></td>
-                    <td><a class="btn btn-danger btn-simple" href="#"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                </tr>
+             
             </table>
         </div>
-        <button class="btn btn-success btn-fill">Add</button>
-        <button class="btn btn-primary">Cancel</button>
-        <button class="btn btn-primary pull-right">Next</button>
+        <button class="btn btn-danger btn-fill">Delete</button>
+        <button class="btn btn-primary">Back</button>
 
                    
                     <!-- End of col -->
@@ -78,6 +84,7 @@
 
 </div>
 </div>
+<!-- End of main -->
 </div>
 
 
