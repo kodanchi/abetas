@@ -3,8 +3,8 @@
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
-  Date: 1/27/2016
-  Time: 7:31 م
+  Date: 1/28/2016
+  Time: 12:49 م
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,7 +14,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Link Student Outcome with Objectives</title>
+    <title>Link Performance Indicators with Courses</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -29,6 +29,7 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
 
 </head>
+
 <body>
 
 <div id="header"></div>
@@ -38,53 +39,65 @@
         <div class="container">
             <!--         what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Link Student Outcome with Objectives</h2>
+                <h2 class="text-center">Link Performance Indicators with Courses</h2>
                 <legend></legend>
-                <div class="col-md-8 col-md-offset-2">
-                    <p>Click "Add" to add a link</p>
 
+                <div class="col-md-8 col-md-offset-2">
+                    <p>Click "Add" to link Performance Indicator with courses</p>
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Objectives</th>
-                                <th>Outcome</th>
+                                <th>PI ID</th>
+                                <th>Course ID</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             <%
                                 ASDB dba = new ASDB();
-                            try {
-                            ArrayList<ArrayList<String>> rs = dba.selectStudentOutcomeWithObjectives();
-                            ArrayList<String> rsRow ;
 
-                                for (int i=0; i<rs.size();i++){
-                                rsRow = new ArrayList<String>();
-                                    rsRow = rs.get(i);
-                                    out.print("<tr>");
+                                try {
+                                    ArrayList<ArrayList<String>> rs = dba.selectLinkPIWithCourses();
+                                    ArrayList<String> rsRow ;
+
+                                    for (int i=0; i<rs.size();i++){
+                                        rsRow = new ArrayList<String>();
+                                        rsRow = rs.get(i);
+                                        out.print("<tr>");
                                         for (int j=0; j<rsRow.size();j++) {
-                                        out.print("<td>"+rsRow.get(j)+"</td>");
+                                            out.print("<td>"+rsRow.get(j)+"</td>");
 
                                         }
-                                        out.print("<td><span class=\"glyphicon glyphicon-edit\"></span>\n </td>");
-                                        out.print("<td><span class=\"glyphicon glyphicon-remove\"></span>\n</td>");
+                                        out.print("<td><a class=\"btn btn-warning btn-simple\" href=\"#\"><i class=\"fa fa-pencil fa-2x\"></i></a></td>\n");
+                                        out.print("<td><a class=\"btn btn-danger btn-simple\" href=\"#\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td>\n");
                                         out.print("</tr>");
                                     }
 
-                                    } catch (ClassNotFoundException e) {
+                                } catch (ClassNotFoundException e) {
                                     e.printStackTrace();
-                                    } catch (SQLException e) {
+                                } catch (SQLException e) {
                                     e.printStackTrace();
-                                    }
-                            %>
+                                }
 
+
+
+
+
+
+                            %>
                         </table>
+
+
+
+
+
+
                     </div>
                     <button class="btn btn-success btn-fill">Add</button>
-                    <button class="btn btn-primary">Cancel</button>
-                    <button class="btn btn-primary pull-right">Next</button>
+                    <button class="btn btn-primary">Cencel</button>
+                    <button class="btn btn-primary pull-right">Finish</button>
 
 
                     <!-- End of col -->
@@ -99,6 +112,7 @@
     </div>
 </div>
 
+
 <!--   end modal  -->
 
 <div id="footer"></div>
@@ -107,6 +121,7 @@
 
 <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<!-- <script src="code.jquery.com/jquery-1.10.2.js"></script> -->
 <script src="js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->

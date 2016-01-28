@@ -3,8 +3,8 @@
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
-  Date: 1/27/2016
-  Time: 7:31 م
+  Date: 1/28/2016
+  Time: 1:05 م
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -38,10 +38,9 @@
         <div class="container">
             <!--         what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Link Student Outcome with Objectives</h2>
+                <h2 class="text-center">Add Student</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                    <p>Click "Add" to add a link</p>
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
@@ -49,42 +48,42 @@
                         <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Objectives</th>
-                                <th>Outcome</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Student ID</th>
+                                <th>First Name</th>
+                                <th>Middle Name</th>
+                                <th>Last Name</th>
                             </tr>
                             <%
-                                ASDB dba = new ASDB();
-                            try {
-                            ArrayList<ArrayList<String>> rs = dba.selectStudentOutcomeWithObjectives();
-                            ArrayList<String> rsRow ;
 
-                                for (int i=0; i<rs.size();i++){
-                                rsRow = new ArrayList<String>();
-                                    rsRow = rs.get(i);
-                                    out.print("<tr>");
+
+                                ASDB dba=new ASDB();
+                                try {
+                                    ArrayList<ArrayList<String>> rs = dba.selectStudents();
+                                    ArrayList<String> rsRow ;
+
+                                    for (int i=0; i<rs.size();i++){
+                                        rsRow = new ArrayList<String>();
+                                        rsRow = rs.get(i);
+                                        out.print("<tr>");
                                         for (int j=0; j<rsRow.size();j++) {
-                                        out.print("<td>"+rsRow.get(j)+"</td>");
-
+                                            out.print("<td>"+rsRow.get(j)+"</td>");
                                         }
-                                        out.print("<td><span class=\"glyphicon glyphicon-edit\"></span>\n </td>");
-                                        out.print("<td><span class=\"glyphicon glyphicon-remove\"></span>\n</td>");
                                         out.print("</tr>");
                                     }
 
-                                    } catch (ClassNotFoundException e) {
+                                } catch (ClassNotFoundException e) {
                                     e.printStackTrace();
-                                    } catch (SQLException e) {
+                                } catch (SQLException e) {
                                     e.printStackTrace();
-                                    }
+                                }
+
+
                             %>
 
                         </table>
                     </div>
                     <button class="btn btn-success btn-fill">Add</button>
-                    <button class="btn btn-primary">Cancel</button>
-                    <button class="btn btn-primary pull-right">Next</button>
+                    <button class="btn btn-primary">Back</button>
 
 
                     <!-- End of col -->
