@@ -27,7 +27,7 @@
         <h1>ABETAS</h1>
         <p>Enter the code you just recieved in your email.</p>
 
-        <form method="post" action="/Passcode">
+        <form method="post" action="/Passcode" onclick="verify()">
             <div class="form-group">
                 <input type="email" class="form-control" name="emailReset" placeholder="email" size="25" required>
                 <input type="number" class="form-control" name="emailPassCode" placeholder="Passcode" size="25" required>

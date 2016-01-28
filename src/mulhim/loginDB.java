@@ -39,9 +39,9 @@ public class loginDB {
     }
 
 
-    public String selectEmail(String d) throws ClassNotFoundException, SQLException {
+    public Boolean selectEmail(String d) throws ClassNotFoundException, SQLException {
 
-        String selEmail ="";
+         String selEmail ="";
 
         connect();
 
@@ -80,11 +80,17 @@ public class loginDB {
             if(PassCodeMap.checkKey(selEmail)){
 
                 System.out.println("Exist !!!!    "+selEmail);
-                System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
+              //  System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
+                System.out.println(false);
+                return false;
             }
             else {
                 PassCodeMap.setPassCode(selEmail,randNumber);
                 System.out.println(PassCodeMap.getMapSize());
+                System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
+                System.out.println(true);
+return true;
+
             }
 
 
@@ -110,10 +116,11 @@ public class loginDB {
                 sqlException.printStackTrace();
             }
 
-             return selEmail;
 
         }
+        System.out.println(selEmail);
 
+        return false;
     }
 
 
