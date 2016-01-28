@@ -68,8 +68,8 @@
                                         out.print("<td>"+rsRow.get(j)+"</td>");
 
                                         }
-                                        out.print("<td><span class=\"glyphicon glyphicon-edit\"></span>\n </td>");
-                                        out.print("<td><span class=\"glyphicon glyphicon-remove\"></span>\n</td>");
+                                        out.print("<td><a class=\"btn btn-warning btn-simple\" href=\"#\"><i class=\"fa fa-pencil fa-2x\"></i></a></td>\n");
+                                        out.print("<td><a class=\"btn btn-danger btn-simple\" href=\"#\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td>\n");
                                         out.print("</tr>");
                                     }
 
