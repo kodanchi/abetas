@@ -16,6 +16,9 @@ import java.sql.SQLException;
 public class SetupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        PrintWriter out = response.getWriter();
+        InstallDB dbcon = new InstallDB(out);
+
         System.out.println("this is post");
         if(request.getParameter("dbRemove")!=null)
         {
@@ -23,6 +26,13 @@ public class SetupServlet extends HttpServlet {
             switch (request.getParameter("dbRemove")){
 
                 case "yes":
+                    try {
+                        dbcon.deleteDB();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                     response.sendRedirect("/setup/install.jsp");
                     break;
                 case "no":
@@ -36,20 +46,41 @@ public class SetupServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("this is get");
-        InstallDB dbcon = new InstallDB();
+
         PrintWriter out = response.getWriter();
+        InstallDB dbcon = new InstallDB(out);
         try {
             if(dbcon.setUpChk()){
                 out.println("<!DOCTYPE html>\n" +
                         "<html lang=\"en\">\n" +
                         "<head>\n" +
-                        "    <meta charset=\"UTF-8\">\n" +
-                        "    <!-- Bootstrap -->\n" +
-                        "    <link href=\"/css/bootstrap.min.css\" rel=\"stylesheet\">\n" +
-                        "    <link href=\"/css/bootstrap-theme.min.css\" rel=\"stylesheet\">\n" +
-                        "    <title>ERROR</title>\n" +
+                        "  <title>ABETAS</title>\n" +
+                        "  <meta charset=\"utf-8\">\n" +
+                        "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
+                        "  <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">\n" +
+                        "  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js\"></script>\n" +
+                        "  <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\n" +
                         "</head>\n" +
                         "<body>\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "<div class=\"container\">\n" +
+                        "\n" +
+                        "\n" +
+                        "\n" +
+                        "  <section id=\"wizard\">\n" +
+                        "      <div class=\"page-header\">\n" +
+                        "        <h1>ABETAS SETUP</h1>\n" +
+                        "      </div>\n" +
+                        "\n" +
+                        "      <div >\n" +
+                        "\n" +
+                        "\n" +
+
                         "    <form method=\"post\" action=\"#\">\n" +
                         "        <div class=\"panel panel-danger\">\n" +
                         "            <div class=\"panel-heading\">\n" +
@@ -68,6 +99,12 @@ public class SetupServlet extends HttpServlet {
                         "            </div>\n" +
                         "        </div>\n" +
                         "    </form>\n" +
+                        "\n" +
+                        "              </div>\n" +
+                        "            </div>\n" +
+                        "    </section>\n" +
+                        "  </div>\n" +
+                        "\n" +
                         "</body>\n" +
                         "</html>");
             }else {

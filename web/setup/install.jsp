@@ -1,22 +1,25 @@
-<%@ page import="com.database.ASDB" %><%--
+<%@ page import="com.database.ASDB" %>
+<%@ page import="com.database.InstallDB" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/26/2016
   Time: 3:19 PM
   To change this template use File | Settings | File Templates.
+
+  http://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
 --%>
 <%
-/*ASDB dbCon = new ASDB();
-    if(dbCon.setUpChk() !=0){
-        System.out.println("insiiiiiide");
-        response.sendRedirect("http://localhost:8080/");
-    }*/
+InstallDB dbCon = new InstallDB(null);
+    if(dbCon.setUpChk()){
+        //System.out.println("insiiiiiide");
+        response.sendRedirect("/setup");
+    }
 %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Wizard With Form Validation</title>
+    <title>ABETAS Setup Wizard</title>
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/prettify.css" rel="stylesheet">
@@ -32,7 +35,6 @@
 
             <div id="rootwizard">
                 <div id="alert"  class="alert alert-danger fade in"  role="alert" >
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                     <strong id="alertt" ></strong>
                 </div>
                 <div class="navbar">
@@ -58,7 +60,7 @@
                     <div class="tab-pane" id="tab1">
                         <div class="jumbotron">
                             <h2>Welcome to ABETAS</h2>
-                            <p>This is the setup wizard of the system, this wizard will require set of some information. use the navigator ubove to move around, or you can fill them later by going to system setting area.</p>
+                            <p>This wizard will help you to setup ABETAS, you need set of information to fill. use the navigator above to move around, or you click on next and previous buttons.</p>
 
                         </div>
                     </div>
@@ -66,13 +68,13 @@
                     <div class="tab-pane" id="tab2">
                         <div class="jumbotron">
                             <div class="form-group">
-                                <label for="uname">University Name</label>
+                                <label for="uname">University Name  <h6 class="label label-danger">required</h6></label>
                                 <input type="text" id="uname" class="form-control" placeholder="University Name" name="uname" required>
                             </div>
 
                             <div class="form-group">
 
-                                <label for="cname">College Name</label>
+                                <label for="cname">College Name  <h6 class="label label-danger">required</h6></label>
 
                                 <input type="text" id="cname" class="form-control" placeholder="College Name" name="cname" required>
 
@@ -82,23 +84,55 @@
                     <div class="tab-pane" id="tab3">
                         <div class="jumbotron form-group">
                             <h4>Choose the logo of the university to be uploaded</h4>
+                            <h5>You can upload the logo later on from system settings.</h5>
                             <label for="ulogo" >University Logo</label>
-                            <input  type="file" id="ulogo" name="ulogo" accept="image/png">
-                            <p class="help-block">maximum file size 10MB.</p>
+                            <input onchange="return fileChk(2000000);"  type="file" id="ulogo" name="ulogo" accept="image/png">
+                            <script >
+                                function fileChk(max_img_size) {
+
+                                    var input = document.getElementById("ulogo");
+                                    var ext = $('#ulogo').val().split('.').pop().toLowerCase();
+                                    //alert("file chk "+input.files[0].size);
+                                    if(input.files && input.files.length == 1)
+                                    {
+                                        if (input.files[0].size > max_img_size)
+                                        {
+                                            document.getElementById("alert").style.visibility = "visible";
+                                            $('#alertt').html('university logo must not exceeds 2 MB');
+                                            input.value = "";
+                                            return false;
+                                        }else if(ext != "png"){
+                                            document.getElementById("alert").style.visibility = "visible";
+                                            $('#alertt').html('university logo must be type of PNG');
+                                            input.value = "";
+                                            return false;
+                                        }
+                                    }
+                                    document.getElementById("alert").style.visibility = "hidden";
+                                    return true;
+                                    /*if($('#ulogo').files.length < 200000 ){
+                                        document.getElementById("alert").style.visibility = "visible";
+                                        $('#alertt').html('university logo must not exceeds 2 MB');
+                                        $('#rootwizard').find("a[href*='tab3']").trigger('click');
+                                        $('#ulogo').focus();
+                                    }*/
+                                }
+                            </script>
+                            <h5 class="help-block">Allowed size and type: 2MB, png</h5>
                         </div>
                     </div>
                     <div class="tab-pane" id="tab4">
                         <div class="jumbotron">
-                            <p>Fill the following required field to create Administrator</p>
+                            <h4>Enter Administrator's details (All fields are required):</h4>
 
                             <div class=" form-group">
-                                <label for="adminUsername">Admin Username</label>
+                                <label for="adminUsername">Admin Username  <h6 class="label label-danger">required</h6></label>
                                 <input id="adminUsername" name="adminUsername" type="text" class="form-control" placeholder="Admin Username" required>
                             </div>
 
                             <div class=" form-group">
 
-                                <label for="txtPassword">Admin Password</label>
+                                <label for="txtPassword">Admin Password  <h6 class="label label-danger">required</h6></label>
 
                                 <input name="adminpassword" id="txtPassword" type="password" class="form-control" placeholder="Admin Password" required>
 
@@ -106,14 +140,14 @@
 
                             <div class=" form-group">
 
-                                <label for="txtConfirmPassword">Re-Enter Password</label>
+                                <label for="txtConfirmPassword">Re-Enter Password  <h6 class="label label-danger">required</h6></label>
 
                                 <input name="rePassword" id="txtConfirmPassword" type="password" class="form-control" placeholder="Re-Enter Password" required>
 
                             </div>
 
                             <div class=" form-group">
-                                <label for="adminemail">Admin Email</label>
+                                <label for="adminemail">Admin Email  <h6 class="label label-danger">required</h6></label>
                                 <input id="adminemail" name="adminemail" type="email" class="form-control" placeholder="Admin Email" required>
                             </div>
 
@@ -121,29 +155,30 @@
                     </div>
                     <div class="tab-pane" id="tab5">
                         <div class="jumbotron" >
+                            <h4>Fill the admin's first, middle and last names:</h4>
                             <div class=" form-group">
-                                <label>Admin First Name</label>
+                                <label>Admin First Name  <h6 class="label label-danger">required</h6></label>
                                 <input id="adminFirstName" name="adminFirstName" type="text" class="form-control" placeholder="Admin First Name" required>
                             </div>
 
 
                             <div class=" form-group">
-                                <label>Admin Middle Name</label>
+                                <label>Admin Middle Name  <h6 class="label label-danger">required</h6></label>
                                 <input id="adminMiddleName" name="adminMiddleName" type="text" class="form-control" placeholder="Admin Middle Name" required>
                             </div>
 
 
                             <div class=" form-group">
-                                <label>Admin Last Name</label>
+                                <label>Admin Last Name  <h6 class="label label-danger">required</h6></label>
                                 <input id="adminLastName" name="adminLastName" type="text" class="form-control" placeholder="Admin Last Name" required>
                             </div>
                         </div>
                     </div>
                     <div class="tab-pane" id="tab6">
                         <div class="jumbotron">
-                            <h3>
+                            <p>
                                 Please confirm all the previous data you entered, and then click finish to begin setting up the database.
-                            </h3>
+                            </p>
                         </div>
                     </div>
 
@@ -218,12 +253,17 @@
                 $('#rootwizard').find("a[href*='tab2']").trigger('click');
                 $('#cname').focus();
                 return false;
-            }else if(!$('#ulogo').val()) {
-                document.getElementById("alert").style.visibility = "visible";
-                $('#alertt').html('You must enter university logo');
-                $('#rootwizard').find("a[href*='tab3']").trigger('click');
-                $('#ulogo').focus();
-                return false;
+            }else if($('#ulogo').val()) {
+                var input = document.getElementById("ulogo");
+                if(input.files && input.files.length == 1)
+                {
+                    if (input.files[0].size > 2000000)
+                    {
+                        document.getElementById("alert").style.visibility = "visible";
+                        $('#alertt').html('university logo must not exceeds 2 MB');
+                        return false;
+                    }
+                }
             }else if(!$('#adminUsername').val()) {
                 document.getElementById("alert").style.visibility = "visible";
                 $('#alertt').html('You must enter admin username');
@@ -236,7 +276,7 @@
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#ulogo').focus();
                 return false;
-            }else if(!$('#txtPassword').val() == $('#txtConfirmPassword').val()) {
+            }else if(!($('#txtPassword').val() == $('#txtConfirmPassword').val())) {
                 document.getElementById("alert").style.visibility = "visible";
                 $('#alertt').html('You must re-enter the same new password');
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
@@ -282,6 +322,17 @@
                     canSubmit = true;
                 }
             }
+
+            //binds to onchange event of your input field
+            $('#ulogo').bind('change', function() {
+
+                //this.files[0].size gets the size of your file.
+                alert("dd");
+                if(this.files[0].length < 200000 ){
+                    $('#alertt').html('university logo must not exceeds 2 MB');
+                }
+
+            });
 
 
             if(canSubmit){

@@ -3,6 +3,7 @@ package com.database;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -14,9 +15,15 @@ public class InstallDB {
     private Connection conn;
     private Statement stmt;
     private ResultSet result;
+    private PrintWriter pout;
     DataSource dataSource = null;
     private static String jdbcDriver = "com.mysql.jdbc.Driver";
     private static String dbName = "abetasdb";
+
+    public InstallDB(PrintWriter out) {
+        pout = out;
+    }
+
     public void connect() throws ClassNotFoundException, SQLException {
 
         try {
@@ -138,11 +145,12 @@ public class InstallDB {
                 sqlException.printStackTrace();
             }
 
+
         }
 
     }
 
-    public void installdb() throws ClassNotFoundException, SQLException {
+    public void installDB() throws ClassNotFoundException, SQLException {
 
         connect();
         Connection connection = null;
@@ -197,9 +205,11 @@ public class InstallDB {
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
             }
+            pout.println("<h4>Database Created!</h4>");
 
         }
 
+            this.createTable("USE "+dbName+";");
 
             this.createTable( "CREATE TABLE `university` (\n" +
                     "  `Uni_name` varchar(255) NOT NULL,\n" +
@@ -207,6 +217,8 @@ public class InstallDB {
                     "  `Uni_logo` varchar(255) DEFAULT NULL,\n" +
                     "  PRIMARY KEY (`Uni_name`)\n" +
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
+
+
 
 
             this.createTable( "CREATE TABLE `superuser` (\n" +
@@ -451,6 +463,41 @@ public class InstallDB {
 
 
 
+            this.createTable("CREATE TABLE `p_student_outcome` (\n" +
+                    "  `Outcome_label` varchar(5) DEFAULT NULL,\n" +
+                    "  `Student_outcome` varchar(255) DEFAULT NULL,\n" +
+                    "  `FK_P_ID` int(11) NOT NULL,\n" +
+                    "  PRIMARY KEY (`FK_P_ID`),\n" +
+                    "  KEY `FK_P_student_outcome_idx` (`FK_P_ID`),\n" +
+                    "  CONSTRAINT `FK_P_student_outcome` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
+
+
+
+            this.createTable("CREATE TABLE `p_objective` (\n" +
+                    "  `Objective_label` varchar(5) DEFAULT NULL,\n" +
+                    "  `Objective` varchar(255) DEFAULT NULL,\n" +
+                    "  `FK_P_ID` int(11) NOT NULL,\n" +
+                    "  PRIMARY KEY (`FK_P_ID`),\n" +
+                    "  KEY `FK_P_objective_idx` (`FK_P_ID`),\n" +
+                    "  CONSTRAINT `FK_P_objective` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
+
+
+
+            this.createTable("\n" +
+                    "CREATE TABLE `link_out_obj` (\n" +
+                    "  `FK_obj` int(11) NOT NULL,\n" +
+                    "  `FK_OUT` int(11) NOT NULL,\n" +
+                    "  PRIMARY KEY (`FK_obj`,`FK_OUT`),\n" +
+                    "  KEY `dd_idx` (`FK_OUT`)\n" +
+                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
+
+
+            pout.println("<h4>Tables Created!</h4>");
+
+
+
     }
 
     public void createTable(String sql) throws ClassNotFoundException, SQLException {
@@ -503,18 +550,15 @@ public class InstallDB {
         }
     }
 
-    public boolean setUpChk() throws SQLException, ClassNotFoundException {
+    public void deleteDB() throws ClassNotFoundException, SQLException {
 
         connect();
-
         Connection connection = null;
         PreparedStatement preparedStatement = null;
+        int rs = 0;
 
-        ResultSet rs = null;
-        boolean rsr = false;
+
         try {
-
-            String query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'abetasdb';";
 
             /*
              *  Get connection from the DataSource
@@ -525,11 +569,78 @@ public class InstallDB {
             /*
              * Execute the query
              */
+            String query = "DROP DATABASE abetasdb";
+
             preparedStatement = connection.prepareStatement(query);
+
+            rs = preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+
+    public boolean setUpChk() throws SQLException, ClassNotFoundException {
+
+        connect();
+
+        //Connection connection = null;
+        //PreparedStatement preparedStatement = null;
+
+        //ResultSet rs = null;
+        boolean rsr = false;
+
+        Connection conn = null;
+        Statement s = null;
+        ResultSet Result = null;
+
+        try {
+
+            Class.forName(jdbcDriver);
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/?user=root&password=abetas");
+            s = conn.createStatement();
+
+
+
+            String query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'abetasdb';";
+
+            Result = s.executeQuery(query);
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            //connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            //preparedStatement = connection.prepareStatement(query);
             //preparedStatement.setInt(1, 10);
 
-            rs = preparedStatement.executeQuery();
-            if(rs.next()){
+            //rs = preparedStatement.executeQuery();
+            if(Result.next()){
                 rsr = true;
             }
 
@@ -541,15 +652,15 @@ public class InstallDB {
                  */
             //rs.close();
             try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
+                if (s != null) {
+                    s.close();
                 }
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
             }
             try {
-                if (connection != null) {
-                    connection.close();
+                if (conn != null) {
+                    conn.close();
                 }
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();

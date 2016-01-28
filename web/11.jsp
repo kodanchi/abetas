@@ -35,16 +35,16 @@
 <div style="width: 70%; margin-left: auto; margin-right: auto">
 
     <div style="width: 50%; margin-left: auto; margin-right: auto">
-        <div style="text-align: center">
+        <div >
         <img src="http://www.iconsdb.com/icons/preview/guacamole-green/checkmark-xxl.png" alt="check mark" class="img-rounded" style="width: 3cm; height: 3cm">
         </div>
         <br>
         <p>Congratulations, ABETAS setup done successfully, now you need to add a superuser so he can enter the programs, course, create an evaluation cycle. Click on User Management to add and manage users.</p>
         <br>
-        <div style="text-align: center">
+        <div>
             
-            <button type="button" class="btn btn-primary btn-lg" >User Management</button>
-            <button type="button" class="btn btn-primary btn-lg" >Home Page</button>
+            <a  href="users.jsp" class="btn btn-primary btn-lg" >User Management</a>
+            <a href="index.jsp" class="btn btn-primary btn-lg" >Home Page</a>
 
         </div>
 

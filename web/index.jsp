@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>ABETAS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -27,44 +27,24 @@
 
 
 
+  <section id="wizard">
+      <div class="page-header">
+        <h1>ABETAS SETUP</h1>
+      </div>
 
-  <div>
-
-    <h1>Import Excel File</h1>
-
-    <p class="lead">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
+      <div >
 
 
-    <img src="cinqueterre.jpg" class="img-responsive" alt="Cinque Terre" width="304" height="236">
+            <div class="jumbotron text-center">
 
-    <h1>Insert</h1>
-    <form name="myform" action="/Insert" method="post">
-      <label>name: </label><input type="text" name="name" value="" size="50"/>
-      <label>logo: </label><input type="text" name="logo" value="" size="50"/>
-      <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
-    </form>
-    <h1>Update</h1>
-    <form name="myform" action="/Update" method="post">
-      <label>name: </label><input type="text" name="name" value="" size="50"/>
-      <label>logo: </label><input type="text" name="logo" value="" size="50"/>
-      <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
-    </form>
-    <h1>Delete</h1>
-    <form name="myform" action="/Delete" method="post">
-      <label>name: </label><input type="text" name="name" value="" size="50"/>
-      <label>logo: </label><input type="text" name="logo" value="" size="50"/>
-      <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
-    </form>
-    <h1>Select</h1>
-    <form name="myform" action="/Select" method="post">
-      <label>name: </label><input type="text" name="name" value="" size="50"/>
-      <label>logo: </label><input type="text" name="logo" value="" size="50"/>
-      <input class="btn btn-lg btn-success" type="submit" value="add" name="Add"/>
-    </form>
 
+
+
+
+              </div>
+            </div>
+    </section>
   </div>
-
-</div>
 
 </body>
 </html>
