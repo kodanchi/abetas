@@ -64,9 +64,33 @@
            
             </table>
         </div>
-        <button class="btn btn-success btn-fill">Add</button>
+        <button class="btn btn-success btn-fill"  data-toggle="modal" data-target="#myModal">Add</button>
         <button class="btn btn-primary">Back</button>
-
+        
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">User Management</h4>
+      </div>
+      <div class="modal-body">
+          If you have the users' information in an Excel sheet, you can import the file to add them all at once
+      </div>
+      <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Enter manually</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" class="btn btn-default btn-simple">Import Excel file</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                  <!-- End of modal -->
                    
                     <!-- End of col -->
                 </div>
@@ -75,12 +99,10 @@
             </div>
 
 
-<!-- Modal Bodies come here -->
 </div>
 </div>
 </div>
 
-<!--   end modal  -->
 
 
 <div id="footer"></div>

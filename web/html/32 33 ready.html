@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	
-    <title>Add Student Outcomes</title>
+    <title>Add Program Objective</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -20,17 +20,18 @@
       
 </head>
 <body>
- <div id="header"></div>
+ 
+<div id="header"></div>
 
      <div class="main">
     <div class="section">
         <div class="container">
 <!--         what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Add Student Outcomes</h2>
+                <h2 class="text-center">Add Program Objective</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                                   <p>Click "Add" to enter student outcomes</p>
+                                   <p>Click "Add" to enter program objectives</p>
 
         <div class="panel panel-default">
             <!-- Default panel contents -->
@@ -38,31 +39,59 @@
             <!-- Table -->
             <table class="table">
                 <tr>
-                    <th>Outcome</th>
+                    <th>Program</th>
+                    <th>Objectives</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
                 <tr>
                     <td>1</td>
+                    <td>A</td>
                     <td><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></td>
                     <td><a class="btn btn-danger btn-simple" href="#"><i class="fa fa-trash-o fa-2x"></i></a></td>
                 </tr>
                 <tr>
                     <td>2</td>
+                    <td>B</td>
                     <td><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></td>
                     <td><a class="btn btn-danger btn-simple" href="#"><i class="fa fa-trash-o fa-2x"></i></a></td>
                 </tr>
                 <tr>
                     <td>3</td>
+                    <td>C</td>
                     <td><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></td>
                     <td><a class="btn btn-danger btn-simple" href="#"><i class="fa fa-trash-o fa-2x"></i></a></td>
                 </tr>
             </table>
         </div>
-        <button class="btn btn-success btn-fill">Add</button>
+        <button class="btn btn-success btn-fill"  data-toggle="modal" data-target="#myModal">Add</button>
         <button class="btn btn-primary">Cancel</button>
         <button class="btn btn-primary pull-right">Next</button>
-        <button class="btn btn-primary pull-right">Previous</button>
+        
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add Program Objective</h4>
+      </div>
+      <div class="modal-body">
+          If you have the program objectives' information in an Excel sheet, you can import the file to add them all at once.
+      </div>
+      <div class="modal-footer">
+        <div class="left-side">
+            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Enter manually</button>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <button type="button" class="btn btn-default btn-simple">Import Excel file</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                  <!-- End of modal -->
 
                    
                     <!-- End of col -->
@@ -72,12 +101,10 @@
             </div>
 
 
-<!-- Modal Bodies come here -->
 </div>
 </div>
 </div>
 
-<!--   end modal  -->
 
 <div id="footer"></div>
 
