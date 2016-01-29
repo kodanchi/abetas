@@ -42,7 +42,7 @@ public class ASDB {
         rs.close();
     }
 
-    public ArrayList<ArrayList<String>> selectUsers() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectSuperusers() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> rowDate;
@@ -79,6 +79,75 @@ public class ASDB {
                 rowDate.add(rs.getString(2));
                 rowDate.add(rs.getString(4));
                 rowDate.add(rs.getString(8));
+                rsArr.add(rowDate);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+             return rsArr;
+
+        }
+
+    }
+
+
+    public ArrayList<ArrayList<String>> selectAllFaculty() throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> rowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "select * FROM faculty_member";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add("Faculty");
                 rsArr.add(rowDate);
             }
 
@@ -301,7 +370,7 @@ public class ASDB {
             /*
              * Execute the query
              */
-                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faclty_Password)" + " values (?, ?, ?, ?, ?, ?)";
+                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faculty_Password)" + " values (?, ?, ?, ?, ?, ?)";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, Uname);

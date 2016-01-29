@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 
   http://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
+  http://stackoverflow.com/questions/46155/validate-email-address-in-javascript
 --%>
 <%
 InstallDB dbCon = new InstallDB(null);

@@ -21,10 +21,12 @@ public class Update extends HttpServlet {
         System.out.println("##########################################################");
         ASDB dba=new ASDB();
         try {
-            if(request.getParameter("userType").equals("Superuser"))
-            dba.addUser(0, request.getParameter("uname"), request.getParameter("email"), request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
+            String userType = request.getParameter("userType");
+            System.out.println(userType);
+            if(userType.equals("Superuser"))
+            dba.addUser(0, request.getParameter("uname"), request.getParameter("uemail"), request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
             else if (request.getParameter("userType").equals("Faculty_Member"))
-                dba.addUser(1, request.getParameter("uname"), request.getParameter("email"), request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
+                dba.addUser(1, request.getParameter("uname"), request.getParameter("uemail"), request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
             else if (request.getParameter("userType").equals("Evaluator"))
                 dba.addUser(2, request.getParameter("uname"), null, request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
         } catch (ClassNotFoundException e) {
@@ -37,7 +39,7 @@ public class Update extends HttpServlet {
         out.println("update");
 
 
-        response.sendRedirect("http://localhost:8081/");
+        response.sendRedirect("/users/");
         // New location to be redirected
         // String site = new String("http://localhost:8081/");
         // response.setHeader("Location", site);

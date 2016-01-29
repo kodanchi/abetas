@@ -62,7 +62,7 @@ public class userManagementServlet extends HttpServlet {
 
                 dba=new ASDB();
         try {
-            ArrayList<ArrayList<String>> rs = dba.selectUsers();
+            ArrayList<ArrayList<String>> rs = dba.selectSuperusers();
             ArrayList<String> rsRow ;
 
             for (int i=0; i<rs.size();i++){
