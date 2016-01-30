@@ -4,9 +4,33 @@
   Date: 1/29/2016
   Time: 3:40 PM
   To change this template use File | Settings | File Templates.
---%>
 
+  http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
+--%>
+<%@ page import="java.io.*,java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String pageName = null;
+    String pageCall = request.getParameter("page");
+    if(pageCall != null){
+        if(pageCall.equals("add")) {
+            pageName = "adduser.jsp";
+        }else if(pageCall.equals("update")){
+                String id = request.getParameter("id");
+                String type = request.getParameter("type");
+                if(id != null && type != null){
+                    pageName = "adduser.jsp?id="+id+"&type="+type;
+                }else {
+                    pageName = "userslist.jsp";
+                }
+        }else {
+            pageName = "userslist.jsp";
+        }
+    }else {
+        pageName = "userslist.jsp";
+    }
+%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -21,7 +45,6 @@
     <link href="/css/bootstrap.css" rel="stylesheet" />
     <link href="/css/ct-paper.css" rel="stylesheet"/>
     <link href="/css/demo.css" rel="stylesheet" />
-    <link href="/css/" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
@@ -31,26 +54,25 @@
 
 </head>
 <body>
-
+<div id="page">
 <div id="header">
-    <jsp:include page="/Header.jsp"/>
+    <jsp:include page="/header.jsp"/>
 </div>
 
 <div id="main" class="main">
-    <jsp:include page="userslist.jsp"/>
+    <jsp:include page="<%=pageName%>"/>
 </div>
 
 <!--   end modal  -->
 
 
 <div id="footer">
-    <jsp:include page="/Footer.jsp"/>
+    <jsp:include page="/footer.jsp"/>
 </div>
-
+</div>
+<div id="loading" ></div>
 </body>
 
-<script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->
@@ -58,8 +80,6 @@
 <script src="/js/ct-paper-radio.js"></script>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
 <script src="/js/ct-paper.js"></script>
 
@@ -82,11 +102,11 @@
 
 
     $(function(){
-        //$("#header").load("/Header.jsp");
+        //$("#header").load("/header.jsp");
         //$("#main").load("userslist.jsp");
-        //$("#footer").load("/Footer.jsp");
+        //$("#footer").load("/footer.jsp");
     });
-     */
+
 
     function addUser(){
         $("#main").load("adduser.jsp");
@@ -95,6 +115,28 @@
     function cancel(){
         $("#main").load("userslist.jsp");
     }
+
+     */
+
+    function onReady(callback) {
+        var intervalID = window.setInterval(checkReady, 1000);
+        function checkReady() {
+            if (document.getElementsByTagName('body')[0] !== undefined) {
+                window.clearInterval(intervalID);
+                callback.call(this);
+            }
+        }
+    }
+
+    function show(id, value) {
+        document.getElementById(id).style.display = value ? 'block' : 'none';
+    }
+
+    onReady(function () {
+        show('page', true);
+        show('loading', false);
+    });
+
 
 </script>
 

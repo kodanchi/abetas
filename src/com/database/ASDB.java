@@ -42,7 +42,7 @@ public class ASDB {
         rs.close();
     }
 
-    public ArrayList<ArrayList<String>> selectSuperusers() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectAllSuperusers() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> rowDate;
@@ -73,6 +73,7 @@ public class ASDB {
             //
             while (rs.next()){
                 rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
                 rowDate.add(rs.getString(5));
                 rowDate.add(rs.getString(6));
                 rowDate.add(rs.getString(7));
@@ -110,6 +111,73 @@ public class ASDB {
 
     }
 
+    public ArrayList<String> selectSuperuser(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "select * FROM superuser WHERE Super_ID = "+id;
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(8));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
 
     public ArrayList<ArrayList<String>> selectAllFaculty() throws ClassNotFoundException, SQLException {
 
@@ -142,6 +210,7 @@ public class ASDB {
             //
             while (rs.next()){
                 rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
                 rowDate.add(rs.getString(5));
                 rowDate.add(rs.getString(6));
                 rowDate.add(rs.getString(7));

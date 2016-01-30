@@ -4,11 +4,14 @@
   Date: 1/29/2016
   Time: 4:47 PM
   To change this template use File | Settings | File Templates.
+
+  http://stackoverflow.com/questions/10159067/show-hide-button-in-table-row-during-mouseover
 --%>
 <%@ page import="com.database.ASDB" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <div class="section">
     <div class="container">
         <!--         what is row -->
@@ -37,20 +40,25 @@
 
                             ASDB dba=new ASDB();
                             try {
-                                ArrayList<ArrayList<String>> suArr = dba.selectSuperusers();
+                                ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
                                 ArrayList<String> suRow ;
 
                                 for (int i=0; i<suArr.size();i++){
                                     suRow = new ArrayList<String>();
                                     suRow = suArr.get(i);
                                     out.print("<tr>");
-                                    for (int j=0; j<suRow.size();j++) {
+                                    for (int j=1; j<suRow.size();j++) {
                                         out.print("<td>"+suRow.get(j)+"</td>");
                                     }
 
-                                    out.print("<td><a class=\"rowOption\" >edit" +
+                                    if(!suRow.get(6).equals("1")){
+                                        out.print("<td><a class=\"rowOption\" href=\"index.jsp?page=update&id="+suRow.get(0)
+                                                +"&type=superuser\" >edit" +
+                                                "</a></td></tr>");
+                                    }else {
+                                        out.print("<td></td></tr>");
+                                    }
 
-                                            "</a></td></tr>");
                                 }
 
                                 ArrayList<ArrayList<String>> fmArr = dba.selectAllFaculty();
@@ -60,12 +68,14 @@
                                     fmRow = new ArrayList<String>();
                                     fmRow = fmArr.get(i);
                                     out.print("<tr>");
-                                    for (int j=0; j<fmRow.size();j++) {
+                                    for (int j=1; j<fmRow.size();j++) {
                                         out.print("<td>"+fmRow.get(j)+"</td>");
                                     }
-                                    out.print("<td><a class=\"rowOption\" >edit" +
 
-                                            "</a></td></tr>");
+                                        out.print("<td><a class=\"rowOption\" href=\"index.jsp?page=update&id="+fmRow.get(0)
+                                                +"&type=faculty\" >edit" +
+                                                "</a></td></tr>");
+
                                 }
 
                             } catch (ClassNotFoundException e) {
@@ -79,7 +89,7 @@
 
                     </table>
                 </div>
-                <a class="btn btn-success btn-fill" onclick="addUser()">Add</a>
+                <a class="btn btn-success btn-fill" href="index.jsp?page=add">Add</a>
                 <button class="btn btn-primary">Back</button>
 
 

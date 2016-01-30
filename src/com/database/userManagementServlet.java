@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -62,7 +61,7 @@ public class userManagementServlet extends HttpServlet {
 
                 dba=new ASDB();
         try {
-            ArrayList<ArrayList<String>> rs = dba.selectSuperusers();
+            ArrayList<ArrayList<String>> rs = dba.selectAllSuperusers();
             ArrayList<String> rsRow ;
 
             for (int i=0; i<rs.size();i++){
