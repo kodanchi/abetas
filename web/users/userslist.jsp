@@ -18,7 +18,7 @@
         <div class="row tim-row">
             <h2 class="text-center">User Management</h2>
             <legend></legend>
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-lg-10 col-md-offset-1">
 
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
@@ -32,7 +32,8 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Access level</th>
-                            <th></th>
+                            <th>Edit</th>
+                            <th>Delete</th>
 
                         </tr>
                         <%
@@ -44,19 +45,36 @@
                                 ArrayList<String> suRow ;
 
                                 for (int i=0; i<suArr.size();i++){
-                                    suRow = new ArrayList<String>();
+                                    //suRow = new ArrayList<String>();
                                     suRow = suArr.get(i);
-                                    out.print("<tr>");
-                                    for (int j=1; j<suRow.size();j++) {
+                                    out.print("<tr class=\"textContainer\" >");
+                                    for (int j=1; j<suRow.size() - 1;j++) {
                                         out.print("<td>"+suRow.get(j)+"</td>");
                                     }
 
                                     if(!suRow.get(6).equals("1")){
-                                        out.print("<td><a class=\"rowOption\" href=\"index.jsp?page=update&id="+suRow.get(0)
-                                                +"&type=superuser\" >edit" +
-                                                "</a></td></tr>");
+                                        out.print("<td>Superuser</td>");
+
+                                        out.print("<td>" +
+                                                "                           <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <input name=\"page\" value=\"update\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                                "                            <button  type=\"submit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                               </td>" +
+                                                "                           </form>" +
+                                                "                           <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                                "                               <td>" +
+                                                "                            <button  type=\"submit\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                               </td>"+
+                                                "                        </form>" +
+                                                "</tr>");
                                     }else {
-                                        out.print("<td></td></tr>");
+                                        out.print("<td>Admin</td>");
+                                        out.print("<td><i class=\"fa fa-pencil fa-2x \"></i></td><td><i class=\"fa fa-trash fa-2x \"></i></td></tr>");
                                     }
 
                                 }
@@ -67,14 +85,28 @@
                                 for (int i=0; i<fmArr.size();i++){
                                     fmRow = new ArrayList<String>();
                                     fmRow = fmArr.get(i);
-                                    out.print("<tr>");
+                                    out.print("<tr class=\"textContainer\" >");
                                     for (int j=1; j<fmRow.size();j++) {
-                                        out.print("<td>"+fmRow.get(j)+"</td>");
+                                        out.print("<td >"+fmRow.get(j)+"</td>");
                                     }
 
-                                        out.print("<td><a class=\"rowOption\" href=\"index.jsp?page=update&id="+fmRow.get(0)
-                                                +"&type=faculty\" >edit" +
-                                                "</a></td></tr>");
+                                    out.print("<td>" +
+                                            "                           <form method=\"post\" action=\"index.jsp\">\n" +
+                                            "                            <input name=\"page\" value=\"update\" hidden />\n" +
+                                            "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
+                                            "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                            "                            <button  type=\"submit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                            "                               </td>" +
+                                            "                           </form>" +
+                                            "                           <form method=\"post\" action=\"index.jsp\">\n" +
+                                            "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                            "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
+                                            "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                            "                               <td>" +
+                                            "                            <button  type=\"submit\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                            "                               </td>"+
+                                            "                        </form>" +
+                                            "</tr>");
 
                                 }
 
@@ -87,10 +119,11 @@
 
                         %>
 
-                    </table>
+
+                    </table >
                 </div>
                 <a class="btn btn-success btn-fill" href="index.jsp?page=add">Add</a>
-                <button class="btn btn-primary">Back</button>
+                <button  class="btn btn-primary">Back</button>
 
 
                 <!-- End of col -->

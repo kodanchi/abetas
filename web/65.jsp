@@ -95,6 +95,7 @@
 
 
                     </div>
+                    <a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-1x margin-top"></i></a>
                     <button class="btn btn-success btn-fill">Add</button>
                     <button class="btn btn-primary">Cencel</button>
                     <button class="btn btn-primary pull-right">Finish</button>

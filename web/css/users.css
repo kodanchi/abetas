@@ -28,3 +28,8 @@ table#table-sever-list tr:hover td a.rowOption {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.textContainer td {
+    vertical-align: middle !important;
+    text-align: center;
+}

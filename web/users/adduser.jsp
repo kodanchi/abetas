@@ -40,6 +40,20 @@
                 pageTitle = "Update User";
                 submit = "Update";
             }
+        }else if(type.equals("faculty")){
+            ASDB db = new ASDB();
+            ArrayList<String> selUsrData = db.selectFaculty(Integer.parseInt(id));
+
+            if(selUsrData != null){
+                ulvl = "superuser";
+                ufname = selUsrData.get(1);
+                umname = selUsrData.get(2);
+                ulname = selUsrData.get(3);
+                uname = selUsrData.get(4);
+                uemail = selUsrData.get(5);
+                pageTitle = "Update User";
+                submit = "Update";
+            }
         }
     }
 %>

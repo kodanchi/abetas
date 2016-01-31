@@ -10,12 +10,16 @@
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String pageName = null;
-    String pageCall = request.getParameter("page");
-    if(pageCall != null){
-        if(pageCall.equals("add")) {
-            pageName = "adduser.jsp";
-        }else if(pageCall.equals("update")){
+    System.out.println(request.getMethod());
+    String pageName = "userslist.jsp";
+    if(request.getMethod().equals("GET")){
+        pageName = null;
+        String pageCall = request.getParameter("page");
+        System.out.println(pageCall);
+        if(pageCall != null){
+            if(pageCall.equals("add")) {
+                pageName = "adduser.jsp";
+            }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
                 String type = request.getParameter("type");
                 if(id != null && type != null){
@@ -23,11 +27,33 @@
                 }else {
                     pageName = "userslist.jsp";
                 }
+            }else {
+                pageName = "userslist.jsp";
+            }
         }else {
             pageName = "userslist.jsp";
         }
-    }else {
-        pageName = "userslist.jsp";
+    }else if(request.getMethod().equals("POST")) {
+        pageName = null;
+        String pageCall = request.getParameter("page");
+        System.out.println(pageCall);
+        if(pageCall != null){
+            if(pageCall.equals("add")) {
+                pageName = "adduser.jsp";
+            }else if(pageCall.equals("update")){
+                String id = request.getParameter("id");
+                String type = request.getParameter("type");
+                if(id != null && type != null){
+                    pageName = "adduser.jsp?id="+id+"&type="+type;
+                }else {
+                    pageName = "userslist.jsp";
+                }
+            }else {
+                pageName = "userslist.jsp";
+            }
+        }else {
+            pageName = "userslist.jsp";
+        }
     }
 %>
 
