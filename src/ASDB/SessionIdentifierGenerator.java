@@ -1,8 +1,9 @@
-package com.database;
+package ASDB;
 
 /**
  * Created by Ibrahim Abuaqel on 1/24/2016.
  */
+
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
