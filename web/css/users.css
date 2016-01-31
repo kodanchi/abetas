@@ -29,7 +29,7 @@ table#table-sever-list tr:hover td a.rowOption {
     background-position: center;
 }
 
-.textContainer td {
+.textContainer td ,.textContainer th {
     vertical-align: middle !important;
     text-align: center;
 }

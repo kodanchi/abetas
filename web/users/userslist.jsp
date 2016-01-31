@@ -25,7 +25,7 @@
 
                     <!-- Table -->
                     <table class="table table-hover" id="table-sever-list" >
-                        <tr >
+                        <tr class="textContainer">
                             <th>First name</th>
                             <th>Middle name</th>
                             <th>Last name</th>
@@ -60,7 +60,7 @@
                                                 "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
-                                                "                            <button  type=\"submit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                           </form>" +
                                                 "                           <form method=\"post\" action=\"index.jsp\">\n" +
@@ -68,7 +68,7 @@
                                                 "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -95,7 +95,7 @@
                                             "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                             "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
                                             "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
-                                            "                            <button  type=\"submit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                             "                               </td>" +
                                             "                           </form>" +
                                             "                           <form method=\"post\" action=\"index.jsp\">\n" +
@@ -103,7 +103,7 @@
                                             "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
                                             "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
                                             "                               <td>" +
-                                            "                            <button  type=\"submit\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                             "                               </td>"+
                                             "                        </form>" +
                                             "</tr>");
