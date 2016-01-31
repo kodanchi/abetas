@@ -216,7 +216,7 @@ public class ASDB {
 
     }
 
-    public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
+        public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
 
         connect();
 
