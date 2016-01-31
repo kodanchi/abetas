@@ -27,7 +27,7 @@
 
     <div class="main">
         <div class="section">
-            <div class="container">
+            <div class="container" id="space">
                 <!-- what is row -->
                 <div class="row tim-row">
                     <h2 class="text-center">Cycle Configuration</h2>
@@ -164,6 +164,14 @@
         $("#header").load("Header.html");
         $("#footer").load("Footer.html");
     });
+    
+        function autoResizeDiv()
+        {
+            document.getElementById('space').style.height = (window.innerHeight-258) +'px';
+        }
+        window.onresize = autoResizeDiv;
+        autoResizeDiv();
+
 </script>
 
 </html>
