@@ -946,7 +946,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT C_name,C_code,C_level FROM program_has_course, course Where FK_program_ID="+ id +" and FK_course_code=C_code;";
+            String query = "SELECT C_name,C_code,C_level FROM abetasdb.program_has_course, course Where FK_program_ID="+ id +" and FK_course_code=C_code;";
 
             /*
              *  Get connection from the DataSource
