@@ -122,7 +122,7 @@ public class ASDB {
         ResultSet rs = null;
         try {
 
-            String query = "select * FROM superuser WHERE Super_ID = """;
+            String query = "SELECT * FROM superuser where Super_ID = "+ id +";";
 
             /*
              *  Get connection from the DataSource
@@ -191,7 +191,7 @@ public class ASDB {
         ResultSet rs = null;
         try {
 
-            String query = "select * FROM faculty_member";
+            String query = "SELECT * FROM abetasdb.faculty_member;";
 
             /*
              *  Get connection from the DataSource
@@ -260,7 +260,7 @@ public class ASDB {
         ResultSet rs = null;
         try {
 
-            String query = "select * FROM superuser WHERE Super_ID = "+id;
+            String query = "SELECT * FROM faculty_member where Faculty_ID= "+id+";";
 
             /*
              *  Get connection from the DataSource
