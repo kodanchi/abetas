@@ -27,6 +27,8 @@
                 }else {
                     pageName = "userslist.jsp";
                 }
+            }else if(pageCall.equals("import")){
+                pageName = "import.jsp";
             }else {
                 pageName = "userslist.jsp";
             }
