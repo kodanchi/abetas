@@ -346,7 +346,7 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into superuser (P_name, P_mission)" + " values (?, ?)";
+            String query = " insert into program (P_name, P_mission)" + " values (?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, pName);

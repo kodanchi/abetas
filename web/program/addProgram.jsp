@@ -19,13 +19,13 @@
                 <div class="col-md-10 col-md-offset-1">
                     <p>You need to enter the name and the misson of the program:</p>
 
-                    <form name="myform" action="#" method="post">
+                    <form name="myform" action="/Add Program" method="post">
 
                         <div class="form-group">
 
                             <label>Program Name</label>
 
-                            <input type="text" class="form-control" placeholder="Program Name" required>
+                            <input type="text" class="form-control" placeholder="Program Name" name="Pname" required>
 
                         </div>
 
@@ -33,7 +33,7 @@
 
                             <label>Mission Statement</label>
 
-                            <textarea class="form-control" rows="4" cols="50" placeholder="Mission Statement" required></textarea>
+                            <textarea class="form-control" rows="4" cols="50" placeholder="Mission Statement" name="Pmission" required></textarea>
 
                         </div>
 
