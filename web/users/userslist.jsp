@@ -7,7 +7,7 @@
 
   http://stackoverflow.com/questions/10159067/show-hide-button-in-table-row-during-mouseover
 --%>
-<%@ page import="com.database.ASDB" %>
+<%@ page import="ASDB.AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -39,7 +39,7 @@
                         <%
 
 
-                            ASDB dba=new ASDB();
+                            AS_Select dba=new AS_Select();
                             try {
                                 ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
                                 ArrayList<String> suRow ;
@@ -138,13 +138,11 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="left-side">
-                                    <a href="index.jsp?page=add">
-                                        <button type="button"  class="btn btn-default btn-simple"></button>
-                                    </a>
+                                    <a type="button" href="index.jsp?page=add"  class="btn btn-default btn-simple">Enter manually</a>
                                 </div>
                                 <div class="divider"></div>
                                 <div class="right-side">
-                                    <a type="button" href="index.jsp?page=add"  class="btn btn-default btn-simple">Import Excel file</a>
+                                    <a type="button" href="index.jsp?page=import"  class="btn btn-default btn-simple">Import Excel file</a>
                                 </div>
                             </div>
                         </div>

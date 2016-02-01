@@ -5,7 +5,7 @@
   Time: 3:55 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="com.database.ASDB" %>
+<%@ page import="ASDB.AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -27,7 +27,7 @@
 
     if(id != null && type != null){
         if(type.equals("superuser") && (!id.equals("1"))){
-            ASDB db = new ASDB();
+            AS_Select db = new AS_Select();
             ArrayList<String> selUsrData = db.selectSuperuser(Integer.parseInt(id));
 
             if(selUsrData != null){
@@ -41,7 +41,7 @@
                 submit = "Update";
             }
         }else if(type.equals("faculty")){
-            ASDB db = new ASDB();
+            AS_Select db = new AS_Select();
             ArrayList<String> selUsrData = db.selectFaculty(Integer.parseInt(id));
 
             if(selUsrData != null){
