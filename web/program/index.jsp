@@ -27,7 +27,12 @@
                 }else {
                     pageName = "programList.jsp";
                 }
-            }else {
+            }
+            else if(pageCall.equals("po")) {
+                pageName = "programObjectiveList.jsp";
+
+            }
+            else {
                 pageName = "programList.jsp";
             }
         }else {
