@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet" >
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <div>
+        <div>
+            <h2>Course Management</h2>
+            <p><h4>Course Name
+            <img src="edit.gif" /></h4>
+            </p>
+            <p><h4>Course Code
+            <img src="edit.gif" /></h4>
+            </p>
+            <p><h4>Course Group:
+            <img src="edit.gif" /></h4>
+            </p>
+        </div>
+
+
+
+        <div>
+            <p>
+            <h5> Courses:  <button name="editBtn" class="btn btn-xs btn-default" formaction="CourseListEdit.jsp" >Edit</button>
+            </h5>
+            </p>
+
+            <table class="table table-striped">
+                <tr>
+                    <td>Student ID</td>
+                    <td>First Name</td>
+                    <td>Middle Name</td>
+                    <td>Last Name</td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+
+            </table>
+
+
+        </div>
+
+        <div>
+            <h5>Faculty member: Name
+                <img src="edit.gif" />
+
+            <select name="fnames" >
+                <option value="name">name</option>
+            </select>
+                <button name="feditBtn" type="submit">Save</button>
+            </h5>
+        </div>
+        <div>
+            <button name="printBtn" class="btn btn-primary" formaction="print.jsp" >Print</button>
+            <button name="delBtn" class="btn btn-default" formaction="deleteForm.jsp" >Delete</button>
+            <button name="backBtn" class="btn btn-default" formaction="cycleManagement.jsp" >Back</button>
+        </div>
+
+
+
+    </div>
+</div>
+</body>
+</html>
