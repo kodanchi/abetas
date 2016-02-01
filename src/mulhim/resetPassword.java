@@ -36,24 +36,28 @@ public class resetPassword extends HttpServlet {
         loginDB d = new loginDB();
 
 
-
+        PrintWriter out=response.getWriter();
         try {
             if(d.selectEmail(getFromUser)){
                 SendEmail msg = new SendEmail();
-                msg.mu("The code is"+PassCodeMap.getpassKey(getFromUser));
+                msg.mu("The code is  "+PassCodeMap.getpassKey(getFromUser));
                 response.sendRedirect("enterPasscode.jsp");
 
 
 
             }
             else{
-                PrintWriter out=response.getWriter();
+
                 out.print("false");
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        catch (java.lang.NullPointerException e){
+            out.print("false");
+
         }
 
     }

@@ -95,7 +95,12 @@ if(PassCodeMap.getpassKey(d)==n) {
 }
            // r.sendRedirect("newPassword.jsp?code="+d+"&email="+n);
             else {
-                out.print("Wrong Passcode or email");
+    out.print("<script language=\"javaScript\">\n" +
+
+
+            "  alert('Wrong email or passcode');\n" +
+
+            "</script>\n");
 
 
             }

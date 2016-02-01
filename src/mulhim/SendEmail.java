@@ -28,9 +28,9 @@ public class SendEmail {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("from@no-spam.com"));
+            message.setFrom(new InternetAddress("mulhimmm@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("ibrahimarefabu-aquel@hotmail.com"));
+                    InternetAddress.parse("mojahedwazzab@live.com"));
 
             message.setSubject("Testing Subject");
             message.setText(msg);

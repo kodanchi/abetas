@@ -84,10 +84,14 @@ public class loginDB {
                 System.out.println(false);
                 return false;
             }
+            else if(selEmail==""){
+System.out.print(false);
+                return false;
+            }
             else {
                 PassCodeMap.setPassCode(selEmail,randNumber);
                 System.out.println(PassCodeMap.getMapSize());
-                System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
+                System.out.println("The code is from loginDB "+PassCodeMap.getpassKey(selEmail));
                 System.out.println(true);
 return true;
 
