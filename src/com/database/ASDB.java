@@ -42,7 +42,7 @@ public class ASDB {
         rs.close();
     }
 
-    public ArrayList<ArrayList<String>> selectUsers() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectAllSuperusers() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> rowDate;
@@ -106,6 +106,211 @@ public class ASDB {
             }
 
              return rsArr;
+
+        }
+
+    }
+
+    public ArrayList<String> selectSuperuser(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "select * FROM superuser WHERE Super_ID = """;
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(8));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
+
+    public ArrayList<ArrayList<String>> selectAllFaculty() throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> rowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "select * FROM faculty_member";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add("Faculty");
+                rsArr.add(rowDate);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+             return rsArr;
+
+        }
+
+    }
+
+
+    public ArrayList<String> selectFaculty(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "select * FROM superuser WHERE Super_ID = "+id;
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(8));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
 
         }
 
@@ -302,7 +507,7 @@ public class ASDB {
             /*
              * Execute the query
              */
-                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faclty_Password)" + " values (?, ?, ?, ?, ?, ?)";
+                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faculty_Password)" + " values (?, ?, ?, ?, ?, ?)";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, Uname);
@@ -2645,217 +2850,6 @@ public class ASDB {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-    public ArrayList<ArrayList<String>> selectProgramManagementFig30() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM course;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-
-    public ArrayList<ArrayList<String>> selectFormativeStudentOutcome() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM p_student_outcome;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-    public ArrayList<ArrayList<String>> selectFormativeRubric() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM pi_rubric;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
 
 
                 RsArr.add(RowDate);

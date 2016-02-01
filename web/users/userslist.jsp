@@ -41,7 +41,7 @@
 
                             ASDB dba=new ASDB();
                             try {
-                                ArrayList<ArrayList<String>> suArr = dba.selectUsers();
+                                ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
                                 ArrayList<String> suRow ;
 
                                 for (int i=0; i<suArr.size();i++){
@@ -79,7 +79,7 @@
 
                                 }
 
-                               /* ArrayList<ArrayList<String>> fmArr = dba.selectAllFaculty();
+                                ArrayList<ArrayList<String>> fmArr = dba.selectAllFaculty();
                                 ArrayList<String> fmRow ;
 
                                 for (int i=0; i<fmArr.size();i++){
@@ -108,7 +108,7 @@
                                             "                        </form>" +
                                             "</tr>");
 
-                                }*/
+                                }
 
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
