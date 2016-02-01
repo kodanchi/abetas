@@ -82,7 +82,7 @@
 <body>
 <div id="page">
 <div id="header">
-    <jsp:include page="/header.jsp"/>
+    <jsp:include page="/Header.jsp"/>
 </div>
 
 <div id="main" class="main">
@@ -93,7 +93,7 @@
 
 
 <div id="footer">
-    <jsp:include page="/footer.jsp"/>
+    <jsp:include page="/Footer.jsp"/>
 </div>
 </div>
 <div id="loading" ></div>

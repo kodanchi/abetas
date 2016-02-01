@@ -122,8 +122,34 @@
 
                     </table >
                 </div>
-                <a class="btn btn-success btn-fill" href="index.jsp?page=add">Add</a>
-                <button  class="btn btn-primary">Back</button>
+                <button class="btn btn-success btn-fill"  data-toggle="modal" data-target="#myModal">Add</button>
+                <button class="btn btn-primary">Back</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">User Management</h4>
+                            </div>
+                            <div class="modal-body">
+                                If you have the users' information in an Excel sheet, you can import the file to add them all at once
+                            </div>
+                            <div class="modal-footer">
+                                <div class="left-side">
+                                    <a href="index.jsp?page=add">
+                                        <button type="button"  class="btn btn-default btn-simple"></button>
+                                    </a>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="right-side">
+                                    <a type="button" href="index.jsp?page=add"  class="btn btn-default btn-simple">Import Excel file</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
                 <!-- End of col -->
