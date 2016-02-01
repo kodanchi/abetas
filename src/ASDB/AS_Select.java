@@ -144,6 +144,7 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
 
                 RsArr.add(RowDate);
@@ -191,7 +192,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = "+ +" ;";
+            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = "+ null +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -259,7 +260,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ +";";
+            String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ null +";";
 
             /*
              *  Get connection from the DataSource
@@ -602,7 +603,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ +";";
+            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ null+";";
 
             /*
              *  Get connection from the DataSource
@@ -672,7 +673,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM term where FK_Cycle_ID = "++";";
+            String query = "SELECT * FROM term where FK_Cycle_ID = "+null +";";
 
             /*
              *  Get connection from the DataSource
@@ -932,7 +933,8 @@ public class AS_Select {
     }
 
 
-    public ArrayList<ArrayList<String>> selectProgramManagementFig30() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectProgramManagementFig30(int id) throws ClassNotFoundException, SQLException {
+
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -944,7 +946,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT C_name,C_code,C_level FROM abetasdb.program_has_course, course Where FK_program_ID="+ +" and FK_course_code=C_code;";
+            String query = "SELECT C_name,C_code,C_level FROM abetasdb.program_has_course, course Where FK_program_ID="+ id +" and FK_course_code=C_code;";
 
             /*
              *  Get connection from the DataSource

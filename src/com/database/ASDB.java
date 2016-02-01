@@ -73,6 +73,7 @@ public class ASDB {
             //
             while (rs.next()){
                 rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
                 rowDate.add(rs.getString(5));
                 rowDate.add(rs.getString(6));
                 rowDate.add(rs.getString(7));
