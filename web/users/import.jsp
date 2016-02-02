@@ -4,6 +4,9 @@
   Date: 2/1/2016
   Time: 5:13 PM
   To change this template use File | Settings | File Templates.
+
+  http://stackoverflow.com/questions/11832930/html-input-file-accept-attribute-file-type-csv
+  http://stackoverflow.com/questions/15201071/how-to-get-full-path-of-selected-file-on-change-of-input-type-file-using-jav
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -27,7 +30,7 @@
                             <img src="http://i.stack.imgur.com/irt3e.jpg" class="img-responsive" alt="excel format">
                         </div>
                     </div>
-                    <form name="myform" action="#" method="post">
+                    <form name="myform" action="/upload/users" method="post" enctype="multipart/form-data">
 
 
                         <div class="row tim-row">
@@ -37,7 +40,7 @@
                                 <div class="input-group">
     <span class="input-group-btn">
                     <span class="btn btn-fill btn-primary btn-file">
-                        Browse&hellip; <input type="file" >
+                        Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput">
                     </span>
     </span>
                                     <input type="text" class="form-control" readonly>
@@ -48,13 +51,14 @@
 
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-success btn-fill">Upload</button>
                     </form>
 
 
 
 
 
-                    <button class="btn btn-success btn-fill">Upload</button>
+
 
 
                     <button class="btn btn-primary pull-right">Back</button>
@@ -95,6 +99,7 @@
 
         });
     });
+
 
 </script>
 

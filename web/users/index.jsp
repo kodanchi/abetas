@@ -38,6 +38,7 @@
     }else if(request.getMethod().equals("POST")) {
         pageName = null;
         String pageCall = request.getParameter("page");
+        String cmdCall = request.getParameter("cmd");
         System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
@@ -53,8 +54,11 @@
             }else {
                 pageName = "userslist.jsp";
             }
-        }else {
+        }else if(cmdCall != null){
             pageName = "userslist.jsp";
+            if(cmdCall.equals("upload")){
+                pageName = "upload.jsp?file="+request.getParameter("file");
+            }
         }
     }
 %>
