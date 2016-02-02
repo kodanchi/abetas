@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Course Management</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/ct-paper.css" rel="stylesheet" />
+    <link href="css/cus.css" rel="stylesheet" />
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+
+    <div class="main">
+        <div class="section">
+            <div class="container">
+                <!--         what is row -->
+                <div class="row tim-row">
+                    <h2 class="text-center">Course Management</h2>
+
+                    <ul class="list-inline text-center crsMng">
+                        <li>
+                            <h4>Course Name</h4></li>
+                        <li>
+                            <p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p>
+                        </li>
+                    </ul>
+
+                    <ul class="list-inline text-center cycMng">
+                        <li>
+                            <h5>Course Code</h5></li>
+                        <li>
+                            <p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p>
+                        </li>
+                    </ul>
+
+
+
+                    <legend></legend>
+                    <div class="col-md-8 col-md-offset-2">
+
+                        <ul class="list-inline cycMng" >
+                            <li>
+                                <h4>Courses Group:</h4></li>
+                            <li>
+                                <p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p>
+                            </li>
+                        </ul>
+
+
+                        <ul class="list-inline cycMng" >
+                            <li>
+                                <p>Students:</p>
+                            </li>
+                            <li>
+                                <p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p>
+                            </li>
+                        </ul>
+
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+
+                            <!-- Table -->
+                            <table class="table table-striped table-bordered text-center">
+                                <tr>
+                                    <th class="text-center">Student ID</th>
+                                    <th class="text-center">First Name</th>
+                                    <th class="text-center">Middle Name</th>
+                                    <th class="text-center">Last Name</th>
+                                </tr>
+                                <tr>
+                                    <td>2120010809</td>
+                                    <td>Abdul</td>
+                                    <td>Moh</td>
+                                    <td>Saif</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <div class="row">
+                            <ul class="list-inline cycMng">
+                                <li class="fmName">
+                                    <p>Faculty members:</p>
+                                </li>
+                                <li>
+
+
+                                    <div class="form-group">
+                                        <div class="dropdown">
+                                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                      Choose faculty member 
+                      <b class="caret"></b>
+                  </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">First Name</a></li>
+                                                <li><a href="#">Second Name</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+
+
+
+                                </li>
+                                <li>
+                                    <p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p>
+                                </li>
+                            </ul>
+
+
+                        </div>
+
+                        <button class="btn btn-primary pull-right">Back</button>
+                        <button class="btn btn-danger btn-fill pull-right">Delete</button>
+
+
+
+                        <!-- End of col -->
+                    </div>
+
+                    <!-- End of row -->
+                </div>
+
+
+            </div>
+        </div>
+        <!-- End of main -->
+    </div>
+
+
+</body>
+
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.js" type="text/javascript"></script>
+
+<!--  Plugins -->
+<script src="js/ct-paper-checkbox.js"></script>
+<script src="js/ct-paper-radio.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="js/ct-paper.js"></script>
+<script>
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [75, 300],
+    });
+    $("#slider-default").slider({
+        value: 70,
+        orientation: "horizontal",
+        range: "min",
+        animate: true
+    });
+    $('.btn-tooltip').tooltip('show');
+    $('.radio').on('toggle', function () {});
+
+
+</script>
+
+</html>

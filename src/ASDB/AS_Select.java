@@ -591,7 +591,7 @@ public class AS_Select {
     }
 
 
-    public ArrayList<ArrayList<String>> selectTerm() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectTerm(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -603,7 +603,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ null+";";
+            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ id +";";
 
             /*
              *  Get connection from the DataSource
@@ -661,7 +661,7 @@ public class AS_Select {
 
     }
 
-    public ArrayList<ArrayList<String>> selectCycleManagement() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectCycleManagement(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -673,7 +673,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM term where FK_Cycle_ID = "+null +";";
+            String query = "SELECT * FROM term where FK_Cycle_ID = "+ id +";";
 
             /*
              *  Get connection from the DataSource
@@ -692,6 +692,7 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
 
@@ -877,7 +878,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_ID , C_code From abetasdb.performance_indicator,abetasdb.course;";
+            String query = "SELECT PI_ID , C_code From performance_indicator,course;";
 
             /*
              *  Get connection from the DataSource
@@ -1418,6 +1419,7 @@ public class AS_Select {
         }
 
     }
+
 
 
 }

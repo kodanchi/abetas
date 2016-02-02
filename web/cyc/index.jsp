@@ -43,9 +43,8 @@
                 pageName = "adduser.jsp";
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
-                String type = request.getParameter("type");
-                if(id != null && type != null){
-                    pageName = "adduser.jsp?id="+id+"&type="+type;
+                if(id != null){
+                    pageName = "cycleView.jsp?id="+id;
                 }else {
                     pageName = "cycleList.jsp";
                 }
