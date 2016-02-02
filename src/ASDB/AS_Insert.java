@@ -4,6 +4,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by Ibrahim Abuaqel on 1/31/2016.
@@ -325,16 +326,18 @@ public class AS_Insert {
         }
     }
 
-    public void addProgramm(String pName, String mission) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> addProgramm(String pName, String mission) throws ClassNotFoundException, SQLException {
         //public void addProgramm(String pName, String mission, String sOutcome, String pObj, String outcomeLable, String objectiveLable ) throws ClassNotFoundException, SQLException {
 
         connect();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-
-
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
         int rs = 0;
+        String name = "";
+        int id=0;
         try {
 
             /*
@@ -354,6 +357,19 @@ public class AS_Insert {
 
             rs = preparedStatement.executeUpdate();
 
+            String querySelect = " SELECT P_name FROM program ORDER BY P_ID DESC LIMIT 1";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+
+                data.add(name = rsSelect.getString(1));
+                System.out.println(data.get(0));
+                return data;
+            }
 
             ////Need to display the temp password to the screen
 
@@ -380,9 +396,10 @@ public class AS_Insert {
             }
 
         }
+        return data;
     }
 
-    public void addObject(String Objective_label, String Objective, int FK_P_ID) throws ClassNotFoundException, SQLException {
+    public void addObject(String Objective, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -401,12 +418,11 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into p_objective (Objective_label, Objective, FK_P_ID)" + " values (?, ?, ?)";
+            String query = " insert into p_objective (Objective, FK_P_ID)" + " values (?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, Objective_label);
-            preparedStatement.setString(2, Objective);
-            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setString(1, Objective);
+            preparedStatement.setInt(2, FK_P_ID);
             rs = preparedStatement.executeUpdate();
 
 

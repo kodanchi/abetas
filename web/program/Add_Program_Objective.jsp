@@ -19,12 +19,12 @@
                 <div class="col-md-8 col-md-offset-2">
                     <p>Enter the program objectives</p>
 
-                    <form role="form" name="myform" action="http://localhost:8081/program/index.jsp?page=add" method="post">
+                    <form role="form" name="myform" action="/Add Program Objective" method="post">
                         <div class="form-group">
                             <div class="row tim-row">
                                 <div class="col-md-4">
-                                    <label>Program: <label><%=request.getParameter("id")%></label></label>
-
+                                    <label>Program: <label><%=request.getParameter("name")%></label></label>
+                                    <input type="hidden" name="Pname" value="<%=request.getParameter("name")%>">
                                 </div>
 
                             </div>
@@ -35,7 +35,7 @@
                             <div class="row tim-row">
                                 <div class="col-md-4">                    <label>Program Objectives:<label style="color:red;">*</label></label>
                                 </div>
-                                <div class="col-md-8">                    <textarea class="form-control" rows="5" id="comment"></textarea>
+                                <div class="col-md-8">                    <textarea class="form-control" rows="5" id="comment" name="Obj"></textarea>
                                 </div>
                             </div>
 

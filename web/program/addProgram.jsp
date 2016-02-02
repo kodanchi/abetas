@@ -19,7 +19,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <p>You need to enter the name and the mission of the program:</p>
 
-                    <form name="myform" action="http://localhost:8081/program/index.jsp?page=add" method="post">
+                    <form name="myform" action="/Add Program" method="post">
 
                         <div class="form-group">
 
