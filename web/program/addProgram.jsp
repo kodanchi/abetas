@@ -17,9 +17,9 @@
                 <h2 class="text-center">Add Program</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>You need to enter the name and the misson of the program:</p>
+                    <p>You need to enter the name and the mission of the program:</p>
 
-                    <form name="myform" action="/Add Program" method="post">
+                    <form name="myform" action="http://localhost:8081/program/index.jsp?page=add" method="post">
 
                         <div class="form-group">
 
