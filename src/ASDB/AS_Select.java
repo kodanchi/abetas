@@ -248,7 +248,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives(String outcome) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -260,7 +260,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ null +";";
+            String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ outcome +";";
 
             /*
              *  Get connection from the DataSource

@@ -9,9 +9,10 @@
 --%>
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <%
     System.out.println(request.getMethod());
-    String pageName = "programList.jsp";
+    String pageName = "cycleList.jsp";
     if(request.getMethod().equals("GET")){
         pageName = null;
         String pageCall = request.getParameter("page");
@@ -25,23 +26,13 @@
                 if(id != null && type != null){
                     pageName = "adduser.jsp?id="+id+"&type="+type;
                 }else {
-                    pageName = "programList.jsp";
+                    pageName = "cycleList.jsp";
                 }
-            }
-            else if(pageCall.equals("po")) {
-                pageName = "programObjectiveList.jsp";
-
-            }
-            else if (pageCall.equals("linkSOWithO")){
-
-                pageName = "linkSOWithO.jsp";
-
-            }
-            else {
-                pageName = "programList.jsp";
+            }else {
+                pageName = "cycleList.jsp";
             }
         }else {
-            pageName = "programList.jsp";
+            pageName = "cycleList.jsp";
         }
     }else if(request.getMethod().equals("POST")) {
         pageName = null;
@@ -52,16 +43,17 @@
                 pageName = "adduser.jsp";
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
-                if(id != null){
-                    pageName = "programView.jsp?id="+id;
+                String type = request.getParameter("type");
+                if(id != null && type != null){
+                    pageName = "adduser.jsp?id="+id+"&type="+type;
                 }else {
-                    pageName = "programList.jsp";
+                    pageName = "cycleList.jsp";
                 }
             }else {
-                pageName = "programList.jsp";
+                pageName = "cycleList.jsp";
             }
         }else {
-            pageName = "programList.jsp";
+            pageName = "cycleList.jsp";
         }
     }
 %>
