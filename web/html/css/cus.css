@@ -1,3 +1,4 @@
+
 .radio-blue
 {
     margin-top: -2px;
@@ -46,4 +47,7 @@ input[readonly] {
 }
 .fmName{
     padding-left:20px;
+}
+.red{
+    color:red;
 }
