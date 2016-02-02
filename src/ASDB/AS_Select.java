@@ -259,7 +259,7 @@ public class AS_Select {
 
         ResultSet rs = null;
         try {
-
+                //في مشكلة مع الكويري
             String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ outcome +";";
 
             /*
