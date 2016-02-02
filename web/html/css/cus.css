@@ -28,3 +28,22 @@ input[readonly] {
   background-color: white !important;
   cursor: text !important;
 }
+.courseNResult {
+    margin-right:10px;
+}
+.addBtn{
+    margin-top:20px;
+
+}
+.cycMng{
+    margin-bottom:-10px;
+}
+.chckTerm{
+    margin-left:10px;
+}
+.crsMng{
+    margin-bottom:-20px;
+}
+.fmName{
+    padding-left:20px;
+}
