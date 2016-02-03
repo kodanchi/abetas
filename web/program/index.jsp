@@ -38,9 +38,20 @@
         String pageCall = request.getParameter("page");
         System.out.println(pageCall);
         if(pageCall != null){
-            if(pageCall.equals("add")) {
+            if(pageCall.equals("addProgram")) {
                 String name = request.getParameter("name");
-                pageName = "Add_Program_Objective.jsp?name="+name;
+                String id = request.getParameter("id");
+                System.out.println(name);
+                if(name != null && id != null){
+                    pageName = "programObjectiveList.jsp?name="+name+"&id="+id;
+                }
+            }else if(pageCall.equals("addObj")){
+                String id = request.getParameter("id");
+                if(id != null){
+                    pageName = "addOutcome.jsp?id="+id;
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
                 if(id != null){
