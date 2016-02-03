@@ -33,10 +33,9 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-                                String outcome = request.getParameter("outcome");
                                 AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives(outcome);
+                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives();
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){

@@ -40,7 +40,7 @@
         System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
-                pageName = "adduser.jsp";
+                pageName = "addTerm.jsp";
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
                 if(id != null){

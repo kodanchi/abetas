@@ -250,7 +250,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives(String outcome) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -261,8 +261,8 @@ public class AS_Select {
 
         ResultSet rs = null;
         try {
-                //في مشكلة مع الكويري
-            String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ outcome +";";
+
+            String query = "SELECT FK_obj,FK_out FROM p_objective,p_student_outcome,link_out_obj where p_objective.FK_P_ID = p_student_outcome.FK_P_ID  ;";
 
             /*
              *  Get connection from the DataSource

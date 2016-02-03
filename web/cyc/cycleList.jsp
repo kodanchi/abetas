@@ -75,7 +75,7 @@
 
                         </table>
                     </div>
-                    <button class="btn btn-success btn-fill">Add</button>
+                    <button href="index.jsp?page=add" class="btn btn-success btn-fill">Add</button>
                     <button class="btn btn-primary">Back</button>
 
 
