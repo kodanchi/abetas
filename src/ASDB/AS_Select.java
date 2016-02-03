@@ -1281,6 +1281,70 @@ public class AS_Select {
 
     }
 
+    public boolean selectSuperuser(String username) throws ClassNotFoundException, SQLException {
+
+        boolean isExist = false;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM superuser where Super_Username =\""+ username +"\");";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                System.out.print("valuee"+rs.getInt(1));
+                if(rs.getInt(1) == 1){
+                    isExist = true;
+                    System.out.print("existtttt");
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist;
+
+        }
+
+    }
+
 
     public ArrayList<ArrayList<String>> selectAllFaculty() throws ClassNotFoundException, SQLException {
 
@@ -1419,5 +1483,131 @@ public class AS_Select {
 
     }
 
+    public boolean selectUserIfExist(String username) throws ClassNotFoundException, SQLException {
 
+        boolean isExist = false;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM users where username =\""+ username +"\");";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                System.out.print("valuee"+rs.getInt(1));
+                if(rs.getInt(1) == 1){
+                    isExist = true;
+                    System.out.print("existtttt");
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist;
+
+        }
+
+    }
+
+    public boolean selectEmailIfExist(String email) throws ClassNotFoundException, SQLException {
+
+        boolean isExist = false;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM users where email =\""+ email +"\");";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                System.out.print("valuee"+rs.getInt(1));
+                if(rs.getInt(1) == 1){
+                    isExist = true;
+                    System.out.print("existtttt");
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist;
+
+        }
+
+    }
 }

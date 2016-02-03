@@ -200,9 +200,12 @@
 %>
                     </table>
                 </div>
-                <button class="btn btn-success btn-fill">re-upload</button>
-                <button class="btn btn-primary">Import</button>
-                <button class="btn btn-primary">Cancel</button>
+                <a class="btn btn-success btn-fill" href="index.jsp?page=import">re-upload</a>
+                <form method="post" action="/upload/users" >
+                    <input name="file" value="<%=upload%>" hidden>
+                    <button class="btn btn-primary"  type="submit">Upload</button>
+                </form>
+                <a class="btn btn-primary">Cancel</a>
 
 
 

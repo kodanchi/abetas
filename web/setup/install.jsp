@@ -36,6 +36,7 @@ InstallDB dbCon = new InstallDB(null);
 
             <div id="rootwizard">
                 <div id="alert"  class="alert alert-danger fade in"  role="alert" >
+
                     <strong id="alertt" ></strong>
                 </div>
                 <div class="navbar">
