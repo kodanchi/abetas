@@ -68,9 +68,34 @@
                                 </tr>
                             </table>
                         </div>
-                        <button class="btn btn-success btn-fill">Add</button>
+                        <button class="btn btn-success btn-fill" data-toggle="modal" data-target="#myModal">Add</button>
                         <button class="btn btn-primary pull-right">Finish</button>
                         <button class="btn btn-primary pull-right">previous</button>
+
+                        <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add Courses</h4>
+      </div>
+      <div class="modal-body">
+          If you have the courses' information in an Excel sheet, you can import the file to add them all at once.
+      </div>
+      <div class="modal-footer">
+        <div class="left-side">
+            <a href="#" type="button" class="btn btn-default btn-simple">Enter manually</a>
+        </div>
+        <div class="divider"></div>
+        <div class="right-side">
+            <a href="#" type="button" class="btn btn-default btn-simple">Import Excel file</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                  <!-- End of modal -->
 
 
                         <!-- End of col -->
