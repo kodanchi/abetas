@@ -1,16 +1,169 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mohammed
-  Date: 2/3/2016
-  Time: 9:38 PM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page import="mulhim.Backup" %>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <title>Title</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Backup</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="css/ct-paper.css" rel="stylesheet" />
+    <link href="css/cus.css" rel="stylesheet" />
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+
 </head>
+
 <body>
 
+<div class="main">
+    <div class="section">
+        <div class="container">
+            <!--         what is row -->
+            <div class="row tim-row">
+                <h2 class="text-center">Backup History</h2>
+                <legend></legend>
+                <div class="col-md-8 col-md-offset-2">
+                    <p>Click "Create New Backup" to store a new backup</p>
+
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+
+                        <!-- Table -->
+                        <table class="table table-striped table-bordered text-center">
+                            <%
+                                Backup b = new Backup();
+                                b.listBackupFile();
+
+                            %>
+                            <tr>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Date</th>
+                                <th class="text-center tenPer">Restore</th>
+                                <th class="text-center tenPer">Delete</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>A</td>
+                                <td><a class="btn btn-warning btn-simple" data-toggle="modal" data-target="#restoreModal"><i class="fa fa-undo fa-2x"></i></a></td>
+                                <td ><a class="btn btn-danger btn-simple" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o fa-2x"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>B</td>
+                                <td ><a class="btn btn-warning btn-simple" data-toggle="modal" data-target="#restoreModal"><i class="fa fa-undo fa-2x"></i></a></td>
+                                <td ><a class="btn btn-danger btn-simple" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o fa-2x"></i></a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>C</td>
+                                <td ><a class="btn btn-warning btn-simple" data-toggle="modal" data-target="#restoreModal"><i class="fa fa-undo fa-2x"></i></a></td>
+                                <td ><a class="btn btn-danger btn-simple" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o fa-2x"></i></a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <button class="btn btn-success btn-fill">Create New Backup</button>
+                    <button class="btn btn-primary pull-right">close</button>
+
+
+                    <!-- End of col -->
+                </div>
+
+                <!-- End of row -->
+            </div>
+
+            <!-- Restore Modal -->
+            <div class="modal fade" id="restoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">Backup Restore</h4>
+                        </div>
+                        <div class="modal-body">
+                            If you choose to restore this backup, you will lose any data entered after that time and will not be able to access them.
+                        </div>
+                        <div class="modal-footer">
+                            <div class="left-side">
+                                <a href="#" type="button" class="btn btn-default btn-simple">OK</a>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="right-side">
+                                <a href="#" type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Modal -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabelbackup">Delete Backup</h4>
+                        </div>
+                        <div class="modal-body">
+                            If you choose to delete this backup, you will not be able to access it again.
+                        </div>
+                        <div class="modal-footer">
+                            <div class="left-side">
+                                <a href="#" type="button" class="btn btn-default btn-simple">OK</a>
+                            </div>
+                            <div class="divider"></div>
+                            <div class="right-side">
+                                <a href="#" type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of modals -->
+
+        </div>
+    </div>
+</div>
+
+
 </body>
+
+<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<!-- <script src="code.jquery.com/jquery-1.10.2.js"></script> -->
+<script src="../js/bootstrap.js" type="text/javascript"></script>
+
+<!--  Plugins -->
+<script src="js/ct-paper-checkbox.js"></script>
+<script src="js/ct-paper-radio.js"></script>
+<script src="js/bootstrap-select.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+<script src="js/ct-paper.js"></script>
+<script>
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [75, 300],
+    });
+    $("#slider-default").slider({
+        value: 70,
+        orientation: "horizontal",
+        range: "min",
+        animate: true
+    });
+    $('.btn-tooltip').tooltip('show');
+    $('.radio').on('toggle', function () {});
+</script>
+
 </html>

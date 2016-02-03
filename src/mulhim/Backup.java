@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.File;
 
 /**
  * Created by Mohammed on 2/1/2016.
@@ -18,7 +19,8 @@ import java.io.IOException;
 public class Backup extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        // backupDB();
-        restoreDB();
+       // restoreDB();
+        listBackupFile();
     }
 
     String dbName = "abetasdb";
@@ -50,8 +52,8 @@ public class Backup extends HttpServlet {
         }
     }
 
-    public void restoreDB() {
-        String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", " source C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\test_backup.sql" };
+    public void restoreDB(String backupFile) {
+        String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", " source C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\"+backupFile };
             //System.out.println(executeCmd);
 
             Process runtimeProcess= null;
@@ -73,4 +75,29 @@ public class Backup extends HttpServlet {
             System.out.println("restore failure");
         }
         }
+    public void listBackupFile(){
+
+// Directory path here
+        String path = "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin";
+
+        String files;
+        File folder = new File(path);
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++)
+        {
+
+            if (listOfFiles[i].isFile())
+            {
+                files = listOfFiles[i].getName();
+                if (files.endsWith(".sql") || files.endsWith(".SQL"))
+                {
+
+                    System.out.println(files);
+
+
+                }
+            }
+        }
     }
+}
