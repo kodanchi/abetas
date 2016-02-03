@@ -32,10 +32,10 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-
+                                int id = Integer.parseInt(request.getParameter("id"));
                                 AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomes();
+                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomes(id);
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){

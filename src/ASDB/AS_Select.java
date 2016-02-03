@@ -192,9 +192,8 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = "+ id +" ;";
+            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where FK_P_ID = " + id + " and P_ID = FK_P_ID ;";
 
-            //where P_ID = "+ id +"
 
 
             /*
@@ -320,7 +319,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectStudentOutcomes() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectStudentOutcomes(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -332,7 +331,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM p_student_outcome;";
+            String query = "SELECT * FROM p_student_outcome where FK_P_ID= "+id+";";
 
             /*
              *  Get connection from the DataSource
