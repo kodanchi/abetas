@@ -194,6 +194,9 @@ public class AS_Select {
 
             String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = "+ id +" ;";
 
+            //where P_ID = "+ id +"
+
+
             /*
              *  Get connection from the DataSource
              */

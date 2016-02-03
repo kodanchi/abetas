@@ -33,9 +33,8 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-
-                                AS_Select aselect = new AS_Select();
                                 int id = Integer.parseInt(request.getParameter("id"));
+                                AS_Select aselect = new AS_Select();
 
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectObjective(id);
@@ -49,9 +48,21 @@
                                             out.print("<td>"+rsRow.get(j)+"</td>");
 
                                         }
-                                        out.print("<td><a class=\"btn btn-warning btn-simple\" href=\"#\"><i class=\"fa fa-pencil fa-2x\"></i></a></td>\n");
-                                        out.print("<td><a class=\"btn btn-danger btn-simple\" href=\"#\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td>\n");
-                                        out.print("</tr>");
+                                        out.print("<td>" +
+                                                "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <input name=\"page\" value=\"update\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                               </td>" +
+                                                "                            </form>" +
+                                                "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                               <td>" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                               </td>"+
+                                                "                        </form>" +
+                                                "</tr>");
                                     }
 
                                 } catch (ClassNotFoundException e) {
