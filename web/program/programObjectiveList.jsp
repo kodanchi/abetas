@@ -33,8 +33,9 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-                                int id = Integer.parseInt(request.getParameter("id"));
+
                                 AS_Select aselect = new AS_Select();
+                                int id = Integer.parseInt(request.getParameter("id"));
 
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectObjective(id);
@@ -76,10 +77,9 @@
                             %>
                         </table>
                     </div>
-                    <button class="btn btn-success btn-fill">Add</button>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <button class="btn btn-primary">Cancel</button>
-                    <button class="btn btn-primary pull-right">Next</button>
-
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- End of col -->
                 </div>

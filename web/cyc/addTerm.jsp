@@ -28,7 +28,7 @@
                         <!-- Table -->
                         <div class="row tim-row">
                             <div class="col-md-6">
-                                <form>
+                                <form name="myform" action="/Add Link Outcome and Objective" method="post">
                                     <div class="row tim-row">
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -42,7 +42,7 @@
                                             <div class="form-group">
                                                 <label>Year</label>
                                                 <div class="dropdown">
-                                                    <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                                                    <a href="#" name="year" class="btn dropdown-toggle" data-toggle="dropdown">
                                                         Year
                                                         <b class="caret"></b>
                                                     </a>
