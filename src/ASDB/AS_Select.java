@@ -1483,6 +1483,72 @@ public class AS_Select {
 
     }
 
+    public ArrayList<String> selectEvaluator(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM evaluator where E_ID= "+id+";";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(2));
+                rowDate.add("");
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
     public boolean selectUserIfExist(String username) throws ClassNotFoundException, SQLException {
 
         boolean isExist = false;

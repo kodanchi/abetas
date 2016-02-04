@@ -1,5 +1,7 @@
 
-package com.database;
+package ASDB;
+
+import com.database.ASDB;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +16,9 @@ import java.io.PrintWriter;
  * Created by Ibrahim Abuaqel on 1/19/2016.
  */
 
-@WebServlet(name = "Update",
-        urlPatterns = {"/Update"})
-public class Update extends HttpServlet {
+@WebServlet(name = "AddUser",
+        urlPatterns = {"/addUser"})
+public class AddUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
         ASDB dba=new ASDB();

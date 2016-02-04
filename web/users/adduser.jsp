@@ -11,13 +11,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <%
-    String id = request.getParameter("id");
-    String type = request.getParameter("type");
+
+    String id = "";
+    String type = "";
+    if(request.getParameter("id")!= null){
+        id = request.getParameter("id");
+        type = request.getParameter("type");
+    }
     String pageTitle = "Add User";
-    String formURL = "/Update";
+    String formURL = "/addUser";
     String submit = "Add";
 
     String ulvl = "";
+    String uOldlvl = "";
     String ufname = "";
     String umname = "";
     String ulname = "";
@@ -27,6 +33,7 @@
 
     if(id != null && type != null){
         if(type.equals("superuser") && (!id.equals("1"))){
+            uOldlvl = "superuser";
             AS_Select db = new AS_Select();
             ArrayList<String> selUsrData = db.selectSuperuser(Integer.parseInt(id));
 
@@ -39,8 +46,10 @@
                 uemail = selUsrData.get(5);
                 pageTitle = "Update User";
                 submit = "Update";
+                formURL = "/updateUser";
             }
-        }else if(type.equals("faculty")){
+        }else if(type.equals("Faculty_Member")){
+            uOldlvl = "Faculty_Member";
             AS_Select db = new AS_Select();
             ArrayList<String> selUsrData = db.selectFaculty(Integer.parseInt(id));
 
@@ -53,6 +62,23 @@
                 uemail = selUsrData.get(5);
                 pageTitle = "Update User";
                 submit = "Update";
+                formURL = "/updateUser";
+            }
+        } else if(type.equals("Evaluator")){
+            uOldlvl = "Evaluator";
+            AS_Select db = new AS_Select();
+            ArrayList<String> selUsrData = db.selectEvaluator(Integer.parseInt(id));
+
+            if(selUsrData != null){
+                ulvl = "superuser";
+                ufname = selUsrData.get(1);
+                umname = selUsrData.get(2);
+                ulname = selUsrData.get(3);
+                uname = selUsrData.get(4);
+                //uemail = selUsrData.get(5);
+                pageTitle = "Update User";
+                submit = "Update";
+                formURL = "/updateUser";
             }
         }
     }
@@ -115,9 +141,14 @@
                         <input type="email" name="uemail" id="userEmail" class="form-control" placeholder="Email" value="<%=uemail%>" required>
                     </div>
 
+                    <input name="oldLvl" value="<%=uOldlvl%>" hidden/>
+                    <input name="id" value="<%=id%>" hidden/>
+
                     <a type="submit" onclick="onSubmitAddUser()" class="btn btn-default" value="Add"><%=submit%></a>
 
                     <a type="cancel" href="index.jsp" class="btn btn-default" value="Cancel">Cancel</a>
+
+
 
                 </form>
                 <script>
