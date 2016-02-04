@@ -561,7 +561,81 @@ public class AS_Insert {
         }
     }
 
-    public void addCourse(String code, String level, String name, int include, int FK_T_ID) throws ClassNotFoundException, SQLException {
+    public void addCourse(String code, String name, int level,int include, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        int rs2 = 0;
+        ResultSet rsSelect = null;
+        String Selected_Code;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            String query = " insert into course (C_code, C_name, C_level, C_include)" + " values (?, ?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+            preparedStatement.setString(2, name);
+            preparedStatement.setInt(3, level);
+            preparedStatement.setInt(4, include);
+
+            rs = preparedStatement.executeUpdate();
+
+            /*String querySelect = " SELECT C_code FROM course ORDER BY C_code DESC LIMIT 1";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+                Selected_Code = rsSelect.getString(1);*/
+
+            String query2 = " insert into program_has_course (FK_program_ID, FK_course_code)" + " values (?, ?)";
+
+            preparedStatement = connection.prepareStatement(query2);
+            preparedStatement.setInt(1, FK_P_ID);
+            preparedStatement.setString(2, code);
+
+            rs2 = preparedStatement.executeUpdate();
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }public void includeCourse(int include) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -580,14 +654,10 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into course (C_code, C_level, C_name, C_include, FK_T_ID)" + " values (?, ?, ?, ?, ?)";
+            String query = " insert into course (C_include)" + " values (?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, code);
-            preparedStatement.setString(2, level);
-            preparedStatement.setString(3, name);
-            preparedStatement.setInt(4, include);
-            preparedStatement.setInt(5, FK_T_ID);
+            preparedStatement.setInt(1, include);
             rs = preparedStatement.executeUpdate();
 
 

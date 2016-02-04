@@ -192,7 +192,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
+            String query = "SELECT Objective_label, P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -213,6 +213,7 @@ public class AS_Select {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
 
                 RsArr.add(RowDate);
             }
@@ -384,7 +385,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectCourses() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectCourses(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -396,7 +397,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM course;";
+            String query = "SELECT C_code,C_name,C_level FROM course,program_has_course WHERE FK_course_code = C_code and FK_program_ID = "+ id +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -415,10 +416,9 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(3));
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
-
+                RowDate.add(rs.getString(3));
 
                 RsArr.add(RowDate);
             }
