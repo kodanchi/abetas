@@ -1,0 +1,59 @@
+
+.radio-blue
+{
+    margin-top: -2px;
+}
+body
+{
+    background-color:#1a1817;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+.courseNResult {
+    margin-right:10px;
+}
+.addBtn{
+    margin-top:20px;
+
+}
+.cycMng{
+    margin-bottom:-10px;
+}
+.chckTerm{
+    margin-left:10px;
+}
+.crsMng{
+    margin-bottom:-20px;
+}
+.fmName{
+    padding-left:20px;
+}
+.red{
+    color:red;
+}
+.green {
+    color:#27ae60;
+}
+.tenPer {
+    width:10%;
+}
