@@ -1,4 +1,10 @@
+
 <%@ page import="mulhim.Backup" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.nio.file.*" %>
+<%@ page import="java.nio.file.attribute.BasicFileAttributes" %>
+<%@ page import="java.nio.file.attribute.BasicFileAttributeView" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <!doctype html>
 <html lang="en">
 
@@ -38,40 +44,55 @@
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
-                            <%
-                                Backup b = new Backup();
-                                b.listBackupFile();
 
-                            %>
                             <tr>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">Date</th>
+                                <th class="text-center">Date & time</th>
                                 <th class="text-center tenPer">Restore</th>
                                 <th class="text-center tenPer">Delete</th>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>A</td>
-                                <td><a class="btn btn-warning btn-simple" data-toggle="modal" data-target="#restoreModal"><i class="fa fa-undo fa-2x"></i></a></td>
-                                <td ><a class="btn btn-danger btn-simple" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>B</td>
-                                <td ><a class="btn btn-warning btn-simple" data-toggle="modal" data-target="#restoreModal"><i class="fa fa-undo fa-2x"></i></a></td>
-                                <td ><a class="btn btn-danger btn-simple" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>C</td>
-                                <td ><a class="btn btn-warning btn-simple" data-toggle="modal" data-target="#restoreModal"><i class="fa fa-undo fa-2x"></i></a></td>
-                                <td ><a class="btn btn-danger btn-simple" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o fa-2x"></i></a></td>
-                            </tr>
+
+                            <%
+
+
+                               // String path = "E:\\Backup";
+
+                                String files="E:\\Backup";
+                                File folder = new File(files);
+                                File[] listOfFiles = folder.listFiles();
+                                Path p = Paths.get(files);
+
+                                for (int i = 0; i < listOfFiles.length; i++)
+                                {
+
+                                    if (listOfFiles[i].isFile())
+                                    {
+                                        BasicFileAttributes view
+                                                = Files.getFileAttributeView(listOfFiles[i].toPath(), BasicFileAttributeView.class)
+                                                .readAttributes();
+                                        files = listOfFiles[i].getName();
+                                        if (files.endsWith(".sql") || files.endsWith(".SQL"))
+                                        {
+
+
+                                            out.print("<tr><td>"+files+"</td>\n" +
+                                                    "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
+                                                    .format(view.creationTime().toMillis())+"</td>\n" +
+                                                    "                                <td><a class=\"btn btn-warning btn-simple\" data-toggle=\"modal\" data-target=\"#restoreModal\"><i class=\"fa fa-undo fa-2x\"></i></a></td>\n" +
+                                                    "                                <td ><a class=\"btn btn-danger btn-simple\" data-toggle=\"modal\" data-target=\"#deleteModal\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td></tr>");
+
+
+
+                                        }
+                                    }
+                                }
+                            %>
                         </table>
                     </div>
-                    <button class="btn btn-success btn-fill">Create New Backup</button>
+                    <form method="post" action="/Backup">
+                    <button class="btn btn-success btn-fill" name="backupCreate">Create New Backup</button>
                     <button class="btn btn-primary pull-right">close</button>
-
+                    </form>
 
                     <!-- End of col -->
                 </div>
