@@ -7,12 +7,17 @@
 <%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
 <%@ page import="org.apache.commons.fileupload.FileItem" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %><%--
+<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
+<%@ page import="ASDB.ImportSheet" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.UUID" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/1/2016
   Time: 5:20 PM
   To change this template use File | Settings | File Templates.
+
+  http://stackoverflow.com/questions/4253660/passing-object-from-jsp-to-servlet
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -39,173 +44,71 @@
                         </tr>
 
 <%
-    String upload = "";
-    ServletContext context = pageContext.getServletContext();
-    String UPLOAD_DIRECTORY = context.getInitParameter("file-upload");
-    try {
-        //process only if its multipart content
-        if(ServletFileUpload.isMultipartContent(request)){
-            try {
-                List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-                for(FileItem item : items){
-                        /*System.out.println(item.getString()+" ----item");
-                        System.out.println(item.getFieldName()+" --++--item");*/
+    if(request.getAttribute("sheetData")== null){
+        response.getHeader("index.jsp");
+    }else if(request.getMethod().equals("post") && request.getParameter("file")!= null){
+        /*System.out.println("inside if :"+request.getParameter("file"));
+        //ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) request.getAttribute("sheetData");
+        //request.setAttribute("Data", dataArr);
+        //request.getRequestDispatcher("/").forward(request, response);
+        //RequestDispatcher rd = request.getRequestDispatcher("/upload/users");
 
-                    String name = item.getFieldName();
-                    if(name.equals( "excelInput")){
-
-                        upload = item.getString();
-
-                    }else{
-                        System.out.println("default fired!");
-                    }
-
-                    if(!item.isFormField()){
-
-                        System.out.println("else fired!"+ item.getName());
-                        if(item.getSize() != 0) {
-                            name = new File(item.getName()).getName();
-                            System.out.println("else name!"+ name);
-
-                            if (item.getSize() < 2000000) {
-
-                                String extension = "";
-
-                                int i = item.getName().lastIndexOf('.');
-                                if (i > 0) {
-                                    extension = item.getName().substring(i + 1);
-                                    System.out.println("file ext !"+ extension);
-                                }
-                                if (extension.equals("xls")) {
-                                    item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-                                    upload = UPLOAD_DIRECTORY + name;
-                                    //File uploaded successfully
-                                    System.out.println("File Uploaded Successfully!");
-                                    System.out.println("File Uploaded to " + upload);
-
-
-                                    try {
-
-                                        FileInputStream file = new FileInputStream(new File(upload));
-
-                                        //Get the workbook instance for XLS file
-                                        HSSFWorkbook workbook = new HSSFWorkbook(file);
-
-                                        //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
-
-                                        //Get first sheet from the workbook
-                                        HSSFSheet sheet = workbook.getSheetAt(0);
-
-                                        //Set the sheet checker in Array
-                                        String[] sheetChecker = {"firstname","middlename","lastname","username","email","level"};
-                                        boolean validFormHead = true;
-
-
-                                        //Iterate through each rows from first sheet
-                                        Iterator<Row> rowIterator = sheet.iterator();
-                                        while(rowIterator.hasNext()) {
-                                            Row row = rowIterator.next();
-
-                                            //For each row, iterate through each columns
-                                            Iterator<Cell> cellIterator = row.cellIterator();
-
-                                            out.println("<tr>");
-
-                                            //while(cellIterator.hasNext()) {
-                                            for (int j=0;j<sheetChecker.length;j++){
-
-                                                Cell cell = cellIterator.next();
-
-                                                if(validFormHead) {
-                                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                                                        if (cell.getStringCellValue().equals(sheetChecker[j])) {
-                                                            //
-                                                        } else {
-                                                            System.out.print("errrrrr not same format");
-                                                            System.exit(0);
-                                                        }
-                                                    } else {
-                                                        System.out.print("errrrrr not string");
-                                                        System.exit(0);
-                                                    }
-                                                }else {
-                                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                                                        out.print("<td>");
-                                                        out.print(cell.getStringCellValue());
-                                                        out.print("</td>");
-                                                        System.out.print(cell.getStringCellValue() + "\t\t");
-                                                    }else {
-                                                        System.out.print("errrrrr not same format");
-                                                        System.exit(0);
-                                                    }
-                                                }
-
-                                                    /*switch(cell.getCellType()) {
-                                                        case Cell.CELL_TYPE_BOOLEAN:
-                                                            System.out.print(cell.getBooleanCellValue() + "\t\t");
-                                                            break;
-                                                        case Cell.CELL_TYPE_NUMERIC:
-                                                            System.out.print(cell.getNumericCellValue() + "\t\t");
-                                                            break;
-                                                        case Cell.CELL_TYPE_STRING:
-                                                            System.out.print(cell.getStringCellValue() + "\t\t");
-                                                            break;
-                                                    }*/
-
-                                            }
-                                            validFormHead = false;
-                                            out.println("</tr>");
-                                        }
-                                        file.close();
-
-                                    } catch (FileNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                } else {
-                                       /* out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                                "                    <strong id=\"alertt\" >university logo must be type of PNG</strong>\n" +
-                                                "                </div>");*/
-                                }
-                            } else {
-                                    /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                            "                    <strong id=\"alertt\" >Logo image's size exceeds 2mb</strong>\n" +
-                                            "                </div>");*/
-                            }
-                        }else{
-                            upload = null;
-                        }
-                    }
-                }
-
-
-            } catch (Exception ex) {
-                System.out.println("File Upload Failed due to " + ex);
-
-            }
-
-        }else{
-            System.out.println("not multipart!");
-        }
-
-
-    } catch (Exception e) {
-        e.printStackTrace();
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }*/
     }
+    //String sheetDataId = request.getParameter("sheetData");
+    //System.out.println("sheetDataId in upload :"+sheetDataId);
+
+    Object dataObj = request.getSession().getAttribute("sheetData");
+    //Object dataObj = request.getAttribute(sheetD);
+    //request.getSession().removeAttribute(sheetD);
+
+
+
+    ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) dataObj;
+    ArrayList<String> dataRow;
+
+    System.out.println(dataArr);
+
+    for(int i=0;i<dataArr.size();i++){
+        dataRow = dataArr.get(i);
+        out.print("<tr>");
+        for(int j=0;j<dataRow.size();j++){
+            out.print("<td>");
+            out.print(dataRow.get(j));
+            out.print("</td>");
+        }
+        out.print("</tr>");
+    }
+
+    //String sheetDataId = UUID.randomUUID().toString();
+
+    //request.removeAttribute("sheetData");
+
+    //request.setAttribute("cData", dataArr);
+
+
+
+
+
+
 
 
 %>
                     </table>
                 </div>
-                <a class="btn btn-success btn-fill" href="index.jsp?page=import">re-upload</a>
+
                 <form method="post" action="/upload/users" >
-                    <input name="file" value="<%=upload%>" hidden>
+                    <a class="btn btn-success btn-fill" href="/users/index.jsp?page=import">re-upload</a>
+                    <input name="file" value="sheetData" hidden>
                     <button class="btn btn-primary"  type="submit">Upload</button>
+                    <a class="btn btn-primary">Cancel</a>
                 </form>
-                <a class="btn btn-primary">Cancel</a>
+
 
 
 

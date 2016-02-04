@@ -95,6 +95,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success btn-fill">Upload</button>
+                        <a class="btn btn-primary pull-right" href="index.jsp">Back</a>
                     </form>
 
 
@@ -104,7 +105,7 @@
 
 
 
-                    <button class="btn btn-primary pull-right">Back</button>
+
 
 
                     <!-- End of col -->

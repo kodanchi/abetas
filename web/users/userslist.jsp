@@ -20,6 +20,55 @@
             <legend></legend>
             <div class="col-lg-10 col-md-offset-1">
 
+                <%
+
+                    if(request.getParameter("status") != null){
+
+                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
+                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
+                                "                        </button>\n" +
+                                "                        <strong id=\"alertt\" >\n" +
+                                "                            " + request.getParameter("err")+
+                                "                        </strong>\n" +
+                                "                    </div>");*/
+
+                        out.print("<script type=\"text/javascript\">\n" +
+                                "    $(window).load(function(){\n" +
+                                "        $('#myModal').modal('show');\n" +
+                                "    });\n" +
+                                "</script>" +
+                                "<!-- Modal -->\n" +
+                                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+                                "                        <div class=\"modal-dialog\">\n" +
+                                "                            <div class=\"modal-content\">\n" +
+                                "                                <div class=\"modal-header\">\n" +
+                                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+                                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">ALERT</h4>\n" +
+                                "                                </div>\n" +
+                                "                                <div class=\"modal-body\">\n");
+                        if(request.getParameter("status").equals("Success")){
+                            out.print("All user were added to the database Successfully.");
+                        } else if(request.getParameter("status").equals("failed")){
+                            out.print("Something wrong!, please try again.");
+                        }
+                                out.print("                                </div>\n" +
+                                "                                <div class=\"modal-footer\">\n" +
+                                "\n" +
+                                "                                    <div class=\"text-center\">\n" +
+                                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
+                                "                                    </div>\n" +
+                                "                                </div>\n" +
+                                "                            </div>\n" +
+                                "                        </div>\n" +
+                                "                    </div>");
+
+
+                    }
+
+                %>
+
+
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
 

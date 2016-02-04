@@ -229,7 +229,7 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faclty_Password)" + " values (?, ?, ?, ?, ?, ?)";
+                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faculty_Password)" + " values (?, ?, ?, ?, ?, ?)";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, Uname);

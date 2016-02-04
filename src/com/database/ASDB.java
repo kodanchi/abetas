@@ -439,15 +439,16 @@ public class ASDB {
             /*
              * Execute the query
              */
-                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faculty_Password)" + " values (?, ?, ?, ?, ?, ?)";
+                String query = " insert into faculty_member (Faculty_Username, Faculty_Password, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname )" + " values (?, ?, ?, ?, ?, ?);";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, Uname);
-                preparedStatement.setString(2, email);
-                preparedStatement.setString(3, Fname);
-                preparedStatement.setString(4, Mname);
-                preparedStatement.setString(5, Lname);
-                preparedStatement.setString(6, rn);
+                preparedStatement.setString(2, rn);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, Fname);
+                preparedStatement.setString(5, Mname);
+                preparedStatement.setString(6, Lname);
+
                 rs = preparedStatement.executeUpdate();
 
 

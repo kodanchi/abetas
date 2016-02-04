@@ -16,6 +16,7 @@
         pageName = null;
         String pageCall = request.getParameter("page");
         String cmdCall = request.getParameter("cmd");
+        String stutsCall = request.getParameter("status");
         System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
@@ -42,8 +43,12 @@
                     pageName = "upload.jsp?file="+request.getParameter("file");
                 }
 
+            }else if(cmdCall.equals("confirm")){
+                pageName = "upload.jsp";
             }
-        }else {
+        }else if(stutsCall != null){
+            pageName = "userslist.jsp?status=Success";
+        }else{
             pageName = "userslist.jsp";
         }
     }else if(request.getMethod().equals("POST")) {
@@ -70,10 +75,10 @@
             if(cmdCall.equals("upload")){
                 if(request.getParameter("err")!= null){
                     pageName = "import.jsp?err="+request.getParameter("err");
-                }else {
-                    pageName = "upload.jsp?file="+request.getParameter("file");
                 }
 
+            }else if(cmdCall.equals("confirm")){
+                pageName = "upload.jsp";
             }
         }
     }
