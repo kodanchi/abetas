@@ -17,6 +17,8 @@ import java.util.ArrayList;
 public class AddProgram extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
+        System.out.println(request.getParameter("id")+"           "+request.getParameter("name")+"             AdProg Servlet");
+
         AS_Insert dba=new AS_Insert();
         AS_Select dbaS=new AS_Select();
         int id=0;
@@ -35,7 +37,7 @@ public class AddProgram extends HttpServlet {
         out.println("H");
 //System.out.println("ttrttttttttttttttttttttttttt name     "+ data.get(0)+"    id          " +String.valueOf(id));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=add&name="+data.get(0)+"&id="+String.valueOf(id));
+        response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=ObjList&name="+data.get(0)+"&id="+String.valueOf(id));
 
     }
 

@@ -19,7 +19,7 @@
                 <h2 class="text-center">Link Student Outcome with Objectives</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                    <p>Click "Add" to add a link</p>
+                    <p>Click "Add" to add a link for <%=request.getParameter("name")%> program</p>
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
@@ -33,10 +33,9 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-                                String outcome = request.getParameter("outcome");
                                 AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives(outcome);
+                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives();
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
@@ -73,9 +72,9 @@
 
                         </table>
                     </div>
-                    <button class="btn btn-success btn-fill">Add</button>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=coursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
                     <button class="btn btn-primary">Cancel</button>
-                    <button class="btn btn-primary pull-right">Next</button>
 
 
                     <!-- End of col -->

@@ -77,10 +77,9 @@
                             %>
                         </table>
                     </div>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addObj&id="<%=request.getParameter("id")%>>>Add</a>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <button class="btn btn-primary">Cancel</button>
-                    <button class="btn btn-primary pull-right">Next</button>
-
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- End of col -->
                 </div>

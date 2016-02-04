@@ -19,6 +19,48 @@
         if(pageCall != null){
             if(pageCall.equals("add")) {
                 pageName = "addProgram.jsp";
+            }else if(pageCall.equals("addObj")){
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                if(id != null){
+                    pageName = "Add_Program_Objective.jsp?name="+name+"&id="+id;
+                }else {
+                    //display error page
+                }
+            }else if (pageCall.equals("LinkOutObj")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                if (id != null) {
+                    pageName = "linkSOWithO.jsp?name=" + name + "&id=" + id;
+                } else {
+                    //display error page
+                }
+            }else if (pageCall.equals("OutcomeList")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                if (id != null) {
+                    pageName = "SOList.jsp?name=" + name + "&id=" + id;
+                } else {
+                    //display error page
+                }
+            }else if(pageCall.equals("addOut")){
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                System.out.println("ID   index    " + id + "   name " + name);
+                if(id != null){
+                    pageName = "AddStudentOut.jsp?name="+name+"&id="+id;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("addLinkO")){
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                System.out.println("ID   index    " + id + "   name " + name);
+                if(id != null){
+                    pageName = "AddOutObjLink.jsp?name="+name+"&id="+id;
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
                 String type = request.getParameter("type");
@@ -37,33 +79,40 @@
         pageName = null;
         String pageCall = request.getParameter("page");
         System.out.println(pageCall);
-        if(pageCall != null){
-            if(pageCall.equals("addProgram")) {
+        if(pageCall != null) {
+            if (pageCall.equals("ObjList")) {
                 String name = request.getParameter("name");
                 String id = request.getParameter("id");
                 System.out.println(name);
-                if(name != null && id != null){
-                    pageName = "programObjectiveList.jsp?name="+name+"&id="+id;
+                if (name != null && id != null) {
+                    pageName = "programObjectiveList.jsp?name=" + name + "&id=" + id;
                 }
-            }else if(pageCall.equals("addObj")){
+            } else if (pageCall.equals("OutcomeList")) {
                 String id = request.getParameter("id");
-                if(id != null){
-                    pageName = "addOutcome.jsp?id="+id;
-                }else {
+                String name = request.getParameter("name");
+                if (id != null) {
+                    pageName = "SOList.jsp?name=" + name + "&id=" + id;
+                } else {
                     //display error page
                 }
-            }else if(pageCall.equals("update")){
+            } else if (pageCall.equals("LinkOutObj")) {
                 String id = request.getParameter("id");
-                if(id != null){
-                    pageName = "programView.jsp?id="+id;
-                }else {
+                String name = request.getParameter("name");
+                if (id != null) {
+                    pageName = "linkSOWithO.jsp?name=" + name + "&id=" + id;
+                } else {
+                    //display error page
+                }
+            } else if (pageCall.equals("update")) {
+                String id = request.getParameter("id");
+                if (id != null) {
+                    pageName = "programView.jsp?id=" + id;
+                } else {
                     pageName = "programList.jsp";
                 }
-            }else {
+            } else {
                 pageName = "programList.jsp";
             }
-        }else {
-            pageName = "programList.jsp";
         }
     }
 %>

@@ -24,7 +24,6 @@
                             <div class="row tim-row">
                                 <div class="col-md-4">
                                     <label>Program: <label><%=request.getParameter("name")%></label></label>
-                                    <input type="hidden" name="Pname" value="<%=request.getParameter("name")%>">
                                 </div>
 
                             </div>
@@ -35,6 +34,8 @@
                             <div class="row tim-row">
                                 <div class="col-md-4">                    <label>Program Objectives:<label style="color:red;">*</label></label>
                                 </div>
+                                <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
+                                <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
                                 <div class="col-md-8">                    <textarea class="form-control" rows="5" id="comment" name="Obj"></textarea>
                                 </div>
                             </div>

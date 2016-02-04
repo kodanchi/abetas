@@ -32,10 +32,9 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-
                                 AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomes();
+                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomes(Integer.parseInt(request.getParameter("id")));
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
@@ -69,15 +68,12 @@
                                     e.printStackTrace();
                                 }
 
-
-
-
                             %>
                         </table>
                     </div>
-                    <button class="btn btn-success btn-fill">Add</button>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addOut&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <button class="btn btn-primary">Cancel</button>
-                    <button class="btn btn-primary pull-right">Next</button>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
                     <button class="btn btn-primary pull-right">Previous</button>
 
 

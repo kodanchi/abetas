@@ -453,7 +453,7 @@ public class AS_Insert {
         }
     }
 
-    public void addOutcome(String Outcome_label, String Student_outcome, int FK_P_ID) throws ClassNotFoundException, SQLException {
+    public void addOutcome(String Student_outcome, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -472,12 +472,11 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into p_student_outcome (Outcome_label, Student_outcome, FK_P_ID)" + " values (?, ?, ?)";
+            String query = " insert into p_student_outcome (Student_outcome, FK_P_ID)" + " values (?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, Outcome_label);
-            preparedStatement.setString(2, Student_outcome);
-            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setString(1, Student_outcome);
+            preparedStatement.setInt(2, FK_P_ID);
             rs = preparedStatement.executeUpdate();
 
 
@@ -508,7 +507,7 @@ public class AS_Insert {
         }
     }
 
-    public void addLinkObj_Out(String Outcome_label, String Objective_label) throws ClassNotFoundException, SQLException {
+    public void addLinkObj_Out(int Outcome_label, int Objective_label) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -527,11 +526,11 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into link_out_obj (FK_outcome, FK_objective)" + " values (?, ?)";
+            String query = " insert into link_out_obj (FK_out, FK_obj)" + " values (?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, Outcome_label);
-            preparedStatement.setString(2, Objective_label);
+            preparedStatement.setInt(1, Outcome_label);
+            preparedStatement.setInt(2, Objective_label);
             rs = preparedStatement.executeUpdate();
 
 
