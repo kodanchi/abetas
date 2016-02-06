@@ -16,7 +16,7 @@
                 <h2 class="text-center">Add Student Outcome</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>You need to select the program and enter a student outcome:</p>
+                    <p><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Enter");%> the program outcomes</p>
 
                     <form name="myform" action="/Add Student Outcome" method="post">
 
@@ -35,12 +35,14 @@
 
                             <label>Student Outcome</label>
                             <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
-                            <textarea class="form-control" rows="4" cols="50" name="Out" placeholder="Student Outcome" required></textarea>
+                            <input type="hidden" name="Outid" value="<%=request.getParameter("Outid")%>">
+                            <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
+                            <textarea class="form-control" rows="4" cols="50" name="Out" placeholder="Student Outcome" required><%if (request.getParameter("OutValue")!=null) {out.print(request.getParameter("OutValue"));}%></textarea>
 
                         </div>
 
                         <br>
-                        <button type="submit" class="btn btn-success btn-fill">Add</button>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <button type="button" class="btn btn-primary">Cancel</button>
 
                     </form>

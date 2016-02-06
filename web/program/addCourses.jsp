@@ -16,7 +16,7 @@
                 <h2 class="text-center">Add Course</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>You need to enter the name of the course, code, level and type:</p>
+                    <p><%if (request.getParameter("CourseName")!=null) {out.print("Update");} else out.print("Enter");%> the name of the course, code and level of <%=request.getParameter("name")%> program:</p>
 
                     <form name="myform" action="/Add Courses" method="post">
 
@@ -24,9 +24,13 @@
 
                             <label>Course Name: </label>
 
-                            <input type="text" class="form-control" placeholder="Course Name" name="Cname" required>
+                            <input type="text" class="form-control" placeholder="Course Name" name="Cname" value="<%if (request.getParameter("CourseName")!=null) {out.print(request.getParameter("CourseName"));}%>" required>
                             <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                             <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
+                            <input type="hidden" name="Cid" value="<%=request.getParameter("Cid")%>">
+                            <input type="hidden" name="Courseid" value="<%=request.getParameter("Courseid")%>">
+                            <input type="hidden" name="CourseName" value="<%=request.getParameter("CourseName")%>">
+                            <input type="hidden" name="CourseLevel" value="<%=request.getParameter("CourseLevel")%>">
 
                         </div>
 
@@ -34,7 +38,7 @@
 
                             <label>Course Code: </label>
 
-                            <input type="text" class="form-control" placeholder="Course Code" name="Code" required>
+                            <input type="text" class="form-control" placeholder="Course Code" name="Code" value="<%if (request.getParameter("CourseName")!=null) {out.print(request.getParameter("Courseid"));}%>" required>
 
                         </div>
 
@@ -51,6 +55,7 @@
                                 <option value="8">Level 8</option>
                                 <option value="9">Level 9</option>
                                 <option value="10">Level 10</option>
+                                <%if (request.getParameter("CourseName")!=null) {out.print("<option value=\""+request.getParameter("CourseLevel")+"\""+" selected>Level "+request.getParameter("CourseLevel")+"</option>");}%>
                             </select>
                         </div>
 
@@ -62,7 +67,7 @@
                         <br>
 
 
-                        <button type="submit" class="btn btn-success btn-fill">Add</button>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("CourseName")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <button type="button" class="btn btn-primary">Cancel</button>
 
                     </form>

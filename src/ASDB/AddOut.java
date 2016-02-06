@@ -16,7 +16,8 @@ import java.io.PrintWriter;
 public class AddOut extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################OOOOOOOOOOOOOOOOOOOOO");
-        System.out.println(request.getParameter("id")+"           "+request.getParameter("name")+"             AdOut Servlet");
+        System.out.println(request.getParameter("id")+"           "+request.getParameter("name")+"        "+request.getParameter("OutValue")+"     AdOut Servlet");
+        if (request.getParameter("OutValue").equals("null")) {
         //ArrayList<String> data = new ArrayList<String>();
         int id=0;
         AS_Insert dba=new AS_Insert();
@@ -38,7 +39,33 @@ public class AddOut extends HttpServlet {
 
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+        }
+        else {
+            System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
+            System.out.println(request.getParameter("Outid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
 
+            int id = 0;
+            AS_Update dba = new AS_Update();
+            //AS_Select dbaS=new AS_Select();
+            try {
+                //id=dbaS.selectProgram(request.getParameter("Pname"));
+                dba.updateOutcome(Integer.parseInt(request.getParameter("Outid")), request.getParameter("Out"));
+                System.out.println(request.getParameter("id")+"           "+request.getParameter("name")+"          Update   AdObj Servlet");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            PrintWriter out = response.getWriter();
+            //out.println("name: " + request.getParameter("name"));
+            //out.println("logo: " + request.getParameter("logo"));
+            //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
+
+            //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
+            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+            //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+            response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name=" + request.getParameter("name") + "&id=" + request.getParameter("id"));
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -17,7 +17,7 @@
                 <h2 class="text-center">Add Program Objective</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                    <p>Enter the program objectives</p>
+                    <p><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Enter");%> the program objectives</p>
 
                     <form role="form" name="myform" action="/Add Program Objective" method="post">
                         <div class="form-group">
@@ -44,7 +44,7 @@
 
                         </div>
 
-                        <button class="btn btn-success btn-fill" type="submit">Add</button>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <button class="btn btn-primary">Cancel</button>
                     </form>
 

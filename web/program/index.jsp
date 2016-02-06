@@ -145,7 +145,44 @@
                     System.out.println(id+"      "+name+"       "+objid+"        "+objValue);
                     pageName = "Add_Program_Objective.jsp?id=" + id+"&Objid="+ objid+"&ObjValue="+objValue+"&name="+name;
                 } else {
-                    pageName = "Add_Program_Objective.jsp";
+                    //display error page
+                }
+            }else if (pageCall.equals("updateOut")) {
+                String name = request.getParameter("name");
+                String id = request.getParameter("id");
+                String outid = request.getParameter("Outid");
+                String outValue = request.getParameter("OutValue");
+                if (id != null) {
+                    System.out.println(id+"      "+name+"       "+outid+"        "+outValue);
+                    pageName = "AddStudentOut.jsp?id=" + id+"&Outid="+ outid+"&OutValue="+outValue+"&name="+name;
+                } else {
+                    //display error page
+                }
+            }else if (pageCall.equals("updateLink")) {
+                String name = request.getParameter("name");
+                String id = request.getParameter("id");
+                String Linkid = request.getParameter("Linkid");
+                String ObjLinkValue = request.getParameter("ObjLinkValue");
+                String OutLinkValue = request.getParameter("OutLinkValue");
+                if (id != null) {
+                    System.out.println(id+"      "+name+"       "+Linkid+"        "+ObjLinkValue+"        "+OutLinkValue);
+                    pageName = "AddOutObjLink.jsp?id=" + id+"&Linkid="+ Linkid+"&ObjLinkValue="+ObjLinkValue+"&OutLinkValue="+OutLinkValue+"&name="+name;
+                } else {
+                    //display error page
+                }
+            }else if (pageCall.equals("updateCourses")) {
+                String name = request.getParameter("name");
+                String id = request.getParameter("id");
+                String Courseid = request.getParameter("Courseid");
+                String CourseName = request.getParameter("CourseName");
+                String CourseLevel = request.getParameter("CourseLevel");
+                String Cid = request.getParameter("Cid");
+
+                if (id != null) {
+                    System.out.println(id+"      "+name+"       "+Courseid+"        "+CourseName+"        "+CourseLevel);
+                    pageName = "addCourses.jsp?id=" + id+"&Courseid="+ Courseid+"&CourseName="+CourseName+"&CourseLevel="+CourseLevel+"&name="+name+"&Cid="+Cid;
+                } else {
+                    //display error page
                 }
             }else {
                 pageName = "programList.jsp";

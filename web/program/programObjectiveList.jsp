@@ -19,7 +19,7 @@
                 <h2 class="text-center">Add Program Objective</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                    <p>Click "Add" to enter program objectives</p>
+                    <p>Click "Add" to enter program objectives for <%=request.getParameter("name")%> program</p>
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
@@ -27,7 +27,6 @@
                         <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Program</th>
                                 <th>Objectives</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -59,9 +58,11 @@
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <form method=\"post\" action=\"/Delete Objective\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                               <td>" +
                                                 "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+

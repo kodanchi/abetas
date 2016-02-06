@@ -507,7 +507,7 @@ public class AS_Insert {
         }
     }
 
-    public void addLinkObj_Out(int Outcome_label, int Objective_label) throws ClassNotFoundException, SQLException {
+    public void addLinkObj_Out(int Outcome_label, int Objective_label, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -526,11 +526,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into link_out_obj (FK_out, FK_obj)" + " values (?, ?)";
+            String query = " insert into link_out_obj (FK_out, FK_obj, FK_P_ID)" + " values (?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, Outcome_label);
             preparedStatement.setInt(2, Objective_label);
+            preparedStatement.setInt(3, FK_P_ID);
             rs = preparedStatement.executeUpdate();
 
 

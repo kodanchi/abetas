@@ -35,27 +35,33 @@
                             <%
                                 AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives();
+                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives(Integer.parseInt(request.getParameter("id")));
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
                                         rsRow = new ArrayList<String>();
                                         rsRow = rs.get(i);
                                         out.print("<tr>");
-                                        for (int j=0; j<rsRow.size();j++) {
+                                        for (int j=1; j<rsRow.size();j++) {
                                             out.print("<td>"+rsRow.get(j)+"</td>");
 
                                         }
                                         out.print("<td>" +
                                                 "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                "                            <input name=\"page\" value=\"update\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"page\" value=\"updateLink\" hidden />\n" +
+                                                "                            <input name=\"Linkid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"ObjLinkValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
+                                                "                            <input name=\"OutLinkValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
+                                                "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <form method=\"post\" action=\"/Delete Link Objective and Outcome\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"Linkid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                               <td>" +
                                                 "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
