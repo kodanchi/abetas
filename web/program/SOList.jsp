@@ -77,9 +77,7 @@
                         </table>
                     </div>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=addOut&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                    <button class="btn btn-primary">Cancel</button>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
-                    <button class="btn btn-primary pull-right">Previous</button>
 
 
                     <!-- End of col -->

@@ -84,7 +84,6 @@
                     </div>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=addCourses&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <button class="btn btn-primary pull-right">Finish</button>
-                    <button class="btn btn-primary pull-right">previous</button>
 
 
                     <!-- End of col -->

@@ -43,7 +43,7 @@
 
                         <br>
                         <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <button type="button" class="btn btn-primary">Cancel</button>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->

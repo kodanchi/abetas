@@ -26,7 +26,8 @@
                     <!-- Table -->
                     <table class="table table-hover" id="table-sever-list" >
                         <tr class="textContainer">
-                            <th>Program name</th>
+                            <th>Name</th>
+                            <th>Mission</th>
                             <th>Edit</th>
                             <th>Delete</th>
 
@@ -47,8 +48,10 @@
                                     }
                                     out.print("<td>" +
                                             "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                            "                            <input name=\"page\" value=\"update\" hidden />\n" +
+                                            "                            <input name=\"page\" value=\"updateProgram\" hidden />\n" +
                                             "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                            "                            <input name=\"ProgramName\" value=\""+rsRow.get(1)+"\" hidden />\n" +
+                                            "                            <input name=\"ProgramMission\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                             "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                             "                               </td>" +
                                             "                            </form>" +
@@ -73,8 +76,7 @@
                     </table >
                 </div>
                 <a class="btn btn-success btn-fill" href="index.jsp?page=add">Add</a>
-                <button  class="btn btn-primary">Back</button>
-
+                <a class="btn btn-success btn-primary" href="#">Back</a>
 
                 <!-- End of col -->
             </div>

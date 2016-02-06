@@ -80,7 +80,6 @@
                     </div>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
-                    <button class="btn btn-primary">Cancel</button>
 
 
                     <!-- End of col -->

@@ -45,7 +45,8 @@
                         </div>
 
                         <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <button class="btn btn-primary">Cancel</button>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=ObjList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
+
                     </form>
 
 

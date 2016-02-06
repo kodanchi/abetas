@@ -37,6 +37,16 @@
                 } else {
                     //display error page
                 }
+            }else if (pageCall.equals("ObjList")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                System.out.println(name+"   "+id);
+                if (id != null) {
+                    System.out.println(name+"   "+id);
+                    pageName = "programObjectiveList.jsp?name=" + name + "&id=" + id;
+                } else {
+                    //display error page
+                }
             }else if(pageCall.equals("addCourses")){
                 String id = request.getParameter("id");
                 String name = request.getParameter("name");
@@ -81,11 +91,10 @@
                 }
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
-                String type = request.getParameter("type");
-                if(id != null && type != null){
-                    pageName = "addProgram.jsp?id="+id+"&type="+type;
+                if(id != null){
+                    pageName = "addProgram.jsp?id="+id;
                 }else {
-                    pageName = "programList.jsp";
+                    //display error page
                 }
             }else {
                 pageName = "programList.jsp";
@@ -121,7 +130,7 @@
                 } else {
                     //display error page
                 }
-            }else if (pageCall.equals("LinkOutObj")) {
+            } else if (pageCall.equals("LinkOutObj")) {
                 String id = request.getParameter("id");
                 String name = request.getParameter("name");
                 if (id != null) {
@@ -129,12 +138,14 @@
                 } else {
                     //display error page
                 }
-            } else if (pageCall.equals("update")) {
+            } else if (pageCall.equals("updateProgram")) {
                 String id = request.getParameter("id");
+                String ProgramName = request.getParameter("ProgramName");
+                String ProgramMission = request.getParameter("ProgramMission");
                 if (id != null) {
-                    pageName = "programView.jsp?id=" + id;
+                    pageName = "addProgram.jsp?id=" + id+"&ProgramName="+ ProgramName+"&ProgramMission="+ProgramMission;
                 } else {
-                    pageName = "programList.jsp";
+                    //display error page
                 }
             } else if (pageCall.equals("updateObj")) {
                 String name = request.getParameter("name");

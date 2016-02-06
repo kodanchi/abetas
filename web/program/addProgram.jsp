@@ -17,7 +17,7 @@
                 <h2 class="text-center">Add Program</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>You need to enter the name and the mission of the program:</p>
+                    <p><%if (request.getParameter("ProgramName")!=null) {out.print("Update");} else out.print("Enter");%> the name and the mission of the program:</p>
 
                     <form name="myform" action="/Add Program" method="post">
 
@@ -25,7 +25,10 @@
 
                             <label>Program Name</label>
 
-                            <input type="text" class="form-control" placeholder="Program Name" name="Pname" required>
+                            <input type="text" class="form-control" placeholder="Program Name" name="Pname" value="<%if (request.getParameter("ProgramName")!=null) {out.print(request.getParameter("ProgramName"));}%>" required>
+                            <input type="hidden" name="ProgramName" value="<%=request.getParameter("ProgramName")%>">
+                            <input type="hidden" name="ProgramMission" value="<%=request.getParameter("ProgramMission")%>">
+                            <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
 
                         </div>
 
@@ -33,13 +36,13 @@
 
                             <label>Mission Statement</label>
 
-                            <textarea class="form-control" rows="4" cols="50" placeholder="Mission Statement" name="Pmission" required></textarea>
+                            <textarea class="form-control" rows="4" cols="50" placeholder="Mission Statement" name="Pmission" required><%if (request.getParameter("ProgramName")!=null) {out.print(request.getParameter("ProgramMission"));}%></textarea>
 
                         </div>
 
                         <br>
-                        <button type="submit" class="btn btn-success btn-fill">Add</button>
-                        <button type="button" class="btn btn-primary">Cancel</button>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("ProgramName")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-success btn-primary" href="index.jsp">Cancel</a>
 
                     </form>
                     <!-- End of col -->
