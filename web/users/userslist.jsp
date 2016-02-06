@@ -37,6 +37,9 @@
                                 "    $(window).load(function(){\n" +
                                 "        $('#myModal').modal('show');\n" +
                                 "    });\n" +
+                                "    function goToNormal(){\n" +
+                                "        window.location.href =\"/users/\";\n" +
+                                "    }\n" +
                                 "</script>" +
                                 "<!-- Modal -->\n" +
                                 "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
@@ -44,19 +47,25 @@
                                 "                            <div class=\"modal-content\">\n" +
                                 "                                <div class=\"modal-header\">\n" +
                                 "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">ALERT</h4>\n" +
+                                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
                                 "                                </div>\n" +
                                 "                                <div class=\"modal-body\">\n");
                         if(request.getParameter("status").equals("Success")){
                             out.print("All user were added to the database Successfully.");
                         } else if(request.getParameter("status").equals("failed")){
                             out.print("Something wrong!, please try again.");
+                        }else if(request.getParameter("status").equals("userAdded")){
+                            out.print("User was added successfully!");
+                        }else if(request.getParameter("status").equals("userUpdated")){
+                            out.print("User was updated successfully!");
+                        }else if(request.getParameter("status").equals("userDeleted")){
+                            out.print("User was deleted successfully!");
                         }
                                 out.print("                                </div>\n" +
                                 "                                <div class=\"modal-footer\">\n" +
                                 "\n" +
                                 "                                    <div class=\"text-center\">\n" +
-                                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
+                                "                                        <a type=\"button\"  data-dismiss=\"modal\" onclick=\"goToNormal()\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
                                 "                                    </div>\n" +
                                 "                                </div>\n" +
                                 "                            </div>\n" +
@@ -68,111 +77,247 @@
 
                 %>
 
+                <script type="text/javascript">
+                    $(window).load(function(){
+                        $('#asbtn').click();
+                        $('#ETable').hide();
+                        $('#FTable').hide();
+                    });
+
+                    function showETable(){
+                        $('#ETable').show();
+                        $('#ASTable').hide();
+                        $('#FTable').hide();
+                    }
+
+                    function showFTable(){
+                        $('#FTable').show();
+                        $('#ETable').hide();
+                        $('#ASTable').hide();
+                    }
+
+                    function showASTable(){
+                        $('#ASTable').show();
+                        $('#ETable').hide();
+                        $('#FTable').hide();
+                    }
+
+                    function onDelete(formName) {
+                        $('#delCheckModal').modal('show');
+                        $('#delBtn').onclick = function () {
+                            $('#formName').submit()
+                        }
+                    }
+
+                </script>
+                <div class="text-center">
+                    <button id="asbtn" class="btn tab tab-close-button" onclick="showASTable()" >Superusers</button>
+                    <button class="btn tab tab-close-button" onclick="showFTable()" >Faculty Members</button>
+                    <button class="btn tab tab-close-button" onclick="showETable()" >Evaluators</button>
+                </div>
+                <legend></legend>
 
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
 
-                    <!-- Table -->
-                    <table class="table table-hover" id="table-sever-list" >
-                        <tr class="textContainer">
-                            <th>First name</th>
-                            <th>Middle name</th>
-                            <th>Last name</th>
-                            <th>Username</th>
-                            <th>Email</th>
-                            <th>Access level</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                    <div id="ASTable">
+                        <!-- Table -->
+                        <table class="table table-hover"  >
+                            <tr class="textContainer">
+                                <th>First name</th>
+                                <th>Middle name</th>
+                                <th>Last name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Access level</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
 
-                        </tr>
-                        <%
+                            </tr>
+                            <%
 
 
-                            AS_Select dba=new AS_Select();
-                            try {
-                                ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
-                                ArrayList<String> suRow ;
+                                AS_Select dba=new AS_Select();
+                                try {
+                                    ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
+                                    ArrayList<String> suRow ;
 
-                                for (int i=0; i<suArr.size();i++){
-                                    //suRow = new ArrayList<String>();
-                                    suRow = suArr.get(i);
-                                    out.print("<tr class=\"textContainer\" >");
-                                    for (int j=1; j<suRow.size() - 1;j++) {
-                                        out.print("<td>"+suRow.get(j)+"</td>");
+                                    for (int i=0; i<suArr.size();i++){
+                                        //suRow = new ArrayList<String>();
+                                        suRow = suArr.get(i);
+                                        out.print("<tr class=\"textContainer\" >");
+                                        for (int j=1; j<suRow.size() - 1;j++) {
+                                            out.print("<td>"+suRow.get(j)+"</td>");
+                                        }
+
+                                        if(!suRow.get(6).equals("1")){
+                                            out.print("<td>Superuser</td>");
+
+                                            out.print("<td>" +
+                                                    "                           <form method=\"post\" action=\"index.jsp\">\n" +
+                                                    "                            <input name=\"page\" value=\"update\" hidden />\n" +
+                                                    "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
+                                                    "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                    "                               </td>" +
+                                                    "                           </form>" +
+                                                    "                           <form method=\"post\" action=\"/deleteUser\">\n" +
+                                                    "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                    "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
+                                                    "                            <input name=\"type\" value=\"Superuser\" hidden />\n" +
+                                                    "                               <td>" +
+                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                    "                               </td>"+
+                                                    "                        </form>" +
+                                                    "</tr>");
+                                        }else {
+                                            out.print("<td>Admin</td>");
+                                            out.print("<td></td><td></td></tr>");
+                                        }
+
                                     }
 
-                                    if(!suRow.get(6).equals("1")){
-                                        out.print("<td>Superuser</td>");
+
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                            %>
+
+
+                        </table >
+                    </div>
+
+                    <div id="FTable">
+                        <!-- Table -->
+                        <table class="table table-hover"  >
+                            <tr class="textContainer">
+                                <th>First name</th>
+                                <th>Middle name</th>
+                                <th>Last name</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Access level</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+
+                            </tr>
+                            <%
+
+
+                                try {
+
+                                    ArrayList<ArrayList<String>> fmArr = dba.selectAllFaculty();
+                                    ArrayList<String> fmRow ;
+
+                                    for (int i=0; i<fmArr.size();i++){
+                                        fmRow = new ArrayList<String>();
+                                        fmRow = fmArr.get(i);
+                                        out.print("<tr class=\"textContainer\" >");
+                                        for (int j=1; j<fmRow.size();j++) {
+                                            out.print("<td >"+fmRow.get(j)+"</td>");
+                                        }
 
                                         out.print("<td>" +
                                                 "                           <form method=\"post\" action=\"index.jsp\">\n" +
                                                 "                            <input name=\"page\" value=\"update\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
-                                                "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"type\" value=\"Faculty_Member\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                           </form>" +
-                                                "                           <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                           <form method=\"post\" action=\"/deleteUser\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
-                                                "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"type\" value=\"Faculty_Member\" hidden />\n" +
                                                 "                               <td>" +
                                                 "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
-                                    }else {
-                                        out.print("<td>Admin</td>");
-                                        out.print("<td><i class=\"fa fa-pencil fa-2x \"></i></td><td><i class=\"fa fa-trash fa-2x \"></i></td></tr>");
+
                                     }
 
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
                                 }
 
-                                ArrayList<ArrayList<String>> fmArr = dba.selectAllFaculty();
-                                ArrayList<String> fmRow ;
 
-                                for (int i=0; i<fmArr.size();i++){
-                                    fmRow = new ArrayList<String>();
-                                    fmRow = fmArr.get(i);
-                                    out.print("<tr class=\"textContainer\" >");
-                                    for (int j=1; j<fmRow.size();j++) {
-                                        out.print("<td >"+fmRow.get(j)+"</td>");
+                            %>
+
+
+                        </table >
+                    </div>
+
+                    <div id="ETable">
+                        <!-- Table -->
+                        <table class="table table-hover" >
+                            <tr class="textContainer">
+                                <th>First name</th>
+                                <th>Middle name</th>
+                                <th>Last name</th>
+                                <th>Username</th>
+                                <th>Password</th>
+                                <th>Access level</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+
+                            </tr>
+                            <%
+
+                                try {
+                                    ArrayList<ArrayList<String>> eArr = dba.selectAllEvaluators();
+                                    ArrayList<String> eRow ;
+
+                                    for (int i=0; i<eArr.size();i++){
+                                        //suRow = new ArrayList<String>();
+                                        eRow = eArr.get(i);
+                                        out.print("<tr class=\"textContainer\" >");
+                                        for (int j=1; j<eRow.size();j++) {
+                                            out.print("<td>"+eRow.get(j)+"</td>");
+                                        }
+
+
+                                        out.print("<td>" +
+                                                "                           <form method=\"post\" id=\"eform"+eRow.get(0)+"\" action=\"index.jsp\">\n" +
+                                                "                            <input name=\"page\" value=\"update\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                               </td>" +
+                                                "                           </form>" +
+                                                "                           <form method=\"post\" name=\"delForm\" action=\"/deleteUser\">\n" +
+                                                "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
+                                                "                               <td>" +
+                                                "                            <button type=\"button\"   onclick=\"onDelete(eform"+eRow.get(0)+")\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                               </td>"+
+                                                "                        </form>" +
+                                                "</tr>");
+
                                     }
 
-                                    out.print("<td>" +
-                                            "                           <form method=\"post\" action=\"index.jsp\">\n" +
-                                            "                            <input name=\"page\" value=\"update\" hidden />\n" +
-                                            "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
-                                            "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
-                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
-                                            "                               </td>" +
-                                            "                           </form>" +
-                                            "                           <form method=\"post\" action=\"index.jsp\">\n" +
-                                            "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                            "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
-                                            "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
-                                            "                               <td>" +
-                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                            "                               </td>"+
-                                            "                        </form>" +
-                                            "</tr>");
-
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
                                 }
 
-                            } catch (ClassNotFoundException e) {
-                                e.printStackTrace();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
+
+                            %>
 
 
-                        %>
-
-
-                    </table >
+                        </table >
+                    </div>
                 </div>
                 <button class="btn btn-success btn-fill"  data-toggle="modal" data-target="#myModal">Add</button>
-                <button class="btn btn-primary">Back</button>
+                <button  class="btn btn-primary">Back</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -197,6 +342,32 @@
                         </div>
                     </div>
                 </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="delCheckModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myCheckModalLabel">ALERT</h4>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this user!?
+                            </div>
+                            <div class="modal-footer">
+                                <div class="left-side">
+                                    <a id="delBtn" type="button"   class="btn btn-default btn-simple">Yes</a>
+                                </div>
+                                <div class="divider"></div>
+                                <div class="right-side">
+                                    <a type="button" data-dismiss="modal" aria-hidden="true"  class="Cancel">Import Excel file</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
 
                 <!-- End of col -->

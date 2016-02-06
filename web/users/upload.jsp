@@ -106,7 +106,7 @@
                     <a class="btn btn-success btn-fill" href="/users/index.jsp?page=import">re-upload</a>
                     <input name="file" value="sheetData" hidden>
                     <button class="btn btn-primary"  type="submit">Upload</button>
-                    <a class="btn btn-primary">Cancel</a>
+                    <a href="/users/index.jsp" class="btn btn-primary">Cancel</a>
                 </form>
 
 

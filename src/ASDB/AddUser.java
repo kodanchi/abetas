@@ -41,7 +41,7 @@ public class AddUser extends HttpServlet {
         out.println("update");
 
 
-        response.sendRedirect("/users/");
+        response.sendRedirect("/users/index.jsp?status=userAdded");
         // New location to be redirected
         // String site = new String("http://localhost:8081/");
         // response.setHeader("Location", site);

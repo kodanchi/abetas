@@ -47,7 +47,7 @@
                 pageName = "upload.jsp";
             }
         }else if(stutsCall != null){
-            pageName = "userslist.jsp?status=Success";
+            pageName = "userslist.jsp?status="+stutsCall;
         }else{
             pageName = "userslist.jsp";
         }

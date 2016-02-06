@@ -1358,7 +1358,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM abetasdb.faculty_member;";
+            String query = "SELECT * FROM faculty_member;";
 
             /*
              *  Get connection from the DataSource
@@ -1548,6 +1548,76 @@ public class AS_Select {
         }
 
     }
+
+    public ArrayList<ArrayList<String>> selectAllEvaluators() throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> rowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM evaluator;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(3));
+                rowDate.add("Evaluator");
+                rsArr.add(rowDate);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rsArr;
+
+        }
+
+    }
+
 
     public boolean selectUserIfExist(String username) throws ClassNotFoundException, SQLException {
 

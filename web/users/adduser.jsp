@@ -54,7 +54,7 @@
             ArrayList<String> selUsrData = db.selectFaculty(Integer.parseInt(id));
 
             if(selUsrData != null){
-                ulvl = "superuser";
+                ulvl = "Faculty_Member";
                 ufname = selUsrData.get(1);
                 umname = selUsrData.get(2);
                 ulname = selUsrData.get(3);
@@ -70,7 +70,7 @@
             ArrayList<String> selUsrData = db.selectEvaluator(Integer.parseInt(id));
 
             if(selUsrData != null){
-                ulvl = "superuser";
+                ulvl = "Evaluator";
                 ufname = selUsrData.get(1);
                 umname = selUsrData.get(2);
                 ulname = selUsrData.get(3);
@@ -103,7 +103,7 @@
                             <select class="form-control" name="userType"  id="userType" onchange="onUserTypeChng()" >
                                 <option value="">User Type</option>
                                 <option value="Superuser"  <%if((ulvl.equals("superuser"))){%> selected <%}%> >Superuser</option>
-                                <option value="Faculty_Member"  <%if((ulvl.equals("faculty"))){%> selected <%}%> >Faculty_Member</option>
+                                <option value="Faculty_Member"  <%if((ulvl.equals("Faculty_Member"))){%> selected <%}%> >Faculty_Member</option>
                                 <option value="Evaluator"  <%if((ulvl.equals("Evaluator"))){%> selected <%}%> >Evaluator</option>
                             </select>
                         </div>

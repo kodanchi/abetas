@@ -23,6 +23,7 @@ public class UpdateUser extends HttpServlet {
         System.out.println("##########################################################");
         AS_Insert idb = new AS_Insert();
         AS_Delete ddb = new AS_Delete();
+        AS_Update udb = new AS_Update();
         try {
             String userNewType = request.getParameter("userType");
             String userOldType = request.getParameter("oldLvl");
@@ -32,11 +33,11 @@ public class UpdateUser extends HttpServlet {
 
                 //update the table needed
                 if(userNewType.equals("Superuser"))
-                    idb.(0, request.getParameter("uname"), request.getParameter("uemail"), request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
+                    udb.updateSuperuser(Integer.parseInt(request.getParameter("id")),request.getParameter("fname"),request.getParameter("mname"),request.getParameter("lname"),request.getParameter("username"),request.getParameter("email"));
                 else if (userNewType.equals("Faculty_Member"))
-                    dba.addUser(1, request.getParameter("uname"), request.getParameter("uemail"), request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
+                    udb.updateFaculty(Integer.parseInt(request.getParameter("id")),request.getParameter("fname"),request.getParameter("mname"),request.getParameter("lname"),request.getParameter("username"),request.getParameter("email"));
                 else if (userNewType.equals("Evaluator"))
-                    dba.addUser(2, request.getParameter("uname"), null, request.getParameter("fname"), request.getParameter("mname"), request.getParameter("lname"));
+                    udb.updateEvaluator(Integer.parseInt(request.getParameter("id")),request.getParameter("fname"),request.getParameter("mname"),request.getParameter("lname"),request.getParameter("username"));
 
             }else { //if the user lvl changed
 
@@ -70,7 +71,7 @@ public class UpdateUser extends HttpServlet {
         out.println("update");
 
 
-        response.sendRedirect("/users/");
+        response.sendRedirect("/users/index.jsp?status=userUpdated");
         // New location to be redirected
         // String site = new String("http://localhost:8081/");
         // response.setHeader("Location", site);

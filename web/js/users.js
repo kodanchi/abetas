@@ -12,6 +12,7 @@ function onUserTypeChng()
         document.getElementById("emailDiv").style.visibility = "visible";
     }else {
         document.getElementById("emailDiv").style.visibility = "hidden";
+        document.getElementById("emailDiv").value = "";
     }
 }
 
@@ -45,41 +46,45 @@ function onSubmitAddUser(){
         return false;
     }else if(fname.value == "") {
         document.getElementById("alert").style.visibility = "visible";
-        document.getElementById("alertt").innerHTML = "You enter user's first name";
+        document.getElementById("alertt").innerHTML = "You must enter user's first name";
         fname.focus();
         return false;
     }else if(mname.value == "") {
         document.getElementById("alert").style.visibility = "visible";
-        document.getElementById("alertt").innerHTML = "You enter user's middle name";
+        document.getElementById("alertt").innerHTML = "You must enter user's middle name";
         mname.focus();
         return false;
     }else if(lname.value == "") {
         document.getElementById("alert").style.visibility = "visible";
-        document.getElementById("alertt").innerHTML = "You enter user's last name";
+        document.getElementById("alertt").innerHTML = "You must enter user's last name";
         lname.focus();
         return false;
     }else if(uname.value == "") {
         document.getElementById("alert").style.visibility = "visible";
-        document.getElementById("alertt").innerHTML = "You enter user's username";
+        document.getElementById("alertt").innerHTML = "You must enter user's username";
         uname.focus();
         return false;
-    }else if(email.value == "" && (selectedValue == "Superuser" || selectedValue == "Faculty_Member")) {
-        document.getElementById("alert").style.visibility = "visible";
-        document.getElementById("alertt").innerHTML = "You enter user's email";
-        email.focus();
-        return false;
-    }else if(email.value != "" && (selectedValue == "Superuser" || selectedValue == "Faculty_Member")) {
-
-        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if(!re.test(email.value)) {
-            document.getElementById("alert").style.visibility = "visible";
-            document.getElementById("alertt").innerHTML = "You enter valid email format";
-            email.focus();
-            return false;
-        }else {
+    }else if(selectedValue == "Superuser" || selectedValue == "Faculty_Member") {
+        if (email.value != "") {
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!re.test(email.value)) {
+                document.getElementById("alert").style.visibility = "visible";
+                document.getElementById("alertt").innerHTML = "You must enter valid email format";
+                email.focus();
+                return false;
+            } else {
             document.getElementById("alert").style.visibility = "hidden";
             document.getElementById("UserAddForm").submit();
         }
+        }else {
+            document.getElementById("alert").style.visibility = "visible";
+            document.getElementById("alertt").innerHTML = "You must enter user's email";
+            email.focus();
+            return false;
+        }
+    }else {
+        document.getElementById("alert").style.visibility = "hidden";
+        document.getElementById("UserAddForm").submit();
     }
 
 
