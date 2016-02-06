@@ -104,9 +104,10 @@
 
                     function onDelete(formName) {
                         $('#delCheckModal').modal('show');
-                        $('#delBtn').onclick = function () {
-                            $('#formName').submit()
-                        }
+                        $('#delBtn').click(function () {
+                            alert("fdf");
+                            formName.submit()
+                        });
                     }
 
                 </script>
@@ -284,7 +285,7 @@
 
 
                                         out.print("<td>" +
-                                                "                           <form method=\"post\" id=\"eform"+eRow.get(0)+"\" action=\"index.jsp\">\n" +
+                                                "                           <form method=\"post\"  action=\"index.jsp\">\n" +
                                                 "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
@@ -296,7 +297,7 @@
                                                 "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button type=\"button\"   onclick=\"onDelete(eform"+eRow.get(0)+")\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button type=\"button\"   onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -336,7 +337,7 @@
                                 </div>
                                 <div class="divider"></div>
                                 <div class="right-side">
-                                    <a type="button" href="index.jsp?page=import"  class="btn btn-default btn-simple">Import Excel file</a>
+                                    <a type="button" href="index.jsp?page=import"   class="btn btn-default btn-simple">Import Excel file</a>
                                 </div>
                             </div>
                         </div>
@@ -367,7 +368,6 @@
                         </div>
                     </div>
                 </div>
-
 
 
                 <!-- End of col -->
