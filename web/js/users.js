@@ -24,9 +24,6 @@ function onSubmitAddUser(){
     var lname = document.getElementById("lname");
     var uname = document.getElementById("uname");
 
-
-
-
     var lvl = document.getElementById("userType");
     var selectedValue = lvl.options[lvl.selectedIndex].value;
     if (selectedValue == "Superuser" || selectedValue == "Faculty_Member")
@@ -35,7 +32,6 @@ function onSubmitAddUser(){
     }
 
     //alert(selectedValue+"\n"+fname.value+"\n"+mname.value+"\n"+lname.value+"\n"+uname.value+"\n"+email.value)
-
 
     if(selectedValue == "User Type" || selectedValue == "") {
 
@@ -86,6 +82,5 @@ function onSubmitAddUser(){
         document.getElementById("alert").style.visibility = "hidden";
         document.getElementById("UserAddForm").submit();
     }
-
 
 }
