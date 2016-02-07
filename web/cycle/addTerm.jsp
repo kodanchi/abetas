@@ -10,9 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
-<div id="header"></div>
 
-<div class="main">
     <div class="section">
         <div class="container">
             <!-- what is row -->
@@ -70,12 +68,18 @@
                                         <th>delete</th>
                                     </tr>
                                     <%
+                                        String id = "";
+                                        if(request.getSession().getAttribute("id") != null){
+                                           id  = (String) request.getSession().getAttribute("id");
+                                            System.out.print("id id : "+id);
+                                        }
 
                                         AS_Select aselect = new AS_Select();
 
                                         try {
                                             ArrayList<ArrayList<String>> rs = aselect.selectAddTerm();
                                             ArrayList<String> rsRow ;
+
 
                                             for (int i=0; i<rs.size();i++){
                                                 rsRow = new ArrayList<String>();
@@ -89,7 +93,7 @@
                                                         "                            <form method=\"post\" action=\"index.jsp\">\n" +
                                                         "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                         "                            <input name=\"Termid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                        "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
+                                                        "                            <input name=\"id\" value=\""+id+"\" hidden />\n" +
                                                         "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                         "                               </td>" +
                                                         "                            </form>" +
@@ -107,6 +111,11 @@
                                             e.printStackTrace();
                                         } catch (SQLException e) {
                                             e.printStackTrace();
+                                        } catch (NullPointerException e){
+                                            e.fillInStackTrace();
+                                        }
+                                        finally {
+                                            //request.getSession().removeAttribute("id");
                                         }
 
                                     %>
@@ -131,8 +140,8 @@
             <!-- Modal Bodies come here -->
         </div>
     </div>
-</div>
+
 <!--   end modal  -->
 
-<div id="footer"></div>
+
 
