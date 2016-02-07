@@ -32,13 +32,13 @@
 
 
     if(id != null && type != null){
-        if(type.equals("superuser") && (!id.equals("1"))){
-            uOldlvl = "superuser";
+        if(type.equals("Superuser") && (!id.equals("1"))){
+            uOldlvl = "Superuser";
             AS_Select db = new AS_Select();
             ArrayList<String> selUsrData = db.selectSuperuser(Integer.parseInt(id));
 
             if(selUsrData != null){
-                ulvl = "superuser";
+                ulvl = "Superuser";
                 ufname = selUsrData.get(1);
                 umname = selUsrData.get(2);
                 ulname = selUsrData.get(3);
@@ -86,6 +86,65 @@
 <script src="/js/users.js"></script>
 <div class="section">
     <div class="container">
+
+        <%
+
+            if(request.getSession().getAttribute("errMsg") != null){
+
+                    String[] userOldVal = (request.getSession().getAttribute("userValue") != null ? (String[]) request.getSession().getAttribute("userValue") : null);
+                    System.out.print("arry of user data : "+ userOldVal);
+                if(userOldVal != null){
+                        ulvl = userOldVal[0];
+                        ufname = userOldVal[1];
+                        umname = userOldVal[2];
+                        ulname = userOldVal[3];
+                        uname = userOldVal[4];
+                        uemail = userOldVal[5];
+                    request.getSession().removeAttribute("userValue");
+                    }
+
+                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
+                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
+                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
+                                "                        </button>\n" +
+                                "                        <strong id=\"alertt\" >\n" +
+                                "                            " + request.getParameter("err")+
+                                "                        </strong>\n" +
+                                "                    </div>");*/
+
+                out.print("<script type=\"text/javascript\">\n" +
+                        "    $(window).load(function(){\n" +
+                        "        $('#myModal').modal('show');\n" +
+                        "    });\n" +
+                        "</script>" +
+                        "<!-- Modal -->\n" +
+                        "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+                        "                        <div class=\"modal-dialog\">\n" +
+                        "                            <div class=\"modal-content\">\n" +
+                        "                                <div class=\"modal-header\">\n" +
+                        "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+                        "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
+                        "                                </div>\n" +
+                        "                                <div class=\"modal-body\">\n");
+                out.print(request.getSession().getAttribute("errMsg"));
+                request.getSession().removeAttribute("errMsg");
+
+                out.print("                                </div>\n" +
+                        "                                <div class=\"modal-footer\">\n" +
+                        "\n" +
+                        "                                    <div class=\"text-center\">\n" +
+                        "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
+                        "                                    </div>\n" +
+                        "                                </div>\n" +
+                        "                            </div>\n" +
+                        "                        </div>\n" +
+                        "                    </div>");
+
+
+            }
+
+        %>
+
         <!--         what is row -->
         <div class="row tim-row">
             <h2 class="text-center"><%=pageTitle%></h2>
@@ -102,7 +161,7 @@
                         <div class="col-xs-5 selectContainer">
                             <select class="form-control" name="userType"  id="userType" onchange="onUserTypeChng()" >
                                 <option value="">User Type</option>
-                                <option value="Superuser"  <%if((ulvl.equals("superuser"))){%> selected <%}%> >Superuser</option>
+                                <option value="Superuser"  <%if((ulvl.equals("Superuser"))){ %> selected <% }%> >Superuser</option>
                                 <option value="Faculty_Member"  <%if((ulvl.equals("Faculty_Member"))){%> selected <%}%> >Faculty_Member</option>
                                 <option value="Evaluator"  <%if((ulvl.equals("Evaluator"))){%> selected <%}%> >Evaluator</option>
                             </select>

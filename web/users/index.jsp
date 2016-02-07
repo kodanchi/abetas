@@ -58,7 +58,12 @@
         System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
-                pageName = "adduser.jsp";
+                if(request.getParameter("status")!= null){
+                    pageName = "adduser.jsp?status="+request.getParameter("status");
+                }else {
+                    pageName = "adduser.jsp";
+                }
+
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
                 String type = request.getParameter("type");

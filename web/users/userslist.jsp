@@ -105,7 +105,6 @@
                     function onDelete(formName) {
                         $('#delCheckModal').modal('show');
                         $('#delBtn').click(function () {
-                            alert("fdf");
                             formName.submit()
                         });
                     }
@@ -158,7 +157,7 @@
                                                     "                           <form method=\"post\" action=\"index.jsp\">\n" +
                                                     "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                     "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
-                                                    "                            <input name=\"type\" value=\"superuser\" hidden />\n" +
+                                                    "                            <input name=\"type\" value=\"Superuser\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                               </td>" +
                                                     "                           </form>" +
@@ -167,7 +166,7 @@
                                                     "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
                                                     "                            <input name=\"type\" value=\"Superuser\" hidden />\n" +
                                                     "                               <td>" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                    "                            <button type=\"button\"  onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                     "                               </td>"+
                                                     "                        </form>" +
                                                     "</tr>");
@@ -235,7 +234,7 @@
                                                 "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Faculty_Member\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button type=\"button\" onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -297,7 +296,7 @@
                                                 "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button type=\"button\"   onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button type=\"button\" onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -362,7 +361,7 @@
                                 </div>
                                 <div class="divider"></div>
                                 <div class="right-side">
-                                    <a type="button" data-dismiss="modal" aria-hidden="true"  class="Cancel">Import Excel file</a>
+                                    <a type="button" href="" data-dismiss="modal" aria-hidden="true"  class="Cancel">Cancel</a>
                                 </div>
                             </div>
                         </div>

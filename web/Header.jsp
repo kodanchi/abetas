@@ -6,7 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%
+    if(session.getAttribute("username")!= null){
+        String un = "username";
+        session.setAttribute("username",un);
+        System.out.println("from header, session is : "+request.getSession().getId());
+    }
+%>
 <nav class="navbar navbar-ct-danger" role="navigation-demo" id="demo-navbar">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
