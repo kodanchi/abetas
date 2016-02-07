@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * Created by Ibrahim Abuaqel on 2/4/2016.
  */
 @WebServlet(name = "DeleteProgram",
-        urlPatterns = {"/Delete Cycle"})
+        urlPatterns = {"/DeleteProgram"})
 public class DeleteProgram extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
