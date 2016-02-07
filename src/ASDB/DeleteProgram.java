@@ -37,7 +37,7 @@ public class DeleteProgram extends HttpServlet {
         //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
+        response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=programList");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

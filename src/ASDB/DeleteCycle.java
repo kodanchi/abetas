@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * Created by Ibrahim Abuaqel on 2/7/2016.
  */
-@WebServlet(name = "DeleteCycle")
+@WebServlet(name = "Delete Cycle")
 public class DeleteCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");

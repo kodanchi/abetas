@@ -16,7 +16,7 @@ import java.util.Base64;
  * Created by Ibrahim Abuaqel on 2/7/2016.
  */
 @WebServlet(name = "AddCycle",
-        urlPatterns = {"/Add Cycle"})
+        urlPatterns = {"/AddCycle"})
 public class AddCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
@@ -42,7 +42,7 @@ public class AddCycle extends HttpServlet {
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
         try {
             request.getSession().setAttribute("id",String.valueOf(id));
-            request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
+            request.getRequestDispatcher("http://localhost:8082/cycle/index.jsp?page=addTerm").forward(request,response);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }
