@@ -297,7 +297,7 @@ public class AS_Delete {
 
     }
 
-    public void deleteObj(String label) throws ClassNotFoundException, SQLException {
+    public void deleteObj(int label) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -318,7 +318,7 @@ public class AS_Delete {
              */
             String query = "delete from p_objective where Objective_label = ?";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, label);
+            preparedStatement.setInt(1, label);
 
             rs = preparedStatement.executeUpdate();
 

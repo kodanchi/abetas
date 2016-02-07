@@ -45,18 +45,21 @@
                                         rsRow = new ArrayList<String>();
                                         rsRow = rs.get(i);
                                         out.print("<tr>");
-                                        for (int j=0; j<rsRow.size();j++) {
+                                        for (int j=1; j<rsRow.size();j++) {
                                             out.print("<td>"+rsRow.get(j)+"</td>");
 
                                         }
                                         out.print("<td>" +
                                                 "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                "                            <input name=\"page\" value=\"update\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"page\" value=\"updateObj\" hidden />\n" +
+                                                "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"ObjValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
+                                                "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
+                                                "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                "                            <form method=\"post\" action=\"/Delete PO\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                               <td>" +

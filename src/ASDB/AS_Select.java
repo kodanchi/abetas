@@ -192,9 +192,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where FK_P_ID = " + id + " and P_ID = FK_P_ID ;";
-
-
+            String query = "SELECT Objective_label, P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -215,6 +213,7 @@ public class AS_Select {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
 
                 RsArr.add(RowDate);
             }
@@ -262,7 +261,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT FK_obj,FK_out FROM p_objective,p_student_outcome,link_out_obj where p_objective.FK_P_ID = p_student_outcome.FK_P_ID  ;";
+            String query = "SELECT * FROM abetasdb.link_out_obj";
 
             /*
              *  Get connection from the DataSource
@@ -331,7 +330,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM p_student_outcome where FK_P_ID= "+id+";";
+            String query = "SELECT * FROM p_student_outcome WHERE FK_P_ID = "+ id +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -386,7 +385,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectCourses() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectCourses(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -398,7 +397,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM course;";
+            String query = "SELECT C_code,C_name,C_level FROM course,program_has_course WHERE FK_course_code = C_code and FK_program_ID = "+ id +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -417,10 +416,9 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(3));
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
-
+                RowDate.add(rs.getString(3));
 
                 RsArr.add(RowDate);
             }
@@ -593,7 +591,7 @@ public class AS_Select {
     }
 
 
-    public ArrayList<ArrayList<String>> selectTerm(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectTerm() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -605,7 +603,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ id +";";
+            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ null+";";
 
             /*
              *  Get connection from the DataSource
@@ -663,7 +661,7 @@ public class AS_Select {
 
     }
 
-    public ArrayList<ArrayList<String>> selectCycleManagement(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectCycleManagement() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -675,7 +673,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM term where FK_Cycle_ID = "+ id +";";
+            String query = "SELECT * FROM term where FK_Cycle_ID = "+null +";";
 
             /*
              *  Get connection from the DataSource
@@ -694,7 +692,6 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
 
@@ -880,7 +877,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_ID , C_code From performance_indicator,course;";
+            String query = "SELECT PI_ID , C_code From abetasdb.performance_indicator,abetasdb.course;";
 
             /*
              *  Get connection from the DataSource
@@ -1422,6 +1419,187 @@ public class AS_Select {
 
     }
 
+    public int selectProgram(String pName) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        String name = "";
+        int id=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = " SELECT P_ID FROM program where P_name =\""+pName+"\";";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                id= rsSelect.getInt(1);
+                System.out.println(id+"    dsgfdgdgs");
+                return id;
+            }
+
+            ////Need to display the temp password to the screen
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return id;
+    }
+
+    public ArrayList<String> selectObjForLink(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT Objective_label, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1)+": "+rs.getString(2));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+    public ArrayList<String> selectOutForLink(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT Outcome_label, Student_outcome FROM abetasdb.program, abetasdb.p_student_outcome where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1)+": "+rs.getString(2));
+                System.out.println("@@@@@@@@@@@@@@@@@@@     "+data.get(++i));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
 }

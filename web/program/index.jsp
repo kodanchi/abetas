@@ -27,6 +27,24 @@
                 }else {
                     //display error page
                 }
+            }else if (pageCall.equals("CoursesList")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                System.out.println(name+"   "+id);
+                if (id != null) {
+                    System.out.println(name+"   "+id);
+                    pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
+                } else {
+                    //display error page
+                }
+            }else if(pageCall.equals("addCourses")){
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                if(id != null){
+                    pageName = "addCourses.jsp?name="+name+"&id="+id;
+                }else {
+                    //display error page
+                }
             }else if (pageCall.equals("LinkOutObj")) {
                 String id = request.getParameter("id");
                 String name = request.getParameter("name");
@@ -95,7 +113,15 @@
                 } else {
                     //display error page
                 }
-            } else if (pageCall.equals("LinkOutObj")) {
+            } else if (pageCall.equals("CoursesList")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                if (id != null) {
+                    pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
+                } else {
+                    //display error page
+                }
+            }else if (pageCall.equals("LinkOutObj")) {
                 String id = request.getParameter("id");
                 String name = request.getParameter("name");
                 if (id != null) {
@@ -103,8 +129,6 @@
                 } else {
                     //display error page
                 }
-
-            }
             } else if (pageCall.equals("update")) {
                 String id = request.getParameter("id");
                 if (id != null) {
@@ -112,12 +136,23 @@
                 } else {
                     pageName = "programList.jsp";
                 }
-            } else {
+            } else if (pageCall.equals("updateObj")) {
+                String name = request.getParameter("name");
+                String id = request.getParameter("id");
+                String objid = request.getParameter("Objid");
+                String objValue = request.getParameter("ObjValue");
+                if (id != null) {
+                    System.out.println(id+"      "+name+"       "+objid+"        "+objValue);
+                    pageName = "Add_Program_Objective.jsp?id=" + id+"&Objid="+ objid+"&ObjValue="+objValue+"&name="+name;
+                } else {
+                    pageName = "Add_Program_Objective.jsp";
+                }
+            }else if (pageCall.equals("programObjectiveList")) {
+                pageName = "programObjectiveList.jsp";
+            }else {
                 pageName = "programList.jsp";
             }
-
-            }
-
+        }
     }
 %>
 

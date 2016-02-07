@@ -1,25 +1,24 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="ASDB.AS_Select" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="ASDB.AS_Select" %><%--
   Created by IntelliJ IDEA.
-  User: Abdullah
-  Date: 2/2/2016
-  Time: 2:59 م
+  User: Ibrahim Abuaqel
+  Date: 2/4/2016
+  Time: 11:41 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<div id="header"></div>
 
 <div class="main">
     <div class="section">
         <div class="container">
-            <!--         what is row -->
+            <!-- what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Link Student Outcome with Objectives</h2>
+                <h2 class="text-center">Add Courses</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                    <p>Click "Add" to add a link for <%=request.getParameter("name")%> program</p>
+                    <p>Click "Add" to add new courses</p>
 
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
@@ -27,15 +26,18 @@
                         <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Objectives</th>
-                                <th>Outcome</th>
+                                <th>Course Name</th>
+                                <th>Code</th>
+                                <th>Level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
                             <%
+
+
                                 AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives();
+                                    ArrayList<ArrayList<String>> rs = aselect.selectCourses(Integer.parseInt(request.getParameter("id")));
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
@@ -68,13 +70,14 @@
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-                            %>
 
+
+                            %>
                         </table>
                     </div>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
-                    <button class="btn btn-primary">Cancel</button>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addCourses&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
+                    <button class="btn btn-primary pull-right">Finish</button>
+                    <button class="btn btn-primary pull-right">previous</button>
 
 
                     <!-- End of col -->
@@ -88,7 +91,3 @@
         </div>
     </div>
 </div>
-
-<!--   end modal  -->
-
-<div id="footer"></div>

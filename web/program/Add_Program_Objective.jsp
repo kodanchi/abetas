@@ -36,7 +36,9 @@
                                 </div>
                                 <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                                 <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
-                                <div class="col-md-8">                    <textarea class="form-control" rows="5" id="comment" name="Obj"></textarea>
+                                <input type="hidden" name="Objid" value="<%=request.getParameter("Objid")%>">
+                                <input type="hidden" name="ObjValue" value="<%=request.getParameter("ObjValue")%>">
+                                <div class="col-md-8">                    <textarea class="form-control" rows="5" id="comment" name="Obj"><%if (request.getParameter("ObjValue")!=null) {out.print(request.getParameter("ObjValue"));}%></textarea>
                                 </div>
                             </div>
 
