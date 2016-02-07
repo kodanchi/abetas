@@ -16,7 +16,7 @@ import java.util.Base64;
  * Created by Ibrahim Abuaqel on 2/7/2016.
  */
 @WebServlet(name = "AddCycle",
-        urlPatterns = {"/Add Cycle"})
+        urlPatterns = {"/AddCycle"})
 public class AddCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");

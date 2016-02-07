@@ -54,10 +54,8 @@
                 }
             }else if(pageCall.equals("addTerm")) {
 
-
                 if(request.getSession().getAttribute("id") != null){
-
-                    pageName = "addterm.jsp";
+                    pageName = "addTerm.jsp";
                 }else {
                     pageName = "cycleList.jsp";
                     //display error page
