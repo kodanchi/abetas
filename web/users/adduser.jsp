@@ -202,6 +202,8 @@
 
                     <input name="oldLvl" value="<%=uOldlvl%>" hidden/>
                     <input name="id" value="<%=id%>" hidden/>
+                    <input name="olduname" value="<%=uname%>" hidden/>
+                    <input name="olduemail" value="<%=uemail%>" hidden/>
 
                     <a type="submit" onclick="onSubmitAddUser()" class="btn btn-default" value="Add"><%=submit%></a>
 
