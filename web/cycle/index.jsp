@@ -60,6 +60,8 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("cycleList")) {
+                    pageName = "cycleList.jsp";
             }else {
                 pageName = "cycleList.jsp";
             }

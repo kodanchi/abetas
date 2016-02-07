@@ -9,11 +9,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by Ibrahim Abuaqel on 2/4/2016.
+ * Created by Ibrahim Abuaqel on 2/7/2016.
  */
-@WebServlet(name = "DeleteProgram",
-        urlPatterns = {"/Delete Cycle"})
-public class DeleteProgram extends HttpServlet {
+@WebServlet(name = "DeleteCycle")
+public class DeleteCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
         System.out.println(request.getParameter("id")+"           ");
@@ -23,7 +22,7 @@ public class DeleteProgram extends HttpServlet {
         //AS_Select dbaS=new AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
-            dba.deleteCycle(Integer.parseInt(request.getParameter("id")));
+            dba.deleteProgram(Integer.parseInt(request.getParameter("id")));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -37,7 +36,7 @@ public class DeleteProgram extends HttpServlet {
         //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
+        response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=programList");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
