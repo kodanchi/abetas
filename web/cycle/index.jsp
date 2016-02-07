@@ -22,7 +22,7 @@
                 if(id != null){
                     pageName = "addTerm.jsp&id="+id;
                 }else {
-                    //display error page
+                   System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
                 }
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
