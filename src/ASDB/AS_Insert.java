@@ -689,7 +689,7 @@ public class AS_Insert {
         }
     }
 
-    public void addCycle(int C_ID) throws ClassNotFoundException, SQLException {
+    public int addCycle() throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -721,13 +721,11 @@ public class AS_Insert {
                 id = rsSelect.getInt(1);
             }
 
-            if (id!=0) {
                 String query = " insert into cycle (Cycle_ID)" + " values (?)";
                 id++;
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, id);
                 rs = preparedStatement.executeUpdate();
-            }
 
             ////Need to display the temp password to the screen
 
@@ -753,7 +751,7 @@ public class AS_Insert {
             }
 
         }
-
+        return id;
     }
 
     public void addStudent(int SID, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
