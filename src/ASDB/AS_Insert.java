@@ -810,7 +810,7 @@ public class AS_Insert {
         }
     }
 
-    public void addTerm(String name, String year, String C_ID) throws ClassNotFoundException, SQLException {
+    public int addTerm(String name, String year, String C_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -818,6 +818,8 @@ public class AS_Insert {
         PreparedStatement preparedStatement = null;
 
         int rs = 0;
+        ResultSet rsSelect = null;
+        int id=0;
         try {
 
             /*
@@ -837,9 +839,17 @@ public class AS_Insert {
             preparedStatement.setString(3, C_ID);
             rs = preparedStatement.executeUpdate();
 
+            String querySelect = " SELECT T_ID FROM term ORDER BY T_ID DESC LIMIT 1";
 
-            ////Need to display the temp password to the screen
+            preparedStatement = connection.prepareStatement(querySelect);
 
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                id = rsSelect.getInt(1);
+                System.out.println("        dddd        "+id);
+                return id;
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -863,6 +873,9 @@ public class AS_Insert {
             }
 
         }
+
+        System.out.println("        ooooodddd        "+id);
+        return id;
     }
 
     public void addRubric(String rubric_name, String rubric_description) throws ClassNotFoundException, SQLException {
@@ -884,6 +897,7 @@ public class AS_Insert {
             /*
              * Execute the query
              */
+
             String query = " insert into pi_rubric (PI_rubric_name, PI_rubric_description)" + " values (?, ?)";
 
             preparedStatement = connection.prepareStatement(query);

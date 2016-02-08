@@ -57,7 +57,13 @@
                 if(request.getSession().getAttribute("id") != null){
                     pageName = "addTerm.jsp";
                 }else {
-                    pageName = "cycleList.jsp";
+                    //display error page
+                }
+            }else if(pageCall.equals("addRubrics")) {
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    pageName = "addRubrics.jsp";
+                }else {
                     //display error page
                 }
             }else if(pageCall.equals("cycleList")) {

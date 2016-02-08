@@ -1,6 +1,7 @@
 <%@ page import="ASDB.AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Abdullah
   Date: 2/2/2016
