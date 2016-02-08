@@ -23,7 +23,7 @@ public class DeleteProgram extends HttpServlet {
         //AS_Select dbaS=new AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
-            dba.deleteCycle(Integer.parseInt(request.getParameter("id")));
+            dba.deleteProgram(Integer.parseInt(request.getParameter("id")));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

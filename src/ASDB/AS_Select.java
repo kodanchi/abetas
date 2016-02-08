@@ -833,6 +833,7 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
 
