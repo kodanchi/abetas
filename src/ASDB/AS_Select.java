@@ -180,9 +180,10 @@ public class AS_Select {
 
     }
 
-    public ArrayList<String> selectAllPrograms() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectAllPrograms() throws ClassNotFoundException, SQLException {
 
-        ArrayList<String> data = new ArrayList<String>();
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        ArrayList<String> dataRow = new ArrayList<String>();
         connect();
 
         Connection connection = null;
@@ -208,8 +209,10 @@ public class AS_Select {
             rs = preparedStatement.executeQuery();
             //
             while (rs.next()) {
-                data.add(rs.getString(1));
-                data.add(rs.getString(2));
+                dataRow = new ArrayList<String>();
+                dataRow.add(rs.getString(1));
+                dataRow.add(rs.getString(2));
+                data.add(dataRow);
             }
 
         } catch (Exception e) {
@@ -792,7 +795,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectAddPerformanceIndicators() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectPerformanceIndicators(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -804,7 +807,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_ID, Student_outcome FROM performance_indicator, p_student_outcome;";
+            String query = "SELECT PI_name, PI_label FROM performance_indicator WHERE FK_P_ID='"+id+"';";
 
             /*
              *  Get connection from the DataSource
@@ -823,8 +826,8 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(1));
 
 
                 RsArr.add(RowDate);

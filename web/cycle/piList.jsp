@@ -21,14 +21,21 @@
 
                     <form name="myform" action="/AddPI" method="post">
                         <label>Choose a program: </label>
-                        <select class="form-control" name="programName" required>
+                        <select class="form-control" name="programName" id="pName" onchange="onProgramChng()" required>
                             <%
                                 AS_Select select = new AS_Select();
+                                ArrayList<Integer> pid = new ArrayList<Integer>();
                                 try {
-                                    ArrayList<String> rs = select.selectAllPrograms();
+                                    ArrayList<ArrayList<String>> rs = select.selectAllPrograms();
+                                    ArrayList<String> rsRow;
 
-                                    for (int i=1; i<rs.size();i++) {
-                                        out.print("<option value="+rs.get(i)+">"+rs.get(i)+"</option>");
+
+                                    for (int i=0; i<rs.size();i++) {
+                                        rsRow = rs.get(i);
+
+                                        pid.add(Integer.valueOf(rsRow.get(0)));
+                                        System.out.println("pid : "+pid.get(i));
+                                        out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
                                     }
                                 } catch (ClassNotFoundException e) {
                                     e.printStackTrace();
@@ -38,65 +45,93 @@
                             %>
                         </select>
 
+                        <script>
+                            $(document).ready(function(){
+                                hideAllTables();
+                                onProgramChng();
+
+
+                            });
+                            function onProgramChng()
+                        {
+                            var ddl = document.getElementById("pName");
+                            var selectedValue = ddl.options[ddl.selectedIndex].value;
+                            hideAllTables();
+                            document.getElementById(selectedValue).style.display = 'table';;
+                        }
+                            function hideAllTables (){
+                                var tables = document.getElementsByTagName("table");
+                                for(var i =0;i<tables.length;i++){
+                                    tables[i].style.display = 'none';;
+                                }
+                            }
+                        </script>
+
                         <p>Click "Add" to enter program performance indicator</p>
 
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
 
                             <!-- Table -->
-                            <table class="table">
-                                <tr>
-                                    <th>Performance Indicator</th>
-                                    <th>Label</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
+
                                 <%
 
                                     AS_Select aselect = new AS_Select();
 
-                                    try {
-                                        ArrayList<ArrayList<String>> rs = aselect.selectObjective(id);
-                                        ArrayList<String> rsRow ;
+                                    for (int k=0; k < pid.size();k++){
+                                        try {
+                                            ArrayList<ArrayList<String>> rs = aselect.selectPerformanceIndicators(pid.get(k));
+                                            ArrayList<String> rsRow ;
 
-                                        for (int i=0; i<rs.size();i++){
-                                            rsRow = new ArrayList<String>();
-                                            rsRow = rs.get(i);
-                                            out.print("<tr>");
-                                            for (int j=1; j<rsRow.size();j++) {
-                                                out.print("<td>"+rsRow.get(j)+"</td>");
+                                            out.print("<table id=\""+pid.get(k)+"\" class=\"table\">\n" +
+                                                    "                                <tr>\n" +
+                                                    "                                    <th>Label</th>\n" +
+                                                    "                                    <th>Performance Indicator</th>\n" +
+                                                    "                                    <th>Edit</th>\n" +
+                                                    "                                    <th>Delete</th>\n" +
+                                                    "                                </tr>" );
+                                            for (int i=0; i<rs.size();i++){
+                                                rsRow = new ArrayList<String>();
+                                                rsRow = rs.get(i);
+                                                out.print("<tr>");
+                                                for (int j=0; j<rsRow.size();j++) {
+                                                    out.print("<td>"+rsRow.get(j)+"</td>");
 
+                                                }
+                                                out.print(
+                                                        "<td>" +
+                                                        "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                        "                            <input name=\"page\" value=\"updateObj\" hidden />\n" +
+                                                        "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                        "                            <input name=\"ObjValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
+                                                        "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
+                                                        "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
+                                                        "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                        "                               </td>" +
+                                                        "                            </form>" +
+                                                        "                            <form method=\"post\" action=\"/Delete Objective\">\n" +
+                                                        "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                        "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                        "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
+                                                        "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
+                                                        "                               <td>" +
+                                                        "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                        "                               </td>"+
+                                                        "                        </form>" +
+                                                        "</tr>"
+                                                        );
                                             }
-                                            out.print("<td>" +
-                                                    "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                    "                            <input name=\"page\" value=\"updateObj\" hidden />\n" +
-                                                    "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                    "                            <input name=\"ObjValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
-                                                    "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
-                                                    "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
-                                                    "                               </td>" +
-                                                    "                            </form>" +
-                                                    "                            <form method=\"post\" action=\"/Delete Objective\">\n" +
-                                                    "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                    "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                    "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
-                                                    "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                    "                               <td>" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                                    "                               </td>"+
-                                                    "                        </form>" +
-                                                    "</tr>");
-                                        }
+                                            out.print("</table>");
 
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        } catch (SQLException e) {
+                                            e.printStackTrace();
+                                        }
                                     }
 
                                 %>
-                            </table>
+
                         </div>
                         <a class="btn btn-success btn-fill" href="index.jsp?page=addObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                         <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>

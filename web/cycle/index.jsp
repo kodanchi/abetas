@@ -59,6 +59,13 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("piList")) {
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    pageName = "piList.jsp";
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("addRubrics")) {
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
