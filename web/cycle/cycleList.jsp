@@ -54,7 +54,7 @@
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"/Delete Cycle\">\n" +
+                                                "                            <form method=\"post\" action=\"/DeleteCycle\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                               <td>" +
@@ -76,7 +76,7 @@
                         </table>
                     </div>
 
-                    <form name="myform" action="/Add Cycle" method="post">
+                    <form name="myform" action="/AddCycle" method="post">
                         <button class="btn btn-success btn-fill" type="submit">Add</button>
                         <button class="btn btn-primary">Back</button>
                     </form>

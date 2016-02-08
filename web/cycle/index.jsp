@@ -20,7 +20,7 @@
             if(pageCall.equals("addTerm")) {
                 String id = request.getParameter("id");
                 if(id != null){
-                    pageName = "addTerm.jsp&id="+id;
+                    pageName = "addterm.jsp";
                 }else {
                    System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
                 }
@@ -53,11 +53,13 @@
                     pageName = "cycleList.jsp";
                 }
             }else if(pageCall.equals("addTerm")) {
-                String id = request.getParameter("id");
-                System.out.println(id);
-                if(id != null){
-                    pageName = "addTerm.jsp&id="+id;
+
+
+                if(request.getSession().getAttribute("id") != null){
+
+                    pageName = "addterm.jsp";
                 }else {
+                    pageName = "cycleList.jsp";
                     //display error page
                 }
             }else if(pageCall.equals("cycleList")) {

@@ -7,13 +7,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Base64;
 
 /**
  * Created by Ibrahim Abuaqel on 2/7/2016.
  */
 @WebServlet(name = "AddCycle",
-        urlPatterns = {"/Add Cycle"})
+        urlPatterns = {"/AddCycle"})
 public class AddCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
@@ -30,15 +33,19 @@ public class AddCycle extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            PrintWriter out = response.getWriter();
+            /*PrintWriter out = response.getWriter();
             //out.println("name: " + request.getParameter("name"));
             //out.println("logo: " + request.getParameter("logo"));
-            out.println("H");
+            out.println("H");*/
             System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id));
-            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=addTerm&id=" + String.valueOf(id));
-        //request.getSession().setAttribute("id",String.valueOf(id));
-        //request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
+            /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+            response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
+        try {
+            request.getSession().setAttribute("id",String.valueOf(id));
+            request.getRequestDispatcher("http://localhost:8082/cycle/index.jsp?page=addTerm").forward(request,response);
+        }catch (NullPointerException e){
+            e.fillInStackTrace();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
