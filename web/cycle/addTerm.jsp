@@ -13,41 +13,127 @@
 
 
 
-<div class="section">
-    <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
-            <h2 class="text-center">Cycle Configuration</h2>
-            <legend></legend>
-            <div class="col-md-8 col-md-offset-2">
-                <p>You need to enter the cycle default threashold</p>
+<%
+    String id = "";
+    if(request.getSession().getAttribute("id") != null){
+        id  = (String) request.getSession().getAttribute("id");
+        out.print("id is : "+id);
+    }
 
-                <%
-                    String id = "";
-                    if(request.getSession().getAttribute("id") != null){
-                        id  = (String) request.getSession().getAttribute("id");
-                        out.print("id is : "+id);
-                    }
+%>
+                <div class="section">
+                    <div class="container">
+                        <!-- what is row -->
+                        <div class="row tim-row">
+                            <h2 class="text-center">Cycle Configuration</h2>
+                            <legend></legend>
+                            <div class="col-md-10 col-md-offset-1">
+                                <p class="text-center">You need to enter the terms of the cycle</p>
 
-                %>
+                                <div>
+                                    <!-- Default panel contents -->
 
-                <form>
-                    <div class="form-group"  style="margin-bottom:10px;">
-                        <input type="number" min="50" max="100" class="form-control" size="25" required>
+                                    <!-- Table -->
+                                    <div class="row tim-row">
+                                        <div class="col-md-6">
+                                            <form method="post" action="/AddTerm">
+                                                <div class="row tim-row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Name</label>
+                                                            <input type="text" name="termName" class="form-control" required>
+                                                            <input name="cycleId" value="<%=id%>" hidden/>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Year</label>
+                                                            <select class="form-control" name="termYear">
+                                                                <option value="2015-2016">2015-2016</option>
+                                                                <option value="2016-2017">2016-2017</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <button type="submit" class="btn btn-success">Add</button>
+
+                                            </form>
+                                        </div>
+
+                                        <div class="col-md-6 panel panel-default">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Year</th>
+                                                    <th>edit</th>
+                                                    <th>delete</th>
+                                                </tr>
+                                                <%
+
+                                                    AS_Select dba = new AS_Select();
+
+                                                    try {
+                                                        ArrayList<ArrayList<String>> rs = dba.selectAddTerm(id);
+                                                        ArrayList<String> rsRow ;
+
+                                                        for (int i=0; i<rs.size();i++){
+                                                            rsRow = new ArrayList<String>();
+                                                            rsRow = rs.get(i);
+                                                            out.print("<tr>");
+                                                            for (int j=0; j<rsRow.size();j++) {
+                                                                out.print("<td>"+rsRow.get(j)+"</td>");
+
+                                                            }
+                                                            out.print("<td><a class=\"btn btn-warning btn-simple\" href=\"#\"><i class=\"fa fa-pencil fa-2x\"></i></a></td>\n");
+                                                            out.print("<td><a class=\"btn btn-danger btn-simple\" href=\"#\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td>\n");
+                                                            out.print("</tr>");
+                                                        }
+
+                                                    } catch (ClassNotFoundException e) {
+                                                        e.printStackTrace();
+                                                    } catch (SQLException e) {
+                                                        e.printStackTrace();
+                                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                %>
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <button class="btn btn-success pull-right">Cancel</button>
+
+                                <button class="btn btn-success pull-right">Next</button>
+
+
+                                <!-- End of col -->
+                            </div>
+
+                            <!-- End of row -->
+                        </div>
+
+
+                        <!-- Modal Bodies come here -->
                     </div>
-                </form>
-
-                <button class="btn btn-success">Cancel</button>
-                <button class="btn btn-success">Next</button>
-
-
-                <!-- End of col -->
-            </div>
-
-            <!-- End of row -->
-        </div>
-
-    </div>
-</div>
-
-
+                </div>

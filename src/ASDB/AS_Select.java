@@ -802,7 +802,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectAddTerm() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectAddTerm(String id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -814,7 +814,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM term;";
+            String query = "SELECT * FROM term where FK_Cycle_ID = "+id+";";
 
             /*
              *  Get connection from the DataSource
