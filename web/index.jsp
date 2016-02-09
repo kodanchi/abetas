@@ -1,4 +1,6 @@
-<%--
+<%@ page import="sessionListener.CookiesControl" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="sessionListener.User" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/19/2016
@@ -37,6 +39,40 @@
 
             <div class="jumbotron text-center">
 
+                <%
+                    HttpSession l_session = null;
+                    String l_persistentCookieId = CookiesControl.getCookieValue(request, "MY_SESSION_COOKIE");
+
+
+                    try {
+
+                        if (l_persistentCookieId != null)
+                        {
+                            HashMap<String, HttpSession> l_activeUsers = (HashMap<String, HttpSession>) request.getServletContext().getAttribute("activeUsers");
+                            // Get the existing session
+                            l_session = l_activeUsers.get(l_persistentCookieId);
+                        }
+                        // Otherwise a session has not been created
+                        if (l_session == null)
+                        {
+                            response.sendRedirect("/login/login.jsp");
+                        }
+
+                        User user = (User) l_session.getAttribute("user");
+                        if(user != null){
+                            out.println("Username : "+user.getUsername());
+                            out.println("Email : "+user.getEmail());
+                        }else {
+                            out.print("no thing ");
+                        }
+
+
+
+                    }catch (NullPointerException e){
+                        e.fillInStackTrace();
+                        System.out.println(e);
+                    }
+                %>
 
 
 
