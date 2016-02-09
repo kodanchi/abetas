@@ -306,4 +306,57 @@ public class AS_Update {
         }
 
     }
+
+    public void updatePI(String name, int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
+            String query = "update performance_indicator set PI_name = ?, where PI_Label = ?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString (1, name);
+            preparedStatement.setInt (1, id);
+
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
 }

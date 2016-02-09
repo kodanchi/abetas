@@ -73,6 +73,26 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("updatePI")) {
+
+                String PILabel=request.getParameter("PILabel");
+                String PIValue=request.getParameter("PIValue");
+                String programID=request.getParameter("progID");
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +PILabel +"    "+ PIValue+"     "+programID);
+                    pageName = "addPI.jsp?PILabel=" + PILabel + "&PIValue="+PIValue+"&programID="+programID;
+                }else {
+                    System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    //display error page
+                }
+            }else if(pageCall.equals("addPI")) {
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    pageName = "addPI.jsp";
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("cycleList")) {
                     pageName = "cycleList.jsp";
             }else {

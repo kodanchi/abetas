@@ -19,9 +19,12 @@
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
 
-                    <form name="myform" action="/AddPI" method="post">
-                        <label>Choose a program: </label>
-                        <select class="form-control" name="programName" id="pName" onchange="onProgramChng()" required>
+                    <form id="outerform" action="/cycle/index.jsp?page=addPI" method="post"></form>
+                    <form id="innerformU" action="/cycle/index.jsp" method="post"></form>
+                    <form id="innerformD" action="/DeletePI" method="post"></form>
+
+                    <label>Choose a program: </label>
+                        <select class="form-control" name="programID" id="pName" onchange="onProgramChng()" form="outerform" required>
                             <%
                                 AS_Select select = new AS_Select();
                                 ArrayList<Integer> pid = new ArrayList<Integer>();
@@ -34,7 +37,7 @@
                                         rsRow = rs.get(i);
 
                                         pid.add(Integer.valueOf(rsRow.get(0)));
-                                        System.out.println("pid : "+pid.get(i));
+                                        //System.out.println("pid : "+pid.get(i));
                                         out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
                                     }
                                 } catch (ClassNotFoundException e) {
@@ -46,26 +49,43 @@
                         </select>
 
                         <script>
-                            $(document).ready(function(){
-                                hideAllTables();
-                                onProgramChng();
+                    $(document).ready(function(){
+                        hideAllTables();
+                        onProgramChng();
 
 
-                            });
-                            function onProgramChng()
+                    });
+                    function onProgramChng()
+                    {
+                        var ddl = document.getElementById("pName");
+                        var selectedValue = ddl.options[ddl.selectedIndex].value;
+                        hideAllTables();
+                        document.getElementById(selectedValue).style.display = 'table';;
+                    }
+                    function hideAllTables (){
+                        var tables = document.getElementsByTagName("table");
+                        for(var i =0;i<tables.length;i++){
+                            tables[i].style.display = 'none';;
+                        }
+                    }
+                </script>
+
+                    <script>
+                        $(document).ready(function(){
+                            hideAllTables();
+                            onProgramChng();
+
+
+                        });
+                        function getProgram()
                         {
                             var ddl = document.getElementById("pName");
                             var selectedValue = ddl.options[ddl.selectedIndex].value;
-                            hideAllTables();
-                            document.getElementById(selectedValue).style.display = 'table';;
+                            document.getElementById("progID").innerHTML = selectedValue;
                         }
-                            function hideAllTables (){
-                                var tables = document.getElementsByTagName("table");
-                                for(var i =0;i<tables.length;i++){
-                                    tables[i].style.display = 'none';;
-                                }
-                            }
-                        </script>
+                    </script>
+
+                        <br>
 
                         <p>Click "Add" to enter program performance indicator</p>
 
@@ -95,29 +115,23 @@
                                                 rsRow = rs.get(i);
                                                 out.print("<tr>");
                                                 for (int j=0; j<rsRow.size();j++) {
+                                                    System.out.println("id: "+rsRow.get(0)+" name: "+rsRow.get(1));
                                                     out.print("<td>"+rsRow.get(j)+"</td>");
 
                                                 }
                                                 out.print(
                                                         "<td>" +
-                                                        "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                        "                            <input name=\"page\" value=\"updateObj\" hidden />\n" +
-                                                        "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                        "                            <input name=\"ObjValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
-                                                        "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
-                                                        "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                        "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                        "                            <input name=\"page\" value=\"updatePI\" form=\"innerformU\" hidden />\n" +
+                                                        "                            <input name=\"PILabel\" value=\""+rsRow.get(0)+"\" form=\"innerformU\" hidden />\n" +
+                                                        "                            <input name=\"PIValue\" value=\""+rsRow.get(1)+"\" form=\"innerformU\" hidden />\n" +
+                                                        "                            <input name=\"progID\" id=\"progID\" onchange=\"getProgram()\" form=\"innerformU\" hidden />\n" +
+                                                        "                            <button  type=\"submit\" form=\"innerformU\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                         "                               </td>" +
-                                                        "                            </form>" +
-                                                        "                            <form method=\"post\" action=\"/Delete Objective\">\n" +
-                                                        "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                        "                            <input name=\"Objid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                        "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
-                                                        "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
+                                                        "                            <input name=\"page\" id=\"page\" value=\"delete\" form=\"innerformD\" hidden />\n" +
+                                                        "                            <input name=\"PILabel\" value=\""+rsRow.get(0)+"\" form=\"innerformD\" hidden />\n" +
                                                         "                               <td>" +
-                                                        "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                        "                            <button  type=\"submit\" form=\"innerformD\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                         "                               </td>"+
-                                                        "                        </form>" +
                                                         "</tr>"
                                                         );
                                             }
@@ -133,9 +147,8 @@
                                 %>
 
                         </div>
-                        <a class="btn btn-success btn-fill" href="index.jsp?page=addObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                        <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
-                    </form>
+                        <button class="btn btn-success" type="submit" form="outerform">Add</button>
+                        <button class="btn btn-success">Cancel</button>
                     <!-- End of col -->
                 </div>
 

@@ -18,11 +18,10 @@ public class AddRubrics extends HttpServlet {
 
         AS_Insert dba = new AS_Insert();
         String id = request.getParameter("cycleId");
+        String Termid = request.getParameter("Termid");
         try {
 
-            dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"));
-            dba.addRubric(request.getParameter("secondR"),request.getParameter("secondD"));
-            dba.addRubric(request.getParameter("thirdR"),request.getParameter("thirdD"));
+            dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"));
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

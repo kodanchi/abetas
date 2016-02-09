@@ -807,7 +807,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_name, PI_label FROM performance_indicator WHERE FK_P_ID='"+id+"';";
+            String query = "SELECT PI_label, PI_name FROM performance_indicator WHERE FK_P_ID='"+id+"';";
 
             /*
              *  Get connection from the DataSource
@@ -826,8 +826,8 @@ public class AS_Select {
             //
             while (rs.next()){
                 RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
 
 
                 RsArr.add(RowDate);
