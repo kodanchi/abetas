@@ -494,6 +494,17 @@ public class InstallDB {
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
 
 
+            this.createTable("CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY" +
+                    " DEFINER VIEW `users` AS select `superuser`.`Adm_ID` AS `lvl`," +
+                    "`superuser`.`Super_Username` AS `username`,`superuser`.`Super_Password` AS `password`," +
+                    "`superuser`.`Super_Email` AS `email` from `superuser` union all select 1 AS `1`," +
+                    "`faculty_member`.`Faculty_Username` AS `Faculty_Username`," +
+                    "`faculty_member`.`Faculty_Password` AS `Faculty_Password`," +
+                    "`faculty_member`.`Faculty_Email` AS `Faculty_Email` from `faculty_member` union all select 2 AS `2`," +
+                    "`evaluator`.`E_Username` AS `E_Username`,`evaluator`.`E_Password` AS `E_Password`," +
+                    "NULL AS `NULL` from `evaluator`;\n");
+
+
             pout.println("<h4>Tables Created!</h4>");
 
 
