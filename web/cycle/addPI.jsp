@@ -27,7 +27,8 @@
     AS_Select aselect = new AS_Select();
     String programName = "";
     try {
-        programName = aselect.selectProgramName(55);
+        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
+        programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
 
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
@@ -54,7 +55,7 @@
                             <div class="btn-group">
 
                                 <label>Program: <label><%out.print(programName);%> </label></label>
-                                <input type="hidden" name="programName" value="<%out.print(programName);%> ">
+                                <input type="hidden" name="programName" value="<%=programName%>">
                             </div>
                         </div>
 
@@ -63,6 +64,7 @@
 
                             <label>Performance Indicator</label>
                             <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
+                            <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
                             <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}%></textarea>
 
                         </div>

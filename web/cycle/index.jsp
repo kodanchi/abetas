@@ -20,7 +20,7 @@
             if(pageCall.equals("addTerm")) {
                 String id = request.getParameter("id");
                 if(id != null){
-                    pageName = "addterm.jsp";
+                    pageName = "addTerm.jsp";
                 }else {
                    System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
                 }
@@ -59,6 +59,13 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("addTerm")) {
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    pageName = "piList.jsp";
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("piList")) {
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
@@ -67,8 +74,10 @@
                     //display error page
                 }
             }else if(pageCall.equals("addRubrics")) {
+                System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
                     pageName = "addRubrics.jsp";
                 }else {
                     //display error page

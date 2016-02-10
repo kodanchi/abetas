@@ -20,7 +20,6 @@
                 <div class="col-md-8 col-md-offset-2">
 
                     <form id="outerform" action="/cycle/index.jsp?page=addPI" method="post"></form>
-                    <form id="innerformU" action="/cycle/index.jsp" method="post"></form>
                     <form id="innerformD" action="/DeletePI" method="post"></form>
 
                     <label>Choose a program: </label>
@@ -77,11 +76,12 @@
 
 
                         });
-                        function getProgram()
+                        function getProgram(Form)
                         {
                             var ddl = document.getElementById("pName");
                             var selectedValue = ddl.options[ddl.selectedIndex].value;
-                            document.getElementById("progID").innerHTML = selectedValue;
+                            document.getElementById("progID").value=selectedValue;
+                            Form.submit();
                         }
                     </script>
 
@@ -121,11 +121,13 @@
                                                 }
                                                 out.print(
                                                         "<td>" +
+                                                                "<form id=\"innerformU"+rsRow.get(0)+"\" action=\"/cycle/index.jsp\" method=\"post\"></form> " +
+
                                                         "                            <input name=\"page\" value=\"updatePI\" form=\"innerformU\" hidden />\n" +
-                                                        "                            <input name=\"PILabel\" value=\""+rsRow.get(0)+"\" form=\"innerformU\" hidden />\n" +
-                                                        "                            <input name=\"PIValue\" value=\""+rsRow.get(1)+"\" form=\"innerformU\" hidden />\n" +
-                                                        "                            <input name=\"progID\" id=\"progID\" onchange=\"getProgram()\" form=\"innerformU\" hidden />\n" +
-                                                        "                            <button  type=\"submit\" form=\"innerformU\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                        "                            <input name=\"PILabel\" value=\""+rsRow.get(0)+"\" form=\"innerformU"+rsRow.get(0)+"\" hidden />\n" +
+                                                        "                            <input name=\"PIValue\" value=\""+rsRow.get(1)+"\" form=\"innerformU"+rsRow.get(0)+"\" hidden />\n" +
+                                                        "                            <input name=\"progID\" id=\"progID\" value=\"\" form=\"innerformU\" hidden />\n" +
+                                                        "                            <button  type=\"button\" form=\"innerformU\" onClick=\"getProgram(innerformU"+rsRow.get(0)+")\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                         "                               </td>" +
                                                         "                            <input name=\"page\" id=\"page\" value=\"delete\" form=\"innerformD\" hidden />\n" +
                                                         "                            <input name=\"PILabel\" value=\""+rsRow.get(0)+"\" form=\"innerformD\" hidden />\n" +

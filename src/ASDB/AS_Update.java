@@ -327,11 +327,11 @@ public class AS_Update {
              * Execute the query
              */
             System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
-            String query = "update performance_indicator set PI_name = ?, where PI_Label = ?";
+            String query = "update performance_indicator set PI_name = ? where PI_Label = ?";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString (1, name);
-            preparedStatement.setInt (1, id);
+            preparedStatement.setInt (2, id);
 
             rs = preparedStatement.executeUpdate();
 

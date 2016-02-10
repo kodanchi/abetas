@@ -58,7 +58,7 @@ public class AddPI extends HttpServlet {
             String id = request.getParameter("cycleId");
             String Termid = request.getParameter("Termid");
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");
-            System.out.println("ttrttttttttttttttttttttttttt  PI id          " + Integer.parseInt(request.getParameter("PILabel")) + "   ttrttttttttttttttttttttttttt           ");
+            System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww  PI id          " + Integer.parseInt(request.getParameter("PILabel")) + "   wwwwwwwwwwwwwwww           ");
             try {
 
                 dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("PILabel")));
