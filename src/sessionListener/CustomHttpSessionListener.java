@@ -15,22 +15,22 @@ public class CustomHttpSessionListener implements HttpSessionListener {
     }
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
-        HttpSession    session = httpSessionEvent.getSession();
+        /*HttpSession    session = httpSessionEvent.getSession();
         ServletContext context = session.getServletContext();
         HashMap<String, HttpSession> activeUsers =  (HashMap<String, HttpSession>) context.getAttribute("activeUsers");
 
         activeUsers.put(session.getId(), session);
         context.setAttribute("activeUsers", activeUsers);
-        System.out.println("userSession add to activeUsers");
+        System.out.println("userSession add to activeUsers");*/
     }
 
     @Override
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
-        HttpSession    session = httpSessionEvent.getSession();
+        /*HttpSession    session = httpSessionEvent.getSession();
         ServletContext context = session.getServletContext();
         HashMap<String, HttpSession> activeUsers = (HashMap<String, HttpSession>)context.getAttribute("activeUsers");
         activeUsers.remove(session.getId());
-        System.out.println("userSession removed from activeUsers");
+        System.out.println("userSession removed from activeUsers");*/
 
     }
 }

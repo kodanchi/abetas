@@ -102,6 +102,8 @@
                     }
                 %>
 
+                <a href="/logout" class="btn btn-success" >Logout</a>
+
 
               </div>
             </div>

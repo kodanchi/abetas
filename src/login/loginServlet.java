@@ -100,7 +100,8 @@ public class loginServlet extends HttpServlet {
 
                 if(!successLogin) {
                     //Forward
-                    this.getServletContext().getRequestDispatcher(forward).forward(request, response);
+                    //this.getServletContext().getRequestDispatcher(forward).forward(request, response);
+                    response.sendRedirect(forward);
                 }
             }
         }

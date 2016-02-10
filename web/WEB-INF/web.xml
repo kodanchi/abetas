@@ -17,18 +17,7 @@
         <listener-class>sessionListener.CustomHttpSessionListener</listener-class>
     </listener>
 
-    <filter>
-        <filter-name>LoginFilters</filter-name>
-        <filter-class>filters.AuthFilter</filter-class>
-        <init-param>
-            <param-name>avoid-urls</param-name>
-            <param-value>css,js,login</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>LoginFilters</filter-name>
-        <url-pattern>/login/login.jsp</url-pattern>
-    </filter-mapping>
+
 
 
     <filter>
@@ -43,6 +32,19 @@
         <filter-name>AuthFilters</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+
+    <filter>
+        <filter-name>LoginFilters</filter-name>
+        <filter-class>filters.LoginFilter</filter-class>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>LoginFilters</filter-name>
+        <url-pattern>/login/login.jsp</url-pattern>
+    </filter-mapping>
+
+
     <!--<filter>
         <filter-name>UsersFilters</filter-name>
         <filter-class>filters.UsersFilter</filter-class>

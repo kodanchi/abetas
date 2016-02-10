@@ -22,7 +22,8 @@ public class logoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.getSession().invalidate();
-        CookiesControl.removeCookie(response,"MY_SESSION_COOKIE");
+        CookiesControl.removeCookie(response,"userCookie");
+        response.sendRedirect("/index.jsp");
 
     }
 }

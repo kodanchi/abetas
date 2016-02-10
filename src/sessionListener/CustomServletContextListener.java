@@ -23,10 +23,10 @@ public class CustomServletContextListener implements ServletContextListener {
         // instanciate a map to store references to all the active
         // sessions and bind it to context scope.
         //
-
+/*
         HashMap activeUsers = new HashMap();
         context.setAttribute("activeUsers", activeUsers);
-        System.out.println("activeUsers is created");
+        System.out.println("activeUsers is created");*/
 
         /*HashMap<String, HttpSession> map = deserialize();
         if (map == null){
