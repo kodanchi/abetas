@@ -7,65 +7,85 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>ABETAS</title>
-    <meta name="description" content="An interactive getting started guide for Brackets.">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <script href="/js/jquery-2.2.0.min.js" ></script>
-    <link rel="stylesheet" href="/css/loginPage.css">
-    <link rel="stylesheet" href="/css/bootstrap.css">
+    <title>ABETAS</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/ct-paper.css" rel="stylesheet" />
+    <link href="/css/examples.css" rel="stylesheet" />
+    <link href="/css/loginPage.css" rel="stylesheet" />
+
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/css/fonts.css" rel="stylesheet">
 
 </head>
 
 <body>
-<div class="row">
-    <div class="col-md-4 col-md-offset-4 well vcenter">
-        <form class="form-signin" method="post" action="/login">
-            <h4><%
-                /*if(CookiesControl.getCookieValue(request,"MY_SESSION_COOKIE")!= null){
 
-                    HashMap<String, HttpSession> lactiveUsers = (HashMap<String, HttpSession>) request.getServletContext().getAttribute("activeUsers");
-                    // Get the existing session
-                    HttpSession lsession = lactiveUsers.get(CookiesControl.getCookieValue(request,"MY_SESSION_COOKIE"));
-                    if(lsession == null) {
-                        response.sendRedirect("/index.jsp");
-                    }
-                }*/
-                if(request.getParameter("status")!= null){
-                    if(request.getParameter("status").equals("failedLogin")){
-                        out.print("wrong username or password!");
-                    }else if(request.getParameter("status").equals("missingData")){
-                        out.print("Missing username or password!");
-                    }
-                }
-            %></h4>
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="userEmail" class="sr-only">Email address</label>
-            <input name="userName" type="text" id="userEmail" class="form-control" placeholder="Username" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" name="userPassword" class="form-control" placeholder="Password" required>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" name="remember" value="remember-me"> Remember me
-                </label>
+<div class="wrapper">
+    <div class="register-background">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+                    <div class="register-card">
+                        <img src="./img/logo.png"/>
+                        <form class="login-form" method="post" action="/login">
+
+                            <%
+
+                                if(request.getParameter("status")!= null){
+                                    if(request.getParameter("status").equals("failedLogin")){
+                                        out.print("<p class=\"bg-danger\">");
+                                        out.print("wrong username or password!");
+                                        out.print("</p>");
+                                    }else if(request.getParameter("status").equals("missingData")){
+                                        out.print("<p class=\"bg-danger\">");
+                                        out.print("Missing username or password!");
+                                        out.print("</p>");
+                                    }
+                                }
+                            %>
+
+                            <div class="form-group">
+                                <label for="userName" class="title">Username</label>
+                                <input id="userName" name="userName" type="text" class="form-control" placeholder="Username" required autofocus>
+                            </div>
+                            <div class="form-group">
+
+                                <label for="userPassword" class="title">Password</label>
+                                <input id="userPassword" name="userPassword" type="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember" value="remember-me"> Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" name="login" value="Login" class="btn btn-danger btn-block">Login</button>
+                        </form>
+                        <div class="forgot">
+                            <a href="#" class="btn btn-simple btn-danger">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" name="login" value="Login" type="submit">Sign in</button>
-            <button class="btn btn-link">Forgot your password?</button>
-
-        </form>
-
+        </div>
     </div>
-    <!-- /col-md -->
 </div>
-<!-- /row -->
 
 </body>
-
 </html>
