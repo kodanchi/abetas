@@ -418,7 +418,7 @@ public class AS_Delete {
             /*
              * Execute the query
              */
-            String query = "delete from performance_indicator where PI_ID = ?";
+            String query = "delete from performance_indicator where PI_Label = ?";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

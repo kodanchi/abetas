@@ -24,6 +24,26 @@
                 }else {
                    System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
                 }
+            }else if(pageCall.equals("piList")) {
+
+                String programID=request.getParameter("programID");
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
+                    pageName = "piList.jsp?programID=" + programID;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("addPI")) {
+
+                String programID=request.getParameter("programID");
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +programID);
+                    pageName = "addPI.jsp?programID="+programID;
+                }else {
+                    System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    //display error page
+                }
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
                 String type = request.getParameter("type");
@@ -69,7 +89,17 @@
             }else if(pageCall.equals("piList")) {
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
                     pageName = "piList.jsp";
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("piList")) {
+
+                String programID=request.getParameter("programID");
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
+                    pageName = "piList.jsp?programID=" + programID;
                 }else {
                     //display error page
                 }
