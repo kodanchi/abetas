@@ -1,4 +1,5 @@
-<%@ page import="sessionListener.CookiesControl" %><%--
+<%@ page import="sessionListener.CookiesControl" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/8/2016
@@ -29,7 +30,13 @@
         <form class="form-signin" method="post" action="/login">
             <h4><%
                 if(CookiesControl.getCookieValue(request,"MY_SESSION_COOKIE")!= null){
-                    response.sendRedirect("/index.jsp");
+
+                    HashMap<String, HttpSession> lactiveUsers = (HashMap<String, HttpSession>) request.getServletContext().getAttribute("activeUsers");
+                    // Get the existing session
+                    HttpSession lsession = lactiveUsers.get(CookiesControl.getCookieValue(request,"MY_SESSION_COOKIE"));
+                    if(lsession == null) {
+                        response.sendRedirect("/index.jsp");
+                    }
                 }
                 if(request.getParameter("status")!= null){
                     if(request.getParameter("status").equals("failedLogin")){

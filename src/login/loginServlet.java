@@ -139,6 +139,10 @@ public class loginServlet extends HttpServlet {
                                 forward = "/login/login.jsp?status=failedLogin";
                             }
                         }
+                        else
+                        {
+                            forward = "/index.jsp?status=userFound";
+                        }
 
 
 
