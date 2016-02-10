@@ -24,16 +24,12 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="http://www.uod.edu.sa">
-                <div class="logo-container">
-                    <!--
+
+
                     <div class="logo">
-                        <img src="assets/paper_img/new_logo.png" alt="Creative Tim Logo">
+                        <img class="addBtn" height="40px" src="http://www.uod.edu.sa/sites/all/themes/uod_base/logo.svg" alt="University Of Dammam">
                     </div>
-                    -->
-                    <div class="brand">
-                        University of Dammam
-                    </div>
-                </div>
+
             </a>
         </div>
 
@@ -54,4 +50,3 @@
     </div><!-- /.container-->
 </nav>
 <!-- end navbar  -->
-

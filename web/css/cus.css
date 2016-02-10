@@ -1,3 +1,4 @@
+
 .radio-blue
 {
     margin-top: -2px;
@@ -27,4 +28,50 @@ body
 input[readonly] {
   background-color: white !important;
   cursor: text !important;
+}
+.courseNResult {
+    margin-right:10px;
+}
+.addBtn{
+    margin-top:20px;
+
+}
+.cycMng{
+    margin-bottom:-10px;
+}
+.chckTerm{
+    margin-left:10px;
+}
+.crsMng{
+    margin-bottom:-20px;
+}
+.fmName{
+    padding-left:20px;
+}
+.red{
+    color:red;
+}
+.green {
+    color:#27ae60;
+}
+.tenPer {
+    width:10%;
+}
+.mid{
+    max-width: 310px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
+}.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+    margin: -3px;
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
 }
