@@ -45,7 +45,7 @@ public class CustomServletContextListener implements ServletContextListener {
         }*/
 
     }
-    public HashMap<String, HttpSession> deserialize(){
+    /*public HashMap<String, HttpSession> deserialize(){
         HashMap<String, HttpSession> map = null;
         try
         {
@@ -67,7 +67,7 @@ public class CustomServletContextListener implements ServletContextListener {
         System.out.println("Deserialized HashMap..");
 
         return map;
-    }
+    }*/
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

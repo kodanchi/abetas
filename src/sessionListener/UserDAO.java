@@ -6,6 +6,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  * Created by Mojahed on 2/9/2016.
@@ -37,12 +38,13 @@ public class UserDAO {
 
     }
 
-    public User find(String username, int userLvl) throws SQLException, ClassNotFoundException {
+    public ArrayList<String> find(String username, int userLvl) throws SQLException, ClassNotFoundException {
 
         String userTable = "";
         String userTableCols = "";
         String usernameTName = "";
-        User user = null;
+        //User user = null;
+        ArrayList<String> user = new ArrayList<String>();
         connect();
 
         Connection connection = null;
@@ -52,17 +54,18 @@ public class UserDAO {
 
         switch (userLvl){
             case 0:
+            case 1:
                 userTable = "superuser";
                 userTableCols = "Super_ID, Super_Username, Super_Email";
                 usernameTName = "Super_Username";
                 break;
-            case 1:
+            case 2:
                 userTable = "faculty_member";
                 userTableCols = "Faculty_ID,Faculty_Username,Faculty_Email";
                 usernameTName = "Faculty_Username";
                 break;
 
-            case 2:
+            case 3:
                 userTable = "evaluator";
                 userTableCols = "E_ID, E_Username, null";
                 usernameTName = "E_Username";
@@ -88,7 +91,10 @@ public class UserDAO {
 
             //
             while (rs.next()){
-                user = new User(rs.getInt(1), rs.getString(2),rs.getString(3),userLvl);
+                user.add(String.valueOf(rs.getInt(1)));
+                user.add(rs.getString(2));
+                user.add(rs.getString(3));
+                user.add(String.valueOf(userLvl));
             }
 
 

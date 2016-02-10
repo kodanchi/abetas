@@ -1,6 +1,9 @@
 <%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="sessionListener.User" %><%--
+<%@ page import="sessionListener.User" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="sessionListener.UserDAO" %>
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/19/2016
@@ -39,7 +42,7 @@
 
             <div class="jumbotron text-center">
 
-                <%
+                <%--<%
                     HttpSession l_session = null;
                     String l_persistentCookieId = CookiesControl.getCookieValue(request, "MY_SESSION_COOKIE");
 
@@ -72,9 +75,32 @@
                         e.fillInStackTrace();
                         System.out.println(e);
                     }
+                %>--%>
+
+
+                <%
+                    UserDAO dao = new UserDAO();
+                    session = request.getSession(false);
+                    if(session.getAttribute("username") != null){
+                        String uname = (String)session.getAttribute("username");
+                        Integer ulvl = (Integer)session.getAttribute("userLvl");
+                        ArrayList<String> user = dao.find(uname,ulvl);
+                        if(user != null){
+                            out.println("ID : "+user.get(0));
+                            out.println("Username : "+user.get(1));
+                            out.println("Email : "+user.get(2));
+                            out.println("lvl : "+user.get(3));
+                        }else {
+                            out.print("user not found");
+                        }
+                        /*out.println(session.getAttribute("username"));
+                        out.println((String)session.getAttribute("userEmail"));
+
+                        out.println(Integer.parseInt(String.valueOf(ulvl)));*/
+                    }else {
+                        out.print("no thing ");
+                    }
                 %>
-
-
 
 
               </div>

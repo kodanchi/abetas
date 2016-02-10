@@ -29,7 +29,7 @@
     <div class="col-md-4 col-md-offset-4 well vcenter">
         <form class="form-signin" method="post" action="/login">
             <h4><%
-                if(CookiesControl.getCookieValue(request,"MY_SESSION_COOKIE")!= null){
+                /*if(CookiesControl.getCookieValue(request,"MY_SESSION_COOKIE")!= null){
 
                     HashMap<String, HttpSession> lactiveUsers = (HashMap<String, HttpSession>) request.getServletContext().getAttribute("activeUsers");
                     // Get the existing session
@@ -37,7 +37,7 @@
                     if(lsession == null) {
                         response.sendRedirect("/index.jsp");
                     }
-                }
+                }*/
                 if(request.getParameter("status")!= null){
                     if(request.getParameter("status").equals("failedLogin")){
                         out.print("wrong username or password!");
@@ -56,7 +56,7 @@
                     <input type="checkbox" name="remember" value="remember-me"> Remember me
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block" name="login" value="Login" type="submit">Sign in</button>
             <button class="btn btn-link">Forgot your password?</button>
 
         </form>
