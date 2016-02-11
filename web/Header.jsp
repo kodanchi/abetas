@@ -8,9 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     if(session.getAttribute("username")!= null){
-        String un = "username";
-        session.setAttribute("username",un);
-        System.out.println("from header, session is : "+request.getSession().getId());
+
+        System.out.println("from header, session is : "+request.getSession().getId()+" , username is : "+session.getAttribute("username"));
     }
 %>
 <script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
@@ -39,13 +38,13 @@
         <div class="collapse navbar-collapse" id="navigation-example-2">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#" class="btn btn-default btn-simple">Home</a>
+                    <a href="/index.jsp" class="btn btn-default btn-simple">Home</a>
                 </li>
                 <li>
-                    <a href="#" class="btn btn-default btn-simple">Setting</a>
+                    <a href="/settings" class="btn btn-default btn-simple">Setting</a>
                 </li>
                 <li>
-                    <a href="#" class="btn btn-default btn-fill">Logout</a>
+                    <a href="/logout" class="btn btn-default btn-fill">Logout</a>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

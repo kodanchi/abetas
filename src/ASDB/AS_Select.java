@@ -1281,6 +1281,73 @@ public class AS_Select {
 
     }
 
+    public ArrayList<String> selectSuperuser(String username) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM superuser where Super_Username = '"+ username +"';";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(8));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
 
     public ArrayList<ArrayList<String>> selectAllFaculty() throws ClassNotFoundException, SQLException {
 
@@ -1419,6 +1486,73 @@ public class AS_Select {
 
     }
 
+    public ArrayList<String> selectFaculty(String username) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM faculty_member where Faculty_Username = '"+username+"';";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(5));
+                rowDate.add(rs.getString(6));
+                rowDate.add(rs.getString(7));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(4));
+                rowDate.add(rs.getString(8));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
 
     public String[] login(String username) throws ClassNotFoundException, SQLException {
 
@@ -1479,6 +1613,71 @@ public class AS_Select {
         }
 
     }
+
+    public ArrayList<String> selectSystemSettings() throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM university;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(3));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
 
 
 }

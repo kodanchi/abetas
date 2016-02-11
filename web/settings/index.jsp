@@ -8,6 +8,10 @@
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
 <%@ page import="java.io.*,java.util.*" %>
+<%@ page import="sessionListener.CookiesControl" %>
+<%@ page import="com.sun.corba.se.impl.orbutil.ObjectUtility" %>
+<%@ page import="ASDB.AS_Select" %>
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
@@ -34,6 +38,7 @@
 
 </head>
 <body>
+<script src="/js/users.js" type="text/javascript"></script>
 <script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 <div id="page">
@@ -46,18 +51,51 @@
         <div class="container" id="space">
             <!-- what is row -->
             <div class="row tim-row">
-                <h2 id="setTitle" class="text-center">User Settings</h2>
+                <h2 id="setTitle" class="text-center">Settings</h2>
                 <legend></legend>
 
-                <div class="container">
-                    <ul class="nav nav-pills nav-pills-primary">
+                <%
+                    session = request.getSession(false);
+                    boolean isAS = false;
+                    if(session.getAttribute("userLvl") != null){
+                        Integer ulvl = (Integer)session.getAttribute("userLvl");
 
-                        <li id="sysBtn" class="active"><a onclick="showSysSettings()">System Setting</a></li>
+                        switch (ulvl){
+                            case 0:
+                            case 1:
+                                isAS = true;
+                                break;
+                        }
 
-                        <li id="usrBtn" ><a onclick="showUsrSettings()">User Setting</a></li>
+                    }else {
+                        CookiesControl.removeCookie(response,"userCookie");
+                    }
 
-                    </ul>
-                </div>
+                    AS_Select adb = new AS_Select();
+                    ArrayList<String> userData = null;
+                    if(isAS){
+                        if (session.getAttribute("userLvl") != null){
+                            userData = adb.selectSystemSettings();
+                        }
+                        out.print("<div class=\"container\">\n" +
+                                "                    <ul class=\"nav nav-pills nav-pills-primary\">\n" +
+                                "\n" +
+                                "                        <li id=\"sysBtn\" class=\"active\"><a href=\"#\" onclick=\"showSysSettings()\">System Setting</a></li>\n" +
+                                "\n" +
+                                "                        <li id=\"usrBtn\" ><a href=\"#\" onclick=\"showUsrSettings()\">User Setting</a></li>\n" +
+                                "\n" +
+                                "                    </ul>\n" +
+                                "                </div>");
+
+                        out.print("<script>\n" +
+                                "                    $(document).ready(function(){\n" +
+                                "                    $('#usrSection').hide();\n" +
+                                "                    });\n" +
+                                "                </script>");
+                    }
+                %>
+
+
 
 
                 <div class="col-md-10 col-md-offset-1">
@@ -66,40 +104,26 @@
                     <br>
                     <br>
 
+                    <%
+                        if (isAS){
+
+
+                    %>
                     <div id="sysSection">
                         <form name="sysform" action="#" method="post">
                             <p>You can change what do you want to change in the following form, and click the bottun down below</p>
 
                             <div class="form-group">
                                 <label>University Name</label>
-                                <input type="text" class="form-control" placeholder="University Name" required>
+                                <input type="text" class="form-control" placeholder="University Name" value="<%if(userData != null)out.print(userData.get(0));%>" required>
                             </div>
 
                             <div class="form-group">
 
                                 <label>Collage Name</label>
 
-                                <input type="text" class="form-control" placeholder="Collage Name" required>
+                                <input type="text" class="form-control" placeholder="Collage Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
 
-                            </div>
-                            <div class="form-group">
-
-                                <label>Dean First Name</label>
-
-                                <input type="text" class="form-control" placeholder="First Name" required>
-
-                            </div>
-                            <div class="form-group">
-
-                                <label>Dean Middle Name</label>
-
-                                <input type="text" class="form-control" placeholder="Middle Name" required>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label>Dean Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name" required>
                             </div>
 
 
@@ -116,7 +140,7 @@
                         Browse&hellip; <input type="file">
                     </span>
                 </span>
-                                            <input type="text" class="form-control" readonly>
+                                            <input type="text" class="form-control" value="<%if(userData != null)out.print(userData.get(2));%>" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -130,6 +154,24 @@
 
                         </form>
                     </div>
+                    <%
+                        }
+                        userData = null;
+                        if (session.getAttribute("userLvl") != null){
+                            Integer userId = (Integer) session.getAttribute("userLvl");
+                            String uname = (String) session.getAttribute("username");
+
+                            switch (userId){
+                                case 0:
+                                case 1:
+                                     userData = adb.selectSuperuser(uname);
+                                    break;
+                                case 2:
+                                    userData = adb.selectFaculty(uname);
+                                    break;
+                            }
+                        }
+                    %>
 
                     <br>
 
@@ -138,29 +180,51 @@
                             <p>Make sure to apply the changes before leaving the page</p>
 
                             <div class="form-group">
+
+                                <label>First Name</label>
+
+                                <input type="text" class="form-control" placeholder="First Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
+
+                            </div>
+                            <div class="form-group">
+
+                                <label>Middle Name</label>
+
+                                <input type="text" class="form-control" placeholder="Middle Name" value="<%if(userData != null)out.print(userData.get(2));%>" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control" placeholder="Last Name" value="<%if(userData != null)out.print(userData.get(3));%>" required>
+                            </div>
+
+
+
+                            <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control" placeholder="Email" required>
+                                <input type="text" name="uemail" class="form-control" placeholder="Email" value="<%if(userData != null)out.print(userData.get(5));%>" required>
                             </div>
 
                             <div class="form-group">
 
                                 <label>Password</label>
 
-                                <input type="password" class="form-control" placeholder="Password" required>
+                                <input type="password" name="" class="form-control" placeholder="Password" required>
 
                             </div>
                             <div class="form-group">
 
                                 <label>Re-enter Password</label>
 
-                                <input type="password" class="form-control" placeholder="Password" required>
+                                <input type="password" name="" class="form-control" placeholder="Password" required>
 
                             </div>
 
                             <br>
                             <br>
 
-                            <button type="submit" class="btn btn-success btn-fill">Apply changes</button>
+                            <button type="button" onclick="" class="btn btn-success btn-fill">Apply changes</button>
 
                         </form>
                     </div>
@@ -249,24 +313,22 @@
         }
     }
 
-    $(document).ready(function(){
-        $('#usrSection').display = "none";
 
-        function showSysSettings(){
-            $('#usrSection').display = "none";
-            $('#sysSection').display = "block";
-            $('#sysBtn').style().addClass("active");
-            $('#usrBtn').style().removeClass("active");
 
-        }
-        function showUsrSettings(){
-            $('#usrSection').display = "block";
-            $('#sysSection').display = "none";
-            $('#usrBtn').style().addClass("active");
-            $('#sysBtn').style().removeClass("active");
+    function showSysSettings(){
+            $('#usrSection').hide();
+        $('#sysSection').show();
+        $('#sysBtn').addClass("active");
+        $('#usrBtn').removeClass("active");
 
-        }
-    });
+    }
+    function showUsrSettings(){
+        $('#usrSection').show();
+        $('#sysSection').hide();
+        $('#usrBtn').addClass("active");
+        $('#sysBtn').removeClass("active");
+
+    }
 
 
     function show(id, value) {
