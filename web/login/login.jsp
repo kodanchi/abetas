@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
                     <div class="register-card">
-                        <img src="./img/logo.png"/>
+                        <img class="img-responsive" alt="logo" src="/img/logo.png" width="120px" style="margin:10px;">
                         <form class="login-form" method="post" action="/login">
 
                             <%

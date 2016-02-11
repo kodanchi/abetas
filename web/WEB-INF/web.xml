@@ -25,7 +25,7 @@
         <filter-class>filters.AuthFilter</filter-class>
         <init-param>
             <param-name>avoid-urls</param-name>
-            <param-value>css,js,login</param-value>
+            <param-value>css,js,login,img</param-value>
         </init-param>
     </filter>
     <filter-mapping>

@@ -38,7 +38,7 @@
 
 </head>
 <body>
-<script src="/js/users.js" type="text/javascript"></script>
+<script src="/js/sys_user_settings.js" type="text/javascript"></script>
 <script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 <div id="page">
@@ -176,55 +176,55 @@
                     <br>
 
                     <div id="usrSection" >
-                        <form name="usrform" action="#" method="post">
+                        <form name="usrform" action="/updateProfile" method="post">
                             <p>Make sure to apply the changes before leaving the page</p>
 
                             <div class="form-group">
 
-                                <label>First Name</label>
+                                <label for="fname">First Name</label>
 
-                                <input type="text" class="form-control" placeholder="First Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
-
-                            </div>
-                            <div class="form-group">
-
-                                <label>Middle Name</label>
-
-                                <input type="text" class="form-control" placeholder="Middle Name" value="<%if(userData != null)out.print(userData.get(2));%>" required>
-
-                            </div>
-
-                            <div class="form-group">
-                                <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name" value="<%if(userData != null)out.print(userData.get(3));%>" required>
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" name="uemail" class="form-control" placeholder="Email" value="<%if(userData != null)out.print(userData.get(5));%>" required>
-                            </div>
-
-                            <div class="form-group">
-
-                                <label>Password</label>
-
-                                <input type="password" name="" class="form-control" placeholder="Password" required>
+                                <input type="text" id="fname" name="fname" class="form-control" placeholder="First Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
 
                             </div>
                             <div class="form-group">
 
-                                <label>Re-enter Password</label>
+                                <label for="mname">Middle Name</label>
 
-                                <input type="password" name="" class="form-control" placeholder="Password" required>
+                                <input type="text" id="mname" name="mname" class="form-control" placeholder="Middle Name" value="<%if(userData != null)out.print(userData.get(2));%>" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name" value="<%if(userData != null)out.print(userData.get(3));%>" required>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="uemail">Email</label>
+                                <input type="email" id="uemail" name="uemail" class="form-control" placeholder="Email" value="<%if(userData != null)out.print(userData.get(5));%>" required>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label for="upassword">Password</label>
+
+                                <input type="password" id="upassword" name="upassword" class="form-control" placeholder="Password" required>
+
+                            </div>
+                            <div class="form-group">
+
+                                <label for="repassword">Re-enter Password</label>
+
+                                <input type="password" name="repassword" id="repassword" class="form-control" placeholder="Password" required>
 
                             </div>
 
                             <br>
                             <br>
 
-                            <button type="button" onclick="" class="btn btn-success btn-fill">Apply changes</button>
+                            <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-success btn-fill">Apply changes</button>
 
                         </form>
                     </div>
