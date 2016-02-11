@@ -1,18 +1,37 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>ABETAS Setup Wizard</title>
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+    <title>Add User</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+    
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/ct-paper.css" rel="stylesheet"/>
+    <link href="css/cus.css" rel="stylesheet" />
+        
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fonts.css" rel="stylesheet">
+      
 </head>
 <body>
-<div class='container'>
 
-    <section id="wizard">
+    <div class="main">
+        <div class="section">
+            <div class="container" id="space">
+                <!-- what is row -->
+                <div class="row tim-row">
+                    <h2 class="text-center">ABETAS SETUP</h2>
+                    <legend></legend>
+                    <div class="col-md-10 col-md-offset-1">
+                       
         <form name="myform" id="setUpForm" method="post" enctype="multipart/form-data" action="/install">
             <div class="page-header">
-                <h1>ABETAS SETUP</h1>
+                <h1></h1>
             </div>
 
             <div id="rootwizard">
@@ -68,7 +87,15 @@
                             <h4>Choose the logo of the university to be uploaded</h4>
                             <h5>You can upload the logo later on from system settings.</h5>
                             <label for="ulogo" >University Logo</label>
-                            <input onchange="return fileChk(2000000);"  type="file" id="ulogo" name="ulogo" accept="image/png">
+                            <div class="input-group">
+    <span class="input-group-btn">
+                    <span class="btn btn-fill btn-primary btn-file">
+                        Browse&hellip; <input type="file">
+                    </span>
+    </span>
+    <input type="text" class="form-control" readonly>
+</div>
+
                             <script >
                                 function fileChk(max_img_size) {
 
@@ -105,7 +132,7 @@
                     </div>
                     <div class="tab-pane" id="tab4">
                         <div class="jumbotron">
-                            <h4>Enter Administrator's details (All fields are required):</h4>
+                            <h4>Enter Administrator's details:</h4>
 
                             <div class=" form-group">
                                 <label for="adminUsername">Admin Username  <h6 class="label label-danger">required</h6></label>
@@ -166,17 +193,35 @@
 
                     <ul class="pager wizard">
                         <li class="previous first" style="display:none;"><a href="#">First</a></li>
-                        <li class="previous"><a href="#">Previous</a></li>
-                        <li class="next last" style="display:none;"><a href="#">Last</a></li>
-                        <li class="next"><a href="#">Next</a></li>
-                        <li class="finish"><a href="javascript:;">Finish</a></li>
+                        <li class="previous"><a class="btn btn-primary btn-fill" href="#">Previous</a></li>
+                        <li class="next last btn btn-primary btn-fill" style="display:none;"><a href="#">Last</a></li>
+                        <li class="next btn btn-primary btn-fill"><a href="#">Next</a></li>
+                        <li class="finish btn btn-primary btn-fill"><a href="javascript:;">Finish</a></li>
                     </ul>
                 </div>
             </div>
 
         </form>
-    </section>
-</div>
+
+
+
+
+
+
+
+
+                        <!-- End of col -->
+                    </div>
+
+                    <!-- End of row -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.bootstrap.wizard.js"></script>
