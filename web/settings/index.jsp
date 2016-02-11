@@ -145,19 +145,19 @@
 
                     %>
                     <div id="sysSection">
-                        <form name="sysform" action="#" method="post">
+                        <form name="sysform" action="/sysSettingsUpdate" method="post" enctype="multipart/form-data">
                             <p>You can change what do you want to change in the following form, and click the bottun down below</p>
 
                             <div class="form-group">
                                 <label>University Name</label>
-                                <input type="text" class="form-control" placeholder="University Name" value="<%if(userData != null)out.print(userData.get(0));%>" required>
+                                <input type="text" name="uname" class="form-control" placeholder="University Name" value="<%if(userData != null)out.print(userData.get(0));%>" required>
                             </div>
 
                             <div class="form-group">
 
                                 <label>Collage Name</label>
 
-                                <input type="text" class="form-control" placeholder="Collage Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
+                                <input type="text" name="cname" class="form-control" placeholder="Collage Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
 
                             </div>
 
@@ -172,10 +172,10 @@
                                         <div class="input-group">
                 <span class="input-group-btn">
                     <span class="btn btn-fill btn-primary btn-file">
-                        Browse&hellip; <input type="file">
+                        Browse&hellip; <input type="file" name="ulogo" accept="image/png">
                     </span>
                 </span>
-                                            <input type="text" class="form-control" value="<%if(userData != null)out.print(userData.get(2));%>" readonly>
+                                            <input type="text"  class="form-control" value="<%if(userData != null)out.print(userData.get(2));%>" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -187,6 +187,7 @@
 
 
 
+                            <input name="oldUname" value="<%if(userData != null)out.print(userData.get(0));%>" hidden>
                             <button type="submit" class="btn btn-success btn-fill addBtn">Apply changes</button>
 
                         </form>

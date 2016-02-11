@@ -259,4 +259,59 @@ public class AS_Update {
             }
         }
     }
+
+
+    public  void updateSystemSettings(String uname, String cname, String ulogo,String oldUname) throws SQLException, ClassNotFoundException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = "UPDATE university SET `Uni_name`=?, `College_name`=?, `Uni_logo`=? WHERE `Uni_name`=?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, uname);
+            preparedStatement.setString(2, cname);
+            preparedStatement.setString(3, ulogo);
+            preparedStatement.setString(4, oldUname);
+            rs = preparedStatement.executeUpdate();
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
 }
