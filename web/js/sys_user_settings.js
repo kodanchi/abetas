@@ -30,12 +30,7 @@ function onSubmitUpdateUser(){
         document.getElementById("alertt").innerHTML = "You must enter user's last name";
         lname.focus();
         return false;
-    }else if(uname.value == "") {
-        document.getElementById("alert").style.visibility = "visible";
-        document.getElementById("alertt").innerHTML = "You must enter user's username";
-        uname.focus();
-        return false;
-    }else if (email.value != "") {
+    }   else if (email.value != "") {
         var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(email.value)) {
             document.getElementById("alert").style.visibility = "visible";
@@ -44,11 +39,11 @@ function onSubmitUpdateUser(){
             return false;
         } else {
             document.getElementById("alert").style.visibility = "hidden";
-            document.getElementById("UserAddForm").submit();
+            document.getElementById("usrform").submit();
         }
     }else {
         document.getElementById("alert").style.visibility = "hidden";
-        document.getElementById("UserAddForm").submit();
+        document.getElementById("usrform").submit();
     }
 
 }

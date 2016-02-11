@@ -46,6 +46,11 @@
     <jsp:include page="/Header.jsp"/>
 </div>
 
+    <%
+
+    %>
+
+
 <div id="main" class="main">
     <div class="section">
         <div class="container" id="space">
@@ -55,6 +60,7 @@
                 <legend></legend>
 
                 <%
+
                     session = request.getSession(false);
                     boolean isAS = false;
                     if(session.getAttribute("userLvl") != null){
@@ -69,6 +75,7 @@
 
                     }else {
                         CookiesControl.removeCookie(response,"userCookie");
+                        response.sendRedirect("/login");
                     }
 
                     AS_Select adb = new AS_Select();
@@ -90,8 +97,32 @@
                         out.print("<script>\n" +
                                 "                    $(document).ready(function(){\n" +
                                 "                    $('#usrSection').hide();\n" +
-                                "                    });\n" +
-                                "                </script>");
+                                "                    $('#alert').hide();\n" +
+                                "                    \n" );
+                        if(request.getParameter("status")!= null){
+                            out.print("                    $('#alert').show();\n" +
+                                    "        document.getElementById(\"alertt\").innerHTML = \"User Updated Successfully\";");
+                        }else if(request.getParameter("errMsg")!= null){
+                            out.print("                    document.getElementById(\"alert\").style.visibility = \"visible\";\n" +
+                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getParameter("errMsg")+"\";");
+
+                        }
+                                out.print("});</script>");
+                    }else {
+                        out.print("<script>\n" +
+                                "                    $(document).ready(function(){\n" +
+                                "                    $('#alert').hide();\n" +
+                                "                    });\n" );
+                        if(request.getParameter("status")!= null){
+                            out.print("                    $('#alert').show();\n" +
+                                    "        document.getElementById(\"alertt\").innerHTML = \"User Updated Successfully\";");
+                        }else if(request.getParameter("errMsg")!= null){
+                            out.print("                     $('#alert').show();\n" +
+                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getParameter("errMsg")+"\";");
+
+                        }
+                        out.print("});</script>");
+                        session.removeAttribute("errMsg");
                     }
                 %>
 
@@ -102,6 +133,10 @@
 
 
                     <br>
+                    <div id="alert" class="alert alert-danger">
+                        <a class="close" ></a>
+                        <div id="alertt"></div>
+                    </div>
                     <br>
 
                     <%
@@ -150,6 +185,8 @@
                                 </div>
                             </div>
 
+
+
                             <button type="submit" class="btn btn-success btn-fill addBtn">Apply changes</button>
 
                         </form>
@@ -176,7 +213,7 @@
                     <br>
 
                     <div id="usrSection" >
-                        <form name="usrform" action="/updateProfile" method="post">
+                        <form name="usrform" id="usrform" action="/updateProfile" method="post">
                             <p>Make sure to apply the changes before leaving the page</p>
 
                             <div class="form-group">
@@ -224,7 +261,11 @@
                             <br>
                             <br>
 
-                            <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-success btn-fill">Apply changes</button>
+                            <input name="uOldemail" value="<%if(userData != null)out.print(userData.get(5));%>" hidden >
+                            <input name="uid" value="<%if(userData != null)out.print(userData.get(0));%>" hidden>
+                            <input name="uname" value="<%if(userData != null)out.print(userData.get(4));%>" hidden>
+                            <input name="ulvl" value="<%if(session.getAttribute("userLvl") != null)out.print(session.getAttribute("userLvl"));%>" hidden>
+                            <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-success btn-fill" >Apply changes</button>
 
                         </form>
                     </div>
