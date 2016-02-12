@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -20,17 +19,20 @@ import java.util.List;
  */
 @WebServlet(name = "SystemSettingsServlet", urlPatterns = {"/sysSettingsUpdate"})
 public class SystemSettingsServlet extends HttpServlet {
-    AS_Update db = new AS_Update();
-    private String uname,cname,ulogo,oldUname = null;
-    private final String UPLOAD_DIRECTORY = "D:/uploads";
-    private final String SERVER_DIRECTORY = System.getProperty("ABETAS_HOME");
+
+    private String uname,cname,ulogo = null;
+    private final String UPLOAD_DIRECTORY = "uploads";
+    private String SERVER_DIRECTORY ;
+    private boolean isValid = true;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
+        SERVER_DIRECTORY = getServletContext().getRealPath("/");
 
         try {
             //process only if its multipart content
             if(ServletFileUpload.isMultipartContent(request)){
+
                 try {
                     List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
@@ -42,12 +44,18 @@ public class SystemSettingsServlet extends HttpServlet {
                         switch (name) {
                             case "uname":
                                 uname = item.getString();
+                                if(uname.equals("")){
+                                    sendMsg("University name must be entered",request,response);
+                                    isValid = false;
+                                }
+
                                 break;
                             case "cname":
                                 cname = item.getString();
-                                break;
-                            case "oldUname":
-                                oldUname = item.getString();
+                                if(cname.equals("")){
+                                    sendMsg("College name must be entered",request,response);
+                                    isValid = false;
+                                }
                                 break;
                             default:
                                 System.out.println("default fired!");
@@ -68,17 +76,23 @@ public class SystemSettingsServlet extends HttpServlet {
                                         System.out.println("file ext !"+ extension);
                                     }
                                     if (extension.equals("png")) {
-                                        item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-                                        ulogo = UPLOAD_DIRECTORY + "/" + name;
+                                        item.write(new File(SERVER_DIRECTORY + File.separator + UPLOAD_DIRECTORY +
+                                                File.separator + name));
+                                        ulogo = "/" + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
-                                        System.out.println("File Uploaded Successfully!");
+                                        System.out.println("File Uploaded Successfully!"+ulogo);
 
-                                        db.updateSystemSettings(uname,cname,ulogo,oldUname);
+
+
                                     } else {
-                                        sendErrMsg("university logo must be type of PNG",request,response);
+                                        sendMsg("university logo must be type of PNG",request,response);
+                                        isValid = false;
                                     }
+
+
                                 } else {
-                                    sendErrMsg("Logo image's size exceeds 2 mb",request,response);
+                                    sendMsg("Logo image's size exceeds 2 mb",request,response);
+                                    isValid = false;
                                 }
                             }else{
                                 ulogo = null;
@@ -86,14 +100,22 @@ public class SystemSettingsServlet extends HttpServlet {
                         }
                     }
 
+                    if(isValid){
+                        AS_Update adb = new AS_Update();
+                        adb.updateSystemSettings(uname,cname,ulogo);
+                    }
+
 
                 } catch (Exception ex) {
                     System.out.println("File Upload Failed due to " + ex);
                 }
 
-                response.sendRedirect("/settings/index.jsp?status=SystemUpdated");
+                //response.sendRedirect("/settings/index.jsp?status=SystemUpdated");
+                sendMsg("user Updated",request,response);
+                response.sendRedirect("/settings/index.jsp");
             }else{
                 System.out.println("not multipart!");
+                response.sendRedirect("/settings/index.jsp");
             }
 
 
@@ -105,10 +127,14 @@ public class SystemSettingsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    protected void sendErrMsg(String msg,HttpServletRequest request, HttpServletResponse response){
+    protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response){
 
 
-        System.out.println("ErrMsg : "+msg);
+        if(request.getSession().getAttribute("Msg") == null)
+            request.getSession().setAttribute("Msg",msg);
+
+
+        /*System.out.println("ErrMsg : "+msg);
 
         System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("errMsg",msg);
@@ -118,19 +144,19 @@ public class SystemSettingsServlet extends HttpServlet {
         try {
             response.sendRedirect("/settings/index.jsp?page=update");
             //request.getRequestDispatcher("/settings/index.jsp?page=update").forward(request,response);
-        } /*catch (ServletException e) {
+        } *//*catch (ServletException e) {
             e.printStackTrace();
-        }*/ catch (IOException e) {
+        }*//* catch (IOException e) {
             e.printStackTrace();
         }
-        /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        *//*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         try {
             response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }*/
+        }*//*
 
-        return;
+        return;*/
     }
 
 }

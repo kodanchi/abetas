@@ -1522,7 +1522,7 @@ public class AS_Select {
                 rowDate.add(rs.getString(7));
                 rowDate.add(rs.getString(2));
                 rowDate.add(rs.getString(4));
-                rowDate.add(rs.getString(8));
+                rowDate.add(rs.getString(3));
             }
 
 

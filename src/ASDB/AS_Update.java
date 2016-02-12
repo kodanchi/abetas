@@ -147,6 +147,65 @@ public class AS_Update {
         }
     }
 
+    public  void updateSuperuser(int id,String fname, String mname, String lname, String username, String email,String newPass) throws SQLException, ClassNotFoundException {
+
+        System.out.println("got the new password");
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " UPDATE superuser SET `Super_Username`=?, `Super_Email`=?, `Super_Fname`=?, `Super_Mname`=?, `Super_Lname`=?,`Super_Password`=?  WHERE `Super_ID`=?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, fname);
+            preparedStatement.setString(4, mname);
+            preparedStatement.setString(5, lname);
+            preparedStatement.setString(6, newPass);
+            preparedStatement.setInt(7, id);
+
+            rs = preparedStatement.executeUpdate();
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
+
 
     public  void updateFaculty(int id,String fname, String mname, String lname, String username, String email) throws SQLException, ClassNotFoundException {
 
@@ -177,6 +236,64 @@ public class AS_Update {
             preparedStatement.setString(4, mname);
             preparedStatement.setString(5, lname);
             preparedStatement.setInt(6, id);
+            rs = preparedStatement.executeUpdate();
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
+
+    public  void updateFaculty(int id,String fname, String mname, String lname, String username, String email, String newPass) throws SQLException, ClassNotFoundException {
+        System.out.println("got the new password");
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " UPDATE faculty_member SET `Faculty_Username`=?, `Faculty_Email`=?, `Faculty_Fname`=?, `Faculty_Mname`=?, `Faculty_Lname`=?,`Faculty_Password`=? WHERE `Faculty_ID`=?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, fname);
+            preparedStatement.setString(4, mname);
+            preparedStatement.setString(5, lname);
+            preparedStatement.setString(6, newPass);
+            preparedStatement.setInt(7, id);
+
             rs = preparedStatement.executeUpdate();
 
 
@@ -261,7 +378,7 @@ public class AS_Update {
     }
 
 
-    public  void updateSystemSettings(String uname, String cname, String ulogo,String oldUname) throws SQLException, ClassNotFoundException {
+    public  void updateSystemSettings(String uname, String cname, String ulogo) throws SQLException, ClassNotFoundException {
 
         connect();
 
@@ -281,14 +398,20 @@ public class AS_Update {
             /*
              * Execute the query
              */
-            String query = "UPDATE university SET `Uni_name`=?, `College_name`=?, `Uni_logo`=? WHERE `Uni_name`=?;";
+            String query = null;
+            if(ulogo != null) {
+                query = "UPDATE university SET `Uni_name`=?, `College_name`=?, `Uni_logo`=? LIMIT 1;";
+            }else {
+                query = "UPDATE university SET `Uni_name`=?, `College_name`=? LIMIT 1;";
+            }
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, uname);
             preparedStatement.setString(2, cname);
+            if(ulogo != null)
             preparedStatement.setString(3, ulogo);
-            preparedStatement.setString(4, oldUname);
-            rs = preparedStatement.executeUpdate();
+            //preparedStatement.setString(4, oldUname);
+             preparedStatement.executeUpdate();
 
 
 

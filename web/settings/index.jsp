@@ -38,17 +38,15 @@
 
 </head>
 <body>
-<script src="/js/sys_user_settings.js" type="text/javascript"></script>
+
+
 <script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
 <script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<script src="/js/uploadInput.js" type="application/javascript"></script>
 <div id="page">
 <div id="header">
     <jsp:include page="/Header.jsp"/>
 </div>
-
-    <%
-
-    %>
 
 
 <div id="main" class="main">
@@ -99,30 +97,38 @@
                                 "                    $('#usrSection').hide();\n" +
                                 "                    $('#alert').hide();\n" +
                                 "                    \n" );
-                        if(request.getParameter("status")!= null){
+                        /*if(request.getParameter("status")!= null){
                             out.print("                    $('#alert').show();\n" +
                                     "        document.getElementById(\"alertt\").innerHTML = \"User Updated Successfully\";");
-                        }else if(request.getParameter("errMsg")!= null){
-                            out.print("                    document.getElementById(\"alert\").style.visibility = \"visible\";\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getParameter("errMsg")+"\";");
+                        }else*/ if(request.getSession().getAttribute("Msg")!= null){
+                            out.print("                    $('#alert').show();\n" +
+                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getSession().getAttribute("Msg")+"\";");
 
                         }
                                 out.print("});</script>");
+
+                        request.getSession().removeAttribute("Msg");
                     }else {
                         out.print("<script>\n" +
                                 "                    $(document).ready(function(){\n" +
                                 "                    $('#alert').hide();\n" +
-                                "                    });\n" );
-                        if(request.getParameter("status")!= null){
+                                "                    \n" );
+                        /*if(request.getParameter("status")!= null){
+                        if(request.getParameter("status").equals("userUpdated")){
                             out.print("                    $('#alert').show();\n" +
                                     "        document.getElementById(\"alertt\").innerHTML = \"User Updated Successfully\";");
-                        }else if(request.getParameter("errMsg")!= null){
+                        }else if(request.getParameter("status").equals("SystemUpdated")){
                             out.print("                     $('#alert').show();\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getParameter("errMsg")+"\";");
+                                    "        document.getElementById(\"alertt\").innerHTML = \"System Settings Updated Successfully\";");
+
+                        }
+                        }else */if(request.getSession().getAttribute("Msg")!= null){
+                            out.print("                     $('#alert').show();\n" +
+                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getSession().getAttribute("Msg")+"\";");
 
                         }
                         out.print("});</script>");
-                        session.removeAttribute("errMsg");
+                        request.getSession().removeAttribute("Msg");
                     }
                 %>
 
@@ -145,19 +151,19 @@
 
                     %>
                     <div id="sysSection">
-                        <form name="sysform" action="/sysSettingsUpdate" method="post" enctype="multipart/form-data">
+                        <form name="sysform" id="sysform" action="/sysSettingsUpdate" method="post" enctype="multipart/form-data">
                             <p>You can change what do you want to change in the following form, and click the bottun down below</p>
 
                             <div class="form-group">
                                 <label>University Name</label>
-                                <input type="text" name="uname" class="form-control" placeholder="University Name" value="<%if(userData != null)out.print(userData.get(0));%>" required>
+                                <input type="text" id="uname" name="uname" class="form-control" placeholder="University Name" value="<%if(userData != null)out.print(userData.get(0));%>" required>
                             </div>
 
                             <div class="form-group">
 
                                 <label>Collage Name</label>
 
-                                <input type="text" name="cname" class="form-control" placeholder="Collage Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
+                                <input type="text" id="cname" name="cname" class="form-control" placeholder="Collage Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
 
                             </div>
 
@@ -172,23 +178,25 @@
                                         <div class="input-group">
                 <span class="input-group-btn">
                     <span class="btn btn-fill btn-primary btn-file">
-                        Browse&hellip; <input type="file" name="ulogo" accept="image/png">
+                        Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
                     </span>
                 </span>
-                                            <input type="text"  class="form-control" value="<%if(userData != null)out.print(userData.get(2));%>" readonly>
+                                            <input type="text" class="form-control" value="" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
-                                    <img src="http://design.ubuntu.com/wp-content/uploads/ubuntu-logo32.png">
+                                    <img style="max-width: 270px" src="<%
+                                    if(userData != null && userData.get(2)!= null){out.print(userData.get(2));
+                                    }else { out.print("/img/logoHolder.png");}
+                                    %>">
 
                                 </div>
                             </div>
 
 
 
-                            <input name="oldUname" value="<%if(userData != null)out.print(userData.get(0));%>" hidden>
-                            <button type="submit" class="btn btn-success btn-fill addBtn">Apply changes</button>
+                            <button type="button" onclick="onSubmitUpdateSystem()" class="btn btn-success btn-fill addBtn">Apply changes</button>
 
                         </form>
                     </div>
@@ -246,18 +254,39 @@
 
                             <div class="form-group">
 
-                                <label for="upassword">Password</label>
+                                <label for="uOldPassword">Current Password</label>
 
-                                <input type="password" id="upassword" name="upassword" class="form-control" placeholder="Password" required>
+                                <input type="password" id="uOldPassword" name="uOldPassword" class="form-control" placeholder="Current Password" required />
 
                             </div>
+
                             <div class="form-group">
+                                <div class = "panel panel-warning">
+                                    <div class = "panel-body back">
 
-                                <label for="repassword">Re-enter Password</label>
+                                        <div class="form-group">
 
-                                <input type="password" name="repassword" id="repassword" class="form-control" placeholder="Password" required>
+                                            <label for="upassword">New Password</label>
 
+                                            <input type="password" id="upassword" name="upassword" class="form-control" placeholder="New Password" required>
+
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label for="repassword">Re-enter new Password</label>
+
+                                            <input type="password" name="reupassword" id="repassword" class="form-control" placeholder="new Password" required>
+
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class = "panel-footer">Do not fill inside if you don't want to change your password!</div>
+                                </div>
                             </div>
+
+
 
                             <br>
                             <br>
@@ -304,7 +333,7 @@
 <script src="/js/ct-paper-radio.js"></script>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
-
+<script src="/js/sys-usr-set.js"></script>
 <script src="/js/ct-paper.js"></script>
 
 
@@ -357,20 +386,6 @@
 
 
 
-    function showSysSettings(){
-            $('#usrSection').hide();
-        $('#sysSection').show();
-        $('#sysBtn').addClass("active");
-        $('#usrBtn').removeClass("active");
-
-    }
-    function showUsrSettings(){
-        $('#usrSection').show();
-        $('#sysSection').hide();
-        $('#usrBtn').addClass("active");
-        $('#sysBtn').removeClass("active");
-
-    }
 
 
     function show(id, value) {

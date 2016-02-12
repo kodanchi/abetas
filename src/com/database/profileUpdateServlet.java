@@ -1,10 +1,7 @@
 package com.database;
 
-import ASDB.AS_Delete;
-import ASDB.AS_Insert;
 import ASDB.AS_Select;
 import ASDB.AS_Update;
-import sessionListener.CookiesControl;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -38,29 +35,78 @@ public class profileUpdateServlet extends HttpServlet {
             String mname = request.getParameter("mname");
             String lname = request.getParameter("lname");
             String uemail = request.getParameter("uemail");
+            String uOldpass = request.getParameter("uOldPassword");
+            String uNewpass = request.getParameter("upassword");
+            String reuNewpass = request.getParameter("reupassword");
             userVal = new String[]{request.getParameter("uid"), fname, mname, lname, uemail};
 
             if(uemail.equals("")){
-                sendErrMsg("Email Required!",request,response);
+                sendMsg("Email Required!",request,response);
             }else {
                 if(!checkEmailValidation(request.getParameter("uemail"))){
-                    sendErrMsg("The Email is not in the proper format",request,response);
+                    sendMsg("The Email is not in the proper format",request,response);
                 }else if(sdb.selectEmailIfExist(request.getParameter("uemail"),oldUemail)){
-                    sendErrMsg("The Email is already exist",request,response);
+                    sendMsg("The Email is already exist",request,response);
                 }else{
 
-                    //update the table needed
-                    switch (ulvl){
-                        case 0:
-                        case 1:
-                            udb.updateSuperuser(uid,fname,mname,lname,uname,uemail);
-                            break;
-                        case 2:
-                            udb.updateFaculty(uid,fname,mname,lname,uname,uemail);
-                            break;
+                    if(!uOldpass.equals("")){
+
+                        String[] userData = sdb.login(uname);
+
+                        if (userData != null) {
+                            String userPassword = userData[1];
+                            if(Password.check(uOldpass,userPassword)){
+
+                            }else {
+                                sendMsg("Wrong password!",request,response);
+                            }
+                        }else {
+                            sendMsg("Wrong here!",request,response);
+                        }
+
+                        if((!uNewpass.equals("") || !reuNewpass.equals(""))) {
+
+                            if(uNewpass.equals(reuNewpass)){
+                                String hashedPass = Password.getSaltedHash(uNewpass);
+
+                                System.out.println("new hashed password : "+hashedPass);
+                                //update the table needed
+                                switch (ulvl){
+                                    case 0:
+                                    case 1:
+                                        udb.updateSuperuser(uid,fname,mname,lname,uname,uemail,hashedPass);
+                                        break;
+                                    case 2:
+                                        udb.updateFaculty(uid,fname,mname,lname,uname,uemail,hashedPass);
+                                        break;
+                                }
+                            }else {
+                                sendMsg("New Password fields aren't matched!",request,response);
+                            }
+
+
+
+                        }else {
+                            //update the table needed
+                            switch (ulvl){
+                                case 0:
+                                case 1:
+                                    udb.updateSuperuser(uid,fname,mname,lname,uname,uemail);
+                                    break;
+                                case 2:
+                                    udb.updateFaculty(uid,fname,mname,lname,uname,uemail);
+                                    break;
+                            }
+                        }
+
+
+                    }else {
+                        sendMsg("You must enter the password",request,response);
                     }
 
-                    response.sendRedirect("/settings/index.jsp?status=userUpdated");
+
+                    sendMsg("user Updated",request,response);
+                    response.sendRedirect("/settings/index.jsp");
                 }
             }
 
@@ -79,32 +125,32 @@ public class profileUpdateServlet extends HttpServlet {
 
     }
 
-    protected void sendErrMsg(String msg,HttpServletRequest request, HttpServletResponse response){
+    protected void sendMsg(String msg, HttpServletRequest request,HttpServletResponse response) throws IOException {
 
 
         System.out.println("ErrMsg : "+msg);
 
-        System.out.println("session is : "+request.getSession().getId());
-        request.getSession().setAttribute("errMsg",msg);
-        //request.getSession().setAttribute("userValue",userVal);
+        //System.out.println("session is : "+request.getSession().getId());
 
+        if(request.getSession().getAttribute("Msg") == null)
+        request.getSession().setAttribute("Msg",msg);
+        //response.sendRedirect("/settings/index.jsp");
 
-        try {
+        /*try {
             response.sendRedirect("/settings/index.jsp?page=update");
             //request.getRequestDispatcher("/settings/index.jsp?page=update").forward(request,response);
-        } /*catch (ServletException e) {
+        } *//*catch (ServletException e) {
             e.printStackTrace();
-        }*/ catch (IOException e) {
+        }*//* catch (IOException e) {
             e.printStackTrace();
         }
-        /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+        *//*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         try {
             response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }*/
-
-        return;
+        }*//*
+*/
     }
 
     protected boolean checkEmailValidation(String email) {
