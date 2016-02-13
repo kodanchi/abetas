@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ASDB.AS_Select" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
   Date: 1/27/2016
@@ -7,8 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    String username="";
     if(session.getAttribute("username")!= null){
-
+        username = (String) session.getAttribute("username");
         System.out.println("from header, session is : "+request.getSession().getId()+" , username is : "+session.getAttribute("username"));
     }
 %>
@@ -24,12 +26,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="http://www.uod.edu.sa">
+            <%--<a href="http://www.uod.edu.sa">--%>
 
 
-                    <div class="logo">
-                        <img class="addBtn" height="40px" src="http://www.uod.edu.sa/sites/all/themes/uod_base/logo.svg" alt="University Of Dammam">
-                    </div>
+                <%
+                    AS_Select sdb = new AS_Select();
+                    ArrayList<String> logoData = sdb.selectLogo();
+
+                    if(logoData.get(1) != null){
+                       out.print("<div class=\"logo\">\n" +
+                               "                        <img class=\"addBtn\" height=\"40px\" src=\""+logoData.get(1)+"\" alt=\"University Of Dammam\">\n" +
+                               "                    </div>");
+                    }else {
+                        out.print("<div class=\"logo\">\n" +
+                                "                        <h3\">\n" +
+                                logoData.get(0) +
+                                "</h3>" +
+                                "                    </div>");
+                    }
+
+                %>
+
 
             </a>
         </div>
@@ -45,6 +62,9 @@
                 </li>
                 <li>
                     <a href="/logout" class="btn btn-default btn-fill">Logout</a>
+                </li>
+                <li>
+                    <p class="btn btn-primary btn-fill">Hello <%=username%></p>
                 </li>
             </ul>
         </div><!-- /.navbar-collapse -->

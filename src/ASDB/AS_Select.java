@@ -111,8 +111,6 @@ public class AS_Select {
     }
 
 
-
-
     public ArrayList<ArrayList<String>> selectProgram() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
@@ -247,7 +245,6 @@ public class AS_Select {
     }
 
 
-
     public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
@@ -315,8 +312,6 @@ public class AS_Select {
     }
 
 
-
-
     public ArrayList<ArrayList<String>> selectStudentOutcomes() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
@@ -381,7 +376,6 @@ public class AS_Select {
         }
 
     }
-
 
 
     public ArrayList<ArrayList<String>> selectCourses() throws ClassNotFoundException, SQLException {
@@ -518,7 +512,6 @@ public class AS_Select {
         }
 
     }
-
 
 
     public ArrayList<ArrayList<String>> selectStudents() throws ClassNotFoundException, SQLException {
@@ -1678,6 +1671,68 @@ public class AS_Select {
 
     }
 
+    public ArrayList<String> selectLogo() throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> Data = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT Uni_name,Uni_logo FROM university;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+
+            while (rs.next()){
+                Data = new ArrayList<String>();
+                Data.add(rs.getString(1));
+                Data.add(rs.getString(2));
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return Data;
+
+        }
+
+    }
 
     public boolean selectEmailIfExist(String email) throws ClassNotFoundException, SQLException {
 
