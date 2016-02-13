@@ -21,9 +21,8 @@
 
                     <div class="col-md-8">
                         <div class="dropdown">
-                            <label>Choose a program: </label>
                             <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                Program
+                                Choose a program
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu">
@@ -55,8 +54,6 @@
                         </div>
                     </div>
 
-                    <br>
-                    <br>
                     <br>
                     <br>
                     <br>
@@ -141,7 +138,7 @@
 
                         </div>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=addPI&programID=<%=request.getParameter("programID")%>">Add</a>
-                    <button class="btn btn-success">Cancel</button>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=LinkPIOutList&programID=<%=request.getParameter("programID")%>">Next</a>
 
                     <!-- End of col -->
                 </div>
