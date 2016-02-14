@@ -49,7 +49,7 @@ public class UpdateUser extends HttpServlet {
             System.out.println(userType);
             if(uname.equals("")){
                 sendErrMsg("username Required!",request,response);
-            }else {
+            }else {/*
                 if(sdb.selectUserIfExist(uname,oldUname)){
                     sendErrMsg("Username Exist",request,response);
                 }else {
@@ -108,14 +108,14 @@ public class UpdateUser extends HttpServlet {
 
                         }
                     }
-                }
+                }*/
             }
 
 
 
-        } catch (ClassNotFoundException e) {
+        } /*catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (Exception e) {
+        }*/ catch (Exception e) {
             e.printStackTrace();
         }
         PrintWriter out = response.getWriter();

@@ -25,19 +25,22 @@ import java.util.NoSuchElementException;
 /**
  * Created by Mojahed on 2/3/2016.
  */
-public class ImportSheet {
+public class ImportProgramSheet {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private String uploadFilePath;
     private String UPLOAD_DIRECTORY;
     private String Error_Msg;
+    private String pid ;
+    private String pname ;
+    private String pdataType ;
     private String[] sheetCheckerArr;
     private ArrayList<ArrayList<String>> sheetData;
     private final int MAX_FILE_SIZE = 2000000;
     private AS_Select db = new AS_Select();
 
 
-    public ImportSheet(HttpServletRequest request){
+    public ImportProgramSheet(HttpServletRequest request){
         uploadFilePath = "";
         Error_Msg = "";
         ServletContext context = request.getServletContext();
@@ -45,7 +48,9 @@ public class ImportSheet {
         UPLOAD_DIRECTORY = System.getProperty("java.io.tmpdir");
     }
 
+
     public boolean sheetVaildation(HttpServletRequest request,HttpServletResponse response){
+
 
 
         try {
@@ -56,8 +61,20 @@ public class ImportSheet {
 
                     for(FileItem item : items){
 
-                        String name = item.getFieldName();
-                        System.out.println("Name ="+name);
+                        switch (item.getFieldName()){
+                            case "id":
+                                pid = item.getString();
+                                System.out.println("id is :"+pid);
+                                break;
+                            case "name":
+                                pname = item.getString();
+                                System.out.println("name is :"+pname);
+                                break;
+                            case "data-type":
+                                pdataType= item.getString();
+                                System.out.println("dataType is :"+pdataType);
+                                break;
+                        }
 
 
 
@@ -65,7 +82,7 @@ public class ImportSheet {
 
                             System.out.println("else fired!"+ item.getName());
                             if(item.getSize() != 0) {
-                                name = new File(item.getName()).getName();
+                                String name = new File(item.getName()).getName();
                                 System.out.println("else name!"+ name);
 
                                 if (item.getSize() < MAX_FILE_SIZE) {
@@ -215,7 +232,7 @@ public class ImportSheet {
         return true;
     }
 
-    public boolean UserSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
+    public boolean objSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
             FileInputStream file = new FileInputStream(new File(uploadFilePath));
@@ -248,7 +265,7 @@ public class ImportSheet {
                 //For each row, iterate through each columns
                 Iterator<Cell> cellIterator = row.cellIterator();
                 //while(cellIterator.hasNext()) {
-                    for (int j=0;j<sheetCheckerArr.length;j++){
+                for (int j=0;j<sheetCheckerArr.length;j++){
 
                     //Cell cell = cellIterator.next();
                     Cell cell = row.getCell(j);
@@ -259,7 +276,8 @@ public class ImportSheet {
                                 System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
                                 System.out.print("errrrrr not same format");
-                                Error_Msg = "errrrrr not same format";
+                                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                                        "                                        \"that shown in the import page";
                                 file.close();
                                 return false;
                             }
@@ -275,65 +293,14 @@ public class ImportSheet {
 
                             if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                                 switch (j){
-                                    case 1:
-                                        if(cell.getStringCellValue().equals(" ")){
-                                            dataRow.add(" ");
-                                        }else {
-                                            dataRow.add(cell.getStringCellValue());
-                                        }
-                                        break;
-                                    case 3: //checking if the usernames already exist or not in db
-                                        /*if(db.selectUserIfExist(cell.getStringCellValue())){
-                                            Error_Msg = "The username: "+ cell.getStringCellValue()+" is already exist in the " +
-                                                    "database, please change it in the sheet and try upload it again, or choose another file.";
-                                            file.close();
-                                            return false;
-                                        }else {
-                                            dataRow.add(cell.getStringCellValue());
-                                        }*/
-
-                                        break;
-                                    case 4: //checking if the emails already exist or not in db
-                                        /*if(db.selectEmailIfExist(cell.getStringCellValue())){
-                                            Error_Msg = "The Email: "+cell.getStringCellValue()+" is already exist in the" +
-                                                    "database, please change it in the sheet and try upload it again, or choose" +
-                                                    " another file.";
-                                            file.close();
-                                            return false;
-                                        }else {
-                                            if(!checkEmailValidation(cell.getStringCellValue())){
-                                                Error_Msg = "The Email: "+cell.getStringCellValue()+" is not in the proper " +
-                                                        "format, please change it in the sheet and try upload it again, or choose " +
-                                                        "another file.";
-                                                file.close();
-                                                return false;
-                                            }else {
-                                                dataRow.add(cell.getStringCellValue());
-                                            }
-                                        }*/
-                                        break;
-                                    case 5:
-                                        if(!cell.getStringCellValue().equalsIgnoreCase("superuser") &&
-                                                !cell.getStringCellValue().equalsIgnoreCase("faculty") &&
-                                                !cell.getStringCellValue().equalsIgnoreCase("evaluator")){
-                                            Error_Msg = "The Level: "+cell.getStringCellValue()+" is not what it must be specified " +
-                                                    "in the sheet!, please go back and change then try upload it again, or choose " +
-                                                    "another file.";
+                                    case 0:
+                                        if(cell.getStringCellValue().equals("")){
+                                            Error_Msg = "Some of the records are empty.";
                                             file.close();
                                             return false;
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-                                        break;
-                                    default:
-
-                                        if(cell.getStringCellValue().equals(" ")){
-                                            dataRow.add(" ");
-                                        }else {
-                                            dataRow.add(cell.getStringCellValue());
-                                        }
-
-
                                 }
                                 //System.out.print(cell.getStringCellValue() + "\t\t");
                             }else {
@@ -348,33 +315,12 @@ public class ImportSheet {
 
 
                             switch (j){
-                                case 1:
-                                    Error_Msg="First names for all users are required, change it in the sheet and try upload it again, or choose another file.";
+                                case 0:
+                                    Error_Msg="Some of the records are empty, change it in the sheet and try upload it again, or choose another file.";
                                     file.close();
                                     return false;
-                                case 3: //checking if the usernames already exist or not in db
-                                    Error_Msg="usernames for all users are required, change it in the sheet and try upload it again, or choose another file.";
-                                    file.close();
-                                    return false;
-                                case 4: //checking if the emails already exist or not in db
-                                    Error_Msg="Emails for all users are required, change it in the sheet and try upload it again, or choose another file.";
-                                    file.close();
-                                    return false;
-                                case 5:
-                                    Error_Msg="Levels for all users are required, change it in the sheet and try upload it again, or choose another file.";
-                                    file.close();
-                                    return false;
-                                default:
-
-                                    System.out.println("empty cell");
-                                    dataRow.add(" ");
-                                    continue;
-
-
                             }
                         }
-
-
 
                     }
 
@@ -401,14 +347,142 @@ public class ImportSheet {
         return true;
     }
 
+    public boolean outcomesSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
+        try {
+
+            FileInputStream file = new FileInputStream(new File(uploadFilePath));
+
+            //Get the workbook instance for XLS file
+            HSSFWorkbook workbook = new HSSFWorkbook(file);
+
+            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
+
+            //Get first sheet from the workbook
+            HSSFSheet sheet = workbook.getSheetAt(0);
+
+            //Set the sheet checker in Array
+            String[] sheetCheckerArr = sheetChecker;
+            boolean validFormHead = true;
+
+
+            //Iterate through each rows from first sheet
+            Iterator<Row> rowIterator = sheet.iterator();
+
+            //Store the data in ArrayList
+            sheetData = new ArrayList<ArrayList<String>>();
+
+            //Iterate through each rows as an ArrayList
+            ArrayList<String>  dataRow;
+            while(rowIterator.hasNext()) {
+                dataRow = new ArrayList<String>();
+                Row row = rowIterator.next();
+
+                //For each row, iterate through each columns
+                Iterator<Cell> cellIterator = row.cellIterator();
+                //while(cellIterator.hasNext()) {
+                for (int j=0;j<sheetCheckerArr.length;j++){
+
+                    //Cell cell = cellIterator.next();
+                    Cell cell = row.getCell(j);
+
+                    if(validFormHead) {
+                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                            if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
+                                System.out.print(cell.getStringCellValue() + "\t\t");
+                            } else {
+                                System.out.print("errrrrr not same format");
+                                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                                        "                                        \"that shown in the import page";
+                                file.close();
+                                return false;
+                            }
+                        } else {
+                            System.out.print("errrrrr not string");
+                            Error_Msg = "errrrrr not string";
+                            file.close();
+                            return false;
+                        }
+                    }else {
+                        try {
+                            System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
+
+                            if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                                switch (j){
+                                    case 0:
+                                        if(cell.getStringCellValue().equals("")){
+                                            Error_Msg = "Some of the records are empty.";
+                                            file.close();
+                                            return false;
+                                        }else {
+                                            dataRow.add(cell.getStringCellValue());
+                                        }
+                                }
+                                //System.out.print(cell.getStringCellValue() + "\t\t");
+                            }else {
+                                System.out.print("errrrrr not same format");
+                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                        "that shown in the import page";
+                                file.close();
+                                return false;
+                            }
+                        }catch (NullPointerException e){
+                            e.fillInStackTrace();
+
+
+                            switch (j){
+                                case 0:
+                                    Error_Msg="Some of the records are empty, change it in the sheet and try upload it again, or choose another file.";
+                                    file.close();
+                                    return false;
+                            }
+                        }
+
+                    }
+
+
+                }
+
+                System.out.println("");
+                if(!validFormHead) {
+                    sheetData.add(dataRow);
+                }
+                validFormHead = false;
+            }
+            file.close();
+            FileOutputStream pout =
+                    new FileOutputStream(new File(uploadFilePath));
+            workbook.write(pout);
+            pout.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
     public String getErrorMsg(){
         return Error_Msg;
     }
 
-    public void sendErrorMsg(HttpServletResponse response,HttpServletRequest request) throws IOException {
+    public void sendErrorMsg(HttpServletResponse response, HttpServletRequest request) throws IOException {
 
         //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
-        RequestDispatcher rd = request.getRequestDispatcher("/users/index.jsp?cmd=upload&err="+Error_Msg);
+        RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+pname+"&id="+pid+"&cmd=upload&data="+pdataType+"&err="+Error_Msg);
+
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendSuccessMsg(HttpServletResponse response, HttpServletRequest request) throws IOException {
+
+        //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
+        RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+pname+"&id="+pid+"&data="+pdataType+"&cmd=confirm");
 
         try {
             rd.forward(request, response);
@@ -446,4 +520,17 @@ public class ImportSheet {
         File file = new File(uploadFilePath);
         file.delete();
     }
+
+    public String getId() {
+        return pid;
+    }
+
+    public String getName() {
+        return pname;
+    }
+
+    public String getDataType() {
+        return pdataType;
+    }
+
 }

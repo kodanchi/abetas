@@ -43,7 +43,7 @@ public class AddUser extends HttpServlet {
             System.out.println(userType);
             if(uname.equals("")){
                 sendErrMsg("username Required!",request,response);
-            }else {
+            }else {/*
                 if(sdb.selectUserIfExist(uname)){
                     sendErrMsg("Username Exist",request,response);
                 }else {
@@ -65,14 +65,14 @@ public class AddUser extends HttpServlet {
                         idb.addUser(2, uname, null, fname, mname, lname);
                         response.sendRedirect("/users/index.jsp?status=userAdded"); 
                     }
-                }
+                }*/
             }
 
 
 
-        } catch (ClassNotFoundException e) {
+        } /*catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (Exception e) {
+        }*/ catch (Exception e) {
             e.printStackTrace();
         }
         /*PrintWriter out = response.getWriter();
