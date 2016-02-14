@@ -20,43 +20,9 @@
                 <div class="col-md-8 col-md-offset-2">
 
                     <div class="col-md-8">
-                        <div class="dropdown">
-                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                Choose a program
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
 
-                                <%
-                                    AS_Select select = new AS_Select();
-                                    ArrayList<Integer> pid = new ArrayList<Integer>();
-                                    try {
-                                        ArrayList<ArrayList<String>> rs = select.selectAllPrograms();
-                                        ArrayList<String> rsRow;
-
-
-                                        for (int i=0; i<rs.size();i++) {
-                                            rsRow = rs.get(i);
-
-                                            //pid.add(Integer.valueOf(rsRow.get(0)));
-                                            //System.out.println("pid : "+pid.get(i));
-                                            //out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
-                                            out.print("<li><a href=\"/cycle/index.jsp?page=piList&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
-
-                                        }
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
-                                    }
-                                %>
-                            </ul>
-                        </div>
                     </div>
 
-                    <br>
-                    <br>
-                    <br>
 
                         <p>Click "Add" to enter <% if(request.getParameter("programID")!=null) {
                             AS_Select ssselect = new AS_Select();
@@ -106,14 +72,14 @@
                                                     "                            <input name=\"page\" value=\"updatePI\" hidden />\n" +
                                                     "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                                                     "                            <input name=\"PIValue\" value=\"" + rsRow.get(1) + "\" hidden />\n" +
-                                                    "                            <input name=\"progID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
+                                                    "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                               </td>" +
                                                     "                            </form>" +
                                                     "                            <form method=\"post\" action=\"/DeletePI\">\n" +
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                     "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
-                                                    "                            <input name=\"progID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
+                                                    "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                               <td>" +
                                                     "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                     "                               </td>" +

@@ -636,7 +636,7 @@ public class AS_Insert {
             }
 
         }
-    }public void includeCourse(int include) throws ClassNotFoundException, SQLException {
+    }public void includeCourse(String FK_C_code, int FK_T_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -655,10 +655,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into course (C_include)" + " values (?)";
+            String query = " insert into term_contains_courses (FK_C_code, FK_T_ID)" + " values (?,?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, include);
+            preparedStatement.setString(1, FK_C_code);
+            preparedStatement.setInt(2, FK_T_ID);
+
             rs = preparedStatement.executeUpdate();
 
 

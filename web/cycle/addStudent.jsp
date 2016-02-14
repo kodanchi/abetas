@@ -1,10 +1,10 @@
 <%@ page import="ASDB.AS_Select" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
-  Date: 2/3/2016
-  Time: 5:00 PM
+  Date: 2/13/2016
+  Time: 6:24 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -26,6 +26,8 @@
 <%
     AS_Select aselect = new AS_Select();
     String programName = "";
+    String courseCode = request.getParameter("CourseValue");
+
     try {
         System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
@@ -42,7 +44,7 @@
         <div class="container" id="space">
             <!-- what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Add Performance Indicator</h2>
+                <h2 class="text-center">Add Student</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Enter");%> performance indicator for the <%out.print(programName);%> program</p>
@@ -56,8 +58,6 @@
 
                                 <label>Program: <label><%out.print(programName);%> </label></label>
                                 <input type="hidden" name="programName" value="<%=programName%>">
-                                <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
-
                             </div>
                         </div>
 

@@ -37,7 +37,7 @@ public class AddTerm extends HttpServlet {
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
         try {
             request.getSession().setAttribute("Termid",String.valueOf(Termid));
-            request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
+            request.getRequestDispatcher("/cycle/index.jsp?page=includeCourse").forward(request,response);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

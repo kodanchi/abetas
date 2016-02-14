@@ -48,7 +48,9 @@ public class AddPI extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request, response);
+                //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request, response);
+                response.sendRedirect("/cycle/index.jsp?page=piList&programID="+request.getParameter("programID"));
+
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }
@@ -77,7 +79,9 @@ public class AddPI extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request, response);
+                //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request, response);
+                response.sendRedirect("/cycle/index.jsp?page=piList&programID="+request.getParameter("programID"));
+
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }

@@ -33,6 +33,40 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("addStudent")) {
+
+                String programID=request.getParameter("programID");
+                String CourseValue=request.getParameter("CourseValue");
+                String F_ID=request.getParameter("F_ID");
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
+                    pageName = "addStudent.jsp?programID="+programID+"&CourseValue="+CourseValue+"&F_ID="+F_ID;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("addStudent")) {
+
+                String programID=request.getParameter("programID");
+                String CourseValue=request.getParameter("CourseValue");
+                String F_ID=request.getParameter("F_ID");
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
+                    pageName = "addStudent.jsp?programID="+programID+"&CourseValue="+CourseValue+"&F_ID="+F_ID;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("includeCourse")) {
+
+                String programID=request.getParameter("programID");
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
+                    pageName = "includeCourse.jsp?programID="+programID;
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("addPILinks")) {
 
                 String programID=request.getParameter("programID");
@@ -102,6 +136,13 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("CourseInfo")) {
+                String programID=request.getParameter("programID");
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    pageName = "CourseInfo.jsp?programID=" + programID;
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("LinkPIOutList")) {
 
                 String programID=request.getParameter("programID");
@@ -131,20 +172,21 @@
                 }
             }else if(pageCall.equals("piList")) {
 
-                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
-                    pageName = "piList.jsp";
-                }else {
-                    //display error page
-                }
-            }else if(pageCall.equals("piList")) {
-
                 String programID=request.getParameter("programID");
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
                     System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
                     pageName = "piList.jsp?programID=" + programID;
                 }else {
                     //display error page
+                }
+            }else if(pageCall.equals("includeCourse")) {
+
+                String programID=request.getParameter("programID");
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null && programID!=null){
+                    System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid")+"        "+programID);
+                    pageName = "includeCourse.jsp?programID=" + programID;
+                }else {
+                    pageName = "includeCourse.jsp";
                 }
             }else if(pageCall.equals("addRubrics")) {
                 System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
@@ -170,15 +212,9 @@
                 }
             }else if(pageCall.equals("addPI")) {
 
+                String programID=request.getParameter("programID");
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    pageName = "addPI.jsp";
-                }else {
-                    //display error page
-                }
-            }else if(pageCall.equals("piList")) {
-
-                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    pageName = "piList.jsp";
+                    pageName = "addPI.jsp?programID="+programID;
                 }else {
                     //display error page
                 }

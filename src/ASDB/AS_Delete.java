@@ -246,6 +246,58 @@ public class AS_Delete {
 
     }
 
+    public void deleteIC(String code, int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = "delete from term_contains_courses where FK_C_code = ? and FK_T_ID = ? ;";
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+            preparedStatement.setInt(2, id);
+
+            rs = preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
     public void deleteFormative(int id) throws ClassNotFoundException, SQLException {
 
         connect();
