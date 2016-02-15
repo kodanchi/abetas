@@ -30,7 +30,7 @@ public class ProgramSheetImportServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //String[] sheetChecker = {"firstname","middlename","lastname","username","email","level"};
-        String[] sheetChecker = {"objective"};
+
         ImportProgramSheet importer = new ImportProgramSheet(request);
         //PrintWriter out = response.getWriter();
 
@@ -45,9 +45,14 @@ public class ProgramSheetImportServlet extends HttpServlet {
                 dataType = importer.getDataType();
 
                 if(dataType.equals("obj")){
+                    String[] sheetChecker = {"objective"};
                     dataIsValid = importer.objSheetVaildation(sheetChecker);
                 }else if (dataType.equals("outcomes")){
+                    String[] sheetChecker = {"outcome"};
                     dataIsValid = importer.outcomesSheetVaildation(sheetChecker);
+                }else if (dataType.equals("courses")){
+                    String[] sheetChecker = {"course name","course code","course level"};
+                    dataIsValid = importer.coursesSheetVaildation(sheetChecker);
                 }else {
                     System.out.println("no data type");
                 }

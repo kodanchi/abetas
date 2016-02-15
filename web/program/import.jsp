@@ -30,6 +30,8 @@
                                 dataType = "obj";
                             }else if(importFile.equals("outcomes")){
                                 dataType = "outcomes";
+                            }else if(importFile.equals("courses")){
+                                dataType = "courses";
                             }
                         }
 

@@ -30,14 +30,26 @@
                     //display error page
                 }
             }else if (pageCall.equals("CoursesList")) {
-                String id = request.getParameter("id");
-                String name = request.getParameter("name");
-                System.out.println(name+"   "+id);
-                if (id != null) {
-                    System.out.println(name+"   "+id);
-                    pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
-                } else {
-                    //display error page
+                if (stutsCall != null){
+                    String id = request.getParameter("id");
+                    String name = request.getParameter("name");
+                    if(stutsCall.equals("success")){
+                        if(page.equals("obj")){
+                            pageName = "CoursesList.jsp?name=" + name + "&id=" + id +"&status="+stutsCall;
+                        }else if (page.equals("outcomes")){
+
+                        }
+                    }
+                }else {
+                    String id = request.getParameter("id");
+                    String name = request.getParameter("name");
+                    System.out.println(name + "   " + id);
+                    if (id != null) {
+                        System.out.println(name + "   " + id);
+                        pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
+                    } else {
+                        //display error page
+                    }
                 }
             }else if (pageCall.equals("ObjList")) {
                 if (stutsCall != null){
@@ -79,12 +91,24 @@
                     //display error page
                 }
             }else if (pageCall.equals("OutcomeList")) {
-                String id = request.getParameter("id");
-                String name = request.getParameter("name");
-                if (id != null) {
-                    pageName = "SOList.jsp?name=" + name + "&id=" + id;
-                } else {
-                    //display error page
+                if (stutsCall != null){
+                    String id = request.getParameter("id");
+                    String name = request.getParameter("name");
+                    if(stutsCall.equals("success")){
+                        if(page.equals("obj")){
+                            pageName = "SOList.jsp?name=" + name + "&id=" + id +"&status="+stutsCall;
+                        }else if (page.equals("outcomes")){
+
+                        }
+                    }
+                }else {
+                    String id = request.getParameter("id");
+                    String name = request.getParameter("name");
+                    if (id != null) {
+                        pageName = "SOList.jsp?name=" + name + "&id=" + id;
+                    } else {
+                        //display error page
+                    }
                 }
             }else if(pageCall.equals("addOut")){
                 String id = request.getParameter("id");
@@ -120,6 +144,8 @@
                         pageName = "import.jsp?name="+name+"&id="+id+"&data=obj";
                     }else if(request.getParameter("data").equals("outcomes")){
                         pageName = "import.jsp?name="+name+"&id="+id+"&data=outcomes";
+                    }else if(request.getParameter("data").equals("courses")){
+                        pageName = "import.jsp?name="+name+"&id="+id+"&data=courses";
                     } else {
 
                     }

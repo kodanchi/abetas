@@ -44,6 +44,10 @@ public class ProgramSheetUploadServlet extends HttpServlet {
                 if(dataType.equals("obj")){
                     System.out.println("dataType : "+dataType);
                     dba.addObject(dataRow.get(0), Integer.parseInt(id));
+                }else if(dataType.equals("outcomes")){
+                    dba.addOutcome(dataRow.get(0), Integer.parseInt(id));
+                }else if(dataType.equals("courses")){
+                    dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(id));
                 }
             }
         } catch (ClassNotFoundException e) {
@@ -56,7 +60,13 @@ public class ProgramSheetUploadServlet extends HttpServlet {
             //response.setStatus(HttpServletResponse.SC_CONTINUE);
             //response.setHeader("Location","/users/index.jsp?status=Success");
             response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/program/index.jsp?page=ObjList&name=" + name + "&id=" + id+"&status=Success");
+            if(dataType.equals("obj")) {
+                response.setHeader("Location", "/program/index.jsp?page=ObjList&name=" + name + "&id=" + id + "&status=Success");
+            }else if(dataType.equals("outcomes")){
+                response.setHeader("Location", "/program/index.jsp?page=OutcomeList&name=" + name + "&id=" + id + "&status=Success");
+            }else if(dataType.equals("courses")){
+                response.setHeader("Location", "/program/index.jsp?page=CoursesList&name=" + name + "&id=" + id + "&status=Success");
+            }
 
             /*response.getWriter().print("<!DOCTYPE HTML>\n" +
                     "<html lang=\"en-US\">\n" +
