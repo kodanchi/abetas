@@ -85,8 +85,13 @@
             }else if (pageCall.equals("LinkOutObj")) {
                 String id = request.getParameter("id");
                 String name = request.getParameter("name");
+                System.out.print("id is fkn here : "+id);
                 if (id != null) {
-                    pageName = "linkSOWithO.jsp?name=" + name + "&id=" + id;
+                    if(request.getParameter("status")!= null){
+                        pageName = "AddOutObjLink.jsp?name=" + name + "&id=" + id;
+                    }else {
+                        pageName = "linkSOWithO.jsp?name=" + name + "&id=" + id;
+                    }
                 } else {
                     //display error page
                 }
@@ -161,6 +166,18 @@
                     }
 
                 }else {
+                    //display error page
+                }
+            }else if (pageCall.equals("updateLink")) {
+                String name = request.getParameter("name");
+                String id = request.getParameter("id");
+                String Linkid = request.getParameter("Linkid");
+                String ObjLinkValue = request.getParameter("ObjLinkValue");
+                String OutLinkValue = request.getParameter("OutLinkValue");
+                if (id != null) {
+                    System.out.println(id+"      "+name+"       "+Linkid+"        "+ObjLinkValue+"        "+OutLinkValue);
+                    pageName = "AddOutObjLink.jsp?id=" + id+"&Linkid="+ Linkid+"&ObjLinkValue="+ObjLinkValue+"&OutLinkValue="+OutLinkValue+"&name="+name;
+                } else {
                     //display error page
                 }
             }else {

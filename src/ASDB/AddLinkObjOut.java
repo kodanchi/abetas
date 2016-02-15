@@ -21,11 +21,18 @@ public class AddLinkObjOut extends HttpServlet {
         if (request.getParameter("ObjLinkValue").equals("null")) {
             int id=0;
         AS_Insert dba=new AS_Insert();
-        //AS_Select dbaS=new AS_Select();
+        AS_Select dbaS=new AS_Select();
         try {
-            //id=dbaS.selectProgram(request.getParameter("Pname"));
-            System.out.println("        "+request.getParameter("id")+"        LLLLLLLLLLLLLLLLL      Obj      "+Integer.parseInt(request.getParameter("Obj"))+"        Out            "+Integer.parseInt(request.getParameter("Out")));
-            dba.addLinkObj_Out(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("id")));
+            if(!dbaS.isExistLinkObj_Out(Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("Out")),
+                    Integer.parseInt(request.getParameter("id")))){
+                //id=dbaS.selectProgram(request.getParameter("Pname"));
+                System.out.println("        "+request.getParameter("id")+"        LLLLLLLLLLLLLLLLL      Obj      "+Integer.parseInt(request.getParameter("Obj"))+"        Out            "+Integer.parseInt(request.getParameter("Out")));
+                dba.addLinkObj_Out(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("id")));
+                response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+                response.setHeader("Location", "/program/index.jsp?page=LinkOutObj&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+            }else {
+                sendErrMsg("Link is exist",request.getParameter("name"),request.getParameter("id"),request,response);
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -37,8 +44,7 @@ public class AddLinkObjOut extends HttpServlet {
         //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
 
-        response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        response.setHeader("Location", "/program/index.jsp?page=LinkOutObj&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+
         }
         else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
@@ -46,12 +52,20 @@ public class AddLinkObjOut extends HttpServlet {
 
             int id = 0;
             AS_Update dba = new AS_Update();
-            //AS_Select dbaS=new AS_Select();
+            AS_Select dbaS=new AS_Select();
             try {
-                //id=dbaS.selectProgram(request.getParameter("Pname"));
-                dba.updateLinkObj_Out(Integer.parseInt(request.getParameter("Linkid")), Integer.parseInt(request.getParameter("Obj")), Integer.parseInt(request.getParameter("Out")));
-                System.out.println(Integer.parseInt(request.getParameter("Linkid"))+"           "+Integer.parseInt(request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':')))+"                     "+Integer.parseInt(request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':')))+"          Update   AdObj Servlet");
-            } catch (ClassNotFoundException e) {
+                if(!dbaS.isExistLinkObj_OutExcept(Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("Out")),
+                        Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("Linkid")))){
+
+                    //id=dbaS.selectProgram(request.getParameter("Pname"));
+                    dba.updateLinkObj_Out(Integer.parseInt(request.getParameter("Linkid")), Integer.parseInt(request.getParameter("Obj")), Integer.parseInt(request.getParameter("Out")));
+                    System.out.println(Integer.parseInt(request.getParameter("Linkid"))+"           "+Integer.parseInt(request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':')))+"                     "+Integer.parseInt(request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':')))+"          Update   AdObj Servlet");
+
+                }else {
+
+                    sendErrMsg("Link is exist",request.getParameter("name"),request.getParameter("id"),request,response);
+                }
+                 } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -70,5 +84,38 @@ public class AddLinkObjOut extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+    protected void sendErrMsg(String msg,String pname,String pid,HttpServletRequest request, HttpServletResponse response){
+
+
+        System.out.println("ErrMsg : "+msg);
+
+        System.out.println("session is : "+request.getSession().getId());
+        request.getSession().setAttribute("errMsg",msg);
+        //request.getSession().setAttribute("programVal",programVal);
+
+
+        try {
+            if(request.getParameter("ObjLinkValue").equals("null")) {
+                //request.getRequestDispatcher("/program/index.jsp?page=add").forward(request, response);
+                /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+                response.setHeader("Location","/program/index.jsp?page=add");*/
+                response.sendRedirect("/program/index.jsp?name="+pname+"&id="+pid+"&page=LinkOutObj&status=err");
+            }else {
+
+                String Linkid = request.getParameter("Linkid");
+                String ObjLinkValue = request.getParameter("ObjLinkValue");
+                String OutLinkValue = request.getParameter("OutLinkValue");
+                //request.getRequestDispatcher("/program/index.jsp?page=update").forward(request, response);
+                response.sendRedirect("/program/index.jsp?page=updateLink&name="+pname+"&id="+pid+"&Linkid="+ Linkid+"&ObjLinkValue="+ObjLinkValue+"&OutLinkValue="+OutLinkValue);
+            }
+        } /*catch (ServletException e) {
+            e.printStackTrace();
+        }*/ catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return;
     }
 }

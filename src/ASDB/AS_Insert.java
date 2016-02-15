@@ -567,7 +567,9 @@ public class AS_Insert {
                 sqlException.printStackTrace();
             }
 
-        }
+
+
+    }
     }
 
     public void addCourse(String code, String name, int level,int include, int FK_P_ID) throws ClassNotFoundException, SQLException {

@@ -1865,6 +1865,140 @@ public class AS_Select {
     }
 
 
+    public boolean isExistLinkObj_Out(int obj, int out, int pid) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM link_out_obj where FK_out =?  AND FK_obj =?  AND FK_P_ID = ? );";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (2, obj);
+            preparedStatement.setInt (1, out);
+            preparedStatement.setInt (3, pid);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isProgramExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+    public boolean isExistLinkObj_OutExcept(int obj, int out, int pid,int linkid) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM link_out_obj where FK_out = ?  AND FK_obj = ? AND" +
+                    " FK_P_ID = ? AND (FK_obj,FK_out) NOT IN ( SELECT FK_obj,FK_out FROM link_out_obj where Link_ID = ?));";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (2, obj);
+            preparedStatement.setInt (1, out);
+            preparedStatement.setInt (3, pid);
+            preparedStatement.setInt (4, linkid);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isProgramExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
     public ArrayList<String> selectObjForLink(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
