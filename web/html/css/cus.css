@@ -75,3 +75,6 @@ input[readonly] {
 .nav-tabs, .nav-pills {
     text-align:center;
 }
+.white {
+    color: #ecf0f1;
+}
