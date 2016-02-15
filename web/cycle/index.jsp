@@ -35,25 +35,29 @@
                 }
             }else if(pageCall.equals("addStudent")) {
 
+                String courseCode=request.getParameter("courseCode");
+                String courseName=request.getParameter("courseName");
                 String programID=request.getParameter("programID");
-                String CourseValue=request.getParameter("CourseValue");
+                String programName=request.getParameter("programName");
                 String F_ID=request.getParameter("F_ID");
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
-                    pageName = "addStudent.jsp?programID="+programID+"&CourseValue="+CourseValue+"&F_ID="+F_ID;
+                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid")+ "F     "+F_ID);
+                    pageName = "addStudent.jsp?programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&programName="+programName+"&F_ID="+F_ID;
                 }else {
                     //display error page
                 }
-            }else if(pageCall.equals("addStudent")) {
+            }else if(pageCall.equals("studentList")) {
 
+                String courseCode=request.getParameter("courseCode");
+                String courseName=request.getParameter("courseName");
                 String programID=request.getParameter("programID");
-                String CourseValue=request.getParameter("CourseValue");
+                String programName=request.getParameter("programName");
                 String F_ID=request.getParameter("F_ID");
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
-                    pageName = "addStudent.jsp?programID="+programID+"&CourseValue="+CourseValue+"&F_ID="+F_ID;
+                    System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQq  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid")+"    "+courseCode+"      "+courseName+"     "+programID+"     "+programName+"   "+F_ID);
+                    pageName = "studentList.jsp?programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&programName="+programName+"&F_ID="+F_ID;
                 }else {
                     //display error page
                 }
@@ -178,6 +182,20 @@
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
                     System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
                     pageName = "piList.jsp?programID=" + programID;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("studentList")) {
+
+                String courseCode=request.getParameter("courseCode");
+                String courseName=request.getParameter("courseName");
+                String programID=request.getParameter("programID");
+                String programName=request.getParameter("programName");
+                String F_ID=request.getParameter("F_ID");
+
+                if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
+                    System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQq  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid")+"    "+courseCode+"      "+courseName+"     "+programID+"     "+programName+"   "+F_ID);
+                    pageName = "studentList.jsp?programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&programName="+programName+"&F_ID="+F_ID;
                 }else {
                     //display error page
                 }

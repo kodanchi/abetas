@@ -756,7 +756,7 @@ public class AS_Insert {
         return id;
     }
 
-    public void addStudent(int SID, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
+    public void addStudent(String name, int ID, String code, int F_ID, int T_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -775,13 +775,15 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into students (Student_ID, Student_Fname, Student_Mname, Student_Lname)" + " values (?, ?, ?, ?)";
+            String query = " insert into students (Student_Name, Student_ID, FK_C_code, FK_Faculty_ID, FK_T_ID)" + " values (?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, SID);
-            preparedStatement.setString(2, Fname);
-            preparedStatement.setString(3, Mname);
-            preparedStatement.setString(4, Lname);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, ID);
+            preparedStatement.setString(3, code);
+            preparedStatement.setInt(4, F_ID);
+            preparedStatement.setInt(5, T_ID);
+
             rs = preparedStatement.executeUpdate();
 
 

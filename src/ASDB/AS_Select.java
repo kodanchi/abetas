@@ -586,7 +586,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>>  selectStudents() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>>  selectStudents(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -598,7 +598,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM students;";
+            String query = "SELECT S_ID, Student_Name, Student_ID FROM students WHERE FK_T_ID = "+id+" ;";
 
             /*
              *  Get connection from the DataSource
@@ -620,8 +620,7 @@ public class AS_Select {
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(4));
-                RowDate.add(rs.getString(5));
+
 
 
                 RsArr.add(RowDate);

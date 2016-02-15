@@ -26,7 +26,6 @@
 <%
     AS_Select aselect = new AS_Select();
     String programName = "";
-    String courseCode = request.getParameter("CourseValue");
 
     try {
         System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
@@ -47,7 +46,7 @@
                 <h2 class="text-center">Add Student</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p><%if (request.getParameter("Student_NameValue")!=null) {out.print("Update");} else out.print("Enter");%> the student information</p>
+                    <p><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Enter");%> the student information</p>
 
                     <form name="myform" action="/AddStudent" method="post">
 
@@ -56,9 +55,24 @@
                             <!-- Large button group -->
                             <div class="btn-group">
 
-                                <label>Student ID: </label>
                                 <input type="hidden" name="programName" value="<%=programName%>">
-                                <input type="text" name="SID" placeholder="Student ID">
+                                <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
+                                <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
+                                <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
+                                <input type="hidden" name="F_ID" value="<%=request.getParameter("F_ID")%>">
+                                <input type="hidden" name="programName" value="<%=request.getParameter("programName")%>">
+
+                                <%
+                                    System.out.println(request.getParameter("programName"));
+                                    System.out.println(request.getParameter("programID"));
+                                    System.out.println(request.getParameter("courseCode"));
+                                    System.out.println(request.getParameter("courseName"));
+                                    System.out.println(request.getParameter("F_ID"));
+                                    System.out.println(request.getParameter("programName"));
+
+                                %>
+                                <label>Student ID: </label>
+                                <input type="text" name="Student_ID" placeholder="Student ID">
 
                                 <label>Student Name: </label>
                                 <input type="text" name="Sname" placeholder="Student Name">
@@ -68,12 +82,12 @@
 
                         <div class="form-group">
 
-                            <input type="hidden" name="Student_NameValue" value="<%=request.getParameter("Student_NameValue")%>">
+                            <input type="hidden" name="NValue" value="<%=request.getParameter("NValue")%>">
 
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("Student_NameValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <a class="btn btn-success btn-primary" href="index.jsp?page=includeCourse">Cancel</a>
 
                     </form>

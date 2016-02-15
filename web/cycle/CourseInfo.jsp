@@ -51,91 +51,13 @@
                 <h4 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h4>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>*Click "Add" to add new student</p>
-                    <p>*Click "Submit" to finish</p>
-
-                        <div class="form-group">
-
-                            <!-- Large button group -->
-                            <div class="btn-group">
-
-                                <input type="hidden" name="programName" value="<%=programName%>">
-                            </div>
-                        </div>
 
 
-                        <div class="form-group">
-
-                            <input type="hidden" name="CourseValue" value="<%=request.getParameter("CourseValue")%>">
-                            <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
-                            <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
-
-                        </div>
-
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
-
-                            <!-- Table -->
-                            <table class="table">
-                                <tr>
-                                    <th>Student ID</th>
-                                    <th>Name</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
-                                </tr>
-                                <%
-
-                                    AS_Select bselect = new AS_Select();
-
-                                    try {
-                                        ArrayList<ArrayList<String>> rs = bselect.selectStudents();
-                                        ArrayList<String> rsRow ;
-
-                                        for (int i=0; i<rs.size();i++){
-                                            rsRow = new ArrayList<String>();
-                                            rsRow = rs.get(i);
-                                            out.print("<tr>");
-                                            for (int j=2; j<rsRow.size();j++) {
-                                                    out.print("<td>");
-                                                    out.print(rsRow.get(j));
-                                                    out.print("</td>");
-                                            }
-                                            out.print("<td>" +
-                                                    "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                    "                            <input name=\"page\" value=\"updateStudent\" hidden />\n" +
-                                                    "                            <input name=\"S_ID\" value=\""+rsRow.get(4)+"\" hidden />\n" +
-                                                    "                            <input name=\"CValue\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                    "                            <input name=\"FValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
-                                                    "                            <input name=\"Student_IDValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
-                                                    "                            <input name=\"Student_NameValue\" value=\""+rsRow.get(3)+"\" hidden />\n" +
-                                                    "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
-                                                    "                            </form>" +
-                                                    "                            </td>" +
-                                                    "                            <form method=\"post\" action=\"/DeletePILink\">\n" +
-                                                    "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                    "                            <input name=\"LinkID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                    "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                               <td>" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                                    "                               </td>"+
-                                                    "                        </form>" +
-                                                    "</tr>");
-                                        }
-
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                %>
-                            </table>
-                        </div>
+                    <form name="myform" action="index.jsp?page=studentList" method="post">
 
                     <div class="col-xl-50 selectContainer" >
                         <p>Select a faculty member to teach this course:</p>
-                        <select class="form-control" name="F_ID" onchange="getFID(this)" required>
+                        <select class="form-control" name="F_ID" required>
                             <%
                                 AS_Select cselect = new AS_Select();
                                 try {
@@ -151,19 +73,28 @@
                                 }
                             %>
                         </select>
-                        <script>
-                            function getFID(){
-                                var value = sel.value;
-                                $('#addB').href+="&F_ID="+value;
-                            }
-                        </script>
+
                     </div>
 
                         <br>
+                    <div class="form-group">
 
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&programID=<%=request.getParameter("programID")%>&CourseValue=<%=request.getParameter("CourseValue")%>">Add</a>
-                    <a class="btn btn-success btn-primary" href="index.jsp?page=piList">Cancel</a>
-                    <a class="btn btn-success btn-fill" id="addB" href="index.jsp?page=addStudent&programID=<%=request.getParameter("programID")%>&CourseValue=<%=request.getParameter("CourseValue")%>">Submit</a>
+                        <input type="hidden" name="courseCode" value="<%=courseCode%>">
+                        <input type="hidden" name="courseName" value="<%=courseName%>">
+                        <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
+                        <input type="hidden" name="programName" value="<%=programName%>">
+
+                    </div>
+
+                    <div class="panel panel-default">
+
+                    </div>
+                    <p>*Click "Next" to add student</p>
+                    <br>
+                        <button class="btn btn-success btn-fill" type="submit">Next</button>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=piList">Cancel</a>
+
+                    </form>
 
                     <!-- End of col -->
                 </div>
