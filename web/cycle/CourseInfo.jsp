@@ -51,7 +51,8 @@
                 <h4 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h4>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>Click "Add Button" to add new student:</p>
+                    <p>*Click "Add" to add new student</p>
+                    <p>*Click "Submit" to finish</p>
 
                         <div class="form-group">
 
@@ -65,7 +66,6 @@
 
                         <div class="form-group">
 
-                            <label>Performance Indicator</label>
                             <input type="hidden" name="CourseValue" value="<%=request.getParameter("CourseValue")%>">
                             <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
                             <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
@@ -102,7 +102,7 @@
                                             }
                                             out.print("<td>" +
                                                     "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                    "                            <input name=\"page\" value=\"CourseInfo\" hidden />\n" +
+                                                    "                            <input name=\"page\" value=\"updateStudent\" hidden />\n" +
                                                     "                            <input name=\"S_ID\" value=\""+rsRow.get(4)+"\" hidden />\n" +
                                                     "                            <input name=\"CValue\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                     "                            <input name=\"FValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
@@ -134,6 +134,7 @@
                         </div>
 
                     <div class="col-xl-50 selectContainer" >
+                        <p>Select a faculty member to teach this course:</p>
                         <select class="form-control" name="F_ID" onchange="getFID(this)" required>
                             <%
                                 AS_Select cselect = new AS_Select();
@@ -160,8 +161,9 @@
 
                         <br>
 
-                    <a class="btn btn-success btn-fill" id="addB" href="index.jsp?page=addStudent&programID=<%=request.getParameter("programID")%>&CourseValue=<%=request.getParameter("CourseValue")%>">Add</a>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&programID=<%=request.getParameter("programID")%>&CourseValue=<%=request.getParameter("CourseValue")%>">Add</a>
                     <a class="btn btn-success btn-primary" href="index.jsp?page=piList">Cancel</a>
+                    <a class="btn btn-success btn-fill" id="addB" href="index.jsp?page=addStudent&programID=<%=request.getParameter("programID")%>&CourseValue=<%=request.getParameter("CourseValue")%>">Submit</a>
 
                     <!-- End of col -->
                 </div>

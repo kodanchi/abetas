@@ -47,33 +47,34 @@
                 <h2 class="text-center">Add Student</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Enter");%> performance indicator for the <%out.print(programName);%> program</p>
+                    <p><%if (request.getParameter("Student_NameValue")!=null) {out.print("Update");} else out.print("Enter");%> the student information</p>
 
-                    <form name="myform" action="/AddPI" method="post">
+                    <form name="myform" action="/AddStudent" method="post">
 
                         <div class="form-group">
 
                             <!-- Large button group -->
                             <div class="btn-group">
 
-                                <label>Program: <label><%out.print(programName);%> </label></label>
+                                <label>Student ID: </label>
                                 <input type="hidden" name="programName" value="<%=programName%>">
+                                <input type="text" name="SID" placeholder="Student ID">
+
+                                <label>Student Name: </label>
+                                <input type="text" name="Sname" placeholder="Student Name">
                             </div>
                         </div>
 
 
                         <div class="form-group">
 
-                            <label>Performance Indicator</label>
-                            <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
-                            <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
-                            <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}%></textarea>
+                            <input type="hidden" name="Student_NameValue" value="<%=request.getParameter("Student_NameValue")%>">
 
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=piList">Cancel</a>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("Student_NameValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=includeCourse">Cancel</a>
 
                     </form>
                     <!-- End of col -->
@@ -81,7 +82,6 @@
 
                 <!-- End of row -->
             </div>
-
 
             <!-- Modal Bodies come here -->
         </div>

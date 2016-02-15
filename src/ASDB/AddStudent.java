@@ -8,15 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Ibrahim Abuaqel on 2/11/2016.
+ * Created by Ibrahim Abuaqel on 2/15/2016.
  */
-@WebServlet(name = "AddPILinks",
-        urlPatterns = {"/AddPILinks"})
-public class AddPILinks extends HttpServlet {
+@WebServlet(name = "AddStudent",
+        urlPatterns = {"/AddStudent"})
+public class AddStudent extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (request.getParameter("OutValue").equals("null")) {
-            System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  Course  "+  request.getParameter("Course"));
+        if (request.getParameter("Student_NameValue").equals("null")) {
+            System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  SID  "+  request.getParameter("SID"));
 
             AS_Insert dba = new AS_Insert();
             AS_Select sdba = new AS_Select();
@@ -24,13 +23,13 @@ public class AddPILinks extends HttpServlet {
             String Termid = (String) request.getSession().getAttribute("Termid");
             int programID = 0;
             int R=0;
-            System.out.println("##########################################################    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("Course")+"   "+Termid+"       "+request.getParameter("Type"));
+            System.out.println("##########################################################  Sname  "+request.getParameter("Sname")+"          ");
 
             try {
-                System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
+                //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
                 R=dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"));
                 dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
-            //Display error message.
+                //Display error message.
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {

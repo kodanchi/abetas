@@ -138,8 +138,10 @@
                 }
             }else if(pageCall.equals("CourseInfo")) {
                 String programID=request.getParameter("programID");
+                String CourseValue=request.getParameter("CourseValue");
+
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    pageName = "CourseInfo.jsp?programID=" + programID;
+                    pageName = "CourseInfo.jsp?programID=" + programID+"&CourseValue="+CourseValue;
                 }else {
                     //display error page
                 }
@@ -165,7 +167,7 @@
                 String programID=request.getParameter("programID");
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-                    System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid"));
+                    System.out.println("UUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU  " + request.getSession().getAttribute("id")+"     "+request.getSession().getAttribute("Termid")+"   "+LinkID+"    "+OutValue+"   "+PIValue+"    "+CourseValue+"   "+TypeValue+"     "+PValue+"    "+RubricValue+"  "+TermValue+"   "+programID);
                     pageName = "addPILinks.jsp?LinkID="+LinkID+"&OutValue="+OutValue+"&PIValue="+PIValue+"&CourseValue=" + CourseValue+"&TypeValue="+TypeValue+"&PValue=" + PValue+"&RubricValue="+RubricValue+"&TermValue=" + TermValue+"&programID=" + programID;
                 }else {
                     //display error page
@@ -197,11 +199,21 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("updateCycle")) {
+                System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  ");
+                String id=request.getParameter("id");
+
+                if(request.getParameter("id") != null){
+                    System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
+                    pageName = "addTerm.jsp?id="+id;
+                }else {
+                    //display error page
+                }
             }else if(pageCall.equals("updatePI")) {
 
                 String PILabel=request.getParameter("PILabel");
                 String PIValue=request.getParameter("PIValue");
-                String programID=request.getParameter("progID");
+                String programID=request.getParameter("programID");
 
                 if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
                     System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +PILabel +"    "+ PIValue+"     "+programID);

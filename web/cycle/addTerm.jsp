@@ -18,7 +18,10 @@
     String id = "";
     if(request.getSession().getAttribute("id") != null){
         id  = (String) request.getSession().getAttribute("id");
-        out.print("id is : "+id);
+        out.print("A id is : "+id);
+    }else if(request.getParameter("id") != null){
+        id  = request.getParameter("id");
+        out.print("B id is : "+id);
     }
 
 %>
@@ -106,7 +109,7 @@
                                                             }
                                                             out.print("<td><form method=\"post\" action=\"index.jsp\">\n");
                                                             out.print("<input name=\"Termid\" value=\""+rsRow.get(0)+"\" hidden />\n");
-                                                            out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n</form></td>");
+                                                            out.print("<button type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n</form></td>");
 
                                                             out.print("<td><form method=\"post\" action=\"/DeleteTerm\">\n");
                                                             out.print("<input name=\"Termid\" value=\""+rsRow.get(0)+"\" hidden />\n");

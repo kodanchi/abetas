@@ -151,6 +151,7 @@
                                 <th>Code</th>
                                 <th>Name</th>
                                 <th>Level</th>
+                                <th>Course Info.</th>
                                 <th>Delete</th>
 
                             </tr>
@@ -173,14 +174,7 @@
                                             out.print("<td>" +
                                                     "                            <form method=\"post\" action=\"index.jsp\">\n" +
                                                     "                            <input name=\"page\" value=\"CourseInfo\" hidden />\n" +
-                                                    "                            <input name=\"LinkID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                    "                            <input name=\"OutValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
-                                                    "                            <input name=\"PIValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
-                                                    "                            <input name=\"CourseValue\" value=\""+rsRow.get(3)+"\" hidden />\n" +
-                                                    "                            <input name=\"TypeValue\" value=\""+rsRow.get(4)+"\" hidden />\n" +
-                                                    "                            <input name=\"PValue\" value=\""+rsRow.get(6)+"\" hidden />\n" +
-                                                    "                            <input name=\"RubricValue\" value=\""+rsRow.get(5)+"\" hidden />\n" +
-                                                    "                            <input name=\"TermValue\" value=\""+rsRow.get(7)+"\" hidden />\n" +
+                                                    "                            <input name=\"CourseValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                            </form>" +
