@@ -1,5 +1,7 @@
 package ASDB;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -374,7 +376,11 @@ public class AS_Insert {
             ////Need to display the temp password to the screen
 
 
-        } catch (Exception e) {
+        } catch (MySQLIntegrityConstraintViolationException e) {
+            e.fillInStackTrace();
+            throw e;
+            //e.printStackTrace();
+        }catch (Exception e) {
             e.printStackTrace();
         } finally {
             /*
@@ -398,6 +404,8 @@ public class AS_Insert {
         }
         return data;
     }
+
+
 
     public void addObject(String Objective, int FK_P_ID) throws ClassNotFoundException, SQLException {
 

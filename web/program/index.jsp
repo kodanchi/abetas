@@ -130,9 +130,19 @@
                 }
             }else if(pageCall.equals("update")){
                 String id = request.getParameter("id");
+                String ProgramName = request.getParameter("pname");
                 if(id != null){
-                    pageName = "addProgram.jsp?id="+id;
+                    pageName = "addProgram.jsp?id="+id+"&ProgramName="+ProgramName;
                 }else {
+                    //display error page
+                }
+            }else if (pageCall.equals("updateProgram")) {
+                String id = request.getParameter("id");
+                String ProgramName = request.getParameter("ProgramName");
+                String ProgramMission = request.getParameter("ProgramMission");
+                if (id != null) {
+                    pageName = "addProgram.jsp?id=" + id+"&ProgramName="+ ProgramName+"&ProgramMission="+ProgramMission;
+                } else {
                     //display error page
                 }
             }else if(pageCall.equals("import")){

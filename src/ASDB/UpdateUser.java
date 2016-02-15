@@ -149,12 +149,7 @@ public class UpdateUser extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        try {
-            response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*/
+
 
         return;
     }
