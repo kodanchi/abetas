@@ -100,8 +100,23 @@
                                             try {
                                                 ArrayList<String> rs = aselect.selectObjForLink(Integer.parseInt(request.getParameter("id")));
 
-                                                for (int i=0; i<rs.size();i++) {
+                                                /*for (int i=0; i<rs.size();i++) {
                                                     out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
+                                                }*/
+                                                String objValue = request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':'));
+                                                for (int i=0; i<rs.size();i++) {
+                                                    String optValue = rs.get(i).substring(0, rs.get(i).indexOf(':'));
+                                                    out.print("<option value=\""+optValue);
+                                                    out.print("\"");
+
+
+                                                    System.out.println("the value is :"+optValue +" and oj is :"+objValue);
+                                                    if (request.getParameter("ObjLinkValue") != null && optValue.equals(objValue)) {
+                                                        System.out.println("inside odj selected if");
+                                                        out.print(" selected");
+                                                    }
+                                                    out.print(">");
+                                                    out.print(rs.get(i)+"</option>");
                                                 }
                                             } catch (ClassNotFoundException e) {
                                                 e.printStackTrace();
@@ -129,8 +144,22 @@
                                                 try {
                                                     ArrayList<String> rs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("id")));
 
-                                                    for (int i=0; i<rs.size();i++) {
+                                                    /*for (int i=0; i<rs.size();i++) {
                                                         out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
+                                                    }*/
+                                                    String outValue = request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':'));
+                                                    for (int i=0; i<rs.size();i++) {
+                                                        String optValue = rs.get(i).substring(0, rs.get(i).indexOf(':'));
+                                                        out.print("<option value=\""+optValue);
+                                                        out.print("\"");
+
+
+                                                        if (request.getParameter("OutLinkValue") != null && optValue.equals(outValue)) {
+                                                            System.out.println("inside out selected if");
+                                                            out.print(" selected");
+                                                        }
+                                                        out.print(">");
+                                                        out.print(rs.get(i)+"</option>");
                                                     }
                                                 } catch (ClassNotFoundException e) {
                                                     e.printStackTrace();
