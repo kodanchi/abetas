@@ -55,7 +55,7 @@ public class AddLinkObjOut extends HttpServlet {
             AS_Select dbaS=new AS_Select();
             try {
                 if(!dbaS.isExistLinkObj_OutExcept(Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("Out")),
-                        Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("Linkid")))){
+                        Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("Out")))){
 
                     //id=dbaS.selectProgram(request.getParameter("Pname"));
                     dba.updateLinkObj_Out(Integer.parseInt(request.getParameter("Linkid")), Integer.parseInt(request.getParameter("Obj")), Integer.parseInt(request.getParameter("Out")));

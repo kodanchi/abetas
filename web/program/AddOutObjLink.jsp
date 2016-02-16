@@ -37,11 +37,11 @@
 
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
-                "        $('#myModal').modal('show');\n" +
+                "        $('#errModal').modal('show');\n" +
                 "    });\n" +
                 "</script>" +
                 "<!-- Modal -->\n" +
-                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+                "                    <div class=\"modal fade\" id=\"errModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
                 "                        <div class=\"modal-dialog\">\n" +
                 "                            <div class=\"modal-content\">\n" +
                 "                                <div class=\"modal-header\">\n" +
@@ -103,7 +103,9 @@
                                                 /*for (int i=0; i<rs.size();i++) {
                                                     out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
                                                 }*/
-                                                String objValue = request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':'));
+                                                String objValue = request.getParameter("ObjLinkValue")!= null ?
+                                                        request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':')):
+                                                        "";
                                                 for (int i=0; i<rs.size();i++) {
                                                     String optValue = rs.get(i).substring(0, rs.get(i).indexOf(':'));
                                                     out.print("<option value=\""+optValue);
@@ -147,7 +149,9 @@
                                                     /*for (int i=0; i<rs.size();i++) {
                                                         out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
                                                     }*/
-                                                    String outValue = request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':'));
+                                                    String outValue = request.getParameter("OutLinkValue") != null ?
+                                                            request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':')):
+                                                            "";
                                                     for (int i=0; i<rs.size();i++) {
                                                         String optValue = rs.get(i).substring(0, rs.get(i).indexOf(':'));
                                                         out.print("<option value=\""+optValue);

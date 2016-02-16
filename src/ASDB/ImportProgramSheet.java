@@ -603,14 +603,17 @@ public class ImportProgramSheet {
 
     public void sendErrorMsg(HttpServletResponse response, HttpServletRequest request) throws IOException {
 
+        request.getSession().setAttribute("errMsg",Error_Msg);
+
         //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
-        RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+pname+"&id="+pid+"&cmd=upload&data="+pdataType+"&err="+Error_Msg);
+        response.sendRedirect("/program/index.jsp?name="+pname+"&id="+pid+"&cmd=upload&data="+pdataType);
+        /*RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+pname+"&id="+pid+"&cmd=upload&data="+pdataType+"&err="+Error_Msg);
 
         try {
             rd.forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public void sendSuccessMsg(HttpServletResponse response, HttpServletRequest request) throws IOException {

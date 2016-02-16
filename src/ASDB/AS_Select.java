@@ -1999,6 +1999,142 @@ public class AS_Select {
     }
 
 
+    public boolean isCoursesCodeExist(String code) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        int isExist=0;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM course where C_code = ?);";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+            //preparedStatement.setInt(2, pid);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                isExist= rs.getInt(1);
+                System.out.println(isExist+"    isCourseCodeExist");
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist == 0 ? false : true;
+
+        }
+
+    }
+
+
+    public boolean isCoursesCodeExistExcept(String code, int cid) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        int isExist=0;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM course where C_code = ? AND C_code NOT IN ( SELECT C_code FROM course where C_ID = ? ));";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+            preparedStatement.setInt(2, cid);
+            //preparedStatement.setString(3, oldCode);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                isExist= rs.getInt(1);
+                System.out.println(isExist+"    isCourseCodeExist");
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist == 0 ? false : true;
+
+        }
+
+    }
+
+
+
     public ArrayList<String> selectObjForLink(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();

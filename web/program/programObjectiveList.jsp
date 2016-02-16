@@ -24,14 +24,14 @@
 
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
-                "        $('#myModal').modal('show');\n" +
+                "        $('#errModal').modal('show');\n" +
                 "    });\n" +
                 "    function goToNormal(){\n" +
                 "        window.location.href =\"/program/\";\n" +
                 "    }\n" +
                 "</script>" +
                 "<!-- Modal -->\n" +
-                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+                "                    <div class=\"modal fade\" id=\"errModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
                 "                        <div class=\"modal-dialog\">\n" +
                 "                            <div class=\"modal-content\">\n" +
                 "                                <div class=\"modal-header\">\n" +
@@ -135,11 +135,11 @@
                             %>
                         </table>
                     </div>
-                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#myModal">Add</a>
+                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal">Add</a>
                     <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
