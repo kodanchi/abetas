@@ -25,7 +25,7 @@
         <filter-class>filters.AuthFilter</filter-class>
         <init-param>
             <param-name>avoid-urls</param-name>
-            <param-value>css,js,login</param-value>
+            <param-value>css,js,login.jsp,img</param-value>
         </init-param>
     </filter>
     <filter-mapping>
@@ -41,7 +41,7 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilters</filter-name>
-        <url-pattern>/login/login.jsp</url-pattern>
+        <url-pattern>/login.jsp</url-pattern>
     </filter-mapping>
 
 

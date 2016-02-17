@@ -23,6 +23,7 @@ public class LoginFilter implements Filter {
         if( request.getSession(false)!= null) {
             if (request.getSession().getAttribute("username") != null) {
                 if (CookiesControl.getCookieValue(request, "userCookie") != null) {
+                    System.out.print("From LoginFilter : sessionCookie is on");
                     response.sendRedirect("/index.jsp");
                 }
             }

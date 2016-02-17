@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,7 +78,8 @@ public class loginServlet extends HttpServlet {
                                 }
 
                                 successLogin = true;
-                                response.sendRedirect("/index.jsp");
+                                response.getWriter().print("Login Success!");
+                                //forward ="/index.jsp";
 
 
                             } else {
@@ -110,7 +112,7 @@ public class loginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.sendRedirect("/login/login.jsp");
+        //response.sendRedirect("/login.jsp");
 
 
 
