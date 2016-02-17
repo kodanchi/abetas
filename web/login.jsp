@@ -8,8 +8,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js"></script>
-<script src="/js/ct-paper-checkbox.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/js/ct-paper.js"></script>
+<script src="/js/ct-paper-checkbox.js"></script>
+
 
 <!doctype html>
 <html lang="en">
@@ -63,7 +65,7 @@
 
                             <div class="form-group">
                                 <label for="userName" class="title">Username</label>
-                                <input id="userName" name="userName" type="text" class="form-control" placeholder="Username">
+                                <input rel="tooltip" id="userName" name="userName" type="text" class="form-control" placeholder="Username">
                             </div>
                             <div class="form-group">
 
@@ -75,7 +77,7 @@
 
                                 <label class="checkbox checkbox-green" >
 
-                                    <input type="checkbox" value="remember-me" name="remember"  data-toggle="checkbox" checked>
+                                    <input type="checkbox" name="remember" data-toggle="checkbox"   checked>
 
                                     Remember me
 
@@ -84,7 +86,7 @@
                             <button type="submit" name="login" value="Login" class="btn btn-danger btn-block">Login</button>
                         </form>
                         <div class="forgot">
-                            <a href="#" class="btn btn-simple btn-danger">Forgot password?</a>
+                            <a class="btn btn-simple btn-danger">Forgot password?</a>
                         </div>
                     </div>
                 </div>

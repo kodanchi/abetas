@@ -1,3 +1,4 @@
+
 var searchVisible = 0;
 var transparent = true;
 

@@ -53,14 +53,16 @@ public class AuthFilter implements Filter {
 
         if(urlList.contains(url.split("/",3)[1])) {
             isAllowed = true;
-            System.out.println("Allowed URL!");
+            System.out.println("Allowed URL! : "+url.split("/",3)[1]);
         }
 
         if(!isAllowed){
             response.sendRedirect("/login.jsp");
+        }else {
+            chain.doFilter(req, resp);
         }
 
-        chain.doFilter(req, resp);
+
     }
 
     public void init(FilterConfig config) throws ServletException {

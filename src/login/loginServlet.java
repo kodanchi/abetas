@@ -69,8 +69,12 @@ public class loginServlet extends HttpServlet {
                                 session.setAttribute("username",username);
                                 session.setAttribute("userEmail",userEmail);
                                 session.setAttribute("userLvl",userLvl);
+                                System.out.println("Session username : "+request.getSession().getAttribute("username"));
+                                System.out.println("Session userEmail : "+request.getSession().getAttribute("userEmail"));
+                                System.out.println("Session userLvl : "+request.getSession().getAttribute("userLvl"));
 
                                 //cookie
+                                System.out.println("checking value : "+request.getParameter("remember"));
                                 if (request.getParameter("remember") != null) {
                                     CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 60 * 30);
                                 } else {
@@ -79,16 +83,16 @@ public class loginServlet extends HttpServlet {
 
                                 successLogin = true;
                                 response.getWriter().print("Login Success!");
-                                //forward ="/index.jsp";
+                                forward ="/index.jsp";
 
 
                             } else {
                                 //login failed
-                                forward = "/login/login.jsp?status=failedLogin";
+                                forward = "/login.jsp?status=failedLogin";
                             }
                         } else {
                             //login failed
-                            forward = "/login/login.jsp?status=failedLogin";
+                            forward = "/login.jsp?status=failedLogin";
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -97,14 +101,14 @@ public class loginServlet extends HttpServlet {
 
                 } else {
                     //login failed
-                    forward = "/login/login.jsp?status=missingData";
+                    forward = "/login.jsp?status=missingData";
                 }
 
-                if(!successLogin) {
+                //if(!successLogin) {
                     //Forward
                     //this.getServletContext().getRequestDispatcher(forward).forward(request, response);
                     response.sendRedirect(forward);
-                }
+                //}
             }
         }
 
