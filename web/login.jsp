@@ -52,13 +52,19 @@
 
                             if(request.getParameter("status")!= null){
                             if(request.getParameter("status").equals("failedLogin")){
-                            out.print("<p class=\"bg-danger\">");
+                            /*out.print("<p class=\"bg-danger\">");
                             out.print("wrong username or password!");
-                            out.print("</p>");
+                            out.print("</p>");*/
+                            out.print("\n" +
+                                    "<div class=\"alert alert-danger text-center fade in\">\n" +
+                                    "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>"+
+                                "wrong username or password"+
+                                    "</div>");
                             }else if(request.getParameter("status").equals("missingData")){
-                            out.print("<p class=\"bg-danger\">");
-                            out.print("Missing username or password!");
-                            out.print("</p>");
+                            out.print("<div class=\"alert alert-danger text-center fade in\">");
+                            out.print("<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>");
+                            out.print("Missing username or password");
+                            out.print("</div>");
                             }
                             }
                             %>
