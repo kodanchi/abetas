@@ -11,18 +11,17 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
 <%
+
     String id = "";
     String Termid = "";
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
-        out.println("Cycle id is : "+id);
+        out.println("id is : "+id);
         out.print("Termid is : "+Termid);
     }
 
-%>
 
-<%
     AS_Select aselect = new AS_Select();
     String programName = "";
     try {
@@ -54,7 +53,11 @@
                             <div class="btn-group">
 
                                 <label>Program: <label><%out.print(programName);%> </label></label>
+                                <input type="hidden" name="cycle" value="<%=id%>">
+                                <input type="hidden" name="term" value="<%=Termid%>">
                                 <input type="hidden" name="programName" value="<%=programName%>">
+                                <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
+
                             </div>
                         </div>
 
@@ -62,8 +65,6 @@
                         <div class="form-group">
 
                             <label>Performance Indicator</label>
-                            <input type="hidden" name="cycle" value="<%=id%>">
-                            <input type="hidden" name="term" value="<%=Termid%>">
                             <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                             <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
                             <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}%></textarea>

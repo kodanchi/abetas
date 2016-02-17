@@ -18,10 +18,10 @@ public class AddPILinks extends HttpServlet {
         if (request.getParameter("OutValue").equals("null")) {
             System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  Course  "+  request.getParameter("Course"));
 
-            P_AS_Insert dba = new P_AS_Insert();
-            P_AS_Select sdba = new P_AS_Select();
-            String id = request.getParameter("cycleId");
-            String Termid = (String) request.getSession().getAttribute("Termid");
+            AS_Insert dba = new AS_Insert();
+            AS_Select sdba = new AS_Select();
+            String id = request.getParameter("cycle");
+            String Termid = request.getParameter("term");
             int programID = 0;
             int R=0;
             System.out.println("##########################################################    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("Course")+"   "+Termid+"       "+request.getParameter("Type"));
@@ -44,14 +44,14 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID"));
+                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-            P_AS_Update dba = new P_AS_Update();
+            AS_Update dba = new AS_Update();
             String id = request.getParameter("cycleId");
             String Termid = (String) request.getSession().getAttribute("Termid");
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");
@@ -60,6 +60,7 @@ public class AddPILinks extends HttpServlet {
                 System.out.println("##########################################################  "+request.getParameter("LinkID")+"    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("programID")+"      "+request.getParameter("RubricValue")+"  "+request.getParameter("Course")+"   "+Termid+"    "+request.getParameter("Type"));
 
                 dba.updatePILink(Integer.parseInt(request.getParameter("LinkID")),Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")),Integer.parseInt(request.getParameter("RubricValue")),request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
+                dba.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
                 System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -75,7 +76,7 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID"));
+                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();

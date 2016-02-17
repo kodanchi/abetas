@@ -38,7 +38,7 @@ public class AddTerm extends HttpServlet {
         try {
             //request.getSession().setAttribute("Termid",String.valueOf(Termid));
             //request.getRequestDispatcher("/cycle/index.jsp?page=addRubrics").forward(request,response);
-            response.sendRedirect("/cycle/index.jsp?page=addRubrics&cycle="+id+"&term="+Termid);
+            response.sendRedirect("/cycle/index.jsp?page=includeCourse&cycle="+id+"&term="+Termid);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

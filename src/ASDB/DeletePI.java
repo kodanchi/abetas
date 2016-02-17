@@ -11,7 +11,8 @@ import java.io.PrintWriter;
 /**
  * Created by Ibrahim Abuaqel on 2/10/2016.
  */
-@WebServlet(name = "DeletePI")
+@WebServlet(name = "DeletePI",
+        urlPatterns = {"/DeletePI"})
 public class DeletePI extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
@@ -39,7 +40,7 @@ public class DeletePI extends HttpServlet {
         //response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
         try {
             //request.getSession().setAttribute("id",String.valueOf(id));
-            request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
+            request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

@@ -636,7 +636,7 @@ public class AS_Insert {
             }
 
         }
-    }public void includeCourse(int include) throws ClassNotFoundException, SQLException {
+    }public void includeCourse(String FK_C_code, int FK_T_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -655,10 +655,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into course (C_include)" + " values (?)";
+            String query = " insert into term_contains_courses (FK_C_code, FK_T_ID)" + " values (?,?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, include);
+            preparedStatement.setString(1, FK_C_code);
+            preparedStatement.setInt(2, FK_T_ID);
+
             rs = preparedStatement.executeUpdate();
 
 
@@ -754,7 +756,7 @@ public class AS_Insert {
         return id;
     }
 
-    public void addStudent(int SID, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
+    public void addStudent(String name, int ID, String code, int F_ID, int T_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -773,13 +775,15 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into students (Student_ID, Student_Fname, Student_Mname, Student_Lname)" + " values (?, ?, ?, ?)";
+            String query = " insert into students (Student_Name, Student_ID, FK_C_code, FK_Faculty_ID, FK_T_ID)" + " values (?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, SID);
-            preparedStatement.setString(2, Fname);
-            preparedStatement.setString(3, Mname);
-            preparedStatement.setString(4, Lname);
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, ID);
+            preparedStatement.setString(3, code);
+            preparedStatement.setInt(4, F_ID);
+            preparedStatement.setInt(5, T_ID);
+
             rs = preparedStatement.executeUpdate();
 
 
@@ -878,14 +882,16 @@ public class AS_Insert {
         return id;
     }
 
-    public void addRubric(String PI_rubric_name_1, String PI_rubric_description_1,String PI_rubric_name_2, String PI_rubric_description_2,String PI_rubric_name_3, String PI_rubric_description_3) throws ClassNotFoundException, SQLException {
+    public int addRubric(String PI_rubric_name_1, String PI_rubric_description_1,String PI_rubric_name_2, String PI_rubric_description_2,String PI_rubric_name_3, String PI_rubric_description_3,String PI_rubric_name_4, String PI_rubric_description_4) throws ClassNotFoundException, SQLException {
 
         connect();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
+        ResultSet rsSelect = null;
         int rs = 0;
+        int id=0;
         try {
 
             /*
@@ -898,7 +904,7 @@ public class AS_Insert {
              * Execute the query
              */
 
-            String query = " insert into pi_rubric (PI_rubric_name_1, PI_rubric_description_1, PI_rubric_name_2, PI_rubric_description_2, PI_rubric_name_3, PI_rubric_description_3)" + " values (?, ?, ?, ?, ?, ?)";
+            String query = " insert into pi_rubric (PI_rubric_name_1, PI_rubric_description_1, PI_rubric_name_2, PI_rubric_description_2, PI_rubric_name_3, PI_rubric_description_3, PI_rubric_name_4, PI_rubric_description_4)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, PI_rubric_name_1);
@@ -907,10 +913,85 @@ public class AS_Insert {
             preparedStatement.setString(4, PI_rubric_description_2);
             preparedStatement.setString(5, PI_rubric_name_3);
             preparedStatement.setString(6, PI_rubric_description_3);
+            preparedStatement.setString(7, PI_rubric_name_4);
+            preparedStatement.setString(8, PI_rubric_description_4);
             rs = preparedStatement.executeUpdate();
 
 
             ////Need to display the temp password to the screen
+            String querySelect = " SELECT PI_rubric_ID FROM pi_rubric ORDER BY PI_rubric_ID DESC LIMIT 1";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                id = rsSelect.getInt(1);
+                System.out.println("        dddd        "+id);
+                return id;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return id;
+    }
+
+    public void addPILink(int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs1 = 0;
+        int rs2 = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            ////Need to display the temp password to the screen
+
+
+            String query1 = " insert into link_out_pi (FK_out, FK_pi_ID, FK_P_ID, FK_R_ID, FK_C_ID, FK_T_ID, LinkType)" + " values (?, ?, ?, ?, ?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query1);
+            preparedStatement.setInt(1, FK_out);
+            preparedStatement.setInt(2, FK_pi_ID);
+            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setInt(4, FK_R_ID);
+            preparedStatement.setString(5, FK_C_ID);
+            preparedStatement.setInt(6, FK_T_ID);
+            preparedStatement.setString(7, LinkType);
+
+            rs2 = preparedStatement.executeUpdate();
 
 
         } catch (Exception e) {
@@ -935,6 +1016,7 @@ public class AS_Insert {
             }
 
         }
+
     }
 
     public void addPI(String name, int FK_P_ID) throws ClassNotFoundException, SQLException {

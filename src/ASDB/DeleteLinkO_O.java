@@ -19,8 +19,8 @@ public class DeleteLinkO_O extends HttpServlet {
         System.out.println(request.getParameter("id")+"           ");
         //ArrayList<String> data = new ArrayList<String>();
         int id=0;
-        P_AS_Delete dba=new P_AS_Delete();
-        //P_AS_Select dbaS=new P_AS_Select();
+        AS_Delete dba=new AS_Delete();
+        //AS_Select dbaS=new AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteLinkO_O(Integer.parseInt(request.getParameter("Linkid")));
@@ -36,8 +36,8 @@ public class DeleteLinkO_O extends HttpServlet {
 
         //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        response.setHeader("Location", "/program/index.jsp?page=LinkOutObj&name=" + request.getParameter("name") + "&id=" + request.getParameter("id"));
+        //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+        response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=LinkOutObj&name=" + request.getParameter("name") + "&id=" + request.getParameter("id"));
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

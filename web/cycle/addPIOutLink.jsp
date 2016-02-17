@@ -9,11 +9,12 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
 <%
+
     String id = "";
     String Termid = "";
-    if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-        id  = (String) request.getSession().getAttribute("id");
-        Termid  = (String) request.getSession().getAttribute("Termid");
+    if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+        id  = request.getParameter("cycle");
+        Termid  = request.getParameter("term");
         out.println("id is : "+id);
         out.print("Termid is : "+Termid);
     }
