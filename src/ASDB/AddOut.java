@@ -20,8 +20,8 @@ public class AddOut extends HttpServlet {
         if (request.getParameter("OutValue").equals("null")) {
         //ArrayList<String> data = new ArrayList<String>();
         int id=0;
-        AS_Insert dba=new AS_Insert();
-        //AS_Select dbaS=new AS_Select();
+        P_AS_Insert dba=new P_AS_Insert();
+        //P_AS_Select dbaS=new P_AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             System.out.println("        "+request.getParameter("id")+"        ooooooooooooooo            "+request.getParameter("Out"));
@@ -45,8 +45,8 @@ public class AddOut extends HttpServlet {
             System.out.println(request.getParameter("Outid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
 
             int id = 0;
-            AS_Update dba = new AS_Update();
-            //AS_Select dbaS=new AS_Select();
+            P_AS_Update dba = new P_AS_Update();
+            //P_AS_Select dbaS=new P_AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.updateOutcome(Integer.parseInt(request.getParameter("Outid")), request.getParameter("Out"));

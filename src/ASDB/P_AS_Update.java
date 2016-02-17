@@ -8,7 +8,7 @@ import java.sql.*;
 /**
  * Created by Ibrahim Abuaqel on 2/4/2016.
  */
-public class AS_Update {
+public class P_AS_Update {
 
     private Connection conn;
     private Statement stmt;
@@ -359,4 +359,64 @@ public class AS_Update {
         }
 
     }
+
+    public void updatePILink(int Link_ID,int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
+            String query = "update link_out_pi set FK_out = ?, FK_pi_ID=?, FK_P_ID=?, FK_R_ID=?, FK_C_ID=?, FK_T_ID=?, LinkType=? where Link_ID = ?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt (1, FK_out);
+            preparedStatement.setInt (2, FK_pi_ID);
+            preparedStatement.setInt (3, FK_P_ID);
+            preparedStatement.setInt (4, FK_R_ID);
+            preparedStatement.setString (5, FK_C_ID);
+            preparedStatement.setInt (6, FK_T_ID);
+            preparedStatement.setString (7, LinkType);
+            preparedStatement.setInt (8, Link_ID);
+
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
 }

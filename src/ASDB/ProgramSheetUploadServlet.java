@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -33,8 +31,8 @@ public class ProgramSheetUploadServlet extends HttpServlet {
         ArrayList<String> dataRow;
 
         System.out.println("dataArr"+ dataArr);
-        AS_Insert dba = new AS_Insert();
-        //AS_Select dbaS=new AS_Select();
+        P_AS_Insert dba = new P_AS_Insert();
+        //P_AS_Select dbaS=new P_AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
 

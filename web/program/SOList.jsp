@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Abdullah
   Date: 2/1/2016
@@ -90,7 +91,7 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-                                AS_Select aselect = new AS_Select();
+                                P_AS_Select aselect = new P_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomes(Integer.parseInt(request.getParameter("id")));
                                     ArrayList<String> rsRow ;

@@ -5,7 +5,7 @@
   Time: 3:55 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -34,7 +34,7 @@
     if(id != null && type != null){
         if(type.equals("Superuser") && (!id.equals("1"))){
             uOldlvl = "Superuser";
-            AS_Select db = new AS_Select();
+            P_AS_Select db = new P_AS_Select();
             ArrayList<String> selUsrData = db.selectSuperuser(Integer.parseInt(id));
 
             if(selUsrData != null){
@@ -50,7 +50,7 @@
             }
         }else if(type.equals("Faculty_Member")){
             uOldlvl = "Faculty_Member";
-            AS_Select db = new AS_Select();
+            P_AS_Select db = new P_AS_Select();
             ArrayList<String> selUsrData = db.selectFaculty(Integer.parseInt(id));
 
             if(selUsrData != null){
@@ -66,7 +66,7 @@
             }
         } else if(type.equals("Evaluator")){
             uOldlvl = "Evaluator";
-            AS_Select db = new AS_Select();
+            P_AS_Select db = new P_AS_Select();
             ArrayList<String> selUsrData = db.selectEvaluator(Integer.parseInt(id));
 
             if(selUsrData != null){

@@ -1,14 +1,15 @@
-<%@ page import="ASDB.P_AS_Select" %>
+<%@ page import="ASDB.AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
-  Date: 1/31/2016
-  Time: 7:09 م
+  Date: 2/2/2016
+  Time: 6:21 م
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+
 <div id="header"></div>
 
 <div class="main">
@@ -16,31 +17,19 @@
         <div class="container">
             <!--         what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Program Management</h2>
-                <h4 class="text-center">Program Name</h4>
+                <h2 class="text-center">Cycle Management</h2>
+                <h4 class="text-center">Cycle ID</h4>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
 
-                    <ul class="list-inline" style="margin-bottom:-10px;">
-                        <li><p>Mission Statement:</p></li>
+                    <ul class="list-inline">
+                        <li><p>Defualt Threshlod: </p></li>
+                        <li><p><p>75%</p></p></li>
                         <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
                     </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <ul class="list-inline" style="margin-bottom:-10px;">
-                        <li><p>Program Objectives:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
-                    </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <ul class="list-inline" style="margin-bottom:-10px;">
-                        <li><p>Student Outcomes:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
-                    </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
-                        <li><p>Courses: </p></li>
+                        <li><p>Terms: </p></li>
                         <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
                     </ul>
 
@@ -54,24 +43,23 @@
                         <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Course Name</th>
-                                <th>Code</th>
-                                <th>Level</th>
+                                <th>Name</th>
+                                <th>Year</th>
                             </tr>
                             <%
+
                                 int id = Integer.parseInt(request.getParameter("id"));
-                                P_AS_Select aselect = new P_AS_Select();
+                                AS_Select aselect = new AS_Select();
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectProgramManagementFig30(id);
+                                    ArrayList<ArrayList<String>> rs = aselect.selectCycleManagement(id);
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
                                         rsRow = new ArrayList<String>();
                                         rsRow = rs.get(i);
-                                        out.print("<tr class=\"textContainer\" >");
+                                        out.print("<tr>");
                                         for (int j=0; j<rsRow.size();j++) {
                                             out.print("<td>"+rsRow.get(j)+"</td>");
-
                                         }
                                         out.print("</tr>");
                                     }
@@ -83,12 +71,18 @@
                                 }
 
 
-
                             %>
-
                         </table>
                     </div>
 
+                    <ul class="list-inline" style="margin-bottom:-10px;">
+                        <li><p>Performance Indicator: </p></li>
+                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                    </ul>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum </p>
+
+
+                    <button class="btn btn-primary">PI matching Table</button>
                     <button class="btn btn-primary">Print</button>
                     <button class="btn btn-danger btn-fill">Delete</button>
                     <button class="btn btn-primary pull-right">Back</button>
@@ -105,3 +99,7 @@
     </div>
     <!-- End of main -->
 </div>
+
+
+
+<div id="footer"></div>

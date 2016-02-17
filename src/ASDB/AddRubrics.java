@@ -6,44 +6,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Base64;
 
 /**
- * Created by Ibrahim Abuaqel on 2/7/2016.
+ * Created by Ibrahim Abuaqel on 2/8/2016.
  */
-@WebServlet(name = "AddCycle",
-        urlPatterns = {"/AddCycle"})
-public class AddCycle extends HttpServlet {
+@WebServlet(name = "AddRubrics",
+        urlPatterns = {"/AddRubrics"})
+public class AddRubrics extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
 
-            AS_Insert dba = new AS_Insert();
-            int id = 0;
-            try {
+        AS_Insert dba = new AS_Insert();
+        String id = request.getParameter("cycle");
+        String Termid = request.getParameter("term");
+        try {
 
+            dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"));
 
-                id = dba.addCycle();
-
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
             /*PrintWriter out = response.getWriter();
             //out.println("name: " + request.getParameter("name"));
             //out.println("logo: " + request.getParameter("logo"));
             out.println("H");*/
-            System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id));
+        System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id)+"ttrttttttttttttttttttttttttt           " );
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
         try {
-            //request.getSession().setAttribute("id",String.valueOf(id));
-            //request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
-            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
+            //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
+            response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&term="+Termid);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

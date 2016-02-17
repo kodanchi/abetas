@@ -1,6 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="ASDB.AS_Select" %><%--
+<%@ page import="ASDB.P_AS_Select" %><%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/4/2016
@@ -90,7 +90,7 @@
                             <%
 
 
-                                AS_Select aselect = new AS_Select();
+                                P_AS_Select aselect = new P_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectCourses(Integer.parseInt(request.getParameter("id")));
                                     ArrayList<String> rsRow ;

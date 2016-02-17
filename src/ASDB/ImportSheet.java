@@ -34,7 +34,7 @@ public class ImportSheet {
     private String[] sheetCheckerArr;
     private ArrayList<ArrayList<String>> sheetData;
     private final int MAX_FILE_SIZE = 2000000;
-    private AS_Select db = new AS_Select();
+    private P_AS_Select db = new P_AS_Select();
 
 
     public ImportSheet(HttpServletRequest request){

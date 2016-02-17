@@ -17,7 +17,7 @@ public class AddTerm extends HttpServlet {
         System.out.println("##########################################################");
 
             AS_Insert dba = new AS_Insert();
-            String id = request.getParameter("cycleId");
+            String id = request.getParameter("cycle");
             int Termid = 0;
             try {
 
@@ -36,8 +36,9 @@ public class AddTerm extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
         try {
-            request.getSession().setAttribute("Termid",String.valueOf(Termid));
-            request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
+            //request.getSession().setAttribute("Termid",String.valueOf(Termid));
+            //request.getRequestDispatcher("/cycle/index.jsp?page=addRubrics").forward(request,response);
+            response.sendRedirect("/cycle/index.jsp?page=addRubrics&cycle="+id+"&term="+Termid);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

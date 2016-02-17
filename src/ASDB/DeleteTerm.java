@@ -36,8 +36,8 @@ public class DeleteTerm extends HttpServlet {
 
         System.out.println(request.getParameter("cycleId")+"                vdgfsg            ");
         //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        //response.setHeader("Location", "/cycle/index.jsp?page=cycleList");
+        //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+        //response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
         try {
             //request.getSession().setAttribute("id",String.valueOf(id));
             request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);

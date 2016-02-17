@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Ibrahim Abuaqel on 1/31/2016.
  */
-public class AS_Select {
+public class P_AS_Select {
 
     private Connection conn;
     private Statement stmt;
@@ -862,7 +862,127 @@ public class AS_Select {
 
     }
 
+    public ArrayList<String> selectPIForLink(int id) throws ClassNotFoundException, SQLException {
 
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT PI_Label, PI_name FROM abetasdb.program, abetasdb.performance_indicator where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1)+": "+rs.getString(2));
+                System.out.println("@@@@@@@@@@@@@@@@@@@     "+data.get(++i));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+    public ArrayList<String> selectCourseForLink(int id) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT C_code,C_name FROM course,program_has_course WHERE FK_course_code = C_code and FK_program_ID = "+ id +" ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1)+": "+rs.getString(2));
+                System.out.println("@@@@@@@@@@@@@@@@@@@     "+data.get(++i));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
 
     public ArrayList<ArrayList<String>> selectAddTerm(String id) throws ClassNotFoundException, SQLException {
 
@@ -931,7 +1051,7 @@ public class AS_Select {
         }
 
     }
-    public ArrayList<ArrayList<String>> selectLinkPIWithCourses() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectPILinks(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -943,7 +1063,8 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_ID , C_code From abetasdb.performance_indicator,abetasdb.course;";
+            String query = "SELECT Link_ID, FK_out, FK_pi_ID, FK_C_ID, LinkType, FK_R_ID, FK_P_ID, FK_T_ID From abetasdb.link_out_pi;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -964,12 +1085,15 @@ public class AS_Select {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
-
+                RowDate.add(rs.getString(3));
+                RowDate.add(rs.getString(4));
+                RowDate.add(rs.getString(5));
+                RowDate.add(rs.getString(6));
+                RowDate.add(rs.getString(7));
+                RowDate.add(rs.getString(8));
 
                 RsArr.add(RowDate);
             }
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -1612,6 +1736,404 @@ public class AS_Select {
         }
         return name;
     }
+
+    public boolean isProgramNameExist(String name) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = " SELECT EXISTS(SELECT * FROM program where P_name = ?);";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setString (1, name);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isProgramExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+    public boolean isProgramNameExistExcept(String name,int pid) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = " SELECT EXISTS(SELECT * FROM program where P_name = ? AND P_name NOT IN ( SELECT P_name FROM program where P_ID = ?));";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setString (1, name);
+            preparedStatement.setInt (2, pid);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isProgramExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+    public boolean isExistLinkObj_Out(int obj, int out, int pid) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM link_out_obj where FK_out =?  AND FK_obj =?  AND FK_P_ID = ? );";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (2, obj);
+            preparedStatement.setInt (1, out);
+            preparedStatement.setInt (3, pid);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isProgramExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+    public boolean isExistLinkObj_OutExcept(int obj, int out, int pid,int linkid) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist=0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM link_out_obj where FK_out = ?  AND FK_obj = ? AND" +
+                    " FK_P_ID = ? AND (FK_obj,FK_out) NOT IN ( SELECT FK_obj,FK_out FROM link_out_obj where Link_ID = ?));";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (2, obj);
+            preparedStatement.setInt (1, out);
+            preparedStatement.setInt (3, pid);
+            preparedStatement.setInt (4, linkid);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isProgramExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+    public boolean isCoursesCodeExist(String code) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        int isExist=0;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM course where C_code = ?);";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+            //preparedStatement.setInt(2, pid);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                isExist= rs.getInt(1);
+                System.out.println(isExist+"    isCourseCodeExist");
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist == 0 ? false : true;
+
+        }
+
+    }
+
+
+    public boolean isCoursesCodeExistExcept(String code, int cid) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        int isExist=0;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT EXISTS(SELECT * FROM course where C_code = ? AND C_code NOT IN ( SELECT C_code FROM course where C_ID = ? ));";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, code);
+            preparedStatement.setInt(2, cid);
+            //preparedStatement.setString(3, oldCode);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                isExist= rs.getInt(1);
+                System.out.println(isExist+"    isCourseCodeExist");
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return isExist == 0 ? false : true;
+
+        }
+
+    }
+
+
 
     public ArrayList<String> selectObjForLink(int id) throws ClassNotFoundException, SQLException {
 

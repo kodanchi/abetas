@@ -26,8 +26,8 @@ public class AddProgram extends HttpServlet {
         if (request.getParameter("ProgramName").equals("null")) {
             System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
-            AS_Insert dba=new AS_Insert();
-            AS_Select dbaS=new AS_Select();
+            P_AS_Insert dba=new P_AS_Insert();
+            P_AS_Select dbaS=new P_AS_Select();
 
             ArrayList<String> data = new ArrayList<String>();
 
@@ -69,15 +69,15 @@ public class AddProgram extends HttpServlet {
     //System.out.println("ttrttttttttttttttttttttttttt name     "+ data.get(0)+"    id          " +String.valueOf(id));
 
         }else {
-            AS_Select dbaS=new AS_Select();
+            P_AS_Select dbaS=new P_AS_Select();
             ArrayList<String> data = new ArrayList<String>();
 
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
             System.out.println(request.getParameter("Objid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
 
             String name="";
-            AS_Update dba = new AS_Update();
-            //AS_Select dbaS=new AS_Select();
+            P_AS_Update dba = new P_AS_Update();
+            //P_AS_Select dbaS=new P_AS_Select();
             try {
                 programVal = new String[]{request.getParameter("Pname"),request.getParameter("Pmission")};
                 if(!dbaS.isProgramNameExistExcept(request.getParameter("Pname"), Integer.parseInt(request.getParameter("id")))){
