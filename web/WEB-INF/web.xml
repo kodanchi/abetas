@@ -19,6 +19,7 @@
 
 
 
+<!--
 
     <filter>
         <filter-name>AuthFilters</filter-name>
@@ -43,6 +44,7 @@
         <filter-name>LoginFilters</filter-name>
         <url-pattern>/login/login.jsp</url-pattern>
     </filter-mapping>
+-->
 
 
     <!--<filter>
