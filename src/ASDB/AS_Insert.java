@@ -636,7 +636,12 @@ public class AS_Insert {
             }
 
         }
-    }public void includeCourse(String FK_C_code, int FK_T_ID) throws ClassNotFoundException, SQLException {
+
+
+
+    }
+
+    public void includeCourse(String FK_C_code, int FK_T_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -756,7 +761,78 @@ public class AS_Insert {
         return id;
     }
 
-    public void addStudent(String name, int ID, String code, int F_ID, int T_ID) throws ClassNotFoundException, SQLException {
+
+    public int addSection(int FK_T, int FK_F, String FK_C) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rsSelect = null;
+        int id = 0;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into abetasdb.section (FK_T, FK_F, FK_C)" + " values (?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T);
+            preparedStatement.setInt(2, FK_F);
+            preparedStatement.setString(3, FK_C);
+
+            rs = preparedStatement.executeUpdate();
+
+
+            String querySelect = " SELECT Section_ID FROM abetasdb.section ORDER BY Section_ID DESC LIMIT 1";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                id = rsSelect.getInt(1);
+                return id;
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return id;
+    }
+    public void addStudent(String Student_Name, int Student_ID, int FK_Section) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -775,14 +851,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into students (Student_Name, Student_ID, FK_C_code, FK_Faculty_ID, FK_T_ID)" + " values (?, ?, ?, ?, ?)";
+            String query = " insert into students (Student_Name, Student_ID, FK_Section)" + " values (?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, ID);
-            preparedStatement.setString(3, code);
-            preparedStatement.setInt(4, F_ID);
-            preparedStatement.setInt(5, T_ID);
+            preparedStatement.setString(1, Student_Name);
+            preparedStatement.setInt(2, Student_ID);
+            preparedStatement.setInt(3, FK_Section);
 
             rs = preparedStatement.executeUpdate();
 

@@ -45,51 +45,76 @@
                 <h2 class="text-center">Add Student</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
-                    <p><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Enter");%> the student information</p>
+                    <p><%if (request.getParameter("section")!=null) {
+                        out.print("Update");
+                    } else {
+                        out.print("Enter");
+                    }%> the student information</p>
 
-                    <form name="myform" action="/AddStudent" method="post">
+                    <form name="myform" action="/AddSection" method="post">
 
                         <div class="form-group">
 
                             <!-- Large button group -->
-                            <div class="btn-group">
+
 
                                 <input type="hidden" name="programName" value="<%=programName%>">
                                 <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
                                 <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
                                 <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
-                                <input type="hidden" name="section" value="<%=request.getParameter("section")%>">
                                 <input type="hidden" name="programName" value="<%=request.getParameter("programName")%>">
+                                <input type="hidden" name="section" value="<%=request.getParameter("section")%>">
                                 <input type="hidden" name="cycle" value="<%=id%>">
                                 <input type="hidden" name="term" value="<%=Termid%>">
+
+
 
                                 <%
                                     System.out.println(request.getParameter("programName"));
                                     System.out.println(request.getParameter("programID"));
                                     System.out.println(request.getParameter("courseCode"));
                                     System.out.println(request.getParameter("courseName"));
-                                    System.out.println(request.getParameter("section"));
                                     System.out.println(request.getParameter("programName"));
 
                                 %>
-                                <label>Student ID: </label>
-                                <input type="text" name="Student_ID" placeholder="Student ID">
 
-                                <label>Student Name: </label>
-                                <input type="text" name="Sname" placeholder="Student Name">
+
+                            <div class="form-group">
+
+                                        <p>Select a faculty member to teach this course:</p>
+                                        <select class="form-control" name="F_ID" required>
+                                            <%
+                                                AS_Select cselect = new AS_Select();
+                                                try {
+                                                    ArrayList<String> rs = cselect.selectFacultyForCourse();
+
+                                                    for (int i=0; i<rs.size();i++) {
+                                                        out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i).replaceAll(".*:", "")+"</option>");
+                                                    }
+                                                } catch (ClassNotFoundException e) {
+                                                    e.printStackTrace();
+                                                } catch (SQLException e) {
+                                                    e.printStackTrace();
+                                                }
+                                            %>
+                                        </select>
+
                             </div>
-                        </div>
+
+
+                            </div>
+
 
 
                         <div class="form-group">
 
-                            <input type="hidden" name="NValue" value="<%=request.getParameter("NValue")%>">
+                            <input type="hidden" name="NValue" value="<%=request.getParameter("section")%>">
 
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
+                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("section")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->

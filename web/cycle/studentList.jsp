@@ -36,6 +36,18 @@
     } catch (SQLException e) {
         e.printStackTrace();
     }
+
+    String facultyName = "";
+
+    try {
+        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("section")));
+        facultyName = aselect.selectSectionFaculty(Integer.parseInt(request.getParameter("section")));
+
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 %>
 
 <div class="main">
@@ -43,10 +55,14 @@
         <div class="container" id="space">
             <!-- what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Course Information</h2>
+                <h2 class="text-center">Section Information</h2>
                 <h4 class="text-center">Program: <%out.print(programName);%></h4>
                 <h4 class="text-center">Course: <%out.print(request.getParameter("courseCode"));%> | <%out.print(request.getParameter("courseName"));%> </h4>
+                <h4 class="text-center">Section: <%out.print(request.getParameter("section"));%> | Faculty: <%out.print(facultyName);%> </h4>
                 <legend></legend>
+
+
+
                 <div class="col-md-10 col-md-offset-1">
                     <p>*Click "Add" to add new student</p>
 
@@ -70,8 +86,8 @@
                         <!-- Table -->
                         <table class="table">
                             <tr>
-                                <th>Student ID</th>
                                 <th>Name</th>
+                                <th>Student ID</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -80,7 +96,7 @@
                                 AS_Select bselect = new AS_Select();
 
                                 try {
-                                    ArrayList<ArrayList<String>> rs = bselect.selectStudents(Integer.parseInt(Termid));
+                                    ArrayList<ArrayList<String>> rs = bselect.selectStudents(Integer.parseInt(request.getParameter("section")));
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
@@ -129,7 +145,7 @@
 
                     <br>
 
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&F_ID=<%=request.getParameter("F_ID")%>&programName=<%=request.getParameter("programName")%>">Add</a>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Add</a>
                     <a class="btn btn-success btn-primary" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
                     <button class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>" >Finish</button>
                     <!-- End of col -->

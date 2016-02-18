@@ -35,7 +35,7 @@ public class AddStudent extends HttpServlet {
 
                 System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWW  " + request.getParameter("Sname")+"     "+Termid+"    "+request.getParameter("Student_ID")+"      "+request.getParameter("courseCode")+"     "+request.getParameter("F_ID")+"        "+Termid);
 
-                dba.addStudent(request.getParameter("Sname"),Integer.parseInt(request.getParameter("Student_ID")), request.getParameter("courseCode"),Integer.parseInt(request.getParameter("F_ID")),Integer.parseInt(Termid));
+                dba.addStudent(request.getParameter("Sname"),Integer.parseInt(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")));
                 //Display error message.
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -50,7 +50,7 @@ public class AddStudent extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&F_ID="+request.getParameter("F_ID")+"&programName="+request.getParameter("programName"));
+                response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
@@ -65,7 +65,7 @@ public class AddStudent extends HttpServlet {
 
             try {
                 //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
-                dba.addStudent(request.getParameter("Sname"),Integer.parseInt(request.getParameter("Student_ID")), request.getParameter("courseCode"),Integer.parseInt(request.getParameter("F_ID")),Integer.parseInt(Termid));
+                dba.addStudent(request.getParameter("Sname"),Integer.parseInt(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")));
                 //Display error message.
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
