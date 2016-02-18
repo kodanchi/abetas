@@ -956,13 +956,16 @@ public class AS_Insert {
         return id;
     }
 
-    public void addPILink(int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+    public int addPILink(int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
 
         connect();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
+
+        ResultSet rsSelect = null;
+        int id=0;
         int rs1 = 0;
         int rs2 = 0;
         try {
@@ -994,6 +997,18 @@ public class AS_Insert {
             rs2 = preparedStatement.executeUpdate();
 
 
+            String querySelect = " SELECT Link_ID FROM link_out_pi ORDER BY Link_ID DESC LIMIT 1";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                id = rsSelect.getInt(1);
+                System.out.println("        dddd        "+id);
+                return id;
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -1016,6 +1031,7 @@ public class AS_Insert {
             }
 
         }
+        return id;
 
     }
 
@@ -1250,6 +1266,116 @@ public class AS_Insert {
             preparedStatement.setInt(1, PI_ID);
             preparedStatement.setString(2, C_code);
             preparedStatement.setString(3, relation);
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+    public void addFormF(int FK_Link_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into formative (F_submitted, FK_Link_ID)" + " values (?,?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setInt(2, FK_Link_ID);
+
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+    public void addFormS(int FK_Link_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into summative (Sum_submitted, FK_Link_ID)" + " values (?,?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, 0);
+            preparedStatement.setInt(2, FK_Link_ID);
+
             rs = preparedStatement.executeUpdate();
 
 

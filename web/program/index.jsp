@@ -37,6 +37,8 @@
                 } else {
                     //display error page
                 }
+            }else if (pageCall.equals("Formative")) {
+                    pageName = "Formative.jsp?";
             }else if (pageCall.equals("ObjList")) {
                 String id = request.getParameter("id");
                 String name = request.getParameter("name");

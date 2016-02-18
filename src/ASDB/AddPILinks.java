@@ -24,13 +24,28 @@ public class AddPILinks extends HttpServlet {
             String Termid = (String) request.getSession().getAttribute("Termid");
             int programID = 0;
             int R=0;
+            int Link_id=0;
+            String type="";
             System.out.println("##########################################################    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("Course")+"   "+Termid+"       "+request.getParameter("Type"));
 
             try {
                 System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
                 R=dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"));
-                dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
-            //Display error message.
+                Link_id=dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
+                if (Link_id!=0) {
+                    System.out.println("in if "+Link_id);
+
+                    type = sdba.selectFormType(Link_id);
+                    if (type.equals("Formative")) {
+                        System.out.println("in if F");
+                        dba.addFormF(Link_id);
+                    } else if (type.equals("Summative")) {
+                        System.out.println("in if S");
+                        dba.addFormS(Link_id);
+                    } else {
+                        System.out.println("id is not set");
+                    }
+                }
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
