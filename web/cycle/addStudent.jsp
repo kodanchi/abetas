@@ -9,14 +9,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-
 <%
 
     String id = "";
     String Termid = "";
-    if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-        id  = (String) request.getSession().getAttribute("id");
-        Termid  = (String) request.getSession().getAttribute("Termid");
+    if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+        id  = request.getParameter("cycle");
+        Termid  = request.getParameter("term");
         out.println("id is : "+id);
         out.print("Termid is : "+Termid);
     }
@@ -61,6 +60,8 @@
                                 <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
                                 <input type="hidden" name="F_ID" value="<%=request.getParameter("F_ID")%>">
                                 <input type="hidden" name="programName" value="<%=request.getParameter("programName")%>">
+                                <input type="hidden" name="cycle" value="<%=id%>">
+                                <input type="hidden" name="term" value="<%=Termid%>">
 
                                 <%
                                     System.out.println(request.getParameter("programName"));
@@ -88,7 +89,7 @@
 
                         <br>
                         <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=includeCourse">Cancel</a>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->

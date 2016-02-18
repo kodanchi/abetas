@@ -275,8 +275,8 @@
                         <br>
 
                         <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" >Cancel</a>
-                        <button class="btn btn-primary pull-right" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&term=<%=Termid%>&name=<%=request.getParameter("programID")%>" >Finish</button>
+                        <a class="btn btn-success btn-primary" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&term=<%=Termid%>&name=<%=request.getParameter("programID")%>" >Cancel</a>
+
 
                     </form>
                     <!-- End of col -->

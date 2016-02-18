@@ -14,9 +14,9 @@
 
     String id = "";
     String Termid = "";
-    if(request.getSession().getAttribute("id") != null && request.getSession().getAttribute("Termid") != null){
-        id  = (String) request.getSession().getAttribute("id");
-        Termid  = (String) request.getSession().getAttribute("Termid");
+    if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+        id  = request.getParameter("cycle");
+        Termid  = request.getParameter("term");
         out.println("id is : "+id);
         out.print("Termid is : "+Termid);
     }
@@ -99,6 +99,8 @@
                                                 "                            <input name=\"NValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
                                                 "                            <input name=\"IDValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
+                                                "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
+                                                "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                            </form>" +
                                                 "                            </td>" +
@@ -106,6 +108,8 @@
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"LinkID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
+                                                "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
+                                                "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                 "                               <td>" +
                                                 "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
@@ -125,8 +129,9 @@
 
                     <br>
 
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&F_ID=<%=request.getParameter("F_ID")%>&programName=<%=request.getParameter("programName")%>">Add</a>
-                    <a class="btn btn-success btn-primary" href="index.jsp?page=piList">Cancel</a>
+                    <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&F_ID=<%=request.getParameter("F_ID")%>&programName=<%=request.getParameter("programName")%>">Add</a>
+                    <a class="btn btn-success btn-primary" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
+                    <button class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>" >Finish</button>
                     <!-- End of col -->
                 </div>
 
