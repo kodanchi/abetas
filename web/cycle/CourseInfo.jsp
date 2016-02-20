@@ -27,12 +27,12 @@
     AS_Select aselect = new AS_Select();
     String programName = "";
     String courseName = "";
-    String courseCode = request.getParameter("CourseValue");
+    String courseCode = request.getParameter("courseCode");
 
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
+        System.out.println("programID     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
-        courseName = aselect.selectCourseName(request.getParameter("CourseValue"));
+        courseName = aselect.selectCourseName(request.getParameter("courseCode"));
 
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
@@ -55,70 +55,82 @@
 
                     <h3 class="text-center">Sections</h3>
 
-                <!-- Table -->
-                <table class="table">
-                    <tr>
 
-                        <th>Section ID</th>
-                        <th>Faculty</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
 
-                    </tr>
-                    <%
+                                <th>Section ID</th>
+                                <th>Faculty</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+
+                            </tr>
+                            <%
 
 
-                        if(request.getParameter("programID")!=null) {
+                                if(request.getParameter("programID")!=null) {
 
-                            //AS_Select aselect = new AS_Select();
-                            try {
-                                ArrayList<ArrayList<String>> rs = aselect.selectCourseSections(Integer.parseInt(request.getParameter("term")),request.getParameter("CourseValue"));
-                                ArrayList<String> rsRow;
+                                    String facultyName = null;
 
-                                for (int i = 0; i < rs.size(); i++) {
-                                    rsRow = new ArrayList<String>();
-                                    rsRow = rs.get(i);
-                                    out.print("<tr>");
-                                    for (int j = 0; j < rsRow.size(); j++) {
-                                        out.print("<td>" + rsRow.get(j) + "</td>");
+                                    //AS_Select aselect = new AS_Select();
+                                    try {
+                                        ArrayList<ArrayList<String>> rs = aselect.selectCourseSections(Integer.parseInt(request.getParameter("term")),request.getParameter("courseCode"));
+                                        ArrayList<String> rsRow;
+
+                                        for (int i = 0; i < rs.size(); i++) {
+                                            rsRow = new ArrayList<String>();
+                                            rsRow = rs.get(i);
+                                            out.print("<tr>");
+                                            for (int j = 0; j < rsRow.size() - 1; j++) {
+                                                out.print("<td>" + rsRow.get(j) + "</td>");
+                                            }
+
+                                            facultyName = aselect.selectSectionFaculty(Integer.parseInt(rsRow.get(0)));
+                                            out.print("<td>" + facultyName + "</td>");
+                                            out.print("<td>" +
+                                                    "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                    "                            <input name=\"page\" value=\"updateSection\" hidden />\n" +
+                                                    "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
+                                                    "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
+                                                    "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
+                                                    "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
+                                                    "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
+                                                    "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
+                                                    "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
+                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                    "                               </td>" +
+                                                    "                            <td></form>" +
+                                                    "                            <form method=\"post\" action=\"/DeleteSection\">\n" +
+                                                    "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                    "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
+                                                    "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
+                                                    "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
+                                                    "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
+                                                    "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
+                                                    "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
+                                                    "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
+                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                    "                        </form></td>" +
+                                                    "</tr>");
+                                        }
+
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
                                     }
-                                    out.print("<td>" +
-                                            "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                            "                            <input name=\"page\" value=\"updateSection\" hidden />\n" +
-                                            "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
-                                            "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
-                                            "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
-                                            "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
-                                            "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
-                                            "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                            "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
-                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
-                                            "                               </td>" +
-                                            "                            </form>" +
-                                            "                            <form method=\"post\" action=\"/DeletePI\">\n" +
-                                            "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                            "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
-                                            "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                            "                               <td>" +
-                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                            "                               </td>" +
-                                            "                        </form>" +
-                                            "</tr>");
+                                    System.out.println("  yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy           "+ request.getParameter("programID"));
+                                }else {
+                                    System.out.println("  gsgsgsg    gsgsggssdfgs       djskvdsj    sgsgs   sgsgsgsg   fsdsdg            ");
                                 }
 
-                            } catch (ClassNotFoundException e) {
-                                e.printStackTrace();
-                            } catch (SQLException e) {
-                                e.printStackTrace();
-                            }
-                            System.out.println("  yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy           "+ request.getParameter("programID"));
-                        }else {
-                            System.out.println("  gsgsgsg    gsgsggssdfgs       djskvdsj    sgsgs   sgsgsgsg   fsdsdg            ");
-                        }
+                            %>
 
-                    %>
-
-                </table>
+                        </table>
+                            </div>
                     </div>
                     <div class="col-md-10 col-md-offset-1">
 
@@ -161,9 +173,7 @@
 
                         </form>
 
-                        <a class="btn btn-success btn-fill pull-right" type="submit">Next</a>
-                        <a class="btn btn-success btn-primary pull-right" href="index.jsp?page=piList&cycle=<%=id%>&term=<%=Termid%>">Back</a>
-
+                        <a class="btn btn-success btn-primary pull-right" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Finish</a>
 
 
 

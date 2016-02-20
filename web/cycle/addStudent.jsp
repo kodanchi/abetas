@@ -59,24 +59,26 @@
                                 <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
                                 <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
                                 <input type="hidden" name="section" value="<%=request.getParameter("section")%>">
+<%--
                                 <input type="hidden" name="programName" value="<%=request.getParameter("programName")%>">
+--%>
                                 <input type="hidden" name="cycle" value="<%=id%>">
                                 <input type="hidden" name="term" value="<%=Termid%>">
 
                                 <%
-                                    System.out.println(request.getParameter("programName"));
+                                    //System.out.println(request.getParameter("programName"));
                                     System.out.println(request.getParameter("programID"));
                                     System.out.println(request.getParameter("courseCode"));
                                     System.out.println(request.getParameter("courseName"));
                                     System.out.println(request.getParameter("section"));
-                                    System.out.println(request.getParameter("programName"));
+                                    //System.out.println(request.getParameter("programName"));
 
                                 %>
                                 <label>Student ID: </label>
-                                <input type="text" name="Student_ID" placeholder="Student ID">
+                                <input type="text" name="Student_ID" placeholder="Student ID" value="<%if (request.getParameter("IDValue")!=null) {out.print(request.getParameter("IDValue"));}%>">
 
                                 <label>Student Name: </label>
-                                <input type="text" name="Sname" placeholder="Student Name">
+                                <input type="text" name="Sname" placeholder="Student Name" value="<%if (request.getParameter("NValue")!=null) {out.print(request.getParameter("NValue"));}%>">
                             </div>
                         </div>
 
@@ -84,12 +86,15 @@
                         <div class="form-group">
 
                             <input type="hidden" name="NValue" value="<%=request.getParameter("NValue")%>">
+                            <input type="hidden" name="S_ID" value="<%=request.getParameter("S_ID")%>">
 
                         </div>
 
                         <br>
                         <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
+                        <a class="btn btn-success btn-primary" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>
+                        &term=<%=request.getParameter("term")%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>
+                        &courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->

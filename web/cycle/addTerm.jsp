@@ -104,7 +104,8 @@
                                                                 out.print("<td>"+rsRow.get(j)+"</td>");
 
                                                             }
-                                                            out.print("<td><form method=\"post\" action=\"index.jsp\">\n");
+                                                            out.print("<td><form method=\"post\" action=\"index.jsp\">");
+                                                            out.print("<input name=\"page\" value=\"includeCourse\" hidden />\n");
                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
                                                             out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
                                                             out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n</form></td>");
@@ -131,9 +132,8 @@
 
 
                                 </div>
-                                <button class="btn btn-success pull-right">Cancel</button>
+                                <a class="btn btn-success pull-right" href="index.jsp">Cycles List</a>
 
-                                <button class="btn btn-success pull-right">Next</button>
 
 
                                 <!-- End of col -->

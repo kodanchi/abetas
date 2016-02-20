@@ -46,7 +46,7 @@ public class AddStudent extends HttpServlet {
             //out.println("name: " + request.getParameter("name"));
             //out.println("logo: " + request.getParameter("logo"));
             out.println("H");*/
-            System.out.println("ttrttttttttttttttttttttttttt  Rubric id          ttrttttttttttttttttttttttttt           ");
+            //System.out.println("ttrttttttttttttttttttttttttt  Rubric id          ttrttttttttttttttttttttttttt           ");
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
@@ -58,14 +58,14 @@ public class AddStudent extends HttpServlet {
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
 
-            AS_Insert dba = new AS_Insert();
+            AS_Update udb = new AS_Update();
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");
             System.out.println("##########################################################  Sname  "+request.getParameter("Sname")+"          ");
 
             try {
                 //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
-                dba.addStudent(request.getParameter("Sname"),Integer.parseInt(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")));
+                udb.updateStudent(Integer.parseInt(request.getParameter("Student_ID")),request.getParameter("Sname"),Integer.parseInt(request.getParameter("S_ID")));
                 //Display error message.
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -76,12 +76,14 @@ public class AddStudent extends HttpServlet {
             //out.println("name: " + request.getParameter("name"));
             //out.println("logo: " + request.getParameter("logo"));
             out.println("H");*/
-            System.out.println("ttrttttttttttttttttttttttttt  Rubric id          ttrttttttttttttttttttttttttt           ");
+            //System.out.println("ttrttttttttttttttttttttttttt  Rubric id          ttrttttttttttttttttttttttttt           ");
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&F_ID="+request.getParameter("F_ID")+"&programName="+request.getParameter("programName"));
+                //response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&F_ID="+request.getParameter("F_ID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
+                response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
+
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }

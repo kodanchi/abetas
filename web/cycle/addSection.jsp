@@ -35,6 +35,23 @@
     } catch (SQLException e) {
         e.printStackTrace();
     }
+    String sectionId = request.getParameter("section");
+    System.out.println("SID : "+sectionId);
+
+    int fid = 0;
+    if(request.getParameter("section") != null){
+
+
+        try {
+            System.out.println("scscsc     "+Integer.parseInt(request.getParameter("section")));
+            fid = aselect.selectSectionFacultyID(Integer.parseInt(request.getParameter("section")));
+
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 %>
 
 <div class="main">
@@ -42,7 +59,11 @@
         <div class="container" id="space">
             <!-- what is row -->
             <div class="row tim-row">
-                <h2 class="text-center">Add Student</h2>
+                <h2 class="text-center"><%if (request.getParameter("section")!=null) {
+                    out.print("Update");
+                } else {
+                    out.print("Add");
+                }%> Section</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("section")!=null) {
@@ -63,7 +84,7 @@
                                 <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
                                 <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
                                 <input type="hidden" name="programName" value="<%=request.getParameter("programName")%>">
-                                <input type="hidden" name="section" value="<%=request.getParameter("section")%>">
+                                <input type="hidden" name="section" value="<%=sectionId%>">
                                 <input type="hidden" name="cycle" value="<%=id%>">
                                 <input type="hidden" name="term" value="<%=Termid%>">
 
@@ -89,7 +110,13 @@
                                                     ArrayList<String> rs = cselect.selectFacultyForCourse();
 
                                                     for (int i=0; i<rs.size();i++) {
-                                                        out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i).replaceAll(".*:", "")+"</option>");
+                                                        out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':')));
+
+                                                        System.out.println("fid : "+fid + "  "+ rs.get(i).substring(0, rs.get(i).indexOf(':')));
+                                                        if(Integer.parseInt(rs.get(i).substring(0, rs.get(i).indexOf(':'))) == fid){
+                                                           out.print(" selected ");
+                                                        }
+                                                        out.print(">"+rs.get(i).replaceAll(".*:", "")+"</option>");
                                                     }
                                                 } catch (ClassNotFoundException e) {
                                                     e.printStackTrace();

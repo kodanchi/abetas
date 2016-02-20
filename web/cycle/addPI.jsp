@@ -72,8 +72,9 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=piList">Cancel</a>
+                        <button class="btn btn-success btn-fill pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=piList&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
+
 
                     </form>
                     <!-- End of col -->

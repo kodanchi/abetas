@@ -74,10 +74,10 @@
                 }
             }else if(pageCall.equals("CourseInfo")) {
                 String programID=request.getParameter("programID");
-                String CourseValue=request.getParameter("CourseValue");
+                String courseCode=request.getParameter("courseCode");
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    pageName = "CourseInfo.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&CourseValue="+CourseValue;
+                    pageName = "CourseInfo.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&courseCode="+courseCode;
                 }else {
                     //display error page
                 }
@@ -162,19 +162,19 @@
                 }else {
                     //display error page
                 }
-            }else if(pageCall.equals("addTerm")) {
+            }/*else if(pageCall.equals("addTerm")) {
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
                     pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term") ;
                 }else {
                     //display error page
                 }
-            }else if(pageCall.equals("CourseInfo")) {
+            }*/else if(pageCall.equals("CourseInfo")) {
                 String programID=request.getParameter("programID");
-                String CourseValue=request.getParameter("CourseValue");
+                String courseCode=request.getParameter("courseCode");
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    pageName = "CourseInfo.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&CourseValue="+CourseValue;
+                    pageName = "CourseInfo.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&courseCode="+courseCode;
                 }else {
                     //display error page
                 }
@@ -219,12 +219,31 @@
                 String courseCode=request.getParameter("courseCode");
                 String courseName=request.getParameter("courseName");
                 String programID=request.getParameter("programID");
-                String programName=request.getParameter("programName");
+                //String programName=request.getParameter("programName");
                 String F_ID=request.getParameter("F_ID");
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQq  " + request.getParameter("cycle")+"     "+request.getParameter("cycle")+"    "+courseCode+"      "+courseName+"     "+programID+"     "+programName+"   "+F_ID);
-                    pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&programName="+programName+"&F_ID="+F_ID;
+                    System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQq  " + request.getParameter("cycle")+"     "+request.getParameter("cycle")+"    "+courseCode+"      "+courseName+"   "+F_ID);
+                    pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&F_ID="+F_ID;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("updateStudent")) {
+
+                String courseCode=request.getParameter("courseCode");
+                String courseName=request.getParameter("courseName");
+                String programID=request.getParameter("programID");
+                String programName=request.getParameter("programName");
+                String section=request.getParameter("section");
+                String S_ID=request.getParameter("S_ID");
+                String NValue=request.getParameter("NValue");
+                String IDValue=request.getParameter("IDValue");
+
+                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
+                    pageName = "addStudent.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                            "&programID="+ programID+"&courseCode="+courseCode+"&courseName="+courseName+"&programName="+programName+
+                            "&section="+section+"&S_ID="+S_ID+"&NValue="+NValue+"&IDValue="+IDValue;
                 }else {
                     //display error page
                 }
@@ -285,6 +304,17 @@
                     pageName = "addSection.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
                             "&programID="+programID+"&programName="+request.getParameter("programName")+"&courseCode="+
                             request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName");
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("updateSection")) {
+
+
+                if(request.getParameter("cycle") != null && request.getParameter("term") != null && request.getParameter("section") != null){
+                    pageName = "addSection.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                            "&programID="+request.getParameter("programID")+"&programName="+request.getParameter("programName")+
+                            "&courseCode="+ request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+
+                            "&section="+ request.getParameter("section");
                 }else {
                     //display error page
                 }

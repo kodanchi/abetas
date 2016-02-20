@@ -17,11 +17,11 @@ public class AddTerm extends HttpServlet {
         System.out.println("##########################################################");
 
             AS_Insert dba = new AS_Insert();
-            String id = request.getParameter("cycle");
+            int id = Integer.parseInt(request.getParameter("cycle"));
             int Termid = 0;
             try {
 
-                Termid = dba.addTerm(request.getParameter("termName"),request.getParameter("termYear"),request.getParameter("cycleId"));
+                Termid = dba.addTerm(request.getParameter("termName"),request.getParameter("termYear"),id);
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -38,7 +38,8 @@ public class AddTerm extends HttpServlet {
         try {
             //request.getSession().setAttribute("Termid",String.valueOf(Termid));
             //request.getRequestDispatcher("/cycle/index.jsp?page=addRubrics").forward(request,response);
-            response.sendRedirect("/cycle/index.jsp?page=includeCourse&cycle="+id+"&term="+Termid);
+            //response.sendRedirect("/cycle/index.jsp?page=includeCourse&cycle="+id+"&term="+Termid);
+            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

@@ -24,7 +24,7 @@
 
                     <ul class="list-inline">
                         <li><p>Defualt Threshlod: </p></li>
-                        <li><p><p>75%</p></p></li>
+                        <li><p>75%</p></li>
                         <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
                     </ul>
 

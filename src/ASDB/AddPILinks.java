@@ -52,8 +52,8 @@ public class AddPILinks extends HttpServlet {
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
             AS_Update dba = new AS_Update();
-            String id = request.getParameter("cycleId");
-            String Termid = (String) request.getSession().getAttribute("Termid");
+            String id = request.getParameter("cycle");
+            String Termid = request.getParameter("term");
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");
             System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww  PI id          " + Integer.parseInt(request.getParameter("OutValue")) + "   wwwwwwwwwwwwwwww           ");
             try {
@@ -76,8 +76,10 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
+                //response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
+                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
+
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }

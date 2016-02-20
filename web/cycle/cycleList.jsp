@@ -49,8 +49,8 @@
                                         }
                                         out.print("<td>" +
                                                 "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                "                            <input name=\"page\" value=\"update\" hidden />\n" +
-                                                "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"page\" value=\"addTerm\" hidden />\n" +
+                                                "                            <input name=\"cycle\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +

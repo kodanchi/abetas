@@ -888,7 +888,7 @@ public class AS_Insert {
         }
     }
 
-    public int addTerm(String name, String year, String C_ID) throws ClassNotFoundException, SQLException {
+    public int addTerm(String name, String year, int C_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -914,7 +914,7 @@ public class AS_Insert {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, year);
-            preparedStatement.setString(3, C_ID);
+            preparedStatement.setInt(3, C_ID);
             rs = preparedStatement.executeUpdate();
 
             String querySelect = " SELECT T_ID FROM term ORDER BY T_ID DESC LIMIT 1";

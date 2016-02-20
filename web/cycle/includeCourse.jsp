@@ -178,21 +178,19 @@
                                                     "                            <input name=\"page\" value=\"CourseInfo\" hidden />\n" +
                                                     "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                     "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
-                                                    "                            <input name=\"CourseValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
+                                                    "                            <input name=\"courseCode\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                            </form>" +
-                                                    "                            </td>" +
+                                                    "                            </td><td>" +
                                                     "                            <form method=\"post\" action=\"/DeleteIC\">\n" +
                                                     "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                     "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                    "                            <input name=\"CodeValue\" value=\"" + rsRow.get(2) + "\" hidden />\n" +
+                                                    "                            <input name=\"Code\" value=\"" + rsRow.get(2) + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                            <td>" +
                                                     "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                                    "                            </td>" +
-                                                    "                        </form>" +
+                                                    "                        </form></td>" +
                                                     "</tr>");
                                         }
 
@@ -212,7 +210,8 @@
 
 
                     </div>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=piList&cycle=<%=id%>&term=<%=Termid%>&programID=<% if(request.getParameter("programID")!=null) {out.print(request.getParameter("programID"));}%>">Next</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=piList&cycle=<%=id%>&term=<%=Termid%>&programID=<% if(request.getParameter("programID")!=null) {out.print(request.getParameter("programID"));}%>">Next</a>
 
                     <!-- End of col -->
                 </div>

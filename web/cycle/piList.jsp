@@ -86,18 +86,20 @@
                                                     "                            <input name=\"page\" value=\"updatePI\" hidden />\n" +
                                                     "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                                                     "                            <input name=\"PIValue\" value=\"" + rsRow.get(1) + "\" hidden />\n" +
+                                                    "                            <input name=\"cycle\" value=\"" + request.getParameter("cycle") + "\" hidden />\n" +
+                                                    "                            <input name=\"term\" value=\"" + request.getParameter("term") + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                               </td>" +
-                                                    "                            </form>" +
+                                                    "                            <td></form>" +
                                                     "                            <form method=\"post\" action=\"/DeletePI\">\n" +
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                     "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
+                                                    "                            <input name=\"cycle\" value=\"" + request.getParameter("cycle") + "\" hidden />\n" +
+                                                    "                            <input name=\"term\" value=\"" + request.getParameter("term") + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                                    "                               <td>" +
                                                     "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                                    "                               </td>" +
-                                                    "                        </form>" +
+                                                    "                        </form></td>" +
                                                     "</tr>");
                                         }
 
@@ -117,8 +119,9 @@
 
 
                         </div>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addPI&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Next</a>
+                    <a class="btn btn-success btn-fill pull-left" href="index.jsp?page=addPI&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Next</a>
 
                     <!-- End of col -->
                 </div>

@@ -117,19 +117,23 @@
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                 "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                 "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
+                                                "                            <input name=\"section\" value=\""+request.getParameter("section")+"\" hidden />\n" +
+                                                "                            <input name=\"courseCode\" value=\""+request.getParameter("courseCode")+"\" hidden />\n" +
+                                                "                            <input name=\"courseName\" value=\""+request.getParameter("courseName")+"\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                            </form>" +
-                                                "                            </td>" +
-                                                "                            <form method=\"post\" action=\"/DeletePILink\">\n" +
+                                                "                            </td><td>" +
+                                                "                            <form method=\"post\" action=\"/DeleteStudent\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                "                            <input name=\"LinkID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"S_ID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                 "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                 "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
-                                                "                               <td>" +
+                                                "                            <input name=\"section\" value=\""+request.getParameter("section")+"\" hidden />\n" +
+                                                "                            <input name=\"courseCode\" value=\""+request.getParameter("courseCode")+"\" hidden />\n" +
+                                                "                            <input name=\"courseName\" value=\""+request.getParameter("courseName")+"\" hidden />\n" +
                                                 "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
-                                                "                               </td>"+
-                                                "                        </form>" +
+                                                "                        </form></td>" +
                                                 "</tr>");
                                     }
 
@@ -146,8 +150,8 @@
                     <br>
 
                     <a class="btn btn-success btn-fill" href="index.jsp?page=addStudent&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Add</a>
-                    <a class="btn btn-success btn-primary" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
-                    <button class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>" >Finish</button>
+
+                    <a class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>" >Finish</a>
                     <!-- End of col -->
                 </div>
 

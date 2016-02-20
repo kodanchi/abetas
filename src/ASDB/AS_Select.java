@@ -995,6 +995,71 @@ public class AS_Select {
     }
 
 
+    public int selectSectionFacultyID(int Section_ID) throws ClassNotFoundException, SQLException {
+
+        //ArrayList<String> RsArr = new ArrayList<String>();
+        int id = -1;
+        //ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT FK_F FROM abetasdb.section WHERE Section_ID = ? ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, Section_ID);
+
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                id = rs.getInt(1);
+            }
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return id;
+
+        }
+
+    }
+
+
     public ArrayList<String> selectPIForLink(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();

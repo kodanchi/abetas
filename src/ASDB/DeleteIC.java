@@ -18,14 +18,14 @@ public class DeleteIC extends HttpServlet {
         System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         System.out.println("####################################"+request.getParameter("Code")+"######################      "+request.getParameter("programID"));
         AS_Delete dba = new AS_Delete();
-        String id = request.getParameter("cycleId");
-        String Termid = (String) request.getSession().getAttribute("Termid");
+        String id = request.getParameter("cycle");
+        String Termid = request.getParameter("term");
 
         int programID = 0;
 
         try {
             //System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           ");
-                dba.deleteIC(request.getParameter("CodeValue"),Integer.parseInt(Termid));
+                dba.deleteIC(request.getParameter("Code"),Integer.parseInt(Termid));
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class DeleteIC extends HttpServlet {
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
         try {
             //request.getRequestDispatcher("/cycle/index.jsp?page=includeCourse").forward(request, response);
-            response.sendRedirect("/cycle/index.jsp?page=includeCourse&programID="+request.getParameter("programID"));
+            response.sendRedirect("/cycle/index.jsp?page=includeCourse&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
 
         } catch (NullPointerException e) {
             e.fillInStackTrace();

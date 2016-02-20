@@ -34,13 +34,16 @@ public class DeletePI extends HttpServlet {
         //out.println("logo: " + request.getParameter("logo"));
         //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
-        System.out.println(request.getParameter("cycleId")+"                vdgfsg            ");
+        System.out.println(request.getParameter("cycle")+"                vdgfsg            ");
         //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
         //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
         //response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
         try {
             //request.getSession().setAttribute("id",String.valueOf(id));
-            request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
+            //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
+            response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+request.getParameter("cycle")+"&term="+
+                    request.getParameter("term")+"&programID="+request.getParameter("programID"));
+
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

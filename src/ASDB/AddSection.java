@@ -45,15 +45,15 @@ public class AddSection extends HttpServlet {
         }
         else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-            System.out.println(request.getParameter("Outid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
+            System.out.println(request.getParameter("section")+"           "+request.getParameter("courseCode")+"      "+request.getParameter("courseName")+"       AddSection Update Servlet");
 
             int id = 0;
             AS_Update dba = new AS_Update();
             //AS_Select dbaS=new AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
-                System.out.println(request.getParameter("Code")+"           "+request.getParameter("Cname")+"          Update   AdObj Servlet");
-                dba.updateCourse(Integer.parseInt(request.getParameter("Cid")), request.getParameter("Code"),request.getParameter("Cname"),Integer.parseInt(request.getParameter("level")));
+                //System.out.println(request.getParameter("Code")+"           "+request.getParameter("Cname")+"          Update   AdObj Servlet");
+                dba.updateSection(Integer.parseInt(request.getParameter("section")), Integer.parseInt(request.getParameter("F_ID")));
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -65,9 +65,12 @@ public class AddSection extends HttpServlet {
             //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
             //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
-            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+            //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-            response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=CoursesList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+            //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=CoursesList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+            response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+request.getParameter("cycle")+"&term="+
+                    request.getParameter("term")+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+
+                    "&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
         }
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

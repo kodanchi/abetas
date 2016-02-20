@@ -54,7 +54,6 @@
                                 <th>Performance Indicator</th>
                                 <th>Course</th>
                                 <th>Type</th>
-                                <th>Course Info.</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -94,7 +93,7 @@
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"/DeletePILink\">\n" +
+                                                "                            <form method=\"post\" action=\"/DeletePILinks\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                 "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
@@ -117,8 +116,8 @@
                         </table>
                     </div>
 
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addPIOutLink&cycle=<%=id%>&term=<%=Termid%>&name=<%=request.getParameter("programID")%>">Next</a>
+                    <a class="btn btn-success btn-fill pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
 
                     <!-- End of col -->
                 </div>

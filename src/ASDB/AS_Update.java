@@ -253,6 +253,114 @@ public class AS_Update {
 
     }
 
+
+    public void updateSection(int Section_ID, int FK_F) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = "update abetasdb.section set FK_F = ? where Section_ID = ?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt (1, FK_F);
+            preparedStatement.setInt (2, Section_ID);
+
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
+
+    public void updateStudent(int Student_ID, String Student_Name, int S_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = "update abetasdb.students set Student_ID = ? AND Student_Name = ? where S_ID = ?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt (1, Student_ID);
+            preparedStatement.setString (2, Student_Name);
+            preparedStatement.setInt (3, S_ID);
+
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
+
     public void updateProgram(int P_ID, String P_name,String P_mission) throws ClassNotFoundException, SQLException {
 
         connect();
