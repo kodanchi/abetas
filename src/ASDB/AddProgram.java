@@ -39,7 +39,7 @@ public class AddProgram extends HttpServlet {
         out.println("H");
 //System.out.println("ttrttttttttttttttttttttttttt name     "+ data.get(0)+"    id          " +String.valueOf(id));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=ObjList&name="+data.get(0)+"&id="+String.valueOf(id));
+        response.setHeader("Location", "/program/index.jsp?page=ObjList&name="+data.get(0)+"&id="+String.valueOf(id));
         }
         else {
             AS_Select dbaS=new AS_Select();
@@ -71,7 +71,7 @@ public class AddProgram extends HttpServlet {
             //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
             response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-            response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=ObjList&name="+name+"&id="+request.getParameter("id"));
+            response.setHeader("Location", "/program/index.jsp?page=ObjList&name="+name+"&id="+request.getParameter("id"));
         }
     }
 
