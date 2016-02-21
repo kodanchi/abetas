@@ -2492,4 +2492,69 @@ public class AS_Select {
         }
 
     }
+
+    public String selectFormType(int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        String name="";
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = " SELECT LinkType FROM link_out_pi where Link_ID = ?";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (1, id);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                name= rsSelect.getString(1);
+                System.out.println(name+"    dsgfdgdgs");
+                return name;
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return name;
+    }
+
 }
