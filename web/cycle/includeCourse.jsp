@@ -211,7 +211,12 @@
 
                     </div>
                     <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=piList&cycle=<%=id%>&term=<%=Termid%>&programID=<% if(request.getParameter("programID")!=null) {out.print(request.getParameter("programID"));}%>">Next</a>
+                    <%
+                        if(request.getParameter("programID")!=null){
+                           out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=piList&cycle="+id+
+                    "&term="+Termid+"&programID="+request.getParameter("programID")+"\">Next</a>\n");
+                        }
+                    %>
 
                     <!-- End of col -->
                 </div>

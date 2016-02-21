@@ -22,11 +22,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String id ="";
-    String name ="";
+    String term ="";
     String dataType = "";
-    if(request.getParameter("data") != null && request.getParameter("id") != null){
-        id = request.getParameter("id");
-        name = request.getParameter("name");
+    if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+        id = request.getParameter("cycle");
+        term = request.getParameter("term");
         dataType = request.getParameter("data");
 
     }
@@ -47,8 +47,9 @@
                     <table class="table">
                         <tr>
                             <%
-                                if(dataType.equals("obj")){
-                                    out.print("<th>Objective</th>");
+                                if(dataType.equals("students")){
+                                    out.print("<th>Student ID</th>");
+                                    out.print("<th>Student Name</th>");
                                 }else if (dataType.equals("outcomes")){
                                     out.print("<th>Outcomes</th>");
                                 }else if(dataType.equals("course")){
@@ -116,13 +117,17 @@
                     </table>
                 </div>
 
-                <form method="post" action="/upload/program" >
-                    <a class="btn btn-success btn-fill" href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
+                <form method="post" action="/upload/cycle" >
+                    <a class="btn btn-success btn-fill" href="/program/index.jsp?name=<%=term%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
                     <input name="data-type" value="<%=dataType%>" hidden>
-                    <input name="name" value="<%=name%>" hidden>
-                    <input name="id" value="<%=id%>" hidden>
+                    <input type="text" name="cycle" value="<%=request.getParameter("cycle")%>" hidden/>
+                    <input type="text" name="term" value="<%=request.getParameter("term")%>" hidden/>
+                    <input type="text" name="programID" value="<%=request.getParameter("programID")%>" hidden/>
+                    <input type="text" name="courseCode" value="<%=request.getParameter("courseCode")%>" hidden/>
+                    <input type="text" name="courseName" value="<%=request.getParameter("courseName")%>" hidden/>
+                    <input type="text" name="section" value="<%=request.getParameter("section")%>" hidden/>
                     <button class="btn btn-primary"  type="submit">Upload</button>
-                    <a href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=ObjList" class="btn btn-primary">Cancel</a>
+                    <a href="/program/index.jsp?name=<%=term%>&id=<%=id%>&page=ObjList" class="btn btn-primary">Cancel</a>
                 </form>
 
 

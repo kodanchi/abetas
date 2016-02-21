@@ -15,6 +15,7 @@
     if(request.getMethod().equals("GET")){
         pageName = null;
         String pageCall = request.getParameter("page");
+        String cmdCall = request.getParameter("cmd");
         System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("addTerm")) {
@@ -57,9 +58,16 @@
                 String section=request.getParameter("section");
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQ  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
-                    pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
-                            "&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&section="+section;
+                    if(request.getParameter("status") != null){
+                        System.out.println("ddddddddddddddddddddddddddd  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
+                        pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                                "&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&section="+section +
+                        "status="+ request.getParameter("status");
+                    }else {
+                        System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQ  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
+                        pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                                "&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&section="+section;
+                    }
                 }else {
                     //display error page
                 }
@@ -136,9 +144,73 @@
                 }else {
                     //display error page
                 }
+            }else if(pageCall.equals("import")){
+                String id = request.getParameter("cycle");
+                String name = request.getParameter("term");
+                String programID = request.getParameter("programID");
+                String courseCode = request.getParameter("courseCode");
+                String courseName = request.getParameter("courseName");
+                String section = request.getParameter("section");
+                String data = request.getParameter("data");
+                if(data != null){
+                    if(request.getParameter("data").equals("students")) {
+                        pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                                "&courseName=" + courseName + "&section=" + section + "&data=students";
+                    }
+
+                }else {
+                    //display error page
+                }
             }else {
                 pageName = "cycleList.jsp";
             }
+        }else if(cmdCall !=null){
+            if(cmdCall.equals("upload")){
+                String id = request.getParameter("cycle");
+                String name = request.getParameter("term");
+                String programID = request.getParameter("programID");
+                String courseCode = request.getParameter("courseCode");
+                String courseName = request.getParameter("courseName");
+                String section = request.getParameter("section");
+                if(request.getParameter("err")!= null){
+                    pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                            "&courseName=" + courseName + "&section=" + section + "&err="+request.getParameter("err");
+                    //pageName = "import.jsp?name="+name+"&id="+id+"&err="+request.getParameter("err");
+                }else {
+                    //pageName = "import.jsp?name="+name+"&id="+id+"&file="+request.getParameter("file");
+                    pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                            "&courseName=" + courseName + "&section=" + section + "&file="+request.getParameter("file");
+                }
+
+            }else if(cmdCall.equals("confirm")){
+                String id = request.getParameter("cycle");
+                String name = request.getParameter("term");
+                String programID = request.getParameter("programID");
+                String courseCode = request.getParameter("courseCode");
+                String courseName = request.getParameter("courseName");
+                String section = request.getParameter("section");
+                String dataType = request.getParameter("data");
+                pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                        "&courseName=" + courseName + "&section=" + section + "&data="+ dataType;
+            }
+        }else if(request.getParameter("back") != null){
+            String backPage = request.getParameter("back");
+            String id = request.getParameter("cycle");
+            String name = request.getParameter("term");
+            String programID = request.getParameter("programID");
+            String courseCode = request.getParameter("courseCode");
+            String courseName = request.getParameter("courseName");
+            String section = request.getParameter("section");
+
+            if(backPage.equals("students")){
+                pageName = "programObjectiveList.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                        "&courseName=" + courseName + "&section=" + section;
+            }else if(backPage.equals("outcomes")){
+                pageName = "SOList.jsp?name=" + name + "&id=" + id;
+            }else if(backPage.equals("courses")){
+                pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
+            }
+
         }else {
             pageName = "cycleList.jsp";
         }
@@ -220,11 +292,19 @@
                 String courseName=request.getParameter("courseName");
                 String programID=request.getParameter("programID");
                 //String programName=request.getParameter("programName");
-                String F_ID=request.getParameter("F_ID");
+                String section=request.getParameter("section");
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQq  " + request.getParameter("cycle")+"     "+request.getParameter("cycle")+"    "+courseCode+"      "+courseName+"   "+F_ID);
-                    pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&F_ID="+F_ID;
+                    if(request.getParameter("status") != null){
+                        System.out.println("ddddddddddddddddddddddddddd  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
+                        pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                                "&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&section="+section +
+                                "&status="+ request.getParameter("status");
+                    }else {
+                        System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQ  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
+                        pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                                "&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&section="+section;
+                    }
                 }else {
                     //display error page
                 }
@@ -345,6 +425,7 @@
     <link href="/css/demo.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="/css/cus.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">

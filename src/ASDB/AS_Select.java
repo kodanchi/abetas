@@ -1062,7 +1062,7 @@ public class AS_Select {
     }
 
 
-    public ArrayList<String> selectPIForLink(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectPIForLink(int FK_C_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
         connect();
@@ -1073,7 +1073,8 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT  PI_Label, PI_name FROM abetasdb.program, abetasdb.performance_indicator where P_ID = FK_P_ID and FK_P_ID = "+ id +" ;";
+            String query = "SELECT  PI_Label, PI_name FROM abetasdb.program, abetasdb.performance_indicator, cycle where" +
+                    "  FK_C_ID = ? AND FK_P_ID = ? AND P_ID = FK_P_ID AND Cycle_ID = FK_C_ID ;";
 
             /*
              *  Get connection from the DataSource
@@ -1085,10 +1086,12 @@ public class AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, FK_C_ID);
+            preparedStatement.setInt(2, FK_P_ID);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_P_ID   "+FK_P_ID);
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_C_ID   "+FK_C_ID);
             //
             int i=-1;
             while (rs.next()){

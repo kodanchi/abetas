@@ -75,8 +75,8 @@
                         String dataType = "";
                         if(request.getParameter("data") != null){
                             String importFile = request.getParameter("data");
-                            if(importFile.equals("obj")){
-                                dataType = "obj";
+                            if(importFile.equals("students")){
+                                dataType = "students";
                             }else if(importFile.equals("outcomes")){
                                 dataType = "outcomes";
                             }else if(importFile.equals("courses")){
@@ -138,10 +138,14 @@
                             <img src="http://i.stack.imgur.com/irt3e.jpg" class="img-responsive" alt="excel format">
                         </div>
                     </div>
-                    <form name="myform" action="/import/program" method="post" enctype="multipart/form-data">
+                    <form name="myform" action="/import/cycle" method="post" enctype="multipart/form-data">
                         <input type="text" name="data-type" value="<%=dataType%>" hidden/>
-                        <input type="text" name="id" value="<%=request.getParameter("id")%>" hidden/>
-                        <input type="text" name="name" value="<%=request.getParameter("name")%>" hidden/>
+                        <input type="text" name="cycle" value="<%=request.getParameter("cycle")%>" hidden/>
+                        <input type="text" name="term" value="<%=request.getParameter("term")%>" hidden/>
+                        <input type="text" name="programID" value="<%=request.getParameter("programID")%>" hidden/>
+                        <input type="text" name="courseCode" value="<%=request.getParameter("courseCode")%>" hidden/>
+                        <input type="text" name="courseName" value="<%=request.getParameter("courseName")%>" hidden/>
+                        <input type="text" name="section" value="<%=request.getParameter("section")%>" hidden/>
                         <div class="row tim-row">
                             <div class="col-md-8 col-md-offset-2">
 
@@ -163,7 +167,10 @@
 
                         <button type="submit"  class="btn btn-success btn-fill">Upload</button>
 
-                        <a class="btn btn-primary pull-right" href="/program/index.jsp?back=<%=dataType%>&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Back</a>
+                        <a class="btn btn-primary pull-right" href="${pageContext.request.contextPath}/program/index.jsp?back=<%=dataType%>
+                        &cycle=<%=request.getParameter("cycle")%>&term=<%=request.getParameter("term")%>
+                        &programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>
+                        &courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Back</a>
                     </form>
 
                     <!-- End of col -->

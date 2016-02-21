@@ -109,7 +109,7 @@
                                             <%
                                                 AS_Select cselect = new AS_Select();
                                                 try {
-                                                    ArrayList<String> rs = cselect.selectPIForLink(Integer.parseInt(request.getParameter("programID")));
+                                                    ArrayList<String> rs = cselect.selectPIForLink(Integer.parseInt(id),Integer.parseInt(request.getParameter("programID")));
 
                                                     for (int i=0; i<rs.size();i++) {
 
