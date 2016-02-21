@@ -71,7 +71,7 @@
 
                                     AS_Select aselect = new AS_Select();
                                     try {
-                                        ArrayList<ArrayList<String>> rs = aselect.selectPerformanceIndicators(Integer.parseInt(request.getParameter("programID")));
+                                        ArrayList<ArrayList<String>> rs = aselect.selectPerformanceIndicators(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(id));
                                         ArrayList<String> rsRow;
 
                                         for (int i = 0; i < rs.size(); i++) {

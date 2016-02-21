@@ -31,7 +31,7 @@ public class AddPI extends HttpServlet {
 
                 programID=sdba.selectProgramID(request.getParameter("programName"));
                 if (programID!=0) {
-                    dba.addPI(request.getParameter("PI"), programID);
+                    dba.addPI(request.getParameter("PI"), programID, Integer.parseInt(id));
                 }else {
                     //Display error message.
                 }
