@@ -1011,4 +1011,65 @@ public class AS_Delete {
         }
 
     }
+
+
+    public void deleteForm(int id, int formType) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = null;
+            switch (formType){
+                case 0: //formative
+                    query = "delete from formative where FK_Link_ID = ?";
+                    break;
+                case 1: //summative
+                    query = "delete from summative where FK_Link_ID = ?";
+                    break;
+            }
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+
+            rs = preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
 }

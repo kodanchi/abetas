@@ -9,6 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
 
 <%
 
@@ -62,6 +63,7 @@
                                 <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
                                 <input type="hidden" name="PValue" value="<%=request.getParameter("PValue")%>">
                                 <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
+                                <input type="hidden" name="oldTypeValue" value="<%=request.getParameter("TypeValue")%>">
                                 <input type="hidden" name="RubricValue" value="<%=request.getParameter("RubricValue")%>">
                                 <input type="hidden" name="TermValue" value="<%=request.getParameter("TermValue")%>">
                                 <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
@@ -169,6 +171,12 @@
                             </div>
                         </div>
 
+
+
+
+
+
+
                         <div class="form-group">
 
                             <label>Type: </label>
@@ -176,13 +184,13 @@
                             <div class="btn-group">
 
                                 <div class="col-xl-25 selectContainer" >
-                                    <select class="form-control" name="Type">
+                                    <select class="form-control" name="Type" id="Type" onchange="onFormTypeChange();">
                                         <option value="Summative"
                                         <% if (request.getParameter("TypeValue") != null && "Summative".equals(request.getParameter("TypeValue"))) {
                                             out.print(" selected");
                                         }
                                             out.print(">");
-                                            out.print("Summative </option>\"");
+                                            out.print("Summative</option>\"");
 
                                         %>
                                         <option value="Formative"
@@ -198,6 +206,67 @@
                                 </div>
                             </div>
                         </div>
+
+
+
+                        <div class="btn-group" id="thresholdInput">
+
+                            <label>Threshold: </label>
+
+                            <div class="btn-group">
+
+                                <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </span>
+                                    <%
+                                        int formThreshold = 0;
+
+                                        if(request.getParameter("TypeValue") != null){
+                                            formThreshold = dselect.selectFormThreshold(Integer.parseInt(request.getParameter("LinkID")));
+                                        }
+
+
+                                    %>
+                                                    <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="form-control text-center" name="STshold" value="<%=formThreshold%>">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <script>
+                            $(document).ready(function(){
+                                onFormTypeChange();
+                            });
+
+                            function onSTsholdChange(){
+                                input = document.getElementById("STshold");
+                                //input = btn.closest('.number-spinner').find('input');
+
+                                if(parseInt(input.value) > parseInt(input.getAttribute("max"))){
+                                    input.value = input.getAttribute("max");
+                                }else if(parseInt(input.value) < parseInt(input.getAttribute("min"))){
+                                    input.value = input.getAttribute("min");
+                                }
+
+                            }
+
+                            function onFormTypeChange(){
+                                var ddl = document.getElementById("Type");
+                                var selectedValue = ddl.options[ddl.selectedIndex].value;
+                                if (selectedValue == "Summative")
+                                {
+                                    $('#thresholdInput').show();
+                                    //document.getElementById("thresholdInput").style.visibility = "visible";
+                                }else {
+                                    $('#thresholdInput').hide();
+                                    //document.getElementById("thresholdInput").style.visibility = "hidden";
+                                    /*document.getElementById("emailDiv").value = "";*/
+                                }
+                            }
+                        </script>
+
 
                         <div class="row tim-row">
                             <h2 class="text-center">Add Rubrics</h2>
@@ -275,7 +344,7 @@
                         <br>
 
                         <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&term=<%=Termid%>&name=<%=request.getParameter("programID")%>" >Cancel</a>
+                        <a class="btn btn-success btn-primary" href="index.jsp?cycle=<%=id%>&term=<%=Termid%>&page=LinkPIOutList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
 
 
                     </form>

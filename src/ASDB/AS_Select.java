@@ -795,7 +795,7 @@ public class AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> selectPerformanceIndicators(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectPerformanceIndicators(int id, int FK_C_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -807,7 +807,8 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_label, PI_name FROM performance_indicator WHERE FK_P_ID='"+id+"';";
+            String query = "SELECT PI_label, PI_name FROM performance_indicator, program, cycle WHERE FK_P_ID = ? AND" +
+                    " FK_C_ID = ? AND P_ID = FK_P_ID AND Cycle_ID = FK_C_ID  ;";
 
             /*
              *  Get connection from the DataSource
@@ -819,7 +820,8 @@ public class AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, FK_C_ID);
 
             rs = preparedStatement.executeQuery();
 
@@ -2526,6 +2528,70 @@ public class AS_Select {
                 //data.add(name = rsSelect.getString(1));
                 name= rsSelect.getString(1);
                 System.out.println(name+"    dsgfdgdgs");
+                return name;
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return name;
+    }
+
+    public int selectFormThreshold(int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int name=-1;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = " SELECT Sum_threshold FROM summative where FK_Link_ID = ?";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (1, id);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((id= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                name= rsSelect.getInt(1);
+                System.out.println(name+"    Sum_threshold");
                 return name;
             }
 

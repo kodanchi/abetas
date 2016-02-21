@@ -1109,7 +1109,7 @@ public class AS_Insert {
 
     }
 
-    public void addPI(String name, int FK_P_ID) throws ClassNotFoundException, SQLException {
+    public void addPI(String name, int FK_P_ID, int FK_C_ID ) throws ClassNotFoundException, SQLException {
 
 
         connect();
@@ -1131,11 +1131,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into performance_indicator (PI_name, FK_P_ID)" + " values (?, ?)";
+            String query = " insert into performance_indicator (PI_name, FK_P_ID, FK_C_ID)" + " values (?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
             preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_C_ID);
 
             rs = preparedStatement.executeUpdate();
 
@@ -1425,7 +1426,7 @@ public class AS_Insert {
         }
     }
 
-    public void addFormS(int FK_Link_ID) throws ClassNotFoundException, SQLException {
+    public void addFormS(int FK_Link_ID, int Sum_threshold) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -1444,11 +1445,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into summative (Sum_submitted, FK_Link_ID)" + " values (?,?)";
+            String query = " insert into summative (Sum_submitted, FK_Link_ID, Sum_threshold)" + " values (?,?,?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, FK_Link_ID);
+            preparedStatement.setInt(3, Sum_threshold);
 
             rs = preparedStatement.executeUpdate();
 

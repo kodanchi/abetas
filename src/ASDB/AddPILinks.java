@@ -20,8 +20,8 @@ public class AddPILinks extends HttpServlet {
 
             AS_Insert dba = new AS_Insert();
             AS_Select sdba = new AS_Select();
-            String id = request.getParameter("cycleId");
-            String Termid = (String) request.getSession().getAttribute("Termid");
+            String id = request.getParameter("cycle");
+            String Termid = request.getParameter("term");
             int programID = 0;
             int R=0;
             int Link_id=0;
@@ -41,7 +41,7 @@ public class AddPILinks extends HttpServlet {
                         dba.addFormF(Link_id);
                     } else if (type.equals("Summative")) {
                         System.out.println("in if S");
-                        dba.addFormS(Link_id);
+                        dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
                     } else {
                         System.out.println("id is not set");
                     }
@@ -59,24 +59,48 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID"));
+                response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-            AS_Update dba = new AS_Update();
-            String id = request.getParameter("cycleId");
-            String Termid = (String) request.getSession().getAttribute("Termid");
+            AS_Insert dba = new AS_Insert();
+            AS_Update dbu = new AS_Update();
+            AS_Select sdba = new AS_Select();
+            AS_Delete dbd = new AS_Delete();
+            String id = request.getParameter("cycle");
+            String Termid = request.getParameter("term");
+            int Link_id = Integer.parseInt(request.getParameter("LinkID"));
+
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");
             System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww  PI id          " + Integer.parseInt(request.getParameter("OutValue")) + "   wwwwwwwwwwwwwwww           ");
+            String type="";
             try {
                 System.out.println("##########################################################  "+request.getParameter("LinkID")+"    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("programID")+"      "+request.getParameter("RubricValue")+"  "+request.getParameter("Course")+"   "+Termid+"    "+request.getParameter("Type"));
 
-                dba.updatePILink(Integer.parseInt(request.getParameter("LinkID")),Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")),Integer.parseInt(request.getParameter("RubricValue")),request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
-                dba.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
+                dbu.updatePILink(Integer.parseInt(request.getParameter("LinkID")),Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")),Integer.parseInt(request.getParameter("RubricValue")),request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
+                dbu.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
                 System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+                type = sdba.selectFormType(Link_id);
+                if(!request.getParameter("oldTypeValue").equals(request.getParameter("Type"))){
+                    if (type.equals("Formative")) {
+                        System.out.println("in if F");
+                        dbd.deleteForm(Link_id,1);
+                        dba.addFormF(Link_id);
+                    } else if (type.equals("Summative")) {
+                        System.out.println("in if S");
+                        dbd.deleteForm(Link_id,0);
+                        dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
+                    } else {
+                        System.out.println("id is not set");
+                    }
+                }else if (type.equals("Summative")){
+                    dbu.updateFormThredshold(Link_id,Integer.parseInt(request.getParameter("STshold")));
+                }
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -91,7 +115,7 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID"));
+                response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
