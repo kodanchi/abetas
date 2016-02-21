@@ -98,6 +98,7 @@
                                                 "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                 "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                 "                            <input name=\"LinkID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
+                                                "                            <input name=\"RubricValue\" value=\""+rsRow.get(5)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                 "                               <td>" +
                                                 "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +

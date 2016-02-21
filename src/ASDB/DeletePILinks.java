@@ -16,14 +16,17 @@ import java.io.PrintWriter;
 public class DeletePILinks extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        System.out.println(request.getParameter("PILabel")+"           ");
+        System.out.println(request.getParameter("LinkID")+"           ");
+        System.out.println(request.getParameter("RubricValue")+"           ");
+
         //ArrayList<String> data = new ArrayList<String>();
         int id=0;
         AS_Delete dba=new AS_Delete();
         //AS_Select dbaS=new AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
-            dba.deletePI(Integer.parseInt(request.getParameter("PILabel")));
+            dba.deleteRubric(Integer.parseInt(request.getParameter("RubricValue")));
+            dba.deletePILink(Integer.parseInt(request.getParameter("LinkID")));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
