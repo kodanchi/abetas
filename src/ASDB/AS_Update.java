@@ -531,4 +531,76 @@ public class AS_Update {
 
     }
 
+    public void updateFormF(String F_written_rubic, String F_instructor_feedback_comment, String F_instructor_feedback_obstacle, String F_instructor_feedback_improvement, String F_evidence,  int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            if (F_evidence!=null) {
+                System.out.println("GGGGGGGGGGGGGGGGGG");
+                String query = "update formative set F_written_rubic = ?, F_instructor_feedback_comment = ?, F_instructor_feedback_obstacle = ?, F_instructor_feedback_improvement = ?, F_evidence = ? where Formative_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, F_written_rubic);
+                preparedStatement.setString(2, F_instructor_feedback_comment);
+                preparedStatement.setString(3, F_instructor_feedback_obstacle);
+                preparedStatement.setString(4, F_instructor_feedback_improvement);
+                preparedStatement.setString(5, F_evidence);
+                preparedStatement.setInt(6, id);
+
+                rs = preparedStatement.executeUpdate();
+            }
+            else{
+                System.out.println("WWWWWWWWWWWWWWWWWWWWw");
+                String query = "update formative set F_written_rubic = ?, F_instructor_feedback_comment = ?, F_instructor_feedback_obstacle = ?, F_instructor_feedback_improvement = ? where Formative_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, F_written_rubic);
+                preparedStatement.setString(2, F_instructor_feedback_comment);
+                preparedStatement.setString(3, F_instructor_feedback_obstacle);
+                preparedStatement.setString(4, F_instructor_feedback_improvement);
+                preparedStatement.setInt(5, id);
+
+                rs = preparedStatement.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
 }

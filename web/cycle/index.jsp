@@ -24,6 +24,10 @@
                 }else {
                    System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
                 }
+            }else if(pageCall.equals("Formative")) {
+                String Formative_ID=request.getParameter("Formative_ID");
+                String FacilityID=request.getParameter("FacilityID");
+                    pageName = "Formative.jsp?Formative_ID=" + Formative_ID+"&FacilityID="+FacilityID;
             }else if(pageCall.equals("LinkPIOutList")) {
 
                 String programID=request.getParameter("programID");
