@@ -18,8 +18,8 @@ public class AddPILinks extends HttpServlet {
         if (request.getParameter("OutValue").equals("null")) {
             System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  Course  "+  request.getParameter("Course"));
 
-            AS_Insert dba = new AS_Insert();
-            AS_Select sdba = new AS_Select();
+            P_AS_Insert dba = new P_AS_Insert();
+            P_AS_Select sdba = new P_AS_Select();
             String id = request.getParameter("cycleId");
             String Termid = (String) request.getSession().getAttribute("Termid");
             int programID = 0;
@@ -51,7 +51,7 @@ public class AddPILinks extends HttpServlet {
             }
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-            AS_Update dba = new AS_Update();
+            P_AS_Update dba = new P_AS_Update();
             String id = request.getParameter("cycleId");
             String Termid = (String) request.getSession().getAttribute("Termid");
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");

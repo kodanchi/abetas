@@ -6,11 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URI;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Base64;
 
 /**
  * Created by Ibrahim Abuaqel on 2/7/2016.
@@ -21,7 +16,7 @@ public class AddCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
 
-            AS_Insert dba = new AS_Insert();
+            P_AS_Insert dba = new P_AS_Insert();
             int id = 0;
             try {
 

@@ -21,8 +21,8 @@ public class AddCourses extends HttpServlet {
         //ArrayList<String> data = new ArrayList<String>();
         if (request.getParameter("CourseName").equals("null")) {
             int id=0;
-        AS_Insert dba=new AS_Insert();
-        AS_Select dbaS=new AS_Select();
+        P_AS_Insert dba=new P_AS_Insert();
+        P_AS_Select dbaS=new P_AS_Select();
         try {
             courseVal = new String[]{request.getParameter("Code"),request.getParameter("Cname"),request.getParameter("level")};
             if(!dbaS.isCoursesCodeExist(request.getParameter("Code"))){
@@ -52,8 +52,8 @@ public class AddCourses extends HttpServlet {
             System.out.println(request.getParameter("Outid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
 
             int id = 0;
-            AS_Update dba = new AS_Update();
-            AS_Select dbaS=new AS_Select();
+            P_AS_Update dba = new P_AS_Update();
+            P_AS_Select dbaS=new P_AS_Select();
             try {
                 courseVal = new String[]{request.getParameter("Code"),request.getParameter("Cname"),request.getParameter("level")};
                 if(request.getParameter("Code").equals("") || request.getParameter("Cname").equals("")){

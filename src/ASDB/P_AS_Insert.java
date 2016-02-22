@@ -11,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by Ibrahim Abuaqel on 1/31/2016.
  */
-public class AS_Insert {
+public class P_AS_Insert {
 
     private Connection conn;
     private Statement stmt;

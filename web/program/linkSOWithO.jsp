@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
@@ -35,7 +35,7 @@
                                 <th>Delete</th>
                             </tr>
                             <%
-                                AS_Select aselect = new AS_Select();
+                                P_AS_Select aselect = new P_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectStudentOutcomeWithObjectives(Integer.parseInt(request.getParameter("id")));
                                     ArrayList<String> rsRow ;

@@ -7,7 +7,7 @@
 
   http://stackoverflow.com/questions/10159067/show-hide-button-in-table-row-during-mouseover
 --%>
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -137,7 +137,7 @@
                             <%
 
 
-                                AS_Select dba=new AS_Select();
+                                P_AS_Select dba=new P_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
                                     ArrayList<String> suRow ;

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Created by Ibrahim Abuaqel on 2/9/2016.
@@ -20,8 +19,8 @@ public class AddPI extends HttpServlet {
         if (request.getParameter("PIValue").equals("null")) {
             System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
-            AS_Insert dba = new AS_Insert();
-            AS_Select sdba = new AS_Select();
+            P_AS_Insert dba = new P_AS_Insert();
+            P_AS_Select sdba = new P_AS_Select();
             String id = request.getParameter("cycleId");
             String Termid = request.getParameter("Termid");
             int programID = 0;
@@ -54,7 +53,7 @@ public class AddPI extends HttpServlet {
             }
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-            AS_Update dba = new AS_Update();
+            P_AS_Update dba = new P_AS_Update();
             String id = request.getParameter("cycleId");
             String Termid = request.getParameter("Termid");
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");

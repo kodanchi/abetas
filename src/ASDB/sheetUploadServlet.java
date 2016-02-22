@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by Mojahed on 2/3/2016.
@@ -27,7 +26,7 @@ public class sheetUploadServlet extends HttpServlet {
         ArrayList<String> dataRow;
 
         System.out.println(dataArr);
-        AS_Insert db = new AS_Insert();
+        P_AS_Insert db = new P_AS_Insert();
 
         try {
             for(int i=0;i<dataArr.size();i++){

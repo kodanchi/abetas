@@ -20,8 +20,8 @@ public class AddLinkObjOut extends HttpServlet {
         //ArrayList<String> data = new ArrayList<String>();
         if (request.getParameter("ObjLinkValue").equals("null")) {
             int id=0;
-        AS_Insert dba=new AS_Insert();
-        AS_Select dbaS=new AS_Select();
+        P_AS_Insert dba=new P_AS_Insert();
+        P_AS_Select dbaS=new P_AS_Select();
         try {
             if(!dbaS.isExistLinkObj_Out(Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("Out")),
                     Integer.parseInt(request.getParameter("id")))){
@@ -51,8 +51,8 @@ public class AddLinkObjOut extends HttpServlet {
             System.out.println(request.getParameter("Outid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
 
             int id = 0;
-            AS_Update dba = new AS_Update();
-            AS_Select dbaS=new AS_Select();
+            P_AS_Update dba = new P_AS_Update();
+            P_AS_Select dbaS=new P_AS_Select();
             try {
                 if(!dbaS.isExistLinkObj_OutExcept(Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("Out")),
                         Integer.parseInt(request.getParameter("id")),Integer.parseInt(request.getParameter("Out")))){

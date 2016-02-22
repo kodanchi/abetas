@@ -24,10 +24,10 @@ public class UpdateUser extends HttpServlet {
     String[] userVal;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
-        AS_Insert idb = new AS_Insert();
-        AS_Delete ddb = new AS_Delete();
-        AS_Update udb = new AS_Update();
-        AS_Select sdb = new AS_Select();
+        P_AS_Insert idb = new P_AS_Insert();
+        P_AS_Delete ddb = new P_AS_Delete();
+        P_AS_Update udb = new P_AS_Update();
+        P_AS_Select sdb = new P_AS_Select();
         try {
 
             String userType = request.getParameter("userType");

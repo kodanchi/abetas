@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
@@ -60,7 +60,7 @@
                             </tr>
                             <%
                                 int id = Integer.parseInt(request.getParameter("id"));
-                                AS_Select aselect = new AS_Select();
+                                P_AS_Select aselect = new P_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectProgramManagementFig30(id);
                                     ArrayList<String> rsRow ;

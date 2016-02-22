@@ -8,7 +8,7 @@ import java.sql.*;
 /**
  * Created by Ibrahim Abuaqel on 2/4/2016.
  */
-public class AS_Update {
+public class P_AS_Update {
 
     private Connection conn;
     private Statement stmt;

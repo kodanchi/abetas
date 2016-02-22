@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/3/2016
@@ -96,7 +97,7 @@
                                 <div class="col-xl-50 selectContainer" >
                                     <select class="form-control" name="Obj">
                                         <%
-                                            AS_Select aselect = new AS_Select();
+                                            P_AS_Select aselect = new P_AS_Select();
                                             try {
                                                 ArrayList<String> rs = aselect.selectObjForLink(Integer.parseInt(request.getParameter("id")));
 
@@ -142,7 +143,7 @@
                                     <div class="col-xl-25 selectContainer" >
                                         <select class="form-control" name="Out">
                                             <%
-                                                AS_Select bselect = new AS_Select();
+                                                P_AS_Select bselect = new P_AS_Select();
                                                 try {
                                                     ArrayList<String> rs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("id")));
 

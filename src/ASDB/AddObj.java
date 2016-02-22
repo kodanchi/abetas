@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 /**
  * Created by Ibrahim Abuaqel on 2/2/2016.
@@ -24,8 +23,8 @@ public class AddObj extends HttpServlet {
             System.out.println("#################################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
             int id = 0;
-            AS_Insert dba = new AS_Insert();
-            //AS_Select dbaS=new AS_Select();
+            P_AS_Insert dba = new P_AS_Insert();
+            //P_AS_Select dbaS=new P_AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.addObject(request.getParameter("Obj"), Integer.parseInt(request.getParameter("id")));
@@ -49,8 +48,8 @@ public class AddObj extends HttpServlet {
             System.out.println(request.getParameter("Objid")+"            AdObj Servlet IDIDIDIDIDDIIDID");
 
             int id = 0;
-            AS_Update dba = new AS_Update();
-            //AS_Select dbaS=new AS_Select();
+            P_AS_Update dba = new P_AS_Update();
+            //P_AS_Select dbaS=new P_AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.updateObjective(Integer.parseInt(request.getParameter("Objid")), request.getParameter("Obj"));
