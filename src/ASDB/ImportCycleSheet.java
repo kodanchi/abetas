@@ -496,6 +496,125 @@ public class ImportCycleSheet {
     }
 
 
+    public boolean PIsSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
+        try {
+
+            FileInputStream file = new FileInputStream(new File(uploadFilePath));
+
+            //Get the workbook instance for XLS file
+            HSSFWorkbook workbook = new HSSFWorkbook(file);
+
+            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
+
+            //Get first sheet from the workbook
+            HSSFSheet sheet = workbook.getSheetAt(0);
+
+            //Set the sheet checker in Array
+            String[] sheetCheckerArr = sheetChecker;
+            boolean validFormHead = true;
+
+
+            //Iterate through each rows from first sheet
+            Iterator<Row> rowIterator = sheet.iterator();
+
+            //Store the data in ArrayList
+            sheetData = new ArrayList<ArrayList<String>>();
+
+            //Iterate through each rows as an ArrayList
+            ArrayList<String>  dataRow;
+            while(rowIterator.hasNext()) {
+                dataRow = new ArrayList<String>();
+                Row row = rowIterator.next();
+
+                //For each row, iterate through each columns
+                Iterator<Cell> cellIterator = row.cellIterator();
+                //while(cellIterator.hasNext()) {
+                for (int j=0;j<sheetCheckerArr.length;j++){
+
+                    //Cell cell = cellIterator.next();
+                    Cell cell = row.getCell(j);
+
+                    if(validFormHead) {
+                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                            if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
+                                System.out.print(cell.getStringCellValue() + "\t\t");
+                            } else {
+                                System.out.print("errrrrr not same format");
+                                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                                        "                                        \"that shown in the import page";
+                                file.close();
+                                return false;
+                            }
+                        } else {
+                            System.out.print("errrrrr not string");
+                            Error_Msg = "errrrrr not string";
+                            file.close();
+                            return false;
+                        }
+                    }else {
+                        try {
+                            cell.setCellType(Cell.CELL_TYPE_STRING);
+                            System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
+
+                            if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                                switch (j){
+                                    case 0:
+
+                                        if(cell.getStringCellValue().equals("")){
+                                            Error_Msg = "Some of the records are empty.";
+                                            file.close();
+                                            return false;
+                                        }else {
+                                            dataRow.add(cell.getStringCellValue());
+                                        }
+                                        break;
+                                }
+                                //System.out.print(cell.getStringCellValue() + "\t\t");
+                            }else {
+                                System.out.print("errrrrr not same format");
+                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                        "that shown in the import page";
+                                file.close();
+                                return false;
+                            }
+                        }catch (NullPointerException e){
+                            e.fillInStackTrace();
+
+
+                            switch (j){
+                                case 0:
+                                    Error_Msg="Some of the records are empty, change it in the sheet and try upload it again, or choose another file.";
+                                    file.close();
+                                    return false;
+                            }
+                        }
+
+                    }
+
+
+                }
+
+                System.out.println("");
+                if(!validFormHead) {
+                    sheetData.add(dataRow);
+                }
+                validFormHead = false;
+            }
+            file.close();
+            FileOutputStream pout =
+                    new FileOutputStream(new File(uploadFilePath));
+            workbook.write(pout);
+            pout.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
     public boolean outcomesSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
@@ -756,8 +875,14 @@ public class ImportCycleSheet {
 
         //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
         //response.sendRedirect("/cycle/index.jsp?cycle="+ cycle +"&term="+ term +"&cmd=upload&data="+pdataType);
-        response.sendRedirect("/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
-                "&courseName=" + courseName + "&section=" + section +"&cmd=upload&data="+pdataType);
+        String url = null;
+        if(pdataType.equals("students")){
+            url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
+                    "&courseName=" + courseName + "&section=" + section +"&cmd=upload&data="+pdataType;
+        }else if(pdataType.equals("pis")){
+            url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&cmd=upload&data="+pdataType;
+        }
+        response.sendRedirect(url);
         /*RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+term+"&id="+cycle+"&cmd=upload&data="+pdataType+"&err="+Error_Msg);
 
         try {
@@ -771,8 +896,18 @@ public class ImportCycleSheet {
 
         //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
         //RequestDispatcher rd = request.getRequestDispatcher("/cycle/index.jsp?cycle="+ term +"&term="+ cycle +"&data="+pdataType+"&cmd=confirm");
-        response.sendRedirect("/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
-                "&courseName=" + courseName + "&section=" + section +"&cmd=confirm&data="+pdataType);
+        String url = null;
+        if(pdataType.equals("students")){
+            url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
+                    "&courseName=" + courseName + "&section=" + section +"&cmd=confirm&data="+pdataType;
+        }else if(pdataType.equals("pis")){
+            url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term   +"&programID=" + programID +"&cmd=confirm&data="+pdataType;
+        }
+
+        response.sendRedirect(url);
+
+
+
 
         /*try {
             rd.forward(request, response);

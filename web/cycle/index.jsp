@@ -9,6 +9,7 @@
 --%>
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%
     System.out.println(request.getMethod());
     String pageName = "cycleList.jsp";
@@ -139,8 +140,14 @@
                 System.out.println("piList-----  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
-                    pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term") ;
+                    if(request.getParameter("status") != null) {
+                        System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
+                        pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term") ;
+                    }else {
+                        System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
+                        pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term") ;
+                    }
+
                 }else {
                     //display error page
                 }
@@ -156,6 +163,9 @@
                     if(request.getParameter("data").equals("students")) {
                         pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
                                 "&courseName=" + courseName + "&section=" + section + "&data=students";
+                    }else if(request.getParameter("data").equals("pis")){
+                        pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                                "&courseName=" + courseName + "&section=" + section + "&data=pis";
                     }
 
                 }else {
@@ -190,8 +200,14 @@
                 String courseName = request.getParameter("courseName");
                 String section = request.getParameter("section");
                 String dataType = request.getParameter("data");
-                pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                        "&courseName=" + courseName + "&section=" + section + "&data="+ dataType;
+                /*pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                        "&courseName=" + courseName + "&section=" + section + "&data="+ dataType;*/
+                if(request.getParameter("data").equals("students")) {
+                    pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                            "&courseName=" + courseName + "&section=" + section + "&data="+dataType;
+                }else if(request.getParameter("data").equals("pis")){
+                    pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&data="+dataType;
+                }
             }
         }else if(request.getParameter("back") != null){
             String backPage = request.getParameter("back");
@@ -203,10 +219,11 @@
             String section = request.getParameter("section");
 
             if(backPage.equals("students")){
-                pageName = "programObjectiveList.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                pageName = "studentList.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
                         "&courseName=" + courseName + "&section=" + section;
-            }else if(backPage.equals("outcomes")){
-                pageName = "SOList.jsp?name=" + name + "&id=" + id;
+            }else if(backPage.equals("pis")){
+                pageName = "piList.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
+                        "&courseName=" + courseName + "&section=" + section;
             }else if(backPage.equals("courses")){
                 pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
             }
@@ -460,7 +477,7 @@
 <script src="/js/ct-paper-radio.js"></script>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
-
+<script src="/js/jquery.bsFormAlerts.js"></script>
 <script src="/js/ct-paper.js"></script>
 
 <script>

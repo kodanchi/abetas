@@ -14,14 +14,14 @@ import java.io.IOException;
         urlPatterns = {"/AddTerm"})
 public class AddTerm extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################");
+        System.out.println("##########################################################"+ request.getParameter("fyear")+"-"+request.getParameter("tyear"));
 
             AS_Insert dba = new AS_Insert();
             int id = Integer.parseInt(request.getParameter("cycle"));
             int Termid = 0;
             try {
 
-                Termid = dba.addTerm(request.getParameter("termName"),request.getParameter("termYear"),id);
+                Termid = dba.addTerm(request.getParameter("termName"),request.getParameter("fyear")+"-"+request.getParameter("tyear"),id);
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

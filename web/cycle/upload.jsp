@@ -50,8 +50,8 @@
                                 if(dataType.equals("students")){
                                     out.print("<th>Student ID</th>");
                                     out.print("<th>Student Name</th>");
-                                }else if (dataType.equals("outcomes")){
-                                    out.print("<th>Outcomes</th>");
+                                }else if (dataType.equals("pis")){
+                                    out.print("<th>Performance Indicator</th>");
                                 }else if(dataType.equals("course")){
 
                                 }
@@ -123,9 +123,13 @@
                     <input type="text" name="cycle" value="<%=request.getParameter("cycle")%>" hidden/>
                     <input type="text" name="term" value="<%=request.getParameter("term")%>" hidden/>
                     <input type="text" name="programID" value="<%=request.getParameter("programID")%>" hidden/>
-                    <input type="text" name="courseCode" value="<%=request.getParameter("courseCode")%>" hidden/>
-                    <input type="text" name="courseName" value="<%=request.getParameter("courseName")%>" hidden/>
-                    <input type="text" name="section" value="<%=request.getParameter("section")%>" hidden/>
+                    <%
+                        if(dataType.equals("students")){
+                            out.print("<input type=\"text\" name=\"courseCode\" value=\""+request.getParameter("courseCode")+"\" hidden/>\n" +
+                                    " <input type=\"text\" name=\"courseName\" value=\""+request.getParameter("courseName")+"\" hidden/>\n" +
+                                    " <input type=\"text\" name=\"section\" value=\""+request.getParameter("section")+"\"  hidden/>");
+                        }
+                    %>
                     <button class="btn btn-primary"  type="submit">Upload</button>
                     <a href="/program/index.jsp?name=<%=term%>&id=<%=id%>&page=ObjList" class="btn btn-primary">Cancel</a>
                 </form>

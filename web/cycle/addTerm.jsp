@@ -10,6 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
 
 
@@ -36,12 +37,16 @@
 
                                     <!-- Table -->
                                     <div class="row tim-row">
-                                        <div class="col-md-6">
-                                            <form method="post" action="/AddTerm">
-                                                <div class="row tim-row">
-                                                    <div class="col-md-6">
+                                        <div class="row tim-row">
+                                            <form id="addTermForm" method="post" action="/AddTerm">
+                                                <div class="col-md-6">
+
+                                                    <div class="row">
+                                                        <label>Term</label>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="form-group">
-                                                            <label>Term</label>
+
                                                             <select class="form-control" name="termName" required>
                                                                 <option value="Term 1" selected>Term 1</option>
                                                                 <option value="Term 2">Term 2</option>
@@ -52,35 +57,108 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-6">
+
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <label>Year</label>
+                                                    </div>
+                                                    <div class="row">
                                                         <div class="form-group">
-                                                            <label>Year</label>
-                                                            <select class="form-control" name="termYear">
-                                                                <option value="2015-2016" id="date"></option>
-                                                                <script>
-                                                                    /*function myFunction() {
-                                                                        var d = new Date();
-                                                                        var n = d.getFullYear();
-                                                                        document.getElementById("date").innerHTML = n;
-                                                                    }*/
-                                                                    (function(){
-                                                                        var d = new Date();
-                                                                        var n = d.getFullYear();
-                                                                        document.getElementById("date").innerHTML = n;
-                                                                    })();
-                                                                </script>
-                                                            </select>
+                                                            <div class="col-md-5">
+                                                                <ul class="list-inline">
+                                                                    <li><label>From</label></li>
+                                                                    <li><input class="form-control" onchange="onYearChng(this);" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
+                                                                </ul>
+
+                                                            </div>
+                                                            <div class="col-md-5">
+                                                                <ul class="list-inline">
+                                                                    <li><label>To </label></li>
+                                                                    <li><input class="form-control" onchange="onYearChng(this);" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
+                                                                </ul>
+
+                                                            </div>
+
+                                                            <div class="col-md-2">
+                                                                <button type="submit" class="btn btn-success">Add</button>
+
+                                                            </div>
+
+
+
+                                                            <script>
+                                                                /*function myFunction() {
+                                                                 var d = new Date();
+                                                                 var n = d.getFullYear();
+                                                                 document.getElementById("date").innerHTML = n;
+                                                                 }*/
+                                                                /*(function(){
+                                                                 var d = new Date();
+                                                                 var n = d.getFullYear();
+                                                                 document.getElementById("date").innerHTML = n;
+                                                                 }
+
+                                                                 )();*/
+                                                                function onYearChng(input){
+                                                                    var d = new Date();
+                                                                    var n = d.getFullYear();
+                                                                    $(document).trigger("clear-alert-id.yearAlert");
+                                                                    if(input.value < 2000 ){
+                                                                        input.value = n;
+                                                                        input.focus();
+                                                                        $(document).trigger("set-alert-id-yearAlert", [
+                                                                            {
+                                                                                message: "Year must be more than 2000",
+                                                                                priority: "error"
+                                                                            }
+                                                                        ]);
+                                                                    }else if(input.value > 2099){
+                                                                        input.value = n;
+                                                                        input.focus();
+                                                                        $(document).trigger("set-alert-id-yearAlert", [
+                                                                            {
+                                                                                message: "Year must be less than 2099",
+                                                                                priority: "error"
+                                                                            }
+                                                                        ]);
+                                                                    }
+
+                                                                }
+                                                            </script>
+                                                            <script>
+                                                                $(function(){
+                                                                    $("#addTermForm").submit(function() {
+                                                                        var inputVal = $("#fyear").val();
+                                                                        $(document).trigger("clear-alert-id.example");
+                                                                        if (inputVal.length < 3) {
+                                                                            $(document).trigger("set-alert-id-example", [
+                                                                                {
+                                                                                    message: "Please enter at least 3 characters",
+                                                                                    priority: "error"
+                                                                                },
+                                                                                {
+                                                                                    message: "This is an info alert",
+                                                                                    priority: "info"
+                                                                                }
+                                                                            ]);
+                                                                        }
+                                                                    });
+                                                                });
+                                                            </script>
+
 
                                                         </div>
                                                     </div>
-
+                                                    <div class="row">
+                                                        <span data-alertid="yearAlert"></span>
+                                                    </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-success">Add</button>
-
                                             </form>
                                         </div>
-
-                                        <div class="col-md-6 panel panel-default">
+                                        <Legend></Legend>
+                                        <div class="row panel panel-default">
                                             <table class="table">
                                                 <tr>
                                                     <th>Name</th>

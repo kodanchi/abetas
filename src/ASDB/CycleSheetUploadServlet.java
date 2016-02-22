@@ -50,8 +50,8 @@ public class CycleSheetUploadServlet extends HttpServlet {
                 if(dataType.equals("students")){
                     System.out.println("dataType : "+dataType);
                     dba.addStudent(dataRow.get(1), Integer.parseInt(dataRow.get(0)), Integer.parseInt(section));
-                }else if(dataType.equals("outcomes")){
-                    dba.addOutcome(dataRow.get(0), Integer.parseInt(cycle));
+                }else if(dataType.equals("pis")){
+                    dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle));
                 }else if(dataType.equals("courses")){
                     dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(cycle));
                 }
@@ -70,8 +70,8 @@ public class CycleSheetUploadServlet extends HttpServlet {
                 //response.setHeader("Location", "/program/index.jsp?page=ObjList&term=" + term + "&cycle=" + cycle + "&status=Success");
                 response.setHeader("Location", "/cycle/index.jsp?page=studentList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
                         "&courseName=" + courseName + "&section=" + section +"&status=Success");
-            }else if(dataType.equals("outcomes")){
-                response.setHeader("Location", "/program/index.jsp?page=OutcomeList&term=" + term + "&cycle=" + cycle + "&status=Success");
+            }else if(dataType.equals("pis")){
+                response.setHeader("Location", "/cycle/index.jsp?page=piList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&status=Success");
             }else if(dataType.equals("courses")){
                 response.setHeader("Location", "/program/index.jsp?page=CoursesList&term=" + term + "&cycle=" + cycle + "&status=Success");
             }

@@ -46,6 +46,9 @@ public class CycleSheetImportServlet extends HttpServlet {
                 if(dataType.equals("students")){
                     String[] sheetChecker = {"student ID","student name"};
                     dataIsValid = importer.studentsSheetVaildation(sheetChecker);
+                }else if(dataType.equals("pis")){
+                    String[] sheetChecker = {"performance indicator"};
+                    dataIsValid = importer.PIsSheetVaildation(sheetChecker);
                 }else {
                     System.out.println("no data type");
                 }

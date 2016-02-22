@@ -218,10 +218,10 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">Program Objectives</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Add Students</h4>
                                 </div>
                                 <div class="modal-body">
-                                    If you have the Program Objectives in an Excel sheet, you can import the file to add them all at once
+                                    If you have the students details in an Excel sheet, you can import the file to add them all at once
                                 </div>
                                 <div class="modal-footer">
                                     <div class="left-side">
