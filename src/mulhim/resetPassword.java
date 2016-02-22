@@ -40,7 +40,8 @@ public class resetPassword extends HttpServlet {
         try {
             if(d.selectEmail(getFromUser)){
                 SendEmail msg = new SendEmail();
-                msg.mu("The code is  "+PassCodeMap.getpassKey(getFromUser));
+
+                msg.mu("The code is  "+PassCodeMap.getpassKey(getFromUser,""),getFromUser);
                 response.sendRedirect("enterPasscode.jsp");
 
 
@@ -61,40 +62,6 @@ public class resetPassword extends HttpServlet {
         }
 
     }
-    public void select(String name, String logo) throws ClassNotFoundException, SQLException {
-    DBAccess co =new DBAccess();
-        Random rand = new Random();
-        int randNumber=randNumber=rand.nextInt(100000);
-        //Map<String,Integer> myMap = new HashMap<String,Integer>();
-        String inp;
 
-    System.out.print("Please enter the email");
-        //inp=in.nextLine();
-        co.connect();
-        //stmt=conn.createStatement();
-        //result=stmt.executeQuery("select * from university");
-        String query = "select Uni_name from university where Uni_logo='i'";
-
-        PreparedStatement preparedStmt = co.conn.prepareStatement(query);
-        co.result=preparedStmt.executeQuery();
-
-        String re="";
-        while (co.result.next()){
-            re= co.result.getString(1);
-            System.out.println(re);
-           // ArrayList al= new ArrayList();
-
-               // al.add(re);
-           // myMap.put(re,randNumber);
-            //System.out.println(myMap.size());
-
-
-
-        }
-       // System.out.println(re);
-        System.out.println(randNumber);
-
-        co.conn.close();
-    }
 
 }

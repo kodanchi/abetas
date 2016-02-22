@@ -8,7 +8,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 public class SendEmail {
-    public  void mu(String msg)
+    public  void mu(String msg,String reciever)
     {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -30,7 +30,7 @@ public class SendEmail {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("mulhimmm@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("mojahedwazzab@live.com"));
+                    InternetAddress.parse(reciever));
 
             message.setSubject("Testing Subject");
             message.setText(msg);

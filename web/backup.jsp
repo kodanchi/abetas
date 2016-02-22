@@ -78,8 +78,10 @@
                                             out.print("<tr><td>"+files+"</td>\n" +
                                                     "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                                                     .format(view.creationTime().toMillis())+"</td>\n" +
-                                                    "                                <td><a class=\"btn btn-warning btn-simple\" data-toggle=\"modal\" data-target=\"#restoreModal\"><i class=\"fa fa-undo fa-2x\"></i></a></td>\n" +
-                                                    "                                <td ><a class=\"btn btn-danger btn-simple\" data-toggle=\"modal\" data-target=\"#deleteModal\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td></tr>");
+                                                    "                                <form method=\"post\" action=\"/RestoreDB\">\n" +
+                                                    "                                    <td><input hidden name=\"restoreAction\" value="+files+"><button type=\"submit\" class=\"btn btn-warning btn-simple\" data-toggle=\"modal\" data-target=\"#restoreModal\" name=\"restore_Bck\"><i class=\"fa fa-undo fa-2x\"></i></button></td></form>\n"+
+                                                    "                                <form method=\"post\" action=\"/BackupDel\">\n" +
+                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+files+"> <button type=\"submit\" class=\"btn btn-danger btn-simple\" data-toggle=\"modal\" data-target=\"#deleteModal\"><i class=\"fa fa-trash-o fa-2x\"></i></button></td></form>\n");
 
 
 

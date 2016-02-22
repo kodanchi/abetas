@@ -4,7 +4,10 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Date;
+
 import mulhim.PassCodeMap;
 /**
  * Created by Ibrahim Abuaqel on 1/24/2016.
@@ -16,7 +19,7 @@ public class loginDB {
     private ResultSet result;
     DataSource dataSource = null;
     Random rand = new Random();
-    int randNumber=randNumber=rand.nextInt(100000);
+    String randNumber=randNumber= String.valueOf(rand.nextInt(100000));
 
     public void connect() throws ClassNotFoundException, SQLException {
 
@@ -40,7 +43,7 @@ public class loginDB {
 
 
     public Boolean selectEmail(String d) throws ClassNotFoundException, SQLException {
-
+        String currentTime = new SimpleDateFormat("dd HH:mm").format(new Date());
          String selEmail ="";
 
         connect();
@@ -51,7 +54,7 @@ public class loginDB {
         ResultSet rs = null;
         try {
 
-            String query = "select Uni_name from university where Uni_name=\""+d+"\"";
+            String query = "select Super_Email from superuser where Super_Email=\""+d+"\"";
 
             /*
              *  Get connection from the DataSource
@@ -77,24 +80,28 @@ public class loginDB {
 
 
             }
-            if(PassCodeMap.checkKey(selEmail)){
+if(PassCodeMap.checkKey(selEmail)==false){
+    PassCodeMap.setPassCode(selEmail,randNumber);
 
-                System.out.println("Exist !!!!    "+selEmail);
-              //  System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
-                System.out.println(false);
-                return false;
+
+    System.out.println(PassCodeMap.getMapSize());
+    System.out.println("The code is from loginDB "+PassCodeMap.in.get(0));
+    System.out.println(true);
+    return true;
+
+}
+          else  if(PassCodeMap.checkKey(selEmail)){
+
+    System.out.println("Exist !!!!    " + selEmail);
+      System.out.println("The code is "+PassCodeMap.getpassKey(selEmail,PassCodeMap.in.get(0)));
+    System.out.println(false);
+    //System.out.println(PassCodeMap.obj);
+    return false;
+
             }
             else if(selEmail==""){
-System.out.print(false);
+System.out.print("The email is not exist");
                 return false;
-            }
-            else {
-                PassCodeMap.setPassCode(selEmail,randNumber);
-                System.out.println(PassCodeMap.getMapSize());
-                System.out.println("The code is from loginDB "+PassCodeMap.getpassKey(selEmail));
-                System.out.println(true);
-return true;
-
             }
 
 
@@ -122,7 +129,7 @@ return true;
 
 
         }
-        System.out.println(selEmail);
+        System.out.println("Wroung not entered");
 
         return false;
     }

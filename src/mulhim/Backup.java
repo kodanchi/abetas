@@ -37,6 +37,7 @@ public class Backup extends HttpServlet {
         }
 
         response.sendRedirect("backup.jsp");
+
     }
 
     String dbName = "abetasdb";
@@ -46,7 +47,7 @@ public class Backup extends HttpServlet {
 
     public void backupDB() {
         String executeCmd = "";
-loginDB d= new loginDB();
+
         Date today = new Date();
         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy-HH-mm-S");
         String date = DATE_FORMAT.format(today);
@@ -73,29 +74,7 @@ loginDB d= new loginDB();
         }
     }
 
-    public void restoreDB(String backupFile) {
-        String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", " source C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\"+backupFile };
-            //System.out.println(executeCmd);
 
-            Process runtimeProcess= null;
-
-        try {
-            runtimeProcess = Runtime.getRuntime().exec(executeCmd);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        int processComplete = 0;
-        try {
-            processComplete = runtimeProcess.waitFor();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (processComplete == 0) {
-            System.out.println("Restore taken successfully");
-        } else {
-            System.out.println("restore failure");
-        }
-        }
     public void listBackupFile(HttpServletResponse r) throws ClassNotFoundException, SQLException, IOException{
         PrintWriter out =r.getWriter();
 

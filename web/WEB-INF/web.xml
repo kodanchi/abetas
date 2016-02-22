@@ -19,4 +19,7 @@
         <servlet-name>passCodeServlet</servlet-name>
         <url-pattern>/someurl</url-pattern>
     </servlet-mapping>
+    <listener>
+        <listener-class>mulhim.timerRun</listener-class>
+    </listener>
 </web-app>

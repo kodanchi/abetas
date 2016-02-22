@@ -22,7 +22,7 @@ public class passCode extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("#######################################################");
         String getFromUser2=request.getParameter("emailReset");
-        int getFromUser3= Integer.parseInt(request.getParameter("emailPassCode"));
+        String getFromUser3= request.getParameter("emailPassCode");
 
 
         try {
@@ -35,19 +35,21 @@ public class passCode extends HttpServlet {
 
         //response.
     }
-    public void checkPassCode(String d, int n, HttpServletResponse r) throws ClassNotFoundException, SQLException, IOException {
+    public void checkPassCode(String d, String n, HttpServletResponse r) throws ClassNotFoundException, SQLException, IOException {
         PrintWriter out=r.getWriter();
        //System.out.println(d);
         //System.out.println(n);
         System.out.println("Hello from checkPassCode");
         System.out.println("The size is "+PassCodeMap.getMapSize());
-        //System.out.println(d);
+        System.out.println(d);
         //System.out.println(n);
         //DBAccess co =new DBAccess();
   //  System.out.println(PassCodeMap.getpassKey(d));
 
         if(PassCodeMap.checkKey(d)){
-if(PassCodeMap.getpassKey(d)==n) {
+            System.out.println("This is from the first if condition");
+Integer.parseInt(PassCodeMap.in.get(0));
+if(Integer.parseInt(n)==Integer.parseInt(PassCodeMap.in.get(0))) {
 
     // out.print("Correct  " +d +n);
     out.print("<html>\n" +
@@ -98,7 +100,7 @@ if(PassCodeMap.getpassKey(d)==n) {
     out.print("<script language=\"javaScript\">\n" +
 
 
-            "  alert('Wrong email or passcode');\n" +
+            "  alert('Wrong  passcode');\n" +
 
             "</script>\n");
 

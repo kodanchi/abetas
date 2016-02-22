@@ -1,28 +1,43 @@
 package mulhim;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.*;
 
 /**
  * Created by Mohammed on 1/25/2016.
  */
 
 public final class PassCodeMap {
-    private static    Map<String,Integer> myMap = new HashMap<String,Integer>();
-    //Map map= Collections.synchronizedMap(myMap);
-    public   static  void  setPassCode(String email,int passCode){
-        myMap.put(email,passCode);
+    private static    Map<String,String> myMap = new HashMap<String,String>();
+
+    public static ArrayList<String> in= new ArrayList<String>();
+
+    public   static  void  setPassCode(String email, String code){
+
+        myMap.put(email, String.valueOf(in.add(code)));
+        myMap.put(email, String.valueOf(in.add("Test")));
 
     }
     public static boolean  checkKey(String email){
+        try {
+            in.get(0);
+        }
+        catch (IndexOutOfBoundsException i){
+            return false;
+
+        }
         return myMap.containsKey(email);
 
     }
-    public static int getpassKey(String emailCode){
+    public static String getpassKey(String emailCode, String code){
 
-        return myMap.get(emailCode);
+        if(myMap.containsKey(emailCode))
+
+            System.out.println("The code from getpassKey is "+in.get(0));
+        final String co = in.get(0);
+        return co;
     }
 
     public static int getMapSize(){
