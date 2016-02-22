@@ -1,6 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="ASDB.P_AS_Select" %><%--
+<%@ page import="ASDB.P_AS_Select" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/4/2016
@@ -137,7 +138,7 @@
                         </table>
                     </div>
                     <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal" >Add</a>
-                    <a class="btn btn-primary pull-right" href="index.jsp">Finish</a>
+                    <button class="btn btn-primary pull-right">Finish</button>
 
 
                     <!-- Modal -->

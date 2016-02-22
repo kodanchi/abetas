@@ -19,8 +19,8 @@ public class DeleteProgram extends HttpServlet {
         System.out.println(request.getParameter("id")+"           ");
         //ArrayList<String> data = new ArrayList<String>();
         int id=0;
-        AS_Delete dba=new AS_Delete();
-        //AS_Select dbaS=new AS_Select();
+        P_AS_Delete dba=new P_AS_Delete();
+        //P_AS_Select dbaS=new P_AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteProgram(Integer.parseInt(request.getParameter("id")));
@@ -36,8 +36,8 @@ public class DeleteProgram extends HttpServlet {
 
         //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        response.setHeader("Location", "/progeam/index.jsp?page=programList");
+        //response.setHeader("Location", "/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
+        response.setHeader("Location", "/program/index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
