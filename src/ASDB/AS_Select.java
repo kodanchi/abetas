@@ -2626,4 +2626,68 @@ public class AS_Select {
         return name;
     }
 
+    public boolean isTermYearExist(String T_name, int FK_Cycle_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM term where T_name = ? AND FK_Cycle_ID = ? );";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setString (1, T_name);
+            preparedStatement.setInt (2, FK_Cycle_ID);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isTermYearExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
 }

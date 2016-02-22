@@ -92,7 +92,7 @@ public class AddLinkObjOut extends HttpServlet {
 
         System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("errMsg",msg);
-        //request.getSession().setAttribute("programVal",programVal);
+        //request.getSession().setAttribute("TermVal",TermVal);
 
 
         try {
