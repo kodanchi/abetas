@@ -13,6 +13,62 @@
 
 <%
 
+    String lout = "";
+    String lpi = "";
+    String lcourse = "";
+    String ltype = "";
+
+    if(request.getSession().getAttribute("errMsg") != null){
+
+        String[] OldVal = (request.getSession().getAttribute("LinkVal") != null ? (String[]) request.getSession().getAttribute("LinkVal") : null);
+        System.out.print("arry of user data : "+ OldVal[1]);
+        if(OldVal != null){
+
+            lout = OldVal[0];
+            lpi = OldVal[1];
+            lcourse = OldVal[2];
+            ltype = OldVal[3];
+
+            request.getSession().removeAttribute("LinkVal");
+        }
+
+
+        out.print("<script type=\"text/javascript\">\n" +
+                "    $(window).load(function(){\n" +
+                "        $('#myModal').modal('show');\n" +
+                "    });\n" +
+                "</script>" +
+                "<!-- Modal -->\n" +
+                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+                "                        <div class=\"modal-dialog\">\n" +
+                "                            <div class=\"modal-content\">\n" +
+                "                                <div class=\"modal-header\">\n" +
+                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
+                "                                </div>\n" +
+                "                                <div class=\"modal-body\">\n");
+        out.print(request.getSession().getAttribute("errMsg"));
+        request.getSession().removeAttribute("errMsg");
+
+        out.print("                                </div>\n" +
+                "                                <div class=\"modal-footer\">\n" +
+                "\n" +
+                "                                    <div class=\"text-center\">\n" +
+                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
+                "                                    </div>\n" +
+                "                                </div>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </div>");
+
+
+    }
+
+%>
+
+
+<%
+
     String id = "";
     String Termid = "";
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
@@ -83,6 +139,8 @@
                                                     if (request.getParameter("OutValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("OutValue"))) {
                                                         System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
                                                         out.print(" selected");
+                                                    }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lout)){
+                                                        out.print(" selected");
                                                     }
                                                     out.print(">");
                                                     out.print(rs.get(i)+"</option>");
@@ -118,6 +176,8 @@
                                                         if (request.getParameter("PIValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("PIValue"))) {
                                                             System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
                                                             out.print(" selected");
+                                                        }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lpi)){
+                                                            out.print(" selected");
                                                         }
                                                         out.print(">");
                                                         out.print(rs.get(i)+"</option>");
@@ -144,7 +204,7 @@
                                         <%
                                             AS_Select dselect = new AS_Select();
                                             try {
-                                                ArrayList<String> rs = dselect.selectCourseForLink(Integer.parseInt(request.getParameter("programID")));
+                                                ArrayList<String> rs = dselect.selectCourseForLink(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(Termid));
 
                                                 for (int i=0; i<rs.size();i++) {
 
@@ -153,6 +213,8 @@
                                                     out.print("\"");
                                                     if (request.getParameter("CourseValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("CourseValue"))) {
                                                         System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
+                                                        out.print(" selected");
+                                                    }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lcourse)){
                                                         out.print(" selected");
                                                     }
                                                     out.print(">");
@@ -188,6 +250,8 @@
                                         <option value="Summative"
                                         <% if (request.getParameter("TypeValue") != null && "Summative".equals(request.getParameter("TypeValue"))) {
                                             out.print(" selected");
+                                        }else if ("Summative".equals(ltype)){
+                                            out.print(" selected");
                                         }
                                             out.print(">");
                                             out.print("Summative</option>\"");
@@ -195,6 +259,8 @@
                                         %>
                                         <option value="Formative"
                                         <% if (request.getParameter("TypeValue") != null && "Formative".equals(request.getParameter("TypeValue"))) {
+                                            out.print(" selected");
+                                        }else if("Formative".equals(ltype)){
                                             out.print(" selected");
                                         }
                                             out.print(">");

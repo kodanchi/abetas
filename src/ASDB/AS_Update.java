@@ -307,7 +307,7 @@ public class AS_Update {
     }
 
 
-    public void updateStudent(int Student_ID, String Student_Name, int S_ID) throws ClassNotFoundException, SQLException {
+    public void updateStudent(long Student_ID, String Student_Name, int S_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -322,14 +322,14 @@ public class AS_Update {
              */
 
             connection = dataSource.getConnection();
-
+                System.out.println("Student_ID is : "+ Student_ID);
             /*
              * Execute the query
              */
-            String query = "update abetasdb.students set Student_ID = ? AND Student_Name = ? where S_ID = ?";
+            String query = "update abetasdb.students set Student_ID = ? , Student_Name = ? where S_ID = ?";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt (1, Student_ID);
+            preparedStatement.setLong (1, Student_ID);
             preparedStatement.setString (2, Student_Name);
             preparedStatement.setInt (3, S_ID);
 

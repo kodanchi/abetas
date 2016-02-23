@@ -13,6 +13,7 @@ import java.io.IOException;
 @WebServlet(name = "AddPILinks",
         urlPatterns = {"/AddPILinks"})
 public class AddPILinks extends HttpServlet {
+    String[] LinkVal;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getParameter("OutValue").equals("null")) {
@@ -29,23 +30,39 @@ public class AddPILinks extends HttpServlet {
             System.out.println("##########################################################    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("Course")+"   "+Termid+"       "+request.getParameter("Type"));
 
             try {
-                System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
-                R=dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"));
-                Link_id=dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
-                if (Link_id!=0) {
-                    System.out.println("in if "+Link_id);
+                if(request.getParameter("PI") == null || request.getParameter("PI").equals("")){
+                    LinkVal = new String[]{request.getParameter("Out"),request.getParameter("PI"), request.getParameter("Course"),request.getParameter("Type")};
+                    sendErrMsg("You must select a performance indicator, or create on if there is none",request.getParameter("cycle"),request,response);
 
-                    type = sdba.selectFormType(Link_id);
-                    if (type.equals("Formative")) {
-                        System.out.println("in if F");
-                        dba.addFormF(Link_id);
-                    } else if (type.equals("Summative")) {
-                        System.out.println("in if S");
-                        dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
-                    } else {
-                        System.out.println("id is not set");
+                }else if(sdba.isPILinkExist(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"))){
+                    LinkVal = new String[]{request.getParameter("Out"),request.getParameter("PI"), request.getParameter("Course"),request.getParameter("Type")};
+                    sendErrMsg("The selected values for the link are already existed",request.getParameter("cycle"),request,response);
+                }else{
+                    System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
+                    R=dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"));
+                    Link_id=dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
+                    if (Link_id!=0) {
+                        System.out.println("in if "+Link_id);
+
+                        type = sdba.selectFormType(Link_id);
+                        if (type.equals("Formative")) {
+                            System.out.println("in if F");
+                            dba.addFormF(Link_id);
+                        } else if (type.equals("Summative")) {
+                            System.out.println("in if S");
+                            dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
+                        } else {
+                            System.out.println("id is not set");
+                        }
                     }
+
+                    response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
+
                 }
+
+
+
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -59,7 +76,6 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
@@ -78,28 +94,41 @@ public class AddPILinks extends HttpServlet {
             System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww  PI id          " + Integer.parseInt(request.getParameter("OutValue")) + "   wwwwwwwwwwwwwwww           ");
             String type="";
             try {
-                System.out.println("##########################################################  "+request.getParameter("LinkID")+"    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("programID")+"      "+request.getParameter("RubricValue")+"  "+request.getParameter("Course")+"   "+Termid+"    "+request.getParameter("Type"));
 
-                dbu.updatePILink(Integer.parseInt(request.getParameter("LinkID")),Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")),Integer.parseInt(request.getParameter("RubricValue")),request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
-                dbu.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
-                System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$");
+                if(sdba.isPILinkExistExcept(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),
+                        Integer.parseInt(request.getParameter("programID")), request.getParameter("Course"),Integer.parseInt(Termid),
+                        request.getParameter("Type"),Integer.parseInt(request.getParameter("LinkID")))){
+                    LinkVal = new String[]{request.getParameter("Out"),request.getParameter("PI"), request.getParameter("Course"),request.getParameter("Type")};
+                    sendErrMsg("The selected values for the link are already existed",request.getParameter("cycle"),request,response);
+                }else {
+                    System.out.println("##########################################################  "+request.getParameter("LinkID")+"    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("programID")+"      "+request.getParameter("RubricValue")+"  "+request.getParameter("Course")+"   "+Termid+"    "+request.getParameter("Type"));
 
-                type = sdba.selectFormType(Link_id);
-                if(!request.getParameter("oldTypeValue").equals(request.getParameter("Type"))){
-                    if (type.equals("Formative")) {
-                        System.out.println("in if F");
-                        dbd.deleteForm(Link_id,1);
-                        dba.addFormF(Link_id);
-                    } else if (type.equals("Summative")) {
-                        System.out.println("in if S");
-                        dbd.deleteForm(Link_id,0);
-                        dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
-                    } else {
-                        System.out.println("id is not set");
+                    dbu.updatePILink(Integer.parseInt(request.getParameter("LinkID")),Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")),Integer.parseInt(request.getParameter("RubricValue")),request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
+                    dbu.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
+                    System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$");
+
+                    type = sdba.selectFormType(Link_id);
+                    if(!request.getParameter("oldTypeValue").equals(request.getParameter("Type"))){
+                        if (type.equals("Formative")) {
+                            System.out.println("in if F");
+                            dbd.deleteForm(Link_id,1);
+                            dba.addFormF(Link_id);
+                        } else if (type.equals("Summative")) {
+                            System.out.println("in if S");
+                            dbd.deleteForm(Link_id,0);
+                            dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
+                        } else {
+                            System.out.println("id is not set");
+                        }
+                    }else if (type.equals("Summative")){
+                        dbu.updateFormThredshold(Link_id,Integer.parseInt(request.getParameter("STshold")));
                     }
-                }else if (type.equals("Summative")){
-                    dbu.updateFormThredshold(Link_id,Integer.parseInt(request.getParameter("STshold")));
+
+
+                    response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
+
                 }
+
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -115,7 +144,6 @@ public class AddPILinks extends HttpServlet {
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
                 //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
@@ -126,4 +154,46 @@ public class AddPILinks extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+    protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
+
+
+        System.out.println("ErrMsg : "+msg);
+
+        System.out.println("session is : "+request.getSession().getId());
+        request.getSession().setAttribute("errMsg",msg);
+        request.getSession().setAttribute("LinkVal", LinkVal);
+
+
+        try {
+            if(request.getParameter("OutValue").equals("null")) {
+
+                //response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+cycle);
+                response.sendRedirect("/cycle/index.jsp?page=addPILinks&cycle="+cycle+"&term="+request.getParameter("term")+
+                        "&programID="+request.getParameter("programID"));
+            }else {
+
+                response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+                response.setHeader("Location","/cycle/index.jsp?page=updatePILink&cycle="+cycle+"&term="+request.getParameter("term")+
+                        "&programID="+request.getParameter("programID")+"&LinkID="+request.getParameter("LinkID")+
+                        "&OutValue="+request.getParameter("OutValue")+"&PIValue="+request.getParameter("PIValue")+
+                        "&CourseValue"+request.getParameter("CourseValue")+"&TypeValue="+request.getParameter("TypeValue")+
+                        "&PValue="+request.getParameter("PValue")+"&RubricValue="+request.getParameter("RubricValue")+
+                        "&TermValue="+request.getParameter("TermValue"));
+
+                /*String termName = request.getParameter("termName");
+                String fyear = request.getParameter("fyear");
+                String tyear = request.getParameter("tyear");*/
+                //request.getRequestDispatcher("/program/index.jsp?page=update").forward(request, response);
+                //response.sendRedirect("/program/index.jsp?page=updateLink&name="+cycle+"&id="+pid+"&Linkid="+ Linkid+"&ObjLinkValue="+ObjLinkValue+"&OutLinkValue="+OutLinkValue);
+            }
+        } /*catch (ServletException e) {
+            e.printStackTrace();
+        }*/ catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return;
+    }
+
 }

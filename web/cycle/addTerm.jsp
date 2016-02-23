@@ -82,9 +82,14 @@
 
 %>
                 <div class="section">
+
+
                     <div class="container">
                         <!-- what is row -->
                         <div class="row tim-row">
+
+
+
                             <h2 class="text-center">Add Term</h2>
                             <legend></legend>
                             <div class="col-md-10 col-md-offset-1">
@@ -106,10 +111,32 @@
                                                         <div class="form-group">
 
                                                             <select class="form-control" name="termName" required>
-                                                                <option value="Term 1" selected>Term 1</option>
+                                                                <%
+                                                                    if (!tName.equals("")){
+                                                                        out.print("<option value=\"Term 1\"");
+                                                                        if(tName.equals("Term 1"))out.print(" selected ");
+                                                                        out.print(">Term 1</option>\n");
+                                                                        out.print("<option value=\"Term 2\"");
+                                                                        if(tName.equals("Term 2"))out.print(" selected ");
+                                                                        out.print(">Term 2</option>\n");
+                                                                        out.print("<option value=\"Term 3\"");
+                                                                        if(tName.equals("Term 3"))out.print(" selected ");
+                                                                        out.print(">Term 3</option>\n");
+                                                                        out.print("<option value=\"Term 4\"");
+                                                                        if(tName.equals("Term 4"))out.print(" selected ");
+                                                                        out.print(">Term 4</option>\n");
+
+                                                                    }else {
+                                                                        out.print("<option value=\"Term 1\" selected>Term 1</option>\n" +
+                                                                                "<option value=\"Term 2\">Term 2</option>\n" +
+                                                                                "<option value=\"Term 3\">Term 3</option>\n" +
+                                                                                "<option value=\"Term 4\">Term 4</option>");
+                                                                    }
+                                                                %>
+                                                                <%--<option value="Term 1" selected>Term 1</option>
                                                                 <option value="Term 2">Term 2</option>
                                                                 <option value="Term 3">Term 3</option>
-                                                                <option value="Term 4">Term 4</option>
+                                                                <option value="Term 4">Term 4</option>--%>
                                                             </select>
                                                             <input name="cycle" value="<%=id%>" hidden/>
                                                         </div>
@@ -162,6 +189,8 @@
                                                                 function onYearChng(input){
                                                                     var d = new Date();
                                                                     var n = d.getFullYear();
+                                                                     fromInput = document.getElementById("fyear");
+                                                                     toInput = document.getElementById("tyear");
                                                                     $(document).trigger("clear-alert-id.yearAlert");
                                                                     if(input.value < 2000 ){
                                                                         input.value = n;
@@ -181,7 +210,18 @@
                                                                                 priority: "error"
                                                                             }
                                                                         ]);
+                                                                    }else {
+                                                                        if(toInput.value < fromInput.value){
+                                                                            toInput.focus();
+                                                                            $(document).trigger("set-alert-id-yearAlert", [
+                                                                                {
+                                                                                    message: "Year period is not valid",
+                                                                                    priority: "error"
+                                                                                }
+                                                                            ]);
+                                                                        }
                                                                     }
+
 
                                                                 }
                                                             </script>

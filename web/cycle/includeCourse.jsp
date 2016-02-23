@@ -96,7 +96,7 @@
                             if(request.getParameter("programID")!=null) {
                                 AS_Select bselect = new AS_Select();
                                 try {
-                                    ArrayList<String> rs = bselect.selectCourseForLink(Integer.parseInt(request.getParameter("programID")));
+                                    ArrayList<String> rs = bselect.selectCourseForLink(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(Termid));
 
                                     if (rs.size()!=0) {
 

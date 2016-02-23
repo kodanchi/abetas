@@ -598,7 +598,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT S_ID, Student_Name, Student_ID FROM students WHERE FK_Section = "+id+" ;";
+            String query = "SELECT S_ID, Student_Name, Student_ID FROM students WHERE FK_Section = ? ;";
 
             /*
              *  Get connection from the DataSource
@@ -610,7 +610,7 @@ public class AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, id);
 
             rs = preparedStatement.executeQuery();
 
@@ -1196,7 +1196,7 @@ public class AS_Select {
 
     }
 
-    public ArrayList<String> selectCourseForLink(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectCourseForLink(int FK_program_ID, int FK_T_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
         connect();
@@ -1207,7 +1207,10 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT C_code,C_name FROM course,program_has_course WHERE FK_course_code = C_code and FK_program_ID = "+ id +" ;";
+            //String query = "SELECT C_code,C_name FROM course,program_has_course WHERE FK_course_code = C_code and FK_program_ID = "+ id +" ;";
+            String query = "SELECT C_code,C_name FROM course,program_has_course WHERE FK_course_code = C_code and" +
+                    " FK_program_ID = ?  AND C_code NOT IN(SELECT C_code FROM program_has_course,course,term_contains_courses WHERE" +
+                    " FK_C_code = C_code and FK_course_code = C_code and FK_T_ID = ? and FK_program_ID = ?);";
 
             /*
              *  Get connection from the DataSource
@@ -1219,10 +1222,13 @@ public class AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, FK_program_ID);
+            preparedStatement.setInt(2, FK_T_ID);
+            preparedStatement.setInt(3, FK_program_ID);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_program_ID   "+FK_program_ID);
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_T_ID   "+FK_T_ID);
             //
             int i=-1;
             while (rs.next()){
@@ -2689,5 +2695,416 @@ public class AS_Select {
         }
         return isExist == 0 ? false : true;
     }
+
+
+    public boolean isStudentIDExist(long Student_ID, int FK_Section) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM students where Student_ID = ? AND FK_Section = ? );";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setLong (1, Student_ID);
+            preparedStatement.setInt (2, FK_Section);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isTermYearExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+    public boolean isStudentIDExistExcept(long Student_ID, int FK_Section, int S_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM students where Student_ID = ? AND FK_Section = ? AND Student_ID NOT IN " +
+                    "(SELECT  Student_ID FROM students WHERE S_ID = ? ));";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setLong (1, Student_ID);
+            preparedStatement.setInt (2, FK_Section);
+            preparedStatement.setInt (3, S_ID);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isTermYearExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+    public boolean isPILinkExist(int FK_out, int FK_pi_ID, int FK_P_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM link_out_pi where FK_out = ? AND FK_pi_ID = ? AND FK_P_ID = ? " +
+                    " AND FK_C_ID = ? AND FK_T_ID = ? AND LinkType = ?) ;";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setLong (1, FK_out);
+            preparedStatement.setInt (2, FK_pi_ID);
+            preparedStatement.setInt (3, FK_P_ID);
+            //preparedStatement.setInt (4, FK_R_ID);
+            preparedStatement.setString (4, FK_C_ID);
+            preparedStatement.setInt (5, FK_T_ID);
+            preparedStatement.setString (6, LinkType);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isPILinkExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+    public boolean isPILinkExistExcept(int FK_out, int FK_pi_ID, int FK_P_ID, String FK_C_ID, int FK_T_ID, String LinkType, int Link_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM link_out_pi where FK_out = ? AND FK_pi_ID = ? AND FK_P_ID = ? " +
+                    " AND FK_C_ID = ? AND FK_T_ID = ? AND LinkType = ? AND FK_R_ID NOT IN " +
+                    "(SELECT FK_R_ID FROM link_out_pi WHERE Link_ID = ? ));";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setLong (1, FK_out);
+            preparedStatement.setInt (2, FK_pi_ID);
+            preparedStatement.setInt (3, FK_P_ID);
+            //preparedStatement.setInt (4, FK_R_ID);
+            preparedStatement.setString (4, FK_C_ID);
+            preparedStatement.setInt (5, FK_T_ID);
+            preparedStatement.setString (6, LinkType);
+            preparedStatement.setInt (7, Link_ID);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isPILinkExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+
+    public boolean isPIExist(String PI_name, int FK_P_ID, int FK_C_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM performance_indicator where PI_name = ? AND FK_P_ID = ? AND FK_C_ID = ?) ;";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setString (1, PI_name);
+            preparedStatement.setInt (2, FK_P_ID);
+            preparedStatement.setInt (3, FK_C_ID);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isPIExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
+
+
+    public boolean isPIExistExcept(String PI_name, int FK_P_ID, int FK_C_ID, int PI_Label ) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<String> data = new ArrayList<String>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        int isExist = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String querySelect = "SELECT EXISTS(SELECT * FROM performance_indicator where PI_name = ? AND FK_P_ID = ? AND FK_C_ID = ? " +
+                    "AND PI_name NOT IN (SELECT PI_name FROM performance_indicator WHERE PI_Label = ?)) ;";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setString (1, PI_name);
+            preparedStatement.setInt (2, FK_P_ID);
+            preparedStatement.setInt (3, FK_C_ID);
+            preparedStatement.setInt (4, PI_Label);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                //data.add((termName= rsSelect.getInt(1))+"");
+                //data.add(name = rsSelect.getString(1));
+                isExist= rsSelect.getInt(1);
+                System.out.println(isExist+"    isPIExist");
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return isExist == 0 ? false : true;
+    }
+
 
 }

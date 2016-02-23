@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class CycleSheetUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        boolean isValid = true;
 
         String cycle = "";
         String term = "";
@@ -40,7 +41,7 @@ public class CycleSheetUploadServlet extends HttpServlet {
 
         System.out.println("dataArr"+ dataArr);
         AS_Insert dba = new AS_Insert();
-        //P_AS_Select dbaS=new P_AS_Select();
+        AS_Select dbs = new AS_Select();
         try {
             //cycle=dbaS.selectProgram(request.getParameter("Pname"));
 
@@ -51,7 +52,13 @@ public class CycleSheetUploadServlet extends HttpServlet {
                     System.out.println("dataType : "+dataType);
                     dba.addStudent(dataRow.get(1), Integer.parseInt(dataRow.get(0)), Integer.parseInt(section));
                 }else if(dataType.equals("pis")){
-                    dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle));
+                    if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle))){
+                        isValid = false;
+                        sendErrorMsg(dataRow.get(0)+ " is already existed.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
+                        break;
+                    }else {
+                        dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle));
+                    }
                 }else if(dataType.equals("courses")){
                     dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(cycle));
                 }
@@ -65,15 +72,18 @@ public class CycleSheetUploadServlet extends HttpServlet {
             //request.getRequestDispatcher("/users/index.jsp?status=Success").forward(request,response);
             //response.setStatus(HttpServletResponse.SC_CONTINUE);
             //response.setHeader("Location","/users/index.jsp?status=Success");
-            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            if(dataType.equals("students")) {
-                //response.setHeader("Location", "/program/index.jsp?page=ObjList&term=" + term + "&cycle=" + cycle + "&status=Success");
-                response.setHeader("Location", "/cycle/index.jsp?page=studentList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
-                        "&courseName=" + courseName + "&section=" + section +"&status=Success");
-            }else if(dataType.equals("pis")){
-                response.setHeader("Location", "/cycle/index.jsp?page=piList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&status=Success");
-            }else if(dataType.equals("courses")){
-                response.setHeader("Location", "/program/index.jsp?page=CoursesList&term=" + term + "&cycle=" + cycle + "&status=Success");
+
+            if(isValid){
+                response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+                if(dataType.equals("students")) {
+                    //response.setHeader("Location", "/program/index.jsp?page=ObjList&term=" + term + "&cycle=" + cycle + "&status=Success");
+                    response.setHeader("Location", "/cycle/index.jsp?page=studentList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
+                            "&courseName=" + courseName + "&section=" + section +"&status=Success");
+                }else if(dataType.equals("pis")){
+                    response.setHeader("Location", "/cycle/index.jsp?page=piList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&status=Success");
+                }else if(dataType.equals("courses")){
+                    response.setHeader("Location", "/program/index.jsp?page=CoursesList&term=" + term + "&cycle=" + cycle + "&status=Success");
+                }
             }
 
             /*response.getWriter().print("<!DOCTYPE HTML>\n" +
@@ -91,5 +101,29 @@ public class CycleSheetUploadServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
+
+    public void sendErrorMsg(String Error_Msg,String pdataType, String cycle, String term, String programID, String courseCode,
+                             String courseName, String section, HttpServletResponse response, HttpServletRequest request) throws IOException {
+
+        request.getSession().setAttribute("errMsg",Error_Msg);
+
+        //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
+        //response.sendRedirect("/cycle/index.jsp?cycle="+ cycle +"&term="+ term +"&cmd=upload&data="+pdataType);
+        String url = null;
+        if(pdataType.equals("students")){
+            url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
+                    "&courseName=" + courseName + "&section=" + section +"&cmd=upload&data="+pdataType;
+        }else if(pdataType.equals("pis")){
+            url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&cmd=upload&data="+pdataType;
+        }
+        response.sendRedirect(url);
+        /*RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+term+"&id="+cycle+"&cmd=upload&data="+pdataType+"&err="+Error_Msg);
+
+        try {
+            rd.forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }*/
     }
 }

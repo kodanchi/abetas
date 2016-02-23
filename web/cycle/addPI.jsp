@@ -12,6 +12,57 @@
 
 <%
 
+    String pName = "";
+    
+
+    if(request.getSession().getAttribute("errMsg") != null){
+
+        String[] OldVal = (request.getSession().getAttribute("PVal") != null ? (String[]) request.getSession().getAttribute("PVal") : null);
+        System.out.print("arry of user data : "+ OldVal[0]);
+        if(OldVal != null){
+
+            pName = OldVal[0];
+
+            request.getSession().removeAttribute("PVal");
+        }
+
+
+        out.print("<script type=\"text/javascript\">\n" +
+                "    $(window).load(function(){\n" +
+                "        $('#myModal').modal('show');\n" +
+                "    });\n" +
+                "</script>" +
+                "<!-- Modal -->\n" +
+                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
+                "                        <div class=\"modal-dialog\">\n" +
+                "                            <div class=\"modal-content\">\n" +
+                "                                <div class=\"modal-header\">\n" +
+                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
+                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
+                "                                </div>\n" +
+                "                                <div class=\"modal-body\">\n");
+        out.print(request.getSession().getAttribute("errMsg"));
+        request.getSession().removeAttribute("errMsg");
+
+        out.print("                                </div>\n" +
+                "                                <div class=\"modal-footer\">\n" +
+                "\n" +
+                "                                    <div class=\"text-center\">\n" +
+                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
+                "                                    </div>\n" +
+                "                                </div>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </div>");
+
+
+    }
+
+%>
+
+
+<%
+
     String id = "";
     String Termid = "";
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
@@ -67,7 +118,10 @@
                             <label>Performance Indicator</label>
                             <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                             <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
-                            <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}%></textarea>
+                            <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}
+                            else {
+                                out.print(pName);
+                            }%></textarea>
 
                         </div>
 
