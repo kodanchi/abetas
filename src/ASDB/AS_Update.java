@@ -639,16 +639,16 @@ public class AS_Update {
                 rs = preparedStatement.executeUpdate();
             }
             else{
-                System.out.println("WWWWWWWWWWWWWWWWWWWWw");
-                String query = "update formative set F_written_rubic = ?, F_instructor_feedback_comment = ?, F_instructor_feedback_obstacle = ?, F_instructor_feedback_improvement = ?, , F_submitted = ? where Formative_ID = ?";
+                System.out.println("WWWWWWWWWWWWWWWWWWWWW");
+                String query = "update formative set F_written_rubic = ?, F_instructor_feedback_comment = ?, F_instructor_feedback_obstacle = ?, F_instructor_feedback_improvement = ?, F_submitted = ? where Formative_ID = ?";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setString(1, F_written_rubic);
                 preparedStatement.setString(2, F_instructor_feedback_comment);
                 preparedStatement.setString(3, F_instructor_feedback_obstacle);
                 preparedStatement.setString(4, F_instructor_feedback_improvement);
-                preparedStatement.setInt(6, F_submitted);
-                preparedStatement.setInt(5, id);
+                preparedStatement.setInt(5, F_submitted);
+                preparedStatement.setInt(6, id);
 
                 rs = preparedStatement.executeUpdate();
             }

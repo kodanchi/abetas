@@ -50,7 +50,7 @@
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Student Outcome</th>
+                                <th class="text-center">Student Outcome:</th>
                                 <th class="text-center"><% if(linkValues.size()!=0) {
                                     AS_Select bselect = new AS_Select();
                                     try {
