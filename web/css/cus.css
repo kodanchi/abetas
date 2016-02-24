@@ -75,3 +75,15 @@ input[readonly] {
 .nav-tabs, .nav-pills {
     text-align:center;
 }
+.white {
+    color: #ecf0f1;
+}
+.red{
+    color:#c0392b;
+}
+.yellow{
+    color:#f1c40f;
+}
+#block{
+    margin: 15px
+}
