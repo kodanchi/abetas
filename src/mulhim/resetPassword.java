@@ -26,13 +26,6 @@ public class resetPassword extends HttpServlet {
 
         String getFromUser=request.getParameter("exampleInputEmail1");
 
-//        try {
-//            select("","");
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
         loginDB d = new loginDB();
 
 

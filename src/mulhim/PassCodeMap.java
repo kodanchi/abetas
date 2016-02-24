@@ -16,13 +16,16 @@ public final class PassCodeMap {
 
     public   static  void  setPassCode(String email, String code){
 
+        TimeClass currentTime = new TimeClass();
         myMap.put(email, String.valueOf(in.add(code)));
-        myMap.put(email, String.valueOf(in.add("Test")));
+        myMap.put(email, String.valueOf(in.add(String.valueOf(currentTime.timerReset()))));
+//currentTime.timerCalculate(email);
 
     }
     public static boolean  checkKey(String email){
         try {
             in.get(0);
+
         }
         catch (IndexOutOfBoundsException i){
             return false;
@@ -43,6 +46,11 @@ public final class PassCodeMap {
     public static int getMapSize(){
 
     return myMap.size();
+    }
+    public static int removeElement(String email){
+
+        myMap.remove(email);
+        return myMap.size();
     }
 
 

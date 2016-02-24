@@ -80,7 +80,7 @@ public class loginDB {
 
 
             }
-if(PassCodeMap.checkKey(selEmail)==false){
+if(PassCodeMap.checkKey(selEmail)==false && selEmail!=""){
     PassCodeMap.setPassCode(selEmail,randNumber);
 
 
