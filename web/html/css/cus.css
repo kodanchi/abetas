@@ -78,6 +78,12 @@ input[readonly] {
 .white {
     color: #ecf0f1;
 }
+.red{
+    color:#c0392b;
+}
+.yellow{
+    color:#f1c40f;
+}
 #block{
     margin: 15px
 }
