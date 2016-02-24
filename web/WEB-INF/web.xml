@@ -58,6 +58,24 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>-->
 
+    <filter>
+        <filter-name>LevelFilter</filter-name>
+        <filter-class>filters.UserLevelFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LevelFilter</filter-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FacultyFilter</filter-name>
+        <filter-class>filters.FacultyLevelFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FacultyFilter</filter-name>
+        <url-pattern>/form/*</url-pattern>
+    </filter-mapping>
+
     <session-config>
         <session-timeout>525600</session-timeout>
         <cookie-config>

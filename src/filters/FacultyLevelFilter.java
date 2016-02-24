@@ -1,8 +1,5 @@
 package filters;
 
-import sessionListener.CookiesControl;
-
-import javax.jms.Session;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +10,7 @@ import java.io.IOException;
  * Created by Mojahed on 2/10/2016.
  */
 @WebFilter(filterName = "UserLevelFilter")
-public class UserLevelFilter implements Filter {
+public class FacultyLevelFilter implements Filter {
     public void destroy() {
     }
 
@@ -25,15 +22,10 @@ public class UserLevelFilter implements Filter {
             if (request.getSession().getAttribute("userLvl") != null) {
                 Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                 switch (userLvl){
-                    case 1:
-
-                        break;
                     case 2:
-                        response.sendRedirect("/form/");
+                        chain.doFilter(req, resp);
                         break;
-
                 }
-                //chain.doFilter(req, resp);
 
             }else {
                 request.getSession().invalidate();
