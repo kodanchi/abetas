@@ -3172,6 +3172,70 @@ public class F_Select {
         return name;
     }
 
+    public ArrayList<Integer> selectLinkIDAndSectionIDOfFormS(int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        ResultSet rsSelect = null;
+        int rs = 0;
+        String name="";
+        try {
+
+        /*
+         *  Get connection from the DataSource
+         */
+
+            connection = dataSource.getConnection();
+
+        /*
+         * Execute the query
+         */
+            String querySelect = " SELECT FK_Link_ID, FK_Section_ID FROM summative where Summative_ID = ?";
+
+            preparedStatement = connection.prepareStatement(querySelect);
+            preparedStatement.setInt (1, id);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                data.add(rsSelect.getInt(1));
+                data.add(rsSelect.getInt(2));
+                //name= rsSelect.getString(1);
+                //System.out.println(name+"    dsgfdgdgs");
+                //return name;
+            }
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        /*
+         * finally block used to close resources
+         */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+        return data;
+    }
+
     public String selectLinkIDOfSummativeF(int id) throws ClassNotFoundException, SQLException {
 
         connect();

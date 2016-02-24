@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="FDB.F_Select" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -10,11 +10,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
-<% String FK_Link_ID="";
+<%
+    ArrayList<Integer> linkSectionData = null;
+    int FK_Link_ID = 0;
+    int Section = 0;
+
     if(request.getParameter("Summative_ID")!=null) {
-        AS_Select select = new AS_Select();
+        F_Select select = new F_Select();
         try {
-            FK_Link_ID = select.selectLinkIDOfFormF(Integer.parseInt(request.getParameter("Summative_ID")));
+            linkSectionData = select.selectLinkIDAndSectionIDOfFormS(Integer.parseInt(request.getParameter("Summative_ID")));
+            if(linkSectionData != null){
+                FK_Link_ID = linkSectionData.get(0);
+                Section = linkSectionData.get(1);
+            }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -22,10 +30,10 @@
         }
     }
     ArrayList<String> linkValues = new ArrayList<String>();
-    if(!FK_Link_ID.equals("")) {
-        AS_Select aselect = new AS_Select();
+    if(FK_Link_ID != 0) {
+        F_Select aselect = new F_Select();
         try {
-            linkValues = aselect.selectPILinksValuse(Integer.parseInt(FK_Link_ID));
+            linkValues = aselect.selectPILinksValuse(FK_Link_ID);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -43,7 +51,6 @@
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
 
-
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
 
@@ -52,7 +59,7 @@
                             <tr>
                                 <th class="text-center">Student Outcome:</th>
                                 <td><% if(linkValues.size()!=0) {
-                                    AS_Select bselect = new AS_Select();
+                                    F_Select bselect = new F_Select();
                                     try {
                                         ArrayList<String> rs = bselect.selectOutForLinkSingle(Integer.parseInt(linkValues.get(0)));
                                         out.print(rs.get(0));
@@ -68,7 +75,7 @@
                             <tr>
                                 <th class="text-center">Performance Indicator:</th>
                                 <td><% if(linkValues.size()!=0) {
-                                    AS_Select cselect = new AS_Select();
+                                    F_Select cselect = new F_Select();
                                     try {
                                         ArrayList<String> rs = cselect.selectPIForLinkSingle(Integer.parseInt(linkValues.get(1)));
                                         out.print(rs.get(0));
@@ -87,7 +94,7 @@
                                     out.print(linkValues.get(2)+" ");
                                 %> <%
                                     if(linkValues.size()!=0) {
-                                        AS_Select dselect = new AS_Select();
+                                        F_Select dselect = new F_Select();
                                         try {
                                             String name = dselect.selectCourseName(linkValues.get(2));
 
@@ -105,7 +112,10 @@
                     </div>
 
 
-                    <form name="formativeForm" action="formHandler.jsp" method="post">
+                    <form name="formativeForm" action="/Summative" method="post">
+
+                        <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Summative_ID")%>">
+                        <input type="hidden" name="Section_ID" value="<%=Section%>">
 
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
@@ -126,7 +136,7 @@
                                         String N4 = "";
                                         String D4 = "";
                                         if(linkValues.size()!=0) {
-                                            AS_Select zselect = new AS_Select();
+                                            F_Select zselect = new F_Select();
                                             ArrayList<String> rubrics = new ArrayList<String>();
                                             try {
                                                 rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
@@ -159,16 +169,16 @@
                                     <th class="text-center"><%out.print(D4);%></th>
                                 </tr>
                                 <tr>
-                                    <th>2140010405</th>
-                                    <th>Oma Alamiala</th>
 
                                     <%
 
-                                        AS_Select Sselect = new AS_Select();
+                                        F_Select Sselect = new F_Select();
 
                                         try {
                                             ArrayList<ArrayList<String>> rs = Sselect.selectStudents(Integer.parseInt(request.getParameter("section")));
                                             ArrayList<String> rsRow ;
+
+                                            out.print("<input type=\"hidden\" name=\"studentsNumber\" value=\""+rs.size()+"\">");
 
                                             for (int i=0; i<rs.size();i++){
                                                 rsRow = new ArrayList<String>();
@@ -179,24 +189,25 @@
                                                     out.print(rsRow.get(j));
                                                     out.print("</td>");
                                                 }
+                                                out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rs.get(0)+"\">");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("</tr>");
@@ -211,6 +222,38 @@
                                     %>
 
                             </table>
+
+                            <label>Evidence: </label><input type="text" name="evidence" value="<%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("evidenceV"));}%>">
+
+                            <div class="row tim-row">
+                                <label>Faculty Name: </label>
+                                <label><%
+                                    F_Select yselect = new F_Select();
+                                    try {
+                                        String name = yselect.selectFacultyForForm(Integer.parseInt(request.getParameter("FacilityID")));
+
+                                        out.print(name);
+
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %></label>
+                                <label class="pull-right" id="date"><script>
+                                    /*function myFunction() {
+                                     var d = new Date();
+                                     var n = d.getFullYear();
+                                     document.getElementById("date").innerHTML = n;
+                                     }*/
+                                    (function(){
+                                        var d = new Date();
+                                        document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
+                                    })();
+                                </script></label>
+
+                                <label class="pull-right">Date: </label>
+                            </div>
 
                         </div>
 
