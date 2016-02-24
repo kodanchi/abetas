@@ -116,6 +116,7 @@
                                 <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
                                 <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                                 <input type="hidden" name="CourseValue" value="<%=request.getParameter("CourseValue")%>">
+                                <input type="hidden" name="oldCourseValue" value="<%=request.getParameter("CourseValue")%>">
                                 <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
                                 <input type="hidden" name="PValue" value="<%=request.getParameter("PValue")%>">
                                 <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
