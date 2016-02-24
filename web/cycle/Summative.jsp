@@ -106,7 +106,6 @@
 
 
                     <form name="formativeForm" action="formHandler.jsp" method="post">
-                        <p>Rubric:</p>
 
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
@@ -163,117 +162,61 @@
                                     <th>2140010405</th>
                                     <th>Oma Alamiala</th>
 
-                                    <td>
-                                        <label class="radio radio-blue">
-                                            <input type="radio" name="optionsRadios1" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
+                                    <%
 
-                                    </td>
-                                    <td>
-                                        <label class="radio radio-blue">
+                                        AS_Select Sselect = new AS_Select();
 
-                                            <input type="radio" name="optionsRadios1" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
+                                        try {
+                                            ArrayList<ArrayList<String>> rs = Sselect.selectStudents(Integer.parseInt(request.getParameter("section")));
+                                            ArrayList<String> rsRow ;
 
-                                    </td>
+                                            for (int i=0; i<rs.size();i++){
+                                                rsRow = new ArrayList<String>();
+                                                rsRow = rs.get(i);
+                                                out.print("<tr>");
+                                                for (int j=1; j<rsRow.size();j++) {
+                                                    out.print("<td>");
+                                                    out.print(rsRow.get(j));
+                                                    out.print("</td>");
+                                                }
+                                                out.print("<td>");
+                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                        </label>");
+                                                out.print("</td>");
+                                                out.print("<td>");
+                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                        </label>");
+                                                out.print("</td>");
+                                                out.print("<td>");
+                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                        </label>");
+                                                out.print("</td>");
+                                                out.print("<td>");
+                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                        "                                            <input type=\"radio\" name=\"optionsRadios1\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                        </label>");
+                                                out.print("</td>");
+                                                out.print("</tr>");
+                                            }
 
-                                    <td>
-                                        <label class="radio radio-blue">
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        } catch (SQLException e) {
+                                            e.printStackTrace();
+                                        }
 
-                                            <input type="radio" name="optionsRadios1" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios1" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>2130910405</th>
-                                    <th>Abdulla Alqeiala</th>
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios2" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios2" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios2" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios2" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th>210000005</th>
-                                    <th>Samraj gerenda</th>
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios3" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios3" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios3" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-
-                                    <td>
-                                        <label class="radio radio-blue">
-
-                                            <input type="radio" name="optionsRadios3" data-toggle="radio" id="optionsRadios1" value="option1">
-                                        </label>
-
-                                    </td>
-                                </tr>
-
+                                    %>
 
                             </table>
 
                         </div>
 
                         <button class="btn btn-info">Upload evidence</button>
-
                         <button class="btn btn-danger btn-fill">Save</button>
                         <button class="btn btn-primary pull-right">Submit</button>
-
 
                         </form>
 

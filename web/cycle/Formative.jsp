@@ -234,10 +234,17 @@
                         </table>
                     </div>
 
-                    <form name="formativeForm" action="formHandler.jsp" method="post">
+                    <form name="formativeForm" action="/Formative" method="post">
+                        <input type="hidden" name="WrittenRubricsV" value="<%=request.getParameter("WrittenRubricsV")%>">
+                        <input type="hidden" name="CommentsV" value="<%=request.getParameter("CommentsV")%>">
+                        <input type="hidden" name="ObstaclesV" value="<%=request.getParameter("ObstaclesV")%>">
+                        <input type="hidden" name="ImprovementV" value="<%=request.getParameter("ImprovementV")%>">
+                        <input type="hidden" name="evidenceV" value="<%=request.getParameter("evidenceV")%>">
+                        <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
+
                         <div>
                             <p>Written Rubrics</p>
-                            <textarea name="WrittenRubrics" class="form-control" rows="4"></textarea>
+                            <textarea name="WrittenRubrics" class="form-control" rows="4"><%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("WrittenRubricsV"));}%></textarea>
                         </div>
                         <br>
                         <br>
@@ -248,27 +255,23 @@
                             <table>
                                 <tr>
                                     <th>Comment(s) on Success/Failure in Achieving Performance Indicator*: </th>
-                                    <td><textarea name="Comments" class="form-control" rows="4"></textarea></td>
-                                </tr>
-
-                                <tr>
-                                    <th>Obstacles in Achieving Desired Progress*:</th>
-                                    <td><textarea name="Obstacles" class="form-control" rows="4"></textarea></td>
+                                    <td><textarea name="Comments" class="form-control" rows="4"><%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("CommentsV"));}%></textarea></td>
                                 </tr>
                                 <tr>
-                                    <th>Areas of Improvement*:</th>
-                                    <td><textarea name="Improvement" class="form-control" rows="4"></textarea></td>
+                                    <th>Obstacles in Achieving Desired Progress*: </th>
+                                    <td><textarea name="Obstacles" class="form-control" rows="4"><%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("ObstaclesV"));}%></textarea></td>
                                 </tr>
-
                                 <tr>
-
+                                    <th>Areas of Improvement*: </th>
+                                    <td><textarea name="Improvement" class="form-control" rows="4"><%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("ImprovementV"));}%></textarea></td>
                                 </tr>
-
                             </table>
+                            <label>Evidence: </label><input type="text" name="evidence" value="<%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("evidenceV"));}%>">
+                            <br>
+                            <br>
                         </div>
-                    </form>
                     <div class="row tim-row">
-                        <label>Faculty Name:</label>
+                        <label>Faculty Name: </label>
                         <label><%
                             AS_Select yselect = new AS_Select();
                             try {
@@ -296,8 +299,13 @@
 
                         <label class="pull-right">Date: </label>
                     </div>
+
+                    <button class="btn btn-primary" type="submit">Save</button>
+
+                    </form>
+
                     <button class="btn btn-success btn-fill">Upload evidence</button>
-                    <button class="btn btn-primary">Save</button>
+
                     <button class="btn btn-primary pull-right">Submit</button>
 
                     <!-- End of col -->
