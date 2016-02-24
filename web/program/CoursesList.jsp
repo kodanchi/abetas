@@ -113,7 +113,7 @@
                                                 "                            <input name=\"CourseLevel\" value=\""+rsRow.get(3)+"\" hidden />\n" +
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                "                            <input type=\"submit\" title=\"Edit\" class=\"yellow\"><i class=\"fui-new\"></i> />\n" +
+                                                "                            <a  type=\"submit\" title=\"Edit\" class=\"yellow\"><i class=\"fui-new \"></i></a>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/Delete Course\">\n" +
