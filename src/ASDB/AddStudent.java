@@ -39,7 +39,9 @@ public class AddStudent extends HttpServlet {
 
 
                 if(request.getParameter("Sname").equals("") || request.getParameter("Student_ID").equals("")){
-                    StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
+                    String sid = request.getParameter("Student_ID") != null ? request.getParameter("Student_ID") : "";
+                    String sname = request.getParameter("Sname") != null ? request.getParameter("Sname") : "";
+                    StudentVal = new String[]{sid,sname};
                     sendErrMsg("Student ID and Name must be filled",request.getParameter("cycle"),request,response);
 
                 }else if(request.getParameter("Student_ID").length()>10){
@@ -88,7 +90,9 @@ public class AddStudent extends HttpServlet {
 
             try {
                 if(request.getParameter("Sname").equals("") || request.getParameter("Student_ID").equals("")){
-                    StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
+                    String sid = request.getParameter("Student_ID") != null ? request.getParameter("Student_ID") : "";
+                    String sname = request.getParameter("Sname") != null ? request.getParameter("Sname") : "";
+                    StudentVal = new String[]{sid,sname};
                     sendErrMsg("Student ID and Name must be filled",request.getParameter("cycle"),request,response);
 
                 }else if(request.getParameter("Student_ID").length()>10){
@@ -151,7 +155,7 @@ public class AddStudent extends HttpServlet {
             }else {
 
                 response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-                response.setHeader("Location","/cycle/index.jsp?page=addStudent&cycle="+cycle+"&term="+request.getParameter("term")+
+                response.setHeader("Location","/cycle/index.jsp?page=updateStudent&cycle="+cycle+"&term="+request.getParameter("term")+
                         "&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+
                         "&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section")+
                         "&NValue="+request.getParameter("NValue")+"&IDValue="+request.getParameter("IDValue"));
