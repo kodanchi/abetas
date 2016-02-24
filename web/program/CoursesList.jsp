@@ -80,7 +80,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th>Code</th>
                                 <th>Name</th>
