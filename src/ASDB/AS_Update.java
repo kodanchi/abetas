@@ -677,4 +677,189 @@ public class AS_Update {
 
     }
 
+    public void updateFormS(String Sum_evidence,  int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            if (Sum_evidence!=null) {
+                System.out.println("GGGGGGGGGGGGGGGGGG");
+                String query = "update summative set Sum_evidence = ? where Summative_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, Sum_evidence);
+                preparedStatement.setInt(2, id);
+
+                rs = preparedStatement.executeUpdate();
+            } else{
+                System.out.println("WWWWWWWWWWWWWWWWWWWW");
+                String query = "update summative set Sum_evidence = ? where Summative_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, Sum_evidence);
+                preparedStatement.setInt(2, id);
+
+                rs = preparedStatement.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
+    public void updateFormS(String Sum_evidence, int F_submitted,  int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            if (Sum_evidence!=null) {
+                System.out.println("GGGGGGGGGGGGGGGGGG");
+                String query = "update summative set Sum_evidence = ?, F_submitted = ? where Formative_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setString(1, Sum_evidence);
+                preparedStatement.setInt(2, F_submitted);
+                preparedStatement.setInt(3, id);
+
+                rs = preparedStatement.executeUpdate();
+            }
+            else{
+                System.out.println("WWWWWWWWWWWWWWWWWWWWW");
+                String query = "update summative set Sum_evidence = ? where Formative_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, F_submitted);
+                preparedStatement.setInt(2, id);
+
+                rs = preparedStatement.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
+    public void updateFormSR(int FK_Summative_ID, String student_rubric, int FK_S_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+                System.out.println("WWWWWWWWWWWWWWWWWWWW");
+                String query = "update summative_rubric set FK_Summative_ID = ?, student_rubric = ?, FK_S_ID = ?";
+
+                preparedStatement = connection.prepareStatement(query);
+                preparedStatement.setInt(1, FK_Summative_ID);
+                preparedStatement.setString(2, student_rubric);
+                preparedStatement.setInt(3, FK_S_ID);
+
+                rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
 }
