@@ -1208,9 +1208,8 @@ public class AS_Select {
         try {
 
             //String query = "SELECT C_code,C_name FROM course,program_has_course WHERE FK_course_code = C_code and FK_program_ID = "+ id +" ;";
-            String query = "SELECT C_code,C_name FROM course,program_has_course WHERE FK_course_code = C_code and" +
-                    " FK_program_ID = ?  AND C_code NOT IN(SELECT C_code FROM program_has_course,course,term_contains_courses WHERE" +
-                    " FK_C_code = C_code and FK_course_code = C_code and FK_T_ID = ? and FK_program_ID = ?);";
+            String query = "SELECT C_code,C_name FROM course,term_contains_courses,program_has_course WHERE " +
+                    "FK_course_code = C_code and FK_program_ID = ? and FK_C_code = C_code and FK_T_ID = ?;";
 
             /*
              *  Get connection from the DataSource
@@ -1224,7 +1223,7 @@ public class AS_Select {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, FK_program_ID);
             preparedStatement.setInt(2, FK_T_ID);
-            preparedStatement.setInt(3, FK_program_ID);
+            //preparedStatement.setInt(3, FK_program_ID);
 
             rs = preparedStatement.executeQuery();
             System.out.println("@@@@@@@@@@@@@@@@@@@  FK_program_ID   "+FK_program_ID);
