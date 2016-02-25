@@ -269,7 +269,7 @@
                         </table>
                     </div>
 
-                    <form name="formativeForm" method="post">
+                    <form name="formativeForm" method="post" enctype="multipart/form-data">
                         <%--<input type="hidden" name="WrittenRubricsV" value="<%=F_written_rubic%>">
                         <input type="hidden" name="CommentsV" value="<%=F_instructor_feedback_comment%>">
                         <input type="hidden" name="ObstaclesV" value="<%=F_instructor_feedback_obstacle%>">
@@ -304,6 +304,29 @@
                             <label>Evidence: </label><input type="text" name="evidence" value="<%=F_evidence%>">
                             <br>
                             <br>
+                        </div>
+                        <div class="row tim-row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        <label>University Logo</label>
+
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-fill btn-primary btn-file">
+                                                    Browse&hellip; <input type="file" id="evidence" name="evidence" accept="image/png">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control" value="" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <img style="max-width: 270px" src="<%
+                                    if(!F_evidence.equals("")){out.print(F_evidence);
+                                    }else { out.print("/img/logoHolder.png");}
+                                    %>">
+
+                                </div>
                         </div>
                         <div class="row tim-row">
                             <label>Faculty Name: </label>
