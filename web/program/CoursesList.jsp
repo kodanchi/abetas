@@ -111,7 +111,7 @@
                                                 "                            <input name=\"CourseLevel\" value=\""+rsRow.get(3)+"\" hidden />\n" +
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y\"><i class=\"fui-new \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/Delete Course\">\n" +
@@ -120,7 +120,7 @@
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T\"><i class=\"fui-trash \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");

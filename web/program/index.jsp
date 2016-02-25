@@ -371,7 +371,7 @@
         <jsp:include page="/Header.jsp"/>
     </div>
 
-    <div id="main" class="main">
+    <div id="main">
         <jsp:include page="<%=pageName%>"/>
     </div>
 
