@@ -134,7 +134,7 @@
                     </div>
 
 
-                    <form name="formativeForm" enctype="multipart/form-data" method="post">
+                    <form id="summativeForm" name="summativeForm" enctype="multipart/form-data" method="post">
 
                         <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
                         <input type="hidden" name="Section_ID" value="<%=section%>">
@@ -331,8 +331,21 @@
 
                         <button class="btn btn-info">Upload evidence</button>
                         <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
-                        <button class="btn btn-primary pull-right" type="submit" formaction="/SubmitSummative">Submit</button>
+                        <button class="btn btn-primary pull-right" type="submit" >Submit</button>
 
+                        <script>
+                            $(function () {
+                                $("button#confirm").click(function(e) {
+                                    e.preventDefault();
+                                    bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
+                                            "data, are you sure you want to continue!?", function(confirmed) {
+                                        console.log("Confirmed: "+confirmed);
+                                        $('#summativeForm').attr('action', '/SubmitSummative');
+                                        $('#summativeForm').submit();
+                                    });
+                                });
+                            });
+                        </script>
                         </form>
 
                         <!-- End of col -->
