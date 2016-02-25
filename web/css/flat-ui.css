@@ -352,7 +352,6 @@ body {
   font-size: 18px;
   line-height: 1.72222;
   color: #34495e;
-  background-color: #ffffff;
 }
 a {
   color: #16a085;
@@ -1050,13 +1049,16 @@ fieldset[disabled] .btn-inverse.active {
   padding-left: 30px;
   padding-right: 30px;
 }
-.btn-link {
-  color: #16a085;
+.btn-Y {
+  color: #f1c40f;
+}
+.btn-T{
+  color: #c0392b;
 }
 .btn-link:hover,
 .btn-link:focus {
   color: #1abc9c;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
 }
 .btn-link[disabled]:hover,
@@ -4095,6 +4097,10 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   .navbar-collapse .navbar-nav.navbar-right:last-child {
     margin-bottom: 3px;
   }
+}
+.container .B{
+    width: 100%;
+    background-color: #f8f5ee;
 }
 .navbar .container,
 .navbar .container-fluid {
