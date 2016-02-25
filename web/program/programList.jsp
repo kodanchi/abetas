@@ -12,10 +12,9 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<div class="section">
-    <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+<div class="container">
+        <div class="row">
             <h2 class="text-center">Program Management</h2>
             <legend></legend>
             <div class="col-lg-10 col-md-offset-1">
@@ -84,6 +83,5 @@
             <!-- End of row -->
         </div>
 
-        <!-- Modal Bodies come here -->
+        <!-- End of container -->
     </div>
-</div>

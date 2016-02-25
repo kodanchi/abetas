@@ -65,11 +65,9 @@
     }
 
 %>
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Add Program Objective</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -79,7 +77,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th>Objectives</th>
                                 <th>Edit</th>
@@ -169,7 +167,5 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>

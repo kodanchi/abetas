@@ -70,10 +70,8 @@
 %>
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
+            <!--  Here is row -->
             <div class="row tim-row">
                 <h2 class="text-center">Add Student Outcomes</h2>
                 <legend></legend>
@@ -84,7 +82,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th>Outcome</th>
                                 <th>Edit</th>
@@ -169,11 +167,7 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>
-
-<!--   end modal  -->
 
 <div id="footer"></div>

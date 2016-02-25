@@ -11,10 +11,8 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
+            <!--  Here is row -->
             <div class="row tim-row">
                 <h2 class="text-center">Program Management</h2>
                 <h4 class="text-center">Program Name</h4>
@@ -52,7 +50,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th>Course Name</th>
                                 <th>Code</th>
@@ -100,8 +98,5 @@
                 <!-- End of row -->
             </div>
 
-
-        </div>
-    </div>
-    <!-- End of main -->
+            <!-- End of container -->
 </div>
