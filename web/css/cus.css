@@ -78,14 +78,9 @@ input[readonly] {
 .white {
     color: #ecf0f1;
 }
-.red{
-    color:#c0392b;
-    text-decoration: none;
-}
-.yellow{
-    color:#f1c40f;
-    text-decoration: none;
-}
 #block{
     margin: 15px
+}
+.icon30{
+    font-size:30px;
 }
