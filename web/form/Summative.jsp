@@ -9,15 +9,25 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
 
+    if(request.getSession().getAttribute("Msg")!= null){
+        out.print("<script>");
+        out.print("\n" +
+                "bootbox.alert(\""+request.getSession().getAttribute("Msg")+"\");");
 
+        out.print("</script>");
 
+        request.getSession().removeAttribute("Msg");
+    }
+%>
 
+<%
 
-
-    Integer fid = (Integer) request.getSession().getAttribute("userLvl");
+    Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
     ArrayList<String> linkSectionData = null;
     int summativeID = 0;
@@ -124,7 +134,7 @@
                     </div>
 
 
-                    <form name="formativeForm" method="post">
+                    <form name="formativeForm" enctype="multipart/form-data" method="post">
 
                         <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
                         <input type="hidden" name="Section_ID" value="<%=section%>">
@@ -260,6 +270,32 @@
                             </table>
 
                             <label>Evidence: </label><input type="text" name="evidence" value="<%if (evidance!=null) {out.print(evidance);}%>">
+
+                            <div class="row tim-row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        <label>Evidence:</label>
+
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-fill btn-primary btn-file">
+                                                    Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control" value="" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <%
+                                        if(evidance != null){
+
+                                            out.print("<a  target=\"_blank\" href=\""+evidance+"\">Click here to view the evidence</a>");
+                                        }else { out.print("<h4>no evidence were uploaded</h4>");}
+                                    %>
+
+                                </div>
+                            </div>
 
                             <div class="row tim-row">
                                 <label>Faculty Name: </label>

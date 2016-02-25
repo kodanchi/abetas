@@ -56,6 +56,7 @@ public class loginServlet extends HttpServlet {
                             int userLvl = Integer.parseInt(userData[0]);
                             String userPassword = userData[1];
                             String userEmail = userData[2];
+                            String userID = userData[3];
                             //System.out.println("ur hashed password :"+hashedPass);
                             System.out.println("user password :" + userPassword);
                             System.out.println("checking :" + Password.check(password, userPassword));
@@ -69,9 +70,11 @@ public class loginServlet extends HttpServlet {
                                 session.setAttribute("username",username);
                                 session.setAttribute("userEmail",userEmail);
                                 session.setAttribute("userLvl",userLvl);
+                                session.setAttribute("userId",userID);
                                 System.out.println("Session username : "+request.getSession().getAttribute("username"));
                                 System.out.println("Session userEmail : "+request.getSession().getAttribute("userEmail"));
                                 System.out.println("Session userLvl : "+request.getSession().getAttribute("userLvl"));
+                                System.out.println("Session userID : "+request.getSession().getAttribute("userId"));
 
                                 //cookie
                                 System.out.println("checking value : "+request.getParameter("remember"));

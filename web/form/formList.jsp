@@ -8,15 +8,28 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="application/javascript"></script>
+<script src="/js/bootstrap.min.js" type="application/javascript"></script>
+<script src="/js/bootbox.min.js" type="application/javascript"></script>
 <div class="row">
     <div class="col-md-3 col-md-offset-3">
         <div class="list-group">
             <h4>Uncompleted forms</h4>
             <%--<a href="#" class="list-group-item">Performance Indicator </br> (Course Name)</a>--%>
+            <%
 
+                if(request.getSession().getAttribute("Msg")!= null){
+                    out.print("<script>");
+                    out.print("\n" +
+                            "bootbox.alert(\""+request.getSession().getAttribute("Msg")+"\");");
+
+                    out.print("</script>");
+
+                    request.getSession().removeAttribute("Msg");
+                }
+            %>
             <%
                 F_Select sdb = new F_Select();
-                Integer fid = (Integer) request.getSession().getAttribute("userLvl");
+                Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
                 if(fid != null){
                     ArrayList<ArrayList<String>> formativeFormsList = sdb.selectFacultyUnsubmittedFForms(fid);

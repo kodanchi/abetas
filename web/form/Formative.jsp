@@ -9,6 +9,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
+
+<%
+
+    if(request.getSession().getAttribute("Msg")!= null){
+        out.print("<script>");
+        out.print("\n" +
+                "bootbox.alert(\""+request.getSession().getAttribute("Msg")+"\");");
+
+        out.print("</script>");
+
+        request.getSession().removeAttribute("Msg");
+    }
+%>
+
 
 <%
     String F_written_rubic = "";
@@ -43,7 +59,7 @@
 
 
 <%
-    Integer fid = (Integer) request.getSession().getAttribute("userLvl");
+    Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
     String FK_Link_ID="";
     if(request.getParameter("Formative_ID")!=null) {
@@ -269,7 +285,7 @@
                         </table>
                     </div>
 
-                    <form name="formativeForm" method="post" enctype="multipart/form-data">
+                    <form id="formativeForm" name="formativeForm" method="post" enctype="multipart/form-data">
                         <%--<input type="hidden" name="WrittenRubricsV" value="<%=F_written_rubic%>">
                         <input type="hidden" name="CommentsV" value="<%=F_instructor_feedback_comment%>">
                         <input type="hidden" name="ObstaclesV" value="<%=F_instructor_feedback_obstacle%>">
@@ -313,7 +329,7 @@
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-fill btn-primary btn-file">
-                                                    Browse&hellip; <input type="file" id="evidence" name="evidence" accept="image/png">
+                                                    Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>
                                             <input type="text" class="form-control" value="" readonly>
@@ -321,10 +337,12 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4">
-                                    <img style="max-width: 270px" src="<%
-                                    if(!F_evidence.equals("")){out.print(F_evidence);
-                                    }else { out.print("/img/logoHolder.png");}
-                                    %>">
+                                     <%
+                                    if(!F_evidence.equals("")){
+
+                                        out.print("<a  target=\"_blank\" href=\""+F_evidence+"\">Click here to view the evidence</a>");
+                                    }else { out.print("<h4>no evidence were uploaded</h4>");}
+                                    %>
 
                                 </div>
                         </div>
@@ -360,11 +378,23 @@
                     <div class="row tim-row">
                         <button class="btn btn-primary" formaction="/SaveFormative" type="submit">Save</button>
 
-                        <button class="btn btn-primary pull-right" formaction="/SubmitFormative" type="submit">Submit</button>
+                        <button class="btn btn-primary pull-right" id="confirm" type="submit">Submit</button>
+                    <script>
+                        $(function () {
+                            $("button#confirm").click(function(e) {
+                                e.preventDefault();
+                                var location = $(this).attr('formaction');
+                                bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
+                                        "data, are you sure you want to continue!?", function(confirmed) {
+                                    console.log("Confirmed: "+confirmed);
+                                    $('#formativeForm').attr('action', '/SubmitFormative');
+                                    $('#formativeForm').submit();
+                                });
+                            });
+                        });
+                    </script>
                     </div>
                     </form>
-
-                    <button class="btn btn-success btn-fill">Upload evidence</button>
 
 
                     <!-- End of col -->

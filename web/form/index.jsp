@@ -16,7 +16,7 @@
     if(request.getMethod().equals("GET")){
         pageName = null;
         String pageCall = request.getParameter("page");
-        String cmdCall = request.getParameter("cmd");
+        //String cmdCall = request.getParameter("cmd");
         System.out.println(pageCall);
         if(pageCall != null){
              if(pageCall.equals("fillForm")) {
@@ -27,126 +27,14 @@
                 }else if(request.getParameter("type").equals("summative")) {
                     pageName = "Summative.jsp?Summative_ID=" + request.getParameter("id");
                 }
-            }else if(pageCall.equals("addTerm")) {
-                String id = request.getParameter("cycle");
-                System.out.println("cycle id is : "+id);
-                if(id != null){
-                    pageName = "addTerm.jsp?cycle="+id;
-                }else {
-                   System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
-                }
-            }else if(pageCall.equals("import")){
-                String id = request.getParameter("cycle");
-                String name = request.getParameter("term");
-                String programID = request.getParameter("programID");
-                String courseCode = request.getParameter("courseCode");
-                String courseName = request.getParameter("courseName");
-                String section = request.getParameter("section");
-                String data = request.getParameter("data");
-                if(data != null){
-                    if(request.getParameter("data").equals("students")) {
-                        pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                                "&courseName=" + courseName + "&section=" + section + "&data=students";
-                    }else if(request.getParameter("data").equals("pis")){
-                        pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                                "&courseName=" + courseName + "&section=" + section + "&data=pis";
-                    }
-
-                }else {
-                    //display error page
-                }
             }else {
                 pageName = "formList.jsp";
             }
-        }else if(cmdCall !=null){
-            if(cmdCall.equals("upload")){
-                String id = request.getParameter("cycle");
-                String name = request.getParameter("term");
-                String programID = request.getParameter("programID");
-                String courseCode = request.getParameter("courseCode");
-                String courseName = request.getParameter("courseName");
-                String section = request.getParameter("section");
-                if(request.getParameter("err")!= null){
-                    pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                            "&courseName=" + courseName + "&section=" + section + "&err="+request.getParameter("err");
-                    //pageName = "import.jsp?name="+name+"&id="+id+"&err="+request.getParameter("err");
-                }else {
-                    //pageName = "import.jsp?name="+name+"&id="+id+"&file="+request.getParameter("file");
-                    pageName = "import.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                            "&courseName=" + courseName + "&section=" + section + "&file="+request.getParameter("file");
-                }
-
-            }else if(cmdCall.equals("confirm")){
-                String id = request.getParameter("cycle");
-                String name = request.getParameter("term");
-                String programID = request.getParameter("programID");
-                String courseCode = request.getParameter("courseCode");
-                String courseName = request.getParameter("courseName");
-                String section = request.getParameter("section");
-                String dataType = request.getParameter("data");
-                /*pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                        "&courseName=" + courseName + "&section=" + section + "&data="+ dataType;*/
-                if(request.getParameter("data").equals("students")) {
-                    pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                            "&courseName=" + courseName + "&section=" + section + "&data="+dataType;
-                }else if(request.getParameter("data").equals("pis")){
-                    pageName = "upload.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&data="+dataType;
-                }
-            }
-        }else if(request.getParameter("back") != null){
-            String backPage = request.getParameter("back");
-            String id = request.getParameter("cycle");
-            String name = request.getParameter("term");
-            String programID = request.getParameter("programID");
-            String courseCode = request.getParameter("courseCode");
-            String courseName = request.getParameter("courseName");
-            String section = request.getParameter("section");
-
-            if(backPage.equals("students")){
-                pageName = "studentList.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                        "&courseName=" + courseName + "&section=" + section;
-            }else if(backPage.equals("pis")){
-                pageName = "piList.jsp?cycle=" + id + "&term=" + name + "&programID" + programID + "&courseCode=" + courseCode +
-                        "&courseName=" + courseName + "&section=" + section;
-            }else if(backPage.equals("courses")){
-                pageName = "CoursesList.jsp?name=" + name + "&id=" + id;
-            }
-
         }else {
             pageName = "formList.jsp";
         }
         //-----------------------------------------------POST
-    }else if(request.getMethod().equals("POST")) {
-        pageName = null;
-        String pageCall = request.getParameter("page");
-        System.out.println(pageCall);
-        if(pageCall != null){
-            if(pageCall.equals("updateForm")){
-                String id = request.getParameter("id");
-                if(id != null){
-                    pageName = "cycleView.jsp?id="+id;
-                }else {
-                    pageName = "formList.jsp";
-                }
-            }else if(pageCall.equals("fillForm")) {
-
-                if (request.getParameter("type").equals("formative")) {
-                    pageName = "SaveFormative.jsp?id=" + request.getParameter("id");
-
-                }else if(request.getParameter("type").equals("summative")) {
-
-                }
-            }else {
-                    //display error page
-                }
-            }else if(pageCall.equals("formList")) {
-                pageName = "formList.jsp";
-            }else {
-                //display error page
-            }
-        }else {
-            pageName = "formList.jsp";
-        }
+    }
 %>
 
 <!doctype html>
@@ -204,6 +92,7 @@
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/jquery.bsFormAlerts.js"></script>
 <script src="/js/ct-paper.js"></script>
+<script src="/js/uploadInput.js"></script>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });

@@ -979,7 +979,7 @@ public class F_Update {
                 preparedStatement.setInt(2, id);
 
                 rs = preparedStatement.executeUpdate();
-            } else{
+            } /*else{
                 System.out.println("WWWWWWWWWWWWWWWWWWWW");
                 String query = "update summative set Sum_evidence = ? where Summative_ID = ?";
 
@@ -988,7 +988,7 @@ public class F_Update {
                 preparedStatement.setInt(2, id);
 
                 rs = preparedStatement.executeUpdate();
-            }
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
