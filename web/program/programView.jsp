@@ -21,17 +21,17 @@
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Mission Statement:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Program Objectives:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Student Outcomes:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
@@ -39,7 +39,7 @@
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Courses: </p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
 
 
