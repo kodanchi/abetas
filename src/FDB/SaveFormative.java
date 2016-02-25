@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 public class SaveFormative extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println(request.getParameter("WrittenRubricsV")+"            F Servlet ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
+        System.out.println(request.getParameter("Formative_ID")+"            SaveFormative ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
 
         //ArrayList<String> data = new ArrayList<String>();
             System.out.println("#################################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");

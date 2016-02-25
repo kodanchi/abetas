@@ -1484,4 +1484,63 @@ public class F_Insert {
         }
     }
 
+
+    public void addSummativeRubric(int FK_Summative_ID, String student_rubric, int FK_S_ID) throws ClassNotFoundException, SQLException {
+
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into summative_rubric (FK_Summative_ID, student_rubric, FK_S_ID)" + " values (?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_Summative_ID);
+            preparedStatement.setString(2, student_rubric);
+            preparedStatement.setInt(3, FK_S_ID);
+            rs = preparedStatement.executeUpdate();
+
+
+            ////Need to display the temp password to the screen
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+
+
 }

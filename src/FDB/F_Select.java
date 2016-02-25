@@ -657,6 +657,72 @@ public class F_Select {
     }
 
 
+
+    public String  selectStudentRubric(int FK_S_ID, int FK_Summative_ID) throws ClassNotFoundException, SQLException {
+
+        String data = null;
+        //ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT student_rubric FROM summative_rubric WHERE FK_S_ID = ? AND FK_Summative_ID = ? ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_S_ID);
+            preparedStatement.setInt(2, FK_Summative_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                //RowDate = new ArrayList<String>();
+                data = rs.getString(1);
+
+                //RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+
     public ArrayList<ArrayList<String>> selectTerm() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
@@ -1275,7 +1341,9 @@ public class F_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_rubric_name_1,PI_rubric_description_1, PI_rubric_name_2,PI_rubric_description_2, PI_rubric_name_3,PI_rubric_description_3, PI_rubric_name_4,PI_rubric_description_4 FROM pi_rubric WHERE PI_rubric_ID = "+ id +" ;";
+            String query = "SELECT PI_rubric_name_1,PI_rubric_description_1, PI_rubric_name_2,PI_rubric_description_2, " +
+                    "PI_rubric_name_3,PI_rubric_description_3, PI_rubric_name_4,PI_rubric_description_4 FROM pi_rubric" +
+                    " WHERE PI_rubric_ID = ? ;";
 
             /*
              *  Get connection from the DataSource
@@ -1287,7 +1355,7 @@ public class F_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, id);
 
             rs = preparedStatement.executeQuery();
             System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
@@ -3172,13 +3240,13 @@ public class F_Select {
         return name;
     }
 
-    public ArrayList<Integer> selectLinkIDAndSectionIDOfFormS(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectLinkIDAndSectionIDOfFormS(int id) throws ClassNotFoundException, SQLException {
 
         connect();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        ArrayList<Integer> data = new ArrayList<Integer>();
+        ArrayList<String> data = new ArrayList<String>();
         ResultSet rsSelect = null;
         int rs = 0;
         String name="";
@@ -3193,7 +3261,7 @@ public class F_Select {
         /*
          * Execute the query
          */
-            String querySelect = " SELECT FK_Link_ID, FK_Section_ID FROM summative where Summative_ID = ?";
+            String querySelect = " SELECT FK_Link_ID, FK_Section_ID, Sum_evidence FROM summative where Summative_ID = ?";
 
             preparedStatement = connection.prepareStatement(querySelect);
             preparedStatement.setInt (1, id);
@@ -3201,8 +3269,9 @@ public class F_Select {
             rsSelect = preparedStatement.executeQuery();
 
             if (rsSelect.next()){
-                data.add(rsSelect.getInt(1));
-                data.add(rsSelect.getInt(2));
+                data.add(rsSelect.getString(1));
+                data.add(rsSelect.getString(2));
+                data.add(rsSelect.getString(3));
                 //name= rsSelect.getString(1);
                 //System.out.println(name+"    dsgfdgdgs");
                 //return name;
@@ -4036,6 +4105,71 @@ public class F_Select {
 
 
     public ArrayList<String> selectFormative(int Formative_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT F_written_rubic, F_instructor_feedback_comment, F_instructor_feedback_obstacle, F_instructor_feedback_improvement, F_evidence FROM abetasdb.formative where Formative_ID = ?;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, Formative_ID);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+Formative_ID);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1));
+                data.add(rs.getString(2));
+                data.add(rs.getString(3));
+                data.add(rs.getString(4));
+                data.add(rs.getString(5));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+
+    public ArrayList<String> selectSummativeRubrics(int Formative_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
         connect();

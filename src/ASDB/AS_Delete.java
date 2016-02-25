@@ -775,7 +775,8 @@ public class AS_Delete {
             /*
              * Execute the query
              */
-            String query = "delete from summative_rubric where FK_Student_ID = ?";
+            String query = "delete from summative_rubric where FK_Summative_ID = ? and" +
+                    " EXISTS (SELECT * from summative_rubric WHERE FK_Summative_ID = ?)";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
 

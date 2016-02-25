@@ -25,7 +25,7 @@
                     pageName = "Formative.jsp?Formative_ID=" + request.getParameter("id");
 
                 }else if(request.getParameter("type").equals("summative")) {
-
+                    pageName = "Summative.jsp?Summative_ID=" + request.getParameter("id");
                 }
             }else if(pageCall.equals("addTerm")) {
                 String id = request.getParameter("cycle");

@@ -19,14 +19,19 @@
         F_Select dbs = new F_Select();
         ArrayList<String> fData = new ArrayList<String>();
         try {
+            fData = dbs.selectFormative(Integer.parseInt(request.getParameter("Formative_ID")));
             if(fData != null){
-                fData = dbs.selectFormative(Integer.parseInt(request.getParameter("Formative_ID")));
                 F_written_rubic = fData.get(0);
                 F_instructor_feedback_comment = fData.get(1);
                 F_instructor_feedback_obstacle = fData.get(2);
                 F_instructor_feedback_improvement = fData.get(3);
                 F_evidence = fData.get(4);
             }
+            if(F_written_rubic == null) F_written_rubic="";
+            if(F_instructor_feedback_comment == null) F_instructor_feedback_comment="";
+            if(F_instructor_feedback_obstacle == null) F_instructor_feedback_obstacle="";
+            if(F_instructor_feedback_improvement == null) F_instructor_feedback_improvement="";
+            if(F_evidence == null) F_evidence="";
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

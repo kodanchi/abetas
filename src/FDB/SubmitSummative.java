@@ -1,7 +1,5 @@
 package FDB;
 
-import ASDB.AS_Update;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,14 +9,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by Ibrahim Abuaqel on 2/24/2016.
+ * Created by Ibrahim Abuaqel on 2/23/2016.
  */
-@WebServlet(name = "SaveSummative",
-        urlPatterns = {"/SaveSummative"})
-public class SaveSummative extends HttpServlet {
+@WebServlet(name = "SubmitSummative",
+        urlPatterns = {"/SubmitSummative"})
+public class SubmitSummative extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println(request.getParameter("WrittenRubricsV")+"            S Servlet ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
+        System.out.println(request.getParameter("Summative_ID")+"            SubmitSummative Servlet ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
 
         //ArrayList<String> data = new ArrayList<String>();
         System.out.println("#################################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
@@ -32,9 +30,11 @@ public class SaveSummative extends HttpServlet {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             if (request.getParameter("evidence") != null) {
                 dba.updateFormS(request.getParameter("evidence"), Integer.parseInt(request.getParameter("Summative_ID")));
+
             } else {
                 dba.updateFormS(null, Integer.parseInt(request.getParameter("Summative_ID")));
             }
+            dba.updateSubmitFormS(Integer.parseInt(request.getParameter("Summative_ID")));
             int size=0;
             size=Integer.parseInt(request.getParameter("studentsNumber"));
             dbd.deleteSummRub(Integer.parseInt(request.getParameter("Summative_ID")));

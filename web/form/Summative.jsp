@@ -11,17 +11,29 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
 <%
-    ArrayList<Integer> linkSectionData = null;
+
+
+
+
+
+
+    Integer fid = (Integer) request.getSession().getAttribute("userLvl");
+
+    ArrayList<String> linkSectionData = null;
+    int summativeID = 0;
     int FK_Link_ID = 0;
-    int Section = 0;
+    int section = 0;
+    String evidance = null;
 
     if(request.getParameter("Summative_ID")!=null) {
+        summativeID = Integer.parseInt(request.getParameter("Summative_ID"));
         F_Select select = new F_Select();
         try {
-            linkSectionData = select.selectLinkIDAndSectionIDOfFormS(Integer.parseInt(request.getParameter("Summative_ID")));
+            linkSectionData = select.selectLinkIDAndSectionIDOfFormS(summativeID);
             if(linkSectionData != null){
-                FK_Link_ID = linkSectionData.get(0);
-                Section = linkSectionData.get(1);
+                FK_Link_ID = Integer.parseInt(linkSectionData.get(0));
+                section = Integer.parseInt(linkSectionData.get(1));
+                evidance = linkSectionData.get(2);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -112,10 +124,10 @@
                     </div>
 
 
-                    <form name="formativeForm" action="/Summative" method="post">
+                    <form name="formativeForm" method="post">
 
-                        <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Summative_ID")%>">
-                        <input type="hidden" name="Section_ID" value="<%=Section%>">
+                        <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
+                        <input type="hidden" name="Section_ID" value="<%=section%>">
 
                         <div class="panel panel-default">
                             <!-- Default panel contents -->
@@ -175,39 +187,63 @@
                                         F_Select Sselect = new F_Select();
 
                                         try {
-                                            ArrayList<ArrayList<String>> rs = Sselect.selectStudents(Integer.parseInt(request.getParameter("section")));
+                                            ArrayList<ArrayList<String>> rs = Sselect.selectStudents(section);
                                             ArrayList<String> rsRow ;
 
                                             out.print("<input type=\"hidden\" name=\"studentsNumber\" value=\""+rs.size()+"\">");
 
+                                            String studentRubric = null;
+
                                             for (int i=0; i<rs.size();i++){
                                                 rsRow = new ArrayList<String>();
                                                 rsRow = rs.get(i);
+
+                                                studentRubric = Sselect.selectStudentRubric(Integer.parseInt(rsRow.get(0)),summativeID);
+
+
+
+
                                                 out.print("<tr>");
                                                 for (int j=1; j<rsRow.size();j++) {
                                                     out.print("<td>");
                                                     out.print(rsRow.get(j));
                                                     out.print("</td>");
                                                 }
-                                                out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rs.get(0)+"\">");
+                                                out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rsRow.get(0)+"\">");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" ");
+                                                          if(studentRubric!=null && studentRubric.equals(N1)){
+                                                          out.print(" checked=\"checked\" ");
+                                                          }
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1"+i+"\" value=\""+N1+"\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" ");
+                                                          if(studentRubric!=null && studentRubric.equals(N2)){
+                                                          out.print(" checked=\"checked\" ");
+                                                          }
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N2+"\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" ");
+                                                          if(studentRubric!=null && studentRubric.equals(N3)){
+                                                          out.print(" checked=\"checked\" ");
+                                                          }
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios3\"+i+\"\" value=\""+N3+"\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1\" value=\"option1\">\n" +
+                                                        "                                            <input type=\"radio\" ");
+                                                          if(studentRubric!=null && studentRubric.equals(N4)){
+                                                          out.print(" checked=\"checked\" ");
+                                                          }
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios4\"+i+\"\" value=\""+N4+"\">\n" +
                                                         "                                        </label>");
                                                 out.print("</td>");
                                                 out.print("</tr>");
@@ -223,14 +259,14 @@
 
                             </table>
 
-                            <label>Evidence: </label><input type="text" name="evidence" value="<%if (request.getParameter("WrittenRubricsV")!=null) {out.print(request.getParameter("evidenceV"));}%>">
+                            <label>Evidence: </label><input type="text" name="evidence" value="<%if (evidance!=null) {out.print(evidance);}%>">
 
                             <div class="row tim-row">
                                 <label>Faculty Name: </label>
                                 <label><%
                                     F_Select yselect = new F_Select();
                                     try {
-                                        String name = yselect.selectFacultyForForm(Integer.parseInt(request.getParameter("FacilityID")));
+                                        String name = yselect.selectFacultyForForm(fid);
 
                                         out.print(name);
 
@@ -258,8 +294,8 @@
                         </div>
 
                         <button class="btn btn-info">Upload evidence</button>
-                        <button class="btn btn-danger btn-fill">Save</button>
-                        <button class="btn btn-primary pull-right">Submit</button>
+                        <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
+                        <button class="btn btn-primary pull-right" type="submit" formaction="/SubmitSummative">Submit</button>
 
                         </form>
 
