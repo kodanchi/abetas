@@ -157,7 +157,7 @@ public class SubmitSummative extends HttpServlet {
 
                             dbi.addSummativeRubric(Integer.parseInt(Summative_ID),optionsRadios.get(i),Integer.parseInt(SID.get(i)));
                         }
-                        sendMsg("Form No:"+Summative_ID+" has been successfully saved",request,response);
+                        sendMsg("Form No:"+Summative_ID+" has been successfully submitted",request,response);
                         //redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }else {
                         redirectURL= "/form/index.jsp?page=fillForm&type=summative&id="+Summative_ID;

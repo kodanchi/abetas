@@ -1481,4 +1481,83 @@ public class AS_Select {
     }
 
 
+
+    public ArrayList<ArrayList<String>> selectAllSubmittedFormsForValidTerm() throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> result= new ArrayList<ArrayList<String>>();
+        ArrayList<String> rsRow;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT Summative_ID As 'ID' ,C_name , PI_name, Faculty_Fname, Faculty_Lname, 'summative' As 'type'  " +
+                    "FROM summative, faculty_member, abetasdb.section , term, cycle, link_out_pi , course, performance_indicator " +
+                    "where FK_Section_ID=Section_ID and term.current = 1 and Sum_submitted = 1 and FK_F= Faculty_ID and FK_T= T_ID " +
+                    "and FK_Cycle_ID = Cycle_ID and FK_Link_ID=Link_ID and PI_Label=FK_pi_ID and course.C_code = link_out_pi.FK_C_ID " +
+                    "union all " +
+                    "select  Formative_ID ,C_name , PI_name, Faculty_Fname, Faculty_Lname, 'formative' FROM formative, faculty_member, " +
+                    "abetasdb.section , term, cycle, link_out_pi , course, performance_indicator where FK_Section_ID=Section_ID and " +
+                    "term.current = 1 and F_submitted = 1 and FK_F= Faculty_ID and FK_T= T_ID  and FK_Cycle_ID = Cycle_ID and " +
+                    "FK_Link_ID=Link_ID and PI_Label=FK_pi_ID and course.C_code=link_out_pi.FK_C_ID";
+
+        /*
+         *  Get connection from the DataSource
+         */
+
+            connection = dataSource.getConnection();
+
+        /*
+         * Execute the query
+         */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, id);
+
+            rs = preparedStatement.executeQuery();
+            //
+            int i=-1;
+            while (rs.next()){
+                rsRow = new ArrayList<String>();
+                rsRow.add(rs.getString(1));
+                rsRow.add(rs.getString(2));
+                rsRow.add(rs.getString(3));
+                rsRow.add(rs.getString(4));
+                rsRow.add(rs.getString(5));
+                rsRow.add(rs.getString(6));
+                result.add(rsRow);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        /*
+         * finally block used to close resources
+         */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return result;
+
+        }
+
+    }
+
+
+
+
 }

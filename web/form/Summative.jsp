@@ -329,9 +329,8 @@
 
                         </div>
 
-                        <button class="btn btn-info">Upload evidence</button>
                         <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
-                        <button class="btn btn-primary pull-right" type="submit" >Submit</button>
+                        <button id="confirm" class="btn btn-primary pull-right" type="submit" >Submit</button>
 
                         <script>
                             $(function () {

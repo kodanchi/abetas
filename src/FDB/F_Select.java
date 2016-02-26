@@ -4049,7 +4049,7 @@ public class F_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT Summative_ID ,C_name , PI_name FROM summative, section , term, cycle, link_out_pi , course, performance_indicator " +
+            String query = "SELECT Summative_ID ,C_name , PI_name FROM summative, abetasdb.section , term, cycle, link_out_pi , course, performance_indicator " +
                     "where FK_Section_ID=Section_ID and term.current = 1 and Sum_submitted = 1 and FK_T= T_ID and FK_F = ? and FK_Cycle_ID = Cycle_ID and" +
                     " FK_Link_ID=Link_ID and PI_Label=FK_pi_ID and course.C_code = link_out_pi.FK_C_ID; ";
 
@@ -4169,6 +4169,7 @@ public class F_Select {
     }
 
 
+/*
     public ArrayList<String> selectSummativeRubrics(int Formative_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
@@ -4182,15 +4183,19 @@ public class F_Select {
 
             String query = "SELECT F_written_rubic, F_instructor_feedback_comment, F_instructor_feedback_obstacle, F_instructor_feedback_improvement, F_evidence FROM abetasdb.formative where Formative_ID = ?;";
 
-            /*
+            */
+/*
              *  Get connection from the DataSource
-             */
+             *//*
+
 
             connection = dataSource.getConnection();
 
-            /*
+            */
+/*
              * Execute the query
-             */
+             *//*
+
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, Formative_ID);
 
@@ -4209,9 +4214,11 @@ public class F_Select {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            /*
+            */
+/*
              * finally block used to close resources
-             */rs.close();
+             *//*
+rs.close();
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -4232,6 +4239,7 @@ public class F_Select {
         }
 
     }
+*/
 
 
 

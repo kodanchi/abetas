@@ -90,4 +90,115 @@ public class AS_Update {
         }
 
     }
+
+
+
+    public void updateUnlockFormF(int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+        /*
+         *  Get connection from the DataSource
+         */
+
+            connection = dataSource.getConnection();
+
+        /*
+         * Execute the query
+         */
+
+            System.out.println("WWWWWWWWWWWWWWWWWWWWw");
+            String query = "update formative set F_submitted = 0 where Formative_ID = ?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        /*
+         * finally block used to close resources
+         */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
+
+    public void updateUnlockFormS(int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+        /*
+         *  Get connection from the DataSource
+         */
+
+            connection = dataSource.getConnection();
+
+        /*
+         * Execute the query
+         */
+
+            System.out.println("WWWWWWWWWWWWWWWWWWWWw");
+            String query = "update summative set Sum_submitted = 0 where Summative_ID = ?";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        /*
+         * finally block used to close resources
+         */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
+
 }

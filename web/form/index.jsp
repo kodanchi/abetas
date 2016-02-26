@@ -27,9 +27,11 @@
                 }else if(request.getParameter("type").equals("summative")) {
                     pageName = "Summative.jsp?Summative_ID=" + request.getParameter("id");
                 }
+            }else if(pageCall.equals("unlockForm")){
+                pageName = "unlockform.jsp";
             }else {
-                pageName = "formList.jsp";
-            }
+                 pageName = "formList.jsp";
+             }
         }else {
             pageName = "formList.jsp";
         }
