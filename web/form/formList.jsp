@@ -85,7 +85,7 @@
 
                     for (int i=0; i<summativeFormsList.size(); i++){
                         srsRow = summativeFormsList.get(i);
-                        out.print("<a href=\"index.jsp?page=showForm&type=formative&id="+srsRow.get(0)+"\" class=\"list-group-item\">"+
+                        out.print("<a href=\"index.jsp?page=showForm&type=summative&id="+srsRow.get(0)+"\" class=\"list-group-item\">"+
                                 srsRow.get(2)+" </br> (Course : "+srsRow.get(1)+")");
                         out.print("<div class=\"pull-right\">Summative</div>");
                         out.print("</a>");

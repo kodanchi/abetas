@@ -842,7 +842,7 @@ public class F_Update {
     }
 
 
-    public void updateSubmitFormF(int id) throws ClassNotFoundException, SQLException {
+    public void updateSubmitFormF(int id, String date) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -863,10 +863,11 @@ public class F_Update {
          */
 
                 System.out.println("WWWWWWWWWWWWWWWWWWWWw");
-                String query = "update formative set F_submitted = 1 where Formative_ID = ?";
+                String query = "update formative set F_submitted = 1, F_date = ? where Formative_ID = ?";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, id);
+                preparedStatement.setString(2, date);
 
                 rs = preparedStatement.executeUpdate();
 
@@ -896,7 +897,7 @@ public class F_Update {
     }
 
 
-    public void updateSubmitFormS(int id) throws ClassNotFoundException, SQLException {
+    public void updateSubmitFormS(int id, String date) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -917,10 +918,11 @@ public class F_Update {
          */
 
                 System.out.println("WWWWWWWWWWWWWWWWWWWWw");
-                String query = "update summative set Sum_submitted = 1 where Summative_ID = ?";
+                String query = "update summative set Sum_submitted = 1, Sum_date = ? where Summative_ID = ?";
 
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setInt(1, id);
+                preparedStatement.setString(2, date);
 
                 rs = preparedStatement.executeUpdate();
 

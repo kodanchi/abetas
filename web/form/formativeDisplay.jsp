@@ -1,9 +1,6 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="FDB.F_Select" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%@ page import="FDB.F_Select" %><%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/21/2016
@@ -35,8 +32,10 @@
     String F_instructor_feedback_obstacle = "";
     String F_instructor_feedback_improvement = "";
     String F_evidence = "";
-    String isSubmitted = "";
-    String faculatyId = "";
+
+    String faculatyId = null;
+    String fDate = null;
+
         F_Select dbs = new F_Select();
         ArrayList<String> fData = new ArrayList<String>();
         try {
@@ -47,15 +46,9 @@
                 F_instructor_feedback_obstacle = fData.get(2);
                 F_instructor_feedback_improvement = fData.get(3);
                 F_evidence = fData.get(4);
-                isSubmitted = fData.get(5);
                 faculatyId = fData.get(6);
+                fDate = fData.get(7);
             }
-
-            if(isSubmitted.equals("1")){
-                request.getSession().setAttribute("Msg","Invalid form");
-                response.sendRedirect("index.jsp");
-            }
-
             if(F_written_rubic == null) F_written_rubic="";
             if(F_instructor_feedback_comment == null) F_instructor_feedback_comment="";
             if(F_instructor_feedback_obstacle == null) F_instructor_feedback_obstacle="";
@@ -298,17 +291,12 @@
                         </table>
                     </div>
 
-                    <form id="formativeForm" name="formativeForm" method="post" enctype="multipart/form-data">
-                        <%--<input type="hidden" name="WrittenRubricsV" value="<%=F_written_rubic%>">
-                        <input type="hidden" name="CommentsV" value="<%=F_instructor_feedback_comment%>">
-                        <input type="hidden" name="ObstaclesV" value="<%=F_instructor_feedback_obstacle%>">
-                        <input type="hidden" name="ImprovementV" value="<%=F_instructor_feedback_improvement%>">
-                        <input type="hidden" name="evidenceV" value="<%=F_evidence%>">--%>
-                        <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
+                    <div>
+
 
                         <div>
                             <p>Written Rubrics</p>
-                            <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
+                            <div><%=F_written_rubic%></div>
                         </div>
                         <br>
                         <br>
@@ -319,34 +307,21 @@
                             <table>
                                 <tr>
                                     <th>Comment(s) on Success/Failure in Achieving Performance Indicator*: </th>
-                                    <td><textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea></td>
+                                    <td><div><%=F_instructor_feedback_comment%></div></td>
                                 </tr>
                                 <tr>
                                     <th>Obstacles in Achieving Desired Progress*: </th>
-                                    <td><textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea></td>
+                                    <td><div><%=F_instructor_feedback_obstacle%></div></td>
                                 </tr>
                                 <tr>
                                     <th>Areas of Improvement*: </th>
-                                    <td><textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea></td>
+                                    <td><div><%=F_instructor_feedback_improvement%></div></td>
                                 </tr>
                             </table>
 
                         </div>
                         <div class="row tim-row">
-                                <div class="col-md-8 col-sm-8">
-                                    <div class="form-group">
-                                        <label>University Logo</label>
 
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-fill btn-primary btn-file">
-                                                    Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" value="" readonly>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-4 col-sm-4">
                                      <%
                                     if(!F_evidence.equals("")){
@@ -371,34 +346,17 @@
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-                                DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
-                                Date date = new Date();
                             %></label>
-                            <input name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
-                            <label class="pull-right" id="date">Date: <%=fdate.format(date)%></label>
 
+                            <label class="pull-right">Date: <%=fDate%></label>
                     </div>
                     <div class="row tim-row">
+                        <a class="btn btn-primary" href="index.jsp" >Back</a>
 
-                        <a class="btn btn-primary" href="index.jsp" >Cancel</a>
-                        <button class="btn btn-primary pull-right" formaction="/SaveFormative" type="submit">Save</button>
-                        <button class="btn btn-primary pull-right" id="confirm" type="submit">Submit</button>
-                    <script>
-                        $(function () {
-                            $("button#confirm").click(function(e) {
-                                e.preventDefault();
-                                var location = $(this).attr('formaction');
-                                bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
-                                        "data, are you sure you want to continue!?", function(confirmed) {
-                                    console.log("Confirmed: "+confirmed);
-                                    $('#formativeForm').attr('action', '/SubmitFormative');
-                                    $('#formativeForm').submit();
-                                });
-                            });
-                        });
-                    </script>
+                        <a class="btn btn-primary pull-right" id="print" onclick="window.print();">Print</a>
+
                     </div>
-                    </form>
+                    </div>
 
 
                     <!-- End of col -->

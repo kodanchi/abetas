@@ -143,7 +143,7 @@ public class SubmitFormative extends HttpServlet {
                         } else {
                             dba.updateFormF(WrittenRubrics, Comments, Obstacles, Improvement, null, Integer.parseInt(Formative_ID));
                         }
-                        dba.updateSubmitFormF(Integer.parseInt(Formative_ID));
+                        dba.updateSubmitFormF(Integer.parseInt(Formative_ID),request.getParameter("dateInput"));
                         sendMsg("Form has been successfully submitted ",request,response);
                         //redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }else {

@@ -148,7 +148,7 @@ public class SubmitSummative extends HttpServlet {
                             dba.updateFormS(null, Integer.parseInt(Summative_ID));
                         }
 
-                        dba.updateSubmitFormS(Integer.parseInt(Summative_ID));
+                        dba.updateSubmitFormS(Integer.parseInt(Summative_ID),request.getParameter("dateInput"));
 
                         int size=0;
                         size=Integer.parseInt(studentsNumber);

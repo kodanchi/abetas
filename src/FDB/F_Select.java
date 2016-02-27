@@ -3261,7 +3261,8 @@ public class F_Select {
         /*
          * Execute the query
          */
-            String querySelect = " SELECT FK_Link_ID, FK_Section_ID, Sum_evidence FROM summative where Summative_ID = ?";
+            String querySelect = " SELECT FK_Link_ID, FK_Section_ID, Sum_evidence, Sum_submitted, FK_F, Sum_date FROM summative, abetasdb.section " +
+                    "where Summative_ID = ?  AND FK_Section_ID = Section_ID";
 
             preparedStatement = connection.prepareStatement(querySelect);
             preparedStatement.setInt (1, id);
@@ -3272,6 +3273,9 @@ public class F_Select {
                 data.add(rsSelect.getString(1));
                 data.add(rsSelect.getString(2));
                 data.add(rsSelect.getString(3));
+                data.add(String.valueOf(rsSelect.getInt(4)));
+                data.add(String.valueOf(rsSelect.getInt(5)));
+                data.add(rsSelect.getString(6));
                 //name= rsSelect.getString(1);
                 //System.out.println(name+"    dsgfdgdgs");
                 //return name;
@@ -4115,7 +4119,9 @@ public class F_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT F_written_rubic, F_instructor_feedback_comment, F_instructor_feedback_obstacle, F_instructor_feedback_improvement, F_evidence FROM abetasdb.formative where Formative_ID = ?;";
+            String query = "SELECT  F_written_rubic, F_instructor_feedback_comment, F_instructor_feedback_obstacle, " +
+                    "F_instructor_feedback_improvement, F_evidence, F_submitted, FK_F, F_date FROM abetasdb.formative,abetasdb.section " +
+                    "where Formative_ID = ? AND FK_Section_ID = Section_ID;";
 
             /*
              *  Get connection from the DataSource
@@ -4139,6 +4145,9 @@ public class F_Select {
                 data.add(rs.getString(3));
                 data.add(rs.getString(4));
                 data.add(rs.getString(5));
+                data.add(String.valueOf(rs.getInt(6)));
+                data.add(String.valueOf(rs.getInt(7)));
+                data.add(rs.getString(8));
             }
 
         } catch (Exception e) {

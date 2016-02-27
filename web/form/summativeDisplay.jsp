@@ -1,9 +1,6 @@
 <%@ page import="FDB.F_Select" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="java.text.DateFormat" %><%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/23/2016
@@ -37,8 +34,8 @@
     int FK_Link_ID = 0;
     int section = 0;
     String evidance = null;
-    String isSubmitted = null;
     String faculatyId = null;
+    String fDate = null;
 
     if(request.getParameter("Summative_ID")!=null) {
         summativeID = Integer.parseInt(request.getParameter("Summative_ID"));
@@ -49,12 +46,8 @@
                 FK_Link_ID = Integer.parseInt(linkSectionData.get(0));
                 section = Integer.parseInt(linkSectionData.get(1));
                 evidance = linkSectionData.get(2);
-                isSubmitted = linkSectionData.get(3);
                 faculatyId = linkSectionData.get(4);
-            }
-            if(isSubmitted.equals("1")){
-                request.getSession().setAttribute("Msg","Invalid form");
-                response.sendRedirect("index.jsp");
+                fDate = linkSectionData.get(5);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -211,7 +204,7 @@
                                             ArrayList<ArrayList<String>> rs = Sselect.selectStudents(section);
                                             ArrayList<String> rsRow ;
 
-                                            out.print("<input type=\"hidden\" name=\"studentsNumber\" value=\""+rs.size()+"\">");
+                                            //out.print("<input type=\"hidden\" name=\"studentsNumber\" value=\""+rs.size()+"\">");
 
                                             String studentRubric = null;
 
@@ -230,42 +223,46 @@
                                                     out.print(rsRow.get(j));
                                                     out.print("</td>");
                                                 }
-                                                out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rsRow.get(0)+"\">");
+                                                //out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rsRow.get(0)+"\">");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" ");
+                                                out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N1)){
+                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
+                                                          out.print(" <input type=\"radio\" readonly");
                                                           out.print(" checked=\"checked\" ");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N1+"\">\n");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1"+i+"\" value=\""+N1+"\">\n" +
-                                                        "                                        </label>");
+                                                        out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" ");
+                                                out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N2)){
+                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
+                                                          out.print(" <input type=\"radio\" readonly");
                                                           out.print(" checked=\"checked\" ");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N2+"\">\n");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N2+"\">\n" +
-                                                        "                                        </label>");
+                                                        out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" ");
+                                                out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N3)){
+                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
+                                                          out.print(" <input type=\"radio\" readonly");
                                                           out.print(" checked=\"checked\" ");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N3+"\">\n");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios3\"+i+\"\" value=\""+N3+"\">\n" +
-                                                        "                                        </label>");
+                                                        out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
-                                                        "                                            <input type=\"radio\" ");
+                                                out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N4)){
+                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
+                                                          out.print(" <input type=\"radio\" readonly");
                                                           out.print(" checked=\"checked\" ");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios4\"+i+\"\" value=\""+N4+"\">\n" +
-                                                        "                                        </label>");
+                                                        out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("</tr>");
                                             }
@@ -280,31 +277,17 @@
 
                             </table>
 
-                            <label>Evidence: </label><input type="text" name="evidence" value="<%if (evidance!=null) {out.print(evidance);}%>">
-
                             <div class="row tim-row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>Evidence:</label>
+                                        <%
+                                            if(evidance != null){
 
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-fill btn-primary btn-file">
-                                                    Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" value="" readonly>
-                                        </div>
+                                                out.print("<a  target=\"_blank\" href=\""+evidance+"\">Click here to view the evidence</a>");
+                                            }else { out.print("<h4>no evidence were uploaded</h4>");}
+                                        %>
                                     </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4">
-                                    <%
-                                        if(evidance != null){
-
-                                            out.print("<a  target=\"_blank\" href=\""+evidance+"\">Click here to view the evidence</a>");
-                                        }else { out.print("<h4>no evidence were uploaded</h4>");}
-                                    %>
-
                                 </div>
                             </div>
 
@@ -322,33 +305,29 @@
                                     } catch (SQLException e) {
                                         e.printStackTrace();
                                     }
-                                    DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
-                                    Date date = new Date();
-                                %></label>
-                                <input name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
-                                <label class="pull-right" id="date">Date: <%=fdate.format(date)%></label>
+                                %>
+                                </label>
+                                <label class="pull-right" id="date"><script>
+                                    /*function myFunction() {
+                                     var d = new Date();
+                                     var n = d.getFullYear();
+                                     document.getElementById("date").innerHTML = n;
+                                     }*/
+                                    (function(){
+                                        var d = new Date();
+                                        document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
+                                    })();
+                                </script></label>
 
                                 <label class="pull-right">Date: </label>
                             </div>
 
                         </div>
 
-                        <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
-                        <button id="confirm" class="btn btn-primary pull-right" type="submit" >Submit</button>
+                        <a class="btn btn-danger btn-fill" href="index.jsp">Back</a>
+                        <a id="print" class="btn btn-primary pull-right" onclick="window.print();" >Print</a>
 
-                        <script>
-                            $(function () {
-                                $("button#confirm").click(function(e) {
-                                    e.preventDefault();
-                                    bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
-                                            "data, are you sure you want to continue!?", function(confirmed) {
-                                        console.log("Confirmed: "+confirmed);
-                                        $('#summativeForm').attr('action', '/SubmitSummative');
-                                        $('#summativeForm').submit();
-                                    });
-                                });
-                            });
-                        </script>
+
                         </form>
 
                         <!-- End of col -->

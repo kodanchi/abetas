@@ -22,13 +22,20 @@
              if(pageCall.equals("fillForm")) {
 
                 if (request.getParameter("type").equals("formative")) {
-                    pageName = "Formative.jsp?Formative_ID=" + request.getParameter("id");
+                    pageName = "formative.jsp?Formative_ID=" + request.getParameter("id");
 
                 }else if(request.getParameter("type").equals("summative")) {
-                    pageName = "Summative.jsp?Summative_ID=" + request.getParameter("id");
+                    pageName = "summative.jsp?Summative_ID=" + request.getParameter("id");
                 }
             }else if(pageCall.equals("unlockForm")){
-                pageName = "unlockform.jsp";
+                 pageName = "unlockform.jsp";
+            }else if(pageCall.equals("showForm")){
+                 if (request.getParameter("type").equals("formative")) {
+                     pageName = "formativeDisplay.jsp?Formative_ID=" + request.getParameter("id");
+
+                 }else if(request.getParameter("type").equals("summative")) {
+                     pageName = "summativeDisplay.jsp?Summative_ID=" + request.getParameter("id");
+                 }
             }else {
                  pageName = "formList.jsp";
              }
