@@ -21,7 +21,7 @@ import java.util.List;
         urlPatterns = {"/SubmitFormative"})
 public class SubmitFormative extends HttpServlet {
 
-    private String WrittenRubrics,Comments,Obstacles,Improvement,evidence,Formative_ID = null;
+    private String WrittenRubrics,Comments,Obstacles,Improvement,evidence,Formative_ID,dateInput = null;
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
     private boolean isValid = true;
@@ -92,6 +92,14 @@ public class SubmitFormative extends HttpServlet {
                                     //isValid = false;
                                 }
                                 break;
+                            case "dateInput":
+                                dateInput = item.getString();
+                                System.out.println("dateInput is : "+dateInput);
+                                if (dateInput.equals("")) {
+                                    //sendMsg("University name must be entered", request, response);
+                                    //isValid = false;
+                                }
+                                break;
 
                         }
 
@@ -143,7 +151,7 @@ public class SubmitFormative extends HttpServlet {
                         } else {
                             dba.updateFormF(WrittenRubrics, Comments, Obstacles, Improvement, null, Integer.parseInt(Formative_ID));
                         }
-                        dba.updateSubmitFormF(Integer.parseInt(Formative_ID),request.getParameter("dateInput"));
+                        dba.updateSubmitFormF(Integer.parseInt(Formative_ID),dateInput);
                         sendMsg("Form has been successfully submitted ",request,response);
                         //redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }else {

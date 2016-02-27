@@ -862,12 +862,12 @@ public class F_Update {
          * Execute the query
          */
 
-                System.out.println("WWWWWWWWWWWWWWWWWWWWw");
-                String query = "update formative set F_submitted = 1, F_date = ? where Formative_ID = ?";
+            System.out.println("WWWWWWWWWWWWWWWWWWWWw");
+            String query = "update formative set F_submitted = 1, F_date = ? where Formative_ID = ?";
 
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, id);
-                preparedStatement.setString(2, date);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, date);
+            preparedStatement.setInt(2, id);
 
                 rs = preparedStatement.executeUpdate();
 
@@ -917,12 +917,13 @@ public class F_Update {
          * Execute the query
          */
 
-                System.out.println("WWWWWWWWWWWWWWWWWWWWw");
-                String query = "update summative set Sum_submitted = 1, Sum_date = ? where Summative_ID = ?";
+            System.out.println("WWWWWWWWWWWWWWWWWWWWw");
+            String query = "update summative set Sum_submitted = 1, Sum_date = ? where Summative_ID = ?";
 
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, id);
-                preparedStatement.setString(2, date);
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, date);
+            preparedStatement.setInt(2, id);
+
 
                 rs = preparedStatement.executeUpdate();
 

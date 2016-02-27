@@ -280,7 +280,6 @@
 
                             </table>
 
-                            <label>Evidence: </label><input type="text" name="evidence" value="<%if (evidance!=null) {out.print(evidance);}%>">
 
                             <div class="row tim-row">
                                 <div class="col-md-8 col-sm-8">

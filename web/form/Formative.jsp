@@ -335,7 +335,7 @@
                         <div class="row tim-row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
-                                        <label>University Logo</label>
+                                        <label>Evidence:</label>
 
                                         <div class="input-group">
                                             <span class="input-group-btn">

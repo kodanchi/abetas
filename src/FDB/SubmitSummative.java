@@ -21,7 +21,7 @@ import java.util.List;
 @WebServlet(name = "SubmitSummative",
         urlPatterns = {"/SubmitSummative"})
 public class SubmitSummative extends HttpServlet {
-    private String evidence, Summative_ID, studentsNumber = null;
+    private String evidence, Summative_ID, studentsNumber,dateInput = null;
     private ArrayList<String> optionsRadios, SID = null;
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
@@ -74,6 +74,13 @@ public class SubmitSummative extends HttpServlet {
                             case "evidence":
                                 evidence = item.getString();
                                 if (evidence.equals("")) {
+                                    //sendMsg("University name must be entered", request, response);
+                                    //isValid = false;
+                                }
+                                break;
+                            case "dateInput":
+                                dateInput = item.getString();
+                                if (dateInput.equals("")) {
                                     //sendMsg("University name must be entered", request, response);
                                     //isValid = false;
                                 }
@@ -148,7 +155,7 @@ public class SubmitSummative extends HttpServlet {
                             dba.updateFormS(null, Integer.parseInt(Summative_ID));
                         }
 
-                        dba.updateSubmitFormS(Integer.parseInt(Summative_ID),request.getParameter("dateInput"));
+                        dba.updateSubmitFormS(Integer.parseInt(Summative_ID),dateInput);
 
                         int size=0;
                         size=Integer.parseInt(studentsNumber);
