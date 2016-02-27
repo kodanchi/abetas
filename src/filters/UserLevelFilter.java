@@ -31,6 +31,9 @@ public class UserLevelFilter implements Filter {
                     case 2:
                         response.sendRedirect("/form/");
                         break;
+                    case 3:
+                        response.sendRedirect("/vis/");
+                        break;
 
                 }
                 //chain.doFilter(req, resp);

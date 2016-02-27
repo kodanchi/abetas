@@ -22,9 +22,13 @@ public class FacultyLevelFilter implements Filter {
             if (request.getSession().getAttribute("userLvl") != null) {
                 Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                 switch (userLvl){
+                    case 0:
+                    case 1:
                     case 2:
                         chain.doFilter(req, resp);
                         break;
+                    case 3:
+                        response.sendRedirect("/index.jsp");
                 }
 
             }else {
