@@ -13,40 +13,38 @@
         System.out.println("from header, session is : "+request.getSession().getId());
     }
 %>
-<nav class="navbar navbar-ct-danger" role="navigation-demo" id="demo-navbar">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="http://www.uod.edu.sa">
+<header>
+    <div class="navbar-info">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-info" role="navigation" style="margin-top:10px; margin-bottom:-0px;">
 
+                <div class="row">
+                    <div class=" col-sm-4 col-sm-offset-4">
+                        <div class="navbar-header center-block">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                                <span class="sr-only">Toggle navigation</span>
+                            </button>
+                            <a class="navbar-brand" href="http://www.uod.edu.sa"> <img height="35px" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam" style=""></a>
+                        </div></div>
 
-                    <div class="logo">
-                        <img class="addBtn" height="40px" src="http://www.uod.edu.sa/sites/all/themes/uod_base/logo.svg" alt="University Of Dammam">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#fakelink">Hello Ali</a></li>
+                                <li class="active"><a href="#fakelink">Home</a></li>
+                                <li><a href="#fakelink">Setting</a></li>
+                                <li><a href="#fakelink">Logout</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
                     </div>
-
-            </a>
+                </div>
+            </nav>
+            <!-- /navbar -->
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navigation-example-2">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" class="btn btn-default btn-simple">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="btn btn-default btn-simple">Setting</a>
-                </li>
-                <li>
-                    <a href="#" class="btn btn-default btn-fill">Logout</a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-->
-</nav>
-<!-- end navbar  -->
+    </div>
+</header>
+<!-- end header  -->
