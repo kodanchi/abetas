@@ -36,7 +36,9 @@
                  }else if(request.getParameter("type").equals("summative")) {
                      pageName = "summativeDisplay.jsp?Summative_ID=" + request.getParameter("id");
                  }
-            }else {
+            }else if(pageCall.equals("showGraph")){
+                 pageName = "displayGraph.jsp?id="+request.getParameter("id");
+             }else {
                  pageName = "evaList.jsp";
              }
         }else {

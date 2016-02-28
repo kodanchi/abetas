@@ -26,7 +26,7 @@ public class SelectTermServlet extends HttpServlet {
 
             PrintWriter out = response.getWriter();
             for (ArrayList<String> PI : pIList){
-                out.print("<a href=\"#\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
+                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
             }
 
         } catch (ClassNotFoundException e) {

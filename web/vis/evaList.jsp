@@ -10,18 +10,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
-<script type="application/javascript">
-    $(document).ready(function(){
-        $('#cycleBtn').click(function(e){
-            e.preventDefault();
 
-        });
-
-        function cycleSelect(){
-
-        }
-    });
-</script>
 <div class="container">
     <div class="row">
         <div class="col-md-3">
