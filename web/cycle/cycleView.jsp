@@ -12,11 +12,9 @@
 
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Cycle Management</h2>
                 <h4 class="text-center">Cycle ID</h4>
                 <legend></legend>
@@ -98,9 +96,6 @@
 
 
         </div>
-    </div>
-    <!-- End of main -->
-</div>
 
 
 

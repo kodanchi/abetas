@@ -23,7 +23,7 @@
                     <!-- Default panel contents -->
 
                     <!-- Table -->
-                    <table class="table table-hover table-striped" id="table-sever-list" >
+                    <table class="table table-hover table-striped table-bordered text-center" id="table-sever-list" >
                         <tr class="textContainer">
                             <th>Name</th>
                             <th>Mission</th>
@@ -74,8 +74,8 @@
 
                     </table >
                 </div>
-                <a class="btn btn-success btn-fill" href="index.jsp?page=add">Add</a>
-                <a class="btn btn-success btn-primary" href="#">Back</a>
+                <a class="btn btn-success" href="index.jsp?page=add">Add</a>
+                <a class="btn btn-primary" href="#">Back</a>
 
                 <!-- End of col -->
             </div>

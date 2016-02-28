@@ -40,7 +40,7 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <button class="btn btn-success" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <a class="btn btn-success btn-primary" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>

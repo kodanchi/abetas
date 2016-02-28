@@ -77,7 +77,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Objectives</th>
                                 <th>Edit</th>
@@ -133,8 +133,8 @@
                             %>
                         </table>
                     </div>
-                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-success" data-toggle="modal" data-target="#addModal">Add</a>
+                    <a class="btn btn-success" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

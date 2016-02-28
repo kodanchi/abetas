@@ -147,7 +147,7 @@
 
                                 <div class="input-group">
     <span class="input-group-btn">
-                    <span class="btn btn-fill btn-primary btn-file">
+                    <span class="btn btn-primary btn-file">
                         Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>
                     </span>
     </span>

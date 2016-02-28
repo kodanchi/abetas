@@ -25,7 +25,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Objectives</th>
                                 <th>Outcome</th>
@@ -79,8 +79,8 @@
                         </table>
                     </div>
 
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-success" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
+                    <a class="btn btn-success" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- End of col -->
                 </div>

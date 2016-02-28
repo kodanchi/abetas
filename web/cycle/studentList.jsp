@@ -108,11 +108,9 @@
 
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
             <!-- what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Section Information</h2>
                 <h4 class="text-center">Program: <%out.print(programName);%></h4>
                 <h4 class="text-center">Course: <%out.print(request.getParameter("courseCode"));%> | <%out.print(request.getParameter("courseName"));%> </h4>
@@ -243,7 +241,4 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

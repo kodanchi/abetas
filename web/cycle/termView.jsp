@@ -10,11 +10,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Term Management</h2>
                 <h4 class="text-center">Term Name</h4>
                 <legend></legend>
@@ -93,9 +91,6 @@
 
 
         </div>
-    </div>
-    <!-- End of main -->
-</div>
 
 
 <div id="footer"></div>

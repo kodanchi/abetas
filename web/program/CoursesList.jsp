@@ -78,7 +78,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Code</th>
                                 <th>Name</th>
@@ -135,7 +135,7 @@
                             %>
                         </table>
                     </div>
-                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal" >Add</a>
+                    <a class="btn btn-success" data-toggle="modal" data-target="#addModal" >Add</a>
                     <button class="btn btn-primary pull-right">Finish</button>
 
 

@@ -13,7 +13,7 @@
 
         <div class="container">
             <!--  Here is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Program Management</h2>
                 <h4 class="text-center">Program Name</h4>
                 <legend></legend>
@@ -50,7 +50,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Course Name</th>
                                 <th>Code</th>

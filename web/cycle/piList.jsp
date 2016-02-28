@@ -82,11 +82,9 @@
 %>
 
 
-<div class="main">
-    <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Add Program Performance Indicator</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -211,7 +209,4 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

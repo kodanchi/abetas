@@ -12,11 +12,9 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Cycle Management</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -87,11 +85,7 @@
                 <!-- End of row -->
             </div>
 
-
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>
 
 
 <!--   end modal  -->
