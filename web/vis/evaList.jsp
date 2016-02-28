@@ -60,16 +60,22 @@
                 $(document).on('click','#cycleList a',function(){
                     $('#cycleList a').removeClass('active');
                     $(this).addClass('active');
+                    $('#termList').html("");
+                    $('#programList').html("");
+                    $('#pIList').html("");
                 })
                 $(document).on('click','#termList a',function(e){
                     e.preventDefault();
                     $('#termList a').removeClass('active');
                     $(this).addClass('active');
+                    $('#programList').html("");
+                    $('#pIList').html("");
                 })
                 $(document).on('click','#programList a',function(e){
                     e.preventDefault();
                     $('#programList a').removeClass('active');
                     $(this).addClass('active');
+                    $('#pIList').html("");
                 })
                 $(document).on('click','#pIList a',function(){
                     $('#pIList a').removeClass('active');
