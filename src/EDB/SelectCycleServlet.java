@@ -36,7 +36,7 @@ public class SelectCycleServlet extends HttpServlet {
                         "                       },\n" +
                         "                       url:'/SelectTermServlet',\n" +
                         "                       success: function(result){\n" +
-                        "                        $('#pIList').html(result);\n" +
+                        "                        $('#programList').html(result);\n" +
                         "                        show('page', true);\n" +
                         "                        show('loading', false);\n" +
                         "                       }\n" +

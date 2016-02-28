@@ -61,8 +61,14 @@
                     $('#cycleList a').removeClass('active');
                     $(this).addClass('active');
                 })
-                $(document).on('click','#termList a',function(){
+                $(document).on('click','#termList a',function(e){
+                    e.preventDefault();
                     $('#termList a').removeClass('active');
+                    $(this).addClass('active');
+                })
+                $(document).on('click','#programList a',function(e){
+                    e.preventDefault();
+                    $('#programList a').removeClass('active');
                     $(this).addClass('active');
                 })
                 $(document).on('click','#pIList a',function(){
@@ -71,7 +77,7 @@
                 })
             </script>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <div class="list-group">
                 <h4>Term</h4>
                 <div id="termList"></div>
@@ -81,7 +87,15 @@
 
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
+            <div class="list-group">
+                <h4>Programs</h4>
+                <div id="programList"></div>
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
             <div class="list-group">
                 <h4>Performance Indicator</h4>
                 <div id="pIList"></div>

@@ -1395,6 +1395,74 @@ public class E_Select {
 
     }
 
+    public ArrayList<String> selectRubricsToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT PI_rubric_name_1, PI_rubric_name_2, PI_rubric_name_3, PI_rubric_name_4 FROM pi_rubric, " +
+                    "link_out_pi WHERE PI_rubric_ID = FK_R_ID AND  FK_pi_ID = ? AND FK_P_ID = ? AND FK_T_ID = ? AND " +
+                    "LinkType = ?;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_pi_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_T_ID);
+            preparedStatement.setString(4, LinkType);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_pi_ID   "+FK_pi_ID);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1));
+                data.add(rs.getString(2));
+                data.add(rs.getString(3));
+                data.add(rs.getString(4));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
     public String selectCourseName(String code) throws ClassNotFoundException, SQLException {
 
         String name = "";
@@ -1597,7 +1665,7 @@ public class E_Select {
 
     }
 
-    public ArrayList<ArrayList<String>> selectPIToEvaluate(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectPIToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -1609,8 +1677,9 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            String query = " SELECT Link_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator " +
-                    "WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label;";
+            String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
+                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
+                    "program.P_ID = link_out_pi.FK_P_ID ;";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
@@ -1623,7 +1692,8 @@ public class E_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
 
             rs = preparedStatement.executeQuery();
 
@@ -1662,6 +1732,71 @@ public class E_Select {
             return RsArr;
 
         }
+
+    }
+
+
+
+    public ArrayList<ArrayList<String>> selectAllProgramsToEvaluate() throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        ArrayList<String> dataRow = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM abetasdb.program";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+            //
+            while (rs.next()) {
+                dataRow = new ArrayList<String>();
+                dataRow.add(rs.getString(1));
+                dataRow.add(rs.getString(2));
+                data.add(dataRow);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+        return data;
 
     }
 

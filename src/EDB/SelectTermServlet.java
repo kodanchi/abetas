@@ -17,16 +17,34 @@ import java.util.ArrayList;
 public class SelectTermServlet extends HttpServlet {
     private E_Select dbs;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("/////////////////////////SelectTermServlet ");
+        System.out.println("/////////////////////////SelectTermServlet tis : "+request.getParameter("tid")+" ,,");
         response.setContentType("text/plain");
         dbs = new E_Select();
         int tid = Integer.parseInt(request.getParameter("tid"));
         try {
-            ArrayList<ArrayList<String>> pIList = dbs.selectPIToEvaluate(tid);
+            ArrayList<ArrayList<String>> programList = dbs.selectAllProgramsToEvaluate();
 
             PrintWriter out = response.getWriter();
-            for (ArrayList<String> PI : pIList){
-                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
+            for (ArrayList<String> program : programList){
+                out.print("<a href=\"dddd.jsp\" class=\"list-group-item \"" +
+                        "onclick=\"new function (){\n" +
+                        "                    show('page', false);\n" +
+                        "                    show('loading', true);\n" +
+                        "                    $.ajax({\n" +
+                        "                       type: 'POST',\n" +
+                        "                       data:{" +
+                        "                           pid: "+program.get(0)+","+
+                        "                           tid: "+tid+
+                        "                       },\n" +
+                        "                       url:'/SelectProgramServlet',\n" +
+                        "                       success: function(result){\n" +
+                        "                        $('#pIList').html(result);\n" +
+                        "                        show('page', true);\n" +
+                        "                        show('loading', false);\n" +
+                        "                       }\n" +
+                        "                    })\n" +
+                        "                }\"" +
+                        "\"> "+program.get(1)+"</a>");
             }
 
         } catch (ClassNotFoundException e) {
