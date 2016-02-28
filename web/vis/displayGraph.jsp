@@ -1,5 +1,6 @@
 <%@ page import="EDB.E_Select" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/28/2016
@@ -20,10 +21,24 @@
     String pid = request.getParameter("pid");
     String dataType = request.getParameter("dataType");
 
-    ArrayList<String> PIRubric = dbs.selectRubricsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),
+    ArrayList<String> PIRubrics = null;
+    ArrayList<String> PIResults = null;
+
+    try {
+
+         PIRubrics = dbs.selectRubricsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),
             Integer.parseInt(tid),dataType);
 
-    
+
+        PIResults = dbs.selectSummativeRubricResultsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),
+                Integer.parseInt(tid),dataType);
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+
 %>
 <div class="section">
     <div class="container">
@@ -75,28 +90,14 @@
                     var container = document.getElementById('visualization');
                     var groups = new vis.DataSet();
                     groups.add({id: 0, content: "group0"})
-                    groups.add({id: 1, content: "group1"})
-                    groups.add({id: 2, content: "group2"})
+                    /*groups.add({id: 1, content: "group1"})
+                    groups.add({id: 2, content: "group2"})*/
 
                     var items = [
-                        {x: '2014-06-11', y: 10, group:0},
-                        {x: '2014-06-12', y: 25, group:0},
-                        {x: '2014-06-13', y: 30, group:0},
-                        {x: '2014-06-14', y: 10, group:0},
-                        {x: '2014-06-15', y: 15, group:0},
-                        {x: '2014-06-16', y: 30, group:0},
-                        {x: '2014-06-11', y: 12, group:1},
-                        {x: '2014-06-12', y: 15, group:1},
-                        {x: '2014-06-13', y: 34, group:1},
-                        {x: '2014-06-14', y: 24, group:1},
-                        {x: '2014-06-15', y: 5,  group:1},
-                        {x: '2014-06-16', y: 12, group:1},
-                        {x: '2014-06-11', y: 22, group:2},
-                        {x: '2014-06-12', y: 14, group:2},
-                        {x: '2014-06-13', y: 24, group:2},
-                        {x: '2014-06-14', y: 21, group:2},
-                        {x: '2014-06-15', y: 30, group:2},
-                        {x: '2014-06-16', y: 18, group:2}
+                        {x: '<%=PIRubrics.get(0)%>', y: 10, group:0},
+                        {x: '<%=PIRubrics.get(1)%>', y: 25, group:0},
+                        {x: '<%=PIRubrics.get(2)%>', y: 30, group:0},
+                        {x: '<%=PIRubrics.get(3)%>', y: 30, group:0}
                     ];
 
                     var dataset = new vis.DataSet(items);
@@ -109,7 +110,7 @@
                             icons:true
                         },
                         orientation:'top',
-                        start: '2014-06-10',
+                        start: '0',
                         end: '2014-06-18'
                     };
                     var graph2d = new vis.Graph2d(container, items, groups, options);

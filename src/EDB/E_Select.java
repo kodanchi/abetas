@@ -1408,7 +1408,7 @@ public class E_Select {
 
             String query = "SELECT PI_rubric_name_1, PI_rubric_name_2, PI_rubric_name_3, PI_rubric_name_4 FROM pi_rubric, " +
                     "link_out_pi WHERE PI_rubric_ID = FK_R_ID AND  FK_pi_ID = ? AND FK_P_ID = ? AND FK_T_ID = ? AND " +
-                    "LinkType = ?;";
+                    "LinkType = ? limit 1;";
 
             /*
              *  Get connection from the DataSource
@@ -1424,6 +1424,79 @@ public class E_Select {
             preparedStatement.setInt(2, FK_P_ID);
             preparedStatement.setInt(3, FK_T_ID);
             preparedStatement.setString(4, LinkType);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_pi_ID   "+FK_pi_ID);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1));
+                data.add(rs.getString(2));
+                data.add(rs.getString(3));
+                data.add(rs.getString(4));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+    public ArrayList<String> selectSummativeRubricResultsToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT student_rubric \n" +
+                    "FROM abetasdb.summative_rubric , summative, link_out_pi\n" +
+                    "where FK_Summative_ID = Summative_ID \n" +
+                    "and summative.FK_Link_ID = link_out_pi.Link_ID \n" +
+                    "and LinkType= ? \n" +
+                    "and link_out_pi.FK_pi_ID= ?  \n" +
+                    "and link_out_pi.FK_P_ID= ? \n" +
+                    "and link_out_pi.FK_T_ID= ? ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(2, FK_pi_ID);
+            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setInt(4, FK_T_ID);
+            preparedStatement.setString(1, LinkType);
 
             rs = preparedStatement.executeQuery();
             System.out.println("@@@@@@@@@@@@@@@@@@@  FK_pi_ID   "+FK_pi_ID);
