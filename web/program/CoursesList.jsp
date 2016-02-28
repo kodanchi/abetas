@@ -138,7 +138,7 @@
                         </table>
                     </div>
                     <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal" >Add</a>
-                    <button class="btn btn-primary pull-right">Finish</button>
+                    <button class="btn btn-primary pull-right" href="/index.jsp">Finish</button>
 
 
                     <!-- Modal -->

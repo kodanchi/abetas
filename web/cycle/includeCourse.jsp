@@ -119,7 +119,7 @@
                                             System.out.println(rs.get(i).substring(0, rs.get(i).indexOf(':')));
 
                                             out.print("<label class=\"checkbox-inline\">");
-                                            out.print("<input type=\"checkbox\" name=\"Code\" value=" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + ">" + rs.get(i));
+                                            out.print("<input type=\"checkbox\" name=\"Code\" value=\"" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + "\" >" + rs.get(i));
                                             out.print("</label>");
 
                                         }
