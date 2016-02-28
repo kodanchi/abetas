@@ -86,9 +86,11 @@
     }
 %>
 
+<div class="main">
+    <div class="section">
         <div class="container" id="space">
             <!-- what is row -->
-            <div class="row">
+            <div class="row tim-row">
                 <h2 class="text-center">Add Performance Indicator</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -135,5 +137,8 @@
                 <!-- End of row -->
             </div>
 
-            <!-- End of container -->
+
+            <!-- Modal Bodies come here -->
         </div>
+    </div>
+</div>

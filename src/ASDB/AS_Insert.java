@@ -1371,7 +1371,7 @@ public class AS_Insert {
         }
     }
 
-    public void addFormF(int FK_Link_ID) throws ClassNotFoundException, SQLException {
+    public void addFormF(int FK_Link_ID, int FK_Section_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -1390,11 +1390,12 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into formative (F_submitted, FK_Link_ID)" + " values (?,?)";
+            String query = " insert into formative (F_submitted, FK_Link_ID,FK_Section_ID)" + " values (?,?,?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, FK_Link_ID);
+            preparedStatement.setInt(3, FK_Section_ID);
 
             rs = preparedStatement.executeUpdate();
 
@@ -1426,7 +1427,7 @@ public class AS_Insert {
         }
     }
 
-    public void addFormS(int FK_Link_ID, int Sum_threshold) throws ClassNotFoundException, SQLException {
+    public void addFormS(int FK_Link_ID, int Sum_threshold, int FK_Section_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -1445,12 +1446,13 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into summative (Sum_submitted, FK_Link_ID, Sum_threshold)" + " values (?,?,?)";
+            String query = " insert into summative (Sum_submitted, FK_Link_ID, Sum_threshold, FK_Section_ID)" + " values (?,?,?,?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, FK_Link_ID);
             preparedStatement.setInt(3, Sum_threshold);
+            preparedStatement.setInt(4, FK_Section_ID);
 
             rs = preparedStatement.executeUpdate();
 

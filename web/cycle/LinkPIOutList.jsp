@@ -23,9 +23,11 @@
 
 %>
 
+<div class="main">
+    <div class="section">
         <div class="container">
-            <!--   Here is row -->
-            <div class="row">
+            <!--         what is row -->
+            <div class="row tim-row">
                 <h2 class="text-center">Link Performance Indicator with Student Outcomes</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -42,11 +44,11 @@
                     }
                     %> program</p>
 
-                    <!--    <div class="panel panel-default">
-                            <!-- Default panel contents -->
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
 
                         <!-- Table -->
-                    <table class="table table-striped table-bordered text-center">
+                        <table class="table">
                             <tr>
                                 <th>Students Outcome</th>
                                 <th>Performance Indicator</th>
@@ -60,7 +62,7 @@
                                 AS_Select aselect = new AS_Select();
 
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectPILinks(Integer.parseInt(Termid));
+                                    ArrayList<ArrayList<String>> rs = aselect.selectPILinks(Integer.parseInt(Termid),Integer.parseInt(request.getParameter("programID")));
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
@@ -88,7 +90,7 @@
                                                 "                            <input name=\"RubricValue\" value=\""+rsRow.get(5)+"\" hidden />\n" +
                                                 "                            <input name=\"TermValue\" value=\""+rsRow.get(7)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/DeletePILinks\">\n" +
@@ -99,7 +101,7 @@
                                                 "                            <input name=\"RubricValue\" value=\""+rsRow.get(5)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -113,10 +115,10 @@
 
                             %>
                         </table>
-                    <!-- </div> -->
+                    </div>
 
-                    <a class="btn btn-success pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
-                    <a class="btn btn-success pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
+                    <a class="btn btn-success btn-fill pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
 
                     <!-- End of col -->
                 </div>
@@ -124,5 +126,7 @@
                 <!-- End of row -->
             </div>
 
-            <!-- End of container -->
+            <!-- Modal Bodies come here -->
         </div>
+    </div>
+</div>

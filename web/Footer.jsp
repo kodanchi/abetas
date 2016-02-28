@@ -20,7 +20,7 @@
             </div> <!-- /col-xs-10 -->
 
             <div class="col-xs-2">
-                <p><img class="img-responsive" alt="logo" src="img/logodark.png" width="120px" style="margin:10px;"></p>
+                <p><img class="img-responsive" alt="logo" src="/img/logo.png" width="120px" style="margin:10px;"></p>
 
             </div>
         </div>

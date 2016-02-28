@@ -12,9 +12,11 @@
 
 <div id="header"></div>
 
+<div class="main">
+    <div class="section">
         <div class="container">
-            <!--   Here is row -->
-            <div class="row">
+            <!--         what is row -->
+            <div class="row tim-row">
                 <h2 class="text-center">Cycle Management</h2>
                 <h4 class="text-center">Cycle ID</h4>
                 <legend></legend>
@@ -35,11 +37,11 @@
 
 
 
-                <!--    <div class="panel panel-default">
+                    <div class="panel panel-default">
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                    <table class="table table-striped table-bordered text-center">
+                        <table class="table">
                             <tr>
                                 <th>Name</th>
                                 <th>Year</th>
@@ -71,7 +73,7 @@
 
                             %>
                         </table>
-           <!--         </div> -->
+                    </div>
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Performance Indicator: </p></li>
@@ -82,7 +84,7 @@
 
                     <button class="btn btn-primary">PI matching Table</button>
                     <button class="btn btn-primary">Print</button>
-                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-danger btn-fill">Delete</button>
                     <button class="btn btn-primary pull-right">Back</button>
 
 
@@ -92,8 +94,11 @@
                 <!-- End of row -->
             </div>
 
-            <!-- End of container -->
+
         </div>
+    </div>
+    <!-- End of main -->
+</div>
 
 
 

@@ -23,9 +23,11 @@
 
 %>
 
+<div class="main">
+    <div class="section">
         <div class="container">
-            <!--   Here is row -->
-            <div class="row">
+            <!--         what is row -->
+            <div class="row tim-row">
                 <h2 class="text-center">Select Program/Courses</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -94,7 +96,7 @@
                             if(request.getParameter("programID")!=null) {
                                 AS_Select bselect = new AS_Select();
                                 try {
-                                    ArrayList<String> rs = bselect.selectCourseForLink(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(Termid));
+                                    ArrayList<String> rs = bselect.selectCourseForProgram(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(Termid));
 
                                     if (rs.size()!=0) {
 
@@ -117,7 +119,7 @@
                                             System.out.println(rs.get(i).substring(0, rs.get(i).indexOf(':')));
 
                                             out.print("<label class=\"checkbox-inline\">");
-                                            out.print("<input type=\"checkbox\" name=\"Code\" value=" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + ">" + rs.get(i));
+                                            out.print("<input type=\"checkbox\" name=\"Code\" value=\"" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + "\" >" + rs.get(i));
                                             out.print("</label>");
 
                                         }
@@ -141,11 +143,11 @@
                     </form>
 
 
-                    <!--    <div class="panel panel-default">
-                            <!-- Default panel contents -->
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
 
                         <!-- Table -->
-                    <table class="table table-striped table-bordered text-center">
+                        <table class="table">
                             <tr>
 
                                 <th>Code</th>
@@ -178,7 +180,7 @@
                                                     "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                     "                            <input name=\"courseCode\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                            </form>" +
                                                     "                            </td><td>" +
                                                     "                            <form method=\"post\" action=\"/DeleteIC\">\n" +
@@ -187,7 +189,7 @@
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                     "                            <input name=\"Code\" value=\"" + rsRow.get(2) + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                     "                        </form></td>" +
                                                     "</tr>");
                                         }
@@ -207,8 +209,8 @@
                         </table>
 
 
-                    <!-- </div> -->
-                    <a class="btn btn-success pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
+                    </div>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
                     <%
                         if(request.getParameter("programID")!=null){
                            out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=piList&cycle="+id+
@@ -223,5 +225,7 @@
             </div>
 
 
-            <!-- End of container -->
+            <!-- Modal Bodies come here -->
         </div>
+    </div>
+</div>

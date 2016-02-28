@@ -12,18 +12,20 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <div id="header"></div>
 
+<div class="main">
+    <div class="section">
         <div class="container">
-            <!--   Here is row -->
-            <div class="row">
+            <!--         what is row -->
+            <div class="row tim-row">
                 <h2 class="text-center">Cycle Management</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
 
-                    <!--    <div class="panel panel-default">
-                            <!-- Default panel contents -->
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
 
                         <!-- Table -->
-                    <table class="table table-striped table-bordered text-center">
+                        <table class="table">
                             <tr>
                                 <th>Cycle ID</th>
                                 <th>Edit</th>
@@ -49,13 +51,14 @@
                                                 "                            <form method=\"post\" action=\"index.jsp\">\n" +
                                                 "                            <input name=\"page\" value=\"addTerm\" hidden />\n" +
                                                 "                            <input name=\"cycle\" value=\""+rsRow.get(0)+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" + "                               </td>" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/DeleteCycle\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -71,10 +74,10 @@
                             %>
 
                         </table>
-                   <!-- </div> -->
+                    </div>
 
                     <form name="myform" action="/AddCycle" method="post">
-                        <button class="btn btn-success" type="submit">Add</button>
+                        <button class="btn btn-success btn-fill" type="submit">Add</button>
                         <button class="btn btn-primary">Back</button>
                     </form>
 
@@ -85,8 +88,12 @@
             </div>
 
 
-            <!-- End of container -->
+            <!-- Modal Bodies come here -->
         </div>
+    </div>
+</div>
 
+
+<!--   end modal  -->
 
 <div id="footer"></div>

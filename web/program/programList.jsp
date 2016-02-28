@@ -23,7 +23,7 @@
                     <!-- Default panel contents -->
 
                     <!-- Table -->
-                    <table class="table table-hover" id="table-sever-list" >
+                    <table class="table table-hover table-striped" id="table-sever-list" >
                         <tr class="textContainer">
                             <th>Name</th>
                             <th>Mission</th>

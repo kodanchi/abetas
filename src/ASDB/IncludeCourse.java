@@ -30,6 +30,7 @@ public class IncludeCourse extends HttpServlet {
             for (int i=0;i<code.length; i++) {
                 System.out.println(code[i]);
                 dba.includeCourse(code[i],Integer.parseInt(Termid));
+
             }
 
         } catch (ClassNotFoundException e) {

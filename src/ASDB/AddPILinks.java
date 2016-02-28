@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by Ibrahim Abuaqel on 2/11/2016.
@@ -41,16 +42,24 @@ public class AddPILinks extends HttpServlet {
                     System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
                     R=dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"));
                     Link_id=dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
+
+                    ArrayList<Integer> courseSections = sdba.selectTermCourseSection(request.getParameter("Course"), Integer.parseInt(Termid));
                     if (Link_id!=0) {
                         System.out.println("in if "+Link_id);
 
                         type = sdba.selectFormType(Link_id);
                         if (type.equals("Formative")) {
                             System.out.println("in if F");
-                            dba.addFormF(Link_id);
+                            for(int i=0;i<courseSections.size();i++){
+                                dba.addFormF(Link_id,courseSections.get(i));
+                            }
+
+
                         } else if (type.equals("Summative")) {
                             System.out.println("in if S");
-                            dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
+                            for(int i=0;i<courseSections.size();i++) {
+                                dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")),courseSections.get(i));
+                            }
                         } else {
                             System.out.println("id is not set");
                         }
@@ -107,21 +116,44 @@ public class AddPILinks extends HttpServlet {
                     dbu.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
                     System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$");
 
+                    ArrayList<Integer> courseSections = sdba.selectTermCourseSection(request.getParameter("Course"), Integer.parseInt(Termid));
                     type = sdba.selectFormType(Link_id);
                     if(!request.getParameter("oldTypeValue").equals(request.getParameter("Type"))){
                         if (type.equals("Formative")) {
                             System.out.println("in if F");
-                            dbd.deleteForm(Link_id,1);
-                            dba.addFormF(Link_id);
+                            dbd.deleteForm(Link_id, 1);
+                            for(int i=0;i<courseSections.size();i++) {
+                                dba.addFormF(Link_id,courseSections.get(i) );
+                            }
                         } else if (type.equals("Summative")) {
                             System.out.println("in if S");
                             dbd.deleteForm(Link_id,0);
-                            dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")));
+                            for(int i=0;i<courseSections.size();i++) {
+                                dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")),courseSections.get(i));
+                            }
                         } else {
                             System.out.println("id is not set");
                         }
                     }else if (type.equals("Summative")){
                         dbu.updateFormThredshold(Link_id,Integer.parseInt(request.getParameter("STshold")));
+                    }
+
+                    if(!request.getParameter("oldCourseValue").equals(request.getParameter("Course"))){
+                        if (type.equals("Formative")) {
+                            System.out.println("in if F");
+                            dbd.deleteForm(Link_id, 1);
+                            for(int i=0;i<courseSections.size();i++) {
+                                dba.addFormF(Link_id,courseSections.get(i) );
+                            }
+                        } else if (type.equals("Summative")) {
+                            System.out.println("in if S");
+                            dbd.deleteForm(Link_id,0);
+                            for(int i=0;i<courseSections.size();i++) {
+                                dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")),courseSections.get(i));
+                            }
+                        } else {
+                            System.out.println("id is not set");
+                        }
                     }
 
 

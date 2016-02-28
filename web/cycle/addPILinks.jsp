@@ -94,9 +94,11 @@
     }
 %>
 
+<div class="main">
+    <div class="section">
         <div class="container" id="space">
-            <!-- Here is row -->
-            <div class="row">
+            <!-- what is row -->
+            <div class="row tim-row">
                 <h2 class="text-center">Performance Indicator Links</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -114,6 +116,7 @@
                                 <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
                                 <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                                 <input type="hidden" name="CourseValue" value="<%=request.getParameter("CourseValue")%>">
+                                <input type="hidden" name="oldCourseValue" value="<%=request.getParameter("CourseValue")%>">
                                 <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
                                 <input type="hidden" name="PValue" value="<%=request.getParameter("PValue")%>">
                                 <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
@@ -417,6 +420,8 @@
 
                 <!-- End of row -->
             </div>
-            <!-- End of container -->
 
+            <!-- Modal Bodies come here -->
         </div>
+    </div>
+</div>
