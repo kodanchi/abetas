@@ -1527,7 +1527,7 @@ public class AS_Select {
         }
 
     }
-    public ArrayList<ArrayList<String>> selectPILinks(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectPILinks(int id, int pid) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -1539,7 +1539,8 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT Link_ID, FK_out, FK_pi_ID, FK_C_ID, LinkType, FK_R_ID, FK_P_ID, FK_T_ID From abetasdb.link_out_pi WHERE FK_T_ID = ?;";
+            String query = "SELECT Link_ID, FK_out, FK_pi_ID, FK_C_ID, LinkType, FK_R_ID, FK_P_ID, FK_T_ID From abetasdb.link_out_pi " +
+                    "WHERE FK_T_ID = ? AND FK_P_ID = ?;";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
@@ -1553,6 +1554,7 @@ public class AS_Select {
              */
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2, pid);
 
             rs = preparedStatement.executeQuery();
 

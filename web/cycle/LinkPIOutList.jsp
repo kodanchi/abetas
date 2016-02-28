@@ -62,7 +62,7 @@
                                 AS_Select aselect = new AS_Select();
 
                                 try {
-                                    ArrayList<ArrayList<String>> rs = aselect.selectPILinks(Integer.parseInt(Termid));
+                                    ArrayList<ArrayList<String>> rs = aselect.selectPILinks(Integer.parseInt(Termid),Integer.parseInt(request.getParameter("programID")));
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
