@@ -59,7 +59,7 @@
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
 
                                 <th>Section ID</th>
@@ -100,7 +100,7 @@
                                                     "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                     "                               </td>" +
                                                     "                            <td></form>" +
                                                     "                            <form method=\"post\" action=\"/DeleteSection\">\n" +
@@ -112,7 +112,7 @@
                                                     "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                     "                        </form></td>" +
                                                     "</tr>");
                                         }

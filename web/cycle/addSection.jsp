@@ -54,11 +54,9 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
             <!-- what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center"><%if (request.getParameter("section")!=null) {
                     out.print("Update");
                 } else {
@@ -152,5 +150,3 @@
 
             <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

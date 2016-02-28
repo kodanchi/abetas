@@ -93,11 +93,9 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
             <!-- what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Add Student</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -243,7 +241,4 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

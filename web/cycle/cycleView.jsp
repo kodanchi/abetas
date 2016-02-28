@@ -41,7 +41,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Name</th>
                                 <th>Year</th>
@@ -77,7 +77,9 @@
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Performance Indicator: </p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+
+
+                        <li><p><button title="Edit" class="btn btn-link btn-Y "><i class="fui-new icon30"></i></button></p></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum </p>
 

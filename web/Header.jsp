@@ -33,8 +33,8 @@
                     <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
                         <div class="collapse navbar-collapse" id="navbar-collapse-01">
                             <ul class="nav navbar-nav">
-                                <li><a href="#fakelink">Hello Ali</a></li>
-                                <li class="active"><a href="#fakelink">Home</a></li>
+                                <li class="active"><a href="#fakelink">Hello Ali</a></li>
+                                <li><a href="#fakelink">Home</a></li>
                                 <li><a href="#fakelink">Setting</a></li>
                                 <li><a href="#fakelink">Logout</a></li>
                             </ul>

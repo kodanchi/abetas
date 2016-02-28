@@ -44,7 +44,7 @@
                     <!-- Default panel contents -->
 
                     <!-- Table -->
-                    <table class="table">
+                    <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <%
                                 if(dataType.equals("students")){
