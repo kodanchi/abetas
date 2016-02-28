@@ -108,11 +108,9 @@
 
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
-            <div class="row tim-row">
+            <!--   Here is row -->
+            <div class="row">
                 <h2 class="text-center">Section Information</h2>
                 <h4 class="text-center">Program: <%out.print(programName);%></h4>
                 <h4 class="text-center">Course: <%out.print(request.getParameter("courseCode"));%> | <%out.print(request.getParameter("courseName"));%> </h4>
@@ -138,11 +136,11 @@
 
                     </div>
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+                    <!--    <div class="panel panel-default">
+                            <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                    <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th>Name</th>
                                 <th>Student ID</th>
@@ -178,7 +176,7 @@
                                                 "                            <input name=\"section\" value=\""+request.getParameter("section")+"\" hidden />\n" +
                                                 "                            <input name=\"courseCode\" value=\""+request.getParameter("courseCode")+"\" hidden />\n" +
                                                 "                            <input name=\"courseName\" value=\""+request.getParameter("courseName")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                            </form>" +
                                                 "                            </td><td>" +
                                                 "                            <form method=\"post\" action=\"/DeleteStudent\">\n" +
@@ -190,7 +188,7 @@
                                                 "                            <input name=\"section\" value=\""+request.getParameter("section")+"\" hidden />\n" +
                                                 "                            <input name=\"courseCode\" value=\""+request.getParameter("courseCode")+"\" hidden />\n" +
                                                 "                            <input name=\"courseName\" value=\""+request.getParameter("courseName")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                        </form></td>" +
                                                 "</tr>");
                                     }
@@ -203,11 +201,11 @@
 
                             %>
                         </table>
-                    </div>
+                    <!-- </div> -->
 
                     <br>
 
-                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal" >Add</a>
+                    <a class="btn btn-success" data-toggle="modal" data-target="#addModal" >Add</a>
 
                     <a class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>" >Finish</a>
 
@@ -243,7 +241,5 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>

@@ -94,11 +94,9 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Performance Indicator Links</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -419,8 +417,6 @@
 
                 <!-- End of row -->
             </div>
+            <!-- End of container -->
 
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

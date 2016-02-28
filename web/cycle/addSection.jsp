@@ -54,8 +54,6 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
             <!-- what is row -->
             <div class="row tim-row">
@@ -150,7 +148,5 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>

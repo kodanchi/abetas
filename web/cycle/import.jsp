@@ -63,10 +63,9 @@
 %>
 
 
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
-            <div class="row tim-row">
+            <!--   Here is row -->
+            <div class="row">
                 <h2 class="text-center">Import Excel File</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -130,7 +129,7 @@
                 %>
 
 
-                    <div class="row tim-row">
+                    <div class="row">
                         <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
 
 
@@ -169,7 +168,7 @@
                             </div>
                         </div>
 
-                        <button type="submit"  class="btn btn-success btn-fill">Upload</button>
+                        <button type="submit"  class="btn btn-success">Upload</button>
 
                         <a class="btn btn-primary pull-right" href="<%
                             if(dataType.equals("students")){
@@ -190,11 +189,8 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
     </div>
 
 <script src="/js/ct-paper.js"></script>
-
-
-</html>

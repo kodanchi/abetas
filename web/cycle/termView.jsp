@@ -10,11 +10,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!--   Here is row -->
+            <div class="row">
                 <h2 class="text-center">Term Management</h2>
                 <h4 class="text-center">Term Name</h4>
                 <legend></legend>
@@ -32,11 +30,11 @@
 
 
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+                    <!--    <div class="panel panel-default">
+                            <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                    <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th>Course Name</th>
                                 <th>Code</th>
@@ -80,8 +78,8 @@
 
 
                         </table>
-                    </div>
-                    <button class="btn btn-danger btn-fill">Delete</button>
+                    <!-- </div> -->
+                    <button class="btn btn-danger">Delete</button>
                     <button class="btn btn-primary">Back</button>
 
 
@@ -91,11 +89,9 @@
                 <!-- End of row -->
             </div>
 
+            <!-- End of container -->
 
         </div>
-    </div>
-    <!-- End of main -->
-</div>
 
 
 <div id="footer"></div>

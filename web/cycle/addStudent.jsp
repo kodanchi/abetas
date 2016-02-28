@@ -243,7 +243,7 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
     </div>
 </div>
