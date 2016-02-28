@@ -49,9 +49,16 @@ Timer timer = new Timer();
 PassCodeMap remov = new PassCodeMap();
 
                 remov.removeElement(email);
-                System.out.println("This is from rmoving email");
+                System.out.println("This is from rmoving email and the size is "+ PassCodeMap.getMapSize());
+
+                if (PassCodeMap.getMapSize()==0){
+    cancel();
+
+
+}
             }
-        },0,MINUTE);
+        },MINUTE,MINUTE);
+
     }
 
 }

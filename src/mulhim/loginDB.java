@@ -18,8 +18,7 @@ public class loginDB {
     private Statement stmt;
     private ResultSet result;
     DataSource dataSource = null;
-    Random rand = new Random();
-    String randNumber=randNumber= String.valueOf(rand.nextInt(100000));
+
 
     public void connect() throws ClassNotFoundException, SQLException {
 
@@ -43,6 +42,8 @@ public class loginDB {
 
 
     public Boolean selectEmail(String d) throws ClassNotFoundException, SQLException {
+        Random rand = new Random();
+
         String currentTime = new SimpleDateFormat("dd HH:mm").format(new Date());
          String selEmail ="";
 
@@ -54,7 +55,8 @@ public class loginDB {
         ResultSet rs = null;
         try {
 
-            String query = "select Super_Email from superuser where Super_Email=\""+d+"\"";
+
+            String query = "select Super_Email from superuser where Super_Email= ?";
 
             /*
              *  Get connection from the DataSource
@@ -66,7 +68,7 @@ public class loginDB {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setString(1, d);
 
             rs = preparedStatement.executeQuery();
 
@@ -80,12 +82,14 @@ public class loginDB {
 
 
             }
-if(PassCodeMap.checkKey(selEmail)==false && selEmail!=""){
+if(PassCodeMap.checkKey(selEmail)==false && !"".equals(selEmail)){
+    String randNumber= String.valueOf(rand.nextInt(100000));
+    System.out.println("This is the random number "+randNumber);
     PassCodeMap.setPassCode(selEmail,randNumber);
 
 
     System.out.println(PassCodeMap.getMapSize());
-    System.out.println("The code is from loginDB "+PassCodeMap.in.get(0));
+    System.out.println("The code is from loginDB "+PassCodeMap.getpassKey(selEmail));
     System.out.println(true);
     return true;
 
@@ -93,7 +97,7 @@ if(PassCodeMap.checkKey(selEmail)==false && selEmail!=""){
           else  if(PassCodeMap.checkKey(selEmail)){
 
     System.out.println("Exist !!!!    " + selEmail);
-      System.out.println("The code is "+PassCodeMap.getpassKey(selEmail,PassCodeMap.in.get(0)));
+      System.out.println("The code is "+PassCodeMap.getpassKey(selEmail));
     System.out.println(false);
     //System.out.println(PassCodeMap.obj);
     return false;
