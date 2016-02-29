@@ -1504,9 +1504,6 @@ public class E_Select {
             int i=-1;
             while (rs.next()){
                 data.add(rs.getString(1));
-                data.add(rs.getString(2));
-                data.add(rs.getString(3));
-                data.add(rs.getString(4));
             }
 
         } catch (Exception e) {
@@ -1750,9 +1747,18 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
+            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
                     "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
-                    "program.P_ID = link_out_pi.FK_P_ID ;";
+                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
+
+            String query = "SELECT distinct FK_pi_ID, PI_name, LinkType \n" +
+                    "From abetasdb.link_out_pi, abetasdb.performance_indicator, program , summative\n" +
+                    "WHERE FK_T_ID = ? \n" +
+                    "AND FK_PI_ID = PI_Label \n" +
+                    "AND link_out_pi.FK_P_ID = ? \n" +
+                    "AND program.P_ID = link_out_pi.FK_P_ID \n" +
+                    "AND summative.Sum_submitted = 1\n" +
+                    "AND summative.FK_Link_ID= link_out_pi.Link_ID;";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*

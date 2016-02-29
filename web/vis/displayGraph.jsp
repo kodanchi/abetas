@@ -23,6 +23,9 @@
 
     ArrayList<String> PIRubrics = null;
     ArrayList<String> PIResults = null;
+    String[] styles = null;
+    int[] results = null;
+    int yAxis= 100;
 
     try {
 
@@ -32,6 +35,25 @@
 
         PIResults = dbs.selectSummativeRubricResultsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),
                 Integer.parseInt(tid),dataType);
+
+        results = new int[]{0,0,0,0};
+
+        for (String sRubric : PIResults){
+            if(sRubric.equals(PIResults.get(0))){
+                results[0]++;
+            }else if(sRubric.equals(PIResults.get(1))){
+                results[1]++;
+            }else if(sRubric.equals(PIResults.get(2))){
+                results[2]++;
+            }else if(sRubric.equals(PIResults.get(3))){
+                results[3]++;
+            }
+        }
+
+        yAxis = (PIRubrics.size() * 100 )/PIResults.size();
+        styles = new String[]{"#b87333","silver","gold","#e5e4e2"};
+
+
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
     } catch (SQLException e) {
@@ -73,59 +95,59 @@
                 </form>
 
 
-                <div style="width:700px; font-size:14px; text-align: justify;">
-                    <br /><br />
-                    Choose Course: <select id="dropdownID">
-                    <option value="overlap">overlap</option>
-                    <option value="sideBySide" selected="selected">sideBySide</option>
-                    <option value="stack">stack</option>
-                </select>
-                </div>
-                <br />
-
-                <div id="visualization"></div>
-
+                <!--Load the AJAX API-->
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
+                    google.charts.load("current", {packages:['corechart']});
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                        var data = google.visualization.arrayToDataTable([
+                            ["Rubric",  {label: 'Parentage. of Students', type: 'number'}, { role: 'style' } ],
+                                <%
+                                for (int i=0;i < PIRubrics.size();i++){
+                                    out.print("[\""+PIRubrics.get(i)+"\", "+ (results[i]!= 0 ? ( results[i] * 100 ) / PIResults.size() : 0 )+", \""+styles[i]+"\"]\n");
+                                    if(i!=PIRubrics.size()-1) out.print(",");
+                                }
+                                %>
+                            /*["Copper", 8.94, "#b87333"],
+                            ["Silver", 10.49, "silver"],
+                            ["Gold", 19.30, "gold"],
+                            ["Platinum", 21.45, "color: #e5e4e2"]*/
+                        ]);
 
-                    var container = document.getElementById('visualization');
-                    var groups = new vis.DataSet();
-                    groups.add({id: 0, content: "group0"})
-                    /*groups.add({id: 1, content: "group1"})
-                    groups.add({id: 2, content: "group2"})*/
+                        var view = new google.visualization.DataView(data);
+                        view.setColumns([0, 1,
+                            { calc: "stringify",
+                                sourceColumn: 1,
+                                type: "string",
+                                    role: "annotation" },
+                            2]);
 
-                    var items = [
-                        {x: '<%=PIRubrics.get(0)%>', y: 10, group:0},
-                        {x: '<%=PIRubrics.get(1)%>', y: 25, group:0},
-                        {x: '<%=PIRubrics.get(2)%>', y: 30, group:0},
-                        {x: '<%=PIRubrics.get(3)%>', y: 30, group:0}
-                    ];
+                        /*var formatter = new google.visualization.NumberFormat({pattern: '##%'});
+                        // format column 1 of the DataTable
+                        formatter.format(data, 1);*/
 
-                    var dataset = new vis.DataSet(items);
-                    var options = {
-                        style:'bar',
-                        stack:false,
-                        barChart: {width:50, align:'center', sideBySide:true}, // align: left, center, right
-                        drawPoints: false,
-                        dataAxis: {
-                            icons:true
-                        },
-                        orientation:'top',
-                        start: '0',
-                        end: '2014-06-18'
+                        var formatter = new google.visualization.NumberFormat(
+                                {suffix: '%', negativeColor: 'red', negativeParens: true, pattern:'#.#'});
+                        formatter.format(data, 1); // Apply formatter to second column
+
+                        var options = {
+                            title: "Percentage of students in each rubrics for this PI,total No. of students : <%=PIResults.size()%>",
+                            width: "100%",
+                            height: 400,
+                            bar: {groupWidth: "95%"},
+                            legend: { position: "right" },
+                            vAxis: {
+                                minValue: 0,
+                                maxValue: 100,
+                                format: '#\'%\''
+                            }
                     };
-                    var graph2d = new vis.Graph2d(container, items, groups, options);
-
-                    var dropdown = document.getElementById("dropdownID");
-                    dropdown.onchange = update;
-
-                    function update() {
-                        var options = {stack:dropdown.value === 'stack',barChart:{sideBySide:dropdown.value === 'sideBySide'}};
-                        graph2d.setOptions(options);
+                        var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                        chart.draw(view, options);
                     }
-
-
                 </script>
-
+                <div id="columnchart_values" style="width: 100%; height: 300px;"></div>
 
                 <!-- End of col -->
             </div>
