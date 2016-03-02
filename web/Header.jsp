@@ -16,35 +16,30 @@
 <header>
     <div class="navbar-info">
         <div class="container">
-            <nav class="navbar navbar-inverse navbar-info" role="navigation" style="margin-top:10px; margin-bottom:-0px;">
+            <nav class="navbar navbar-inverse navbar-info" role="navigation" style="margin-bottom:-0px;">
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="navbar-header" style="width:100%">
 
-                <div class="row">
-                    <div class=" col-sm-4 col-sm-offset-4">
-                        <div class="navbar-header center-block">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                                <span class="sr-only">Toggle navigation</span>
-                            </button>
-                            <a class="navbar-brand" href="http://www.uod.edu.sa"> <img height="35px" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam" style=""></a>
-                        </div></div>
-
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                        <a class="navbar-brand centerI" href="http://www.uod.edu.sa"> <img width="235px" class="checkboxgroup" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam"></a>
+                    </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div style="max-width:500px; margin-right:auto; margin-left:auto;">
                         <div class="collapse navbar-collapse" id="navbar-collapse-01">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#fakelink">Hello Ali</a></li>
-                                <li><a href="#fakelink">Home</a></li>
-                                <li><a href="#fakelink">Setting</a></li>
-                                <li><a href="#fakelink">Logout</a></li>
+                                <li class="active"><a href="#">Hello Ali</a></li>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Setting</a></li>
+                                <li><a href="#">Logout</a></li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
                     </div>
                 </div>
-            </nav>
-            <!-- /navbar -->
+            </nav>                <!-- /navbar -->
         </div>
     </div>
 </header>
-<!-- end header  -->
