@@ -22,7 +22,7 @@ public final class PassCodeMap {
 
       myMap.put(email,new ArrayList<>());
         myMap.get(email).add(code);
-        myMap.get(email).add(currentTime.timerReset());
+       // myMap.get(email).add(currentTime.timerReset());
         //myMap.put(email, String.valueOf(in.add(String.valueOf(currentTime.timerReset()))));
 currentTime.timerCalculate(email);
 
