@@ -24,7 +24,6 @@ public class AddPI extends HttpServlet {
             AS_Insert dba = new AS_Insert();
             AS_Select sdba = new AS_Select();
             String id = request.getParameter("cycle");
-            String Termid = request.getParameter("term");
             int programID = 0;
 
             try {
@@ -40,10 +39,9 @@ public class AddPI extends HttpServlet {
                         //Display error message.
                     }
 
-                    response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
+                    response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&programID="+request.getParameter("programID"));
 
                 }
-
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -68,7 +66,6 @@ public class AddPI extends HttpServlet {
             AS_Update dba = new AS_Update();
             AS_Select dbs = new AS_Select();
             String id = request.getParameter("cycle");
-            String Termid = request.getParameter("term");
             System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");
             System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww  PI id          " + Integer.parseInt(request.getParameter("PILabel")) + "   wwwwwwwwwwwwwwww           ");
             try {
@@ -80,10 +77,9 @@ public class AddPI extends HttpServlet {
 
                 }else {
                     dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("PILabel")));
-                    response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
+                    response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&programID="+request.getParameter("programID"));
 
                 }
-
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
@@ -112,21 +108,19 @@ public class AddPI extends HttpServlet {
     }
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 
-
         System.out.println("ErrMsg : "+msg);
 
         System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("errMsg",msg);
         request.getSession().setAttribute("PVal", PVal);
 
-
         try {
             if (request.getParameter("PIValue").equals("null")) {
-                response.sendRedirect("/cycle/index.jsp?page=addPI&cycle="+cycle+"&term="+request.getParameter("term")+
+                response.sendRedirect("/cycle/index.jsp?page=addPI&cycle="+cycle+
                         "&programID="+request.getParameter("programID"));
             }else {
                 response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-                response.setHeader("Location","/cycle/index.jsp?page=updatePI&cycle="+cycle+"&term="+request.getParameter("term")+
+                response.setHeader("Location","/cycle/index.jsp?page=updatePI&cycle="+cycle+
                         "&programID="+request.getParameter("programID")+"&PILabel="+request.getParameter("PILabel")+"&PIValue="+request.getParameter("PI"));
                 /*response.sendRedirect("/cycle/index.jsp?page=updatePI&cycle="+cycle+"&term="+request.getParameter("term")+
                         "&programID="+request.getParameter("programID"));*/
@@ -149,7 +143,6 @@ public class AddPI extends HttpServlet {
         }*/ catch (IOException e) {
             e.printStackTrace();
         }
-
 
         return;
     }

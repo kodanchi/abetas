@@ -112,9 +112,9 @@
 
                 String programID=request.getParameter("programID");
 
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+                if(request.getParameter("cycle") != null){
                     System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +programID);
-                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID="+programID;
+                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&programID="+programID;
                 }else {
                     System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     //display error page
@@ -381,7 +381,7 @@
 
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
                     System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +PILabel +"    "+ PIValue+"     "+programID);
-                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&PILabel=" + PILabel + "&PIValue="+PIValue+"&programID="+programID;
+                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&PILabel=" + PILabel + "&PIValue="+PIValue+"&programID="+programID;
                 }else {
                     System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     //display error page
@@ -389,8 +389,8 @@
             }else if(pageCall.equals("addPI")) {
 
                 String programID=request.getParameter("programID");
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID="+programID;
+                if(request.getParameter("cycle") != null){
+                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&programID="+programID;
                 }else {
                     //display error page
                 }

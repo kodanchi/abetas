@@ -43,7 +43,7 @@ public class AddCycle extends HttpServlet {
         try {
             //request.getSession().setAttribute("id",String.valueOf(id));
             //request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
-            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
+            response.sendRedirect("/cycle/index.jsp?page=addPI&cycle="+id);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }

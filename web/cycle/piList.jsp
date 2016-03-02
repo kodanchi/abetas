@@ -14,12 +14,9 @@
 <%
 
     String id = "";
-    String Termid = "";
-    if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+    if(request.getParameter("cycle") != null){
         id  = request.getParameter("cycle");
-        Termid  = request.getParameter("term");
         out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 %>
@@ -142,7 +139,6 @@
                                                     "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                                                     "                            <input name=\"PIValue\" value=\"" + rsRow.get(1) + "\" hidden />\n" +
                                                     "                            <input name=\"cycle\" value=\"" + request.getParameter("cycle") + "\" hidden />\n" +
-                                                    "                            <input name=\"term\" value=\"" + request.getParameter("term") + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
                                                     "                               </td>" +
@@ -151,7 +147,6 @@
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                     "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                                                     "                            <input name=\"cycle\" value=\"" + request.getParameter("cycle") + "\" hidden />\n" +
-                                                    "                            <input name=\"term\" value=\"" + request.getParameter("term") + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
                                                     "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
                                                     "                        </form></td>" +
@@ -176,8 +171,8 @@
 
                         </div>
                     <a class="btn btn-success btn-fill pull-left"  data-toggle="modal" data-target="#addModal"  >Add</a>
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Next</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?">Cancel</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=LinkPIOutList&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Next</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -192,11 +187,11 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="left-side">
-                                        <a type="button" href="index.jsp?page=addPI&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>"  class="btn btn-default btn-simple">Enter manually</a>
+                                        <a type="button" href="index.jsp?page=addPI&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>"  class="btn btn-default btn-simple">Enter manually</a>
                                     </div>
                                     <div class="divider"></div>
                                     <div class="right-side">
-                                        <a type="button" href="index.jsp?&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&page=import&data=pis"   class="btn btn-default btn-simple">Import Excel file</a>
+                                        <a type="button" href="index.jsp?&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>&page=import&data=pis"   class="btn btn-default btn-simple">Import Excel file</a>
                                     </div>
                                 </div>
                             </div>
