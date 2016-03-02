@@ -19,7 +19,6 @@
             <nav class="navbar navbar-inverse navbar-info" role="navigation" style="margin-bottom:-0px;">
                 <div class="row" style="margin-bottom:10px;">
                     <div class="navbar-header" style="width:100%">
-
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                             <span class="sr-only">Toggle navigation</span>
                         </button>
