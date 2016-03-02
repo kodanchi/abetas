@@ -1,5 +1,5 @@
 
-<%@ page import="mulhim.Backup" %>
+<%@ page import="Backup.Backup" %>
 <%@ page import="java.io.File" %>
 <%@ page import="java.nio.file.*" %>
 <%@ page import="java.nio.file.attribute.BasicFileAttributes" %>
@@ -126,7 +126,7 @@
                 </div>
             </div>
 
-            <!-- Delete Modal -->
+            <!--  Modal -->
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
