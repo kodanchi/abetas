@@ -107,11 +107,10 @@ input[readonly] {
     display: block;
 }
 
-.centerI {
-    max-width: 50%;
-}
-
-@media(max-width:767px) {
+@media(max-width:767px){
+    table {
+        font-size: 13;
+    }
     .centerI {
         margin-left: 0%;
     }
