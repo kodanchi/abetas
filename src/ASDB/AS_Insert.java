@@ -1030,6 +1030,63 @@ public class AS_Insert {
         return id;
     }
 
+    public void addRubricNames(String PI_rubric_name_1,String PI_rubric_name_2, String PI_rubric_name_3, String PI_rubric_name_4, int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rsSelect = null;
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            String query = " UPDATE cycle SET PI_rubric_name_1 = ?, PI_rubric_name_2 = ?, PI_rubric_name_3 = ?, PI_rubric_name_4 = ? WHERE Cycle_ID = ?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, PI_rubric_name_1);
+            preparedStatement.setString(2, PI_rubric_name_2);
+            preparedStatement.setString(3, PI_rubric_name_3);
+            preparedStatement.setString(4, PI_rubric_name_4);
+            preparedStatement.setInt(5, id);
+
+            rs = preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
     public int addPILink(int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
 
         connect();
