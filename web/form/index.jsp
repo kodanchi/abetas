@@ -22,10 +22,10 @@
              if(pageCall.equals("fillForm")) {
 
                 if (request.getParameter("type").equals("formative")) {
-                    pageName = "formative.jsp?Formative_ID=" + request.getParameter("id");
+                    pageName = "Formative.jsp?Formative_ID=" + request.getParameter("id");
 
                 }else if(request.getParameter("type").equals("summative")) {
-                    pageName = "summative.jsp?Summative_ID=" + request.getParameter("id");
+                    pageName = "Summative.jsp?Summative_ID=" + request.getParameter("id");
                 }
             }else if(pageCall.equals("unlockForm")){
                  pageName = "unlockform.jsp";

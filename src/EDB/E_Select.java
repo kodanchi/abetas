@@ -1395,7 +1395,7 @@ public class E_Select {
 
     }
 
-    public ArrayList<String> selectRubricsToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectRubricsToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
         connect();
@@ -1408,7 +1408,7 @@ public class E_Select {
 
             String query = "SELECT PI_rubric_name_1, PI_rubric_name_2, PI_rubric_name_3, PI_rubric_name_4 FROM pi_rubric, " +
                     "link_out_pi WHERE PI_rubric_ID = FK_R_ID AND  FK_pi_ID = ? AND FK_P_ID = ? AND FK_T_ID = ? AND " +
-                    "LinkType = ? limit 1;";
+                    "LinkType = 'Summative' limit 1;";
 
             /*
              *  Get connection from the DataSource
@@ -1423,7 +1423,7 @@ public class E_Select {
             preparedStatement.setInt(1, FK_pi_ID);
             preparedStatement.setInt(2, FK_P_ID);
             preparedStatement.setInt(3, FK_T_ID);
-            preparedStatement.setString(4, LinkType);
+            //preparedStatement.setString(4, LinkType);
 
             rs = preparedStatement.executeQuery();
             System.out.println("@@@@@@@@@@@@@@@@@@@  FK_pi_ID   "+FK_pi_ID);
@@ -1463,7 +1463,7 @@ public class E_Select {
 
     }
 
-    public ArrayList<String> selectSummativeRubricResultsToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectSummativeRubricResultsToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
         connect();
@@ -1478,7 +1478,7 @@ public class E_Select {
                     "FROM abetasdb.summative_rubric , summative, link_out_pi\n" +
                     "where FK_Summative_ID = Summative_ID \n" +
                     "and summative.FK_Link_ID = link_out_pi.Link_ID \n" +
-                    "and LinkType= ? \n" +
+                    "and LinkType= 'Summative' \n" +
                     "and link_out_pi.FK_pi_ID= ?  \n" +
                     "and link_out_pi.FK_P_ID= ? \n" +
                     "and link_out_pi.FK_T_ID= ? ;";
@@ -1493,10 +1493,83 @@ public class E_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(2, FK_pi_ID);
-            preparedStatement.setInt(3, FK_P_ID);
-            preparedStatement.setInt(4, FK_T_ID);
-            preparedStatement.setString(1, LinkType);
+            preparedStatement.setInt(1, FK_pi_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_T_ID);
+            //preparedStatement.setString(1, LinkType);
+
+            rs = preparedStatement.executeQuery();
+            System.out.println("@@@@@@@@@@@@@@@@@@@  FK_pi_ID   "+FK_pi_ID);
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getString(1));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+    public ArrayList<String> selectSummativeRubricResultsOfCourseToEvaluate(int FK_pi_ID, int FK_P_ID, int FK_T_ID, String FK_C_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT student_rubric \n" +
+                    "FROM abetasdb.summative_rubric , summative, link_out_pi, course\n" +
+                    "where FK_Summative_ID= Summative_ID \n" +
+                    "and summative.FK_Link_ID = link_out_pi.Link_ID \n" +
+                    "and LinkType='Summative' \n" +
+                    "AND summative.Sum_submitted=1\n" +
+                    "AND link_out_pi.FK_C_ID= course.C_code\n" +
+                    "and link_out_pi.FK_pi_ID= ?  \n" +
+                    "and link_out_pi.FK_P_ID= ? \n" +
+                    "and link_out_pi.FK_T_ID= ? \n" +
+                    "AND link_out_pi.FK_C_ID= ?;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_pi_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_T_ID);
+            preparedStatement.setString(4, FK_C_ID);
 
             rs = preparedStatement.executeQuery();
             System.out.println("@@@@@@@@@@@@@@@@@@@  FK_pi_ID   "+FK_pi_ID);
@@ -1735,7 +1808,7 @@ public class E_Select {
 
     }
 
-    public ArrayList<ArrayList<String>> selectPIToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectPIofSummativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -1759,6 +1832,319 @@ public class E_Select {
                     "AND program.P_ID = link_out_pi.FK_P_ID \n" +
                     "AND summative.Sum_submitted = 1\n" +
                     "AND summative.FK_Link_ID= link_out_pi.Link_ID;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
+
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
+
+    public ArrayList<ArrayList<String>> selectCoursesOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+
+            String query = "SELECT C_code,C_name \n" +
+                    "FROM course, abetasdb.link_out_pi, performance_indicator,summative\n" +
+                    "where LinkType='Summative'\n" +
+                    "AND Link_ID = FK_Link_ID\n" +
+                    "AND FK_PI_ID= performance_indicator.PI_Label\n" +
+                    "AND link_out_pi.FK_C_ID = C_code\n" +
+                    "AND summative.Sum_submitted = 1\n" +
+                    "AND FK_T_ID= ?\n" +
+                    "AND link_out_pi.FK_P_ID = ? ;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
+    public ArrayList<ArrayList<String>> selectSectionsCourseOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID, String FK_C_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+
+            String query = "SELECT  summative.FK_Section_ID\n" +
+                    "FROM course, abetasdb.link_out_pi, performance_indicator,summative\n" +
+                    "where LinkType='Summative'\n" +
+                    "AND Link_ID = FK_Link_ID\n" +
+                    "AND FK_PI_ID= performance_indicator.PI_Label\n" +
+                    "AND link_out_pi.FK_C_ID = C_code\n" +
+                    "AND summative.Sum_submitted = 1\n" +
+                    "AND FK_T_ID= ?\n" +
+                    "AND link_out_pi.FK_P_ID = ? \n" +
+                    "AND link_out_pi.FK_C_ID=?;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setString(3, FK_C_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
+    public ArrayList<ArrayList<String>> selectEvidanceSectionOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+
+            String query = "SELECT C_code,C_name \n" +
+                    "FROM course, abetasdb.link_out_pi, performance_indicator\n" +
+                    "where LinkType='Summative'\n" +
+                    "AND FK_PI_ID= performance_indicator.PI_Label\n" +
+                    "AND link_out_pi.FK_C_ID = C_code\n" +
+                    "AND FK_T_ID= ?\n" +
+                    "AND link_out_pi.FK_P_ID = ? ;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
+
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
+
+    public ArrayList<ArrayList<String>> selectPIofFormativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
+                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
+                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
+
+            String query = "SELECT distinct FK_pi_ID, PI_name, LinkType \n" +
+                    "From abetasdb.link_out_pi, abetasdb.performance_indicator, program , formative\n" +
+                    "WHERE FK_T_ID = ? \n" +
+                    "AND FK_PI_ID = PI_Label \n" +
+                    "AND link_out_pi.FK_P_ID = ? \n" +
+                    "AND program.P_ID = link_out_pi.FK_P_ID \n" +
+                    "AND formative.F_submitted = 1\n" +
+                    "AND formative.FK_Link_ID= link_out_pi.Link_ID;\n";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
