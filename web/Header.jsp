@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.Settings_Select" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
@@ -30,7 +30,7 @@
 
 
                 <%
-                    AS_Select sdb = new AS_Select();
+                    Settings_Select sdb = new Settings_Select();
                     ArrayList<String> logoData = sdb.selectLogo();
 
                     if(logoData.get(1) != null){

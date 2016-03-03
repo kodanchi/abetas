@@ -1,6 +1,6 @@
 package com.database;
 
-import ASDB.AS_Update;
+import ASDB.Settings_Update;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -101,7 +101,7 @@ public class SystemSettingsServlet extends HttpServlet {
                     }
 
                     if(isValid){
-                        AS_Update adb = new AS_Update();
+                        Settings_Update adb = new Settings_Update();
                         adb.updateSystemSettings(uname,cname,ulogo);
                     }
 

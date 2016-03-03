@@ -1,7 +1,5 @@
 package sessionListener;
 
-import ASDB.AS_Select;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;

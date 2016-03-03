@@ -8,7 +8,7 @@ import java.sql.*;
 /**
  * Created by Ibrahim Abuaqel on 1/31/2016.
  */
-public class AS_Insert {
+public class Settings_Insert {
 
     private Connection conn;
     private Statement stmt;

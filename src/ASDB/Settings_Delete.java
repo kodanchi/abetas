@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Ibrahim Abuaqel on 1/31/2016.
  */
-public class AS_Delete {
+public class Settings_Delete {
 
     private Connection conn;
     private Statement stmt;

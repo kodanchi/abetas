@@ -1,27 +1,21 @@
 package login;
 
-import ASDB.AS_Select;
-import ASDB.SessionIdentifierGenerator;
+import ASDB.Settings_Select;
 import com.database.Password;
 import sessionListener.CookiesControl;
-import sessionListener.User;
 import sessionListener.UserDAO;
 
-import javax.jms.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Mojahed on 1/24/2016.
  */
 @WebServlet(name = "loginServlet", urlPatterns = "/login")
 public class loginServlet extends HttpServlet {
-    AS_Select adb = new AS_Select();
+    Settings_Select adb = new Settings_Select();
     UserDAO udb = new UserDAO();
     boolean successLogin = false;
     //private User user;

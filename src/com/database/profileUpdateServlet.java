@@ -1,7 +1,7 @@
 package com.database;
 
-import ASDB.AS_Select;
-import ASDB.AS_Update;
+import ASDB.Settings_Select;
+import ASDB.Settings_Update;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -21,8 +21,8 @@ public class profileUpdateServlet extends HttpServlet {
     String[] userVal;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        AS_Update udb = new AS_Update();
-        AS_Select sdb = new AS_Select();
+        Settings_Update udb = new Settings_Update();
+        Settings_Select sdb = new Settings_Select();
         try {
 
             int ulvl = Integer.parseInt(request.getParameter("ulvl"));

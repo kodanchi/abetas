@@ -10,7 +10,7 @@
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="com.sun.corba.se.impl.orbutil.ObjectUtility" %>
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.Settings_Select" %>
 <%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
 <%@ page import="sessionListener.UserDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -99,7 +99,7 @@
 
 
                 <%
-                    UserDAO dao = new UserDAO();
+                    //UserDAO dao = new UserDAO();
                     session = request.getSession(false);
                     if(session.getAttribute("username") != null){
                         String uname = (String)session.getAttribute("username");

@@ -10,7 +10,7 @@
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="com.sun.corba.se.impl.orbutil.ObjectUtility" %>
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.Settings_Select" %>
 <%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -76,7 +76,7 @@
                         response.sendRedirect("/login");
                     }
 
-                    AS_Select adb = new AS_Select();
+                    Settings_Select adb = new Settings_Select();
                     ArrayList<String> userData = null;
                     if(isAS){
                         if (session.getAttribute("userLvl") != null){
