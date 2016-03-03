@@ -1207,7 +1207,7 @@ public class Settings_Select {
 
     }
 
-    public ArrayList<String> selectSuperuser(int id) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectSuperuserForSettings(int Super_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> rowDate = null;
         connect();
@@ -1218,7 +1218,7 @@ public class Settings_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM superuser where Super_ID = "+ id +";";
+            String query = "SELECT * FROM superuser where Super_ID = ?;";
 
             /*
              *  Get connection from the DataSource
@@ -1230,7 +1230,7 @@ public class Settings_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, Super_ID);
 
             rs = preparedStatement.executeQuery();
 
@@ -1274,7 +1274,7 @@ public class Settings_Select {
 
     }
 
-    public ArrayList<String> selectSuperuser(String username) throws ClassNotFoundException, SQLException {
+    public ArrayList<String> selectSuperuserForSettings(String username) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> rowDate = null;
         connect();
@@ -1558,7 +1558,7 @@ public class Settings_Select {
         ResultSet rs = null;
         try {
 
-            String query = "select * FROM users where username='"+username+"';";
+            String query = "select * FROM users where username= ?;";
 
             /*
              *  Get connection from the DataSource
@@ -1570,7 +1570,7 @@ public class Settings_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setString(1, username);
 
             rs = preparedStatement.executeQuery();
 

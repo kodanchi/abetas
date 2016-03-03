@@ -62,7 +62,7 @@
                     //session = request.getSession(false);
                     boolean isAS = false;
                     if(request.getSession().getAttribute("userLvl") != null){
-                        Integer ulvl = (Integer)request.getSession().getAttribute("userLvl");
+                        Integer ulvl = (Integer) request.getSession().getAttribute("userLvl");
 
                         switch (ulvl){
                             case 0:
@@ -204,13 +204,16 @@
                         }
                         userData = null;
                         if (request.getSession().getAttribute("userLvl") != null){
-                            Integer userId = (Integer) request.getSession().getAttribute("userLvl");
+                            Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                             String uname = (String) request.getSession().getAttribute("username");
-
-                            switch (userId){
+                            String userId = (String) request.getSession().getAttribute("userId");
+                            System.out.println("uname :"+ uname);
+                            System.out.println("userId :"+ userId);
+                            switch (userLvl){
                                 case 0:
                                 case 1:
-                                     userData = adb.selectSuperuser(uname);
+                                     userData = adb.selectSuperuserForSettings(Integer.valueOf(userId));
+
                                     System.out.println("userData :"+ userData);
                                     break;
                                 case 2:
@@ -295,7 +298,7 @@
                             <input name="uOldemail" value="<%if(userData != null)out.print(userData.get(5));%>" hidden >
                             <input name="uid" value="<%if(userData != null)out.print(userData.get(0));%>" hidden>
                             <input name="uname" value="<%if(userData != null)out.print(userData.get(4));%>" hidden>
-                            <input name="ulvl" value="<%if(request.getSession().getAttribute("userLvl") != null)out.print(request.getSession().getAttribute("userLvl"));%>" hidden>
+                            <input name="ulvl" value="<%if(request.getSession().getAttribute("userLvl") != null)out.print((Integer) request.getSession().getAttribute("userLvl"));%>" hidden>
                             <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-success btn-fill" >Apply changes</button>
 
                         </form>
