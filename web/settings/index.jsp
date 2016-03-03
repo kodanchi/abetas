@@ -211,6 +211,7 @@
                                 case 0:
                                 case 1:
                                      userData = adb.selectSuperuser(uname);
+                                    System.out.println("userData :"+ userData);
                                     break;
                                 case 2:
                                     userData = adb.selectFaculty(uname);
