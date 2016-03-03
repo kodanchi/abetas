@@ -1,6 +1,8 @@
 <%@ page import="EDB.E_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="org.apache.commons.codec.binary.Base64" %>
+<%@ page import="EDB.EncDec" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/28/2016
@@ -11,17 +13,11 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
-
-<!--Load the AJAX API-->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script  type="text/javascript">
-    google.charts.load("current", {packages:['corechart']});
-</script>
+<script src="/js/moment.js" type="text/javascript"></script>
+<script src="/js/Chart.bundle.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
-<%--
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-61231638-1', 'auto');ga('send', 'pageview');</script></head>
---%>
+
 <%
     E_Select dbs = new E_Select();
     String id = request.getParameter("id");
@@ -80,9 +76,19 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="row">
 
+                    <%
+                        String PIname= "";
+                        if(request.getParameter("piname")!= null){
+                            PIname= EncDec.getDecr(request.getParameter("piname"));
+                        }
+                    %>
+                    <h4 class="text-center"><%=PIname%></h4>
+
                     <div class="col-md-4 pull-left">
-                        <select id="courseList" onchange="onCourseChange(<%=tid%>,<%=pid%>,<%=id%>);" class="" data-live-search="true">
-                        <%
+                        <label for="courseListSelect" >Course: </label>
+                        <select id="courseListSelect" onchange="onCourseChange(<%=tid%>,<%=pid%>,<%=id%>);" data-live-search="true">
+                            <option value="overall" datat-token="overall" >Overall</option>
+                            <%
                             ArrayList<ArrayList<String>> coursesList = dbs.selectCoursesOfSummativeToEvaluate(Integer.parseInt(tid),
                                     Integer.parseInt(pid));
                             for(ArrayList<String> course : coursesList){
@@ -90,173 +96,140 @@
                             }
                         %>
 
-                            <%--<option value="" data-tokens=" "> </option>
-                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                            <option data-tokens="frosting">Sugar, Spice and all things nice</option>--%>
+
                         </select>
 
                         <script>
                             function onCourseChange(tid,pid,pIid){
-                                var cl = document.getElementById("courseList");
+                                var cl = document.getElementById("courseListSelect");
                                 var cid = cl.options[cl.selectedIndex].value;
-                                show('page', false);
-                                show('loading', true);
-                                $.ajax({
-                                    type: 'POST',
-                                    data:{tid: tid,
-                                        pid: pid,
-                                        cid: cid,
-                                        pIid: pIid},
-                                    url:'/SelectCourseServlet',
-                                    success: function(result){
-                                        $('#sectionList').html(result);
-                                        show('page', true);
-                                        show('loading', false);
+                                if(cid == "overall"){
+                                    pIOverviewChart();
+                                    $("#sectionList").hide();
+                                    $("#evidence").hide();
+                                }else {
+                                    show('page', false);
+                                    show('loading', true);
+                                    $.ajax({
+                                        type: 'POST',
+                                        data: {
+                                            tid: tid,
+                                            pid: pid,
+                                            cid: cid,
+                                            pIid: pIid
+                                        },
+                                        url: '/SelectCourseServlet',
+                                        success: function (result) {
+                                            $('#sectionList').html(result);
+                                            $('#sectionList').show();
+                                            show('page', true);
+                                            show('loading', false);
 
-                                    }
+                                        }
 
-                                })
+                                    })
+                                }
                             }
                         </script>
-<%--
 
-                        <script>
-                            var data = google.visualization.arrayToDataTable([
-                                ["Rubric",  {label: 'Parentage. of Students', type: 'number'}, { role: 'style' } ],
-                                <%
-                                for (int i=0;i < PIRubrics.size();i++){
-                                    out.print("[\""+PIRubrics.get(i)+"\", "+ (results[i]!= 0 ? ( results[i] * 100 ) / PIResults.size() : 0 )+", \""+styles[i]+"\"]\n");
-                                    if(i!=PIRubrics.size()-1) out.print(",");
-                                }
-                                %>
-                            ]);
-                            chart.draw(data,options);
-                        </script>
---%>
 
 
                     </div>
 
 
+                    <div class="col-sm-3 pull-right" id="sectionList">
 
-
+                    </div>
                 </div>
 
+
                 <div class="row">
-                    <div class="col-lg-10" id="sectionList">
+                    <div  >
+
                         <div class="row">
 
-                            </div>
-                        <div class="row">
-                            <div id="chart_wrap"><div id="chart"></div></div>
+                            <canvas id="canvas"></canvas>
+                            <script>
+                                var mychart;
 
-                            <script type="text/javascript">
 
-                                google.charts.load("current", {packages:['corechart']});
+                                var Rubrics = ["<%=PIRubrics.get(0)%>","<%=PIRubrics.get(1)%>","<%=PIRubrics.get(2)%>","<%=PIRubrics.get(3)%>"];
 
-                                $(window).on("throttledresize", function (event) {
-                                    var options = {
-                                        title: "Percentage of students in each rubrics for this PI,total No. of students : <%=PIResults.size()%>",
-                                        bar: {groupWidth: "95%"},
-                                        legend: { position: "right" },
-                                        width: '100%',
-                                        height: '100%',
-                                        vAxis: {
-                                            minValue: 0,
-                                            maxValue: 100,
-                                            format: '#\'%\''
-                                        },
-                                        animation: {
-                                            duration: 1000,
-                                            easing: 'out'
-                                        }
-                                    };
 
-                                    var arrData = [
-                                        ["Rubric",  {label: 'Parentage. of Students', type: 'number'}, { role: 'style' } ],
-                                        <%
+                                window.onload = dChart();
+                                function dChart() {
+                                    var Results = [<%
                                         for (int i=0;i < PIRubrics.size();i++){
-                                            out.print("[\""+PIRubrics.get(i)+"\", "+ (results[i]!= 0 ? ( results[i] * 100 ) / PIResults.size() : 0 )+", \""+styles[i]+"\"]\n");
+                                            out.print(results[i]!= 0 ? ( results[i] * 100 ) / PIResults.size() : 0 );
                                             if(i!=PIRubrics.size()-1) out.print(",");
                                         }
-                                        %>
+                                        %>];
 
-                                    ];
-                                    var data = google.visualization.arrayToDataTable(arrData);
+                                    var ctx = document.getElementById("canvas").getContext("2d");
 
-                                    drawChart(data,options);
-                                });
+                                    var barChartData = {
+                                        labels: Rubrics,
+                                        datasets: [{
+                                            label: 'PI: <%=id%>',
+                                            backgroundColor: "rgba(218, 165, 32, 0.8)",
+                                            data: Results
+                                        }]
 
-                                google.charts.setOnLoadCallback(function() {
-                                    $(function() {
-                                        var options = {
-                                            title: "Percentage of students in each rubrics for this PI,total No. of students : <%=PIResults.size()%>",
-                                            bar: {groupWidth: "95%"},
-                                            legend: { position: "right" },
-                                            width: '100%',
-                                            height: '100%',
-                                            vAxis: {
-                                                minValue: 0,
-                                                maxValue: 100,
-                                                format: '#\'%\''
-                                            },
-                                            animation: {
-                                                duration: 1000,
-                                                easing: 'out'
+                                    };
+                                    window.mychart = new Chart(ctx, {
+                                        type: 'bar',
+                                        data: barChartData,
+                                        options:{
+                                            responsive : true,
+                                            scales:{
+                                                yAxes:[{
+                                                    ticks:{
+                                                        beginAtZero:true,
+                                                        max : 100
+                                                    }
+                                                }]
                                             }
-                                        };
-
-                                        var arrData = [
-                                            ["Rubric",  {label: 'Parentage. of Students', type: 'number'}, { role: 'style' } ],
-                                            <%
-                                            for (int i=0;i < PIRubrics.size();i++){
-                                                out.print("[\""+PIRubrics.get(i)+"\", "+ (results[i]!= 0 ? ( results[i] * 100 ) / PIResults.size() : 0 )+", \""+styles[i]+"\"]\n");
-                                                if(i!=PIRubrics.size()-1) out.print(",");
-                                            }
-                                            %>
-
-                                        ];
-                                        var data = google.visualization.arrayToDataTable(arrData);
-
-                                        drawChart(data,options);
+                                        }
                                     });
-                                });
 
-                                function drawChart(data,options) {
+                                };
 
+                                function pIOverviewChart() {
+                                    var Results = [<%
+                                        for (int i=0;i < PIRubrics.size();i++){
+                                            out.print(results[i]!= 0 ? ( results[i] * 100 ) / PIResults.size() : 0 );
+                                            if(i!=PIRubrics.size()-1) out.print(",");
+                                        }
+                                        %>];
 
-                                    var container = document.getElementById("chart");
+                                    //var ctx = document.getElementById("canvas").getContext("2d");
 
+                                    window.mychart.clear();
+                                    window.mychart.data.datasets[0].label = "PI: <%=id%>"
+                                    window.mychart.data.datasets[0].data = Results;
+                                    window.mychart.data.datasets[0].backgroundColor = "rgba(218, 165, 32, 0.8)";
+                                    window.mychart.update();
 
-                                    var view = new google.visualization.DataView(data);
-                                    view.setColumns([0, 1,
-                                        { calc: "stringify",
-                                            sourceColumn: 1,
-                                            type: "string",
-                                            role: "annotation" },
-                                        2]);
+                                };
 
-
-                                    /*var formatter = new google.visualization.NumberFormat({pattern: '##%'});
-                                     // format column 1 of the DataTable
-                                     formatter.format(data, 1);*/
-
-                                    var formatter = new google.visualization.NumberFormat(
-                                            {suffix: '%', negativeColor: 'red', negativeParens: true, pattern:'#.#'});
-                                    formatter.format(data, 1); // Apply formatter to second column
+                                function popChart(title,backgroundColor,data) {
 
 
-                                    var chart = new google.visualization.ColumnChart(container);
-                                    google.visualization.events.addListener(chart, 'ready',
-                                            function() {
+                                    window.mychart.clear();
+                                    //window.mychart.addData(data,title);
+                                    window.mychart.data.datasets[0].backgroundColor = backgroundColor;
+                                    window.mychart.data.datasets[0].label = title;
+                                    window.mychart.data.datasets[0].data = data;
+                                    window.mychart.update();
 
-                                            });
 
-                                    chart.draw(view, options);
 
-                                }
+                                };
+
 
                             </script>
+
+
                             </div>
 
 
@@ -270,7 +243,7 @@
 
                 <div class="row">
                     <div class="col-md-2 pull-right" id="evidence">
-                        <button type="submit" class="btn btn-success btn-fill pull-right">Show Evidance</button>
+
                     </div>
                 </div>
                 <!-- End of col -->

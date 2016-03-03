@@ -1,4 +1,4 @@
-#chart_wrap {
+/*#chart_wrap {
     border:1px solid gray;
     position: relative;
     padding-bottom: 100%;
@@ -11,4 +11,9 @@
     left: 0;
     width:100%;
     height:100%;
+}*/
+#canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }

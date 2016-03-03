@@ -1,5 +1,7 @@
 package EDB;
 
+import org.apache.commons.codec.binary.Base64;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +11,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by Mojahed on 2/27/2016.
+ *
+ * http://stackoverflow.com/questions/23947992/how-to-encrypt-encode-url-parameters-in-jsp
  */
 @WebServlet(name = "SelectProgramServlet", urlPatterns = {"/SelectProgramServlet"})
 public class SelectProgramServlet extends HttpServlet {
@@ -27,14 +32,16 @@ public class SelectProgramServlet extends HttpServlet {
 
             PrintWriter out = response.getWriter();
             for (ArrayList<String> PI : pIListS){
-                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType="+PI.get(2)+"\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
+
+
+                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType="+PI.get(2)+"&piname="+EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
             }
 
 
             ArrayList<ArrayList<String>> pIListF = dbs.selectPIofFormativeToEvaluate(tid, pid);
 
             for (ArrayList<String> PI : pIListF){
-                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType="+PI.get(2)+"\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
+                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(3)) + "&type="+EncDec.getEncr("formative")+"\" class=\"list-group-item\">" + PI.get(1) + "<div class=\"pull-right\" >" + PI.get(2) + "</div></a>");
             }
 
         } catch (ClassNotFoundException e) {
@@ -47,4 +54,5 @@ public class SelectProgramServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
 }

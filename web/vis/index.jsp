@@ -8,6 +8,7 @@
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
 <%@ page import="java.io.*,java.util.*" %>
+<%@ page import="EDB.EncDec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -30,11 +31,14 @@
             }else if(pageCall.equals("unlockForm")){
                  pageName = "unlockform.jsp";
             }else if(pageCall.equals("showForm")){
-                 if (request.getParameter("type").equals("formative")) {
-                     pageName = "formativeDisplay.jsp?Formative_ID=" + request.getParameter("id");
 
-                 }else if(request.getParameter("type").equals("summative")) {
-                     pageName = "summativeDisplay.jsp?Summative_ID=" + request.getParameter("id");
+                 if(request.getParameter("type")!= null) {
+                     System.out.println("type : "+EncDec.getDecr(request.getParameter("type")));
+                     if (EncDec.getDecr(request.getParameter("type")).equals("formative")) {
+
+                         pageName = "formativeDisplay.jsp?id=" + EncDec.getDecr(request.getParameter("id"));
+
+                     }
                  }
             }else if(pageCall.equals("showGraph")){
                  pageName = "displayGraph.jsp?id="+request.getParameter("id");
