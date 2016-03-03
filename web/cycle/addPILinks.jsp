@@ -349,19 +349,31 @@
                                 String G="";
                                 String H="";
 
+                                AS_Select nselect = new AS_Select();
+                                try {
+
+                                    ArrayList<String> rsss = nselect.selectRubricNames(Integer.parseInt(id));
+
+                                    A=rsss.get(0);
+                                    B=rsss.get(1);
+                                    C=rsss.get(2);
+                                    D=rsss.get(3);
+
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+
                                 if (request.getParameter("RubricValue")!=null) {
                                     AS_Select eselect = new AS_Select();
                                     try {
                                         ArrayList<String> rss = eselect.selectRubrics(Integer.parseInt(request.getParameter("RubricValue")));
 
-                                        A=rss.get(0);
-                                        B=rss.get(1);
-                                        C=rss.get(2);
-                                        D=rss.get(3);
-                                        E=rss.get(4);
-                                        F=rss.get(5);
-                                        G=rss.get(6);
-                                        H=rss.get(7);
+                                        E=rss.get(0);
+                                        F=rss.get(1);
+                                        G=rss.get(2);
+                                        H=rss.get(3);
 
                                     } catch (ClassNotFoundException e) {
                                         e.printStackTrace();
@@ -372,33 +384,33 @@
                             %>
                                     <div class="form-group">
                                         <label>First rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="firstR" value="<%if (request.getParameter("RubricValue")!=null) {out.print(A);}%>" required>
+                                        <input type="text" class="form-control" size="25" name="firstR" readonly value="<%out.print(A);%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="firstD" required><%if (request.getParameter("RubricValue")!=null) {out.print(B);}%></textarea>
+                                        <textarea class="form-control" rows="3" name="firstD" required><%if (request.getParameter("RubricValue")!=null) {out.print(E);}%></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label>Second rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="secondR" value="<%if (request.getParameter("RubricValue")!=null) {out.print(C);}%>" required>
+                                        <input type="text" class="form-control" size="25" name="secondR" readonly value="<%out.print(B);%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="secondD" required><%if (request.getParameter("RubricValue")!=null) {out.print(D);}%></textarea>
+                                        <textarea class="form-control" rows="3" name="secondD" required><%if (request.getParameter("RubricValue")!=null) {out.print(F);}%></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Third rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="thirdR" value="<%if (request.getParameter("RubricValue")!=null) {out.print(E);}%>" required>
+                                        <input type="text" class="form-control" size="25" name="thirdR" readonly value="<%out.print(C);%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="thirdD" required><%if (request.getParameter("RubricValue")!=null) {out.print(F);}%></textarea>
+                                        <textarea class="form-control" rows="3" name="thirdD" required><%if (request.getParameter("RubricValue")!=null) {out.print(G);}%></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label>Forth rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="forthR" value="<%if (request.getParameter("RubricValue")!=null) {out.print(G);}%>" required>
+                                        <input type="text" class="form-control" size="25" name="forthR" readonly value="<%out.print(D);%>" required>
                                     </div>
                                     <div class="form-group">
                                         <label>Description</label>

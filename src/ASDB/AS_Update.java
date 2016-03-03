@@ -520,7 +520,7 @@ public class AS_Update {
 
     }
 
-    public void updateRubrics(String A,String B,String C,String D,String E,String F,String G,String H,int id) throws ClassNotFoundException, SQLException {
+    public void updateRubrics(String A,String B,String C,String D,int id) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -540,18 +540,14 @@ public class AS_Update {
              * Execute the query
              */
             System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd     id "+id);
-            String query = "update pi_rubric set PI_rubric_name_1 = ?,PI_rubric_description_1 = ?, PI_rubric_name_2 = ?,PI_rubric_description_2 = ?, PI_rubric_name_3 = ?,PI_rubric_description_3 = ?, PI_rubric_name_4 = ?,PI_rubric_description_4 = ? where PI_rubric_ID = ?";
+            String query = "update pi_rubric set PI_rubric_description_1 = ?, PI_rubric_description_2 = ?, PI_rubric_description_3 = ?, PI_rubric_description_4 = ? where PI_rubric_ID = ?";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString (1, A);
             preparedStatement.setString (2, B);
             preparedStatement.setString (3, C);
             preparedStatement.setString (4, D);
-            preparedStatement.setString (5, E);
-            preparedStatement.setString (6, F);
-            preparedStatement.setString (7, G);
-            preparedStatement.setString (8, H);
-            preparedStatement.setInt (9, id);
+            preparedStatement.setInt (5, id);
 
             rs = preparedStatement.executeUpdate();
 

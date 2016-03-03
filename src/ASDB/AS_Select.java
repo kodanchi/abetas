@@ -1422,7 +1422,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_rubric_name_1,PI_rubric_description_1, PI_rubric_name_2,PI_rubric_description_2, PI_rubric_name_3,PI_rubric_description_3, PI_rubric_name_4,PI_rubric_description_4 FROM pi_rubric WHERE PI_rubric_ID = "+ id +" ;";
+            String query = "SELECT PI_rubric_description_1, PI_rubric_description_2, PI_rubric_description_3, PI_rubric_description_4 FROM pi_rubric WHERE PI_rubric_ID = "+ id +" ;";
 
             /*
              *  Get connection from the DataSource
@@ -1445,10 +1445,6 @@ public class AS_Select {
                 data.add(rs.getString(2));
                 data.add(rs.getString(3));
                 data.add(rs.getString(4));
-                data.add(rs.getString(5));
-                data.add(rs.getString(6));
-                data.add(rs.getString(7));
-                data.add(rs.getString(8));
             }
 
         } catch (Exception e) {

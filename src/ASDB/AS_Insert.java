@@ -956,7 +956,7 @@ public class AS_Insert {
         return id;
     }
 
-    public int addRubric(String PI_rubric_name_1, String PI_rubric_description_1,String PI_rubric_name_2, String PI_rubric_description_2,String PI_rubric_name_3, String PI_rubric_description_3,String PI_rubric_name_4, String PI_rubric_description_4) throws ClassNotFoundException, SQLException {
+    public int addRubric(String PI_rubric_description_1, String PI_rubric_description_2, String PI_rubric_description_3, String PI_rubric_description_4) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -978,17 +978,13 @@ public class AS_Insert {
              * Execute the query
              */
 
-            String query = " insert into pi_rubric (PI_rubric_name_1, PI_rubric_description_1, PI_rubric_name_2, PI_rubric_description_2, PI_rubric_name_3, PI_rubric_description_3, PI_rubric_name_4, PI_rubric_description_4)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into pi_rubric (PI_rubric_description_1, PI_rubric_description_2, PI_rubric_description_3, PI_rubric_description_4)" + " values (?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, PI_rubric_name_1);
-            preparedStatement.setString(2, PI_rubric_description_1);
-            preparedStatement.setString(3, PI_rubric_name_2);
-            preparedStatement.setString(4, PI_rubric_description_2);
-            preparedStatement.setString(5, PI_rubric_name_3);
-            preparedStatement.setString(6, PI_rubric_description_3);
-            preparedStatement.setString(7, PI_rubric_name_4);
-            preparedStatement.setString(8, PI_rubric_description_4);
+            preparedStatement.setString(1, PI_rubric_description_1);
+            preparedStatement.setString(2, PI_rubric_description_2);
+            preparedStatement.setString(3, PI_rubric_description_3);
+            preparedStatement.setString(4, PI_rubric_description_4);
             rs = preparedStatement.executeUpdate();
 
 

@@ -170,6 +170,8 @@
                         <button class="btn btn-success btn-fill" type="submit">Next</button>
                         <a class="btn btn-success btn-primary" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
 
+                                </div>
+                        </div>
                     </form>
                     <!-- End of col -->
                 </div>

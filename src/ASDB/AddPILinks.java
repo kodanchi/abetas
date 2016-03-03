@@ -40,7 +40,7 @@ public class AddPILinks extends HttpServlet {
                     sendErrMsg("The selected values for the link are already existed",request.getParameter("cycle"),request,response);
                 }else{
                     System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
-                    R=dba.addRubric(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"));
+                    R=dba.addRubric(request.getParameter("firstD"),request.getParameter("secondD"),request.getParameter("thirdD"),request.getParameter("forthD"));
                     Link_id=dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
 
                     ArrayList<Integer> courseSections = sdba.selectTermCourseSection(request.getParameter("Course"), Integer.parseInt(Termid));
@@ -113,7 +113,7 @@ public class AddPILinks extends HttpServlet {
                     System.out.println("##########################################################  "+request.getParameter("LinkID")+"    "+request.getParameter("Out")+"          "+request.getParameter("PI")+"          "+request.getParameter("programID")+"          "+request.getParameter("programID")+"      "+request.getParameter("RubricValue")+"  "+request.getParameter("Course")+"   "+Termid+"    "+request.getParameter("Type"));
 
                     dbu.updatePILink(Integer.parseInt(request.getParameter("LinkID")),Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")),Integer.parseInt(request.getParameter("RubricValue")),request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
-                    dbu.updateRubrics(request.getParameter("firstR"),request.getParameter("firstD"),request.getParameter("secondR"),request.getParameter("secondD"),request.getParameter("thirdR"),request.getParameter("thirdD"),request.getParameter("forthR"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
+                    dbu.updateRubrics(request.getParameter("firstD"),request.getParameter("secondD"),request.getParameter("thirdD"),request.getParameter("forthD"),Integer.parseInt(request.getParameter("RubricValue")));
                     System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$");
 
                     ArrayList<Integer> courseSections = sdba.selectTermCourseSection(request.getParameter("Course"), Integer.parseInt(Termid));
