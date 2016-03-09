@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by Mojahed on 2/3/2016.
  */
-@WebServlet(name = "sheetUploadServlet", urlPatterns = {"/upload/users"})
-public class sheetUploadServlet extends HttpServlet {
+@WebServlet(name = "userSheetUploadServlet", urlPatterns = {"/upload/users"})
+public class userSheetUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
@@ -27,7 +26,7 @@ public class sheetUploadServlet extends HttpServlet {
         ArrayList<String> dataRow;
 
         System.out.println(dataArr);
-        AS_Insert db = new AS_Insert();
+        U_AS_Insert db = new U_AS_Insert();
 
         try {
             for(int i=0;i<dataArr.size();i++){

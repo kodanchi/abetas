@@ -19,7 +19,7 @@ import java.io.PrintWriter;
 public class DeleteUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("########################Delete#######################");
-        AS_Delete ddb = new AS_Delete();
+        U_AS_Delete ddb = new U_AS_Delete();
         try {
 
 

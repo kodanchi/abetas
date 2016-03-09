@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 /**
  * Created by Mojahed on 2/3/2016.
  */
-public class ImportSheet {
+public class ImportUserSheet {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private String uploadFilePath;
@@ -34,10 +34,10 @@ public class ImportSheet {
     private String[] sheetCheckerArr;
     private ArrayList<ArrayList<String>> sheetData;
     private final int MAX_FILE_SIZE = 2000000;
-    private AS_Select db = new AS_Select();
+    private U_AS_Select db = new U_AS_Select();
 
 
-    public ImportSheet(HttpServletRequest request){
+    public ImportUserSheet(HttpServletRequest request){
         uploadFilePath = "";
         Error_Msg = "";
         ServletContext context = request.getServletContext();

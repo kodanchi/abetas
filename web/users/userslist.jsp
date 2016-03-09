@@ -7,7 +7,7 @@
 
   http://stackoverflow.com/questions/10159067/show-hide-button-in-table-row-during-mouseover
 --%>
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.U_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -137,7 +137,7 @@
                             <%
 
 
-                                AS_Select dba=new AS_Select();
+                                U_AS_Select dba=new U_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> suArr = dba.selectAllSuperusers();
                                     ArrayList<String> suRow ;
@@ -274,12 +274,30 @@
                                     ArrayList<ArrayList<String>> eArr = dba.selectAllEvaluators();
                                     ArrayList<String> eRow ;
 
+                                    String calPass = null;
                                     for (int i=0; i<eArr.size();i++){
                                         //suRow = new ArrayList<String>();
                                         eRow = eArr.get(i);
                                         out.print("<tr class=\"textContainer\" >");
                                         for (int j=1; j<eRow.size();j++) {
-                                            out.print("<td>"+eRow.get(j)+"</td>");
+                                            switch (j){
+                                                case 1:
+                                                    calPass = eRow.get(j).substring(0,3);
+                                                    out.print("<td>"+eRow.get(j)+"</td>");
+                                                    break;
+                                                case 2:
+                                                    calPass += eRow.get(j).substring(0,3);
+                                                    out.print("<td>"+eRow.get(j)+"</td>");
+                                                    break;
+                                                case 5:
+                                                    out.print("<td>"+calPass+"123"+"</td>");
+                                                    break;
+                                                default:
+                                                    out.print("<td>"+eRow.get(j)+"</td>");
+                                            }
+
+
+
                                         }
 
 

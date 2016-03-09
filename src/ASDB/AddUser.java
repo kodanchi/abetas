@@ -3,7 +3,6 @@ package ASDB;
 
 import com.database.ASDB;
 
-import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletException;
@@ -11,12 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.el.ImplicitObjectELResolver;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 
 /**
@@ -29,8 +23,8 @@ public class AddUser extends HttpServlet {
     String[] userVal;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("#############################Add user#############################");
-        AS_Insert idb = new AS_Insert();
-        AS_Select sdb = new AS_Select();
+        U_AS_Insert idb = new U_AS_Insert();
+        U_AS_Select sdb = new U_AS_Select();
         try {
             String userType = request.getParameter("userType");
             String uname = request.getParameter("uname");
