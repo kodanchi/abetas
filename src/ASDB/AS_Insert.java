@@ -728,11 +728,11 @@ public class AS_Insert {
                 id = rsSelect.getInt(1);
             }
 
-                String query = " insert into cycle (Cycle_ID)" + " values (?)";
-                id++;
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, id);
-                rs = preparedStatement.executeUpdate();
+            String query = " insert into cycle (Cycle_ID)" + " values (?)";
+            id++;
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, id);
+            rs = preparedStatement.executeUpdate();
 
             ////Need to display the temp password to the screen
 
@@ -956,7 +956,7 @@ public class AS_Insert {
         return id;
     }
 
-    public int addRubric(String PI_rubric_name_1, String PI_rubric_description_1,String PI_rubric_name_2, String PI_rubric_description_2,String PI_rubric_name_3, String PI_rubric_description_3,String PI_rubric_name_4, String PI_rubric_description_4) throws ClassNotFoundException, SQLException {
+    public int addRubric(String PI_rubric_description_1, String PI_rubric_description_2, String PI_rubric_description_3, String PI_rubric_description_4) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -978,17 +978,13 @@ public class AS_Insert {
              * Execute the query
              */
 
-            String query = " insert into pi_rubric (PI_rubric_name_1, PI_rubric_description_1, PI_rubric_name_2, PI_rubric_description_2, PI_rubric_name_3, PI_rubric_description_3, PI_rubric_name_4, PI_rubric_description_4)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into pi_rubric (PI_rubric_description_1, PI_rubric_description_2, PI_rubric_description_3, PI_rubric_description_4)" + " values (?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, PI_rubric_name_1);
-            preparedStatement.setString(2, PI_rubric_description_1);
-            preparedStatement.setString(3, PI_rubric_name_2);
-            preparedStatement.setString(4, PI_rubric_description_2);
-            preparedStatement.setString(5, PI_rubric_name_3);
-            preparedStatement.setString(6, PI_rubric_description_3);
-            preparedStatement.setString(7, PI_rubric_name_4);
-            preparedStatement.setString(8, PI_rubric_description_4);
+            preparedStatement.setString(1, PI_rubric_description_1);
+            preparedStatement.setString(2, PI_rubric_description_2);
+            preparedStatement.setString(3, PI_rubric_description_3);
+            preparedStatement.setString(4, PI_rubric_description_4);
             rs = preparedStatement.executeUpdate();
 
 
@@ -1028,6 +1024,63 @@ public class AS_Insert {
 
         }
         return id;
+    }
+
+    public void addRubricNames(String PI_rubric_name_1,String PI_rubric_name_2, String PI_rubric_name_3, String PI_rubric_name_4, int id) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rsSelect = null;
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+
+            String query = " UPDATE cycle SET PI_rubric_name_1 = ?, PI_rubric_name_2 = ?, PI_rubric_name_3 = ?, PI_rubric_name_4 = ? WHERE Cycle_ID = ?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, PI_rubric_name_1);
+            preparedStatement.setString(2, PI_rubric_name_2);
+            preparedStatement.setString(3, PI_rubric_name_3);
+            preparedStatement.setString(4, PI_rubric_name_4);
+            preparedStatement.setInt(5, id);
+
+            rs = preparedStatement.executeUpdate();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
     }
 
     public int addPILink(int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
@@ -1185,51 +1238,51 @@ public class AS_Insert {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public void addPIold(String name, String label, int type, int threshold) throws ClassNotFoundException, SQLException {
+    public void addPIold(String name, String label, int type, int threshold) throws ClassNotFoundException, SQLException {
 
 
-            connect();
+        connect();
 
-            Connection connection = null;
-            PreparedStatement preparedStatement = null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
-            int piid=0;
-            ResultSet rsSelect = null;
-            int rs = 0;
-            try {
+        int piid=0;
+        ResultSet rsSelect = null;
+        int rs = 0;
+        try {
 
             /*
              *  Get connection from the DataSource
              */
 
-                connection = dataSource.getConnection();
+            connection = dataSource.getConnection();
 
             /*
              * Execute the query
              */
-                String query = " insert into performance_indicator (PI_name, PI_label)" + " values (?, ?)";
+            String query = " insert into performance_indicator (PI_name, PI_label)" + " values (?, ?)";
 
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, label);
-                rs = preparedStatement.executeUpdate();
-
-
-                ////Need to display the temp password to the screen
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, label);
+            rs = preparedStatement.executeUpdate();
 
 
-                String querySelect = " SELECT PI_ID FROM performance_indicator ORDER BY PI_ID DESC LIMIT 1";
+            ////Need to display the temp password to the screen
 
-                preparedStatement = connection.prepareStatement(querySelect);
 
-                rsSelect = preparedStatement.executeQuery();
+            String querySelect = " SELECT PI_ID FROM performance_indicator ORDER BY PI_ID DESC LIMIT 1";
 
-                if (rsSelect.next()){
-                    piid = rsSelect.getInt(1);
-                }
+            preparedStatement = connection.prepareStatement(querySelect);
+
+            rsSelect = preparedStatement.executeQuery();
+
+            if (rsSelect.next()){
+                piid = rsSelect.getInt(1);
+            }
 
             if (piid!=0) {
                 if (type==0){

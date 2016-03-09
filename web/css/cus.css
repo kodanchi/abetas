@@ -109,7 +109,7 @@ input[readonly] {
 
 @media(max-width:767px) {
     table {
-        font-size: 13;
+        font-size: 13px;
     }
     .centerI {
         margin-left: 0%;
@@ -142,7 +142,7 @@ input[readonly] {
     height: 250px;
     border-style: solid;
     border-color: #ecf0f1;
-    border-width: 10%;
+    border-width: 1px;
     border-radius: 10px;
     background-color: #f9f9f9;
     color: #003366;

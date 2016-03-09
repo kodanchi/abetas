@@ -21,29 +21,29 @@ public class AddCycle extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
 
-            AS_Insert dba = new AS_Insert();
-            int id = 0;
-            try {
+        AS_Insert dba = new AS_Insert();
+        int id = 0;
+        try {
 
 
-                id = dba.addCycle();
+            id = dba.addCycle();
 
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
             /*PrintWriter out = response.getWriter();
             //out.println("name: " + request.getParameter("name"));
             //out.println("logo: " + request.getParameter("logo"));
             out.println("H");*/
-            System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id));
+        System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id));
             /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
         try {
             //request.getSession().setAttribute("id",String.valueOf(id));
             //request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
-            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
+            response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id);
         }catch (NullPointerException e){
             e.fillInStackTrace();
         }
