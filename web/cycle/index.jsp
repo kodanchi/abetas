@@ -25,7 +25,7 @@
                 if(id != null){
                     pageName = "addTerm.jsp?cycle="+id;
                 }else {
-                   System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
+                    System.out.println("dfsdfdsfdfdffsfsdvdvvfvfdvvfd"); //display error page
                 }
             }else if(pageCall.equals("LinkPIOutList")) {
 
@@ -33,6 +33,15 @@
                 if(request.getParameter("cycle") != null && request.getParameter("term") != null){
                     System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
                     pageName = "LinkPIOutList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID;
+                }else {
+                    //display error page
+                }
+            }else if(pageCall.equals("rubricNames")) {
+
+                String programID=request.getParameter("programID");
+                if(request.getParameter("cycle") != null){
+                    System.out.println("GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG  " + request.getParameter("cycle"));
+                    pageName = "rubricNames.jsp?cycle="+request.getParameter("cycle")+"&programID=" + programID;
                 }else {
                     //display error page
                 }
@@ -63,7 +72,7 @@
                         System.out.println("ddddddddddddddddddddddddddd  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
                         pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
                                 "&programID=" + programID+"&courseCode="+courseCode+"&courseName="+courseName+"&section="+section +
-                        "status="+ request.getParameter("status");
+                                "status="+ request.getParameter("status");
                     }else {
                         System.out.println("QQQQQQQQQQQQQQQQQQQQQQQQQQQ  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
                         pageName = "studentList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
@@ -112,9 +121,9 @@
 
                 String programID=request.getParameter("programID");
 
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+                if(request.getParameter("cycle") != null){
                     System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +programID);
-                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID="+programID;
+                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&programID="+programID;
                 }else {
                     System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     //display error page
@@ -137,15 +146,15 @@
                     //display error page
                 }
             }else if(pageCall.equals("piList")) {
-                System.out.println("piList-----  " + request.getParameter("cycle")+"     "+request.getParameter("term"));
+                System.out.println("piList-----  " + request.getParameter("cycle"));
 
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+                if(request.getParameter("cycle") != null) {
                     if(request.getParameter("status") != null) {
                         System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
-                        pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term") ;
+                        pageName = "piList.jsp?cycle="+request.getParameter("cycle") ;
                     }else {
                         System.out.println("fdsfdfsdfdfsdfsfdfdfsf");
-                        pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term") ;
+                        pageName = "piList.jsp?cycle="+request.getParameter("cycle") ;
                     }
 
                 }else {
@@ -296,10 +305,10 @@
                 }
             }else if(pageCall.equals("piList")) {
 
-                String programID=request.getParameter("programID");
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+                //String programID=request.getParameter("programID");
+                if(request.getParameter("cycle") != null){
                     System.out.println("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ  " + request.getParameter("cycle")+"     "+request.getParameter("cycle"));
-                    pageName = "piList.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID=" + programID;
+                    pageName = "piList.jsp?cycle="+request.getParameter("cycle");//+"&programID=" + programID;
                 }else {
                     //display error page
                 }
@@ -379,9 +388,9 @@
                 String PIValue=request.getParameter("PIValue");
                 String programID=request.getParameter("programID");
 
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+                if(request.getParameter("cycle") != null){
                     System.out.println("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY  " +PILabel +"    "+ PIValue+"     "+programID);
-                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&PILabel=" + PILabel + "&PIValue="+PIValue+"&programID="+programID;
+                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&PILabel=" + PILabel + "&PIValue="+PIValue+"&programID="+programID;
                 }else {
                     System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
                     //display error page
@@ -389,8 +398,8 @@
             }else if(pageCall.equals("addPI")) {
 
                 String programID=request.getParameter("programID");
-                if(request.getParameter("cycle") != null && request.getParameter("term") != null){
-                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+"&programID="+programID;
+                if(request.getParameter("cycle") != null){
+                    pageName = "addPI.jsp?cycle="+request.getParameter("cycle")+"&programID="+programID;
                 }else {
                     //display error page
                 }
@@ -438,11 +447,12 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/ct-paper.css" rel="stylesheet"/>
-    <link href="/css/demo.css" rel="stylesheet" />
+    <%-- <link href="/css/ct-paper.css" rel="stylesheet"/>
+     <link href="/css/demo.css" rel="stylesheet" /> --%>
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
+    <link href="/css/flat-ui.css" rel="stylesheet" />
 
 
 
