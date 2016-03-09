@@ -32,10 +32,9 @@
     }
 %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<div class="section">
     <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+        <div class="row">
             <h2 class="text-center">User Management</h2>
             <legend></legend>
             <div class="col-md-8 col-md-offset-2">
@@ -44,7 +43,7 @@
                     <!-- Default panel contents -->
 
                     <!-- Table -->
-                    <table class="table">
+                    <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <%
                                 if(dataType.equals("obj")){
@@ -117,7 +116,7 @@
                 </div>
 
                 <form method="post" action="/upload/program" >
-                    <a class="btn btn-success btn-fill" href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
+                    <a class="btn btn-success" href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
                     <input name="data-type" value="<%=dataType%>" hidden>
                     <input name="name" value="<%=name%>" hidden>
                     <input name="id" value="<%=id%>" hidden>
@@ -134,7 +133,6 @@
             <!-- End of row -->
         </div>
 
-
+    <!-- End of container -->
     </div>
-</div>
 

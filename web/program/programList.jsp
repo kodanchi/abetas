@@ -12,10 +12,9 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<div class="section">
-    <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+<div class="container">
+        <div class="row">
             <h2 class="text-center">Program Management</h2>
             <legend></legend>
             <div class="col-lg-10 col-md-offset-1">
@@ -24,7 +23,7 @@
                     <!-- Default panel contents -->
 
                     <!-- Table -->
-                    <table class="table table-hover" id="table-sever-list" >
+                    <table class="table table-hover table-striped table-bordered text-center" id="table-sever-list" >
                         <tr class="textContainer">
                             <th>Name</th>
                             <th>Mission</th>
@@ -52,14 +51,14 @@
                                             "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                             "                            <input name=\"ProgramName\" value=\""+rsRow.get(1)+"\" hidden />\n" +
                                             "                            <input name=\"ProgramMission\" value=\""+rsRow.get(2)+"\" hidden />\n" +
-                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                             "                               </td>" +
                                             "                            </form>" +
                                             "                            <form method=\"post\" action=\"/DeleteProgram\">\n" +
                                             "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                             "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                             "                               <td>" +
-                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                             "                               </td>"+
                                             "                        </form>" +
                                             "</tr>");
@@ -75,8 +74,8 @@
 
                     </table >
                 </div>
-                <a class="btn btn-success btn-fill" href="index.jsp?page=add">Add</a>
-                <a class="btn btn-success btn-primary" href="#">Back</a>
+                <a class="btn btn-success" href="index.jsp?page=add">Add</a>
+                <a class="btn btn-primary" href="#">Back</a>
 
                 <!-- End of col -->
             </div>
@@ -84,6 +83,5 @@
             <!-- End of row -->
         </div>
 
-        <!-- Modal Bodies come here -->
+        <!-- End of container -->
     </div>
-</div>

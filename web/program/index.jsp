@@ -353,10 +353,11 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/ct-paper.css" rel="stylesheet"/>
-    <link href="/css/demo.css" rel="stylesheet" />
+   <%-- <link href="/css/ct-paper.css" rel="stylesheet"/>
+    <link href="/css/demo.css" rel="stylesheet" /> --%>
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
+    <link href="/css/flat-ui.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -370,7 +371,7 @@
         <jsp:include page="/Header.jsp"/>
     </div>
 
-    <div id="main" class="main">
+    <div id="main">
         <jsp:include page="<%=pageName%>"/>
     </div>
 

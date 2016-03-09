@@ -11,11 +11,9 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!--  Here is row -->
+            <div class="row">
                 <h2 class="text-center">Program Management</h2>
                 <h4 class="text-center">Program Name</h4>
                 <legend></legend>
@@ -23,17 +21,17 @@
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Mission Statement:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Program Objectives:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Student Outcomes:</p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 
@@ -41,7 +39,7 @@
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Courses: </p></li>
-                        <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
+                        <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
 
 
@@ -52,7 +50,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Course Name</th>
                                 <th>Code</th>
@@ -100,8 +98,5 @@
                 <!-- End of row -->
             </div>
 
-
-        </div>
-    </div>
-    <!-- End of main -->
+            <!-- End of container -->
 </div>

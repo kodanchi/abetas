@@ -65,11 +65,9 @@
     }
 
 %>
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Add Program Objective</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -79,7 +77,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Objectives</th>
                                 <th>Edit</th>
@@ -109,7 +107,7 @@
                                                 "                            <input name=\"ObjValue\" value=\""+rsRow.get(1)+"\" hidden />\n" +
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/Delete Objective\">\n" +
@@ -118,7 +116,7 @@
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -135,8 +133,8 @@
                             %>
                         </table>
                     </div>
-                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-success" data-toggle="modal" data-target="#addModal">Add</a>
+                    <a class="btn btn-success" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -169,7 +167,5 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>

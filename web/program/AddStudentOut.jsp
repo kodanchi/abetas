@@ -8,11 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <html>
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Add Student Outcome</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -42,7 +40,7 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <button class="btn btn-success" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <a class="btn btn-success btn-primary" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>
@@ -53,8 +51,6 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>
 </html>

@@ -13,11 +13,9 @@
 
 <div id="header"></div>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Link Student Outcome with Objectives</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -27,7 +25,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Objectives</th>
                                 <th>Outcome</th>
@@ -56,7 +54,7 @@
                                                 "                            <input name=\"OutLinkValue\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/Delete Link Objective and Outcome\">\n" +
@@ -65,7 +63,7 @@
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+request.getParameter("id")+"\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -81,8 +79,8 @@
                         </table>
                     </div>
 
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                    <a class="btn btn-success btn-fill" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-success" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
+                    <a class="btn btn-success" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- End of col -->
                 </div>
@@ -91,11 +89,8 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
+            <!-- End of container -->
         </div>
-    </div>
-</div>
 
-<!--   end modal  -->
 
 <div id="footer"></div>
