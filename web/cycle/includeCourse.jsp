@@ -9,6 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
 
 <%
 
@@ -112,17 +113,24 @@
                                             }
                                         }
                                         out.print("program</p>");
+                                        out.print("<select name=\"Code\"  class=\"selectpicker\" multiple>");
 
                                         for (int i = 0; i < rs.size(); i++) {
                                             System.out.println(rs.get(i).substring(0, rs.get(i).indexOf(':')));
 
-                                            out.print("<label class=\"checkbox-inline\">");
+
+                                           /* out.print("<label class=\"checkbox-inline\">");
                                             out.print("<input type=\"checkbox\" name=\"Code\" value=\"" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + "\" >" + rs.get(i));
                                             out.print("</label>");
+                                            */
+                                            out.print("<option");
+                                            out.print(" value=\"" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + "\" >" + rs.get(i));
+                                            out.print("</option>");
 
                                         }
+                                        out.print("</select>");
 
-                                        out.print("<br><br><br><button class=\"btn btn-success btn-fill\" type=\"submit\"> Submit </button><br><br><br>");
+                                        out.print("<button class=\"btn btn-success btn-fill\" type=\"submit\"> Submit </button><br><br><br>");
                                     }else {
                                         out.print("There are no courses in this program<br><br>");
                                         //Display error massage

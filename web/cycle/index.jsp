@@ -486,12 +486,12 @@
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->
-<script src="/js/ct-paper-checkbox.js"></script>
-<script src="/js/ct-paper-radio.js"></script>
+<%--<script src="/js/ct-paper-checkbox.js"></script>
+<script src="/js/ct-paper-radio.js"></script>--%>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/jquery.bsFormAlerts.js"></script>
-<script src="/js/ct-paper.js"></script>
+<%--<script src="/js/ct-paper.js"></script>--%>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
