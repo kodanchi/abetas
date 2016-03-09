@@ -91,10 +91,8 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
+            <!-- Here is row -->
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
 
@@ -179,7 +177,4 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

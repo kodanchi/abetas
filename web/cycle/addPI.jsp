@@ -87,7 +87,7 @@
 %>
 
         <div class="container" id="space">
-            <!-- what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Performance Indicator</h2>
                 <legend></legend>

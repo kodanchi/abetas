@@ -79,11 +79,9 @@
 %>
 
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Add Program Performance Indicator</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -259,7 +257,7 @@
                                                             "                            <input name=\"PIValue\" value=\"" + rsRow.get(1) + "\" hidden />\n" +
                                                             "                            <input name=\"cycle\" value=\"" + request.getParameter("cycle") + "\" hidden />\n" +
                                                             "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                            "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                             "                               </td>" +
                                                             "                            <td></form>" +
                                                             "                            <form method=\"post\" action=\"/DeletePI\">\n" +
@@ -267,7 +265,7 @@
                                                             "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                                                             "                            <input name=\"cycle\" value=\"" + request.getParameter("cycle") + "\" hidden />\n" +
                                                             "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                            "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                             "                        </form></td>" +
                                                             "</tr>");
                                                 }
@@ -380,8 +378,4 @@
                 <!-- End of row -->
             </div>
 
-
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>
