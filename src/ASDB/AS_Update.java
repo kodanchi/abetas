@@ -468,6 +468,62 @@ public class AS_Update {
 
     }
 
+    public void updateDefault(int T_ID) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
+
+            String query = "update term set term.current = 0";
+            preparedStatement = connection.prepareStatement(query);
+            rs = preparedStatement.executeUpdate();
+
+
+            String query2 = "update term set term.current = 1 where T_ID = ?";
+            preparedStatement = connection.prepareStatement(query2);
+            preparedStatement.setInt (1, T_ID);
+            rs = preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+    }
+
     public void includeCourse(String code) throws ClassNotFoundException, SQLException {
 
         connect();

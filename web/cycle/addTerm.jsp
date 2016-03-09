@@ -261,6 +261,7 @@
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>Year</th>
+                                                    <th>Set Default</th>
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
@@ -277,14 +278,28 @@
                                                             rsRow = rs.get(i);
                                                             out.print("<tr>");
                                                             for (int j=1; j<rsRow.size();j++) {
-                                                                out.print("<td>"+rsRow.get(j)+"</td>");
-
+                                                                if (j==3){
+                                                                    if (Integer.valueOf(rsRow.get(j))==1){
+                                                                        out.print("<td>"+"Default"+"</td>");
+                                                                    }
+                                                                    else if (Integer.valueOf(rsRow.get(j))==0){
+                                                                        //out.print("<td>"+"-"+"</td>");
+                                                                        out.print("<td><form method=\"post\" action=\"/SetDefault\">\n");
+                                                                        out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
+                                                                        out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
+                                                                        out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n</form></td>");
+                                                                    }
+                                                                }else {
+                                                                    out.print("<td>"+rsRow.get(j)+"</td>");
+                                                                }
                                                             }
                                                             out.print("<td><form method=\"post\" action=\"index.jsp\">");
                                                             out.print("<input name=\"page\" value=\"includeCourse\" hidden />\n");
                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
                                                             out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
                                                             out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n</form></td>");
+
+
 
                                                             out.print("<td><form method=\"post\" action=\"/DeleteTerm\">\n");
                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");

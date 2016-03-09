@@ -1616,7 +1616,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM term where FK_Cycle_ID = "+id+";";
+            String query = "SELECT T_ID, T_name, T_year, term.current FROM term where FK_Cycle_ID = "+id+";";
 
             /*
              *  Get connection from the DataSource
@@ -1638,7 +1638,7 @@ public class AS_Select {
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
-
+                RowDate.add(rs.getString(4));
 
                 RsArr.add(RowDate);
             }
