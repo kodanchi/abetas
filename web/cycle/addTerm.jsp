@@ -84,8 +84,8 @@
 
 
                     <div class="container">
-                        <!-- what is row -->
-                        <div class="row">
+                        <!-- Here is row -->
+                        <div class="row tim-row">
 
 
 
@@ -98,7 +98,7 @@
                                     <!-- Default panel contents -->
 
                                     <!-- Table -->
-                                    <div class="row">
+                                    <div class="row tim-row">
                                         <div class="row tim-row">
                                             <form id="addTermForm" method="post" action="/AddTerm">
                                                 <div class="col-md-6">
@@ -256,7 +256,7 @@
                                         </div>
                                         <Legend></Legend>
                                         <div class="row panel panel-default">
-                                            <table class="table ">
+                                            <table class="table">
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>Year</th>
@@ -283,13 +283,12 @@
                                                             out.print("<input name=\"page\" value=\"includeCourse\" hidden />\n");
                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
                                                             out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
-                                                            out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n</form></td>");
+                                                            out.print("<button type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y\"><i class=\"fui-new icon30\"></i></button>\n</form></td>");
 
-
-                                                                    out.print("<td><form method=\"post\" action=\"/DeleteTerm\">\n");
+                                                            out.print("<td><form method=\"post\" action=\"/DeleteTerm\">\n");
                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
                                                             out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
-                                                                    out.print("<button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n</form></td>");
+                                                            out.print("<button type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T\"><i class=\"fui-trash icon30\"></i></button>\n</form></td>");
                                                         }
 
                                                     } catch (ClassNotFoundException e) {
