@@ -23,11 +23,9 @@
 
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Select Program/Courses</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -147,7 +145,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
 
                                 <th>Code</th>
@@ -180,7 +178,7 @@
                                                     "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                     "                            <input name=\"courseCode\" value=\""+rsRow.get(2)+"\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                     "                            </form>" +
                                                     "                            </td><td>" +
                                                     "                            <form method=\"post\" action=\"/DeleteIC\">\n" +
@@ -189,7 +187,7 @@
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                     "                            <input name=\"Code\" value=\"" + rsRow.get(2) + "\" hidden />\n" +
                                                     "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                     "                        </form></td>" +
                                                     "</tr>");
                                         }
@@ -213,7 +211,7 @@
                     <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
                     <%
                         if(request.getParameter("programID")!=null){
-                           out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=LinkPIOutList&cycle="+id+
+                           out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=piList&cycle="+id+
                     "&term="+Termid+"&programID="+request.getParameter("programID")+"\">Next</a>\n");
                         }
                     %>
@@ -224,8 +222,4 @@
                 <!-- End of row -->
             </div>
 
-
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

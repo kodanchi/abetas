@@ -23,11 +23,9 @@
 
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Link Performance Indicator with Student Outcomes</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -48,7 +46,7 @@
                         <!-- Default panel contents -->
 
                         <!-- Table -->
-                        <table class="table">
+                        <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
                                 <th>Students Outcome</th>
                                 <th>Performance Indicator</th>
@@ -90,7 +88,7 @@
                                                 "                            <input name=\"RubricValue\" value=\""+rsRow.get(5)+"\" hidden />\n" +
                                                 "                            <input name=\"TermValue\" value=\""+rsRow.get(7)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
                                                 "                            <form method=\"post\" action=\"/DeletePILinks\">\n" +
@@ -101,7 +99,7 @@
                                                 "                            <input name=\"RubricValue\" value=\""+rsRow.get(5)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -125,8 +123,4 @@
 
                 <!-- End of row -->
             </div>
-
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>
