@@ -87,14 +87,7 @@
                 <div class="col-md-8 col-md-offset-2">
 
 
-
-
-
-
-
-
-
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="">
                         <div class="col-md-8">
                             <div class="dropdown">
                                 <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">

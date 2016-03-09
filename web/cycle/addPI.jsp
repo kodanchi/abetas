@@ -64,12 +64,9 @@
 <%
 
     String id = "";
-    String Termid = "";
-    if(request.getParameter("cycle") != null && request.getParameter("term") != null){
+    if(request.getParameter("cycle") != null){
         id  = request.getParameter("cycle");
-        Termid  = request.getParameter("term");
         out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 
@@ -86,8 +83,10 @@
     }
 %>
 
+<div class="main">
+    <div class="section">
         <div class="container" id="space">
-            <!-- Here is row -->
+            <!-- what is row -->
             <div class="row">
                 <h2 class="text-center">Add Performance Indicator</h2>
                 <legend></legend>
@@ -103,7 +102,6 @@
 
                                 <label>Program: <label><%out.print(programName);%> </label></label>
                                 <input type="hidden" name="cycle" value="<%=id%>">
-                                <input type="hidden" name="term" value="<%=Termid%>">
                                 <input type="hidden" name="programName" value="<%=programName%>">
                                 <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
 
@@ -125,7 +123,7 @@
 
                         <br>
                         <button class="btn btn-success btn-fill pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=piList&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
+                        <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=piList&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
 
 
                     </form>
@@ -136,4 +134,7 @@
             </div>
 
 
+            <!-- Modal Bodies come here -->
         </div>
+    </div>
+</div>
