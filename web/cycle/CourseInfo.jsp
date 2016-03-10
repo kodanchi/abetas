@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
@@ -24,7 +24,7 @@
 %>
 
 <%
-    AS_Select aselect = new AS_Select();
+    C_AS_Select aselect = new C_AS_Select();
     String programName = "";
     String courseName = "";
     String courseCode = request.getParameter("courseCode");
@@ -73,7 +73,7 @@
 
                                     String facultyName = null;
 
-                                    //AS_Select aselect = new AS_Select();
+                                    //C_AS_Select aselect = new C_AS_Select();
                                     try {
                                         ArrayList<ArrayList<String>> rs = aselect.selectCourseSections(Integer.parseInt(request.getParameter("term")),request.getParameter("courseCode"));
                                         ArrayList<String> rsRow;
@@ -138,7 +138,7 @@
                                 <p>Select a faculty member to teach this course:</p>
                                 <select class="form-control" name="F_ID" required>
                                     <%
-                                        AS_Select cselect = new AS_Select();
+                                        C_AS_Select cselect = new C_AS_Select();
                                         try {
                                             ArrayList<String> rs = cselect.selectFacultyForCourse();
 

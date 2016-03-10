@@ -17,7 +17,7 @@ public class DeleteIC extends HttpServlet {
 
         System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         System.out.println("####################################"+request.getParameter("Code")+"######################      "+request.getParameter("programID"));
-        AS_Delete dba = new AS_Delete();
+        C_AS_Delete dba = new C_AS_Delete();
         String id = request.getParameter("cycle");
         String Termid = request.getParameter("term");
 

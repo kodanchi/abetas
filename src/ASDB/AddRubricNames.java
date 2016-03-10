@@ -20,7 +20,7 @@ public class AddRubricNames extends HttpServlet {
         if (request.getParameter("RubricID").equals("null")) {
             //ArrayList<String> data = new ArrayList<String>();
             String id = request.getParameter("cycle");
-            AS_Insert dba=new AS_Insert();
+            C_AS_Insert dba=new C_AS_Insert();
             //P_AS_Select dbaS=new P_AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
@@ -45,7 +45,7 @@ public class AddRubricNames extends HttpServlet {
             System.out.println(request.getParameter("RubricID")+"            Rubric Servlet IDIDIDIDIDDIIDID");
 
             int id = 0;
-            AS_Update dba = new AS_Update();
+            C_AS_Update dba = new C_AS_Update();
             //P_AS_Select dbaS=new P_AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));

@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/11/2016
@@ -30,7 +31,7 @@
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p>Click "Add" to enter a new performance indicator and students outcome link for <% if(request.getParameter("programID")!=null) {
-                        AS_Select ssselect = new AS_Select();
+                        C_AS_Select ssselect = new C_AS_Select();
                         try {
                             String rs = ssselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
                             out.print(rs);
@@ -57,7 +58,7 @@
                             </tr>
                             <%
 
-                                AS_Select aselect = new AS_Select();
+                                C_AS_Select aselect = new C_AS_Select();
 
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectPILinks(Integer.parseInt(Termid),Integer.parseInt(request.getParameter("programID")));

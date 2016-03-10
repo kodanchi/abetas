@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/11/2016
@@ -81,7 +82,7 @@
 %>
 
 <%
-    AS_Select aselect = new AS_Select();
+    C_AS_Select aselect = new C_AS_Select();
     String programName = "";
     try {
         System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
@@ -128,7 +129,7 @@
                                 <div class="col-xl-50 selectContainer" >
                                     <select class="form-control" name="Out">
                                         <%
-                                            AS_Select bselect = new AS_Select();
+                                            C_AS_Select bselect = new C_AS_Select();
                                             try {
                                                 ArrayList<String> rs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("programID")));
 
@@ -164,7 +165,7 @@
                                     <div class="col-xl-25 selectContainer" >
                                         <select class="form-control" name="PI">
                                             <%
-                                                AS_Select cselect = new AS_Select();
+                                                C_AS_Select cselect = new C_AS_Select();
                                                 try {
                                                     ArrayList<String> rs = cselect.selectPIForLink(Integer.parseInt(id),Integer.parseInt(request.getParameter("programID")));
 
@@ -201,7 +202,7 @@
                                 <div class="col-xl-25 selectContainer" >
                                     <select class="form-control" name="Course">
                                         <%
-                                            AS_Select dselect = new AS_Select();
+                                            C_AS_Select dselect = new C_AS_Select();
                                             try {
                                                 ArrayList<String> rs = dselect.selectCourseForLink(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(Termid));
 
@@ -347,7 +348,7 @@
                                 String G="";
                                 String H="";
 
-                                AS_Select nselect = new AS_Select();
+                                C_AS_Select nselect = new C_AS_Select();
                                 try {
 
                                     ArrayList<String> rsss = nselect.selectRubricNames(Integer.parseInt(id));
@@ -364,7 +365,7 @@
                                 }
 
                                 if (request.getParameter("RubricValue")!=null) {
-                                    AS_Select eselect = new AS_Select();
+                                    C_AS_Select eselect = new C_AS_Select();
                                     try {
                                         ArrayList<String> rss = eselect.selectRubrics(Integer.parseInt(request.getParameter("RubricValue")));
 

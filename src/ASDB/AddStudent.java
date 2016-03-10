@@ -18,8 +18,8 @@ public class AddStudent extends HttpServlet {
         if (request.getParameter("NValue").equals("null")) {
             System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  SID  "+  request.getParameter("Student_ID"));
 
-            AS_Insert dba = new AS_Insert();
-            AS_Select dbs = new AS_Select();
+            C_AS_Insert dba = new C_AS_Insert();
+            C_AS_Select dbs = new C_AS_Select();
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");
             System.out.println("##########################################################  Sname  "+request.getParameter("Sname")+"          ");
@@ -79,8 +79,8 @@ public class AddStudent extends HttpServlet {
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
 
-            AS_Update udb = new AS_Update();
-            AS_Select dbs = new AS_Select();
+            C_AS_Update udb = new C_AS_Update();
+            C_AS_Select dbs = new C_AS_Select();
 
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");

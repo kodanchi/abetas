@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/13/2016
@@ -34,7 +35,7 @@
                         <div class="dropdown">
                             <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                                 <% if(request.getParameter("programID")!=null) {
-                                    AS_Select sselect = new AS_Select();
+                                    C_AS_Select sselect = new C_AS_Select();
                                     try {
                                         String rs = sselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
                                         out.print(rs);
@@ -53,7 +54,7 @@
                             <ul class="dropdown-menu">
 
                                 <%
-                                    AS_Select select = new AS_Select();
+                                    C_AS_Select select = new C_AS_Select();
                                     ArrayList<Integer> pid = new ArrayList<Integer>();
                                     try {
                                         ArrayList<ArrayList<String>> rs = select.selectAllPrograms();
@@ -93,7 +94,7 @@
 
                         <%
                             if(request.getParameter("programID")!=null) {
-                                AS_Select bselect = new AS_Select();
+                                C_AS_Select bselect = new C_AS_Select();
                                 try {
                                     ArrayList<String> rs = bselect.selectCourseForProgram(Integer.parseInt(request.getParameter("programID")), Integer.parseInt(Termid));
 
@@ -102,7 +103,7 @@
 
                                         out.print("<p>Select courses to be evaluated for");
                                         if(request.getParameter("programID")!=null) {
-                                            AS_Select ssselect = new AS_Select();
+                                            C_AS_Select ssselect = new C_AS_Select();
                                             try {
                                                 String Pname = ssselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
                                                 out.print(Pname);
@@ -167,7 +168,7 @@
 
                                 if(Termid!=null && request.getParameter("programID")!=null) {
 
-                                    AS_Select aselect = new AS_Select();
+                                    C_AS_Select aselect = new C_AS_Select();
                                     try {
                                         ArrayList<ArrayList<String>> rs = aselect.selectCourseForTerm(Integer.parseInt(request.getParameter("programID")),Integer.parseInt(Termid));
                                         ArrayList<String> rsRow;

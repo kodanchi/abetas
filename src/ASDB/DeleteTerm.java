@@ -19,8 +19,8 @@ public class DeleteTerm extends HttpServlet {
         System.out.println(request.getParameter("term")+"           ");
         //ArrayList<String> data = new ArrayList<String>();
         String cid= request.getParameter("cycle");
-        AS_Delete dba=new AS_Delete();
-        //AS_Select dbaS=new AS_Select();
+        C_AS_Delete dba=new C_AS_Delete();
+        //C_AS_Select dbaS=new C_AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteTerm(Integer.parseInt(request.getParameter("term")));

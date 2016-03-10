@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 3/2/2016
@@ -78,7 +79,7 @@
 %>
 
 <%
-    AS_Select aselect = new AS_Select();
+    C_AS_Select aselect = new C_AS_Select();
     String programName = "";
     try {
         System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
@@ -123,7 +124,7 @@
                                 String D="";
                                 int size = 0;
 
-                                    AS_Select eselect = new AS_Select();
+                                    C_AS_Select eselect = new C_AS_Select();
                                     try {
                                         ArrayList<String> rss = eselect.selectRubricNames(Integer.parseInt(id));
 

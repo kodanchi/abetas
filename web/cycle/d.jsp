@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
@@ -23,7 +23,7 @@
                         <label>Choose a program: </label>
                         <select class="form-control" name="programName" id="pName" onchange="onProgramChng()" required>
                             <%
-                                AS_Select select = new AS_Select();
+                                C_AS_Select select = new C_AS_Select();
                                 ArrayList<Integer> pid = new ArrayList<Integer>();
                                 try {
                                     ArrayList<ArrayList<String>> rs = select.selectAllPrograms();
@@ -76,7 +76,7 @@
 
                             <%
 
-                                AS_Select aselect = new AS_Select();
+                                C_AS_Select aselect = new C_AS_Select();
 
                                 for (int k=0; k < pid.size();k++){
                                     try {

@@ -18,7 +18,7 @@ public class SetDefault extends HttpServlet {
         System.out.println("##########################################################     "+request.getParameter("cycle")+"     gggggggggggggggggg    "+request.getParameter("term"));
 
         String id = request.getParameter("cycle");
-        AS_Update dba = new AS_Update();
+        C_AS_Update dba = new C_AS_Update();
         try {
 
             dba.updateDefault(Integer.parseInt(request.getParameter("term")));

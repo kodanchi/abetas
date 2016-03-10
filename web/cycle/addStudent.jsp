@@ -1,6 +1,7 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%--
   Created by IntelliJ IDEA.
   User: Ibrahim Abuaqel
   Date: 2/13/2016
@@ -79,7 +80,7 @@
 %>
 
 <%
-    AS_Select aselect = new AS_Select();
+    C_AS_Select aselect = new C_AS_Select();
     String programName = "";
 
     try {

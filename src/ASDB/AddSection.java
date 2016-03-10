@@ -20,8 +20,8 @@ public class AddSection extends HttpServlet {
         //ArrayList<String> data = new ArrayList<String>();
         if (request.getParameter("section").equals("null")) {
             int id=0;
-        AS_Insert dba=new AS_Insert();
-        //AS_Select dbaS=new AS_Select();
+        C_AS_Insert dba=new C_AS_Insert();
+        //C_AS_Select dbaS=new C_AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             id=dba.addSection(Integer.parseInt(request.getParameter("term")),Integer.parseInt(request.getParameter("F_ID")),request.getParameter("courseCode"));
@@ -48,8 +48,8 @@ public class AddSection extends HttpServlet {
             System.out.println(request.getParameter("section")+"           "+request.getParameter("courseCode")+"      "+request.getParameter("courseName")+"       AddSection Update Servlet");
 
             int id = 0;
-            AS_Update dba = new AS_Update();
-            //AS_Select dbaS=new AS_Select();
+            C_AS_Update dba = new C_AS_Update();
+            //C_AS_Select dbaS=new C_AS_Select();
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 //System.out.println(request.getParameter("Code")+"           "+request.getParameter("Cname")+"          Update   AdObj Servlet");

@@ -40,8 +40,8 @@ public class CycleSheetUploadServlet extends HttpServlet {
         ArrayList<String> dataRow;
 
         System.out.println("dataArr"+ dataArr);
-        AS_Insert dba = new AS_Insert();
-        AS_Select dbs = new AS_Select();
+        C_AS_Insert dba = new C_AS_Insert();
+        C_AS_Select dbs = new C_AS_Select();
         try {
             //cycle=dbaS.selectProgram(request.getParameter("Pname"));
 

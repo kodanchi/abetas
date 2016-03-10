@@ -18,8 +18,8 @@ public class IncludeCourse extends HttpServlet {
         System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
         System.out.println("####################################"+request.getParameter("Code")+"######################      "+request.getParameter("programID"));
         String[] code = request.getParameterValues("Code");
-        AS_Insert dba = new AS_Insert();
-        AS_Select sdba = new AS_Select();
+        C_AS_Insert dba = new C_AS_Insert();
+        C_AS_Select sdba = new C_AS_Select();
         String id = request.getParameter("cycle");
         String Termid = request.getParameter("term");
 

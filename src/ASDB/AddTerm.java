@@ -17,8 +17,8 @@ public class AddTerm extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################"+ request.getParameter("fyear")+"-"+request.getParameter("tyear"));
 
-            AS_Insert dba = new AS_Insert();
-            AS_Select sdb = new AS_Select();
+            C_AS_Insert dba = new C_AS_Insert();
+            C_AS_Select sdb = new C_AS_Select();
             int id = Integer.parseInt(request.getParameter("cycle"));
             int Termid = 0;
             try {

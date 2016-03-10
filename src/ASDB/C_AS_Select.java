@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Ibrahim Abuaqel on 1/31/2016.
  */
-public class AS_Select {
+public class C_AS_Select {
 
     private Connection conn;
     private Statement stmt;

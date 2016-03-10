@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%--
@@ -265,7 +265,7 @@
                                                 </tr>
                                                 <%
 
-                                                    AS_Select dba = new AS_Select();
+                                                    C_AS_Select dba = new C_AS_Select();
 
                                                     try {
                                                         ArrayList<ArrayList<String>> rs = dba.selectAddTerm(Integer.parseInt(id));

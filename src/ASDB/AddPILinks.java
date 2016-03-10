@@ -20,8 +20,8 @@ public class AddPILinks extends HttpServlet {
         if (request.getParameter("OutValue").equals("null")) {
             System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  Course  "+  request.getParameter("Course"));
 
-            AS_Insert dba = new AS_Insert();
-            AS_Select sdba = new AS_Select();
+            C_AS_Insert dba = new C_AS_Insert();
+            C_AS_Select sdba = new C_AS_Select();
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");
             int programID = 0;
@@ -91,10 +91,10 @@ public class AddPILinks extends HttpServlet {
             }
         } else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-            AS_Insert dba = new AS_Insert();
-            AS_Update dbu = new AS_Update();
-            AS_Select sdba = new AS_Select();
-            AS_Delete dbd = new AS_Delete();
+            C_AS_Insert dba = new C_AS_Insert();
+            C_AS_Update dbu = new C_AS_Update();
+            C_AS_Select sdba = new C_AS_Select();
+            C_AS_Delete dbd = new C_AS_Delete();
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");
             int Link_id = Integer.parseInt(request.getParameter("LinkID"));

@@ -1,4 +1,4 @@
-<%@ page import="ASDB.AS_Select" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%--
@@ -33,7 +33,7 @@
                             <%
 
 
-                                AS_Select aselect = new AS_Select();
+                                C_AS_Select aselect = new C_AS_Select();
                                 try {
                                     ArrayList<ArrayList<String>> rs = aselect.selectCycle();
                                     ArrayList<String> rsRow ;

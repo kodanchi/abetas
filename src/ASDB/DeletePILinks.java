@@ -21,8 +21,8 @@ public class DeletePILinks extends HttpServlet {
 
         //ArrayList<String> data = new ArrayList<String>();
         int id=0;
-        AS_Delete dba=new AS_Delete();
-        //AS_Select dbaS=new AS_Select();
+        C_AS_Delete dba=new C_AS_Delete();
+        //C_AS_Select dbaS=new C_AS_Select();
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteRubric(Integer.parseInt(request.getParameter("RubricValue")));
