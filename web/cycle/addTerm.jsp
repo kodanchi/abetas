@@ -270,7 +270,7 @@
                                                     AS_Select dba = new AS_Select();
 
                                                     try {
-                                                        ArrayList<ArrayList<String>> rs = dba.selectAddTerm(id);
+                                                        ArrayList<ArrayList<String>> rs = dba.selectAddTerm(Integer.parseInt(id));
                                                         ArrayList<String> rsRow ;
 
                                                         for (int i=0; i<rs.size();i++){
