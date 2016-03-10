@@ -35,7 +35,7 @@ public class SelectSectionServlet extends HttpServlet {
             ArrayList<String> PIRubrics = null;
             ArrayList<String> PIResults = null;
 
-            int[] results = new int[]{0,0,0,0};
+            float[] results = new float[]{0,0,0,0};
 
 
             if(cid.equals("Overall")){

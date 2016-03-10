@@ -28,7 +28,7 @@
     ArrayList<String> PIRubrics = null;
     ArrayList<String> PIResults = null;
     String[] styles = null;
-    int[] results = null;
+    float[] results = null;
     int yAxis= 100;
 
     try {
@@ -40,7 +40,7 @@
         PIResults = dbs.selectSummativeRubricResultsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),
                 Integer.parseInt(tid));
 
-        results = new int[]{0,0,0,0};
+        results = new float[]{0,0,0,0};
 
         for (String sRubric : PIResults){
             System.out.println("PIResults: "+sRubric);
