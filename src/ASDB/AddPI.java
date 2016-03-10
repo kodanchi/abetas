@@ -28,8 +28,7 @@ public class AddPI extends HttpServlet {
 
             try {
                 programID=sdba.selectProgramID(request.getParameter("programName"));
-                if(sdba.isPIExist(request.getParameter("PI"), Integer.parseInt(request.getParameter("programID")),
-                        Integer.parseInt(id))){
+                if(sdba.isPIExist(request.getParameter("PI"), programID, Integer.parseInt(id))){
                     PVal = new String[]{request.getParameter("PI")};
                     sendErrMsg(request.getParameter("PI")+" is already existed",request.getParameter("cycle"),request,response);
                 }else {
