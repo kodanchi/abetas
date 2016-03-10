@@ -32,7 +32,7 @@ public class SelectCourseServlet extends HttpServlet {
             ArrayList<String> PIRubrics = null;
             ArrayList<String> PIResults = null;
 
-            int[] results = new int[]{0,0,0,0};
+            float[] results = new float[]{0,0,0,0};
             //String[] styles = new String[]{"#b87333","silver","gold","#e5e4e2"};
 
 
