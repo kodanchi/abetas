@@ -909,12 +909,13 @@ public class AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into term (T_name, T_year, FK_Cycle_ID)" + " values (?, ?, ?)";
+            String query = " insert into term (T_name, T_year, FK_Cycle_ID, current)" + " values (?, ?, ?,?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, year);
             preparedStatement.setInt(3, C_ID);
+            preparedStatement.setInt(4, 0);
             rs = preparedStatement.executeUpdate();
 
             String querySelect = " SELECT T_ID FROM term ORDER BY T_ID DESC LIMIT 1";

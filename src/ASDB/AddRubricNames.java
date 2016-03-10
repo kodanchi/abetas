@@ -36,8 +36,9 @@ public class AddRubricNames extends HttpServlet {
             //out.println("logo: " + request.getParameter("logo"));
             //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
-            response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/cycle/index.jsp?page=addTerm&cycle="+id);
+            //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
+            //response.setHeader("Location", "/cycle/index.jsp?page=addTerm&cycle="+id);
+            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
         }
         /*else {
             System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");

@@ -1604,7 +1604,7 @@ public class AS_Select {
 
     }
 
-    public ArrayList<ArrayList<String>> selectAddTerm(String id) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectAddTerm(int FK_Cycle_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -1616,7 +1616,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT T_ID, T_name, T_year, term.current FROM term where FK_Cycle_ID = "+id+";";
+            String query = "SELECT * FROM term where FK_Cycle_ID = ?;";
 
             /*
              *  Get connection from the DataSource
@@ -1628,7 +1628,7 @@ public class AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, FK_Cycle_ID);
 
             rs = preparedStatement.executeQuery();
 
@@ -1638,7 +1638,7 @@ public class AS_Select {
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
                 RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(4));
+                RowDate.add(rs.getString(5));
 
                 RsArr.add(RowDate);
             }
