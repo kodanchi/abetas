@@ -9,6 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
 <%
@@ -275,30 +276,44 @@
 
 
 
-                                        out.print("</table>\n" +
-                                                "\n" +
-                                                "\n" +
-                                                "                        </div>\n" +
-                                                "                    <a class=\"btn btn-success btn-fill pull-left\"  data-toggle=\"modal\" data-target=\"#addModal\"  >Add</a>");
+                                        out.print("</table></div>\n");
 
 
+                            %>
 
-                                        out.print("<br>\n" +
-                                                "                    <br>");
+                        <a class="btn btn-success btn-fill pull-left"  onclick="new function(){
+                            bootbox.dialog({
+                                message: 'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once',
+                                title: 'Add Performance Indicators',
+                                buttons: {
+                                    importBtn: {
+                                        label: 'Import Excel Sheet',
+                                        className: 'btn-primary',
+                                        callback: function() {
+                                            window.location.href = 'index.jsp?&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>&page=import&data=pis';
+                                        }
+                                    },
+                                    enterBtn: {
+                                        label: 'Enter Manually',
+                                        className: 'btn-primary',
+                                        callback: function() {
+                                            window.location.href = 'index.jsp?page=addPI&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>';
+                                        }
+                                    },
+                                    cancelBtn: {
+                                        label: 'Cancel',
+                                        className: 'btn-default',
+                                        callback: function() {
 
+                                        }
+                                    }
+                                }
+                            });
+                        }"  >Add</a>
+                        <%
                                         if(size>0) {
                                             out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=rubricNames&cycle=" + id + "&programID=" + request.getParameter("programID") + "\">Next</a>");
                                         }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -317,28 +332,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?">Cancel</a>
+                    <a class="btn btn-success btn-fill pull-right" href="index.jsp">Cancel</a>
+<%--
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -364,6 +359,7 @@
                         </div>
                     </div>
 
+--%>
 
                     <!-- End of col -->
                 </div>
