@@ -400,7 +400,7 @@ public class Settings_Update {
              */
             String query = null;
             if(ulogo != null) {
-                query = "UPDATE university SET `Uni_name`=?, `College_name`=?, `Uni_logo`=? LIMIT 1;";
+                query = "UPDATE university SET Uni_name=?, College_name=?, Uni_logo=? LIMIT 1;";
             }else {
                 query = "UPDATE university SET `Uni_name`=?, `College_name`=? LIMIT 1;";
             }

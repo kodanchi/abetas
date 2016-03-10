@@ -561,9 +561,10 @@ public class ImportCycleSheet {
                                     case 0:
 
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of the records are empty.";
-                                            file.close();
-                                            return false;
+                                            /*Error_Msg = "Some of the records are empty.";
+                                            file.close();*/
+
+                                            return true;
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
