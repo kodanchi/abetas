@@ -79,31 +79,16 @@
                 </div>
             </div>
 
-
-           <%--
-
-            <a href="/program">
-                <div id="block2" class="col-lg-2 jumbotron" >
-                    <h6 class="text-center">Program Management</h6>
-                    <p></p>
+            <div class="col-md-3">
+                <div class="tile">
+                    <a class="btn btn-primary btn-large btn-block" href="/users/index.jsp?page=log">
+                    <img src="img/log.png" alt="Compas" class="tile-image big-illustration">
+                    <h3 class="tile-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h3>
+                    </a>
                 </div>
-            </a>
+            </div>
 
-            <a href="/cycle">
-                <div id="block3" class="col-lg-2 jumbotron">
-                    <h6 class="text-center">Cycle Management</h6>
-                    <p></p>
-                </div>
-            </a>
 
-            <a href="/vis">
-                <div id="block4" class="col-lg-2 jumbotron">
-                    <h6 class="text-center">Reports</h6>
-                    <p></p>
-                </div>
-            </a>
-
---%>
         </div>
     </div>
 </div>

@@ -31,6 +31,8 @@
                 }
             }else if(pageCall.equals("import")){
                 pageName = "import.jsp";
+            }else if(pageCall.equals("log")){
+                pageName = "log.jsp";
             }else {
                 pageName = "userslist.jsp";
             }
@@ -101,10 +103,10 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/ct-paper.css" rel="stylesheet"/>
     <link href="/css/demo.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
+    <link href="/css/flat-ui.css" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -135,12 +137,8 @@
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->
-<script src="/js/ct-paper-checkbox.js"></script>
-<script src="/js/ct-paper-radio.js"></script>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
-
-<script src="/js/ct-paper.js"></script>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });

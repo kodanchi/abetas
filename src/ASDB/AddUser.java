@@ -46,16 +46,22 @@ public class AddUser extends HttpServlet {
                         }else if(sdb.selectEmailIfExist(request.getParameter("uemail"))){
                             sendErrMsg("The Email is already exist",request,response);
                         }else{
-                            if(userType.equals("Superuser"))
+                            if(userType.equals("Superuser")) {
                                 idb.addUser(0, uname, uemail, fname, mname, lname);
-                            else if (request.getParameter("userType").equals("Faculty_Member"))
+                                Auditor.add((String) request.getSession().getAttribute("username"),
+                                        "added new superuser :" + uname);
+                            }else if (request.getParameter("userType").equals("Faculty_Member")) {
                                 idb.addUser(1, uname, uemail, fname, mname, lname);
-
+                                Auditor.add((String) request.getSession().getAttribute("username"),
+                                        "added new Faculty Member :" + uname);
+                            }
                             response.sendRedirect("/users/index.jsp?status=userAdded");
 
                         }
                     }else if (request.getParameter("userType").equals("Evaluator")){
                         idb.addUser(2, uname, null, fname, mname, lname);
+                        Auditor.add((String) request.getSession().getAttribute("username"),
+                                "added new Evaluator :" + uname);
                         response.sendRedirect("/users/index.jsp?status=userAdded"); 
                     }
                 }
