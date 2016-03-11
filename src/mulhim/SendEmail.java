@@ -27,7 +27,7 @@ public class SendEmail {
         Session session = Session.getDefaultInstance(props,
                 new javax.mail.Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication("mulhimmm@gmail.com","Mum208720m");
+                        return new PasswordAuthentication("mulhimmm@gmail.com","password for email");
                     }
                 });
 
