@@ -33,8 +33,7 @@
 
     try {
 
-         PIRubrics = dbs.selectRubricsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),
-            Integer.parseInt(tid));
+         PIRubrics = dbs.selectRubricsToEvaluate(Integer.parseInt(tid));
 
 
         PIResults = dbs.selectSummativeRubricResultsToEvaluate(Integer.parseInt(id),Integer.parseInt(pid),

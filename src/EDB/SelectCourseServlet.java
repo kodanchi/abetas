@@ -43,7 +43,7 @@ public class SelectCourseServlet extends HttpServlet {
                 System.out.println("inside else");
 
                 SectionList = dbs.selectSectionsCourseOfSummativeToEvaluate(tid,pid,cid);
-                PIRubrics = dbs.selectRubricsToEvaluate(pIid,pid,tid);
+                PIRubrics = dbs.selectRubricsToEvaluate(tid);
                 PIResults = dbs.selectSummativeRubricResultsOfCourseToEvaluate(pIid,pid,tid,cid);
 
 

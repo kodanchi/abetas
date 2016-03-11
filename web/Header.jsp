@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ASDB.AS_Select" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
   Date: 1/27/2016
@@ -7,11 +8,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    String username = "Vistor";
     if(session.getAttribute("username")!= null){
-        String un = "username";
-        session.setAttribute("username",un);
+        username = (String) session.getAttribute("username");
         System.out.println("from header, session is : "+request.getSession().getId());
+        System.out.println("from header, username is : "+username);
     }
+
+    AS_Select dbs = new AS_Select();
+    ArrayList<String> uniData = dbs.selectUniversityLogo();
+
 %>
 <header>
     <div class="navbar-info">
@@ -22,17 +28,33 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                             <span class="sr-only">Toggle navigation</span>
                         </button>
-                        <a class="navbar-brand centerI" href="http://www.uod.edu.sa"> <img width="235px" class="checkboxgroup" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam"></a>
+                        <%
+                            if(uniData.get(2)!= null){
+                                out.println("<a class=\"navbar-brand centerI\" > \n" +
+                                        "                            <img width=\"235px\" class=\"checkboxgroup\" " +
+                                        "src=\""+uniData.get(2)+"\" alt=\""+uniData.get(0)+"\"></a>");
+                            }else {
+                                out.println("<div class=\"title-uppercase text-white text-center col-sm-3 col-sm-offset-2\">"+uniData.get(1)+"</div>");
+                            }
+                        %>
+                        <%--<a class="navbar-brand centerI" href="http://www.uod.edu.sa">
+                            <img width="235px" class="checkboxgroup" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam"></a>--%>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row ">
                     <div style="max-width:500px; margin-right:auto; margin-left:auto;">
                         <div class="collapse navbar-collapse" id="navbar-collapse-01">
                             <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Hello Ali</a></li>
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">Setting</a></li>
-                                <li><a href="#">Logout</a></li>
+                                <li class="active"><a >Hello <%=username%></a></li>
+                                <li><a href="/index.jsp">Home</a></li>
+                                <%
+                                    if(session.getAttribute("userLvl")!= null){
+                                        Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
+                                        if(userLvl != 3)
+                                        out.print("<li><a href=\"/settings\">Setting</a></li>");
+                                    }
+                                %>
+                                <li><a href="/logout">Logout</a></li>
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->

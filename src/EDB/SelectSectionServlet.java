@@ -47,7 +47,7 @@ public class SelectSectionServlet extends HttpServlet {
                 System.out.println("inside else");
 
                 evidence = dbs.selectEvidenceOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
-                PIRubrics = dbs.selectRubricsToEvaluate(pIid,pid,tid);
+                PIRubrics = dbs.selectRubricsToEvaluate(tid);
                 PIResults = dbs.selectSummativeRubricResultsOfSectionToEvaluate(sid,pIid,pid,tid,cid);
 
 
