@@ -13,6 +13,10 @@ import javax.servlet.ServletContextListener;
  * Created by Mohammed on 2/6/2016.
  */
 
+/**
+ * timerRun class used to initiate time class and TImeTest method when the server is start
+ * that's done though  contextInitialized method
+ */
 public class timerRun implements javax.servlet.ServletContextListener {
 
 

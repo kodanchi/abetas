@@ -15,9 +15,20 @@ import java.io.PrintWriter;
 @WebServlet(name = "deleteBackupDB",
         urlPatterns = {"/BackupDel"})
 public class deleteBackupDB extends HttpServlet {
+    /**
+     *
+     * @param request used to get the servler request from the uri which has the user data
+     * @param response used to respone to the servlet site either by redirect the site to another url or show some output to the user
+     * @throws ServletException used to handle if the error occurs from uri (web server)
+     * @throws IOException used to handle any inpout/output operation in dealing with windows operations
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        System.out.println(request.getParameter("deleteAction"));
+        /**
+         * get "deleteaction" values from the servlet, since its button once the user click on it deleteBackup function will be called and passing the servlet request and response with it.
+         * then it will be redirected to the url "backup.jsp"
+         * if the backup file not exist the user will get message till him that deleted files operation not successfully done
+         */
         String deleteAction=request.getParameter("deleteAction");
         if(deleteAction!=null) {
             deleteBackup(deleteAction, request, response);
@@ -31,7 +42,10 @@ public class deleteBackupDB extends HttpServlet {
     public void deleteBackup(String deleteDB,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
         deleteDB = request.getParameter("deleteAction");
     try{
-
+/**
+ * The location of the backup files that need to be deleted
+ * then check if the file exist then delete otherwise tell the user that the file is not exist
+ */
         File file = new File("E:\\Backup\\"+deleteDB);
 
         if(file.delete()){

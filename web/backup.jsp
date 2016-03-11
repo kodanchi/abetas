@@ -54,13 +54,15 @@
 
                             <%
 
+                            /**
+                                 * the location of retrived the backup files
+                             */
 
-                               // String path = "E:\\Backup";
 
                                 String files="E:\\Backup";
                                 File folder = new File(files);
                                 File[] listOfFiles = folder.listFiles();
-                                Path p = Paths.get(files);
+
 
                                 for (int i = 0; i < listOfFiles.length; i++)
                                 {

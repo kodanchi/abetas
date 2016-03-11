@@ -25,26 +25,44 @@ import java.util.Date;
  *
  *
  */
+
+
 @WebServlet(name = "backup",
         urlPatterns = {"/Backup"})
 public class Backup extends HttpServlet {
+    /**
+     *
+     * @param request used to get the servler request from the uri which has the user data
+     * @param response used to respone to the servlet site either by redirect the site to another url or show some output to the user
+     * @throws ServletException used to handle if the error occurs from uri (web server)
+     * @throws IOException used to handle any inpout/output operation in dealing with windows operations
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       // backupDB();
-       // restoreDB();
+
+        /**
+         * get "BackupCreate" values from the servlet, since its button once the user click on it backupDB function will be called
+         */
         if(request.getParameter("backupCreate")!=null){
             backupDB();
 
         }
-
+/**
+ * after calling the function return the user to the same page using sendRedirect
+ */
         response.sendRedirect("backup.jsp");
 
     }
 
+    /**
+     * Since the superuser only the person who will do the backup , the database configuration here done manually
+     */
     String dbName = "abetasdb";
     String dbUser = "root";
     String dbPass = "abetas";
 
-
+    /**
+     * Backup function will create the database backup
+     */
     public void backupDB() {
         String executeCmd = "";
 
@@ -52,9 +70,14 @@ public class Backup extends HttpServlet {
         SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy-HH-mm-S");
         String date = DATE_FORMAT.format(today);
         System.out.println("Today in dd-MM-yy:HH:mm:SS : " + date);
-
+/**
+ * the next string has the command prompt in windows that will do the backup using mysqldump program, by knowing the username, password and the database name
+ * it is important to mention the directory that you want to store the backup in it after providing the database information
+ */
         executeCmd = "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe -u " + dbUser + " -p" + dbPass + " " + dbName + " -r E:\\Backup\\Backup_"+date.toString()+".sql";
-
+/**
+ * doing the command in windows using Process class and handle the I/O operation by catch
+ */
         Process runtimeProcess = null;
         try {
             runtimeProcess = Runtime.getRuntime().exec(executeCmd);
@@ -67,6 +90,9 @@ public class Backup extends HttpServlet {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        /**
+         * if the process done correctly the result of complete should be zero , otherwise it is not
+         */
         if (processComplete == 0) {
             System.out.println("Backup taken successfully");
         } else {
@@ -75,41 +101,4 @@ public class Backup extends HttpServlet {
     }
 
 
-    public void listBackupFile(HttpServletResponse r) throws ClassNotFoundException, SQLException, IOException{
-        PrintWriter out =r.getWriter();
-
-// Directory path here
-        String path = "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin";
-
-        String files;
-        File folder = new File(path);
-        File[] listOfFiles = folder.listFiles();
-
-        for (int i = 0; i < listOfFiles.length; i++)
-        {
-
-            if (listOfFiles[i].isFile())
-            {
-                files = listOfFiles[i].getName();
-                if (files.endsWith(".sql") || files.endsWith(".SQL"))
-                {
-                    Path p = Paths.get(files);
-                    BasicFileAttributes view
-                            = Files.getFileAttributeView(p, BasicFileAttributeView.class)
-                            .readAttributes();
-
-                    //System.out.println(view.creationTime()+" is the same as "+view.lastModifiedTime());
-                    System.out.println(p+" "+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
-                            .format(view.creationTime().toMillis()));
-//                    out.println("<td>1</td>\n" +
-//                            "                                <td>A</td>\n" +
-//                            "                                <td><a class=\"btn btn-warning btn-simple\" data-toggle=\"modal\" data-target=\"#restoreModal\"><i class=\"fa fa-undo fa-2x\"></i></a></td>\n" +
-//                            "                                <td ><a class=\"btn btn-danger btn-simple\" data-toggle=\"modal\" data-target=\"#deleteModal\"><i class=\"fa fa-trash-o fa-2x\"></i></a></td>");
-//                    out.println();
-
-
-                }
-            }
-        }
-    }
 }

@@ -19,8 +19,19 @@ import java.util.*;
 @WebServlet(name = "passcode",
         urlPatterns = {"/Passcode"})
 public class passCode extends HttpServlet {
+    /**
+     *
+     @param request used to get the servler request from the uri which has the user data
+      * @param response used to respone to the servlet site either by redirect the site to another url or show some output to the user
+     * @throws ServletException used to handle if the error occurs from uri (web server)
+     * @throws IOException used to handle any inpout/output operation in dealing with windows operations
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("#######################################################");
+        /**
+         * getFromUser2 and getFromUser3 will take the email of the user and the passcode that he/she received
+         * after that it will check in checkPasscode if the passcode matched or not
+         */
         String getFromUser2=request.getParameter("emailReset");
         String getFromUser3= request.getParameter("emailPassCode");
 
@@ -35,20 +46,29 @@ public class passCode extends HttpServlet {
 
         //response.
     }
+
+    /**
+     *
+     * @param d  will take the email to check if any request occurs before for reset password
+     * @param n will take the passcode that the user entered
+     * @param r used to response to the servlet site either by redirect the site to another url or show some output to the user
+     * @throws ClassNotFoundException
+     * @throws  IOException used to handle any inpout/output operation in dealing with windows operations
+     */
     public void checkPassCode(String d, String n, HttpServletResponse r) throws ClassNotFoundException, SQLException, IOException {
+
         PrintWriter out = r.getWriter();
-        TimeClass currentTime = new TimeClass();
-        currentTime.timerReset();
-        System.out.println("Hello from checkPassCode");
-        System.out.println("The size is " + PassCodeMap.getMapSize());
-        System.out.println(d);
 
-
+        /**
+         * It will check whether the email exist in the hash map or not
+         * after that it will compare the passcode that the user entered with the one which is in the hash map
+         * if both matches it will redirect the user to jsp page that request to enter the new password
+         * otherwise it will alert the user with warning message
+         */
         if (PassCodeMap.checkKey(d)) {
-            System.out.println("This is from the first if condition");
-            Integer.parseInt(PassCodeMap.in.get(0));
-            if (PassCodeMap.in.get(1).compareTo(currentTime.timerReset()) == 0){
-                if (Integer.parseInt(n) == Integer.parseInt(PassCodeMap.in.get(0))) {
+
+
+                if (Integer.parseInt(n) == Integer.parseInt(PassCodeMap.getpassKey(d))) {
 
                     // out.print("Correct  " +d +n);
                     out.print("<html>\n" +
@@ -105,17 +125,8 @@ public class passCode extends HttpServlet {
 
 
                 }
-        }
-            else if (PassCodeMap.in.get(1).compareTo(currentTime.timerReset()) != 0){
-                out.print("<script language=\"javaScript\">\n" +
 
 
-                        "  alert('Wrong time');\n" +
-
-                        "</script>\n");
-                System.out.println(" time !!!!!   "+d);
-
-            }
     }
         else{
             out.print("<script language=\"javaScript\">\n" +

@@ -13,16 +13,26 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class TimeClass extends TimerTask {
+    /**
+     * TimeClass used to run any function period of time depend on the function and its requiremtn time
+     */
     final int SECOND = 1000;
     final int MINUTE = 60 * SECOND;
     final int HOUR = 60 * MINUTE;
     final int DAY = 24 * HOUR;
     final int WEEK = 7 * DAY;
     @Override
+    /**
+     * run method here call backup class to be runned
+     */
     public void run() {
         Backup d= new Backup();
         d.backupDB();
     }
+
+    /**
+     * timeTest method used to run Backup Class weekly
+     */
    public void timeTest(){
         TimeClass task = new TimeClass();
 
@@ -35,17 +45,19 @@ public class TimeClass extends TimerTask {
 
 
     }
-    public String timerReset() {
 
-        String time = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-
-        //System.out.println(currentTime);
-        return time;
-    }
+    /**
+     * timerCalculate method used to save the hash map key for
+     *
+     * @param email used to pass the hash key which is the email
+     */
     public void timerCalculate(String email){
 Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
+            /**
+             * run method here used remove the hash map key and its value withing 24 hours
+             */
             public void run() {
                 //String email="";
 PassCodeMap remov = new PassCodeMap();

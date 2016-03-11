@@ -15,12 +15,24 @@ import java.util.Random;
  * Created by Mohammed on 3/2/2016.
  */
 public class CheckEmail {
-    public static Boolean selectEmail(loginDB loginDB, String d) throws ClassNotFoundException, SQLException {
+    /**
+     * selectEmail method will first check in the database if the email exist or not
+     * if it is exist will generate random number to reset the password
+     * @param loginDB used to connect to the database using loginDB class
+     * @param email used to query the email that used to check if it is exist in the database or not
+     * @return true if the email exist in the database otherwise it will return false
+     * @throws SQLException if the connection to the database not successfully done it will be handled by the exception
+     */
+
+    public static Boolean selectEmail(loginDB loginDB, String email) throws ClassNotFoundException, SQLException {
+
         Random rand = new Random();
 
         String currentTime = new SimpleDateFormat("dd HH:mm").format(new Date());
          String selEmail ="";
-
+/**
+ * make the connection to the database
+ * */
         loginDB.connect();
 
         Connection connection = null;
@@ -30,7 +42,7 @@ public class CheckEmail {
         try {
 
 
-            String query = "select Super_Email from superuser where Super_Email= ?";
+            String query = "select email from abetasdb.users where email= ?";
 
             /*
              *  Get connection from the DataSource
@@ -38,11 +50,11 @@ public class CheckEmail {
 
             connection = loginDB.dataSource.getConnection();
 
-            /*
+            /**
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, d);
+            preparedStatement.setString(1, email);
 
             rs = preparedStatement.executeQuery();
 
@@ -52,17 +64,24 @@ public class CheckEmail {
 
             while (rs.next()){
                 selEmail=rs.getString(1);
-                System.out.println(rs.getString(1));
+
 
 
             }
-if(PassCodeMap.checkKey(selEmail)==false && !"".equals(selEmail)){
+            /**
+             * if the hash map doesn't have the email as key and the email exist in the database
+             * then initiate the random number and assign the email ass key in the hash map
+             * and return true
+             * otherwise if it is exist in the hash map then tell the user to check his/her email
+             * lastly if the email is not exist in the database tell the user that the email is not exist in the database
+             */
+            if(PassCodeMap.checkKey(selEmail)==false && !"".equals(selEmail)){
     String randNumber= String.valueOf(rand.nextInt(100000));
     System.out.println("This is the random number "+randNumber);
     PassCodeMap.setPassCode(selEmail,randNumber);
 
 
-    System.out.println(PassCodeMap.getMapSize());
+
     System.out.println("The code is from loginDB "+PassCodeMap.getpassKey(selEmail));
     System.out.println(true);
     return true;

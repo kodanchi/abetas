@@ -8,6 +8,12 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 public class SendEmail {
+    /**
+     *
+     * @param msg contains the message the the admin want to send to the user
+     * @param reciever contain the reciever email address
+     *                 mu method contains the email configuration "smtp configuration"
+     */
     public  void mu(String msg,String reciever)
     {
         Properties props = new Properties();
@@ -32,7 +38,7 @@ public class SendEmail {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(reciever));
 
-            message.setSubject("Testing Subject");
+            message.setSubject("Reset password request");
             message.setText(msg);
 
             Transport.send(message);
