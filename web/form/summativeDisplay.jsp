@@ -229,40 +229,32 @@
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N1)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N1+"\">\n");
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N2)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N2+"\">\n");
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N3)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N3+"\">\n");
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N4)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
+                                                         /* out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
                                                           out.print(" <input type=\"radio\" readonly");
                                                           out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");*/
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");

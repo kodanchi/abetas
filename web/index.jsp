@@ -1,6 +1,5 @@
 <%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="sessionListener.User" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="javax.persistence.criteria.CriteriaBuilder" %><%--
   Created by IntelliJ IDEA.
@@ -10,81 +9,108 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.js" type="text/javascript"></script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>ABETAS</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/demo.css" rel="stylesheet" />
+    <link href="css/users.css" rel="stylesheet" />
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" />
+    <link href="css/cus.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet" />
 </head>
 <body>
 
 
 
+<div id="header">
+    <jsp:include page="/Header.jsp"/>
+</div>
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
+<div class="section">
+    <div class="container">
+        <!--         what is row -->
+        <div class="row ">
 
-
-<div class="container">
-
-
-
-  <section id="wizard">
-      <div class="page-header">
-        <h1>ABETAS SETUP</h1>
-      </div>
-
-      <div >
-
-
-            <div class="jumbotron text-center">
-
-                <%--<%
-                    HttpSession l_session = null;
-                    String l_persistentCookieId = CookiesControl.getCookieValue(request, "MY_SESSION_COOKIE");
-
-
-                    try {
-
-                        if (l_persistentCookieId != null)
-                        {
-                            HashMap<String, HttpSession> l_activeUsers = (HashMap<String, HttpSession>) request.getServletContext().getAttribute("activeUsers");
-                            // Get the existing session
-                            l_session = l_activeUsers.get(l_persistentCookieId);
-                        }
-                        // Otherwise a session has not been created
-                        if (l_session == null)
-                        {
-                            response.sendRedirect("/login/login.jsp");
-                        }
-
-                        User user = (User) l_session.getAttribute("user");
-                        if(user != null){
-                            out.println("Username : "+user.getUsername());
-                            out.println("Email : "+user.getEmail());
-                        }else {
-                            out.print("no thing ");
-                        }
-
-
-
-                    }catch (NullPointerException e){
-                        e.fillInStackTrace();
-                        System.out.println(e);
-                    }
-                %>--%>
-
-
-
-                <a href="/logout" class="btn btn-success" >Logout</a>
-
-
-              </div>
+            <div class="col-md-3">
+                <div class="tile">
+                    <a class="btn btn-primary btn-large btn-block" href="/users">
+                    <img src="img/users.png" alt="Compas" class="tile-image big-illustration">
+                    <h3 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h3>
+                    </a>
+                </div>
             </div>
-    </section>
-  </div>
+
+            <div class="col-md-3">
+                <div class="tile">
+                    <a class="btn btn-primary btn-large btn-block"  href="/program">
+                    <img src="img/programs.png" alt="Compas" class="tile-image big-illustration">
+                    <h3 class="tile-title text-uppercase" data-toggle="tooltip" title="Add/update/delete programs, students outcomes, courses" >Program Management</h3>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-md-3">
+                <div class="tile">
+                    <a class="btn btn-primary btn-large btn-block" href="/cycle">
+                    <img src="img/cycle.png" alt="Compas" class="tile-image big-illustration">
+                    <h3 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete cycles, performance indicators">Cycle Management</h3>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="tile">
+                    <a class="btn btn-primary btn-large btn-block" href="/vis">
+                    <img src="img/graph.png" alt="Compas" class="tile-image big-illustration">
+                    <h3 class="tile-title text-uppercase" data-toggle="tooltip" title="Observe related graphs for each performance indicator">Reports</h3>
+                    </a>
+                </div>
+            </div>
+
+
+           <%--
+
+            <a href="/program">
+                <div id="block2" class="col-lg-2 jumbotron" >
+                    <h6 class="text-center">Program Management</h6>
+                    <p></p>
+                </div>
+            </a>
+
+            <a href="/cycle">
+                <div id="block3" class="col-lg-2 jumbotron">
+                    <h6 class="text-center">Cycle Management</h6>
+                    <p></p>
+                </div>
+            </a>
+
+            <a href="/vis">
+                <div id="block4" class="col-lg-2 jumbotron">
+                    <h6 class="text-center">Reports</h6>
+                    <p></p>
+                </div>
+            </a>
+
+--%>
+        </div>
+    </div>
+</div>
+
+<div id="footer">
+    <jsp:include page="/Footer.jsp"/>
+</div>
 
 </body>
 </html>

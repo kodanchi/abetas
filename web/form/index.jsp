@@ -82,8 +82,6 @@
         <jsp:include page="<%=pageName%>"/>
     </div>
 
-    <!--   end modal  -->
-
 
     <div id="footer">
         <jsp:include page="/Footer.jsp"/>
