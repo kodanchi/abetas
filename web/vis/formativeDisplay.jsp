@@ -269,18 +269,20 @@
                                     String D4 = "";
                                     if(linkValues.size()!=0) {
                                     E_Select zselect = new E_Select();
-                                    ArrayList<String> rubrics = new ArrayList<String>();
-                                    try {
-                                        rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
-                                        out.print(rubrics.get(0));
-                                        N1 = rubrics.get(0);
-                                        D1 = rubrics.get(1);
-                                        N2 = rubrics.get(2);
-                                        D2 = rubrics.get(3);
-                                        N3 = rubrics.get(4);
-                                        D3 = rubrics.get(5);
-                                        N4 = rubrics.get(6);
-                                        D4 = rubrics.get(7);
+                                        ArrayList<String> rubrics = new ArrayList<String>();
+                                        ArrayList<String> rubricsNames = new ArrayList<String>();
+                                        try {
+                                            rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
+                                            rubricsNames = zselect.selectRubricsFormativeNames(Integer.parseInt(Formative_ID));
+                                            out.print(rubricsNames.get(0));
+                                            N1 = rubricsNames.get(0);
+                                            D1 = rubrics.get(0);
+                                            N2 = rubricsNames.get(1);
+                                            D2 = rubrics.get(1);
+                                            N3 = rubricsNames.get(2);
+                                            D3 = rubrics.get(2);
+                                            N4 = rubricsNames.get(3);
+                                            D4 = rubrics.get(3);
                                     } catch (ClassNotFoundException e) {
                                         e.printStackTrace();
                                     } catch (SQLException e) {

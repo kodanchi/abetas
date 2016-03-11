@@ -25,8 +25,9 @@ public class UserLevelFilter implements Filter {
             if (request.getSession().getAttribute("userLvl") != null) {
                 Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                 switch (userLvl){
+                    case 0:
                     case 1:
-                        response.sendRedirect("/settings/");
+                        chain.doFilter(req, resp);
                         break;
                     case 2:
                         response.sendRedirect("/form/");
