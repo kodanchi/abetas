@@ -40,11 +40,14 @@
     <div class="container">
         <div class="row">
 
+            <h2 class="text-center">Superuser's main page</h2>
+
             <div class="col-sm-3 col-xs-6 mainblock">
-                <div class="tile">
+                <div class="tile block">
                     <a href="/users">
-                    <img src="img/users.png" alt="Compas" class="tile-image big-illustration">
-                    <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h6>
+                        <i class="fa fa-users"></i>
+
+                        <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h6>
                     </a>
                 </div>
             </div>
@@ -52,7 +55,7 @@
             <div class="col-sm-3 col-xs-6 mainblock">
                 <div class="tile block">
                     <a href="/program">
-                    <img src="img/programs.png" alt="Compas" class="tile-image big-illustration">
+                        <i class="fa fa-cogs"></i>
                     <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="Add/update/delete programs, students outcomes, courses" >Program Management</h6>
                     </a>
                 </div>
@@ -62,7 +65,7 @@
             <div class="col-sm-3 col-xs-6 mainblock">
                 <div class="tile block">
                     <a href="/cycle">
-                    <img src="img/cycle.png" alt="Compas" class="tile-image big-illustration">
+                        <i class="fa fa-refresh"></i>
                     <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete cycles, performance indicators">Cycle Management</h6>
                     </a>
                 </div>
@@ -71,7 +74,7 @@
             <div class="col-sm-3 col-xs-6 mainblock">
                 <div class="tile block">
                     <a href="/vis">
-                    <img src="img/graph.png" alt="Compas" class="tile-image big-illustration">
+                        <i class="fa fa-bar-chart"></i>
                     <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="Observe related graphs for each performance indicator">Reports</h6>
                     </a>
                 </div>
@@ -80,7 +83,7 @@
             <div class="col-sm-3 col-xs-6 mainblock">
                 <div class="tile block">
                     <a href="/users/index.jsp?page=log">
-                    <img src="img/log.png" alt="Compas" class="tile-image big-illustration">
+                        <i class="fa fa-bar-chart"></i>
                     <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h6>
                     </a>
                 </div>
