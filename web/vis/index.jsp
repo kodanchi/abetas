@@ -100,6 +100,7 @@
 <!--  Plugins -->
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/jquery.bsFormAlerts.js"></script>
+<script src="/js/pageloading.js"></script>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
@@ -136,24 +137,6 @@
 
      */
 
-    function onReady(callback) {
-        var intervalID = window.setInterval(checkReady, 1);
-        function checkReady() {
-            if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-            }
-        }
-    }
-
-    function show(id, value) {
-        document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
-
-    onReady(function () {
-        show('page', true);
-        show('loading', false);
-    });
 
 
 </script>

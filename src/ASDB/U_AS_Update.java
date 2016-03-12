@@ -148,6 +148,60 @@ public class U_AS_Update {
     }
 
 
+    public  void updateSuperuserPassword(String password, String email) throws SQLException, ClassNotFoundException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " UPDATE superuser SET Super_Password = ? WHERE Super_Email=?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, email);
+
+            rs = preparedStatement.executeUpdate();
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
+
+
     public  void updateFaculty(int id,String fname, String mname, String lname, String username, String email) throws SQLException, ClassNotFoundException {
 
         connect();
@@ -177,6 +231,60 @@ public class U_AS_Update {
             preparedStatement.setString(4, mname);
             preparedStatement.setString(5, lname);
             preparedStatement.setInt(6, id);
+            rs = preparedStatement.executeUpdate();
+
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+        }
+    }
+
+
+    public  void updateFacultyPassword(String password, String email) throws SQLException, ClassNotFoundException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " UPDATE faculty_member SET Faculty_Password = ? WHERE Faculty_Email = ?;";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, password);
+            preparedStatement.setString(2, email);
+
             rs = preparedStatement.executeUpdate();
 
 

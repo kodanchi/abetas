@@ -1630,7 +1630,7 @@ public class U_AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT EXISTS(SELECT * FROM users where username =\""+ username +"\");";
+            String query = "SELECT EXISTS(SELECT * FROM users where username = ? );";
 
             /*
              *  Get connection from the DataSource
@@ -1944,5 +1944,68 @@ public class U_AS_Select {
         }
 
     }
+
+
+    public int selectUserLevel(String email) throws ClassNotFoundException, SQLException {
+
+        int result = -1;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT lvl FROM users where email= ?;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, email);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                result = rs.getInt(1);
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return result;
+
+        }
+
+    }
+
 
 }
