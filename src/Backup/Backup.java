@@ -31,7 +31,7 @@ import java.util.Date;
         urlPatterns = {"/Backup"})
 public class Backup extends HttpServlet {
     private final String UPLOAD_DIRECTORY = "backup";
-    private final String SERVER_DIRECTORY = getServletContext().getRealPath("/");
+    private String SERVER_DIRECTORY = null;
 
     /**
      *
@@ -41,6 +41,8 @@ public class Backup extends HttpServlet {
      * @throws IOException used to handle any inpout/output operation in dealing with windows operations
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        SERVER_DIRECTORY = getServletContext().getRealPath("/");
 
         /**
          * get "BackupCreate" values from the servlet, since its button once the user click on it backupDB function will be called

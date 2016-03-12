@@ -23,51 +23,28 @@ public class CustomServletContextListener implements ServletContextListener {
         // instanciate a map to store references to all the active
         // sessions and bind it to context scope.
         //
-/*
-        HashMap activeUsers = new HashMap();
-        context.setAttribute("activeUsers", activeUsers);
-        System.out.println("activeUsers is created");*/
+        // if the directory does not exist, create it
+        String backupfolder =  context.getRealPath("/")+ "backup";
+        File theDir = new File(backupfolder);
 
-        /*HashMap<String, HttpSession> map = deserialize();
-        if (map == null){
-            HashMap activeUsers = new HashMap();
-            context.setAttribute("activeUsers", activeUsers);
-            System.out.println("activeUsers is created");
-        }else {
-            // Display content using Iterator
-            Set set = map.entrySet();
-            Iterator iterator = set.iterator();
-            while (iterator.hasNext()) {
-                Map.Entry mentry = (Map.Entry) iterator.next();
-                System.out.print("key: " + mentry.getKey() + " & Value: ");
-                System.out.println(mentry.getValue());
+        if (!theDir.exists()) {
+            System.out.println("creating directory: " + backupfolder);
+            boolean result = false;
+
+            try{
+                theDir.mkdir();
+                result = true;
             }
-        }*/
+            catch(SecurityException se){
+                //handle it
+            }
+            if(result) {
+                System.out.println("Backup DIR created");
+            }
+        }
 
     }
-    /*public HashMap<String, HttpSession> deserialize(){
-        HashMap<String, HttpSession> map = null;
-        try
-        {
-            FileInputStream fis = new FileInputStream("d:/hashmap.ser");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            map = (HashMap<String, HttpSession>) ois.readObject();
-            ois.close();
-            fis.close();
-        }catch(IOException ioe)
-        {
-            ioe.printStackTrace();
-            return null;
-        }catch(ClassNotFoundException c)
-        {
-            System.out.println("Class not found");
-            c.printStackTrace();
-            return null;
-        }
-        System.out.println("Deserialized HashMap..");
 
-        return map;
-    }*/
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {

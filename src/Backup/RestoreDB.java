@@ -14,6 +14,8 @@ import java.io.PrintWriter;
 @WebServlet(name = "restoreDB",
         urlPatterns = {"/RestoreDB"})
 public class RestoreDB extends HttpServlet {
+    private final String UPLOAD_DIRECTORY = "backup";
+    private String SERVER_DIRECTORY = null;
     /**
      *
    *  @param request used to get the servler request from the uri which has the user data
@@ -22,6 +24,9 @@ public class RestoreDB extends HttpServlet {
      * @throws IOException used to handle any inpout/output operation in dealing with windows operations
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        SERVER_DIRECTORY = getServletContext().getRealPath("/");
+
         PrintWriter out = response.getWriter();
         /**
          * get "restoreAction" values from the servlet, since its button once the user click on it restoreDB function will be called and passing the servlet request and response with it.
@@ -56,7 +61,7 @@ public class RestoreDB extends HttpServlet {
          * after that doing the command in windows using Process class and handle the I/O operation by catch
          * lastly message will apear to the user either the operation successfully done or not
          */
-        String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", " source E:\\Backup\\"+restoreBackup };
+        String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", " source "+SERVER_DIRECTORY + "/" + UPLOAD_DIRECTORY +restoreBackup };
         //System.out.println(executeCmd);
 
         Process runtimeProcess= null;

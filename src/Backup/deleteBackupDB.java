@@ -15,6 +15,9 @@ import java.io.PrintWriter;
 @WebServlet(name = "deleteBackupDB",
         urlPatterns = {"/BackupDel"})
 public class deleteBackupDB extends HttpServlet {
+    private final String UPLOAD_DIRECTORY = "backup";
+    private String SERVER_DIRECTORY = null;
+
     /**
      *
      * @param request used to get the servler request from the uri which has the user data
@@ -23,6 +26,9 @@ public class deleteBackupDB extends HttpServlet {
      * @throws IOException used to handle any inpout/output operation in dealing with windows operations
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        SERVER_DIRECTORY = getServletContext().getRealPath("/");
+
         PrintWriter out = response.getWriter();
         /**
          * get "deleteaction" values from the servlet, since its button once the user click on it deleteBackup function will be called and passing the servlet request and response with it.
@@ -46,7 +52,7 @@ public class deleteBackupDB extends HttpServlet {
  * The location of the backup files that need to be deleted
  * then check if the file exist then delete otherwise tell the user that the file is not exist
  */
-        File file = new File("E:\\Backup\\"+deleteDB);
+        File file = new File(SERVER_DIRECTORY + "/" + UPLOAD_DIRECTORY + "/" +deleteDB);
 
         if(file.delete()){
             System.out.println(file.getName() + " is deleted!");
