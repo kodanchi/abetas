@@ -42,48 +42,48 @@
         <!--         what is row -->
         <div class="row ">
 
-            <div class="col-md-3">
+            <div class="col-sm-3 col-xs-6 mainblock">
                 <div class="tile">
-                    <a class="btn btn-primary btn-large btn-block" href="/users">
+                    <a href="/users">
                     <img src="img/users.png" alt="Compas" class="tile-image big-illustration">
-                    <h3 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h3>
+                    <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h6>
                     </a>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="tile">
-                    <a class="btn btn-primary btn-large btn-block"  href="/program">
+            <div class="col-sm-3 col-xs-6 mainblock">
+                <div class="tile block">
+                    <a href="/program">
                     <img src="img/programs.png" alt="Compas" class="tile-image big-illustration">
-                    <h3 class="tile-title text-uppercase" data-toggle="tooltip" title="Add/update/delete programs, students outcomes, courses" >Program Management</h3>
+                    <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="Add/update/delete programs, students outcomes, courses" >Program Management</h6>
                     </a>
                 </div>
             </div>
 
 
-            <div class="col-md-3">
-                <div class="tile">
-                    <a class="btn btn-primary btn-large btn-block" href="/cycle">
+            <div class="col-sm-3 col-xs-6 mainblock">
+                <div class="tile block">
+                    <a href="/cycle">
                     <img src="img/cycle.png" alt="Compas" class="tile-image big-illustration">
-                    <h3 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete cycles, performance indicators">Cycle Management</h3>
+                    <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete cycles, performance indicators">Cycle Management</h6>
                     </a>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="tile">
-                    <a class="btn btn-primary btn-large btn-block" href="/vis">
+            <div class="col-sm-3 col-xs-6 mainblock">
+                <div class="tile block">
+                    <a href="/vis">
                     <img src="img/graph.png" alt="Compas" class="tile-image big-illustration">
-                    <h3 class="tile-title text-uppercase" data-toggle="tooltip" title="Observe related graphs for each performance indicator">Reports</h3>
+                    <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="Observe related graphs for each performance indicator">Reports</h6>
                     </a>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="tile">
-                    <a class="btn btn-primary btn-large btn-block" href="/users/index.jsp?page=log">
+            <div class="col-sm-3 col-xs-6 mainblock">
+                <div class="tile block">
+                    <a href="/users/index.jsp?page=log">
                     <img src="img/log.png" alt="Compas" class="tile-image big-illustration">
-                    <h3 class="tile-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h3>
+                    <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h6>
                     </a>
                 </div>
             </div>
