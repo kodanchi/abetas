@@ -73,7 +73,7 @@
                     </div>--%>
 
                     <div class="register-card">
-                        <div class="title"><img width="200px" src="/img/logodark.png"></div>
+                        <div class="title"><img width="200px" src="/img/logowhite.png"></div>
                         <form action="/login" method="post">
 
                             <%

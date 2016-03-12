@@ -44,51 +44,60 @@
 
             <h2 class="text-center">Superuser's main page</h2>
 
-            <div class="col-sm-3 col-xs-6 mainblock">
-                <div class="tile block">
-                    <a href="/users">
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/users">
+                <div class=" block">
+
                         <i class="fa fa-users"></i>
 
-                        <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h6>
-                    </a>
+                        <h6 class="-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete superuser, faculty or evaluator">User Management</h6>
+
                 </div>
+                </a>
             </div>
 
-            <div class="col-sm-3 col-xs-6 mainblock">
-                <div class="tile block">
-                    <a href="/program">
-                        <i class="fa fa-cogs"></i>
-                    <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="Add/update/delete programs, students outcomes, courses" >Program Management</h6>
-                    </a>
-                </div>
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/program">
+                    <div class=" block">
+
+                            <i class="fa fa-cogs"></i>
+                        <h6 class="-title text-uppercase" data-toggle="tooltip" title="Add/update/delete programs, students outcomes, courses" >Program Management</h6>
+
+                    </div>
+                </a>
             </div>
 
 
-            <div class="col-sm-3 col-xs-6 mainblock">
-                <div class="tile block">
-                    <a href="/cycle">
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/cycle">
+                <div class=" block">
+
                         <i class="fa fa-refresh"></i>
-                    <h6 class="tile-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete cycles, performance indicators">Cycle Management</h6>
-                    </a>
+                    <h6 class="-title text-uppercase"  data-toggle="tooltip" title="Add/update/delete cycles, performance indicators">Cycle Management</h6>
+
                 </div>
+                </a>
             </div>
 
-            <div class="col-sm-3 col-xs-6 mainblock">
-                <div class="tile block">
-                    <a href="/vis">
-                        <i class="fa fa-bar-chart"></i>
-                    <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="Observe related graphs for each performance indicator">Reports</h6>
-                    </a>
-                </div>
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/vis">
+                    <div class=" block">
+
+                            <i class="fa fa-bar-chart"></i>
+                        <h6 class="-title text-uppercase" data-toggle="tooltip" title="Observe related graphs for each performance indicator">Reports</h6>
+
+                    </div>
+                </a>
             </div>
 
-            <div class="col-sm-3 col-xs-6 mainblock">
-                <div class="tile block">
-                    <a href="/users/index.jsp?page=log">
-                        <i class="fa fa-bar-chart"></i>
-                    <h6 class="tile-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h6>
-                    </a>
-                </div>
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/users/index.jsp?page=log">
+                    <div class=" block">
+                            <i class="fa fa-list-alt"></i>
+                        <h6 class="-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h6>
+
+                    </div>
+                </a>
             </div>
 
 
