@@ -37,10 +37,8 @@
     });
 </script>
 
-<div class="section">
     <div class="container">
-        <!--         what is row -->
-        <div class="row ">
+        <div class="row">
 
             <div class="col-sm-3 col-xs-6 mainblock">
                 <div class="tile">
@@ -91,7 +89,6 @@
 
         </div>
     </div>
-</div>
 
 <div id="footer">
     <jsp:include page="/Footer.jsp"/>
