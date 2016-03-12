@@ -30,8 +30,8 @@
                         </button>
                         <%
                             if(uniData.get(2)!= null){
-                                out.println("<a class=\"navbar-brand centerI\" > \n" +
-                                        "                            <img width=\"235px\" class=\"checkboxgroup\" " +
+                                out.println("<a class=\" centerI\" > \n" +
+                                        "                            <img width=\"235px\" class=\"\" " +
                                         "src=\""+uniData.get(2)+"\" alt=\""+uniData.get(0)+"\"></a>");
                             }else {
                                 out.println("<div class=\"title-uppercase text-white text-center col-sm-3 col-sm-offset-2\">"+uniData.get(1)+"</div>");
