@@ -1558,6 +1558,72 @@ public class AS_Select {
     }
 
 
+    public ArrayList<String> selectUniversityLogo() throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> rowDate = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT  Uni_name, College_name, Uni_logo  FROM university LIMIT 1;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                rowDate = new ArrayList<String>();
+                rowDate.add(rs.getString(1));
+                rowDate.add(rs.getString(2));
+                rowDate.add(rs.getString(3));
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return rowDate;
+
+        }
+
+    }
+
+
+
 
 
 }

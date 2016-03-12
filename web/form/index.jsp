@@ -58,11 +58,11 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/ct-paper.css" rel="stylesheet"/>
     <link href="/css/demo.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
+    <link href="/css/flat-ui.css" rel="stylesheet" />
 
 
 
@@ -82,8 +82,6 @@
         <jsp:include page="<%=pageName%>"/>
     </div>
 
-    <!--   end modal  -->
-
 
     <div id="footer">
         <jsp:include page="/Footer.jsp"/>
@@ -95,12 +93,10 @@
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->
-<script src="/js/ct-paper-checkbox.js"></script>
-<script src="/js/ct-paper-radio.js"></script>
+
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/jquery.bsFormAlerts.js"></script>
-<script src="/js/ct-paper.js"></script>
 <script src="/js/uploadInput.js"></script>
 
 <script>

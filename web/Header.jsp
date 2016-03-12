@@ -1,4 +1,5 @@
-<%--
+<%@ page import="ASDB.AS_Select" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: Abdullah
   Date: 1/27/2016
@@ -7,46 +8,59 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    String username = "Vistor";
     if(session.getAttribute("username")!= null){
-        String un = "username";
-        session.setAttribute("username",un);
+        username = (String) session.getAttribute("username");
         System.out.println("from header, session is : "+request.getSession().getId());
+        System.out.println("from header, username is : "+username);
     }
+
+    AS_Select dbs = new AS_Select();
+    ArrayList<String> uniData = dbs.selectUniversityLogo();
+
 %>
-<nav class="navbar navbar-ct-danger" role="navigation-demo" id="demo-navbar">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="http://www.uod.edu.sa">
-
-
-                    <div class="logo">
-                        <img class="addBtn" height="40px" src="http://www.uod.edu.sa/sites/all/themes/uod_base/logo.svg" alt="University Of Dammam">
+<header>
+    <div class="navbar-info">
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-info" role="navigation" style="margin-bottom:-0px;">
+                <div class="row" style="margin-bottom:10px;">
+                    <div class="navbar-header" style="width:100%">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                            <span class="sr-only">Toggle navigation</span>
+                        </button>
+                        <%
+                            if(uniData.get(2)!= null){
+                                out.println("<a class=\"navbar-brand centerI\" > \n" +
+                                        "                            <img width=\"235px\" class=\"checkboxgroup\" " +
+                                        "src=\""+uniData.get(2)+"\" alt=\""+uniData.get(0)+"\"></a>");
+                            }else {
+                                out.println("<div class=\"title-uppercase text-white text-center col-sm-3 col-sm-offset-2\">"+uniData.get(1)+"</div>");
+                            }
+                        %>
+                        <%--<a class="navbar-brand centerI" href="http://www.uod.edu.sa">
+                            <img width="235px" class="checkboxgroup" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam"></a>--%>
                     </div>
-
-            </a>
+                </div>
+                <div class="row ">
+                    <div style="max-width:500px; margin-right:auto; margin-left:auto;">
+                        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a >Hello <%=username%></a></li>
+                                <li><a href="/index.jsp">Home</a></li>
+                                <%
+                                    if(session.getAttribute("userLvl")!= null){
+                                        Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
+                                        if(userLvl != 3)
+                                        out.print("<li><a href=\"/settings\">Setting</a></li>");
+                                    }
+                                %>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                </div>
+            </nav>                <!-- /navbar -->
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navigation-example-2">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="#" class="btn btn-default btn-simple">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="btn btn-default btn-simple">Setting</a>
-                </li>
-                <li>
-                    <a href="#" class="btn btn-default btn-fill">Logout</a>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-->
-</nav>
-<!-- end navbar  -->
+    </div>
+</header>

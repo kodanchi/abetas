@@ -26,22 +26,26 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
+<%--
     <link href="/css/ct-paper.css" rel="stylesheet"/>
+--%>
     <link href="/css/demo.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
+    <link href="/css/flat-ui.css" rel="stylesheet" />
 
+<%--
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>--%>
 
 </head>
 <body>
 
 
 <script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+<%--<script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>--%>
 <script src="/js/uploadInput.js" type="application/javascript"></script>
 <div id="page">
 <div id="header">
@@ -333,12 +337,13 @@
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->
-<script src="/js/ct-paper-checkbox.js"></script>
+<%--<script src="/js/ct-paper-checkbox.js"></script>
 <script src="/js/ct-paper-radio.js"></script>
+<script src="/js/ct-paper.js"></script>--%>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/sys-usr-set.js"></script>
-<script src="/js/ct-paper.js"></script>
+
 
 
 

@@ -35,7 +35,7 @@ public class SelectSectionServlet extends HttpServlet {
             ArrayList<String> PIRubrics = null;
             ArrayList<String> PIResults = null;
 
-            int[] results = new int[]{0,0,0,0};
+            float[] results = new float[]{0,0,0,0};
 
 
             if(cid.equals("Overall")){
@@ -47,7 +47,7 @@ public class SelectSectionServlet extends HttpServlet {
                 System.out.println("inside else");
 
                 evidence = dbs.selectEvidenceOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
-                PIRubrics = dbs.selectRubricsToEvaluate(pIid,pid,tid);
+                PIRubrics = dbs.selectRubricsToEvaluate(tid);
                 PIResults = dbs.selectSummativeRubricResultsOfSectionToEvaluate(sid,pIid,pid,tid,cid);
 
 

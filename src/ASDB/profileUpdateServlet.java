@@ -1,8 +1,6 @@
 package ASDB;
 
-import ASDB.Settings_Select;
-import ASDB.Settings_Update;
-import com.database.Password;
+import login.Password;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;

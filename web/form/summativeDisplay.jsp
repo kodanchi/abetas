@@ -164,17 +164,19 @@
                                         if(linkValues.size()!=0) {
                                             F_Select zselect = new F_Select();
                                             ArrayList<String> rubrics = new ArrayList<String>();
+                                            ArrayList<String> rubricsNames = new ArrayList<String>();
                                             try {
                                                 rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
-                                                out.print(rubrics.get(0));
-                                                N1 = rubrics.get(0);
-                                                D1 = rubrics.get(1);
-                                                N2 = rubrics.get(2);
-                                                D2 = rubrics.get(3);
-                                                N3 = rubrics.get(4);
-                                                D3 = rubrics.get(5);
-                                                N4 = rubrics.get(6);
-                                                D4 = rubrics.get(7);
+                                                rubricsNames = zselect.selectRubricsSummativeNames(Integer.parseInt(String.valueOf(summativeID)));
+                                                out.print(rubricsNames.get(0));
+                                                N1 = rubricsNames.get(0);
+                                                D1 = rubrics.get(0);
+                                                N2 = rubricsNames.get(1);
+                                                D2 = rubrics.get(1);
+                                                N3 = rubricsNames.get(2);
+                                                D3 = rubrics.get(2);
+                                                N4 = rubricsNames.get(3);
+                                                D4 = rubrics.get(3);
                                             } catch (ClassNotFoundException e) {
                                                 e.printStackTrace();
                                             } catch (SQLException e) {
@@ -227,40 +229,32 @@
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N1)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N1+"\">\n");
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N2)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N2+"\">\n");
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N3)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N3+"\">\n");
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");
                                                 out.print("<td>");
                                                 out.print("<label class=\"radio radio-blue\">\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N4)){
-                                                          out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
+                                                         /* out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
                                                           out.print(" <input type=\"radio\" readonly");
                                                           out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");*/
+                                                            out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label>");
                                                 out.print("</td>");

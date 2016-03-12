@@ -1875,4 +1875,74 @@ public class U_AS_Select {
         }
 
     }
+
+
+
+    public ArrayList<ArrayList<String>> auditingList() throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT * FROM abetasdb.auditing order by audit_ID DESC;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setInt(1, 10);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()) {
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
+                RowDate.add(rs.getString(4));
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
 }

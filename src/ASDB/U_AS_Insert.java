@@ -1018,4 +1018,62 @@ public class U_AS_Insert {
         }
     }
 
+
+
+
+    public void audit(String userName, String action, String time) throws ClassNotFoundException, SQLException {
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int rs = 0;
+        try {
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            String query = " insert into auditing (userName, action, time) values (?,?,?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, action);
+            preparedStatement.setString(3, time);
+
+            rs = preparedStatement.executeUpdate();
+
+            ////Need to display the temp password to the screen
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+    }
+
+
 }
