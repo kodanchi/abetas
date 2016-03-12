@@ -36,7 +36,7 @@ public class timerRun implements ServletContextListener {
             }
         }else {System.out.println("Backup already existed");}
 
-        TimeClass t = new TimeClass();
+        TimeClass t = new TimeClass(backupfolder);
         t.timeTest();
     }
 

@@ -7,11 +7,18 @@ package passReset;
 Timer for Backup
  */
 
-import Backup.Backup;
+import Backup.BackupTool;
 
 import java.util.*;
 
 public class TimeClass extends TimerTask {
+    private String BACKUP_DIRECTORY = null;
+
+    public TimeClass(String bdir){
+        BACKUP_DIRECTORY = bdir;
+    }
+    public TimeClass(){
+    }
     /**
      * TimeClass used to run any function period of time depend on the function and its requiremtn time
      */
@@ -25,15 +32,15 @@ public class TimeClass extends TimerTask {
      * run method here call backup class to be runned
      */
     public void run() {
-        Backup d= new Backup();
-        d.backupDB();
+        Backup.BackupTool d= new Backup.BackupTool(BACKUP_DIRECTORY);
+        //d.backupDB();
     }
 
     /**
      * timeTest method used to run Backup Class weekly
      */
-   public void timeTest(){
-        TimeClass task = new TimeClass();
+    public void timeTest(){
+        TimeClass task = new TimeClass(BACKUP_DIRECTORY);
 
         // We use a class java.util.Timer to
         // schedule our task/job for execution
@@ -51,7 +58,7 @@ public class TimeClass extends TimerTask {
      * @param email used to pass the hash key which is the email
      */
     public void timerCalculate(String email){
-Timer timer = new Timer();
+        Timer timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             /**
@@ -59,16 +66,16 @@ Timer timer = new Timer();
              */
             public void run() {
                 //String email="";
-PassCodeMap remov = new PassCodeMap();
+                PassCodeMap remov = new PassCodeMap();
 
                 remov.removeElement(email);
                 System.out.println("This is from rmoving email and the size is "+ PassCodeMap.getMapSize());
 
                 if (PassCodeMap.getMapSize()==0){
-    cancel();
+                cancel();
 
 
-}
+                }
             }
         },DAY,DAY);
 
