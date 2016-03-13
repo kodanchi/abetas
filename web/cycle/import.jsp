@@ -152,7 +152,7 @@
                             <div class="col-md-8 col-md-offset-2">
 
 
-                                <div class="input-group">
+                                <div class="input-group form-group">
     <span class="input-group-btn">
                     <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                         Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>

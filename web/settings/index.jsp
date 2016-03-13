@@ -179,7 +179,7 @@
 
                                         <div class="input-group">
                 <span class="input-group-btn">
-                    <span class="btn btn-fill btn-primary btn-file">
+                    <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                         Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
                     </span>
                 </span>
@@ -198,7 +198,7 @@
 
 
 
-                            <button type="button" onclick="onSubmitUpdateSystem()" class="btn btn-success btn-fill addBtn">Apply changes</button>
+                            <button type="button" onclick="onSubmitUpdateSystem()" class="btn btn-primary btn-fill addBtn">Apply changes</button>
 
                         </form>
                     </div>
