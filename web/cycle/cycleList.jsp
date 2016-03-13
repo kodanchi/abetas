@@ -70,8 +70,9 @@
                         </table>
 
                     <form name="myform" action="/AddCycle" method="post">
+                        <button class="btn btn-success">Back</button>
                         <button class="btn btn-success" type="submit">Add</button>
-                        <button class="btn btn-primary">Back</button>
+
                     </form>
 
                     <!-- End of col -->
