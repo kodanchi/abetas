@@ -301,7 +301,7 @@
                             <input name="uid" value="<%if(userData != null)out.print(userData.get(0));%>" hidden>
                             <input name="uname" value="<%if(userData != null)out.print(userData.get(4));%>" hidden>
                             <input name="ulvl" value="<%if(request.getSession().getAttribute("userLvl") != null)out.print((Integer) request.getSession().getAttribute("userLvl"));%>" hidden>
-                            <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-success btn-fill" >Apply changes</button>
+                            <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-primary" >Apply changes</button>
 
                         </form>
                     </div>
