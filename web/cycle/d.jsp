@@ -10,13 +10,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Add Program Performance Indicator</h2>
-                <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
 
                     <form name="myform" action="/AddPI" method="post">
@@ -133,8 +130,8 @@
                             %>
 
                         </div>
-                        <a class="btn btn-success btn-fill" href="index.jsp?page=addObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                        <a class="btn btn-success btn-fill" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                        <a class="btn btn-success" href="index.jsp?page=addObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
+                        <a class="btn btn-success" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
                     </form>
                     <!-- End of col -->
                 </div>
@@ -142,8 +139,4 @@
                 <!-- End of row -->
             </div>
 
-
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

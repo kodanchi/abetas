@@ -53,11 +53,9 @@
 </div>
 
 
-<div id="main" class="main">
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 id="setTitle" class="text-center">Settings</h2>
                 <legend></legend>
 
@@ -321,11 +319,6 @@
                 <!-- End of row -->
             </div>
         </div>
-    </div>
-</div>
-
-<!--   end modal  -->
-
 
 <div id="footer">
     <jsp:include page="/Footer.jsp"/>

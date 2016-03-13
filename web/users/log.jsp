@@ -11,12 +11,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
-    <div class="section">
         <div class="container">
             <div class="row">
                 <h2 class="text-center">System Log</h2>
-                <legend></legend>
-                <div class="col-lg-10 col-md-offset-1">
+                <div class="col-md-10 col-md-offset-1">
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
@@ -53,6 +51,5 @@
 
             </div>
         </div>
-    </div>
 
 

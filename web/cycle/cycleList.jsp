@@ -13,14 +13,10 @@
 <div id="header"></div>
 
         <div class="container">
-            <!--         what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Cycle Management</h2>
-                <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -72,10 +68,9 @@
                             %>
 
                         </table>
-                    </div>
 
                     <form name="myform" action="/AddCycle" method="post">
-                        <button class="btn btn-success btn-fill" type="submit">Add</button>
+                        <button class="btn btn-success" type="submit">Add</button>
                         <button class="btn btn-primary">Back</button>
                     </form>
 

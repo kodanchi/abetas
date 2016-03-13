@@ -70,12 +70,8 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Courses</h2>
-                <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p>Click "Add" to add new courses for <%=request.getParameter("name")%> program</p>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -134,7 +130,7 @@
 
                             %>
                         </table>
-                    </div>
+
                     <a class="btn btn-success" data-toggle="modal" data-target="#addModal" >Add</a>
                     <button class="btn btn-primary pull-right" href="index.jsp">Finish</button>
 

@@ -67,7 +67,6 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Import Excel File</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
 
                     <%

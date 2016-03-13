@@ -16,7 +16,6 @@
             <div class="row">
                 <h2 class="text-center">Program Management</h2>
                 <h4 class="text-center">Program Name</h4>
-                <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
@@ -41,13 +40,6 @@
                         <li><p>Courses: </p></li>
                         <li><button  type="submit" title="Edit" class="btn btn-link btn-Y"><i class="fui-new icon30"></i></button></li>
                     </ul>
-
-
-
-
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -85,10 +77,9 @@
                             %>
 
                         </table>
-                    </div>
 
                     <button class="btn btn-primary">Print</button>
-                    <button class="btn btn-danger btn-fill">Delete</button>
+                    <button class="btn btn-danger">Delete</button>
                     <button class="btn btn-primary pull-right">Back</button>
 
 

@@ -72,7 +72,6 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Link Program Objective and Student Outcome</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p>Select an objective and student outcome to link them for <%=request.getParameter("name")%> program:</p>
 
@@ -190,5 +189,3 @@
 
             <!-- End of container -->
         </div>
-    </div>
-</div>

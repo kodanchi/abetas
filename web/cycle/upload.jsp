@@ -34,7 +34,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
     <div class="container">
-        <!--         what is row -->
+        <!--  Here is row -->
         <div class="row">
             <h2 class="text-center">User Management</h2>
             <legend></legend>

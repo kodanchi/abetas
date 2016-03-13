@@ -14,7 +14,7 @@
 <div id="header"></div>
 
         <div class="container">
-            <!--         what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Cycle Management</h2>
                 <h4 class="text-center">Cycle ID</h4>
@@ -31,13 +31,6 @@
                         <li><p>Terms: </p></li>
                         <li><p><a class="btn btn-warning btn-simple" href="#"><i class="fa fa-pencil fa-2x"></i></a></p></li>
                     </ul>
-
-
-
-
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -72,7 +65,6 @@
 
                             %>
                         </table>
-                    </div>
 
                     <ul class="list-inline" style="margin-bottom:-10px;">
                         <li><p>Performance Indicator: </p></li>
@@ -85,8 +77,8 @@
 
                     <button class="btn btn-primary">PI matching Table</button>
                     <button class="btn btn-primary">Print</button>
-                    <button class="btn btn-danger btn-fill">Delete</button>
-                    <button class="btn btn-primary pull-right">Back</button>
+                    <button class="btn btn-danger">Delete</button>
+                    <button class="btn btn-primary">Back</button>
 
 
                     <!-- End of col -->

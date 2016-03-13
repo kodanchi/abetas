@@ -64,10 +64,9 @@
 
 
         <div class="container" id="space">
-            <!-- what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Import Excel File</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
 
                     <%
@@ -129,7 +128,7 @@
                 %>
 
 
-                    <div class="row tim-row">
+                    <div class="row">
                         <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
 
 
@@ -149,13 +148,13 @@
                         " <input type=\"text\" name=\"section\" value=\""+request.getParameter("section")+"\"  hidden/>");
                             }
                         %>
-                        <div class="row tim-row">
+                        <div class="row">
                             <div class="col-md-8 col-md-offset-2">
 
 
                                 <div class="input-group">
     <span class="input-group-btn">
-                    <span class="btn btn-fill btn-primary btn-file">
+                    <span class="btn btn-success btn-file">
                         Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>
                     </span>
     </span>
@@ -168,7 +167,7 @@
                             </div>
                         </div>
 
-                        <button type="submit"  class="btn btn-success btn-fill">Upload</button>
+                        <button type="submit"  class="btn btn-success">Upload</button>
 
                         <a class="btn btn-primary pull-right" href="<%
                             if(dataType.equals("students")){

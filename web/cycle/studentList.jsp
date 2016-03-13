@@ -110,7 +110,7 @@
 %>
 
         <div class="container" id="space">
-            <!-- what is row -->
+            <!--  Here is row -->
             <div class="row">
                 <h2 class="text-center">Section Information</h2>
                 <h4 class="text-center">Program: <%out.print(programName);%></h4>

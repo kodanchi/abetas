@@ -26,10 +26,10 @@
 %>
 
         <div class="container">
-            <!--         what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Select Program/Courses</h2>
-                <legend></legend>
+
                 <div class="col-md-8 col-md-offset-2">
                     <div class="col-md-8">
                         <div class="dropdown">

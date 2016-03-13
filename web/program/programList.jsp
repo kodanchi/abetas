@@ -12,15 +12,12 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-        <!-- Here is row -->
-<div class="container">
-        <div class="row">
-            <h2 class="text-center">Program Management</h2>
-            <legend></legend>
-            <div class="col-lg-10 col-md-offset-1">
 
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
+<div class="container">
+    <!-- Here is row -->
+    <div class="row">
+            <h2 class="text-center">Program Management</h2>
+            <div class="col-lg-10 col-md-offset-1">
 
                     <!-- Table -->
                     <table class="table table-hover table-striped table-bordered text-center" id="table-sever-list" >
@@ -73,7 +70,6 @@
                         %>
 
                     </table >
-                </div>
                 <a class="btn btn-success" href="index.jsp?page=add">Add</a>
                 <a class="btn btn-primary" href="#">Back</a>
 

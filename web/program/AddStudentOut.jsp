@@ -12,7 +12,6 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Student Outcome</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Enter");%> the program outcomes</p>
 
@@ -49,7 +48,6 @@
 
                 <!-- End of row -->
             </div>
-
 
             <!-- End of container -->
         </div>

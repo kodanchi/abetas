@@ -86,19 +86,13 @@
                         <!-- Here is row -->
                         <div class="row ">
 
-
-
                             <h2 class="text-center">Add Term</h2>
-                            <legend></legend>
                             <div class="col-md-10 col-md-offset-1">
                                 <p class="text-center">You need to enter the terms of cycle number <%out.print(id);%></p>
 
                                 <div>
-                                    <!-- Default panel contents -->
-
-                                    <!-- Table -->
-                                    <div class="row tim-row">
-                                        <div class="row tim-row">
+                                    <div class="row">
+                                        <div class="row">
                                             <form id="addTermForm" method="post" action="/AddTerm">
                                                 <div class="col-md-6">
 

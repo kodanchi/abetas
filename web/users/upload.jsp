@@ -21,16 +21,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<div class="section">
     <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+        <div class="row">
             <h2 class="text-center">User Management</h2>
-            <legend></legend>
             <div class="col-md-8 col-md-offset-2">
                 <p>Please confirm that the imported data are as intended, you can click re-upload to discard the current imported file and import it again.</p>
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
 
                     <!-- Table -->
                     <table class="table">
@@ -100,7 +96,6 @@
 
 %>
                     </table>
-                </div>
 
                 <form method="post" action="/upload/users" >
                     <a class="btn btn-success btn-fill" href="/users/index.jsp?page=import">re-upload</a>
@@ -118,7 +113,5 @@
             <!-- End of row -->
         </div>
 
-
     </div>
-</div>
 

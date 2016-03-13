@@ -55,14 +55,13 @@
 %>
 
         <div class="container" id="space">
-            <!-- what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center"><%if (request.getParameter("section")!=null) {
                     out.print("Update");
                 } else {
                     out.print("Add");
                 }%> Section</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("section")!=null) {
                         out.print("Update");
@@ -148,5 +147,4 @@
                 <!-- End of row -->
             </div>
 
-            <!-- Modal Bodies come here -->
         </div>

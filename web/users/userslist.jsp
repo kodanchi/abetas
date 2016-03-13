@@ -12,13 +12,12 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<div class="section">
+
     <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+        <div class="row">
             <h2 class="text-center">User Management</h2>
-            <legend></legend>
-            <div class="col-lg-10 col-md-offset-1">
+            <div class="col-md-10 col-md-offset-1">
 
                 <%
 
@@ -116,9 +115,6 @@
                     <button class="btn tab tab-close-button" onclick="showETable()" >Evaluators</button>
                 </div>
                 <legend></legend>
-
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
 
                     <div id="ASTable">
                         <!-- Table -->
@@ -333,8 +329,8 @@
 
                         </table >
                     </div>
-                </div>
-                <button class="btn btn-success btn-fill"  data-toggle="modal" data-target="#myModal">Add</button>
+
+                <button class="btn btn-success"  data-toggle="modal" data-target="#myModal">Add</button>
                 <button  class="btn btn-primary">Back</button>
 
                 <!-- Modal -->
@@ -393,7 +389,4 @@
             <!-- End of row -->
         </div>
 
-
-        <!-- Modal Bodies come here -->
     </div>
-</div>

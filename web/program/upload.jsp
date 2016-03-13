@@ -36,11 +36,8 @@
         <!-- Here is row -->
         <div class="row">
             <h2 class="text-center">User Management</h2>
-            <legend></legend>
             <div class="col-md-8 col-md-offset-2">
                 <p>Please confirm that the imported data are as intended, you can click re-upload to discard the current imported file and import it again.</p>
-                <div class="panel panel-default">
-                    <!-- Default panel contents -->
 
                     <!-- Table -->
                     <table class="table table-hover table-striped table-bordered text-center">
@@ -113,7 +110,6 @@
 
 %>
                     </table>
-                </div>
 
                 <form method="post" action="/upload/program" >
                     <a class="btn btn-success" href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>

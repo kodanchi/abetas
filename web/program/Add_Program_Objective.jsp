@@ -13,7 +13,6 @@
             <!--  Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Program Objective</h2>
-                <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Enter");%> the program objectives</p>
 

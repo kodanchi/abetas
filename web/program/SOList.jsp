@@ -72,14 +72,10 @@
 
         <div class="container">
             <!--  Here is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Add Student Outcomes</h2>
-                <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p>Click "Add" to enter student outcomes for <%=request.getParameter("name")%> program</p>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -132,7 +128,6 @@
 
                             %>
                         </table>
-                    </div>
                     <a class="btn btn-success" data-toggle="modal" data-target="#addModal">Add</a>
                     <a class="btn btn-success" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 

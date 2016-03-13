@@ -84,7 +84,6 @@
     }
 %>
 <script src="/js/users.js"></script>
-<div class="section">
     <div class="container">
 
         <%
@@ -145,10 +144,9 @@
 
         %>
 
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+        <div class="row">
             <h2 class="text-center"><%=pageTitle%></h2>
-            <legend></legend>
             <div class="col-md-8 col-md-offset-2">
                 <div id="alert"  class="alert alert-danger fade in"  role="alert" >
                     <strong id="alertt" ></strong>
@@ -227,7 +225,4 @@
             <!-- End of row -->
         </div>
 
-
-        <!-- Modal Bodies come here -->
     </div>
-</div>

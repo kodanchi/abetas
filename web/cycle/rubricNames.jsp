@@ -95,6 +95,7 @@
         <div class="container" id="space">
             <!-- Here is row -->
                 <legend></legend>
+            <div class="row">
                 <div class="col-md-10 col-md-offset-1">
 
                     <form name="myform" action="/AddRubricNames" method="post">
@@ -113,7 +114,7 @@
 
 
 
-                        <div class="row tim-row">
+                        <div class="row">
                             <h2 class="text-center">Specify Rubric Names</h2>
                             <legend></legend>
                             <p>Enter the four rubric names</p>
@@ -166,7 +167,7 @@
 
                         <br>
 
-                        <button class="btn btn-success btn-fill" type="submit">Next</button>
+                        <button class="btn btn-success" type="submit">Next</button>
                         <a class="btn btn-success btn-primary" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
 
                                 </div>
@@ -179,3 +180,4 @@
             </div>
 
         </div>
+

@@ -83,14 +83,12 @@
 
         <div class="container">
             <!-- Here is row -->
+            <div class="row">
 
-                <h2 class="text-center">Add Program Performance Indicator</h2>
-                <legend></legend>
+            <h2 class="text-center">Add Program Performance Indicator</h2>
+
                 <div class="col-md-8 col-md-offset-2">
 
-
-                    <div class="">
-                        <div class="col-md-8">
                             <div class="dropdown">
                                 <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                                     <% if(request.getParameter("programID")!=null) {
@@ -142,33 +140,6 @@
                         <br>
                         <br>
                         <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                             <input name="cycle" value="<%=id%>" hidden/>
 
@@ -333,7 +304,7 @@
 
 
 
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp">Cancel</a>
+                    <a class="btn btn-success pull-right" href="index.jsp">Cancel</a>
 <%--
 
                     <!-- Modal -->
@@ -364,7 +335,6 @@
 
                     <!-- End of col -->
                 </div>
-
                 <!-- End of row -->
             </div>
 

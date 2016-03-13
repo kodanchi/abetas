@@ -42,20 +42,17 @@
 %>
 
         <div class="container" id="space">
-            <!-- what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Course Information</h2>
                 <h4 class="text-center">Program: <%out.print(programName);%></h4>
                 <h4 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h4>
-                <legend></legend>
 
                 <div class="col-md-10 col-md-offset-1">
 
                     <h3 class="text-center">Sections</h3>
 
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
@@ -128,7 +125,6 @@
                             %>
 
                         </table>
-                            </div>
                     </div>
                     <div class="col-md-10 col-md-offset-1">
 

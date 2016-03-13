@@ -25,7 +25,7 @@
 %>
 
         <div class="container">
-            <!--         what is row -->
+            <!--  Here is row -->
             <div class="row">
                 <h2 class="text-center">Link Performance Indicator with Student Outcomes</h2>
                 <legend></legend>
@@ -42,9 +42,6 @@
                         }
                     }
                     %> program</p>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -114,10 +111,9 @@
 
                             %>
                         </table>
-                    </div>
 
-                    <a class="btn btn-success btn-fill pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
+                    <a class="btn btn-success pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
+                    <a class="btn btn-success pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
 
                     <!-- End of col -->
                 </div>

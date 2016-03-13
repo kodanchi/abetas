@@ -99,7 +99,6 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Performance Indicator Links</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p>Select a student outcome, performance indicator, course and type of form link them for <%out.print(programName);%> program:</p>
 

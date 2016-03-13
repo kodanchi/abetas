@@ -11,7 +11,7 @@
 <div id="header"></div>
 
         <div class="container">
-            <!--         what is row -->
+            <!--  Here is row -->
             <div class="row">
                 <h2 class="text-center">Term Management</h2>
                 <h4 class="text-center">Term Name</h4>
@@ -27,11 +27,6 @@
                         <li><p>Courses: </p></li>
                         <li><p><button title="Edit" class="btn btn-link btn-Y "><i class="fui-new icon30"></i></button></p></li>
                     </ul>
-
-
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
@@ -78,8 +73,8 @@
 
 
                         </table>
-                    </div>
-                    <button class="btn btn-danger btn-fill">Delete</button>
+
+                    <button class="btn btn-danger">Delete</button>
                     <button class="btn btn-primary">Back</button>
 
 

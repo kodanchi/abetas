@@ -84,13 +84,10 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container" id="space">
-            <!-- what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Performance Indicator</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Enter");%> performance indicator for the <%out.print(programName);%> program</p>
 
@@ -123,8 +120,8 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=piList&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
+                        <button class="btn btn-success pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-success pull-right" href="index.jsp?page=piList&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
 
 
                     </form>
@@ -135,7 +132,4 @@
             </div>
 
 
-            <!-- Modal Bodies come here -->
         </div>
-    </div>
-</div>

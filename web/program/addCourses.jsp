@@ -72,7 +72,6 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Course</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("CourseName")!=null) {out.print("Update");} else out.print("Enter");%> the name of the course, code and level of <%=request.getParameter("name")%> program:</p>
 

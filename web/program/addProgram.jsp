@@ -71,7 +71,6 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Program</h2>
-                <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("ProgramName")!=null) {out.print("Update");} else out.print("Enter");%> the name and the mission of the program:</p>
 
