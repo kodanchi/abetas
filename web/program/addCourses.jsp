@@ -72,7 +72,7 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Course</h2>
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-8 col-md-offset-2">
                     <p><%if (request.getParameter("CourseName")!=null) {out.print("Update");} else out.print("Enter");%> the name of the course, code and level of <%=request.getParameter("name")%> program:</p>
 
                     <form name="myform" action="/Add Courses" method="post">
@@ -108,8 +108,8 @@
 
                         </div>
 
-                        <div class="form-group">
-                        <div class="col-md-5">
+                        <div class="row form-group">
+                        <div class="col-md-5" style="padding-left: -10px">
                             <label>Course Level: </label>
                             <select class="form-control" name="level">
 
@@ -157,6 +157,7 @@
                         <a class="btn btn-default pull-right" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>
+
                     <!-- End of col -->
                 </div>
 
