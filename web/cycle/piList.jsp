@@ -89,7 +89,13 @@
 
                 <div class="col-md-8 col-md-offset-2">
 
-                            <div class="dropdown">
+                    <select class="selectpicker" data-live-search="true">
+                        <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                        <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                        <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+                    </select>
+
+                    <div class="dropdown">
                                 <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
                                     <% if(request.getParameter("programID")!=null) {
                                         C_AS_Select sselect = new C_AS_Select();
