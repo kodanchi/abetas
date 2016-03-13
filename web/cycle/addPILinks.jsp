@@ -233,10 +233,11 @@
 
 
                         <div class="form-group">
-
+                            <ul class="list-inline">
+<li>
                             <label>Type: </label>
-
-                            <div class="btn-group">
+</li>
+                                <li>
                                  <select class="form-control" name="Type" id="Type" onchange="onFormTypeChange();">
                                         <option value="Summative"
                                         <% if (request.getParameter("TypeValue") != null && "Summative".equals(request.getParameter("TypeValue"))) {
@@ -260,8 +261,9 @@
                                         %>
 
                                     </select>
+                                </li>
+                                </ul>
                             </div>
-                        </div>
 
 
 
