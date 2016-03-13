@@ -84,23 +84,24 @@
 
                     <div class="container">
                         <!-- Here is row -->
+                        <h2 class="text-center">Add Term</h2>
+
                         <div class="row ">
+                            <p class="text-center">You need to enter the terms of cycle number <%out.print(id);%></p>
 
-                            <h2 class="text-center">Add Term</h2>
+
                             <div class="col-md-10 col-md-offset-1">
-                                <p class="text-center">You need to enter the terms of cycle number <%out.print(id);%></p>
 
-                                <div>
                                     <div class="row">
-                                        <div class="row">
                                             <form id="addTermForm" method="post" action="/AddTerm">
-                                                <div class="col-md-6">
+                                                <div class="form-group">
+
+                                                <div class="col-md-6 col-sm-12">
 
                                                     <div class="row">
                                                         <label>Term</label>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="form-group">
 
                                                             <select class="form-control" name="termName" required>
                                                                 <%
@@ -131,18 +132,17 @@
                                                                 <option value="Term 4">Term 4</option>--%>
                                                             </select>
                                                             <input name="cycle" value="<%=id%>" hidden/>
-                                                        </div>
                                                     </div>
-
-
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                </div>
+                                                <div class="form-group">
+
+                                                <div class="col-md-6 col-sm-12">
                                                     <div class="row">
                                                         <label>Year</label>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="form-group">
                                                             <div class="col-md-5">
                                                                 <ul class="list-inline">
                                                                     <li><label>From</label></li>
@@ -247,9 +247,9 @@
                                                 </div>
                                             </form>
                                         </div>
-                                        <Legend></Legend>
-                                        <div class="row panel panel-default">
-                                            <table class="table">
+
+                                        <div class="row">
+                                            <table class="table table-hover table-striped table-bordered text-center">
                                                 <tr>
                                                     <th>Name</th>
                                                     <th>Year</th>
@@ -312,10 +312,7 @@
                                         </div>
                                     </div>
 
-
-
-                                </div>
-                                <a class="btn btn-success pull-right" href="index.jsp">Cycles List</a>
+                                    <button class="btn btn-success pull-right" href="index.jsp">Cycles List</button>
 
 
 
