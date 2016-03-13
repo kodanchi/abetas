@@ -120,8 +120,8 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success pull-right" href="index.jsp?page=piList&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
+                        <button class="btn btn-primary pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-default pull-right" href="index.jsp?page=piList&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Cancel</a>
 
 
                     </form>

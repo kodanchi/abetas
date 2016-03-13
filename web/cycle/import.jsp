@@ -132,7 +132,7 @@
                         <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
 
 
-                        <div class="col-md-6 img-responsive pull-right">
+                        <div class="col-md-6 img-responsive pull-right form-group">
                             <img src="http://i.stack.imgur.com/irt3e.jpg" class="img-responsive" alt="excel format">
                         </div>
                     </div>
@@ -154,7 +154,7 @@
 
                                 <div class="input-group">
     <span class="input-group-btn">
-                    <span class="btn btn-success btn-file">
+                    <span class="btn btn-browse btn-file">
                         Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>
                     </span>
     </span>
@@ -167,9 +167,9 @@
                             </div>
                         </div>
 
-                        <button type="submit"  class="btn btn-success">Upload</button>
+                        <button type="submit"  class="btn btn-primary pull-right">Upload</button>
 
-                        <a class="btn btn-primary pull-right" href="<%
+                        <a class="btn btn-default pull-right" href="<%
                             if(dataType.equals("students")){
                                 out.print("/cycle/index.jsp?back="+ dataType +"&cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
                                 "&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+
@@ -178,7 +178,7 @@
                                 out.print("/cycle/index.jsp?back="+ dataType +"&cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
                                 "&programID="+request.getParameter("programID"));
                             }
-                        %>">Back</a>
+                        %>">Cancel</a>
                     </form>
 
                     <!-- End of col -->
