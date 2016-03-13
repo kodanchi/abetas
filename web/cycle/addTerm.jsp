@@ -303,7 +303,7 @@
                                         </div>
                                     </div>
 
-                                    <button class="btn btn-success pull-right" href="index.jsp">Cycles List</button>
+                                    <a class="btn btn-success pull-right" href="index.jsp">Cycles List</a>
 
 
 
