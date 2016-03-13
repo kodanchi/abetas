@@ -91,7 +91,7 @@
                             <p class="text-center">You need to enter the terms of cycle number <%out.print(id);%></p>
 
 
-                            <div class="col-md-10 col-md-offset-1">
+                            <div class="col-md-12">
 
                                     <div class="row">
                                             <form id="addTermForm" method="post" action="/AddTerm">
