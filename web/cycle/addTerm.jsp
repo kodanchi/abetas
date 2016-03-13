@@ -137,7 +137,7 @@
                                                 </div>
 
                                                 </div>
-                                                <div class="form-group">
+                                                <div class="form-group chckTerm">
 
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="row">
