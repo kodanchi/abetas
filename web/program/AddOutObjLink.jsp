@@ -10,6 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
 
 <%
 
@@ -88,7 +89,7 @@
                                 <input type="hidden" name="OutLinkValue" value="<%=request.getParameter("OutLinkValue")%>">
 
 
-                                    <select class="form-control" name="Obj">
+                                    <select class=" selectpicker" name="Obj" data-live-search="true">
                                         <%
                                             P_AS_Select aselect = new P_AS_Select();
                                             try {
@@ -128,7 +129,7 @@
 
                                 <label>Student Outcome: </label>
 
-                                        <select class="form-control" name="Out">
+                                        <select class=" selectpicker"  name="Out" data-live-search="true">
                                             <%
                                                 P_AS_Select bselect = new P_AS_Select();
                                                 try {
