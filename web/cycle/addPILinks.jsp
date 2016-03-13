@@ -125,7 +125,6 @@
                                 <input type="hidden" name="cycle" value="<%=id%>">
                                 <input type="hidden" name="term" value="<%=Termid%>">
 
-                                <div class="col-xl-50 selectContainer" >
                                     <select class="form-control" name="Out">
                                         <%
                                             C_AS_Select bselect = new C_AS_Select();
@@ -151,7 +150,6 @@
                                             }
                                         %>
                                     </select>
-                                </div>
                             </div>
                         </div>
 
@@ -161,7 +159,6 @@
 
                                 <div class="btn-group">
 
-                                    <div class="col-xl-25 selectContainer" >
                                         <select class="form-control" name="PI">
                                             <%
                                                 C_AS_Select cselect = new C_AS_Select();
@@ -188,7 +185,6 @@
                                                 }
                                             %>
                                         </select>
-                                    </div>
                                 </div>
                             </div>
 
@@ -198,7 +194,6 @@
 
                             <div class="btn-group">
 
-                                <div class="col-xl-25 selectContainer" >
                                     <select class="form-control" name="Course">
                                         <%
                                             C_AS_Select dselect = new C_AS_Select();
@@ -228,7 +223,6 @@
                                             }
                                         %>
                                     </select>
-                                </div>
                             </div>
                         </div>
 
@@ -243,9 +237,7 @@
                             <label>Type: </label>
 
                             <div class="btn-group">
-
-                                <div class="col-xl-25 selectContainer" >
-                                    <select class="form-control" name="Type" id="Type" onchange="onFormTypeChange();">
+                                 <select class="form-control" name="Type" id="Type" onchange="onFormTypeChange();">
                                         <option value="Summative"
                                         <% if (request.getParameter("TypeValue") != null && "Summative".equals(request.getParameter("TypeValue"))) {
                                             out.print(" selected");
@@ -268,7 +260,6 @@
                                         %>
 
                                     </select>
-                                </div>
                             </div>
                         </div>
 
@@ -420,8 +411,8 @@
 
                         <br>
 
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?cycle=<%=id%>&term=<%=Termid%>&page=LinkPIOutList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
+                        <button class="btn btn-primary btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-default pull-right" href="index.jsp?cycle=<%=id%>&term=<%=Termid%>&page=LinkPIOutList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
 
 
                     </form>
