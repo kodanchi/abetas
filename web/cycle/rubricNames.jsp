@@ -168,7 +168,7 @@
                         <br>
 
                         <button class="btn btn-success" type="submit">Next</button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
+                        <button class="btn btn-success btn-primary pull-right" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</button>
 
                                 </div>
                         </div>
