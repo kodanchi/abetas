@@ -45,8 +45,8 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Course Information</h2>
-                <h5 class="text-center">Program: <%out.print(programName);%></h5>
-                <h5 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h5>
+                <h6 class="text-center">Program: <%out.print(programName);%></h6>
+                <h6 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h6>
 
                 <div class="col-md-10 col-md-offset-1">
 
@@ -163,7 +163,7 @@
 
                             </div>
                             <p>*Click "Next" to add student</p>--%>
-                            <button class="btn btn-primary" type="submit">Add</button>
+                            <button class="btn btn-primary pull-left" type="submit">Add</button>
 
                         </form>
 
