@@ -22,7 +22,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label> <h6>Program: </h6><label><%=request.getParameter("name")%></label></label>
+                                    <label> <strong>Program: </strong><label><%=request.getParameter("name")%></label></label>
                                 </div>
 
                             </div>
