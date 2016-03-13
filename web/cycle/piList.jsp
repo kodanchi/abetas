@@ -311,7 +311,7 @@
 
 
 
-                    <a class="btn pull-right" href="index.jsp">Cancel</a>
+                    <a class="btn btn-default pull-right" href="index.jsp">Cancel</a>
 <%--
 
                     <!-- Modal -->

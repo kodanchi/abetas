@@ -160,7 +160,7 @@
 
                         <button class="btn btn-success">Back</button>
                         <button class="btn btn-success pull-right" type="submit">Next</button>
-                        <button class="btn pull-right" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</button>
+                        <button class="btn btn-default pull-right" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</button>
 
                     <!-- End of col -->
 
