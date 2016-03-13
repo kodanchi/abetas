@@ -90,15 +90,12 @@
 
                 <div class="col-md-8 col-md-offset-2">
 
-                    <select class="selectpicker" data-live-search="true">
-                        <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                        <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                        <option data-tokens="frosting">Sugar, Spice and all things nice</option>
-                    </select>
 
-                    <div class="dropdown">
-                                <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
-                                    <% if(request.getParameter("programID")!=null) {
+
+
+                    <%--<div class="dropdown">
+                                <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">--%>
+                                    <%--<% if(request.getParameter("programID")!=null) {
                                         C_AS_Select sselect = new C_AS_Select();
                                         try {
                                             String rs = sselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
@@ -111,11 +108,15 @@
                                     }else {
                                         out.print("Choose a program");
                                     }
-                                    %>
-
-                                    <b class="caret"></b>
+                                    %>--%>
+                        <select class="selectpicker" id="prgList" onchange="onPrgramChange(<%=id%>)" data-live-search="true">
+                            <option data-tokens="select">Select program</option>
+                            <%--<option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
+                            <option >Sugar, Spice and all things nice</option>--%>
+                                    <%--<b class="caret"></b>
                                 </a>
-                                <ul class="dropdown-menu">
+                                <ul class="dropdown-menu">--%>
 
                                     <%
                                         C_AS_Select select = new C_AS_Select();
@@ -131,8 +132,22 @@
                                                 //pid.add(Integer.valueOf(rsRow.get(0)));
                                                 //System.out.println("pid : "+pid.get(i));
                                                 //out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
-                                                out.print("<li><a href=\"/cycle/index.jsp?page=piList&cycle="+id+"&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
+                                                //out.print("<li><a href=\"/cycle/index.jsp?page=piList&cycle="+id+"&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
+                                                out.print("<option data-tokens=\""+rsRow.get(1)+"\" " );
 
+                                                if(request.getParameter("programID")!=null && request.getParameter("programID").equals(rsRow.get(0))){
+                                                    out.print(" selected=\"selected\" ");
+                                                }
+
+                                                        out.print(" value=\""+rsRow.get(0)+"\">"+rsRow.get(1)+"</option>");
+
+                                            }
+                                            if(request.getParameter("programID")!=null){
+                                                out.print("<script>\n" +
+                                                        "                                $(document).ready(function(){\n" +
+                                                        "                                            onPrgramChange("+id+");\n" +
+                                                        "                                        });\n" +
+                                                        "                            </script>");
                                             }
                                         } catch (ClassNotFoundException e) {
                                             e.printStackTrace();
@@ -140,8 +155,39 @@
                                             e.printStackTrace();
                                         }
                                     %>
-                                </ul>
-                            </div>
+                                <%--</ul>--%>
+                            <%--</div>--%>
+
+                            <script>
+                                function onPrgramChange(cid){
+                                    var pl = document.getElementById("prgList");
+                                    var pid = pl.options[pl.selectedIndex].value;
+                                    if(pid == "Select program"){
+                                        $("#pIList").hide();
+                                        //$("#evidence").hide();
+                                    }else {
+                                        show('page', false);
+                                        show('loading', true);
+                                        $.ajax({
+                                            type: 'POST',
+                                            data: {
+                                                cid: cid,
+                                                pid: pid
+                                            },
+                                            url: '/selectPI',
+                                            success: function (result) {
+                                                $('#pIList').html(result);
+                                                $('#pIList').show();
+                                                show('page', true);
+                                                show('loading', false);
+
+                                            }
+
+                                        })
+                                    }
+                                }
+                            </script>
+                    </select>
                         </div>
 
                         <br>
@@ -150,8 +196,11 @@
 
                             <input name="cycle" value="<%=id%>" hidden/>
 
-                            <input type="hidden" name="programID" value="<% if(request.getParameter("programID")!=null) {out.print(request.getParameter("programID"));}%>">
 
+
+
+                <div id="pIList"></div>
+<%--
 
                             <%
                                 if(request.getParameter("programID")!=null) {
@@ -260,7 +309,9 @@
 
                             %>
 
-                        <a class="btn btn-primary btn-fill pull-left"  onclick="new function(){
+
+
+                       &lt;%&ndash; <a class="btn btn-primary btn-fill pull-left"  onclick="new function(){
                             bootbox.dialog({
                                 message: 'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once',
                                 title: 'Add Performance Indicators',
@@ -288,7 +339,7 @@
                                     }
                                 }
                             });
-                        }"  >Add</a>
+                        }"  >Add</a>&ndash;%&gt;
                         <%
                                         if(size>0) {
                                             out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=rubricNames&cycle=" + id + "&programID=" + request.getParameter("programID") + "\">Next</a>");
@@ -306,6 +357,7 @@
                                 }
                             %>
 
+--%>
 
 
 
