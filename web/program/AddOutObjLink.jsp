@@ -81,9 +81,6 @@
 
                             <label>Program Objective: </label>
 
-                            <div class="btn-group">
-
-
                                 <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                                 <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
                                 <input type="hidden" name="Linkid" value="<%=request.getParameter("Linkid")%>">
@@ -91,7 +88,6 @@
                                 <input type="hidden" name="OutLinkValue" value="<%=request.getParameter("OutLinkValue")%>">
 
 
-                                <div class="col-xl-50 selectContainer" >
                                     <select class="form-control" name="Obj">
                                         <%
                                             P_AS_Select aselect = new P_AS_Select();
@@ -125,19 +121,13 @@
                                             }
                                         %>
                                     </select>
-                                </div>
-                            </div>
+                        </div>
 
 
                             <div class="form-group">
 
                                 <label>Student Outcome: </label>
 
-                                <div class="btn-group">
-
-
-
-                                    <div class="col-xl-25 selectContainer" >
                                         <select class="form-control" name="Out">
                                             <%
                                                 P_AS_Select bselect = new P_AS_Select();
@@ -170,8 +160,6 @@
                                                 }
                                             %>
                                         </select>
-                                    </div>
-                                </div>
                             </div>
 
                                 <button class="btn btn-success" type="submit"><%if (request.getParameter("ObjLinkValue")!=null) {out.print("Update");} else out.print("Add");%></button>
