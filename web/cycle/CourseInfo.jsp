@@ -45,12 +45,12 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Course Information</h2>
-                <h4 class="text-center">Program: <%out.print(programName);%></h4>
-                <h4 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h4>
+                <h5 class="text-center">Program: <%out.print(programName);%></h5>
+                <h5 class="text-center">Course: <%out.print(courseCode);%> | <%out.print(courseName);%> </h5>
 
                 <div class="col-md-10 col-md-offset-1">
 
-                    <h3 class="text-center">Sections</h3>
+                    <h4 class="text-center">Sections</h4>
 
 
                         <!-- Table -->
@@ -163,11 +163,11 @@
 
                             </div>
                             <p>*Click "Next" to add student</p>--%>
-                            <button class="btn btn-success btn-fill pull-left" type="submit">Add</button>
+                            <button class="btn btn-primary" type="submit">Add</button>
 
                         </form>
 
-                        <a class="btn btn-success btn-primary pull-right" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Finish</a>
+                        <a class="btn btn-primary pull-right" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Finish</a>
 
 
 
