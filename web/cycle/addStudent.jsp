@@ -229,8 +229,8 @@
                             <input type="hidden" name="S_ID" value="<%=request.getParameter("S_ID")%>">
 
                         </div>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>
+                        <button class="btn btn-primary" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-primary pull-right" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>
                         &term=<%=request.getParameter("term")%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>
                         &courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Cancel</a>
 

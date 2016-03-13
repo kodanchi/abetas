@@ -206,7 +206,7 @@
 
                     <br>
 
-                    <a class="btn btn-success btn-fill" data-toggle="modal" data-target="#addModal" >Add</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add</a>
 
                     <a class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>" >Finish</a>
 

@@ -29,7 +29,7 @@
             <div class="row">
                 <h2 class="text-center">Link Performance Indicator with Student Outcomes</h2>
                 <legend></legend>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-12">
                     <p>Click "Add" to enter a new performance indicator and students outcome link for <% if(request.getParameter("programID")!=null) {
                         C_AS_Select ssselect = new C_AS_Select();
                         try {
@@ -112,8 +112,8 @@
                             %>
                         </table>
 
-                    <a class="btn btn-success pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
-                    <a class="btn btn-success pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
+                    <a class="btn btn-primary pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
+                    <a class="btn btn-primary pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>
 
                     <!-- End of col -->
                 </div>

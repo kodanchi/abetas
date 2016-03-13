@@ -137,8 +137,8 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("section")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
+                        <button class="btn btn-primary " type="submit"><%if (request.getParameter("section")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-default pull-right" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->
