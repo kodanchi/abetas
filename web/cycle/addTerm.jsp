@@ -143,25 +143,15 @@
                                                         <label>Year</label>
                                                     </div>
                                                     <div class="row">
-                                                            <div class="col-md-5">
                                                                 <ul class="list-inline">
                                                                     <li><label>From</label></li>
-                                                                    <li><input class="form-control" onchange="onYearChng(this);" value="<%=tfYear%>" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
-                                                                </ul>
-
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <ul class="list-inline">
+                                                                    <li><input class="form-control chckTerm" onchange="onYearChng(this);" value="<%=tfYear%>" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
                                                                     <li><label>To </label></li>
-                                                                    <li><input class="form-control" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
+                                                                    <li><input class="form-control chckTerm" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
+
+                                                                <button type="submit" class="btn btn-success">Add</button>
                                                                 </ul>
 
-                                                            </div>
-
-                                                            <div class="col-md-2">
-                                                                <button type="submit" class="btn btn-success">Add</button>
-
-                                                            </div>
 
 
 
