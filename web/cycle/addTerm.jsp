@@ -85,7 +85,7 @@
 <div class="container" id="space">
                         <!-- Here is row -->
 
-                        <div class="row ">
+                        <div class="container row">
                             <h2 class="text-center">Add Term</h2>
 
                             <p class="text-center">You need to enter the terms of cycle number <%out.print(id);%></p>
@@ -137,9 +137,9 @@
                                                 </div>
 
                                                 </div>
-                                                <div class="form-group">
 
-                                                <div class="col-md-6 col-sm-12 chckTerm">
+                                                <div class="form-group">
+                                                <div class="col-md-6 col-sm-12 fmName">
                                                     <div class="row">
                                                         <h6>Year</h6>
                                                     </div>
