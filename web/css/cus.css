@@ -34,7 +34,9 @@ input[readonly] {
 .addBtn {
     margin-top: 20px;
 }
-
+.paddingImg{
+    padding:10px;
+}
 .cycMng {
     margin-bottom: -10px;
 }

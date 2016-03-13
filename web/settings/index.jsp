@@ -187,7 +187,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4">
+                                <div class="col-md-4 col-sm-4 navbar-info paddingImg">
                                     <img style="max-width: 270px" src="<%
                                     if(userData != null && userData.get(2)!= null){out.print(userData.get(2));
                                     }else { out.print("/img/logoHolder.png");}
