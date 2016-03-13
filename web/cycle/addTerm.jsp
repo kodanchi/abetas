@@ -84,9 +84,10 @@
 
 <div class="container" id="space">
                         <!-- Here is row -->
-                        <h2 class="text-center">Add Term</h2>
 
                         <div class="row ">
+                            <h2 class="text-center">Add Term</h2>
+
                             <p class="text-center">You need to enter the terms of cycle number <%out.print(id);%></p>
 
 
