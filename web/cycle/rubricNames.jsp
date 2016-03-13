@@ -94,15 +94,13 @@
 
         <div class="container" id="space">
             <!-- Here is row -->
-                <legend></legend>
             <div class="row">
+                <h2 class="text-center">Specify Rubric Names</h2>
+
                 <div class="col-md-10 col-md-offset-1">
+                    <p>Enter the four rubric names</p>
 
                     <form name="myform" action="/AddRubricNames" method="post">
-
-                        <div class="form-group">
-
-                            <div class="btn-group">
 
                                 <input type="hidden" name="RubricID" value="<%=request.getParameter("RubricID")%>">
                                 <input type="hidden" name="NA" value="<%=request.getParameter("NA")%>">
@@ -113,11 +111,6 @@
                                 <input type="hidden" name="cycle" value="<%=id%>">
 
 
-
-                        <div class="row">
-                            <h2 class="text-center">Specify Rubric Names</h2>
-                            <legend></legend>
-                            <p>Enter the four rubric names</p>
                             <%
                                 String A="";
                                 String B="";
@@ -162,20 +155,15 @@
                                 <input type="text" class="form-control" size="25" name="forthR" value="<%if (D!=null) {out.print(D);}%>" required>
                             </div>
 
-                            <!-- End of row -->
-                        </div>
 
                         <br>
 
                         <button class="btn btn-success" type="submit">Next</button>
                         <button class="btn btn-success btn-primary pull-right" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</button>
 
-                                </div>
-                        </div>
-                    </form>
                     <!-- End of col -->
-                </div>
 
+                        </div>
                 <!-- End of row -->
             </div>
 
