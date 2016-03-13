@@ -260,7 +260,7 @@
 
                             %>
 
-                        <a class="btn btn-success btn-fill pull-left"  onclick="new function(){
+                        <a class="btn btn-primary btn-fill pull-left"  onclick="new function(){
                             bootbox.dialog({
                                 message: 'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once',
                                 title: 'Add Performance Indicators',

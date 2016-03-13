@@ -150,7 +150,7 @@
                                                                     <li><label>To </label></li>
                                                                     <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
 
-                                                                <button type="submit" class="btn btn-success">Add</button>
+                                                                <button type="submit" class="btn btn-primary">Add</button>
                                                                 </ul>
 
 
