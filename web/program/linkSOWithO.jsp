@@ -17,7 +17,7 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Link Student Outcome with Objectives</h2>
-                <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-12">
                     <p>Click "Add" to add a link for <%=request.getParameter("name")%> program</p>
 
                         <!-- Table -->
