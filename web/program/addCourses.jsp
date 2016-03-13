@@ -108,7 +108,8 @@
 
                         </div>
 
-                        <div class="col-xs-5 selectContainer">
+                        <div class="form-group">
+                        <div class="col-md-5">
                             <label>Course Level: </label>
                             <select class="form-control" name="level">
 
@@ -150,17 +151,10 @@
                                 %>
                             </select>
                         </div>
+                        </div>
 
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-
-
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("CourseName")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
+                        <button class="btn btn-primary " type="submit"><%if (request.getParameter("CourseName")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-default pull-right" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->
