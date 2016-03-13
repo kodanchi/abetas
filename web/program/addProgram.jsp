@@ -98,8 +98,8 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("ProgramName")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp">Cancel</a>
+                        <button class="btn btn-primary btn-fill" type="submit"><%if (request.getParameter("ProgramName")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn  btn-default pull-right" href="index.jsp">Cancel</a>
 
                     </form>
                     <!-- End of col -->

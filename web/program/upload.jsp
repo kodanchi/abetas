@@ -112,7 +112,7 @@
                     </table>
 
                 <form method="post" action="/upload/program" >
-                    <a class="btn btn-success" href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
+                    <a class="btn btn-primary" href="/program/index.jsp?name=<%=name%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
                     <input name="data-type" value="<%=dataType%>" hidden>
                     <input name="name" value="<%=name%>" hidden>
                     <input name="id" value="<%=id%>" hidden>

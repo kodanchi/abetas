@@ -13,12 +13,12 @@
             <!--  Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Program Objective</h2>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Enter");%> the program objectives</p>
 
                     <form role="form" name="myform" action="/Add Program Objective" method="post">
                         <div class="form-group">
-                            <div class="row tim-row">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label>Program: <label><%=request.getParameter("name")%></label></label>
                                 </div>
@@ -28,21 +28,19 @@
 
                         <div class="form-group">
 
-                            <div class="row tim-row">
-                                <div class="col-md-4">                    <label>Program Objectives:<label style="color:red;">*</label></label>
-                                </div>
+                                               <label>Program Objectives:</label>
+
                                 <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                                 <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
                                 <input type="hidden" name="Objid" value="<%=request.getParameter("Objid")%>">
                                 <input type="hidden" name="ObjValue" value="<%=request.getParameter("ObjValue")%>">
-                                <div class="col-md-8">                    <textarea class="form-control" rows="5" id="comment" name="Obj"><%if (request.getParameter("ObjValue")!=null) {out.print(request.getParameter("ObjValue"));}%></textarea>
-                                </div>
-                            </div>
+                                                    <textarea class="form-control" rows="5" id="comment" name="Obj"><%if (request.getParameter("ObjValue")!=null) {out.print(request.getParameter("ObjValue"));}%></textarea>
+                               
 
                         </div>
 
-                        <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-success btn-primary" href="index.jsp?page=ObjList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
+                        <button class="btn btn-primary" type="submit"><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <a class="btn btn-default pull-right" href="index.jsp?page=ObjList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>
 

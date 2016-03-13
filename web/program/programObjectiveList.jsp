@@ -69,7 +69,7 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Program Objective</h2>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p>Click "Add" to enter program objectives for <%=request.getParameter("name")%> program</p>
 
                         <!-- Table -->
@@ -128,8 +128,8 @@
 
                             %>
                         </table>
-                    <a class="btn btn-success" data-toggle="modal" data-target="#addModal">Add</a>
-                    <a class="btn btn-success" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
+                    <a class="btn btn-primary pull-right" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

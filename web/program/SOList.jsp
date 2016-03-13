@@ -74,7 +74,7 @@
             <!--  Here is row -->
             <div class="row">
                 <h2 class="text-center">Add Student Outcomes</h2>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p>Click "Add" to enter student outcomes for <%=request.getParameter("name")%> program</p>
 
                         <!-- Table -->
@@ -128,8 +128,9 @@
 
                             %>
                         </table>
-                    <a class="btn btn-success" data-toggle="modal" data-target="#addModal">Add</a>
-                    <a class="btn btn-success" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-btn-primary" >Back</a>
+                    <a class="btn btn-btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
+                    <a class="btn btn-btn-primary pull-right" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
