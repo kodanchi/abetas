@@ -137,9 +137,9 @@
                                                 </div>
 
                                                 </div>
-                                                <div class="form-group chckTerm">
+                                                <div class="form-group">
 
-                                                <div class="col-md-6 col-sm-12">
+                                                <div class="col-md-6 col-sm-12 chckTerm">
                                                     <div class="row">
                                                         <h6>Year</h6>
                                                     </div>
