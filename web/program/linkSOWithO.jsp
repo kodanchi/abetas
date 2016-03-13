@@ -17,7 +17,7 @@
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Link Student Outcome with Objectives</h2>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p>Click "Add" to add a link for <%=request.getParameter("name")%> program</p>
 
                         <!-- Table -->
@@ -74,8 +74,8 @@
 
                         </table>
 
-                    <a class="btn btn-success" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
-                    <a class="btn btn-success" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-primary" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
+                    <a class="btn btn-primary pull-right" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- End of col -->
                 </div>

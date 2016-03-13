@@ -172,13 +172,11 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <br>
-                                <button class="btn btn-success btn-fill" type="submit"><%if (request.getParameter("ObjLinkValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                                <a class="btn btn-success btn-primary" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
-
                             </div>
-                        </div>
+
+                                <button class="btn btn-success" type="submit"><%if (request.getParameter("ObjLinkValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                                <a class="btn btn-default pull-right" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
+
                     </form>
                     <!-- End of col -->
                 </div>
