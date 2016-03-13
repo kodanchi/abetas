@@ -150,9 +150,6 @@
                     </form>
 
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
@@ -215,9 +212,7 @@
 
                         </table>
 
-
-                    </div>
-                    <a class="btn btn-success btn-fill pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
+                    <a class="btn btn-success pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
                     <%
                         if(request.getParameter("programID")!=null){
                            out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=LinkPIOutList&cycle="+id+
