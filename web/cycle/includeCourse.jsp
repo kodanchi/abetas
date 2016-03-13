@@ -131,7 +131,7 @@
                                         }
                                         out.print("</select>");
 
-                                        out.print("<button class=\"btn btn-success btn-fill\" type=\"submit\"> Submit </button><br><br><br>");
+                                        out.print("<button class=\"btn btn-primary\" type=\"submit\"> Submit </button><br><br><br>");
                                     }else {
                                         out.print("There are no courses in this program<br><br>");
                                         //Display error massage
@@ -212,10 +212,10 @@
 
                         </table>
 
-                    <a class="btn btn-success pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
+                    <a class="btn btn-default pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>">Cancel</a>
                     <%
                         if(request.getParameter("programID")!=null){
-                           out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=LinkPIOutList&cycle="+id+
+                           out.print("<a class=\"btn btn-primary pull-right\" href=\"index.jsp?page=LinkPIOutList&cycle="+id+
                     "&term="+Termid+"&programID="+request.getParameter("programID")+"\">Next</a>\n");
                         }
                     %>
