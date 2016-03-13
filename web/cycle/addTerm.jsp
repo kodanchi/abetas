@@ -82,7 +82,7 @@
 
 %>
 
-                    <div class="container">
+<div class="container" id="space">
                         <!-- Here is row -->
                         <h2 class="text-center">Add Term</h2>
 
