@@ -16,16 +16,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Enter");%> the program objectives</p>
 
-                    <nav>
-                        <ol class="cd-breadcrumb triangle">
-                            <li class="current"><em>Program</em></li>
-                            <li><em>Term</em></li>
-                            <li><em>Program/Course</em></li>
-                            <li><em>Section</em></li>
-                            <li><em>Faculty Members</em></li>
-                            <li><em>Students</em></li>
-                        </ol>
-                    </nav>
+
 
                     <form role="form" name="myform" action="/Add Program Objective" method="post">
                         <div class="form-group">
