@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Program: <label><%=request.getParameter("name")%></label></label>
+                                    <label> <h6>Program: </h6><label><%=request.getParameter("name")%></label></label>
                                 </div>
 
                             </div>
@@ -35,7 +35,7 @@
                                 <input type="hidden" name="Objid" value="<%=request.getParameter("Objid")%>">
                                 <input type="hidden" name="ObjValue" value="<%=request.getParameter("ObjValue")%>">
                                                     <textarea class="form-control" rows="5" id="comment" name="Obj"><%if (request.getParameter("ObjValue")!=null) {out.print(request.getParameter("ObjValue"));}%></textarea>
-                               
+
 
                         </div>
 

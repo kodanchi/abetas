@@ -128,9 +128,9 @@
 
                             %>
                         </table>
-                    <a class="btn btn-btn-primary" >Back</a>
-                    <a class="btn btn-btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
-                    <a class="btn btn-btn-primary pull-right" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
+                    <a class="btn btn-primary" >Back</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
+                    <a class="btn btn-primary pull-right" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
