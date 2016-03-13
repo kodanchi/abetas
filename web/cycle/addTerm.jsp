@@ -99,7 +99,7 @@
                                                 <div class="col-md-6 col-sm-12">
 
                                                     <div class="row">
-                                                        <label>Term</label>
+                                                        <h6>Term</h6>
                                                     </div>
                                                     <div class="row">
 
@@ -140,14 +140,14 @@
 
                                                 <div class="col-md-6 col-sm-12">
                                                     <div class="row">
-                                                        <label>Year</label>
+                                                        <h6>Year</h6>
                                                     </div>
                                                     <div class="row">
                                                                 <ul class="list-inline">
                                                                     <li><label>From</label></li>
-                                                                    <li><input class="form-control chckTerm" onchange="onYearChng(this);" value="<%=tfYear%>" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
+                                                                    <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=tfYear%>" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
                                                                     <li><label>To </label></li>
-                                                                    <li><input class="form-control chckTerm" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
+                                                                    <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
 
                                                                 <button type="submit" class="btn btn-success">Add</button>
                                                                 </ul>
