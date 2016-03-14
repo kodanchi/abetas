@@ -22,13 +22,14 @@ public class AddTerm extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("cycle"));
             int Termid = 0;
             try {
-                if(!sdb.isTermYearExist(request.getParameter("termName"),id)){
+                if(!sdb.isTermYearExist(request.getParameter("termName"),request.getParameter("fyear")+"-"+request.getParameter("tyear"),id)){
                     Termid = dba.addTerm(request.getParameter("termName"),request.getParameter("fyear")+"-"+request.getParameter("tyear"),id);
                     System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id)+"ttrttttttttttttttttttttttttt  Termid          " +String.valueOf(Termid));
                     response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
                 }else {
                     TermVal = new  String[]{request.getParameter("termName"),request.getParameter("fyear"),request.getParameter("tyear")};
-                    sendErrMsg(request.getParameter("termName")+" is exist already",request.getParameter("cycle"),request,response);
+                    sendErrMsg(request.getParameter("termName")+" with year period of "+request.getParameter("fyear")+"-"+request.getParameter("tyear")+
+                            " is exist already",request.getParameter("cycle"),request,response);
                 }
 
             } catch (ClassNotFoundException e) {

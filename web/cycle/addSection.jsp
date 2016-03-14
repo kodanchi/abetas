@@ -138,7 +138,7 @@
 
                         <br>
                         <button class="btn btn-primary " type="submit"><%if (request.getParameter("section")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-default pull-right" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>">Cancel</a>
+                        <a class="btn btn-default pull-right" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->

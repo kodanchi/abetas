@@ -69,6 +69,17 @@
                 "                    </div>");
 
 
+    }else {
+        out.print("<script>\n" +
+                "                                                                    $(document).ready(function(){\n" +
+                "                                                                        var d = new Date();\n" +
+                "                                                                        var n = d.getFullYear();\n" +
+                "                                                                        fromInput = document.getElementById(\"fyear\");\n" +
+                "                                                                        toInput = document.getElementById(\"tyear\");\n" +
+                "                                                                        fromInput.value = n;\n" +
+                "                                                                        toInput.value = n+1;\n" +
+                "                                                                    });\n" +
+                "                                                                    </script>");
     }
 
 %>
@@ -95,10 +106,9 @@
 
                                     <div class="row">
                                             <form id="addTermForm" method="post" action="/AddTerm">
-                                                <div class="form-group">
 
                                                 <div class="col-md-6 col-sm-12">
-
+                                                    <div class="form-group">
                                                     <div class="row">
                                                         <h6>Term</h6>
                                                     </div>
@@ -138,100 +148,129 @@
 
                                                 </div>
 
-                                                <div class="form-group">
                                                 <div class="col-md-6 col-sm-12 fmName">
-                                                    <div class="row">
-                                                        <h6>Year</h6>
-                                                    </div>
-                                                    <div class="row">
-                                                                <ul class="list-inline">
-                                                                    <li><label>From</label></li>
-                                                                    <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=tfYear%>" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
-                                                                    <li><label>To </label></li>
-                                                                    <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
+                                                    <div class="form-group">
 
-                                                                <button type="submit" class="btn btn-primary">Add</button>
-                                                                </ul>
+                                                        <div class="row">
+                                                            <h6>Year</h6>
+                                                        </div>
+                                                        <div class="row">
+                                                                    <ul class="list-inline">
+                                                                        <li><label>From</label></li>
+                                                                        <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=tfYear%>" id="fyear" name="fyear" type="number" max="2099" min="2000" /></li>
+                                                                        <li><label>To </label></li>
+                                                                        <li><input class="form-control courseNResult" onchange="onYearChng(this);" value="<%=ttYear%>" id="tyear" name="tyear" type="number"  max="2099" min="2000" /></li>
+
+                                                                    <button type="submit" class="btn btn-primary">Add</button>
+                                                                    </ul>
 
 
 
 
-                                                            <script>
-                                                                /*function myFunction() {
-                                                                 var d = new Date();
-                                                                 var n = d.getFullYear();
-                                                                 document.getElementById("date").innerHTML = n;
-                                                                 }*/
-                                                                /*(function(){
-                                                                 var d = new Date();
-                                                                 var n = d.getFullYear();
-                                                                 document.getElementById("date").innerHTML = n;
-                                                                 }
+                                                                <script>
 
-                                                                 )();*/
-                                                                function onYearChng(input){
-                                                                    var d = new Date();
-                                                                    var n = d.getFullYear();
-                                                                     fromInput = document.getElementById("fyear");
-                                                                     toInput = document.getElementById("tyear");
-                                                                    $(document).trigger("clear-alert-id.yearAlert");
-                                                                    if(input.value < 2000 ){
-                                                                        input.value = n;
-                                                                        input.focus();
-                                                                        $(document).trigger("set-alert-id-yearAlert", [
-                                                                            {
-                                                                                message: "Year must be more than 2000",
-                                                                                priority: "error"
-                                                                            }
-                                                                        ]);
-                                                                    }else if(input.value > 2099){
-                                                                        input.value = n;
-                                                                        input.focus();
-                                                                        $(document).trigger("set-alert-id-yearAlert", [
-                                                                            {
-                                                                                message: "Year must be less than 2099",
-                                                                                priority: "error"
-                                                                            }
-                                                                        ]);
-                                                                    }else {
-                                                                        if(toInput.value < fromInput.value){
-                                                                            toInput.focus();
+
+                                                                    /*function myFunction() {
+                                                                     var d = new Date();
+                                                                     var n = d.getFullYear();
+                                                                     document.getElementById("date").innerHTML = n;
+                                                                     }*/
+                                                                    /*(function(){
+                                                                     var d = new Date();
+                                                                     var n = d.getFullYear();
+                                                                     document.getElementById("date").innerHTML = n;
+                                                                     }
+
+                                                                     )();*/
+
+                                                                    function onYearChng(input){
+                                                                        var d = new Date();
+                                                                        var n = d.getFullYear();
+                                                                         fromInput = document.getElementById("fyear");
+                                                                         toInput = document.getElementById("tyear");
+                                                                        $(document).trigger("clear-alert-id.yearAlert");
+                                                                        if(input.value < 2000 ){
+                                                                            input.value = n;
+                                                                            input.focus();
                                                                             $(document).trigger("set-alert-id-yearAlert", [
                                                                                 {
-                                                                                    message: "Year period is not valid",
+                                                                                    message: "Year must be more than 2000",
                                                                                     priority: "error"
                                                                                 }
                                                                             ]);
+                                                                        }else if(input.value > 2099){
+                                                                            input.value = n;
+                                                                            input.focus();
+                                                                            $(document).trigger("set-alert-id-yearAlert", [
+                                                                                {
+                                                                                    message: "Year must be less than 2099",
+                                                                                    priority: "error"
+                                                                                }
+                                                                            ]);
+                                                                        }else {
+                                                                            if(toInput.value < fromInput.value){
+                                                                                toInput.focus();
+                                                                                $(document).trigger("set-alert-id-yearAlert", [
+                                                                                    {
+                                                                                        message: "Year period is not valid",
+                                                                                        priority: "error"
+                                                                                    }
+                                                                                ]);
+                                                                            }
                                                                         }
+
+
                                                                     }
-
-
-                                                                }
-                                                            </script>
-                                                            <script>
-                                                                $(function(){
-                                                                    $("#addTermForm").submit(function() {
-                                                                        var inputVal = $("#fyear").val();
-                                                                        $(document).trigger("clear-alert-id.example");
-                                                                        if (inputVal.length < 3) {
-                                                                            $(document).trigger("set-alert-id-example", [
-                                                                                {
-                                                                                    message: "Please enter at least 3 characters",
-                                                                                    priority: "error"
-                                                                                },
-                                                                                {
-                                                                                    message: "This is an info alert",
-                                                                                    priority: "info"
+                                                                </script>
+                                                                <script>
+                                                                    $(function(){
+                                                                        $("#addTermForm").submit(function() {
+                                                                            var d = new Date();
+                                                                            var n = d.getFullYear();
+                                                                            fromInput = document.getElementById("fyear");
+                                                                            toInput = document.getElementById("tyear");
+                                                                            $(document).trigger("clear-alert-id.yearAlert");
+                                                                            if(input.value < 2000 ){
+                                                                                input.value = n;
+                                                                                input.focus();
+                                                                                $(document).trigger("set-alert-id-yearAlert", [
+                                                                                    {
+                                                                                        message: "Year must be more than 2000",
+                                                                                        priority: "error"
+                                                                                    }
+                                                                                ]);
+                                                                                return false;
+                                                                            }else if(input.value > 2099){
+                                                                                input.value = n;
+                                                                                input.focus();
+                                                                                $(document).trigger("set-alert-id-yearAlert", [
+                                                                                    {
+                                                                                        message: "Year must be less than 2099",
+                                                                                        priority: "error"
+                                                                                    }
+                                                                                ]);
+                                                                                return false;
+                                                                            }else {
+                                                                                if(toInput.value < fromInput.value){
+                                                                                    toInput.focus();
+                                                                                    $(document).trigger("set-alert-id-yearAlert", [
+                                                                                        {
+                                                                                            message: "Year period is not valid",
+                                                                                            priority: "error"
+                                                                                        }
+                                                                                    ]);
+                                                                                    return false;
                                                                                 }
-                                                                            ]);
-                                                                        }
+                                                                            }
+
+
+                                                                        });
                                                                     });
-                                                                });
-                                                            </script>
+                                                                </script>
 
 
+                                                            </div>
                                                         </div>
-                                                    </div>
                                                     <div class="row">
                                                         <span data-alertid="yearAlert"></span>
                                                     </div>

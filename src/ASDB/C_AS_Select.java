@@ -2906,7 +2906,7 @@ public class C_AS_Select {
         return name;
     }
 
-    public boolean isTermYearExist(String T_name, int FK_Cycle_ID) throws ClassNotFoundException, SQLException {
+    public boolean isTermYearExist(String T_name, String T_year, int FK_Cycle_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -2927,11 +2927,12 @@ public class C_AS_Select {
             /*
              * Execute the query
              */
-            String querySelect = "SELECT EXISTS(SELECT * FROM term where T_name = ? AND FK_Cycle_ID = ? );";
+            String querySelect = "SELECT EXISTS(SELECT * FROM term where T_name = ? AND T_year = ? AND FK_Cycle_ID = ? );";
 
             preparedStatement = connection.prepareStatement(querySelect);
             preparedStatement.setString (1, T_name);
-            preparedStatement.setInt (2, FK_Cycle_ID);
+            preparedStatement.setString (2, T_year);
+            preparedStatement.setInt (3, FK_Cycle_ID);
 
             rsSelect = preparedStatement.executeQuery();
 

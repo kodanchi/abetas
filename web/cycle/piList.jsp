@@ -111,12 +111,6 @@
                                     %>--%>
                         <select class="selectpicker" id="prgList" onchange="onPrgramChange(<%=id%>)" data-live-search="true">
                             <option data-tokens="select">Select program</option>
-                            <%--<option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
-                            <option data-tokens="mustard">Burger, Shake and a Smile</option>
-                            <option >Sugar, Spice and all things nice</option>--%>
-                                    <%--<b class="caret"></b>
-                                </a>
-                                <ul class="dropdown-menu">--%>
 
                                     <%
                                         C_AS_Select select = new C_AS_Select();
@@ -129,10 +123,6 @@
                                             for (int i=0; i<rs.size();i++) {
                                                 rsRow = rs.get(i);
 
-                                                //pid.add(Integer.valueOf(rsRow.get(0)));
-                                                //System.out.println("pid : "+pid.get(i));
-                                                //out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
-                                                //out.print("<li><a href=\"/cycle/index.jsp?page=piList&cycle="+id+"&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
                                                 out.print("<option data-tokens=\""+rsRow.get(1)+"\" " );
 
                                                 if(request.getParameter("programID")!=null && request.getParameter("programID").equals(rsRow.get(0))){
@@ -155,8 +145,6 @@
                                             e.printStackTrace();
                                         }
                                     %>
-                                <%--</ul>--%>
-                            <%--</div>--%>
 
                             <script>
                                 function onPrgramChange(cid){
@@ -164,7 +152,6 @@
                                     var pid = pl.options[pl.selectedIndex].value;
                                     if(pid == "Select program"){
                                         $("#pIList").hide();
-                                        //$("#evidence").hide();
                                     }else {
                                         show('page', false);
                                         show('loading', true);

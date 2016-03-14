@@ -131,7 +131,7 @@
                                         }
                                         out.print("</select>");
 
-                                        out.print("<button class=\"btn btn-primary\" type=\"submit\"> Submit </button><br><br><br>");
+                                        out.print("<button class=\"btn btn-primary\" type=\"submit\"> Include course/s </button><br><br><br>");
                                     }else {
                                         out.print("There are no courses in this program<br><br>");
                                         //Display error massage
