@@ -240,11 +240,12 @@
 
 
 
-                <div class="row">
-                    <div class="col-md-2 pull-right" id="evidence">
+                <div class="row" id="evidence">
+                    <div class="col-md-2 pull-right" >
 
                     </div>
                 </div>
+
                 <!-- End of col -->
             </div>
 

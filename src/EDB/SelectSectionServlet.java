@@ -32,6 +32,7 @@ public class SelectSectionServlet extends HttpServlet {
 
             ArrayList<ArrayList<String>> SectionList = null;
             String evidence = null;
+            int threshold;
             ArrayList<String> PIRubrics = null;
             ArrayList<String> PIResults = null;
 
@@ -47,6 +48,7 @@ public class SelectSectionServlet extends HttpServlet {
                 System.out.println("inside else");
 
                 evidence = dbs.selectEvidenceOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
+                threshold = dbs.selectThresholdOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
                 PIRubrics = dbs.selectRubricsToEvaluate(tid);
                 PIResults = dbs.selectSummativeRubricResultsOfSectionToEvaluate(sid,pIid,pid,tid,cid);
 
@@ -67,12 +69,32 @@ public class SelectSectionServlet extends HttpServlet {
                 }
 
 
+                out.print("<div class=\"col-md-7 \" >");
+                float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
+                float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
+                float passOrFailresults = developed + exemplary;
+                System.out.println("developed + exemplary = "+ passOrFailresults);
+                if(passOrFailresults > threshold ) {
+                    out.print(String.format("Results indicating this section fails below %s with %.2f",threshold+"%",
+                            ( passOrFailresults - threshold)));
+                }else {
+                    out.print(String.format("Results indicating this section fails below %s with %.2f",threshold+"%",
+                            (threshold - passOrFailresults)));
+                }
+
+                out.print("</div>");
+
+
 
                 //out.print("<div class=\"row\">\n");
                 if(evidence != null) {
-                    out.print("<a target=\"_blank\" class=\"btn btn-success btn-fill pull-right\" href=\""+evidence+"\" >Show Evidence</a>\n");
+                    out.print("<div class=\"col-md-4 pull-right\" >" +
+                            "<a target=\"_blank\" class=\"btn btn-success btn-fill pull-right\" href=\""+evidence+"\" >Show Evidence</a>\n" +
+                            "</div>");
                 }else {
-                    out.print("No evidence were found\n");
+                    out.print("<div class=\"col-md-4 pull-right\" >" +
+                            "No evidence were found\n" +
+                            "</div>");
                 }
 
 

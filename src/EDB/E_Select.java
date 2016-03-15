@@ -2398,6 +2398,84 @@ public class E_Select {
     }
 
 
+    public int selectThresholdOfSummativeToEvaluate(int FK_Section_ID, int FK_pi_ID, int FK_T_ID, int FK_P_ID, String FK_C_ID) throws ClassNotFoundException, SQLException {
+
+        int data = -1;
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+
+            String query = "SELECT Sum_threshold \n" +
+                    "FROM  summative, link_out_pi, course, abetasdb.section\n" +
+                    "where summative.FK_Link_ID = link_out_pi.Link_ID \n" +
+                    "and LinkType='Summative' \n" +
+                    "AND link_out_pi.FK_C_ID= course.C_code\n" +
+                    "AND summative.FK_Section_ID=abetasdb.section.Section_ID\n" +
+                    "AND summative.Sum_submitted=1\n" +
+                    "AND summative.FK_Section_ID= ? \n" +
+                    "and link_out_pi.FK_pi_ID= ?  \n" +
+                    "and link_out_pi.FK_P_ID= ? \n" +
+                    "and link_out_pi.FK_T_ID= ? \n" +
+                    "AND link_out_pi.FK_C_ID= ?;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_Section_ID);
+            preparedStatement.setInt(2, FK_pi_ID);
+            preparedStatement.setInt(4, FK_T_ID);
+            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setString(5, FK_C_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                data = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+
     public ArrayList<ArrayList<String>> selectEvidanceSectionOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();

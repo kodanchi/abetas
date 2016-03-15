@@ -2718,6 +2718,80 @@ public class C_AS_Select {
     }
 
 
+    public ArrayList<String> selectMatchedRubrics(int FK_out, int FK_pi_ID, int FK_P_ID,String FK_C_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<String> data = null;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT PI_rubric_description_1,\tPI_rubric_description_2 ,PI_rubric_description_3,PI_rubric_description_4 \n" +
+                    "FROM link_out_pi, pi_rubric\n" +
+                    "where FK_out =?\n" +
+                    "and FK_pi_ID = ?\n" +
+                    "and FK_P_ID= ?\n" +
+                    "and FK_C_ID = ?\n" +
+                    "and FK_R_ID = PI_rubric_ID\n" +
+                    "ORDER BY Link_ID DESC limit 1;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_out);
+            preparedStatement.setInt(2, FK_pi_ID);
+            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setString(4, FK_C_ID);
+
+            rs = preparedStatement.executeQuery();
+            //
+            int i=-1;
+            while (rs.next()){
+                data = new ArrayList<String>();
+                data.add(rs.getString(1));
+                data.add(rs.getString(2));
+                data.add(rs.getString(3));
+                data.add(rs.getString(4));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+
     public ArrayList<Integer> selectTermCourseSection(String FK_C,int FK_T) throws ClassNotFoundException, SQLException {
 
         ArrayList<Integer> data = new ArrayList<Integer>();

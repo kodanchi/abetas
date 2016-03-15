@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
+<script src="/js/flat-ui.min.js" type="text/javascript"></script>
 
 <%
 
@@ -125,7 +126,7 @@
                                 <input type="hidden" name="cycle" value="<%=id%>">
                                 <input type="hidden" name="term" value="<%=Termid%>">
 
-                                    <select class="form-control" name="Out">
+                                    <select class="form-control" name="Out" onchange="onRubricFetch();" id="OutList">
                                         <%
                                             C_AS_Select bselect = new C_AS_Select();
                                             try {
@@ -159,7 +160,7 @@
 
                                 <div class="btn-group">
 
-                                        <select class="form-control" name="PI">
+                                        <select class="form-control" name="PI" onchange="onRubricFetch();" id="PIList">
                                             <%
                                                 C_AS_Select cselect = new C_AS_Select();
                                                 try {
@@ -194,7 +195,7 @@
 
                             <div class="btn-group">
 
-                                    <select class="form-control" name="Course">
+                                    <select class="form-control" name="Course" onchange="onRubricFetch();" id="courseList">
                                         <%
                                             C_AS_Select dselect = new C_AS_Select();
                                             try {
@@ -272,7 +273,6 @@
                             <label>Threshold: </label>
 
                             <div class="btn-group">
-
                                 <div class="input-group number-spinner">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
@@ -287,6 +287,7 @@
 
                                     %>
                                                     <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="form-control text-center" name="STshold" value="<%=formThreshold%>">
+
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="button" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
                                     </span>
@@ -322,6 +323,37 @@
                                     //document.getElementById("thresholdInput").style.visibility = "hidden";
                                     /*document.getElementById("emailDiv").value = "";*/
                                 }
+                            }
+                            function onRubricFetch(){
+                                var ol = document.getElementById("OutList");
+                                var oid = ol.options[ol.selectedIndex].value;
+
+                                var pil = document.getElementById("PIList");
+                                var pIid = pil.options[pil.selectedIndex].value;
+
+                                var cl = document.getElementById("courseList");
+                                var cId = cl.options[cl.selectedIndex].value;
+                                show('page', false);
+                                show('loading', true);
+                                $.ajax({
+                                    type: 'POST',
+                                    data: {
+                                        out: oid,
+                                        pi: pIid,
+                                        pid: <%=request.getParameter("programID")%>,
+                                        cid:<%=id%>,
+                                        cor: cId
+                                    },
+                                    url: '/fetchRubrics',
+                                    success: function (result) {
+                                        $('#rubricsDiv').html(result);
+                                        //$('#rubricsDiv').show();
+                                        show('page', true);
+                                        show('loading', false);
+
+                                    }
+
+                                })
                             }
                         </script>
 
@@ -373,41 +405,44 @@
                                     }
                                 }
                             %>
-                                    <div class="form-group">
-                                        <label>First rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="firstR" readonly value="<%out.print(A);%>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="firstD" required><%if (request.getParameter("RubricValue")!=null) {out.print(E);}%></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Second rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="secondR" readonly value="<%out.print(B);%>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="secondD" required><%if (request.getParameter("RubricValue")!=null) {out.print(F);}%></textarea>
-                                    </div>
+                                    <div id="rubricsDiv">
 
-                                    <div class="form-group">
-                                        <label>Third rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="thirdR" readonly value="<%out.print(C);%>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="thirdD" required><%if (request.getParameter("RubricValue")!=null) {out.print(G);}%></textarea>
-                                    </div>
+                                        <div class="form-group">
+                                            <label>First rubrics</label>
+                                            <input type="text" class="form-control" size="25" name="firstR" readonly value="<%out.print(A);%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" rows="3" name="firstD" required><%if (request.getParameter("RubricValue")!=null) {out.print(E);}%></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Second rubrics</label>
+                                            <input type="text" class="form-control" size="25" name="secondR" readonly value="<%out.print(B);%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" rows="3" name="secondD" required><%if (request.getParameter("RubricValue")!=null) {out.print(F);}%></textarea>
+                                        </div>
 
-                                    <div class="form-group">
-                                        <label>Forth rubrics</label>
-                                        <input type="text" class="form-control" size="25" name="forthR" readonly value="<%out.print(D);%>" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea class="form-control" rows="3" name="forthD" required><%if (request.getParameter("RubricValue")!=null) {out.print(H);}%></textarea>
-                                    </div>
+                                        <div class="form-group">
+                                            <label>Third rubrics</label>
+                                            <input type="text" class="form-control" size="25" name="thirdR" readonly value="<%out.print(C);%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" rows="3" name="thirdD" required><%if (request.getParameter("RubricValue")!=null) {out.print(G);}%></textarea>
+                                        </div>
 
+                                        <div class="form-group">
+                                            <label>Forth rubrics</label>
+                                            <input type="text" class="form-control" size="25" name="forthR" readonly value="<%out.print(D);%>" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" rows="3" name="forthD" required><%if (request.getParameter("RubricValue")!=null) {out.print(H);}%></textarea>
+                                        </div>
+
+                                    </div>
                             <!-- End of row -->
                         </div>
 
