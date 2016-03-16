@@ -27,10 +27,15 @@ import java.util.List;
 @WebServlet(name = "InstallServlet",
         urlPatterns = {"/install"})
 public class InstallServlet extends HttpServlet {
-    private final String UPLOAD_DIRECTORY = "/uploads";
+    private final String UPLOAD_DIRECTORY = "uploads";
+    private String SERVER_DIRECTORY ;
     private String uname,cname,afname,amname,alname,ausername,apassword,arepassword,aemail,ulogo = null;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("##########################################################");
+
+        SERVER_DIRECTORY = getServletContext().getRealPath("/");
+
+
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>\n" +
                 "<html lang=\"en\">\n" +
@@ -143,8 +148,8 @@ public class InstallServlet extends HttpServlet {
                                         System.out.println("file ext !"+ extension);
                                     }
                                     if (extension.equals("png")) {
-                                        item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-                                        ulogo = UPLOAD_DIRECTORY + "/" + name;
+                                        item.write(new File(SERVER_DIRECTORY + UPLOAD_DIRECTORY + File.separator + name));
+                                        ulogo = SERVER_DIRECTORY + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
                                         System.out.println("File Uploaded Successfully!");
 

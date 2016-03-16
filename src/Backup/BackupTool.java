@@ -35,6 +35,7 @@ public class BackupTool {
         /**
          * doing the command in windows using Process class and handle the I/O operation by catch
          */
+        System.out.println("executeCmd : "+executeCmd);
         Process runtimeProcess = null;
         try {
             runtimeProcess = Runtime.getRuntime().exec(executeCmd);
@@ -43,7 +44,7 @@ public class BackupTool {
         }
         int processComplete = 0;
         try {
-            processComplete = runtimeProcess.waitFor();
+                processComplete = runtimeProcess.waitFor();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

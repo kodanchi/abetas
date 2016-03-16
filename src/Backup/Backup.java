@@ -51,12 +51,12 @@ public class Backup extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //SERVER_DIRECTORY = getServletContext().getRealPath("/");
-
+        System.out.println("doPost SERVER_DIRECTORY : "+SERVER_DIRECTORY);
         /**
          * get "BackupCreate" values from the servlet, since its button once the user click on it backupDB function will be called
          */
         if(request.getParameter("backupCreate")!=null){
-            BackupTool backupTool = new BackupTool(SERVER_DIRECTORY+"\\"+UPLOAD_DIRECTORY);
+            BackupTool backupTool = new BackupTool(SERVER_DIRECTORY+UPLOAD_DIRECTORY);
 
         }
         /**

@@ -494,15 +494,21 @@ public class InstallDB {
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
 
 
-            this.createTable("CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY" +
-                    " DEFINER VIEW `users` AS select `superuser`.`Adm_ID` AS `lvl`," +
-                    "`superuser`.`Super_Username` AS `username`,`superuser`.`Super_Password` AS `password`," +
-                    "`superuser`.`Super_Email` AS `email` from `superuser` union all select 1 AS `1`," +
-                    "`faculty_member`.`Faculty_Username` AS `Faculty_Username`," +
-                    "`faculty_member`.`Faculty_Password` AS `Faculty_Password`," +
-                    "`faculty_member`.`Faculty_Email` AS `Faculty_Email` from `faculty_member` union all select 2 AS `2`," +
-                    "`evaluator`.`E_Username` AS `E_Username`,`evaluator`.`E_Password` AS `E_Password`," +
-                    "NULL AS `NULL` from `evaluator`;\n");
+            this.createTable("CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY \n" +
+                    "DEFINER VIEW `users` AS \n" +
+                    "select `superuser`.`Adm_ID` AS `lvl`,\n" +
+                    "`superuser`.`Super_Username` AS `username`,\n" +
+                    "`superuser`.`Super_Password` AS `password`,\n" +
+                    "`superuser`.`Super_Email` AS `email`,\n" +
+                    "`superuser`.`Super_ID` AS `ID` from `superuser` union all select 2 AS `2`,\n" +
+                    "`faculty_member`.`Faculty_Username` AS `Faculty_Username`,\n" +
+                    "`faculty_member`.`Faculty_Password` AS `Faculty_Password`,\n" +
+                    "`faculty_member`.`Faculty_Email` AS `Faculty_Email`,\n" +
+                    "`faculty_member`.`Faculty_ID` AS `Faculty_ID` from `faculty_member` union all select 3 AS `3`,\n" +
+                    "`evaluator`.`E_Username` AS `E_Username`,\n" +
+                    "`evaluator`.`E_Password` AS `E_Password`,\n" +
+                    "NULL AS `NULL`,\n" +
+                    "`evaluator`.`E_ID` AS `E_ID` from `evaluator`;\n");
 
 
             pout.println("<h4>Tables Created!</h4>");

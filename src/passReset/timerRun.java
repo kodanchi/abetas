@@ -20,7 +20,7 @@ public class timerRun implements ServletContextListener {
         String backupfolder =  context.getRealPath("/")+ "backup";
         File theDir = new File(backupfolder);
 
-        if (!theDir.exists()) {
+        /*if (!theDir.exists()) {
             System.out.println("creating directory: " + backupfolder);
             boolean result = false;
 
@@ -35,7 +35,7 @@ public class timerRun implements ServletContextListener {
                 System.out.println("Backup DIR created");
             }
         }else {System.out.println("Backup already existed");}
-
+*/
         TimeClass t = new TimeClass(backupfolder);
         t.timeTest();
     }
