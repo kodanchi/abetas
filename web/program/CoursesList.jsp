@@ -132,7 +132,7 @@
                         </table>
 
                     <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add</a>
-                    <button class="btn btn-primary pull-right" href="/index.jsp">Finish</button>
+                    <a class="btn btn-primary pull-right" href="/index.jsp">Finish</a>
 
 
                     <!-- Modal -->

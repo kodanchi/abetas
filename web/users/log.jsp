@@ -15,7 +15,7 @@
             <div class="row">
                 <h2 class="text-center">System Log</h2>
                 <div class="col-md-10 col-md-offset-1">
-                    <a class="btn btn-primary pull-right" href="index.jsp">Back</a>
+                    <a class="btn btn-primary pull-right mrgB" href="index.jsp">Back</a>
 
                     <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
