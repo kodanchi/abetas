@@ -15,6 +15,7 @@
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
+<script src="/js/scrolled-table-head.js" type="text/javascript"></script>
 
 
 <%
@@ -201,20 +202,24 @@
                         <input type="hidden" name="Section_ID" value="<%=section%>">
 
 
-                            <!-- Table -->
-                            <table class="table table-striped table-bordered text-center">
+                            <div class="container">
+                                <!-- Table -->
+                                <table class="table table-striped table-bordered text-center">
+                                    <thead>
+                                    <tr>
+                                        <th class="text-center">Name</th>
+                                        <th class="text-center">Student ID</th>
+                                        <th class="text-center"><%out.print(N1);%></th>
+                                        <th class="text-center"><%out.print(N2);%></th>
+                                        <th class="text-center"><%out.print(N3);%></th>
+                                        <th class="text-center"><%out.print(N4);%></th>
+                                    </tr>
+                                    </thead>
 
-                                <tr>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Student ID</th>
-                                    <th class="text-center"><%out.print(N1);%></th>
-                                    <th class="text-center"><%out.print(N2);%></th>
-                                    <th class="text-center"><%out.print(N3);%></th>
-                                    <th class="text-center"><%out.print(N4);%></th>
-                                </tr>
-                                <tr>
+                                    <tbody>
+                                    <tr>
 
-                                    <%
+                                            <%
 
                                         F_Select Sselect = new F_Select();
 
@@ -288,8 +293,10 @@
                                         }
 
                                     %>
+                                    </tbody>
 
-                            </table>
+                                </table>
+                            </div>
 
 
                             <div class="row">
