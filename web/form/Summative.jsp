@@ -156,7 +156,7 @@
 
                                 <tr>
                                     <th class="text-center">Name</th>
-                                    <th class="text-center">Student ID:</th>
+                                    <th class="text-center">Student ID</th>
                                     <th class="text-center"><%
                                         String N1 = "";
                                         String D1 = "";
@@ -198,7 +198,7 @@
                                 <tr>
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
-                                    <th class="text-center"><%out.print(D1);%></th>
+                                    <th class="text-center" bgcolor="#FF0000"><%out.print(D1);%></th>
                                     <th class="text-center"><%out.print(D2);%></th>
                                     <th class="text-center"><%out.print(D3);%></th>
                                     <th class="text-center"><%out.print(D4);%></th>
