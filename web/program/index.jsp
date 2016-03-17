@@ -353,6 +353,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
    <%-- <link href="/css/ct-paper.css" rel="stylesheet"/>
     <link href="/css/demo.css" rel="stylesheet" /> --%>
     <link href="/css/style.css" rel="stylesheet" />
