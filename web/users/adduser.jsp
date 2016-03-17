@@ -154,6 +154,11 @@
 
                 <form id="UserAddForm" method="post" class="form-horizontal" action="<%=formURL%>">
 
+                    <input name="oldLvl" value="<%=uOldlvl%>" hidden/>
+                    <input name="id" value="<%=id%>" hidden/>
+                    <input name="olduname" value="<%=uname%>" hidden/>
+                    <input name="olduemail" value="<%=uemail%>" hidden/>
+
                     <div class="form-group">
                         <label class="col-xs-3 control-label">User Type</label>
                         <div class="col-xs-5 selectContainer">
@@ -190,22 +195,14 @@
                         <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" value="<%=uname%>" required>
                     </div>
 
-                    <br>
-
                     <div class="form-group" id="emailDiv">
 
                         <label>Email address</label>
                         <input type="email" name="uemail" id="userEmail" class="form-control" placeholder="Email" value="<%=uemail%>" required>
                     </div>
 
-                    <input name="oldLvl" value="<%=uOldlvl%>" hidden/>
-                    <input name="id" value="<%=id%>" hidden/>
-                    <input name="olduname" value="<%=uname%>" hidden/>
-                    <input name="olduemail" value="<%=uemail%>" hidden/>
-
-                    <a type="submit" onclick="onSubmitAddUser()" class="btn btn-default" value="Add"><%=submit%></a>
-
-                    <a type="cancel" href="index.jsp" class="btn btn-default" value="Cancel">Cancel</a>
+                    <a type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></a>
+                    <a type="cancel" href="index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
 
 
 

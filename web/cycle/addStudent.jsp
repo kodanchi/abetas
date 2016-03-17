@@ -230,7 +230,7 @@
 
                         </div>
                         <button class="btn btn-primary" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-primary pull-right" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>
+                        <a class="btn btn-default pull-right" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>
                         &term=<%=request.getParameter("term")%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>
                         &courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Cancel</a>
 

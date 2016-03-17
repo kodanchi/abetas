@@ -101,7 +101,7 @@
                                     if (rs.size()!=0) {
 
 
-                                        out.print("<p>Select courses to be evaluated for");
+                                        out.print("<p>Select courses to be evaluated for ");
                                         if(request.getParameter("programID")!=null) {
                                             C_AS_Select ssselect = new C_AS_Select();
                                             try {
@@ -113,7 +113,7 @@
                                                 e.printStackTrace();
                                             }
                                         }
-                                        out.print("program</p>");
+                                        out.print(" program</p>");
                                         out.print("<select name=\"Code\"  class=\"selectpicker\" multiple>");
 
                                         for (int i = 0; i < rs.size(); i++) {

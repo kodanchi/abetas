@@ -172,7 +172,7 @@
 
                             <br>
                             <br>
-                            <div class="row tim-row">
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>University Logo</label>
@@ -183,6 +183,8 @@
                         Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
                     </span>
                 </span>
+                                            <h5 class="help-block small">Allowed size and type: 2MB, png</h5>
+
                                             <input type="text" class="form-control" value="" readonly>
                                         </div>
                                     </div>

@@ -48,6 +48,11 @@ public class InstallServlet extends HttpServlet {
                 "  <link rel=\"stylesheet\" href=\"/css/chartCss.css\">\n" +
                 "  <script src=\"/js/jquery-2.2.0.min.js\"></script>\n" +
                 "  <script src=\"/js/bootstrap.min.js\"></script>\n" +
+                "  <link rel=\"stylesheet\" href=\"/css/flat-ui.css\">\n" +
+                "  <link rel=\"stylesheet\" href=\"/css/cus.css\">\n" +
+
+
+
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -76,7 +81,7 @@ public class InstallServlet extends HttpServlet {
                 "\n" +
                 "\n" +
                 "\n" +
-                "              <button class=\"btn btn-lg btn-success\"><span class=\"glyphicon glyphicon-ok glyphicon-ok-sign\"></span> Installed</button>\n" +
+                "              <h2 class=\"green\"><span class=\"fui-check\"></span> Installed!</h2>\n" +
                 "\n" );
 
         InstallDB db = new InstallDB(out);

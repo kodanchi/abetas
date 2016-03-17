@@ -46,7 +46,7 @@ public class SelectPIOfProgramServlet extends HttpServlet {
                     "                            <!-- Default panel contents -->\n" +
                     "\n" +
                     "                            <!-- Table -->\n" +
-                    "                            <table class=\"table\">\n" +
+                    "                            <table class=\"table table-hover table-striped table-bordered text-center\">\n" +
                     "                                <tr>\n" +
                     "\n" +
                     "                                    <th>Label</th>\n" +
