@@ -75,10 +75,12 @@ public class SelectSectionServlet extends HttpServlet {
                 float passOrFailresults = developed + exemplary;
                 System.out.println("developed + exemplary = "+ passOrFailresults);
                 if(passOrFailresults > threshold ) {
-                    out.print(String.format("Results indicating this section fails below %s with %.2f",threshold+"%",
+                    out.print("<Strong style=\"color:Green;\">Pass</Strong>");
+                    out.print(String.format(": the result is more than the threshold(%s) by (%.2f)",threshold+"%",
                             ( passOrFailresults - threshold)));
                 }else {
-                    out.print(String.format("Results indicating this section fails below %s with %.2f",threshold+"%",
+                    out.print("<Strong style=\"color:Red;\">Fail</Strong>");
+                    out.print(String.format(": the result is less than the threshold(%s) by (%.2f)",threshold+"%",
                             (threshold - passOrFailresults)));
                 }
 

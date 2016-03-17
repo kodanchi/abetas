@@ -43,9 +43,10 @@ public class InstallServlet extends HttpServlet {
                 "  <title>installing..</title>\n" +
                 "  <meta charset=\"utf-8\">\n" +
                 "  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
-                "  <link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\">\n" +
-                "  <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js\"></script>\n" +
-                "  <script src=\"http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>\n" +
+                "  <link rel=\"stylesheet\" href=\"/css/bootstrap.css\">\n" +
+                "  <link rel=\"stylesheet\" href=\"/css/chartCss.css\">\n" +
+                "  <script src=\"/js/jquery-2.2.0.min.js\"></script>\n" +
+                "  <script src=\"/js/bootstrap.min.js\"></script>\n" +
                 "</head>\n" +
                 "<body>\n" +
                 "\n" +
@@ -180,7 +181,7 @@ public class InstallServlet extends HttpServlet {
                         "        <br>\n" +
                         "        <div>\n" +
                         "            \n" +
-                        "            <a  href=\"users.jsp\" class=\"btn btn-primary btn-lg\" >User Management</a>\n" +
+                        "            <a  href=\"users/\" class=\"btn btn-primary btn-lg\" >User Management</a>\n" +
                         "            <a href=\"index.jsp\" class=\"btn btn-primary btn-lg\" >Home Page</a>\n" +
                         "\n" +
                         "        </div>");
