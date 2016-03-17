@@ -336,14 +336,14 @@
                             </table>
 --%>
 
-                        <div class="row tim-row">
+                        <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>Evidence:</label>
 
                                         <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-fill btn-primary btn-file">
+                                            <span class="input-group-btn" >
+                                                <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                                                     Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>
