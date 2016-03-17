@@ -30,7 +30,7 @@ public class AddUser extends HttpServlet {
             String fname = request.getParameter("fname");
             String mname = request.getParameter("mname");
             String lname = request.getParameter("lname");
-            String uemail = (request.getParameter("uemail") != null ? request.getParameter("uemail") : "");
+            String uemail = (request.getParameter("uemail") != null ? request.getParameter("uemail").toLowerCase() : "");
             userVal = new String[]{userType, fname, mname, lname, uname, uemail};
 
             System.out.println(userType);
