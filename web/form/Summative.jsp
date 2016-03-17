@@ -75,17 +75,13 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Summative Data Collection Sheet</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
@@ -142,7 +138,6 @@
                                 %></td>
                             </tr>
                         </table>
-                    </div>
 
 
                     <form id="summativeForm" name="summativeForm" enctype="multipart/form-data" method="post">
@@ -198,7 +193,7 @@
                                 <tr>
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
-                                    <th class="text-center" bgcolor="#FF0000"><%out.print(D1);%></th>
+                                    <th class="text-center"><%out.print(D1);%></th>
                                     <th class="text-center"><%out.print(D2);%></th>
                                     <th class="text-center"><%out.print(D3);%></th>
                                     <th class="text-center"><%out.print(D4);%></th>
@@ -357,6 +352,3 @@
                 <!-- End of row -->
             </div>
         </div>
-    </div>
-    <!-- End of main -->
-</div>
