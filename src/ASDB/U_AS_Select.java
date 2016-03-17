@@ -1642,7 +1642,7 @@ public class U_AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setString(1, username);
 
             rs = preparedStatement.executeQuery();
 

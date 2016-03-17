@@ -1,5 +1,9 @@
 package ASDB;
 
+import login.Password;
+import passReset.PassCodeMap;
+import passReset.SendEmail;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -106,7 +110,8 @@ public class U_AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into superuser (Super_Username, Super_Password, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID)" + " values (?, ?, ?, ?, ?, ?, ?)";
+            String query = " insert into superuser (Super_Username, Super_Password, Super_Email, Super_Fname, Super_Mname," +
+                    " Super_Lname, Adm_ID)" + " values (?, ?, ?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString (1, Username);
@@ -146,187 +151,144 @@ public class U_AS_Insert {
 
     public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
 
+
         connect();
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        SessionIdentifierGenerator randomPassword = new SessionIdentifierGenerator();
-        String rn = randomPassword.nextSessionId().substring(0, 8);
+        try {
 
-        int rs = 0;
-        if (type == 0) {
-            try {
 
-            /*
-             *  Get connection from the DataSource
-             */
-
-                connection = dataSource.getConnection();
+            SessionIdentifierGenerator randomPassword = new SessionIdentifierGenerator();
+            String rn = randomPassword.nextSessionId().substring(0, 8);
 
             /*
-             * Execute the query
-             */
-                String query = " insert into superuser (Super_Username, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID, Super_Password)" + " values (?, ?, ?, ?, ?, ?, ?)";
+                 *  Get connection from the DataSource
+                 */
 
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, Uname);
-                preparedStatement.setString(2, email);
-                preparedStatement.setString(3, Fname);
-                preparedStatement.setString(4, Mname);
-                preparedStatement.setString(5, Lname);
-                preparedStatement.setInt(6, 0);
-                preparedStatement.setString(7, rn);
-                rs = preparedStatement.executeUpdate();
+            connection = dataSource.getConnection();
+
+                /*
+                 * Execute the query
+                 */
+
+            int rs = 0;
+            if (type == 0) {
 
 
 
+                    String query = " insert into superuser (Super_Username, Super_Email, Super_Fname, Super_Mname, Super_Lname," +
+                            " Adm_ID, Super_Password)" + " values (?, ?, ?, ?, ?, ?, ?)";
+
+                    preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setString(1, Uname);
+                    preparedStatement.setString(2, email);
+                    preparedStatement.setString(3, Fname);
+                    preparedStatement.setString(4, Mname);
+                    preparedStatement.setString(5, Lname);
+                    preparedStatement.setInt(6, 0);
+                    preparedStatement.setString(7, Password.getSaltedHash(rn));
+                    rs = preparedStatement.executeUpdate();
 
 
 
+                    ////Need to display the temp password to the screen
+
+                SendEmail msg = new SendEmail();
+                String emailMsg = String.format("Hello Mr.%s,\n" +
+                        "We would welcome you to ABETAS (ABET Automation System).\n" +
+                        "Here it is your login details: \n" +
+                        "Username: \"%s\"\n" +
+                        "Password: \"%s\"\n" +
+                        "We strongly recommend you to change your password after you log-in for the first time," +
+                        " you can do that by going to settings page and change your password.\n" +
+                        "\n" +
+                        "Thank you,\n" +
+                        "ABETS Management.",Fname,Uname,rn);
+
+                msg.sendMsg(emailMsg,"Welcome to ABETAS",email);
 
 
-                ////Need to display the temp password to the screen
+
+            }else if (type==1){
+
+                    String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname," +
+                            " Faculty_Lname, Faculty_Password)" + " values (?, ?, ?, ?, ?, ?)";
+
+                    preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setString(1, Uname);
+                    preparedStatement.setString(2, email);
+                    preparedStatement.setString(3, Fname);
+                    preparedStatement.setString(4, Mname);
+                    preparedStatement.setString(5, Lname);
+                    preparedStatement.setString(6, rn);
+                    rs = preparedStatement.executeUpdate();
 
 
+                    ////Need to display the temp password to the screen
 
 
+                SendEmail msg = new SendEmail();
+                String emailMsg = String.format("Hello Mr.%s,\n" +
+                        "We would welcome you to ABETAS (ABET Automation System).\n" +
+                        "Here it is your login details: \n" +
+                        "Username: \"%s\"\n" +
+                        "Password: \"%s\"\n" +
+                        "We strongly recommend you to change your password after you log-in for the first time," +
+                        " you can do that by going to settings page and change your password.\n" +
+                        "\n" +
+                        "Thank you,\n" +
+                        "ABETS Management.",Fname,Uname,rn);
+
+                msg.sendMsg(emailMsg,"Welcome to ABETAS",email);
 
 
+            }else if(type==2){
+
+                /*
+                 * Execute the query
+                 */
+                    String query = " insert into evaluator (E_Username, E_Fname, E_Mname, E_Lname, E_Password)" +
+                            " values (?, ?, ?, ?, ?)";
+
+                    preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setString(1, Uname);
+                    preparedStatement.setString(2, Fname);
+                    preparedStatement.setString(3, Mname);
+                    preparedStatement.setString(4, Lname);
+                    preparedStatement.setString(5, rn);
+                    rs = preparedStatement.executeUpdate();
 
 
-            }catch(Exception e){
-                e.printStackTrace();
-            }finally{
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally{
             /*
              * finally block used to close resources
              */
-                try {
-                    if (preparedStatement != null) {
-                        preparedStatement.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
-                try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
-
-            }
-        }else if (type==1){
             try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-                connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-                String query = " insert into faculty_member (Faculty_Username, Faculty_Email, Faculty_Fname, Faculty_Mname, Faculty_Lname, Faculty_Password)" + " values (?, ?, ?, ?, ?, ?)";
-
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, Uname);
-                preparedStatement.setString(2, email);
-                preparedStatement.setString(3, Fname);
-                preparedStatement.setString(4, Mname);
-                preparedStatement.setString(5, Lname);
-                preparedStatement.setString(6, rn);
-                rs = preparedStatement.executeUpdate();
-
-
-
-
-
-
-
-
-                ////Need to display the temp password to the screen
-
-
-
-
-
-
-
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }finally{
-            /*
-             * finally block used to close resources
-             */
-                try {
-                    if (preparedStatement != null) {
-                        preparedStatement.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
+                if (preparedStatement != null) {
+                    preparedStatement.close();
                 }
-                try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
-
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
             }
-        }else if(type==2){
             try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-                connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-                String query = " insert into evaluator (E_Username, E_Fname, E_Mname, E_Lname, E_Password)" + " values (?, ?, ?, ?, ?)";
-
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, Uname);
-                preparedStatement.setString(2, Fname);
-                preparedStatement.setString(3, Mname);
-                preparedStatement.setString(4, Lname);
-                preparedStatement.setString(5, rn);
-                rs = preparedStatement.executeUpdate();
-
-            }catch(Exception e){
-                e.printStackTrace();
-            }finally{
-            /*
-             * finally block used to close resources
-             */
-                try {
-                    if (preparedStatement != null) {
-                        preparedStatement.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
+                if (connection != null) {
+                    connection.close();
                 }
-                try {
-                    if (connection != null) {
-                        connection.close();
-                    }
-                } catch (SQLException sqlException) {
-                    sqlException.printStackTrace();
-                }
-
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
             }
+
         }
     }
 
     public void addProgramm(String pName, String mission) throws ClassNotFoundException, SQLException {
-        //public void addProgramm(String pName, String mission, String sOutcome, String pObj, String outcomeLable, String objectiveLable ) throws ClassNotFoundException, SQLException {
+        //public void addProgramm(String pName, String mission, String sOutcome, String pObj, String outcomeLable,
+        // String objectiveLable ) throws ClassNotFoundException, SQLException {
 
         connect();
 
