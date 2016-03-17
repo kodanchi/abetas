@@ -128,7 +128,7 @@
 
                             %>
                         </table>
-                    <a class="btn btn-primary" >Back</a>
+                    <a class="btn btn-primary " href="programObjectiveList.jsp">Back</a>
                     <a class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
                     <a class="btn btn-primary pull-right" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
