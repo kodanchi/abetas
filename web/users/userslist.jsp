@@ -331,7 +331,7 @@
                     </div>
 
                 <button class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Add</button>
-                <button  class="btn btn-primary pull-right">Back</button>
+                <a  class="btn btn-primary pull-right" href="index.jsp">Back</a>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
