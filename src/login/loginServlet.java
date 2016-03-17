@@ -68,7 +68,7 @@ public class loginServlet extends HttpServlet {
                                 System.out.println("Session userID : "+request.getSession().getAttribute("userId"));
 
                                 //cookie
-                                System.out.println("checking value : "+request.getParameter("remember"));
+                                //System.out.println("checking value : "+request.getParameter("remember"));
                                 if (request.getParameter("remember") != null) {
                                     CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 60 * 30);
                                 } else {
