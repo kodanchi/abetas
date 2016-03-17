@@ -309,7 +309,7 @@
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
                         <div>
-                            <h6>Written Rubrics: <span class="label label-danger">required</span></h6>
+                            <h5>Written Rubrics: </h5><h6 class="label label-danger">required</h6>
                             <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
                         </div>
                         <br>
@@ -321,15 +321,15 @@
                             <table>
 --%>
                                 <div class="form-group">
-                                    Comment(s) on Success/Failure in Achieving Performance Indicator:<h6 class="label label-danger mrgB">required</h6>
+                                    Comment(s) on Success/Failure in Achieving Performance Indicator: <h6 class="label label-danger mrgB">required</h6>
                                     <textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea>
                                 </div>
                                 <div class="form-group">
-                                    Obstacles in Achieving Desired Progress:<h6 class="label label-danger mrgB">required</h6>
+                                    Obstacles in Achieving Desired Progress: <h6 class="label label-danger mrgB">required</h6>
                                     <textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea>
                                 </div>
                                 <div class="form-group">
-                                    Areas of Improvement:<h6 class="label label-danger mrgB">required</h6>
+                                    Areas of Improvement: <h6 class="label label-danger mrgB">required</h6>
                                     <textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea>
                                 </div>
 <%--
@@ -361,7 +361,7 @@
 
                                 </div>
                         </div>
-                        <div class="row tim-row">
+                        <div class="row">
                             <label>Faculty Name: </label>
                             <label><%
                                 F_Select yselect = new F_Select();
