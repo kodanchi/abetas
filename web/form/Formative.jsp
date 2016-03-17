@@ -316,24 +316,26 @@
                         <br>
                         <p>Instructor Feedback:</p>
 
-                        <div class="panel panel-default">
 
+<%--
                             <table>
-                                <tr>
-                                    <th>Comment(s) on Success/Failure in Achieving Performance Indicator*: </th>
-                                    <td><textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea></td>
-                                </tr>
-                                <tr>
-                                    <th>Obstacles in Achieving Desired Progress*: </th>
-                                    <td><textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea></td>
-                                </tr>
-                                <tr>
-                                    <th>Areas of Improvement*: </th>
-                                    <td><textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea></td>
-                                </tr>
+--%>
+                                <div class="form-group">
+                                    Comment(s) on Success/Failure in Achieving Performance Indicator:<h6 class="label label-danger">required</h6>
+                                    <textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea>
+                                </div>
+                                <div class="form-group">
+                                    Obstacles in Achieving Desired Progress:<h6 class="label label-danger">required</h6>
+                                    <textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea>
+                                </div>
+                                <div class="form-group">
+                                    Areas of Improvement:<h6 class="label label-danger">required</h6>
+                                    <textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea>
+                                </div>
+<%--
                             </table>
+--%>
 
-                        </div>
                         <div class="row tim-row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
