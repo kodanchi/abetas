@@ -384,7 +384,7 @@
                     </div>
                     <div class="row tim-row">
 
-                        <a class="btn btn-primary" href="index.jsp" >Cancel</a>
+                        <a class="btn btn-default" href="index.jsp" >Cancel</a>
                         <button class="btn btn-primary pull-right" formaction="/SaveFormative" type="submit">Save</button>
                         <button class="btn btn-primary pull-right" id="confirm" type="submit">Submit</button>
                     <script>
