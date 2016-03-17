@@ -336,7 +336,9 @@
                                 <input name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
                                 <label class="pull-right" id="date">Date: <%=fdate.format(date)%></label>
 
+<%--
                                 <label class="pull-right">Date: </label>
+--%>
                             </div>
 
 
