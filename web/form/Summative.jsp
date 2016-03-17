@@ -79,7 +79,7 @@
     <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Summative Data Collection Sheet</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -150,15 +150,13 @@
                         <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
                         <input type="hidden" name="Section_ID" value="<%=section%>">
 
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
 
                             <!-- Table -->
                             <table class="table table-striped table-bordered text-center">
 
                                 <tr>
-                                    <th class="text-center">Student ID:</th>
                                     <th class="text-center">Name</th>
+                                    <th class="text-center">Student ID:</th>
                                     <th class="text-center"><%
                                         String N1 = "";
                                         String D1 = "";
@@ -285,7 +283,7 @@
                             </table>
 
 
-                            <div class="row tim-row">
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>Evidence:</label>
@@ -311,7 +309,7 @@
                                 </div>
                             </div>
 
-                            <div class="row tim-row">
+                            <div class="row">
                                 <label>Faculty Name: </label>
                                 <label><%
                                     F_Select yselect = new F_Select();
@@ -334,7 +332,6 @@
                                 <label class="pull-right">Date: </label>
                             </div>
 
-                        </div>
 
                         <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
                         <button id="confirm" class="btn btn-primary pull-right" type="submit" >Submit</button>
