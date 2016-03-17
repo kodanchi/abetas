@@ -297,7 +297,7 @@
 
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <span class="btn btn-fill btn-primary btn-file">
+                                                <span class="btn btn-fill" style="color:#ecf0f1; background-color: #7f8c8d;">
                                                     Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>
@@ -340,7 +340,7 @@
                             </div>
 
 
-                        <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
+                        <button class="btn btn-primary" type="submit" formaction="/SaveSummative">Save</button>
                         <button id="confirm" class="btn btn-primary pull-right" type="submit" >Submit</button>
 
                         <script>
