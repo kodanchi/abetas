@@ -15,7 +15,7 @@
             <div class="row">
                 <h2 class="text-center">System Log</h2>
                 <div class="col-md-10 col-md-offset-1">
-                    <table class="table table-hover">
+                    <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <th>ID</th>
                             <th>User Name</th>

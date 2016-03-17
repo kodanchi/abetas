@@ -201,8 +201,8 @@
                         <input type="email" name="uemail" id="userEmail" class="form-control" placeholder="Email" value="<%=uemail%>" required>
                     </div>
 
-                    <button type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></button>
-                    <button type="cancel" href="index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</button>
+                    <a type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></a>
+                    <a type="cancel" href="index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
 
 
 
