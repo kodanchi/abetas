@@ -309,7 +309,7 @@
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
                         <div>
-                            <h5>Written Rubrics: </h5><h6 class="label label-danger">required</h6>
+                            <h5>Written Rubrics: <span class="label label-danger">required</span></h5>
                             <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
                         </div>
                         <br>
