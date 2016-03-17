@@ -297,7 +297,7 @@
 
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <span class="btn btn-fill" style="color:#ecf0f1; background-color: #7f8c8d;">
+                                                <span class="btn btn-fill">
                                                     Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>
