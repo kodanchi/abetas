@@ -118,7 +118,7 @@
 
                     <div id="ASTable">
                         <!-- Table -->
-                        <table class="table table-hover"  >
+                        <table class="table table-hover table-striped table-bordered text-center"  >
                             <tr class="textContainer">
                                 <th>First name</th>
                                 <th>Middle name</th>
@@ -189,7 +189,7 @@
 
                     <div id="FTable">
                         <!-- Table -->
-                        <table class="table table-hover"  >
+                        <table class="table table-hover table-striped table-bordered text-center"  >
                             <tr class="textContainer">
                                 <th>First name</th>
                                 <th>Middle name</th>
@@ -252,7 +252,7 @@
 
                     <div id="ETable">
                         <!-- Table -->
-                        <table class="table table-hover" >
+                        <table class="table table-hover table-striped table-bordered text-center" >
                             <tr class="textContainer">
                                 <th>First name</th>
                                 <th>Middle name</th>
@@ -330,8 +330,8 @@
                         </table >
                     </div>
 
-                <button class="btn btn-success"  data-toggle="modal" data-target="#myModal">Add</button>
-                <button  class="btn btn-primary">Back</button>
+                <button class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Add</button>
+                <button  class="btn btn-primary pull-right">Back</button>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
