@@ -105,6 +105,9 @@
                             });
                         </script>
                     </table>
+
+                    <a class="btn btn-primary pull-right" href="/index.jsp">Back</a>
+
                 </div>
             </div>
 

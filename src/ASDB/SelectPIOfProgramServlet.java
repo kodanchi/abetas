@@ -127,7 +127,7 @@ public class SelectPIOfProgramServlet extends HttpServlet {
                     "<input type=\"hidden\" name=\"programID\" value=\""+pid+"\">");
 
             if(size>0) {
-                out.print("<a class=\"btn btn-success btn-fill pull-right\" href=\"index.jsp?page=rubricNames&cycle=" + id + "&programID=" + pid + "\">Next</a>");
+                out.print("<a class=\"btn btn-primary btn-fill pull-right\" href=\"index.jsp?page=rubricNames&cycle=" + id + "&programID=" + pid + "\">Next</a>");
             }
 
 

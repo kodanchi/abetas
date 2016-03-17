@@ -128,6 +128,7 @@
 
                             %>
                         </table>
+                    <a class="btn btn-primary pull-right" href="programList.jsp">Back</a>
                     <a class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add</a>
                     <a class="btn btn-primary pull-right" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 

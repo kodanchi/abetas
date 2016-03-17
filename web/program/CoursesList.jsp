@@ -131,6 +131,7 @@
                             %>
                         </table>
 
+                    <a class="btn btn-primary pull-right" href="linkSOWithO.jsp">Back</a>
                     <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add</a>
                     <a class="btn btn-primary pull-right" href="/index.jsp">Finish</a>
 
