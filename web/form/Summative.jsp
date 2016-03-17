@@ -14,6 +14,8 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/uploadInput.js" type="text/javascript"></script>
+
 
 <%
 
@@ -75,17 +77,13 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Summative Data Collection Sheet</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
@@ -142,7 +140,59 @@
                                 %></td>
                             </tr>
                         </table>
-                    </div>
+
+                        <table class="table table-striped table-bordered text-center">
+                         <tr>
+                             <%
+                                 String N1 = "";
+                                 String D1 = "";
+                                 String N2 = "";
+                                 String D2 = "";
+                                 String N3 = "";
+                                 String D3 = "";
+                                 String N4 = "";
+                                 String D4 = "";
+                                 if(linkValues.size()!=0) {
+                                     F_Select zselect = new F_Select();
+                                     ArrayList<String> rubrics = new ArrayList<String>();
+                                     ArrayList<String> rubricsNames = new ArrayList<String>();
+                                     try {
+                                         rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
+                                         rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
+                                         System.out.println("rubrics : "+ rubrics);
+                                         System.out.println("rubricsNames : "+ rubricsNames);
+                                         N1 = rubricsNames.get(0);
+                                         D1 = rubrics.get(0);
+                                         N2 = rubricsNames.get(1);
+                                         D2 = rubrics.get(1);
+                                         N3 = rubricsNames.get(2);
+                                         D3 = rubrics.get(2);
+                                         N4 = rubricsNames.get(3);
+                                         D4 = rubrics.get(3);
+                                     } catch (ClassNotFoundException e) {
+                                         e.printStackTrace();
+                                     } catch (SQLException e) {
+                                         e.printStackTrace();
+                                     }
+                                 }
+                             %>
+                             <th class="text-center"><%out.print(N1);%></th>
+                             <td class="text-center"><%out.print(D1);%></td>
+                         </tr>
+                            <tr>
+                                <th class="text-center"><%out.print(N2);%></th>
+                                <td class="text-center"><%out.print(D2);%></td>
+                         </tr>
+                            <tr>
+                                <th class="text-center"><%out.print(N3);%></th>
+                                <td class="text-center"><%out.print(D3);%></td>
+                         </tr>
+                            <tr>
+                                <th class="text-center"><%out.print(N4);%></th>
+                                <td class="text-center"><%out.print(D4);%></td>
+                         </tr>
+
+                        </table>
 
 
                     <form id="summativeForm" name="summativeForm" enctype="multipart/form-data" method="post">
@@ -150,60 +200,17 @@
                         <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
                         <input type="hidden" name="Section_ID" value="<%=section%>">
 
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
 
                             <!-- Table -->
                             <table class="table table-striped table-bordered text-center">
 
                                 <tr>
-                                    <th class="text-center">Student ID:</th>
                                     <th class="text-center">Name</th>
-                                    <th class="text-center"><%
-                                        String N1 = "";
-                                        String D1 = "";
-                                        String N2 = "";
-                                        String D2 = "";
-                                        String N3 = "";
-                                        String D3 = "";
-                                        String N4 = "";
-                                        String D4 = "";
-                                        if(linkValues.size()!=0) {
-                                            F_Select zselect = new F_Select();
-                                            ArrayList<String> rubrics = new ArrayList<String>();
-                                            ArrayList<String> rubricsNames = new ArrayList<String>();
-                                            try {
-                                                rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
-                                                rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
-                                                System.out.println("rubrics : "+ rubrics);
-                                                System.out.println("rubricsNames : "+ rubricsNames);
-                                                out.print(rubricsNames.get(0));
-                                                N1 = rubricsNames.get(0);
-                                                D1 = rubrics.get(0);
-                                                N2 = rubricsNames.get(1);
-                                                D2 = rubrics.get(1);
-                                                N3 = rubricsNames.get(2);
-                                                D3 = rubrics.get(2);
-                                                N4 = rubricsNames.get(3);
-                                                D4 = rubrics.get(3);
-                                            } catch (ClassNotFoundException e) {
-                                                e.printStackTrace();
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    %></th>
+                                    <th class="text-center">Student ID</th>
+                                    <th class="text-center"><%out.print(N1);%></th>
                                     <th class="text-center"><%out.print(N2);%></th>
                                     <th class="text-center"><%out.print(N3);%></th>
                                     <th class="text-center"><%out.print(N4);%></th>
-                                </tr>
-                                <tr>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <th class="text-center"><%out.print(D1);%></th>
-                                    <th class="text-center"><%out.print(D2);%></th>
-                                    <th class="text-center"><%out.print(D3);%></th>
-                                    <th class="text-center"><%out.print(D4);%></th>
                                 </tr>
                                 <tr>
 
@@ -285,14 +292,14 @@
                             </table>
 
 
-                            <div class="row tim-row">
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>Evidence:</label>
 
                                         <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-fill btn-primary btn-file">
+                                            <span class="input-group-btn" >
+                                                <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                                                     Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>
@@ -311,7 +318,7 @@
                                 </div>
                             </div>
 
-                            <div class="row tim-row">
+                            <div class="row">
                                 <label>Faculty Name: </label>
                                 <label><%
                                     F_Select yselect = new F_Select();
@@ -331,12 +338,13 @@
                                 <input name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
                                 <label class="pull-right" id="date">Date: <%=fdate.format(date)%></label>
 
+<%--
                                 <label class="pull-right">Date: </label>
+--%>
                             </div>
 
-                        </div>
 
-                        <button class="btn btn-danger btn-fill" type="submit" formaction="/SaveSummative">Save</button>
+                        <button class="btn btn-primary" type="submit" formaction="/SaveSummative">Save</button>
                         <button id="confirm" class="btn btn-primary pull-right" type="submit" >Submit</button>
 
                         <script>
@@ -360,6 +368,3 @@
                 <!-- End of row -->
             </div>
         </div>
-    </div>
-    <!-- End of main -->
-</div>
