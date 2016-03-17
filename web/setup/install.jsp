@@ -218,10 +218,14 @@ InstallDB dbCon = new InstallDB(null);
                     </div>
 
                     <ul class="pager wizard">
+<%--
                         <li class="previous first" style="display:none;"><a href="#">First</a></li>
-                        <li class="previous"><a href="#">Previous</a></li>
+--%>
+                        <li class="previous pull-left btn btn-primary"><a href="#">Previous</a></li>
+<%--
                         <li class="next last" style="display:none;"><a href="#">Last</a></li>
-                        <li class="next"><a href="#">Next</a></li>
+--%>
+                        <li class="next pull-right btn btn-primary"><a href="#">Next</a></li>
                         <li class="finish pull-right btn btn-primary"><a href="javascript:;">Finish</a></li>
                     </ul>
                 </div>
