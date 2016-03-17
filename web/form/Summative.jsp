@@ -205,7 +205,7 @@
                                 <tr>
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Student ID</th>
-                                    <td class="text-center"><%out.print(N1);%></td>
+                                    <th class="text-center"><%out.print(N1);%></th>
                                     <th class="text-center"><%out.print(N2);%></th>
                                     <th class="text-center"><%out.print(N3);%></th>
                                     <th class="text-center"><%out.print(N4);%></th>
