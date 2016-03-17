@@ -14,6 +14,8 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/uploadInput.js" type="text/javascript"></script>
+
 
 <%
 
@@ -296,8 +298,8 @@
                                         <label>Evidence:</label>
 
                                         <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-fill">
+                                            <span class="input-group-btn" >
+                                                <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                                                     Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>

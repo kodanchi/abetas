@@ -14,6 +14,8 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/uploadInput.js" type="text/javascript"></script>
+
 
 <%
 
@@ -102,7 +104,7 @@
     <div class="section">
         <div class="container">
             <!--         what is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
