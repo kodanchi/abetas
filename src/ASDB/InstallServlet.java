@@ -1,6 +1,7 @@
 
 package ASDB;
 
+import login.Password;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -155,7 +156,7 @@ public class InstallServlet extends HttpServlet {
                                     }
                                     if (extension.equals("png")) {
                                         item.write(new File(SERVER_DIRECTORY + UPLOAD_DIRECTORY + File.separator + name));
-                                        ulogo = SERVER_DIRECTORY + UPLOAD_DIRECTORY + "/" + name;
+                                        ulogo = "/" + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
                                         System.out.println("File Uploaded Successfully!");
 
@@ -180,7 +181,8 @@ public class InstallServlet extends HttpServlet {
                     System.out.println("File Upload Failed due to " + ex);
                 }
 
-                db.init(uname, cname, ulogo, afname, amname, alname, ausername, apassword, aemail);
+
+                db.init(uname, cname, ulogo, afname, amname, alname, ausername, Password.getSaltedHash(apassword), aemail);
                 out.print("<br>\n" +
                         "        <p>Congratulations, ABETAS setup done successfully, now you need to add a superuser so he can enter the programs, course, create an evaluation cycle. Click on User Management to add and manage users.</p>\n" +
                         "        <br>\n" +
