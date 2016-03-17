@@ -29,7 +29,7 @@
                 <p>Please confirm that the imported data are as intended, you can click re-upload to discard the current imported file and import it again.</p>
 
                     <!-- Table -->
-                    <table class="table">
+                    <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <th>Firstname</th>
                             <th>Middlename</th>
