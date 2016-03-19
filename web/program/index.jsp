@@ -397,6 +397,7 @@
 <script src="/js/pageloading.js" type="text/javascript"></script>
 <script src="/js/del-form-listener.js" type="text/javascript"></script>
 <script src="/js/import-popup.js" type="text/javascript"></script>
+<script src="/js/filter.js" type="text/javascript"></script>
 <%--
 <script src="/js/ct-paper.js"></script>--%>
 

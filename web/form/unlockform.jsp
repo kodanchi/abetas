@@ -34,7 +34,7 @@
 
             <div class="input-group"> <span class="input-group-addon">Filter</span>
 
-                <input id="filter" type="text" class="form-control" placeholder="Search via performance indicator, course name">
+                <input id="filter" type="text" class="form-control" placeholder=" by performance indicator, course name">
             </div>
 
             <!-- Table -->
