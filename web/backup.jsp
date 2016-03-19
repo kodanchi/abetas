@@ -32,8 +32,8 @@
 <div class="main">
     <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Backup History</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
