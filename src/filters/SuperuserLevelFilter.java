@@ -9,8 +9,8 @@ import java.io.IOException;
 /**
  * Created by Mojahed on 2/10/2016.
  */
-@WebFilter(filterName = "FacultyLevelFilter")
-public class FacultyLevelFilter implements Filter {
+@WebFilter(filterName = "SuperuserLevelFilter")
+public class SuperuserLevelFilter implements Filter {
     public void destroy() {
     }
 
@@ -24,10 +24,11 @@ public class FacultyLevelFilter implements Filter {
                 switch (userLvl){
                     case 0:
                     case 1:
-                    case 2:
                         chain.doFilter(req, resp);
                         break;
+                    case 2:
                     case 3:
+                    default:
                         response.sendRedirect("/index.jsp");
                 }
 

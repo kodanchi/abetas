@@ -69,6 +69,18 @@
     </filter-mapping>
 
     <filter>
+        <filter-name>SUFilter</filter-name>
+        <filter-class>filters.SuperuserLevelFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/cycle/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/program/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>FacultyFilter</filter-name>
         <filter-class>filters.FacultyLevelFilter</filter-class>
     </filter>
