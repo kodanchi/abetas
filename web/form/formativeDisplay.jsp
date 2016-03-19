@@ -289,7 +289,7 @@
 
                             <h6>Written Rubrics</h6>
                             <div>
-                                <textarea class="form-control" rows="4" readonly> <%=F_written_rubic%></textarea>
+                                <textarea class="form-control ronly" rows="4" readonly> <%=F_written_rubic%></textarea>
                                </div>
 
                         </div>
@@ -326,8 +326,10 @@
                         </div>
 
                         <div class="row">
-                            <h6>Faculty Name: </h6>
-                            <h6><%
+                            <label><strong>Faculty Name: </strong></label>
+                            <label>
+                                </strong>
+                                <%
                                 F_Select yselect = new F_Select();
                                 try {
                                     String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -339,11 +341,12 @@
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-                            %></h6>
+                            %>
+                                </strong></label>
 
-                            <h6 class="pull-right">Date: <%=fDate%></h6>
+                            <label class="pull-right"><strong>Date: <%=fDate%></strong></label>
 
-                    <div class="row tim-row">
+                    <div class="row">
                         <a class="btn btn-primary" href="index.jsp" >Back</a>
 
                         <a class="btn btn-primary pull-right" id="print" onclick="window.print();">Print</a>
