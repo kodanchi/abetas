@@ -68,11 +68,9 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Summative Data Collection Sheet</h2>
                 <legend></legend>
                 <div class="col-md-10 col-md-offset-1">
@@ -330,6 +328,3 @@
                 <!-- End of row -->
             </div>
         </div>
-    </div>
-    <!-- End of main -->
-</div>

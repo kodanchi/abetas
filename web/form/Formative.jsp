@@ -100,10 +100,8 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
+            <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
@@ -414,6 +412,3 @@
             </div>
 
         </div>
-    </div>
-    <!-- End of main -->
-</div>
