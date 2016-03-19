@@ -200,38 +200,7 @@
                                 <tr>
                                     <th class="text-center">Name</th>
                                     <th class="text-center">Student ID</th>
-                                    <th class="text-center"><%
-                                        String N1 = "";
-                                        String D1 = "";
-                                        String N2 = "";
-                                        String D2 = "";
-                                        String N3 = "";
-                                        String D3 = "";
-                                        String N4 = "";
-                                        String D4 = "";
-                                        if(linkValues.size()!=0) {
-                                            F_Select zselect = new F_Select();
-                                            ArrayList<String> rubrics = new ArrayList<String>();
-                                            ArrayList<String> rubricsNames = new ArrayList<String>();
-                                            try {
-                                                rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
-                                                rubricsNames = zselect.selectRubricsSummativeNames(Integer.parseInt(String.valueOf(summativeID)));
-                                                out.print(rubricsNames.get(0));
-                                                N1 = rubricsNames.get(0);
-                                                D1 = rubrics.get(0);
-                                                N2 = rubricsNames.get(1);
-                                                D2 = rubrics.get(1);
-                                                N3 = rubricsNames.get(2);
-                                                D3 = rubrics.get(2);
-                                                N4 = rubricsNames.get(3);
-                                                D4 = rubrics.get(3);
-                                            } catch (ClassNotFoundException e) {
-                                                e.printStackTrace();
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
-                                            }
-                                        }
-                                    %></th>
+                                    <th class="text-center"><%out.print(N1);%></th>
                                     <th class="text-center"><%out.print(N2);%></th>
                                     <th class="text-center"><%out.print(N3);%></th>
                                     <th class="text-center"><%out.print(N4);%></th>
