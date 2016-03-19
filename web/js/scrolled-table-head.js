@@ -23,8 +23,12 @@
                     tableOffsetBottom = tableOffsetTop + $this.height() - $this.find("thead").height();
                 if(offset < tableOffsetTop || offset > tableOffsetBottom)
                     $t_fixed.hide();
-                else if(offset >= tableOffsetTop && offset <= tableOffsetBottom && $t_fixed.is(":hidden"))
+                else if(offset >= tableOffsetTop && offset <= tableOffsetBottom && $t_fixed.is(":hidden")){
+                    resizeFixed();
                     $t_fixed.show();
+                }
+
+
             }
             $(window).resize(resizeFixed);
             $(window).scroll(scrollFixed);

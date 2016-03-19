@@ -202,24 +202,23 @@
                         <input type="hidden" name="Section_ID" value="<%=section%>">
 
 
-                            <div class="container">
-                                <!-- Table -->
-                                <table class="table table-striped table-bordered text-center">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">Name</th>
-                                        <th class="text-center">Student ID</th>
-                                        <th class="text-center"><%out.print(N1);%></th>
-                                        <th class="text-center"><%out.print(N2);%></th>
-                                        <th class="text-center"><%out.print(N3);%></th>
-                                        <th class="text-center"><%out.print(N4);%></th>
-                                    </tr>
-                                    </thead>
+                        <!-- Table -->
+                        <table class="table table-striped table-bordered text-center">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Student ID</th>
+                                <th class="text-center"><%out.print(N1);%></th>
+                                <th class="text-center"><%out.print(N2);%></th>
+                                <th class="text-center"><%out.print(N3);%></th>
+                                <th class="text-center"><%out.print(N4);%></th>
+                            </tr>
+                            </thead>
 
-                                    <tbody>
-                                    <tr>
+                            <tbody>
+                            <tr>
 
-                                            <%
+                                    <%
 
                                         F_Select Sselect = new F_Select();
 
@@ -293,10 +292,9 @@
                                         }
 
                                     %>
-                                    </tbody>
+                            </tbody>
 
-                                </table>
-                            </div>
+                        </table>
 
 
                             <div class="row">
