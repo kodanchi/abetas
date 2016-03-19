@@ -204,7 +204,7 @@
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
-                            <thead>
+                            <thead style="background-color: #e7e7e7">
                             <tr>
                                 <th class="text-center">Name</th>
                                 <th class="text-center">Student ID</th>
