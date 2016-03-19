@@ -289,7 +289,7 @@
 
                             <h6>Written Rubrics</h6>
                             <div>
-                                <textarea class="form-control ronly" rows="4" readonly> <%=F_written_rubic%></textarea>
+                                <textarea class="form-control" rows="4" readonly style="background-color: white;"> <%=F_written_rubic%></textarea>
                                </div>
 
                         </div>
@@ -328,7 +328,7 @@
                         <div class="row">
                             <label><strong>Faculty Name: </strong></label>
                             <label>
-                                </strong>
+                                <strong>
                                 <%
                                 F_Select yselect = new F_Select();
                                 try {
