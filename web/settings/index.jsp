@@ -196,7 +196,7 @@
                                     %>">
 
                                 </div>
-
+<br>
                                 <h5 class="help-block small">Allowed size and type: 2MB, png</h5>
                             </div>
 
