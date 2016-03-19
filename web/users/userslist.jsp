@@ -118,7 +118,7 @@
 
                     <div id="ASTable">
                         <!-- Table -->
-                        <table class="table table-hover"  >
+                        <table class="table table-hover table-striped table-bordered text-center"  >
                             <tr class="textContainer">
                                 <th>First name</th>
                                 <th>Middle name</th>
@@ -154,7 +154,7 @@
                                                     "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                     "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
                                                     "                            <input name=\"type\" value=\"Superuser\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                     "                               </td>" +
                                                     "                           </form>" +
                                                     "                           <form method=\"post\" action=\"/deleteUser\">\n" +
@@ -162,7 +162,7 @@
                                                     "                            <input name=\"id\" value=\""+suRow.get(0)+"\" hidden />\n" +
                                                     "                            <input name=\"type\" value=\"Superuser\" hidden />\n" +
                                                     "                               <td>" +
-                                                    "                            <button type=\"button\"  onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                     "                               </td>"+
                                                     "                        </form>" +
                                                     "</tr>");
@@ -189,7 +189,7 @@
 
                     <div id="FTable">
                         <!-- Table -->
-                        <table class="table table-hover"  >
+                        <table class="table table-hover table-striped table-bordered text-center"  >
                             <tr class="textContainer">
                                 <th>First name</th>
                                 <th>Middle name</th>
@@ -222,7 +222,7 @@
                                                 "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Faculty_Member\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                           </form>" +
                                                 "                           <form method=\"post\" action=\"/deleteUser\">\n" +
@@ -230,7 +230,7 @@
                                                 "                            <input name=\"id\" value=\""+fmRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Faculty_Member\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button type=\"button\" onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -252,7 +252,7 @@
 
                     <div id="ETable">
                         <!-- Table -->
-                        <table class="table table-hover" >
+                        <table class="table table-hover table-striped table-bordered text-center" >
                             <tr class="textContainer">
                                 <th>First name</th>
                                 <th>Middle name</th>
@@ -302,7 +302,7 @@
                                                 "                            <input name=\"page\" value=\"update\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
-                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-warning btn-simple\"><i class=\"fa fa-pencil fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                           </form>" +
                                                 "                           <form method=\"post\" name=\"delForm\" action=\"/deleteUser\">\n" +
@@ -310,7 +310,7 @@
                                                 "                            <input name=\"id\" value=\""+eRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"type\" value=\"Evaluator\" hidden />\n" +
                                                 "                               <td>" +
-                                                "                            <button type=\"button\" onclick=\"onDelete(this.form)\" title=\"Delete\" class=\"btn btn-danger btn-simple\"><i class=\"fa fa-trash-o fa-2x \"></i></button>\n" +
+                                                "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
                                                 "                               </td>"+
                                                 "                        </form>" +
                                                 "</tr>");
@@ -330,8 +330,8 @@
                         </table >
                     </div>
 
-                <button class="btn btn-success"  data-toggle="modal" data-target="#myModal">Add</button>
-                <button  class="btn btn-primary">Back</button>
+                <button class="btn btn-primary"  data-toggle="modal" data-target="#myModal">Add</button>
+                <a  class="btn btn-primary pull-right" href="/index.jsp">Back</a>
 
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

@@ -70,7 +70,7 @@
                         %>
 
                     </table >
-                <a class="btn btn-primary" href="#">Back</a>
+                <a  class="btn btn-primary pull-right" href="/index.jsp">Back</a>
                 <a class="btn btn-primary" href="index.jsp?page=add">Add</a>
 
                 <!-- End of col -->

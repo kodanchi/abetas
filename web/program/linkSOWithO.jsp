@@ -74,6 +74,7 @@
 
                         </table>
 
+                    <a class="btn btn-primary pull-right" href="SOList.jsp">Back</a>
                     <a class="btn btn-primary" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <a class="btn btn-primary pull-right" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 

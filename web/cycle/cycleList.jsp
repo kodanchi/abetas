@@ -70,7 +70,7 @@
                         </table>
 
                     <form name="myform" action="/AddCycle" method="post">
-                        <button class="btn btn-primary">Back</button>
+                        <a  class="btn btn-primary pull-right" href="/index.jsp">Back</a>
                         <button class="btn btn-primary" type="submit">Add</button>
 
                     </form>

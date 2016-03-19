@@ -1,7 +1,8 @@
-<%@ page import="sessionListener.CookiesControl" %>
+<%--<%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="javax.persistence.criteria.CriteriaBuilder" %><%--
+<%@ page import="java.util.ArrayList" %>--%>
+<%--
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/19/2016

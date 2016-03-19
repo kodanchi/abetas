@@ -1,5 +1,5 @@
-
-<%@ page import="Backup.Backup" %>
+<%--
+<%@ page import="Backup.Backup" %>--%>
 <%@ page import="java.io.File" %>
 <%@ page import="java.nio.file.*" %>
 <%@ page import="java.nio.file.attribute.BasicFileAttributes" %>
@@ -82,9 +82,9 @@
                                                     "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                                                     .format(view.creationTime().toMillis())+"</td>\n" +
                                                     "                                <form method=\"post\" action=\"/RestoreDB\">\n" +
-                                                    "                                    <td><input hidden name=\"restoreAction\" value="+files+"><button type=\"submit\" class=\"btn btn-warning btn-simple\" data-toggle=\"modal\" data-target=\"#restoreModal\" name=\"restore_Bck\"><i class=\"fa fa-undo fa-2x\"></i></button></td></form>\n"+
+                                                    "                                    <td><input hidden name=\"restoreAction\" value="+files+"><button type=\"submit\" class=\"btn btn-warning btn-simple\" name=\"restore_Bck\"><i class=\"fa fa-undo fa-2x\"></i></button></td></form>\n"+
                                                     "                                <form method=\"post\" action=\"/BackupDel\">\n" +
-                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+files+"> <button type=\"submit\" class=\"btn btn-danger btn-simple\" data-toggle=\"modal\" data-target=\"#deleteModal\"><i class=\"fa fa-trash-o fa-2x\"></i></button></td></form>\n");
+                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+files+"> <button type=\"submit\" class=\"btn btn-danger btn-simple\" ><i class=\"fa fa-trash-o fa-2x\"></i></button></td></form>\n");
 
 
 

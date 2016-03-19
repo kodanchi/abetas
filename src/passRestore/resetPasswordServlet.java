@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Random;
-import java.util.Scanner;
+
 /**
  * Created by Mohammed on 1/21/2016.
  */
@@ -103,7 +103,7 @@ public class resetPasswordServlet extends HttpServlet {
 
                 if(!PassCodeMap.checkKey(userEmail) && !userEmail.equals("")){
                     Random rand = new Random();
-                    String randNumber= String.valueOf(rand.nextInt(100000));
+                    String randNumber = String.valueOf(rand.nextInt(100000));
                     System.out.println("This is the random number "+randNumber);
                     PassCodeMap.setPassCode(userEmail,randNumber);
 
@@ -115,7 +115,7 @@ public class resetPasswordServlet extends HttpServlet {
 
                     SendEmail msg = new SendEmail();
 
-                    msg.mu("The code is  "+ PassCodeMap.getpassKey(userEmail),userEmail);
+                    msg.sendMsg("The code is  "+ PassCodeMap.getpassKey(userEmail),"Reset password request",userEmail);
                     //response.sendRedirect("enterPasscode.jsp");
 
                     out.println(respondForm);

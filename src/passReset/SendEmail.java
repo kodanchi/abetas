@@ -12,9 +12,9 @@ public class SendEmail {
      *
      * @param msg contains the message the the admin want to send to the user
      * @param reciever contain the reciever email address
-     *                 mu method contains the email configuration "smtp configuration"
+     *                 sendMsg method contains the email configuration "smtp configuration"
      */
-    public  void mu(String msg,String reciever)
+    public  void sendMsg(String msg, String title, String reciever)
     {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
@@ -31,6 +31,8 @@ public class SendEmail {
                     }
                 });
 
+
+
         try {
 
             Message message = new MimeMessage(session);
@@ -38,7 +40,7 @@ public class SendEmail {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(reciever));
 
-            message.setSubject("Reset password request");
+            message.setSubject(title);
             message.setText(msg);
 
             Transport.send(message);

@@ -14,6 +14,8 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/uploadInput.js" type="text/javascript"></script>
+
 
 <%
 
@@ -98,11 +100,9 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
@@ -309,39 +309,41 @@
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
                         <div>
-                            <p>Written Rubrics</p>
+                            <h5>Written Rubrics: <span class="label label-danger">required</span></h5>
                             <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
                         </div>
                         <br>
                         <br>
-                        <p>Instructor Feedback:</p>
+                        <h5>Instructor Feedback:</h5>
 
-                        <div class="panel panel-default">
 
+<%--
                             <table>
-                                <tr>
-                                    <th>Comment(s) on Success/Failure in Achieving Performance Indicator*: </th>
-                                    <td><textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea></td>
-                                </tr>
-                                <tr>
-                                    <th>Obstacles in Achieving Desired Progress*: </th>
-                                    <td><textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea></td>
-                                </tr>
-                                <tr>
-                                    <th>Areas of Improvement*: </th>
-                                    <td><textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea></td>
-                                </tr>
+--%>
+                                <div class="form-group">
+                                    Comment(s) on Success/Failure in Achieving Performance Indicator: <h6 class="label label-danger mrgB">required</h6>
+                                    <textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea>
+                                </div>
+                                <div class="form-group">
+                                    Obstacles in Achieving Desired Progress: <h6 class="label label-danger mrgB">required</h6>
+                                    <textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea>
+                                </div>
+                                <div class="form-group">
+                                    Areas of Improvement: <h6 class="label label-danger mrgB">required</h6>
+                                    <textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea>
+                                </div>
+<%--
                             </table>
+--%>
 
-                        </div>
-                        <div class="row tim-row">
+                        <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>Evidence:</label>
 
                                         <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-fill btn-primary btn-file">
+                                            <span class="input-group-btn" >
+                                                <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                                                     Browse&hellip; <input type="file" id="evidence" name="evidence" accept="application/pdf">
                                                 </span>
                                             </span>
@@ -359,7 +361,7 @@
 
                                 </div>
                         </div>
-                        <div class="row tim-row">
+                        <div class="row">
                             <label>Faculty Name: </label>
                             <label><%
                                 F_Select yselect = new F_Select();
@@ -382,7 +384,7 @@
                     </div>
                     <div class="row tim-row">
 
-                        <a class="btn btn-primary" href="index.jsp" >Cancel</a>
+                        <a class="btn btn-default" href="index.jsp" >Cancel</a>
                         <button class="btn btn-primary pull-right" formaction="/SaveFormative" type="submit">Save</button>
                         <button class="btn btn-primary pull-right" id="confirm" type="submit">Submit</button>
                     <script>
@@ -410,6 +412,3 @@
             </div>
 
         </div>
-    </div>
-    <!-- End of main -->
-</div>

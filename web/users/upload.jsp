@@ -29,7 +29,7 @@
                 <p>Please confirm that the imported data are as intended, you can click re-upload to discard the current imported file and import it again.</p>
 
                     <!-- Table -->
-                    <table class="table">
+                    <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <th>Firstname</th>
                             <th>Middlename</th>
@@ -98,10 +98,10 @@
                     </table>
 
                 <form method="post" action="/upload/users" >
-                    <a class="btn btn-success btn-fill" href="/users/index.jsp?page=import">re-upload</a>
+                    <a class="btn btn-primary" href="/users/index.jsp?page=import">re-upload</a>
                     <input name="file" value="sheetData" hidden>
                     <button class="btn btn-primary"  type="submit">Upload</button>
-                    <a href="/users/index.jsp" class="btn btn-primary">Cancel</a>
+                    <a href="/users/index.jsp" class="btn btn-default pull-right">Cancel</a>
                 </form>
 
 

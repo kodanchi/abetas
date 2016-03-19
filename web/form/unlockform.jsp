@@ -25,10 +25,9 @@
     }
 %>
 
-<div class="section">
     <div class="container">
-        <!--         what is row -->
-        <div class="row tim-row">
+        <!-- Here is row -->
+        <div class="row">
             <h2 class="text-center">Unlocking Submitted Forms</h2>
             <legend></legend>
             <div class="col-md-8 col-md-offset-2">
@@ -105,16 +104,16 @@
                             });
                         </script>
                     </table>
+
+                    <a class="btn btn-primary pull-right" href="/index.jsp">Back</a>
+
                 </div>
+
+                <!-- End of col -->
             </div>
 
-
-            <!-- End of col -->
+            <!-- End of row -->
         </div>
 
-        <!-- End of row -->
+        <!-- End of container -->
     </div>
-
-
-    <!-- Modal Bodies come here -->
-</div>

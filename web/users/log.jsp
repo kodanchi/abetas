@@ -15,7 +15,9 @@
             <div class="row">
                 <h2 class="text-center">System Log</h2>
                 <div class="col-md-10 col-md-offset-1">
-                    <table class="table table-hover">
+                    <a class="btn btn-primary pull-right mrgB" href="index.jsp">Back</a>
+
+                    <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <th>ID</th>
                             <th>User Name</th>
@@ -48,6 +50,7 @@
                         %>
                     </table>
                 </div>
+
 
             </div>
         </div>

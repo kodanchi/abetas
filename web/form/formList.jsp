@@ -10,7 +10,10 @@
 <script src="/js/jquery-2.2.0.min.js" type="application/javascript"></script>
 <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 <script src="/js/bootbox.min.js" type="application/javascript"></script>
+
+
 <div class="row">
+    <!-- Here is row -->
     <div class="col-md-3 col-md-offset-3">
         <div class="list-group">
             <h4>Uncompleted forms</h4>
@@ -39,8 +42,8 @@
                         frsRow = formativeFormsList.get(i);
                         out.print("<a href=\"index.jsp?page=fillForm&type=formative&id="+frsRow.get(0)+"\" class=\"list-group-item\">"+
                                 frsRow.get(2)+" </br> (Course : "+frsRow.get(1)+")");
-                        out.print("<div class=\"pull-right\">Formative</div>");
-                        out.print("</a>");
+                        out.print("<div class=\"pull-right\" style=\"background-color: #2aabd2\" >Formative</div>");
+                        out.print("</a><br>");
                     }
 
 
@@ -51,8 +54,8 @@
                         srsRow = summativeFormsList.get(i);
                         out.print("<a href=\"index.jsp?page=fillForm&type=summative&id="+srsRow.get(0)+"\" class=\"list-group-item\">"+
                                 srsRow.get(2)+" </br> (Course : "+srsRow.get(1)+")");
-                        out.print("<div class=\"pull-right\">Summative</div>");
-                        out.print("</a>");
+                        out.print("<div class=\"pull-right\" style=\"background-color: #2aabd2\">Summative</div>");
+                        out.print("</a><br>");
                     }
 
 

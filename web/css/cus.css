@@ -170,3 +170,24 @@ input[readonly] {
 .btn{
     margin-left: 5px;
 }
+.mrgB{
+    margin-bottom: 20px;
+}
+.fixed{
+    top:0;
+    position:fixed;
+    width:auto;
+    display:none;
+    border:none;
+}
+table{
+    border-collapse:collapse;
+    width:100%;
+}
+
+
+
+th,td{
+    text-align:center;
+    padding:5px 0;
+}

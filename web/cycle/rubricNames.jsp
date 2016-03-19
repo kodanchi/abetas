@@ -158,9 +158,11 @@
 
                         <br>
 
-                        <button class="btn btn-primary">Back</button>
+                        <a class="btn btn-primary" href="piList.jsp">Back</a>
                         <button class="btn btn-primary pull-right" type="submit">Next</button>
+<%--
                         <button class="btn btn-default pull-right" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</button>
+--%>
 
                     <!-- End of col -->
 

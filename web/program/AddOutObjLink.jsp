@@ -89,7 +89,9 @@
                                 <input type="hidden" name="OutLinkValue" value="<%=request.getParameter("OutLinkValue")%>">
 
 
-                                    <select class=" selectpicker" name="Obj" data-live-search="true">
+
+                                    <select class="selectpicker" name="Obj"  data-live-search="true">
+
                                         <%
                                             P_AS_Select aselect = new P_AS_Select();
                                             try {
@@ -113,7 +115,12 @@
                                                         out.print(" selected");
                                                     }
                                                     out.print(">");
-                                                    out.print(rs.get(i)+"</option>");
+                                                    if(rs.get(i).length()> 150){
+                                                        out.print(rs.get(i).substring(0,150)+"..."+"</option>");
+                                                    }else {
+                                                        out.print(rs.get(i)+"</option>");
+                                                    }
+
                                                 }
                                             } catch (ClassNotFoundException e) {
                                                 e.printStackTrace();
@@ -129,7 +136,7 @@
 
                                 <label>Student Outcome: </label>
 
-                                        <select class=" selectpicker"  name="Out" data-live-search="true">
+                                        <select class="selectpicker"  name="Out" data-live-search="true">
                                             <%
                                                 P_AS_Select bselect = new P_AS_Select();
                                                 try {
@@ -152,7 +159,11 @@
                                                             out.print(" selected");
                                                         }
                                                         out.print(">");
-                                                        out.print(rs.get(i)+"</option>");
+                                                        if(rs.get(i).length()> 150){
+                                                            out.print(rs.get(i).substring(0,150)+"..."+"</option>");
+                                                        }else {
+                                                            out.print(rs.get(i)+"</option>");
+                                                        }
                                                     }
                                                 } catch (ClassNotFoundException e) {
                                                     e.printStackTrace();

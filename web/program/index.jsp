@@ -7,7 +7,7 @@
 
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
-<%@ page import="java.io.*,java.util.*" %>
+<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     System.out.println(request.getMethod());
@@ -353,6 +353,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
    <%-- <link href="/css/ct-paper.css" rel="stylesheet"/>
     <link href="/css/demo.css" rel="stylesheet" /> --%>
     <link href="/css/style.css" rel="stylesheet" />
