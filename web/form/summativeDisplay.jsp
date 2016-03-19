@@ -68,154 +68,154 @@
     }
 %>
 
-        <div class="container">
-            <!-- Here is row -->
-            <div class="row">
-                <h2 class="text-center">Summative Data Collection Sheet</h2>
-                <legend></legend>
-                <div class="col-md-10 col-md-offset-1">
+<div class="container">
+    <!-- Here is row -->
+    <div class="row">
+        <h2 class="text-center">Summative Data Collection Sheet</h2>
+        <legend></legend>
+        <div class="col-md-10 col-md-offset-1">
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
 
-                        <!-- Table -->
-                        <table class="table table-striped table-bordered text-center">
-                            <tr>
-                                <th class="text-center">Student Outcome:</th>
-                                <td><% if(linkValues.size()!=0) {
-                                    F_Select bselect = new F_Select();
-                                    try {
-                                        ArrayList<String> rs = bselect.selectOutForLinkSingle(Integer.parseInt(linkValues.get(0)));
-                                        out.print(rs.get(0));
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
-                                    }
+                <!-- Table -->
+                <table class="table table-striped table-bordered text-center">
+                    <tr>
+                        <th class="text-center">Student Outcome:</th>
+                        <td><% if(linkValues.size()!=0) {
+                            F_Select bselect = new F_Select();
+                            try {
+                                ArrayList<String> rs = bselect.selectOutForLinkSingle(Integer.parseInt(linkValues.get(0)));
+                                out.print(rs.get(0));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        %></td>
+                    </tr>
+
+                    <tr>
+                        <th class="text-center">Performance Indicator:</th>
+                        <td><% if(linkValues.size()!=0) {
+                            F_Select cselect = new F_Select();
+                            try {
+                                ArrayList<String> rs = cselect.selectPIForLinkSingle(Integer.parseInt(linkValues.get(1)));
+                                out.print(rs.get(0));
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        %></td>
+                    </tr>
+
+                    <tr>
+                        <th class="text-center">Course for Summative data:</th>
+                        <td><%
+                            out.print(linkValues.get(2)+" ");
+                        %> <%
+                            if(linkValues.size()!=0) {
+                                F_Select dselect = new F_Select();
+                                try {
+                                    String name = dselect.selectCourseName(linkValues.get(2));
+
+                                    out.print(name);
+
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
                                 }
-                                %></td>
-                            </tr>
+                            }
+                        %></td>
+                    </tr>
+                </table>
+            </div>
 
-                            <tr>
-                                <th class="text-center">Performance Indicator:</th>
-                                <td><% if(linkValues.size()!=0) {
-                                    F_Select cselect = new F_Select();
-                                    try {
-                                        ArrayList<String> rs = cselect.selectPIForLinkSingle(Integer.parseInt(linkValues.get(1)));
-                                        out.print(rs.get(0));
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
-                                    }
+
+            <form id="summativeForm" name="summativeForm" enctype="multipart/form-data" method="post">
+
+                <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
+                <input type="hidden" name="Section_ID" value="<%=section%>">
+
+                <table class="table table-striped table-bordered text-center">
+                    <tr>
+                        <%
+                            String N1 = "";
+                            String D1 = "";
+                            String N2 = "";
+                            String D2 = "";
+                            String N3 = "";
+                            String D3 = "";
+                            String N4 = "";
+                            String D4 = "";
+                            if(linkValues.size()!=0) {
+                                F_Select zselect = new F_Select();
+                                ArrayList<String> rubrics = new ArrayList<String>();
+                                ArrayList<String> rubricsNames = new ArrayList<String>();
+                                try {
+                                    rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
+                                    rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
+                                    System.out.println("rubrics : "+ rubrics);
+                                    System.out.println("rubricsNames : "+ rubricsNames);
+                                    N1 = rubricsNames.get(0);
+                                    D1 = rubrics.get(0);
+                                    N2 = rubricsNames.get(1);
+                                    D2 = rubrics.get(1);
+                                    N3 = rubricsNames.get(2);
+                                    D3 = rubrics.get(2);
+                                    N4 = rubricsNames.get(3);
+                                    D4 = rubrics.get(3);
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
                                 }
-                                %></td>
-                            </tr>
+                            }
+                        %>
+                        <th class="text-center" width="30%"><%out.print(N1);%></th>
+                        <td class="text-center"><%out.print(D1);%></td>
+                    </tr>
+                    <tr>
+                        <th class="text-center"><%out.print(N2);%></th>
+                        <td class="text-center"><%out.print(D2);%></td>
+                    </tr>
+                    <tr>
+                        <th class="text-center"><%out.print(N3);%></th>
+                        <td class="text-center"><%out.print(D3);%></td>
+                    </tr>
+                    <tr>
+                        <th class="text-center"><%out.print(N4);%></th>
+                        <td class="text-center"><%out.print(D4);%></td>
+                    </tr>
 
-                            <tr>
-                                <th class="text-center">Course for Summative data:</th>
-                                <td><%
-                                    out.print(linkValues.get(2)+" ");
-                                %> <%
-                                    if(linkValues.size()!=0) {
-                                        F_Select dselect = new F_Select();
-                                        try {
-                                            String name = dselect.selectCourseName(linkValues.get(2));
+                </table>
 
-                                            out.print(name);
+                <!-- Table -->
+                <table class="table table-striped table-bordered text-center">
 
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        } catch (SQLException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                %></td>
-                            </tr>
-                        </table>
-                    </div>
+                    <tr>
+                        <th class="text-center">Name</th>
+                        <th class="text-center">Student ID</th>
+                        <th class="text-center"><%out.print(N1);%></th>
+                        <th class="text-center"><%out.print(N2);%></th>
+                        <th class="text-center"><%out.print(N3);%></th>
+                        <th class="text-center"><%out.print(N4);%></th>
+                    </tr>
+                    <%--<tr>
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                        <th class="text-center"><%out.print(D1);%></th>
+                        <th class="text-center"><%out.print(D2);%></th>
+                        <th class="text-center"><%out.print(D3);%></th>
+                        <th class="text-center"><%out.print(D4);%></th>
+                    </tr>--%>
+                    <tr>
 
-
-                    <form id="summativeForm" name="summativeForm" enctype="multipart/form-data" method="post">
-
-                        <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
-                        <input type="hidden" name="Section_ID" value="<%=section%>">
-
-                        <table class="table table-striped table-bordered text-center">
-                            <tr>
-                                <%
-                                    String N1 = "";
-                                    String D1 = "";
-                                    String N2 = "";
-                                    String D2 = "";
-                                    String N3 = "";
-                                    String D3 = "";
-                                    String N4 = "";
-                                    String D4 = "";
-                                    if(linkValues.size()!=0) {
-                                        F_Select zselect = new F_Select();
-                                        ArrayList<String> rubrics = new ArrayList<String>();
-                                        ArrayList<String> rubricsNames = new ArrayList<String>();
-                                        try {
-                                            rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
-                                            rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
-                                            System.out.println("rubrics : "+ rubrics);
-                                            System.out.println("rubricsNames : "+ rubricsNames);
-                                            N1 = rubricsNames.get(0);
-                                            D1 = rubrics.get(0);
-                                            N2 = rubricsNames.get(1);
-                                            D2 = rubrics.get(1);
-                                            N3 = rubricsNames.get(2);
-                                            D3 = rubrics.get(2);
-                                            N4 = rubricsNames.get(3);
-                                            D4 = rubrics.get(3);
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        } catch (SQLException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                %>
-                                <th class="text-center" width="30%"><%out.print(N1);%></th>
-                                <td class="text-center"><%out.print(D1);%></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center"><%out.print(N2);%></th>
-                                <td class="text-center"><%out.print(D2);%></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center"><%out.print(N3);%></th>
-                                <td class="text-center"><%out.print(D3);%></td>
-                            </tr>
-                            <tr>
-                                <th class="text-center"><%out.print(N4);%></th>
-                                <td class="text-center"><%out.print(D4);%></td>
-                            </tr>
-
-                        </table>
-
-                            <!-- Table -->
-                            <table class="table table-striped table-bordered text-center">
-
-                                <tr>
-                                    <th class="text-center">Name</th>
-                                    <th class="text-center">Student ID</th>
-                                    <th class="text-center"><%out.print(N1);%></th>
-                                    <th class="text-center"><%out.print(N2);%></th>
-                                    <th class="text-center"><%out.print(N3);%></th>
-                                    <th class="text-center"><%out.print(N4);%></th>
-                                </tr>
-                                <%--<tr>
-                                    <td class="text-center"></td>
-                                    <td class="text-center"></td>
-                                    <th class="text-center"><%out.print(D1);%></th>
-                                    <th class="text-center"><%out.print(D2);%></th>
-                                    <th class="text-center"><%out.print(D3);%></th>
-                                    <th class="text-center"><%out.print(D4);%></th>
-                                </tr>--%>
-                                <tr>
-
-                                    <%
+                            <%
 
                                         F_Select Sselect = new F_Select();
 
@@ -286,63 +286,63 @@
 
                                     %>
 
-                            </table>
+                </table>
 
-                            <div class="row">
-                                <div class="col-md-8 col-sm-8">
-                                    <div class="form-group">
-                                        <label>Evidence:</label>
-                                        <%
-                                            if(evidance != null){
+                <div class="row">
+                    <div class="col-md-8 col-sm-8">
+                        <div class="form-group">
+                            <label>Evidence:</label>
+                            <%
+                                if(evidance != null){
 
-                                                out.print("<a  target=\"_blank\" href=\""+evidance+"\">Click here to view the evidence</a>");
-                                            }else { out.print("<h4>no evidence were uploaded</h4>");}
-                                        %>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <label>Faculty Name: </label>
-                                <label><%
-                                    F_Select yselect = new F_Select();
-                                    try {
-                                        String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
-
-                                        out.print(name);
-
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
-                                    }
-                                %>
-                                </label>
-                                <label class="pull-right" id="date"><script>
-                                    /*function myFunction() {
-                                     var d = new Date();
-                                     var n = d.getFullYear();
-                                     document.getElementById("date").innerHTML = n;
-                                     }*/
-                                    (function(){
-                                        var d = new Date();
-                                        document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
-                                    })();
-                                </script></label>
-
-                                <label class="pull-right">Date: </label>
-                            </div>
-
-
-                        <a class="btn btn-danger btn-fill" href="index.jsp">Back</a>
-                        <a id="print" class="btn btn-primary pull-right" onclick="window.print();" >Print</a>
-
-
-                        </form>
-
-                        <!-- End of col -->
+                                    out.print("<a  target=\"_blank\" href=\""+evidance+"\">Click here to view the evidence</a>");
+                                }else { out.print("<h4>no evidence were uploaded</h4>");}
+                            %>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- End of row -->
-            </div>
+                <div class="row">
+                    <label>Faculty Name: </label>
+                    <label><%
+                        F_Select yselect = new F_Select();
+                        try {
+                            String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
+
+                            out.print(name);
+
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
+                    %>
+                    </label>
+                    <label class="pull-right" id="date"><script>
+                        /*function myFunction() {
+                         var d = new Date();
+                         var n = d.getFullYear();
+                         document.getElementById("date").innerHTML = n;
+                         }*/
+                        (function(){
+                            var d = new Date();
+                            document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
+                        })();
+                    </script></label>
+
+                    <label class="pull-right">Date: </label>
+                </div>
+
+
+                <a class="btn btn-danger btn-fill" href="index.jsp">Back</a>
+                <a id="print" class="btn btn-primary pull-right" onclick="window.print();" >Print</a>
+
+
+            </form>
+
+            <!-- End of col -->
         </div>
+
+        <!-- End of row -->
+    </div>
+</div>
