@@ -43,7 +43,7 @@
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p>Click "Create New Backup" to store a new backup</p>
-                    
+
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
 
