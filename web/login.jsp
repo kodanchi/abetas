@@ -1,5 +1,8 @@
+<%--
 <%@ page import="sessionListener.CookiesControl" %>
-<%@ page import="java.util.HashMap" %><%--
+<%@ page import="java.util.HashMap" %>
+--%>
+<%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/8/2016

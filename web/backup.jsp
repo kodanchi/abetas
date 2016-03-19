@@ -1,5 +1,5 @@
-
-<%@ page import="Backup.Backup" %>
+<%--
+<%@ page import="Backup.Backup" %>--%>
 <%@ page import="java.io.File" %>
 <%@ page import="java.nio.file.*" %>
 <%@ page import="java.nio.file.attribute.BasicFileAttributes" %>
@@ -18,7 +18,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="../css/bootstrap.css" rel="stylesheet" />
-    <link href="css/ct-paper.css" rel="stylesheet" />
+    <link href="css/flat-ui.css" rel="stylesheet" />
     <link href="css/cus.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
@@ -28,19 +28,21 @@
 </head>
 
 <body>
+<div id="page">
+<div id="header">
+    <jsp:include page="/Header.jsp"/>
+</div>
+
 
 <div class="main">
     <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Backup History</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p>Click "Create New Backup" to store a new backup</p>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
@@ -82,9 +84,9 @@
                                                     "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                                                     .format(view.creationTime().toMillis())+"</td>\n" +
                                                     "                                <form method=\"post\" action=\"/RestoreDB\">\n" +
-                                                    "                                    <td><input hidden name=\"restoreAction\" value="+files+"><button type=\"submit\" class=\"btn btn-warning btn-simple\" data-toggle=\"modal\" data-target=\"#restoreModal\" name=\"restore_Bck\"><i class=\"fa fa-undo fa-2x\"></i></button></td></form>\n"+
+                                                    "                                    <td><input hidden name=\"restoreAction\" value="+files+"><button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button></td></form>\n"+
                                                     "                                <form method=\"post\" action=\"/BackupDel\">\n" +
-                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+files+"> <button type=\"submit\" class=\"btn btn-danger btn-simple\" data-toggle=\"modal\" data-target=\"#deleteModal\"><i class=\"fa fa-trash-o fa-2x\"></i></button></td></form>\n");
+                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+files+"><button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button></td></form>\n");
 
 
 
@@ -93,9 +95,9 @@
                                 }
                             %>
                         </table>
-                    </div>
+
                     <form method="post" action="/Backup">
-                    <button class="btn btn-success btn-fill" name="backupCreate">Create New Backup</button>
+                    <button class="btn btn-primary" name="backupCreate">Create New Backup</button>
                     <button class="btn btn-primary pull-right">close</button>
                     </form>
 
@@ -159,6 +161,11 @@
 </div>
 
 
+<div id="footer">
+    <jsp:include page="/Footer.jsp"/>
+</div>
+</div>
+<div id="loading" ></div>
 </body>
 
 <script src="js/jquery-1.10.2.js" type="text/javascript"></script>

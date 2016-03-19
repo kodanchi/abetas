@@ -91,24 +91,20 @@
     }
 %>
 
-<div class="main">
-    <div class="section">
         <div class="container">
-            <!--         what is row -->
-            <div class="row tim-row">
+            <!-- Here is row -->
+            <div class="row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p>Outcome and performance Indicator Indicator:</p>
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Student Outcome:</th>
-                                <th class="text-center"><% if(linkValues.size()!=0) {
+                                <th class="text-center">Student Outcome</th>
+                                <td class="text-center"><% if(linkValues.size()!=0) {
                                     F_Select bselect = new F_Select();
                                     try {
                                         ArrayList<String> rs = bselect.selectOutForLinkSingle(Integer.parseInt(linkValues.get(0)));
@@ -120,10 +116,10 @@
                                     }
                                 }
                                 %>
-                                </th>
+                                </td>
                             </tr>
                             <tr>
-                                <td>performance indicators</td>
+                                <th>performance indicators</th>
                                 <td><% if(linkValues.size()!=0) {
                                     F_Select cselect = new F_Select();
                                     try {
@@ -138,23 +134,21 @@
                                 %></td>
                             </tr>
                         </table>
-                    </div>
 
-                    <p>Course Information:</p>
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+
+                    <h6>Course Information:</h6>
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Course Code:</th>
-                                <th class="text-center"><%
+                                <th class="text-center">Course Code</th>
+                                <td class="text-center"><%
                                         out.print(linkValues.get(2));
-                                %></th>
+                                %></td>
                             </tr>
                             <tr>
-                                <td>Course title:</td>
+                                <th>Course title</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         F_Select dselect = new F_Select();
@@ -173,7 +167,7 @@
                             </tr>
 
                             <tr>
-                                <td>Level & Program:</td>
+                                <th>Level & Program</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         F_Select eselect = new F_Select();
@@ -206,7 +200,7 @@
                             </tr>
 
                             <tr>
-                                <td>Term and Year:</td>
+                                <th>Term and Year</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         F_Select gselect = new F_Select();
@@ -238,15 +232,13 @@
                                 %></td>
                             </tr>
                         </table>
-                    </div>
 
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Rubric(s):</th>
+                                <th class="text-center">Rubric(s)</th>
                                 <th class="text-center"><%
                                     String N1 = "";
                                     String D1 = "";
@@ -284,47 +276,45 @@
                                 <th class="text-center"><%out.print(N4);%></th>
                             </tr>
                             <tr>
-                                <td>Description</td>
+                                <th>Description</th>
                                 <td><%out.print(D1);%></td>
                                 <td><%out.print(D2);%></td>
                                 <td><%out.print(D3);%></td>
                                 <td><%out.print(D4);%></td>
                             </tr>
                         </table>
-                    </div>
-
-                    <div>
 
 
                         <div>
-                            <p>Written Rubrics</p>
-                            <div><%=F_written_rubic%></div>
+
+                            <h6>Written Rubrics</h6>
+                            <div>
+                                <textarea class="form-control" rows="4" readonly style="background-color: white;"> <%=F_written_rubic%></textarea>
+                               </div>
+
                         </div>
                         <br>
                         <br>
-                        <p>Instructor Feedback:</p>
+                        <h6>Instructor Feedback:</h6>
 
-                        <div class="panel panel-default">
-
-                            <table>
+                            <table class="table table-striped table-bordered text-center">
                                 <tr>
-                                    <th>Comment(s) on Success/Failure in Achieving Performance Indicator*: </th>
-                                    <td><div><%=F_instructor_feedback_comment%></div></td>
+                                    <th width="30%">Comment(s) on Success/Failure in Achieving Performance Indicator*: </th>
+                                    <td><%=F_instructor_feedback_comment%></td>
                                 </tr>
                                 <tr>
                                     <th>Obstacles in Achieving Desired Progress*: </th>
-                                    <td><div><%=F_instructor_feedback_obstacle%></div></td>
+                                    <td><%=F_instructor_feedback_obstacle%></td>
                                 </tr>
                                 <tr>
                                     <th>Areas of Improvement*: </th>
-                                    <td><div><%=F_instructor_feedback_improvement%></div></td>
+                                    <td><%=F_instructor_feedback_improvement%></td>
                                 </tr>
                             </table>
 
-                        </div>
-                        <div class="row tim-row">
 
-                                <div class="col-md-4 col-sm-4">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4">
                                      <%
                                     if(!F_evidence.equals("")){
 
@@ -332,11 +322,13 @@
                                     }else { out.print("<h4>no evidence were uploaded</h4>");}
                                     %>
 
-                                </div>
+                            </div>
                         </div>
-                        <div class="row tim-row">
-                            <label>Faculty Name: </label>
-                            <label><%
+
+                            <label><strong>Faculty Name: </strong></label>
+                            <label>
+                                <strong>
+                                <%
                                 F_Select yselect = new F_Select();
                                 try {
                                     String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -348,11 +340,13 @@
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-                            %></label>
+                            %>
+                                </strong>
+                            </label>
 
-                            <label class="pull-right">Date: <%=fDate%></label>
-                    </div>
-                    <div class="row tim-row">
+                            <label class="pull-right"><strong>Date: <%=fDate%></strong></label>
+
+                    <div class="row">
                         <a class="btn btn-primary" href="index.jsp" >Back</a>
 
                         <a class="btn btn-primary pull-right" id="print" onclick="window.print();">Print</a>
@@ -368,6 +362,3 @@
             </div>
 
         </div>
-    </div>
-    <!-- End of main -->
-</div>

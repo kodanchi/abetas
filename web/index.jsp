@@ -1,7 +1,8 @@
-<%@ page import="sessionListener.CookiesControl" %>
+<%--<%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="javax.persistence.criteria.CriteriaBuilder" %><%--
+<%@ page import="java.util.ArrayList" %>--%>
+<%--
+<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/19/2016
@@ -95,6 +96,25 @@
                     <div class=" block">
                             <i class="fa fa-list-alt"></i>
                         <h6 class="-title text-uppercase" data-toggle="tooltip" title="All actions of users are registered and documented here">System Log</h6>
+
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/form/index.jsp?page=unlockForm">
+                    <div class=" block">
+                            <i class="fa fa-unlock-alt"></i>
+                        <h6 class="-title text-uppercase" data-toggle="tooltip" title="Re-enabling submitted forms">Unlock Submitted Forms</h6>
+
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6 mainblock">
+                <a href="/backup.jsp">
+                    <div class=" block">
+                            <i class="fa  fa-history"></i>
+                        <h6 class="-title text-uppercase" data-toggle="tooltip" title="All the system back history">Backup</h6>
 
                     </div>
                 </a>

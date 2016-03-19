@@ -7,11 +7,12 @@
 
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
-<%@ page import="java.io.*,java.util.*" %>
+<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page import="sessionListener.CookiesControl" %>
-<%@ page import="com.sun.corba.se.impl.orbutil.ObjectUtility" %>
+
 <%@ page import="ASDB.Settings_Select" %>
-<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
@@ -178,12 +179,12 @@
                                         <label>University Logo</label>
 
                                         <div class="input-group">
+
                 <span class="input-group-btn">
                     <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                         Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
                     </span>
                 </span>
-                                            <h5 class="help-block small">Allowed size and type: 2MB, png</h5>
 
                                             <input type="text" class="form-control" value="" readonly>
                                         </div>
@@ -197,6 +198,8 @@
 
                                 </div>
                             </div>
+                            <p class="help-block">Allowed size and type: 2MB, png</p>
+
 
 
 

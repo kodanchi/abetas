@@ -7,7 +7,7 @@
 
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
-<%@ page import="java.io.*,java.util.*" %>
+<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page import="EDB.EncDec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
