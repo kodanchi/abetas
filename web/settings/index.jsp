@@ -7,11 +7,12 @@
 
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
-<%@ page import="java.io.*,java.util.*" %>
+<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page import="sessionListener.CookiesControl" %>
-<%@ page import="com.sun.corba.se.impl.orbutil.ObjectUtility" %>
+
 <%@ page import="ASDB.Settings_Select" %>
-<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
