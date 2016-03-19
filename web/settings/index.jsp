@@ -197,7 +197,7 @@
 
                                 </div>
                             </div>
-                            <p class="help-block">Allowed size and type: 2MB, png</p>
+                            <p class="help-block" style="background-color: #2aabd2">Allowed size and type: 2MB, png</p>
 
 
 
