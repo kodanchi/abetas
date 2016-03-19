@@ -28,8 +28,9 @@ InstallDB dbCon = new InstallDB(null);
     <link href="/css/flat-ui.css" rel="stylesheet" />
 </head>
 <body>
-<div class='container'>
 
+
+<div class='container'>
     <section id="wizard">
         <form name="myform" id="setUpForm" method="post" enctype="multipart/form-data" action="/install">
             <div class="page-header">

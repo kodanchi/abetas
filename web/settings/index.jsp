@@ -179,12 +179,12 @@
                                         <label>University Logo</label>
 
                                         <div class="input-group">
+
                 <span class="input-group-btn">
                     <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
                         Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
                     </span>
                 </span>
-                                            <h5 class="help-block small">Allowed size and type: 2MB, png</h5>
 
                                             <input type="text" class="form-control" value="" readonly>
                                         </div>
@@ -198,6 +198,8 @@
 
                                 </div>
                             </div>
+                            <p class="help-block" style="background-color: #2aabd2">Allowed size and type: 2MB, png</p>
+
 
 
 
