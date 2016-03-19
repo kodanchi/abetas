@@ -135,9 +135,9 @@
                             </tr>
                         </table>
 
-                    
 
-                    <h5>Course Information:</h5>
+
+                    <h6>Course Information:</h6>
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
@@ -287,13 +287,15 @@
 
                         <div>
 
-                            <h5>Written Rubrics</h5>
-                            <div><%=F_written_rubic%></div>
+                            <h6>Written Rubrics</h6>
+                            <div>
+                                <textarea class="form-control" rows="4" readonly> <%=F_written_rubic%></textarea>
+                               </div>
 
                         </div>
                         <br>
                         <br>
-                        <h5>Instructor Feedback:</h5>
+                        <h6>Instructor Feedback:</h6>
 
                             <table class="table table-striped table-bordered text-center">
                                 <tr>
@@ -324,8 +326,8 @@
                         </div>
 
                         <div class="row">
-                            <h5>Faculty Name: </h5>
-                            <h5><%
+                            <h6>Faculty Name: </h6>
+                            <h6><%
                                 F_Select yselect = new F_Select();
                                 try {
                                     String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -337,9 +339,9 @@
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-                            %></h5>
+                            %></h6>
 
-                            <h5 class="pull-right">Date: <%=fDate%></h5>
+                            <h6 class="pull-right">Date: <%=fDate%></h6>
 
                     <div class="row tim-row">
                         <a class="btn btn-primary" href="index.jsp" >Back</a>

@@ -299,12 +299,12 @@
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
                         <div>
-                            <h5>Written Rubrics: <span class="label label-danger">required</span></h5>
+                            <h6>Written Rubrics: <span class="label label-danger">required</span></h6>
                             <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
                         </div>
                         <br>
                         <br>
-                        <h5>Instructor Feedback:</h5>
+                        <h6>Instructor Feedback:</h6>
 
 
 <%--
@@ -352,8 +352,8 @@
                                 </div>
                         </div>
                         <div class="row">
-                            <h5>Faculty Name: </h5>
-                            <h5><%
+                            <h6>Faculty Name: </h6>
+                            <h6><%
                                 F_Select yselect = new F_Select();
                                 try {
                                     String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -367,9 +367,9 @@
                                 }
                                 DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
                                 Date date = new Date();
-                            %></h5>
-                            <h5 name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
-                            <h5 class="pull-right" id="date">Date: <%=fdate.format(date)%></h5>
+                            %></h6>
+                            <h6 name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
+                            <h6 class="pull-right" id="date">Date: <%=fdate.format(date)%></h6>
 
                     </div>
                     <div class="row">
