@@ -325,7 +325,6 @@
                             </div>
                         </div>
 
-                        <div class="row">
                             <label><strong>Faculty Name: </strong></label>
                             <label>
                                 <strong>
