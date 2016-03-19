@@ -244,28 +244,28 @@
                                                 }
                                                 //out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rsRow.get(0)+"\">");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" );
+                                                out.print(" <div class=\"checkboxgroup\"><label>\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N1)){
                                                             out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
-                                                        out.print("</label>");
+                                                        out.print("</label></div>\n");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" );
+                                                out.print(" <div class=\"checkboxgroup\"><label>\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N2)){
                                                             out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
-                                                        out.print("</label>");
+                                                        out.print("</label></div>\n");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" );
+                                                out.print(" <div class=\"checkboxgroup\"><label>\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N3)){
                                                             out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
-                                                        out.print("</label>");
+                                                        out.print("</label></div>\n");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" );
+                                                out.print(" <div class=\"checkboxgroup\"><label>\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N4)){
                                                          /* out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
                                                           out.print(" <input type=\"radio\" readonly");
@@ -273,7 +273,7 @@
                                                           out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");*/
                                                             out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
-                                                        out.print("</label>");
+                                                        out.print("</label></div>\n");
                                                 out.print("</td>");
                                                 out.print("</tr>");
                                             }
