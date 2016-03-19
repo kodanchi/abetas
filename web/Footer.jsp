@@ -10,7 +10,7 @@
 <footer>
     <div class="container" style="margin-top:50px;">
         <div class="row">
-            <div class="col-xs-10">
+            <div class="col-xs-10" style="color: #2c3e50;">
                 <h4 class="footer-title">ABETAS</h4>
                 <p>Designed and built as a graduation project in <a href="http://www.uod.edu.sa">UOD</a>. All Rights Reversed to ABETAS<br><a href="#">Back to top</a>
                 </p>
