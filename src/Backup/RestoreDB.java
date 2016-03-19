@@ -61,8 +61,9 @@ public class RestoreDB extends HttpServlet {
          * after that doing the command in windows using Process class and handle the I/O operation by catch
          * lastly message will apear to the user either the operation successfully done or not
          */
-        String[] executeCmd = new String[]{"\"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", " source "+SERVER_DIRECTORY + "/" + UPLOAD_DIRECTORY +restoreBackup+"\"" };
-        //System.out.println(executeCmd);
+        String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", "\" source " +SERVER_DIRECTORY +  UPLOAD_DIRECTORY +"\\"+restoreBackup+"\"" };
+        for(int i= 0 ;i<executeCmd.length;i++)
+        System.out.print(executeCmd[i]);
 
         Process runtimeProcess= null;
 
