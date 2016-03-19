@@ -93,10 +93,10 @@
 
         <div class="container">
             <!-- Here is row -->
-            <div class="row tim-row">
+            <div class="row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p>Outcome and performance Indicator Indicator:</p>
 
                     <div class="panel panel-default">
@@ -320,7 +320,7 @@
                             </table>
 
                         </div>
-                        <div class="row tim-row">
+                        <div class="row">
 
                                 <div class="col-md-4 col-sm-4">
                                      <%
@@ -332,7 +332,7 @@
 
                                 </div>
                         </div>
-                        <div class="row tim-row">
+                        <div class="row">
                             <label>Faculty Name: </label>
                             <label><%
                                 F_Select yselect = new F_Select();
