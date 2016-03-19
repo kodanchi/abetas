@@ -141,15 +141,65 @@
                         <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
                         <input type="hidden" name="Section_ID" value="<%=section%>">
 
-                        <div class="panel panel-default">
-                            <!-- Default panel contents -->
+                        <table class="table table-striped table-bordered text-center">
+                            <tr>
+                                <%
+                                    String N1 = "";
+                                    String D1 = "";
+                                    String N2 = "";
+                                    String D2 = "";
+                                    String N3 = "";
+                                    String D3 = "";
+                                    String N4 = "";
+                                    String D4 = "";
+                                    if(linkValues.size()!=0) {
+                                        F_Select zselect = new F_Select();
+                                        ArrayList<String> rubrics = new ArrayList<String>();
+                                        ArrayList<String> rubricsNames = new ArrayList<String>();
+                                        try {
+                                            rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
+                                            rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
+                                            System.out.println("rubrics : "+ rubrics);
+                                            System.out.println("rubricsNames : "+ rubricsNames);
+                                            N1 = rubricsNames.get(0);
+                                            D1 = rubrics.get(0);
+                                            N2 = rubricsNames.get(1);
+                                            D2 = rubrics.get(1);
+                                            N3 = rubricsNames.get(2);
+                                            D3 = rubrics.get(2);
+                                            N4 = rubricsNames.get(3);
+                                            D4 = rubrics.get(3);
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        } catch (SQLException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                %>
+                                <th class="text-center" width="30%"><%out.print(N1);%></th>
+                                <td class="text-center"><%out.print(D1);%></td>
+                            </tr>
+                            <tr>
+                                <th class="text-center"><%out.print(N2);%></th>
+                                <td class="text-center"><%out.print(D2);%></td>
+                            </tr>
+                            <tr>
+                                <th class="text-center"><%out.print(N3);%></th>
+                                <td class="text-center"><%out.print(D3);%></td>
+                            </tr>
+                            <tr>
+                                <th class="text-center"><%out.print(N4);%></th>
+                                <td class="text-center"><%out.print(D4);%></td>
+                            </tr>
+
+                        </table>
 
                             <!-- Table -->
                             <table class="table table-striped table-bordered text-center">
 
                                 <tr>
-                                    <th class="text-center">Student ID:</th>
                                     <th class="text-center">Name</th>
+                                    <th class="text-center">Student ID</th>
                                     <th class="text-center"><%
                                         String N1 = "";
                                         String D1 = "";
@@ -186,14 +236,14 @@
                                     <th class="text-center"><%out.print(N3);%></th>
                                     <th class="text-center"><%out.print(N4);%></th>
                                 </tr>
-                                <tr>
+                                <%--<tr>
                                     <td class="text-center"></td>
                                     <td class="text-center"></td>
                                     <th class="text-center"><%out.print(D1);%></th>
                                     <th class="text-center"><%out.print(D2);%></th>
                                     <th class="text-center"><%out.print(D3);%></th>
                                     <th class="text-center"><%out.print(D4);%></th>
-                                </tr>
+                                </tr>--%>
                                 <tr>
 
                                     <%
@@ -269,7 +319,7 @@
 
                             </table>
 
-                            <div class="row tim-row">
+                            <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
                                         <label>Evidence:</label>
@@ -283,7 +333,7 @@
                                 </div>
                             </div>
 
-                            <div class="row tim-row">
+                            <div class="row">
                                 <label>Faculty Name: </label>
                                 <label><%
                                     F_Select yselect = new F_Select();
@@ -314,7 +364,6 @@
                                 <label class="pull-right">Date: </label>
                             </div>
 
-                        </div>
 
                         <a class="btn btn-danger btn-fill" href="index.jsp">Back</a>
                         <a id="print" class="btn btn-primary pull-right" onclick="window.print();" >Print</a>

@@ -325,7 +325,6 @@
                             </div>
                         </div>
 
-                        <div class="row">
                             <label><strong>Faculty Name: </strong></label>
                             <label>
                                 <strong>
@@ -342,7 +341,8 @@
                                     e.printStackTrace();
                                 }
                             %>
-                                </strong></label>
+                                </strong>
+                            </label>
 
                             <label class="pull-right"><strong>Date: <%=fDate%></strong></label>
 

@@ -177,7 +177,7 @@
                                      }
                                  }
                              %>
-                             <th class="text-center"><%out.print(N1);%></th>
+                             <th class="text-center" width="30%"><%out.print(N1);%></th>
                              <td class="text-center"><%out.print(D1);%></td>
                          </tr>
                             <tr>
