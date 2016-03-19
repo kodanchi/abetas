@@ -394,62 +394,15 @@
 <script src="/js/ct-paper-radio.js"></script>--%>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/pageloading.js" type="text/javascript"></script>
+<script src="/js/del-form-listener.js" type="text/javascript"></script>
+<script src="/js/import-popup.js" type="text/javascript"></script>
 <%--
 <script src="/js/ct-paper.js"></script>--%>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-    /*$( "#slider-range" ).slider({
-     range: true,
-     min: 0,
-     max: 500,
-     values: [ 75, 300 ],
-     });
-     $( "#slider-default" ).slider({
-     value: 70,
-     orientation: "horizontal",
-     range: "min",
-     animate: true
-     });
-     $('.btn-tooltip').tooltip('show');
-     $('.radio').on('toggle', function() { });
 
-
-     $(function(){
-     //$("#header").load("/header.jsp");
-     //$("#main").load("userslist.jsp");
-     //$("#footer").load("/footer.jsp");
-     });
-
-
-     function addUser(){
-     $("#main").load("adduser.jsp");
-     }
-
-     function cancel(){
-     $("#main").load("userslist.jsp");
-     }
-
-     */
-
-    function onReady(callback) {
-        var intervalID = window.setInterval(checkReady, 10);
-        function checkReady() {
-            if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-            }
-        }
-    }
-
-    function show(id, value) {
-        document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
-
-    onReady(function () {
-        show('page', true);
-        show('loading', false);
-    });
 
 
 </script>

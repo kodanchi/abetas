@@ -13,6 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
+
 <div class="container">
     <!-- Here is row -->
     <div class="row">
@@ -51,7 +52,7 @@
                                             "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                             "                               </td>" +
                                             "                            </form>" +
-                                            "                            <form method=\"post\" action=\"/DeleteProgram\">\n" +
+                                            "                            <form class=\"delForm\" method=\"post\" action=\"/DeleteProgram\">\n" +
                                             "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                             "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                             "                               <td>" +

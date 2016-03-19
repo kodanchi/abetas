@@ -139,6 +139,8 @@
 <!--  Plugins -->
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/import-popup.js"></script>
+<script src="/js/del-form-listener.js"></script>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });

@@ -34,12 +34,13 @@
                             <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                             <input type="hidden" name="Outid" value="<%=request.getParameter("Outid")%>">
                             <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
-                            <textarea class="form-control" rows="4" cols="50" name="Out" placeholder="Student Outcome" required><%if (request.getParameter("OutValue")!=null) {out.print(request.getParameter("OutValue"));}%></textarea>
+                            <textarea class="form-control" rows="4" cols="50" name="Out" placeholder="Student Outcome" required>
+                                <%if (request.getParameter("OutValue")!=null) {out.print(request.getParameter("OutValue"));}%></textarea>
 
                         </div>
 
                         <br>
-                        <button class="btn btn-primary" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                        <button class="btn btn-primary" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Next");} else out.print("Next");%></button>
                         <a class="btn btn-default pull-right" href="index.jsp?page=OutcomeList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>

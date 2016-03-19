@@ -9,9 +9,21 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
-<div id="header"></div>
+<%
+
+    if(request.getParameter("status") != null){
+
+        out.print("<script type=\"text/javascript\">\n" +
+                "    $(window).load(function(){\n" +
+                "       bootbox.alert(\""+request.getParameter("status")+"\")\n" +
+                "    });\n" +
+                "</script>");
+    }
+
+%>
 
         <div class="container">
             <!-- Here is row -->
@@ -53,7 +65,7 @@
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"/Delete Link Objective and Outcome\">\n" +
+                                                "                            <form method=\"post\" class=\"delForm\" action=\"/Delete Link Objective and Outcome\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"Linkid\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"name\" value=\""+request.getParameter("name")+"\" hidden />\n" +
@@ -74,7 +86,7 @@
 
                         </table>
 
-                    <a class="btn btn-primary pull-right" href="SOList.jsp">Back</a>
+                    <a class="btn btn-default pull-right " href="index.jsp?page=programList">Cancel</a>
                     <a class="btn btn-primary" href="index.jsp?page=addLinkO&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Add</a>
                     <a class="btn btn-primary pull-right" href="index.jsp?page=CoursesList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Next</a>
 
@@ -89,4 +101,3 @@
         </div>
 
 
-<div id="footer"></div>

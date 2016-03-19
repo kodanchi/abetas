@@ -20,52 +20,20 @@
 
                 <div class="col-md-10 col-md-offset-1">
 
+
                     <%
 
-                    if(request.getParameter("err") != null){
+                        if(request.getParameter("err") != null){
 
-                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*/
+                            out.print("<script type=\"text/javascript\">\n" +
+                                    "    $(window).load(function(){\n" +
+                                    "       bootbox.alert(\""+request.getParameter("err")+"\")\n" +
+                                    "    });\n" +
+                                    "</script>");
 
-                        out.print("<script type=\"text/javascript\">\n" +
-                                "    $(window).load(function(){\n" +
-                                "        $('#myMsgModal').modal('show');\n" +
-                                "    });\n" +
-                                "    function goToNormal(){\n" +
-                                "        window.location.href =\"/users/index.jsp?page=import\";\n" +
-                                "    }\n" +
-                                "</script>" +
-                                "<!-- Modal -->\n" +
-                                "                    <div class=\"modal fade\" id=\"myMsgModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                                "                        <div class=\"modal-dialog\">\n" +
-                                "                            <div class=\"modal-content\">\n" +
-                                "                                <div class=\"modal-header\">\n" +
-                                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">ERROR</h4>\n" +
-                                "                                </div>\n" +
-                                "                                <div class=\"modal-body\">\n" +
-                                                                        request.getParameter("err") +
-                                "                                </div>\n" +
-                                "                                <div class=\"modal-footer\">\n" +
-                                "\n" +
-                                "                                    <div class=\"text-center\">\n" +
-                                "                                        <a type=\"button\"  data-dismiss=\"modal\" onclick=\"goToNormal()\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
-                                "                                    </div>\n" +
-                                "                                </div>\n" +
-                                "                            </div>\n" +
-                                "                        </div>\n" +
-                                "                    </div>");
+                        }
 
-
-                    }
-
-                %>
+                    %>
 
 
                     <div class="row ">
