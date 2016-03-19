@@ -341,7 +341,8 @@
                                     e.printStackTrace();
                                 }
                             %>
-                                </strong></label>
+                                </strong>
+                            </label>
 
                             <label class="pull-right"><strong>Date: <%=fDate%></strong></label>
 
