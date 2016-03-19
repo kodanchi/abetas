@@ -105,17 +105,14 @@
             <div class="row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
-                <div class="col-md-8 col-md-offset-2">
-                    <p>Outcome and performance Indicator Indicator:</p>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+                <div class="col-md-10 col-md-offset-1">
+                    <h6>Outcome and performance Indicator Indicator:</h6>
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Student Outcome:</th>
-                                <th class="text-center"><% if(linkValues.size()!=0) {
+                                <th class="text-center">Student Outcome</th>
+                                <td class="text-center"><% if(linkValues.size()!=0) {
                                     F_Select bselect = new F_Select();
                                     try {
                                         ArrayList<String> rs = bselect.selectOutForLinkSingle(Integer.parseInt(linkValues.get(0)));
@@ -127,10 +124,10 @@
                                     }
                                 }
                                 %>
-                                </th>
+                                </td>
                             </tr>
                             <tr>
-                                <td>performance indicators</td>
+                                <th>performance indicators</th>
                                 <td><% if(linkValues.size()!=0) {
                                     F_Select cselect = new F_Select();
                                     try {
@@ -145,23 +142,19 @@
                                 %></td>
                             </tr>
                         </table>
-                    </div>
 
-                    <p>Course Information:</p>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
+                    <h6>Course Information:</h6>
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Course Code:</th>
-                                <th class="text-center"><%
+                                <th class="text-center">Course Code</th>
+                                <td class="text-center"><%
                                         out.print(linkValues.get(2));
-                                %></th>
+                                %></td>
                             </tr>
                             <tr>
-                                <td>Course title:</td>
+                                <th>Course title</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         F_Select dselect = new F_Select();
@@ -180,14 +173,14 @@
                             </tr>
 
                             <tr>
-                                <td>Level & Program:</td>
+                                <th>Level & Program</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         F_Select eselect = new F_Select();
                                         try {
                                             String level = eselect.selectCourseLevel(linkValues.get(2));
 
-                                            out.print(level);
+                                            out.print(level+" ");
 
                                         } catch (ClassNotFoundException e) {
                                             e.printStackTrace();
@@ -201,7 +194,7 @@
                                         try {
                                             String name = fselect.selectProgramName(Integer.parseInt(linkValues.get(5)));
 
-                                            out.print(name);
+                                            out.print(" "+name);
 
                                         } catch (ClassNotFoundException e) {
                                             e.printStackTrace();
@@ -213,7 +206,7 @@
                             </tr>
 
                             <tr>
-                                <td>Term and Year:</td>
+                                <th>Term and Year</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         F_Select gselect = new F_Select();
@@ -245,15 +238,11 @@
                                 %></td>
                             </tr>
                         </table>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
                             <tr>
-                                <th class="text-center">Rubric(s):</th>
+                                <th class="text-center">Rubric(s)</th>
                                 <th class="text-center"><%
                                     String N1 = "";
                                     String D1 = "";
@@ -291,14 +280,15 @@
                                 <th class="text-center"><%out.print(N4);%></th>
                             </tr>
                             <tr>
-                                <td>Description</td>
+                                <th>Description</th>
                                 <td><%out.print(D1);%></td>
                                 <td><%out.print(D2);%></td>
                                 <td><%out.print(D3);%></td>
                                 <td><%out.print(D4);%></td>
                             </tr>
                         </table>
-                    </div>
+
+
 
                     <form id="formativeForm" name="formativeForm" method="post" enctype="multipart/form-data">
                         <%--<input type="hidden" name="WrittenRubricsV" value="<%=F_written_rubic%>">
@@ -309,12 +299,12 @@
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
                         <div>
-                            <h5>Written Rubrics: <span class="label label-danger">required</span></h5>
+                            <h6>Written Rubrics: <span class="label label-danger">required</span></h6>
                             <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
                         </div>
                         <br>
                         <br>
-                        <h5>Instructor Feedback:</h5>
+                        <h6>Instructor Feedback:</h6>
 
 
 <%--
@@ -339,7 +329,7 @@
                         <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
-                                        <label>Evidence:</label>
+                                        <h6>Evidence:</h6>
 
                                         <div class="input-group">
                                             <span class="input-group-btn" >
@@ -362,8 +352,8 @@
                                 </div>
                         </div>
                         <div class="row">
-                            <label>Faculty Name: </label>
-                            <label><%
+                            <h6>Faculty Name: </h6>
+                            <h6><%
                                 F_Select yselect = new F_Select();
                                 try {
                                     String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -377,12 +367,12 @@
                                 }
                                 DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
                                 Date date = new Date();
-                            %></label>
-                            <input name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
-                            <label class="pull-right" id="date">Date: <%=fdate.format(date)%></label>
+                            %></h6>
+                            <h6 name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
+                            <h6 class="pull-right" id="date">Date: <%=fdate.format(date)%></h6>
 
                     </div>
-                    <div class="row tim-row">
+                    <div class="row">
 
                         <a class="btn btn-default" href="index.jsp" >Cancel</a>
                         <button class="btn btn-primary pull-right" formaction="/SaveFormative" type="submit">Save</button>
