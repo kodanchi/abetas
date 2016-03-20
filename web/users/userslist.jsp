@@ -21,16 +21,13 @@
             <div class="col-md-12">
 
                 <%
-
                     if(request.getParameter("status") != null){
-
                         out.print("<script type=\"text/javascript\">\n" +
                                 "    $(window).load(function(){\n" +
                                 "       bootbox.alert(\""+request.getParameter("status")+"\")\n" +
                                 "    });\n" +
                                 "</script>");
                     }
-
                 %>
 
                 <script type="text/javascript">
