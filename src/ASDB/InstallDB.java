@@ -214,80 +214,40 @@ public class InstallDB {
 
 
 
+        this.createTable("CREATE TABLE `course` (\n" +
+                "  `C_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `C_code` varchar(15) NOT NULL,\n" +
+                "  `C_name` varchar(50) DEFAULT NULL,\n" +
+                "  `C_level` int(11) DEFAULT NULL,\n" +
+                "  `C_include` tinyint(1) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`C_code`),\n" +
+                "  UNIQUE KEY `C_ID_UNIQUE` (`C_ID`)\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8;");
 
 
 
+        this.createTable("CREATE TABLE `cycle` (\n" +
+                "  `Cycle_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `PI_rubric_name_1` varchar(255) DEFAULT NULL,\n" +
+                "  `PI_rubric_name_2` varchar(255) DEFAULT NULL,\n" +
+                "  `PI_rubric_name_3` varchar(255) DEFAULT NULL,\n" +
+                "  `PI_rubric_name_4` varchar(255) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`Cycle_ID`)\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;");
 
 
+        this.createTable("CREATE TABLE `evaluator` (\n" +
+                "  `E_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `E_Username` varchar(13) DEFAULT NULL,\n" +
+                "  `E_Password` varchar(255) DEFAULT NULL,\n" +
+                "  `E_Fname` varchar(50) DEFAULT NULL,\n" +
+                "  `E_Mname` varchar(50) DEFAULT NULL,\n" +
+                "  `E_Lname` varchar(50) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`E_ID`),\n" +
+                "  UNIQUE KEY `E_Username_UNIQUE` (`E_Username`)\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            this.createTable("CREATE TABLE `auditing` (\n" +
-                    "  `audit_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `userName` varchar(255) DEFAULT NULL,\n" +
-                    "  `action` varchar(255) DEFAULT NULL,\n" +
-                    "  `time` varchar(255) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`audit_ID`)\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;");
-
-
-
-
-            this.createTable("CREATE TABLE `course` (\n" +
-                    "  `C_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `C_code` varchar(15) NOT NULL,\n" +
-                    "  `C_name` varchar(50) DEFAULT NULL,\n" +
-                    "  `C_level` int(11) DEFAULT NULL,\n" +
-                    "  `C_include` tinyint(1) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`C_code`),\n" +
-                    "  UNIQUE KEY `C_ID_UNIQUE` (`C_ID`)\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8;");
-
-
-            this.createTable("CREATE TABLE `cycle` (\n" +
-                    "  `Cycle_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `PI_rubric_name_1` varchar(255) DEFAULT NULL,\n" +
-                    "  `PI_rubric_name_2` varchar(255) DEFAULT NULL,\n" +
-                    "  `PI_rubric_name_3` varchar(255) DEFAULT NULL,\n" +
-                    "  `PI_rubric_name_4` varchar(255) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`Cycle_ID`)\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;");
-
-
-            this.createTable("CREATE TABLE `evaluator` (\n" +
-                    "  `E_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `E_Username` varchar(13) DEFAULT NULL,\n" +
-                    "  `E_Password` varchar(255) DEFAULT NULL,\n" +
-                    "  `E_Fname` varchar(50) DEFAULT NULL,\n" +
-                    "  `E_Mname` varchar(50) DEFAULT NULL,\n" +
-                    "  `E_Lname` varchar(50) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`E_ID`),\n" +
-                    "  UNIQUE KEY `E_Username_UNIQUE` (`E_Username`)\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;");
 
 
             this.createTable("CREATE TABLE `evaluator_evaluate_pi` (\n" +
@@ -360,41 +320,15 @@ public class InstallDB {
                     ") ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=utf8;");
 
 
-            this.createTable("CREATE TABLE `link_out_pi` (\n" +
-                    "  `Link_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `FK_out` int(11) DEFAULT NULL,\n" +
-                    "  `FK_pi_ID` int(11) DEFAULT NULL,\n" +
-                    "  `FK_P_ID` int(11) DEFAULT NULL,\n" +
-                    "  `FK_R_ID` int(11) DEFAULT NULL,\n" +
-                    "  `FK_C_ID` varchar(15) DEFAULT NULL,\n" +
-                    "  `FK_T_ID` int(11) DEFAULT NULL,\n" +
-                    "  `LinkType` varchar(50) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`Link_ID`),\n" +
-                    "  UNIQUE KEY `Link_ID_UNIQUE` (`Link_ID`),\n" +
-                    "  KEY `link_out_pi_R_idx` (`FK_R_ID`),\n" +
-                    "  KEY `link_out_pi_PI_idx` (`FK_pi_ID`),\n" +
-                    "  KEY `link_out_pi_P_idx` (`FK_P_ID`),\n" +
-                    "  KEY `link_out_pi_T_idx` (`FK_T_ID`),\n" +
-                    "  KEY `link_out_pi_C_idx` (`FK_C_ID`),\n" +
-                    "  KEY `link_out_pi_O` (`FK_out`),\n" +
-                    "  CONSTRAINT `link_out_pi_C` FOREIGN KEY (`FK_C_ID`) REFERENCES `course` (`C_code`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `link_out_pi_O` FOREIGN KEY (`FK_out`) REFERENCES `p_student_outcome` (`Outcome_label`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `link_out_pi_P` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `link_out_pi_PI` FOREIGN KEY (`FK_pi_ID`) REFERENCES `performance_indicator` (`PI_Label`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `link_out_pi_R` FOREIGN KEY (`FK_R_ID`) REFERENCES `pi_rubric` (`PI_rubric_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `link_out_pi_T` FOREIGN KEY (`FK_T_ID`) REFERENCES `term` (`T_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;");
+        this.createTable("CREATE TABLE `p_objective` (\n" +
+                "  `Objective_label` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `Objective` varchar(255) DEFAULT NULL,\n" +
+                "  `FK_P_ID` int(11) NOT NULL,\n" +
+                "  PRIMARY KEY (`Objective_label`,`FK_P_ID`),\n" +
+                "  KEY `FK_P_objective_idx` (`FK_P_ID`),\n" +
+                "  CONSTRAINT `FK_P_objective` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8;\n");
 
-
-
-            this.createTable("CREATE TABLE `p_objective` (\n" +
-                    "  `Objective_label` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `Objective` varchar(255) DEFAULT NULL,\n" +
-                    "  `FK_P_ID` int(11) NOT NULL,\n" +
-                    "  PRIMARY KEY (`Objective_label`,`FK_P_ID`),\n" +
-                    "  KEY `FK_P_objective_idx` (`FK_P_ID`),\n" +
-                    "  CONSTRAINT `FK_P_objective` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=280 DEFAULT CHARSET=utf8;\n");
 
 
 
@@ -479,7 +413,108 @@ public class InstallDB {
 
 
 
-            this.createTable("CREATE TABLE `program_has_course` (\n" +
+        this.createTable("CREATE TABLE `students` (\n" +
+                "  `Student_ID` int(11) DEFAULT NULL,\n" +
+                "  `Student_Name` varchar(120) DEFAULT NULL,\n" +
+                "  `S_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `FK_Section` int(11) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`S_ID`),\n" +
+                "  KEY `students_FK_Section_idx` (`FK_Section`),\n" +
+                "  CONSTRAINT `students_FK_Section` FOREIGN KEY (`FK_Section`) REFERENCES `section` (`Section_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;");
+
+
+
+        this.createTable("CREATE TABLE `summative` (\n" +
+                "  `Summative_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `Sum_threshold` int(11) DEFAULT NULL,\n" +
+                "  `Sum_submitted` tinyint(1) DEFAULT NULL,\n" +
+                "  `Sum_evidence` varchar(255) DEFAULT NULL,\n" +
+                "  `FK_Link_ID` int(11) DEFAULT NULL,\n" +
+                "  `FK_Section_ID` int(11) DEFAULT NULL,\n" +
+                "  `Sum_date` varchar(25) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`Summative_ID`),\n" +
+                "  KEY `FK_Link_ID_idx` (`FK_Link_ID`),\n" +
+                "  KEY `FK_Section_ID_idx` (`FK_Section_ID`),\n" +
+                "  CONSTRAINT `FK_Link_ID` FOREIGN KEY (`FK_Link_ID`) REFERENCES `link_out_pi` (`Link_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `FK_Section_ID` FOREIGN KEY (`FK_Section_ID`) REFERENCES `section` (`Section_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;");
+
+
+        this.createTable("CREATE TABLE `summative_rubric` (\n" +
+                "  `FK_Summative_ID` int(11) NOT NULL,\n" +
+                "  `student_rubric` varchar(255) DEFAULT NULL,\n" +
+                "  `FK_S_ID` int(11) NOT NULL,\n" +
+                "  PRIMARY KEY (`FK_Summative_ID`,`FK_S_ID`),\n" +
+                "  KEY `Summative_R_FK_SID_idx` (`FK_S_ID`),\n" +
+                "  CONSTRAINT `Summative_R_FK_SID` FOREIGN KEY (`FK_S_ID`) REFERENCES `students` (`S_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `Summative_R_FK_SumID` FOREIGN KEY (`FK_Summative_ID`) REFERENCES `summative` (`Summative_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
+
+
+        this.createTable("CREATE TABLE `superuser` (\n" +
+                "  `Super_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `Super_Username` varchar(255) DEFAULT NULL,\n" +
+                "  `Super_Password` varchar(255) DEFAULT NULL,\n" +
+                "  `Super_Email` varchar(255) DEFAULT NULL,\n" +
+                "  `Super_Fname` varchar(50) DEFAULT NULL,\n" +
+                "  `Super_Mname` varchar(50) DEFAULT NULL,\n" +
+                "  `Super_Lname` varchar(50) DEFAULT NULL,\n" +
+                "  `Adm_ID` tinyint(1) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`Super_ID`),\n" +
+                "  UNIQUE KEY `Super_Username_UNIQUE` (`Super_Username`),\n" +
+                "  UNIQUE KEY `Super_Email_UNIQUE` (`Super_Email`)\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;");
+
+
+
+
+        this.createTable("CREATE TABLE `term` (\n" +
+                "  `T_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `T_name` varchar(255) DEFAULT NULL,\n" +
+                "  `T_year` varchar(255) DEFAULT NULL,\n" +
+                "  `FK_Cycle_ID` int(11) DEFAULT NULL,\n" +
+                "  `current` tinyint(1) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`T_ID`),\n" +
+                "  KEY `Term_FK_idx` (`FK_Cycle_ID`),\n" +
+                "  CONSTRAINT `Term_FK` FOREIGN KEY (`FK_Cycle_ID`) REFERENCES `cycle` (`Cycle_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=365 DEFAULT CHARSET=utf8;");
+
+
+
+        this.createTable("CREATE TABLE `university` (\n" +
+                "  `Uni_name` varchar(255) NOT NULL,\n" +
+                "  `College_name` varchar(100) DEFAULT NULL,\n" +
+                "  `Uni_logo` varchar(255) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`Uni_name`)\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+        this.createTable("CREATE TABLE `update_formative` (\n" +
+                "  `FK_Formative_ID` int(11) NOT NULL,\n" +
+                "  `FK_Faculty_ID` int(11) NOT NULL,\n" +
+                "  `Date` date DEFAULT NULL,\n" +
+                "  `Submit` tinyint(1) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`FK_Formative_ID`,`FK_Faculty_ID`),\n" +
+                "  KEY `Update_formative_FK_faculty_idx` (`FK_Faculty_ID`),\n" +
+                "  CONSTRAINT `Update_formative_FK_faculty` FOREIGN KEY (`FK_Faculty_ID`) REFERENCES `faculty_member` (`Faculty_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `Update_formative_FK_formative` FOREIGN KEY (`FK_Formative_ID`) REFERENCES `formative` (`Formative_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+
+        this.createTable("CREATE TABLE `update_summative` (\n" +
+                "  `FK_Summative_ID` int(11) NOT NULL,\n" +
+                "  `FK_Faculty_ID` int(11) NOT NULL,\n" +
+                "  `Date` date DEFAULT NULL,\n" +
+                "  `Submit` tinyint(1) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`FK_Summative_ID`,`FK_Faculty_ID`),\n" +
+                "  KEY `Update_summative_FK_idx` (`FK_Faculty_ID`),\n" +
+                "  CONSTRAINT `Update_summative_FK_faculty` FOREIGN KEY (`FK_Faculty_ID`) REFERENCES `faculty_member` (`Faculty_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `Update_summative_FK_summative` FOREIGN KEY (`FK_Summative_ID`) REFERENCES `summative` (`Summative_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+
+
+        this.createTable("CREATE TABLE `program_has_course` (\n" +
                     "  `FK_program_ID` int(11) NOT NULL,\n" +
                     "  `FK_course_code` varchar(45) NOT NULL,\n" +
                     "  PRIMARY KEY (`FK_program_ID`,`FK_course_code`),\n" +
@@ -489,90 +524,6 @@ public class InstallDB {
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
 
-
-            this.createTable("CREATE TABLE `section` (\n" +
-                    "  `Section_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `FK_T` int(11) DEFAULT NULL,\n" +
-                    "  `FK_F` int(11) DEFAULT NULL,\n" +
-                    "  `FK_C` varchar(15) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`Section_ID`),\n" +
-                    "  KEY `section_FK_T_idx` (`FK_T`),\n" +
-                    "  KEY `section_FK_C_idx` (`FK_C`),\n" +
-                    "  KEY `section_FK_F_idx` (`FK_F`),\n" +
-                    "  CONSTRAINT `section_FK_C` FOREIGN KEY (`FK_C`) REFERENCES `course` (`C_code`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `section_FK_F` FOREIGN KEY (`FK_F`) REFERENCES `faculty_member` (`Faculty_ID`) ON DELETE SET NULL ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `section_FK_T` FOREIGN KEY (`FK_T`) REFERENCES `term` (`T_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;");
-
-
-
-            this.createTable("CREATE TABLE `students` (\n" +
-                    "  `Student_ID` int(11) DEFAULT NULL,\n" +
-                    "  `Student_Name` varchar(120) DEFAULT NULL,\n" +
-                    "  `S_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `FK_Section` int(11) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`S_ID`),\n" +
-                    "  KEY `students_FK_Section_idx` (`FK_Section`),\n" +
-                    "  CONSTRAINT `students_FK_Section` FOREIGN KEY (`FK_Section`) REFERENCES `section` (`Section_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8;");
-
-
-
-
-            this.createTable("CREATE TABLE `summative` (\n" +
-                    "  `Summative_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `Sum_threshold` int(11) DEFAULT NULL,\n" +
-                    "  `Sum_submitted` tinyint(1) DEFAULT NULL,\n" +
-                    "  `Sum_evidence` varchar(255) DEFAULT NULL,\n" +
-                    "  `FK_Link_ID` int(11) DEFAULT NULL,\n" +
-                    "  `FK_Section_ID` int(11) DEFAULT NULL,\n" +
-                    "  `Sum_date` varchar(25) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`Summative_ID`),\n" +
-                    "  KEY `FK_Link_ID_idx` (`FK_Link_ID`),\n" +
-                    "  KEY `FK_Section_ID_idx` (`FK_Section_ID`),\n" +
-                    "  CONSTRAINT `FK_Link_ID` FOREIGN KEY (`FK_Link_ID`) REFERENCES `link_out_pi` (`Link_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `FK_Section_ID` FOREIGN KEY (`FK_Section_ID`) REFERENCES `section` (`Section_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;");
-
-
-
-            this.createTable("CREATE TABLE `summative_rubric` (\n" +
-                    "  `FK_Summative_ID` int(11) NOT NULL,\n" +
-                    "  `student_rubric` varchar(255) DEFAULT NULL,\n" +
-                    "  `FK_S_ID` int(11) NOT NULL,\n" +
-                    "  PRIMARY KEY (`FK_Summative_ID`,`FK_S_ID`),\n" +
-                    "  KEY `Summative_R_FK_SID_idx` (`FK_S_ID`),\n" +
-                    "  CONSTRAINT `Summative_R_FK_SID` FOREIGN KEY (`FK_S_ID`) REFERENCES `students` (`S_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `Summative_R_FK_SumID` FOREIGN KEY (`FK_Summative_ID`) REFERENCES `summative` (`Summative_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n");
-
-
-
-            this.createTable("CREATE TABLE `superuser` (\n" +
-                    "  `Super_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `Super_Username` varchar(255) DEFAULT NULL,\n" +
-                    "  `Super_Password` varchar(255) DEFAULT NULL,\n" +
-                    "  `Super_Email` varchar(255) DEFAULT NULL,\n" +
-                    "  `Super_Fname` varchar(50) DEFAULT NULL,\n" +
-                    "  `Super_Mname` varchar(50) DEFAULT NULL,\n" +
-                    "  `Super_Lname` varchar(50) DEFAULT NULL,\n" +
-                    "  `Adm_ID` tinyint(1) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`Super_ID`),\n" +
-                    "  UNIQUE KEY `Super_Username_UNIQUE` (`Super_Username`),\n" +
-                    "  UNIQUE KEY `Super_Email_UNIQUE` (`Super_Email`)\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;");
-
-
-            this.createTable("CREATE TABLE `term` (\n" +
-                    "  `T_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                    "  `T_name` varchar(255) DEFAULT NULL,\n" +
-                    "  `T_year` varchar(255) DEFAULT NULL,\n" +
-                    "  `FK_Cycle_ID` int(11) DEFAULT NULL,\n" +
-                    "  `current` tinyint(1) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`T_ID`),\n" +
-                    "  KEY `Term_FK_idx` (`FK_Cycle_ID`),\n" +
-                    "  CONSTRAINT `Term_FK` FOREIGN KEY (`FK_Cycle_ID`) REFERENCES `cycle` (`Cycle_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB AUTO_INCREMENT=365 DEFAULT CHARSET=utf8;");
 
 
             this.createTable("CREATE TABLE `term_contains_courses` (\n" +
@@ -585,39 +536,61 @@ public class InstallDB {
                     ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
 
 
-            this.createTable("CREATE TABLE `university` (\n" +
-                    "  `Uni_name` varchar(255) NOT NULL,\n" +
-                    "  `College_name` varchar(100) DEFAULT NULL,\n" +
-                    "  `Uni_logo` varchar(255) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`Uni_name`)\n" +
-                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+        this.createTable("CREATE TABLE `section` (\n" +
+                "  `Section_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `FK_T` int(11) DEFAULT NULL,\n" +
+                "  `FK_F` int(11) DEFAULT NULL,\n" +
+                "  `FK_C` varchar(15) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`Section_ID`),\n" +
+                "  KEY `section_FK_T_idx` (`FK_T`),\n" +
+                "  KEY `section_FK_C_idx` (`FK_C`),\n" +
+                "  KEY `section_FK_F_idx` (`FK_F`),\n" +
+                "  CONSTRAINT `section_FK_C` FOREIGN KEY (`FK_C`) REFERENCES `course` (`C_code`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `section_FK_F` FOREIGN KEY (`FK_F`) REFERENCES `faculty_member` (`Faculty_ID`) ON DELETE SET NULL ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `section_FK_T` FOREIGN KEY (`FK_T`) REFERENCES `term` (`T_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;");
 
 
-            this.createTable("CREATE TABLE `update_formative` (\n" +
-                    "  `FK_Formative_ID` int(11) NOT NULL,\n" +
-                    "  `FK_Faculty_ID` int(11) NOT NULL,\n" +
-                    "  `Date` date DEFAULT NULL,\n" +
-                    "  `Submit` tinyint(1) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`FK_Formative_ID`,`FK_Faculty_ID`),\n" +
-                    "  KEY `Update_formative_FK_faculty_idx` (`FK_Faculty_ID`),\n" +
-                    "  CONSTRAINT `Update_formative_FK_faculty` FOREIGN KEY (`FK_Faculty_ID`) REFERENCES `faculty_member` (`Faculty_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `Update_formative_FK_formative` FOREIGN KEY (`FK_Formative_ID`) REFERENCES `formative` (`Formative_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+        this.createTable("CREATE TABLE `link_out_pi` (\n" +
+                "  `Link_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `FK_out` int(11) DEFAULT NULL,\n" +
+                "  `FK_pi_ID` int(11) DEFAULT NULL,\n" +
+                "  `FK_P_ID` int(11) DEFAULT NULL,\n" +
+                "  `FK_R_ID` int(11) DEFAULT NULL,\n" +
+                "  `FK_C_ID` varchar(15) DEFAULT NULL,\n" +
+                "  `FK_T_ID` int(11) DEFAULT NULL,\n" +
+                "  `LinkType` varchar(50) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`Link_ID`),\n" +
+                "  UNIQUE KEY `Link_ID_UNIQUE` (`Link_ID`),\n" +
+                "  KEY `link_out_pi_R_idx` (`FK_R_ID`),\n" +
+                "  KEY `link_out_pi_PI_idx` (`FK_pi_ID`),\n" +
+                "  KEY `link_out_pi_P_idx` (`FK_P_ID`),\n" +
+                "  KEY `link_out_pi_T_idx` (`FK_T_ID`),\n" +
+                "  KEY `link_out_pi_C_idx` (`FK_C_ID`),\n" +
+                "  KEY `link_out_pi_O` (`FK_out`),\n" +
+                "  CONSTRAINT `link_out_pi_C` FOREIGN KEY (`FK_C_ID`) REFERENCES `course` (`C_code`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `link_out_pi_O` FOREIGN KEY (`FK_out`) REFERENCES `p_student_outcome` (`Outcome_label`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `link_out_pi_P` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `link_out_pi_PI` FOREIGN KEY (`FK_pi_ID`) REFERENCES `performance_indicator` (`PI_Label`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `link_out_pi_R` FOREIGN KEY (`FK_R_ID`) REFERENCES `pi_rubric` (`PI_rubric_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
+                "  CONSTRAINT `link_out_pi_T` FOREIGN KEY (`FK_T_ID`) REFERENCES `term` (`T_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;");
 
 
-            this.createTable("CREATE TABLE `update_summative` (\n" +
-                    "  `FK_Summative_ID` int(11) NOT NULL,\n" +
-                    "  `FK_Faculty_ID` int(11) NOT NULL,\n" +
-                    "  `Date` date DEFAULT NULL,\n" +
-                    "  `Submit` tinyint(1) DEFAULT NULL,\n" +
-                    "  PRIMARY KEY (`FK_Summative_ID`,`FK_Faculty_ID`),\n" +
-                    "  KEY `Update_summative_FK_idx` (`FK_Faculty_ID`),\n" +
-                    "  CONSTRAINT `Update_summative_FK_faculty` FOREIGN KEY (`FK_Faculty_ID`) REFERENCES `faculty_member` (`Faculty_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
-                    "  CONSTRAINT `Update_summative_FK_summative` FOREIGN KEY (`FK_Summative_ID`) REFERENCES `summative` (`Summative_ID`) ON DELETE CASCADE ON UPDATE CASCADE\n" +
-                    ") ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+
+        this.createTable("CREATE TABLE `auditing` (\n" +
+                "  `audit_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "  `userName` varchar(255) DEFAULT NULL,\n" +
+                "  `action` varchar(255) DEFAULT NULL,\n" +
+                "  `time` varchar(255) DEFAULT NULL,\n" +
+                "  PRIMARY KEY (`audit_ID`)\n" +
+                ") ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;");
 
 
-            this.createTable("CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `abetasdb`.`users` AS select `abetasdb`.`superuser`.`Adm_ID` AS `lvl`," +
+
+
+        this.createTable("CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `abetasdb`.`users` AS select `abetasdb`.`superuser`.`Adm_ID` AS `lvl`," +
                     "`abetasdb`.`superuser`.`Super_Username` AS `username`,`abetasdb`.`superuser`.`Super_Password` AS `password`,`abetasdb`.`superuser`.`Super_Email` AS `email`," +
                     "`abetasdb`.`superuser`.`Super_ID` AS `ID` from `abetasdb`.`superuser` union all select 2 AS `2`,`abetasdb`.`faculty_member`.`Faculty_Username` AS `Faculty_Username`," +
                     "`abetasdb`.`faculty_member`.`Faculty_Password` AS `Faculty_Password`,`abetasdb`.`faculty_member`.`Faculty_Email` AS `Faculty_Email`,`abetasdb`.`faculty_member`.`Faculty_ID` " +
@@ -642,7 +615,8 @@ public class InstallDB {
 
 
 
-            pout.println("<h4>Tables Created!</h4>");
+
+        pout.println("<h4>Tables Created!</h4>");
 
 
 
