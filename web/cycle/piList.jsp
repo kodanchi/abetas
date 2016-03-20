@@ -38,6 +38,18 @@
 
 
         <div class="container">
+
+            <div class="row">
+                <div class="col-md-7 col-md-offset-2">
+                    <nav>
+                        <ol class="cd-breadcrumb triangle small">
+                            <li class="current"><em>PI</em></li>
+                            <li><em>Rubric Names</em></li>
+                            <li><em>Terms</em></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
             <!-- Here is row -->
             <div class="row">
 

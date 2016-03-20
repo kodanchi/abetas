@@ -44,7 +44,7 @@ public class AddStudent extends HttpServlet {
                     StudentVal = new String[]{sid,sname};
                     sendErrMsg("Student ID and Name must be filled",request.getParameter("cycle"),request,response);
 
-                }else if(request.getParameter("Student_ID").length()>10){
+                }else if(request.getParameter("Student_ID").length()>9){
                     StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
                     sendErrMsg("Student ID Must not be long than 10 digits",request.getParameter("cycle"),request,response);
                 }else if(dbs.isStudentIDExist(Long.parseLong(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")))){

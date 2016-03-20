@@ -29,7 +29,7 @@ public class SelectPIOfProgramServlet extends HttpServlet {
 
             ArrayList<String> rs = bselect.selectPerformanceIndicatorsForCycle(Integer.parseInt(pid), Integer.parseInt(id));
 
-            out.print("<p>Click \"Add\" to add new performance indicator for ");
+            out.print("<script src=\"/js/del-form-listener.js\"></script><p>Click \"Add\" to add new performance indicator for ");
             C_AS_Select ssselect = new C_AS_Select();
             try {
                 String Pname = ssselect.selectProgramName(Integer.parseInt(pid));
@@ -97,8 +97,9 @@ public class SelectPIOfProgramServlet extends HttpServlet {
 
 
 
-            out.print(" <a class=\"btn btn-primary btn-fill pull-left\"  onclick=\"importPopup('index.jsp?page=addPI&cycle="+id+"&programID="+pid+"'," +
+            out.print(" <a class=\"btn btn-primary btn-fill pull-left\"  onclick=\"importPopup(" +
                     "'index.jsp?&cycle="+id+"&programID="+pid+"&page=import&data=pis'," +
+                    "'index.jsp?page=addPI&cycle="+id+"&programID="+pid+"',"+
                     "'Add Performance Indicators'," +
                     "'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once');\"  >Add</a>" +
                     "<input type=\"hidden\" name=\"programID\" value=\""+pid+"\">");

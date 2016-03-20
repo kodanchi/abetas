@@ -47,8 +47,6 @@
                                 dataType = "students";
                             }else if(importFile.equals("pis")){
                                 dataType = "pis";
-                            }else if(importFile.equals("courses")){
-                                dataType = "courses";
                             }
                         }
 

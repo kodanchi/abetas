@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
 <%
@@ -65,8 +66,19 @@
 %>
 
 <div class="container" id="space">
-                        <!-- Here is row -->
 
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            <nav>
+                <ol class="cd-breadcrumb triangle small">
+                    <li ><em>PI</em></li>
+                    <li><em>Rubric Names</em></li>
+                    <li class="current"><em>Terms</em></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+                        <!-- Here is row -->
                         <div class="container row">
                             <h2 class="text-center">Add Term</h2>
 
@@ -250,6 +262,10 @@
                                         </div>
 
                                         <div class="row">
+                                            <div class="input-group"> <span class="input-group-addon">Filter</span>
+
+                                                <input id="filter" type="text" class="form-control" placeholder=" by term name or year  ">
+                                            </div>
                                             <table class="table table-hover table-striped table-bordered text-center">
                                                 <tr>
                                                     <th>Name</th>
@@ -258,56 +274,58 @@
                                                     <th>Edit</th>
                                                     <th>Delete</th>
                                                 </tr>
-                                                <%
+                                                <tbody class="searchable">
+                                                    <%
 
-                                                    C_AS_Select dba = new C_AS_Select();
+                                                        C_AS_Select dba = new C_AS_Select();
 
-                                                    try {
-                                                        ArrayList<ArrayList<String>> rs = dba.selectAddTerm(Integer.parseInt(id));
-                                                        ArrayList<String> rsRow ;
+                                                        try {
+                                                            ArrayList<ArrayList<String>> rs = dba.selectAddTerm(Integer.parseInt(id));
+                                                            ArrayList<String> rsRow ;
 
-                                                        for (int i=0; i<rs.size();i++){
-                                                            rsRow = new ArrayList<String>();
-                                                            rsRow = rs.get(i);
-                                                            out.print("<tr>");
-                                                            for (int j=1; j<rsRow.size();j++) {
-                                                                if (j==3){
-                                                                    if (Integer.valueOf(rsRow.get(j))==1){
-                                                                        out.print("<td>"+"Default"+"</td>");
+                                                            for (int i=0; i<rs.size();i++){
+                                                                rsRow = new ArrayList<String>();
+                                                                rsRow = rs.get(i);
+                                                                out.print("<tr>");
+                                                                for (int j=1; j<rsRow.size();j++) {
+                                                                    if (j==3){
+                                                                        if (Integer.valueOf(rsRow.get(j))==1){
+                                                                            out.print("<td>"+"Default"+"</td>");
+                                                                        }
+                                                                        else if (Integer.valueOf(rsRow.get(j))==0){
+                                                                            //out.print("<td>"+"-"+"</td>");
+                                                                            out.print("<td><form method=\"post\" action=\"/SetDefault\">\n");
+                                                                            out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
+                                                                            out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
+                                                                            out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y\"><i class=\"fui-new icon30 \"></i></button>\n</form></td>");
+                                                                        }
+                                                                    }else {
+                                                                        out.print("<td>"+rsRow.get(j)+"</td>");
                                                                     }
-                                                                    else if (Integer.valueOf(rsRow.get(j))==0){
-                                                                        //out.print("<td>"+"-"+"</td>");
-                                                                        out.print("<td><form method=\"post\" action=\"/SetDefault\">\n");
-                                                                        out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
-                                                                        out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
-                                                                        out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y\"><i class=\"fui-new icon30 \"></i></button>\n</form></td>");
-                                                                    }
-                                                                }else {
-                                                                    out.print("<td>"+rsRow.get(j)+"</td>");
                                                                 }
+                                                                out.print("<td><form method=\"post\" action=\"index.jsp\">");
+                                                                out.print("<input name=\"page\" value=\"includeCourse\" hidden />\n");
+                                                                out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
+                                                                out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
+                                                                out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y\"><i class=\"fui-new icon30 \"></i></button>\n</form></td>");
+
+
+
+                                                                out.print("<td><form class=\"delForm\" method=\"post\" action=\"/DeleteTerm\">\n");
+                                                                out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
+                                                                out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
+                                                                out.print("<button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T\"><i class=\"fui-trash icon30 \"></i></button>\n</form></td>");
                                                             }
-                                                            out.print("<td><form method=\"post\" action=\"index.jsp\">");
-                                                            out.print("<input name=\"page\" value=\"includeCourse\" hidden />\n");
-                                                            out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
-                                                            out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
-                                                            out.print("<button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y\"><i class=\"fui-new icon30 \"></i></button>\n</form></td>");
 
-
-
-                                                            out.print("<td><form class=\"delForm\" method=\"post\" action=\"/DeleteTerm\">\n");
-                                                            out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
-                                                            out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
-                                                            out.print("<button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T\"><i class=\"fui-trash icon30 \"></i></button>\n</form></td>");
+                                                        } catch (ClassNotFoundException e) {
+                                                            e.printStackTrace();
+                                                        } catch (SQLException e) {
+                                                            e.printStackTrace();
                                                         }
 
-                                                    } catch (ClassNotFoundException e) {
-                                                        e.printStackTrace();
-                                                    } catch (SQLException e) {
-                                                        e.printStackTrace();
-                                                    }
 
-
-                                                %>
+                                                    %>
+                                                </tbody>
 
                                             </table>
                                         </div>

@@ -12,12 +12,12 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
 
-<%
+<%--<%
 
-    String lout = "";
-    String lpi = "";
-    String lcourse = "";
-    String ltype = "";
+    String firstR = "";
+    String secondR = "";
+    String thirdR = "";
+    String fourthR = "";
 
     if(request.getSession().getAttribute("errMsg") != null){
 
@@ -25,10 +25,10 @@
         System.out.print("arry of user data : "+ OldVal[1]);
         if(OldVal != null){
 
-            lout = OldVal[0];
-            lpi = OldVal[1];
-            lcourse = OldVal[2];
-            ltype = OldVal[3];
+            firstR = OldVal[0];
+            secondR = OldVal[1];
+            thirdR = OldVal[2];
+            fourthR = OldVal[3];
 
             request.getSession().removeAttribute("LinkVal");
         }
@@ -45,7 +45,7 @@
 
     }
 
-%>
+%>--%>
 
 
 <%
@@ -72,6 +72,19 @@
 %>
 
         <div class="container" id="space">
+
+            <div class="row">
+                <div class="col-md-7 col-md-offset-2">
+                    <nav>
+                        <ol class="cd-breadcrumb triangle small">
+                            <li ><em>PI</em></li>
+                            <li class="current"><em>Rubric Names</em></li>
+                            <li><em>Terms</em></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Specify Rubric Names</h2>

@@ -7,7 +7,7 @@
 
   http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
 --%>
-<%@ page import="java.io.*,java.util.*" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
@@ -449,6 +449,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet" />
     <%-- <link href="/css/ct-paper.css" rel="stylesheet"/>
      <link href="/css/demo.css" rel="stylesheet" /> --%>
+    <link href="/css/style.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/bootstrap-select.min.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
@@ -494,42 +495,12 @@
 <script src="/js/del-form-listener.js"></script>
 <script src="/js/import-popup.js"></script>
 <script src="/js/pageloading.js"></script>
+<script src="/js/filter.js"></script>
 <%--<script src="/js/ct-paper.js"></script>--%>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-    /*$( "#slider-range" ).slider({
-     range: true,
-     min: 0,
-     max: 500,
-     values: [ 75, 300 ],
-     });
-     $( "#slider-default" ).slider({
-     value: 70,
-     orientation: "horizontal",
-     range: "min",
-     animate: true
-     });
-     $('.btn-tooltip').tooltip('show');
-     $('.radio').on('toggle', function() { });
 
-
-     $(function(){
-     //$("#header").load("/header.jsp");
-     //$("#main").load("userslist.jsp");
-     //$("#footer").load("/footer.jsp");
-     });
-
-
-     function addUser(){
-     $("#main").load("adduser.jsp");
-     }
-
-     function cancel(){
-     $("#main").load("userslist.jsp");
-     }
-
-     */
 
 
 

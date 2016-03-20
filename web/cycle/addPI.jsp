@@ -46,7 +46,6 @@
     String id = "";
     if(request.getParameter("cycle") != null){
         id  = request.getParameter("cycle");
-        out.println("id is : "+id);
     }
 
 

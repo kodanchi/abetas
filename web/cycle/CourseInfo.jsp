@@ -9,6 +9,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
+
 
 <%
 
@@ -50,7 +52,10 @@
 
                     <h4 class="text-center">Sections</h4>
 
+                    <div class="input-group"> <span class="input-group-addon">Filter</span>
 
+                        <input id="filter" type="text" class="form-control" placeholder=" by section ID or faculty ">
+                    </div>
                         <!-- Table -->
                         <table class="table table-hover table-striped table-bordered text-center">
                             <tr>
@@ -61,66 +66,68 @@
                                 <th>Delete</th>
 
                             </tr>
-                            <%
+                            <tbody class="searchable">
+                                <%
 
 
-                                if(request.getParameter("programID")!=null) {
+                                    if(request.getParameter("programID")!=null) {
 
-                                    String facultyName = null;
+                                        String facultyName = null;
 
-                                    //C_AS_Select aselect = new C_AS_Select();
-                                    try {
-                                        ArrayList<ArrayList<String>> rs = aselect.selectCourseSections(Integer.parseInt(request.getParameter("term")),request.getParameter("courseCode"));
-                                        ArrayList<String> rsRow;
+                                        //C_AS_Select aselect = new C_AS_Select();
+                                        try {
+                                            ArrayList<ArrayList<String>> rs = aselect.selectCourseSections(Integer.parseInt(request.getParameter("term")),request.getParameter("courseCode"));
+                                            ArrayList<String> rsRow;
 
-                                        for (int i = 0; i < rs.size(); i++) {
-                                            rsRow = new ArrayList<String>();
-                                            rsRow = rs.get(i);
-                                            out.print("<tr>");
-                                            for (int j = 0; j < rsRow.size() - 1; j++) {
-                                                out.print("<td>" + rsRow.get(j) + "</td>");
+                                            for (int i = 0; i < rs.size(); i++) {
+                                                rsRow = new ArrayList<String>();
+                                                rsRow = rs.get(i);
+                                                out.print("<tr>");
+                                                for (int j = 0; j < rsRow.size() - 1; j++) {
+                                                    out.print("<td>" + rsRow.get(j) + "</td>");
+                                                }
+
+                                                facultyName = aselect.selectSectionFaculty(Integer.parseInt(rsRow.get(0)));
+                                                out.print("<td>" + facultyName + "</td>");
+                                                out.print("<td>" +
+                                                        "                            <form method=\"post\" action=\"index.jsp\">\n" +
+                                                        "                            <input name=\"page\" value=\"updateSection\" hidden />\n" +
+                                                        "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
+                                                        "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
+                                                        "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
+                                                        "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
+                                                        "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
+                                                        "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
+                                                        "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
+                                                        "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
+                                                        "                               </td>" +
+                                                        "                            <td></form>" +
+                                                        "                            <form method=\"post\" class=\"delForm\" action=\"/DeleteSection\">\n" +
+                                                        "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
+                                                        "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
+                                                        "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
+                                                        "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
+                                                        "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
+                                                        "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
+                                                        "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
+                                                        "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
+                                                        "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
+                                                        "                        </form></td>" +
+                                                        "</tr>");
                                             }
 
-                                            facultyName = aselect.selectSectionFaculty(Integer.parseInt(rsRow.get(0)));
-                                            out.print("<td>" + facultyName + "</td>");
-                                            out.print("<td>" +
-                                                    "                            <form method=\"post\" action=\"index.jsp\">\n" +
-                                                    "                            <input name=\"page\" value=\"updateSection\" hidden />\n" +
-                                                    "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
-                                                    "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
-                                                    "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
-                                                    "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
-                                                    "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
-                                                    "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                                    "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
-                                                    "                               </td>" +
-                                                    "                            <td></form>" +
-                                                    "                            <form method=\"post\" class=\"delForm\" action=\"/DeleteSection\">\n" +
-                                                    "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
-                                                    "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
-                                                    "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
-                                                    "                            <input name=\"term\" value=\"" + Termid + "\" hidden />\n" +
-                                                    "                            <input name=\"courseCode\" value=\"" + courseCode + "\" hidden />\n" +
-                                                    "                            <input name=\"courseName\" value=\"" + courseName + "\" hidden />\n" +
-                                                    "                            <input name=\"programID\" value=\"" + request.getParameter("programID") + "\" hidden />\n" +
-                                                    "                            <input name=\"programName\" value=\"" + programName + "\" hidden />\n" +
-                                                    "                            <button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button>\n" +
-                                                    "                        </form></td>" +
-                                                    "</tr>");
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        } catch (SQLException e) {
+                                            e.printStackTrace();
                                         }
-
-                                    } catch (ClassNotFoundException e) {
-                                        e.printStackTrace();
-                                    } catch (SQLException e) {
-                                        e.printStackTrace();
+                                        System.out.println("  yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy           "+ request.getParameter("programID"));
+                                    }else {
+                                        System.out.println("  gsgsgsg    gsgsggssdfgs       djskvdsj    sgsgs   sgsgsgsg   fsdsdg            ");
                                     }
-                                    System.out.println("  yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy           "+ request.getParameter("programID"));
-                                }else {
-                                    System.out.println("  gsgsgsg    gsgsggssdfgs       djskvdsj    sgsgs   sgsgsgsg   fsdsdg            ");
-                                }
 
-                            %>
+                                %>
+                            </tbody>
 
                         </table>
                     </div>

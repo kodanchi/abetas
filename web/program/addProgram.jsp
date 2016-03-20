@@ -38,19 +38,22 @@
 
 %>
 
-<!doctype html>
         <div class="container" id="space">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-2">
+                    <nav>
+                        <ol class="cd-breadcrumb triangle small">
+                            <li class="current"><em>Program</em></li>
+                            <li><em>Objectives</em></li>
+                            <li><em>Outcomes</em></li>
+                            <li><em>Link</em></li>
+                            <li><em>Courses</em></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
 
-            <nav>
-                <ol class="cd-breadcrumb triangle small">
-                    <li class="current"><em>Program</em></li>
-                    <li><em>Objectives</em></li>
-                    <li><em>Outcomes</em></li>
-                    <li><em>Link</em></li>
-                    <li><em>Faculty Members</em></li>
-                    <li><em>Students</em></li>
-                </ol>
-            </nav>
+
 
             <!-- Here is row -->
             <div class="row">
@@ -83,8 +86,9 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-primary btn-fill" type="submit"><%if (request.getParameter("ProgramName")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <a class="btn  btn-default pull-right" href="index.jsp">Cancel</a>
+                        <button class="btn btn-primary btn-fill pull-right" type="submit"><%if (request.getParameter("ProgramName")!=null) {out.print("Next");} else out.print("Next");%></button>
+
 
                     </form>
                     <!-- End of col -->
@@ -94,4 +98,3 @@
             </div>
             <!-- End of container -->
         </div>
-</html>

@@ -53,6 +53,17 @@
 %>
 
         <div class="container" id="space">
+
+            <div class="row">
+                <div class="col-md-7 col-md-offset-2">
+                    <nav>
+                        <ol class="cd-breadcrumb triangle small">
+                            <li class="current"><em>Faculty member</em></li>
+                            <li ><em>Students</em></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center"><%if (request.getParameter("section")!=null) {
@@ -135,8 +146,9 @@
                         </div>
 
                         <br>
-                        <button class="btn btn-primary " type="submit"><%if (request.getParameter("section")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <a class="btn btn-default pull-right" href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>">Cancel</a>
+
+                        <button class="btn btn-primary pull-right" type="submit"><%if (request.getParameter("section")!=null) {out.print("Next");} else out.print("Next");%></button>
 
                     </form>
                     <!-- End of col -->

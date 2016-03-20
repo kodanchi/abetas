@@ -22,6 +22,8 @@
     }
 %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
+
 
     <div class="container">
         <!--  Here is row -->
@@ -50,23 +52,6 @@
 
 <%
 
-    /*if(request.getAttribute("sheetData")== null){
-        response.getHeader("index.jsp");
-    }else if(request.getMethod().equals("post") && request.getParameter("file")!= null){
-        *//*System.out.println("inside if :"+request.getParameter("file"));
-        //ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) request.getAttribute("sheetData");
-        //request.setAttribute("Data", dataArr);
-        //request.getRequestDispatcher("/").forward(request, response);
-        //RequestDispatcher rd = request.getRequestDispatcher("/upload/users");
-
-        try {
-            rd.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }*//*
-    }*/
-    //String sheetDataId = request.getParameter("sheetData");
-    //System.out.println("sheetDataId in upload :"+sheetDataId);
 
     Object dataObj = request.getSession().getAttribute("sheetData");
     //Object dataObj = request.getAttribute(sheetD);

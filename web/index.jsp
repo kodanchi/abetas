@@ -43,7 +43,6 @@
     <div class="container">
         <div class="row">
 
-            <h2 class="text-center">Superuser's main page</h2>
 
             <div class="col-md-3 col-sm-6 mainblock">
                 <a href="/users">
