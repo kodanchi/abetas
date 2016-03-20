@@ -32,7 +32,7 @@ public class TimeClass extends TimerTask {
      * run method here call backup class to be runned
      */
     public void run() {
-        Backup.BackupTool d= new Backup.BackupTool(BACKUP_DIRECTORY);
+         new Backup.BackupTool(BACKUP_DIRECTORY);
         //d.backupDB();
     }
 
@@ -40,14 +40,14 @@ public class TimeClass extends TimerTask {
      * timeTest method used to run Backup Class weekly
      */
     public void timeTest(){
-        TimeClass task = new TimeClass(BACKUP_DIRECTORY);
+//        TimeClass task = new TimeClass(BACKUP_DIRECTORY);
 
         // We use a class java.util.Timer to
         // schedule our task/job for execution
 
         Timer timer = new Timer();
 
-        timer.schedule(task, 0, WEEK);
+        timer.schedule(this, 0, WEEK);
 
 
     }
@@ -57,29 +57,29 @@ public class TimeClass extends TimerTask {
      *
      * @param email used to pass the hash key which is the email
      */
-    public void timerCalculate(String email){
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            /**
-             * run method here used remove the hash map key and its value withing 24 hours
-             */
-            public void run() {
-                //String email="";
-                PassCodeMap remov = new PassCodeMap();
-
-                remov.removeElement(email);
-                System.out.println("This is from rmoving email and the size is "+ PassCodeMap.getMapSize());
-
-                if (PassCodeMap.getMapSize()==0){
-                cancel();
-
-
-                }
-            }
-        },DAY,DAY);
-
-    }
+//    public void timerCalculate(String email){
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            /**
+//             * run method here used remove the hash map key and its value withing 24 hours
+//             */
+//            public void run() {
+//                //String email="";
+//                PassCodeMap remov = new PassCodeMap();
+//
+//                remov.removeElement(email);
+//                System.out.println("This is from rmoving email and the size is "+ PassCodeMap.getMapSize());
+//
+//                if (PassCodeMap.getMapSize()==0){
+//                cancel();
+//
+//
+//                }
+//            }
+//        },DAY,DAY);
+//
+//    }
 
 }
 

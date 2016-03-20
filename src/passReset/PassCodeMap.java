@@ -28,7 +28,7 @@ public final class PassCodeMap {
     public   static  void  setPassCode(String email, String code){
 
 
-        TimeClass currentTime = new TimeClass();
+        EmailTimeClass currentTime = new EmailTimeClass();
         System.out.println("From setPassCode is "+code);
          ArrayList<String> listOne = new ArrayList<String>();
 
