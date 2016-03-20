@@ -14,6 +14,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/radiocheck.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
 <script src="/js/scrolled-table-head.js" type="text/javascript"></script>
 
