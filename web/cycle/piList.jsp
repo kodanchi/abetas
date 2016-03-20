@@ -19,7 +19,6 @@
     String id = "";
     if(request.getParameter("cycle") != null){
         id  = request.getParameter("cycle");
-        out.println("id is : "+id);
     }
 
 %>
@@ -49,22 +48,6 @@
 
 
 
-                    <%--<div class="dropdown">
-                                <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">--%>
-                                    <%--<% if(request.getParameter("programID")!=null) {
-                                        C_AS_Select sselect = new C_AS_Select();
-                                        try {
-                                            String rs = sselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
-                                            out.print(rs);
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        } catch (SQLException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }else {
-                                        out.print("Choose a program");
-                                    }
-                                    %>--%>
                         <select class="selectpicker" id="prgList" onchange="onPrgramChange(<%=id%>)" data-live-search="true">
                             <option data-tokens="select">Select program</option>
 

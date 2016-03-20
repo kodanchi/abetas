@@ -31,42 +31,13 @@
             request.getSession().removeAttribute("TermVal");
         }
 
-                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*/
 
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
-                "        $('#myModal').modal('show');\n" +
+                "       bootbox.alert(\""+request.getSession().getAttribute("errMsg")+"\")\n" +
                 "    });\n" +
-                "</script>" +
-                "<!-- Modal -->\n" +
-                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                "                        <div class=\"modal-dialog\">\n" +
-                "                            <div class=\"modal-content\">\n" +
-                "                                <div class=\"modal-header\">\n" +
-                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
-                "                                </div>\n" +
-                "                                <div class=\"modal-body\">\n");
-        out.print(request.getSession().getAttribute("errMsg"));
+                "</script>");
         request.getSession().removeAttribute("errMsg");
-
-        out.print("                                </div>\n" +
-                "                                <div class=\"modal-footer\">\n" +
-                "\n" +
-                "                                    <div class=\"text-center\">\n" +
-                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
-                "                                    </div>\n" +
-                "                                </div>\n" +
-                "                            </div>\n" +
-                "                        </div>\n" +
-                "                    </div>");
 
 
     }else {
@@ -88,7 +59,7 @@
     String id = "";
     if(request.getParameter("cycle") != null){
         id  = request.getParameter("cycle");
-        out.print("id is : "+id);
+
     }
 
 %>
@@ -323,7 +294,7 @@
 
 
 
-                                                            out.print("<td><form method=\"post\" action=\"/DeleteTerm\">\n");
+                                                            out.print("<td><form class=\"delForm\" method=\"post\" action=\"/DeleteTerm\">\n");
                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
                                                             out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
                                                             out.print("<button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T\"><i class=\"fui-trash icon30 \"></i></button>\n</form></td>");

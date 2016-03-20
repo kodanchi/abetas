@@ -37,31 +37,10 @@
 
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
-                "        $('#myModal').modal('show');\n" +
+                "       bootbox.alert(\""+request.getSession().getAttribute("errMsg")+"\")\n" +
                 "    });\n" +
-                "</script>" +
-                "<!-- Modal -->\n" +
-                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                "                        <div class=\"modal-dialog\">\n" +
-                "                            <div class=\"modal-content\">\n" +
-                "                                <div class=\"modal-header\">\n" +
-                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
-                "                                </div>\n" +
-                "                                <div class=\"modal-body\">\n");
-        out.print(request.getSession().getAttribute("errMsg"));
+                "</script>");
         request.getSession().removeAttribute("errMsg");
-
-        out.print("                                </div>\n" +
-                "                                <div class=\"modal-footer\">\n" +
-                "\n" +
-                "                                    <div class=\"text-center\">\n" +
-                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
-                "                                    </div>\n" +
-                "                                </div>\n" +
-                "                            </div>\n" +
-                "                        </div>\n" +
-                "                    </div>");
 
 
     }
@@ -76,8 +55,6 @@
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
-        out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 %>

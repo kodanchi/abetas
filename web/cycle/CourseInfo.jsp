@@ -17,8 +17,6 @@
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
-        out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 %>
@@ -98,7 +96,7 @@
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                     "                               </td>" +
                                                     "                            <td></form>" +
-                                                    "                            <form method=\"post\" action=\"/DeleteSection\">\n" +
+                                                    "                            <form method=\"post\" class=\"delForm\" action=\"/DeleteSection\">\n" +
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                     "                            <input name=\"section\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                                                     "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +

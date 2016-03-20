@@ -20,42 +20,12 @@
     if(request.getSession().getAttribute("errMsg") != null){
 
 
-                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*/
-
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
-                "        $('#myModal').modal('show');\n" +
+                "       bootbox.alert(\""+request.getSession().getAttribute("errMsg")+"\")\n" +
                 "    });\n" +
-                "</script>" +
-                "<!-- Modal -->\n" +
-                "                    <div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                "                        <div class=\"modal-dialog\">\n" +
-                "                            <div class=\"modal-content\">\n" +
-                "                                <div class=\"modal-header\">\n" +
-                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
-                "                                </div>\n" +
-                "                                <div class=\"modal-body\">\n");
-        out.print(request.getSession().getAttribute("errMsg"));
+                "</script>");
         request.getSession().removeAttribute("errMsg");
-
-        out.print("                                </div>\n" +
-                "                                <div class=\"modal-footer\">\n" +
-                "\n" +
-                "                                    <div class=\"text-center\">\n" +
-                "                                        <a type=\"button\"  data-dismiss=\"modal\"  class=\"btn btn-default btn-simple\">OK</a>\n" +
-                "                                    </div>\n" +
-                "                                </div>\n" +
-                "                            </div>\n" +
-                "                        </div>\n" +
-                "                    </div>");
 
 
     }
@@ -82,48 +52,6 @@
                             }
                         }
 
-                    /*if(request.getParameter("err") != null){
-
-                        *//*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*//*
-
-                        out.print("<script type=\"text/javascript\">\n" +
-                                "    $(window).load(function(){\n" +
-                                "        $('#myMsgModal').modal('show');\n" +
-                                "    });\n" +
-                                "    function goToNormal(){\n" +
-                                "        window.location.href =\"/program/index.jsp?name="+request.getParameter("name")+"&id="+request.getParameter("id")+"&page=import&data="+request.getParameter("data")+"\";\n" +
-                                "    }\n" +
-                                "</script>" +
-                                "<!-- Modal -->\n" +
-                                "                    <div class=\"modal fade\" id=\"myMsgModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                                "                        <div class=\"modal-dialog\">\n" +
-                                "                            <div class=\"modal-content\">\n" +
-                                "                                <div class=\"modal-header\">\n" +
-                                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">ERROR</h4>\n" +
-                                "                                </div>\n" +
-                                "                                <div class=\"modal-body\">\n" +
-                                                                        request.getParameter("err") +
-                                "                                </div>\n" +
-                                "                                <div class=\"modal-footer\">\n" +
-                                "\n" +
-                                "                                    <div class=\"text-center\">\n" +
-                                "                                        <a type=\"button\"  data-dismiss=\"modal\"   class=\"btn btn-default btn-simple\">OK</a>\n" +
-                                "                                    </div>\n" +
-                                "                                </div>\n" +
-                                "                            </div>\n" +
-                                "                        </div>\n" +
-                                "                    </div>");
-
-
-                    }*/
 
                 %>
 

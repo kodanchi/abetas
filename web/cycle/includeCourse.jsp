@@ -19,8 +19,6 @@
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
-        out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 %>
@@ -67,7 +65,8 @@
                                             //pid.add(Integer.valueOf(rsRow.get(0)));
                                             //System.out.println("pid : "+pid.get(i));
                                             //out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
-                                            out.print("<li><a href=\"/cycle/index.jsp?page=includeCourse&cycle="+id+"&term="+Termid+"&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
+                                            out.print("<li><a href=\"/cycle/index.jsp?page=includeCourse&cycle="+id+
+                                                    "&term="+Termid+"&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
 
                                         }
                                     } catch (ClassNotFoundException e) {
@@ -187,7 +186,7 @@
                                                     "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                     "                            </form>" +
                                                     "                            </td><td>" +
-                                                    "                            <form method=\"post\" action=\"/DeleteIC\">\n" +
+                                                    "                            <form method=\"post\" class=\"delForm\" action=\"/DeleteIC\">\n" +
                                                     "                            <input name=\"cycle\" value=\""+id+"\" hidden />\n" +
                                                     "                            <input name=\"term\" value=\""+Termid+"\" hidden />\n" +
                                                     "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +

@@ -16,8 +16,6 @@
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
-        out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 %>

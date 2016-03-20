@@ -18,8 +18,6 @@
     if(request.getParameter("cycle") != null && request.getParameter("term") != null){
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
-        out.println("id is : "+id);
-        out.print("Termid is : "+Termid);
     }
 
 %>
@@ -56,55 +54,11 @@
 
     if(request.getParameter("status") != null){
 
-                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*/
-
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
-                "        $('#errModal').modal('show');\n" +
+                "       bootbox.alert(\""+request.getParameter("status")+"\")\n" +
                 "    });\n" +
-                "    function goToNormal(){\n" +
-                "        window.location.href =\"/program/\";\n" +
-                "    }\n" +
-                "</script>" +
-                "<!-- Modal -->\n" +
-                "                    <div class=\"modal fade\" id=\"errModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                "                        <div class=\"modal-dialog\">\n" +
-                "                            <div class=\"modal-content\">\n" +
-                "                                <div class=\"modal-header\">\n" +
-                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">INFO</h4>\n" +
-                "                                </div>\n" +
-                "                                <div class=\"modal-body\">\n");
-        if(request.getParameter("status").equals("Success")){
-            out.print("All user were added to the database Successfully.");
-        } else if(request.getParameter("status").equals("failed")){
-            out.print("Something wrong!, please try again.");
-        }else if(request.getParameter("status").equals("userAdded")){
-            out.print("User was added successfully!");
-        }else if(request.getParameter("status").equals("userUpdated")){
-            out.print("User was updated successfully!");
-        }else if(request.getParameter("status").equals("userDeleted")){
-            out.print("User was deleted successfully!");
-        }
-        out.print("                                </div>\n" +
-                "                                <div class=\"modal-footer\">\n" +
-                "\n" +
-                "                                    <div class=\"text-center\">\n" +
-                "                                        <a type=\"button\"  data-dismiss=\"modal\"   class=\"btn btn-default btn-simple\">OK</a>\n" +
-                "                                    </div>\n" +
-                "                                </div>\n" +
-                "                            </div>\n" +
-                "                        </div>\n" +
-                "                    </div>");
-
-
+                "</script>");
     }
 
 %>
@@ -180,7 +134,7 @@
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                            </form>" +
                                                 "                            </td><td>" +
-                                                "                            <form method=\"post\" action=\"/DeleteStudent\">\n" +
+                                                "                            <form method=\"post\" class=\"delForm\" action=\"/DeleteStudent\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"S_ID\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                            <input name=\"programID\" value=\""+request.getParameter("programID")+"\" hidden />\n" +
@@ -206,34 +160,13 @@
 
                     <br>
 
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#addModal" >Add</a>
+                    <a class="btn btn-primary" onclick="importPopup('index.jsp?page=addStudent&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>',
+                            'index.jsp?&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>&page=import&data=students',
+                            'Add new student',
+                            'If you have the students details in an Excel sheet, you can import the file to add them all at once')" >Add</a>
 
                     <a class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>" >Finish</a>
 
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title" id="myModalLabel">Add Students</h4>
-                                </div>
-                                <div class="modal-body">
-                                    If you have the students details in an Excel sheet, you can import the file to add them all at once
-                                </div>
-                                <div class="modal-footer">
-                                    <div class="left-side">
-                                        <a type="button" href="index.jsp?page=addStudent&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>"  class="btn btn-default btn-simple">Enter manually</a>
-                                    </div>
-                                    <div class="divider"></div>
-                                    <div class="right-side">
-                                        <a type="button" href="index.jsp?&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>&page=import&data=students"   class="btn btn-default btn-simple">Import Excel file</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                     <!-- End of col -->
