@@ -44,6 +44,7 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/fonts.css" rel="stylesheet">
+    <link href="/css/cus.css" rel="stylesheet">
 
 </head>
 
