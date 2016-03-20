@@ -47,7 +47,7 @@ public class TimeClass extends TimerTask {
 
         Timer timer = new Timer();
 
-        timer.schedule(task, 0, WEEK);
+        timer.schedule(task, 0, MINUTE);
 
 
     }

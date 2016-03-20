@@ -33,7 +33,7 @@ public class BackupTool {
 
                 executeCmd = "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe -u " + dbUser + " -p" +
                         dbPass + " " + dbName + " -r " +"\""+UPLOAD_DIRECTORY +"\\Backup_"+date.toString()+".sql\"";
-
+System.out.println("executeCmd: "+executeCmd);
         /**
          * doing the command in windows using Process class and handle the I/O operation by catch
          */
