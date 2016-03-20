@@ -82,7 +82,7 @@ public class SelectPIOfProgramServlet extends HttpServlet {
                         "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                         "                               </td>" +
                         "                            <td></form>" +
-                        "                            <form method=\"post\" action=\"/DeletePI\">\n" +
+                        "                            <form method=\"post\" class=\"delForm\" action=\"/DeletePI\">\n" +
                         "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                         "                            <input name=\"PILabel\" value=\"" + rsRow.get(0) + "\" hidden />\n" +
                         "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
@@ -95,35 +95,12 @@ public class SelectPIOfProgramServlet extends HttpServlet {
             out.print("</table></div>\n");
 
 
-            out.print(" <a class=\"btn btn-primary btn-fill pull-left\"  onclick=\"new function(){\n" +
-                    "                            bootbox.dialog({\n" +
-                    "                                message: 'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once',\n" +
-                    "                                title: 'Add Performance Indicators',\n" +
-                    "                                buttons: {\n" +
-                    "                                    importBtn: {\n" +
-                    "                                        label: 'Import Excel Sheet',\n" +
-                    "                                        className: 'btn-primary',\n" +
-                    "                                        callback: function() {\n" +
-                    "                                            window.location.href = 'index.jsp?&cycle="+id+"&programID="+pid+"&page=import&data=pis';\n" +
-                    "                                        }\n" +
-                    "                                    },\n" +
-                    "                                    enterBtn: {\n" +
-                    "                                        label: 'Enter Manually',\n" +
-                    "                                        className: 'btn-primary',\n" +
-                    "                                        callback: function() {\n" +
-                    "                                            window.location.href = 'index.jsp?page=addPI&cycle="+id+"&programID="+pid+"';\n" +
-                    "                                        }\n" +
-                    "                                    },\n" +
-                    "                                    cancelBtn: {\n" +
-                    "                                        label: 'Cancel',\n" +
-                    "                                        className: 'btn-default',\n" +
-                    "                                        callback: function() {\n" +
-                    "\n" +
-                    "                                        }\n" +
-                    "                                    }\n" +
-                    "                                }\n" +
-                    "                            });\n" +
-                    "                        }\"  >Add</a>" +
+
+
+            out.print(" <a class=\"btn btn-primary btn-fill pull-left\"  onclick=\"importPopup('index.jsp?page=addPI&cycle="+id+"&programID="+pid+"'," +
+                    "'index.jsp?&cycle="+id+"&programID="+pid+"&page=import&data=pis'," +
+                    "'Add Performance Indicators'," +
+                    "'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once');\"  >Add</a>" +
                     "<input type=\"hidden\" name=\"programID\" value=\""+pid+"\">");
 
             if(size>0) {

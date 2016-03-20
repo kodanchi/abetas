@@ -34,14 +34,14 @@ public class SelectProgramServlet extends HttpServlet {
             for (ArrayList<String> PI : pIListS){
 
 
-                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType="+PI.get(2)+"&piname="+EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item\">"+PI.get(1)+"<div class=\"pull-right\" >"+PI.get(2)+"</div></a>");
+                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType="+PI.get(2)+"&piname="+EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item\">"+PI.get(1)+"</br><div class=\"pull-right\" >"+PI.get(2)+"</div></br></a>");
             }
 
 
             ArrayList<ArrayList<String>> pIListF = dbs.selectPIofFormativeToEvaluate(tid, pid);
 
             for (ArrayList<String> PI : pIListF){
-                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(3)) + "&type="+EncDec.getEncr("formative")+"\" class=\"list-group-item\">" + PI.get(1) + "<div class=\"pull-right\" >" + PI.get(2) + "</div></a>");
+                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(3)) + "&type="+EncDec.getEncr("formative")+"\" class=\"list-group-item\">" + PI.get(1) + "</br><div class=\"pull-right\" >" + PI.get(2) + "</div></br></br></a>");
             }
 
         } catch (ClassNotFoundException e) {

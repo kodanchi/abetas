@@ -66,6 +66,7 @@
 
 
 %>
+
 <div class="section">
     <div class="container">
         <!--         what is row -->
@@ -208,6 +209,7 @@
                                     window.mychart.data.datasets[0].data = Results;
                                     window.mychart.data.datasets[0].backgroundColor = "rgba(218, 165, 32, 0.8)";
                                     window.mychart.update();
+                                    window.mychart.resize();
 
                                 };
 
@@ -220,6 +222,7 @@
                                     window.mychart.data.datasets[0].label = title;
                                     window.mychart.data.datasets[0].data = data;
                                     window.mychart.update();
+                                    window.mychart.resize();
 
 
 

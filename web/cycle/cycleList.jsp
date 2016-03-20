@@ -48,7 +48,7 @@
                                                 "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                                                 "                               </td>" +
                                                 "                            </form>" +
-                                                "                            <form method=\"post\" action=\"/DeleteCycle\">\n" +
+                                                "                            <form method=\"post\" class=\"delForm\" action=\"/DeleteCycle\">\n" +
                                                 "                            <input name=\"page\" id=\"page\" value=\"delete\" hidden />\n" +
                                                 "                            <input name=\"id\" value=\""+rsRow.get(0)+"\" hidden />\n" +
                                                 "                               <td>" +

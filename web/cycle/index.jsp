@@ -491,6 +491,9 @@
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/jquery.bsFormAlerts.js"></script>
+<script src="/js/del-form-listener.js"></script>
+<script src="/js/import-popup.js"></script>
+<script src="/js/pageloading.js"></script>
 <%--<script src="/js/ct-paper.js"></script>--%>
 
 <script>
@@ -528,24 +531,7 @@
 
      */
 
-    function onReady(callback) {
-        var intervalID = window.setInterval(checkReady, 1);
-        function checkReady() {
-            if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-            }
-        }
-    }
 
-    function show(id, value) {
-        document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
-
-    onReady(function () {
-        show('page', true);
-        show('loading', false);
-    });
 
 
 </script>

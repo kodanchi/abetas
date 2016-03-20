@@ -34,7 +34,7 @@ public class loginServlet extends HttpServlet {
                 System.out.println("ur password :" + password);
                 String hashedPass = "";
 
-                if (username != null && password != null) {
+                if ((username != null && password != null) && (!username.equals("") && !password.equals(""))) {
 
                     try {
                         hashedPass = Password.getSaltedHash(password);
