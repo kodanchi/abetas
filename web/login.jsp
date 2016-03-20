@@ -58,8 +58,8 @@
     <div id="page">
         <div class="wrapper">
             <div class="container">
-                <div class="row tim-row">
-                    <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4 ">
+                <div class="row">
+                    <div class="col-xs-12 col-md-4 col-md-offset-4">
 
                         <%--<div class="login">
                             <div class="login-screen">
@@ -117,7 +117,6 @@
                                         <input data-toggle="tooltip" title="Username" id="userName" name="userName" type="text" class="form-control" placeholder="Username" autofocus/>
                                     </div>
                                     <div class="form-group">
-
                                         <input name="userPassword" id="userPassword" type="password" class="form-control" placeholder="Password">
                                     </div>
 
@@ -204,6 +203,7 @@
                             <div id="passcodeDiv" class="login-form">
 
                             </div>
+
                             <div id="passResetDiv" class="login-form">
 
                             </div>
