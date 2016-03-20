@@ -30,14 +30,15 @@ public class BackupTool {
          * the next string has the command prompt in windows that will do the backup using mysqldump program, by knowing the username, password and the database name
          * it is important to mention the directory that you want to store the backup in it after providing the database information
          */
+        executeCmd ="\"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe\" -u "+dbUser + " -p"+dbPass+" "+ dbName+ " -r " +"\""+UPLOAD_DIRECTORY +"\\Backup_"+date.toString()+".sql\"";
 
-                executeCmd = "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe -u " + dbUser + " -p" +
-                        dbPass + " " + dbName + " -r " +"\""+UPLOAD_DIRECTORY +"\\Backup_"+date.toString()+".sql\"";
-System.out.println("executeCmd: "+executeCmd);
+//                executeCmd = "C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysqldump.exe -u " + dbUser + " -p" +
+//                        dbPass + " " + dbName + " -r " +"\""+UPLOAD_DIRECTORY +"\\Backup_"+date.toString()+".sql\"";
+
         /**
          * doing the command in windows using Process class and handle the I/O operation by catch
          */
-        System.out.println("executeCmd : "+executeCmd);
+
         Process runtimeProcess = null;
         try {
             runtimeProcess = Runtime.getRuntime().exec(executeCmd);
