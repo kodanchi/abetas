@@ -115,7 +115,7 @@ public class resetPasswordServlet extends HttpServlet {
 
                     SendEmail msg = new SendEmail();
 
-                    msg.sendMsg("The code is  "+ PassCodeMap.getpassKey(userEmail),"Reset password request",userEmail);
+                    msg.sendMsg("The code is  "+ PassCodeMap.getpassKey(userEmail)+"\n This passcode is valid for 24 hours only\n ABETAS Team","Reset password request",userEmail);
                     //response.sendRedirect("enterPasscode.jsp");
 
                     out.println(respondForm);
