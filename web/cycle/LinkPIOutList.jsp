@@ -31,7 +31,7 @@
                     <nav>
                         <ol class="cd-breadcrumb triangle small">
                             <li ><em>Courses</em></li>
-                            <li class="current"><em>Link PI/SO</em></li>
+                            <li class="current"><em>Link PI/Outcomes</em></li>
                         </ol>
                     </nav>
                 </div>
@@ -84,7 +84,11 @@
                                             for (int j=1; j<rsRow.size();j++) {
                                                 if(j==1||j==2||j==3||j==4){
                                                     out.print("<td>");
-                                                    out.print(rsRow.get(j));
+                                                    if(rsRow.get(j).length()> 70){
+                                                        out.print(rsRow.get(j).substring(0,70)+"...");
+                                                    }else {
+                                                        out.print(rsRow.get(j));
+                                                    }
                                                     out.print("</td>");
                                                 }
                                             }

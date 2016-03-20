@@ -1683,8 +1683,15 @@ public class C_AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT Link_ID, FK_out, FK_pi_ID, FK_C_ID, LinkType, FK_R_ID, FK_P_ID, FK_T_ID From abetasdb.link_out_pi " +
-                    "WHERE FK_T_ID = ? AND FK_P_ID = ?;";
+            String query = "SELECT Link_ID,FK_out, Student_outcome, FK_pi_ID, PI_name , link_out_pi.FK_C_ID, LinkType," +
+                    " FK_R_ID, link_out_pi.FK_P_ID, FK_T_ID \n" +
+                    "From abetasdb.link_out_pi , performance_indicator, p_student_outcome\n" +
+                    "WHERE FK_T_ID = ? \n" +
+                    "AND link_out_pi.FK_P_ID = ?\n" +
+                    "AND FK_out = Outcome_label\n" +
+                    "AND link_out_pi.FK_pi_ID= PI_Label\n" +
+                    "AND p_student_outcome.FK_P_ID=link_out_pi.FK_P_ID\n" +
+                    "AND link_out_pi.FK_P_ID = performance_indicator.FK_P_ID;";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
@@ -1706,13 +1713,13 @@ public class C_AS_Select {
             while (rs.next()){
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-                RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(4));
-                RowDate.add(rs.getString(5));
+                RowDate.add(rs.getString(2)+": "+rs.getString(3));
+                RowDate.add(rs.getString(4)+": "+rs.getString(5));
                 RowDate.add(rs.getString(6));
                 RowDate.add(rs.getString(7));
                 RowDate.add(rs.getString(8));
+                RowDate.add(rs.getString(9));
+                RowDate.add(rs.getString(10));
 
                 RsArr.add(RowDate);
             }

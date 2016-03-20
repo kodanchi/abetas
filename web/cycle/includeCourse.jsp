@@ -31,7 +31,7 @@
                     <nav>
                         <ol class="cd-breadcrumb triangle small">
                             <li class="current" ><em>Courses</em></li>
-                            <li><em>Link PI/SO</em></li>
+                            <li><em>Link PI/Outcomes</em></li>
                         </ol>
                     </nav>
                 </div>
