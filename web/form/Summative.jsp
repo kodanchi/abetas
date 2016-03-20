@@ -247,40 +247,40 @@
                                                 }
                                                 out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rsRow.get(0)+"\">");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                out.print("<div class=\"checkboxgroup\"><label class=\"radio radio-blue\">\n" +
                                                         "                                            <input type=\"radio\" ");
                                                           if(studentRubric!=null && studentRubric.equals(N1)){
                                                           out.print(" checked=\"checked\" ");
                                                           }
                                                           out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios1"+i+"\" value=\""+N1+"\">\n" +
-                                                        "                                        </label>");
+                                                        "                                        </label></div>");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                out.print("<div class=\"checkboxgroup\"><label class=\"radio radio-blue\">\n" +
                                                         "                                            <input type=\"radio\" ");
                                                           if(studentRubric!=null && studentRubric.equals(N2)){
                                                           out.print(" checked=\"checked\" ");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N2+"\">\n" +
-                                                        "                                        </label>");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2"+i+"\" value=\""+N2+"\">\n" +
+                                                        "                                        </label></div>");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                out.print("<div class=\"checkboxgroup\"><label class=\"radio radio-blue\">\n" +
                                                         "                                            <input type=\"radio\" ");
-                                                          if(studentRubric!=null && studentRubric.equals(N3)){
+                                                          if(studentRubric!=null && studentRubric.equals(N1)){
                                                           out.print(" checked=\"checked\" ");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios3\"+i+\"\" value=\""+N3+"\">\n" +
-                                                        "                                        </label>");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios3"+i+"\" value=\""+N3+"\">\n" +
+                                                        "                                        </label></div>");
                                                 out.print("</td>");
                                                 out.print("<td>");
-                                                out.print("<label class=\"radio radio-blue\">\n" +
+                                                out.print("<div class=\"checkboxgroup\"><label class=\"radio radio-blue\">\n" +
                                                         "                                            <input type=\"radio\" ");
-                                                          if(studentRubric!=null && studentRubric.equals(N4)){
+                                                          if(studentRubric!=null && studentRubric.equals(N1)){
                                                           out.print(" checked=\"checked\" ");
                                                           }
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios4\"+i+\"\" value=\""+N4+"\">\n" +
-                                                        "                                        </label>");
+                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios4"+i+"\" value=\""+N4+"\">\n" +
+                                                        "                                        </label></div>");
                                                 out.print("</td>");
                                                 out.print("</tr>");
                                             }
