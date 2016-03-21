@@ -32,8 +32,10 @@
 --%>
     <link href="/css/demo.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
-    <link href="/css/cus.css" rel="stylesheet" />
     <link href="/css/flat-ui.css" rel="stylesheet" />
+    <link href="/css/cus.css" rel="stylesheet" />
+    <link href="/css/bootstrap-colorpicker.css" rel="stylesheet" />
+
 
 <%--
     <!--     Fonts and icons     -->
@@ -95,44 +97,35 @@
                                 "                    </ul>\n" +
                                 "                </div>");
 
-                        out.print("<script>\n" +
-                                "                    $(document).ready(function(){\n" +
-                                "                    $('#usrSection').hide();\n" +
-                                "                    $('#alert').hide();\n" +
-                                "                    \n" );
-                        /*if(request.getParameter("status")!= null){
-                            out.print("                    $('#alert').show();\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \"User Updated Successfully\";");
-                        }else*/ if(request.getSession().getAttribute("Msg")!= null){
-                            out.print("                    $('#alert').show();\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getSession().getAttribute("Msg")+"\";");
 
-                        }
-                                out.print("});</script>");
 
-                        request.getSession().removeAttribute("Msg");
-                    }else {
-                        out.print("<script>\n" +
-                                "                    $(document).ready(function(){\n" +
-                                "                    $('#alert').hide();\n" +
-                                "                    \n" );
-                        /*if(request.getParameter("status")!= null){
-                        if(request.getParameter("status").equals("userUpdated")){
-                            out.print("                    $('#alert').show();\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \"User Updated Successfully\";");
-                        }else if(request.getParameter("status").equals("SystemUpdated")){
-                            out.print("                     $('#alert').show();\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \"System Settings Updated Successfully\";");
+                    if(request.getSession().getAttribute("Msg")!= null){
+                        out.print("<script>");
+                        out.print("\n" +
+                                "bootbox.alert(\""+request.getSession().getAttribute("Msg")+"\");");
 
-                        }
-                        }else */if(request.getSession().getAttribute("Msg")!= null){
-                            out.print("                     $('#alert').show();\n" +
-                                    "        document.getElementById(\"alertt\").innerHTML = \""+request.getSession().getAttribute("Msg")+"\";");
+                        out.print("</script>");
 
-                        }
-                        out.print("});</script>");
                         request.getSession().removeAttribute("Msg");
                     }
+                        out.print("<script>$(function(){\n" +
+                                "      $('#usrSection').hide();\n" +
+                                "  });</script>");
+
+                    }else {
+
+
+                        if (request.getSession().getAttribute("Msg") != null) {
+                            out.print("<script>");
+                            out.print("\n" +
+                                    "bootbox.alert(\"" + request.getSession().getAttribute("Msg") + "\");");
+
+                            out.print("</script>");
+
+                            request.getSession().removeAttribute("Msg");
+                        }
+                    }
+
                 %>
 
 
@@ -141,11 +134,6 @@
                 <div class="col-md-10 col-md-offset-1">
 
 
-                    <br>
-                    <div id="alert" class="alert alert-danger">
-                        <a class="close" ></a>
-                        <div id="alertt"></div>
-                    </div>
                     <br>
 
                     <%
@@ -197,10 +185,25 @@
                                     %>">
 
                                 </div>
+                                <p class="help-block">Allowed size and type: 2MB, png</p>
+
                             </div>
-                            <p class="help-block">Allowed size and type: 2MB, png</p>
 
-
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        <div class="input-group demo">
+                                            <input type="text" value="" class="form-control" />
+                                            <span class="input-group-addon"><i></i></span>
+                                        </div>
+                                        <script>
+                                            $(function(){
+                                                $('.demo').colorpicker();
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
 
 
                             <button type="button" onclick="onSubmitUpdateSystem()" class="btn btn-primary btn-fill addBtn">Apply changes</button>
@@ -341,6 +344,7 @@
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/sys-usr-set.js"></script>
+<script src="/js/bootstrap-colorpicker.min.js"></script>
 
 
 
