@@ -291,7 +291,6 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-8">
                         <div class="form-group">
-                            <label>Evidence:</label>
                             <%
                                 if(evidance != null){
 
@@ -303,35 +302,43 @@
                 </div>
 
                 <div class="row">
-                    <h6>Faculty Name: </h6>
-                    <h6><%
-                        F_Select yselect = new F_Select();
-                        try {
-                            String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
+                    <table>
+                        <tr>
+                            <td>
+                                <h6>Faculty Name: <%
+                                    F_Select yselect = new F_Select();
+                                    try {
+                                        String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
 
-                            out.print(name);
+                                        out.print(name);
 
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    %>
-                    </h6>
-                    <h6 class="pull-right" id="date"><script>
-                        /*function myFunction() {
-                         var d = new Date();
-                         var n = d.getFullYear();
-                         document.getElementById("date").innerHTML = n;
-                         }*/
-                        (function(){
-                            var d = new Date();
-                            document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
-                        })();
-                    </script></h6>
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %>
+                                </h6>
+                            </td>
+                            <td>
+                                <h6 class="pull-right" id="date"><script>
+                                    /*function myFunction() {
+                                     var d = new Date();
+                                     var n = d.getFullYear();
+                                     document.getElementById("date").innerHTML = n;
+                                     }*/
+                                    (function(){
+                                        var d = new Date();
+                                        document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
+                                    })();
+                                </script></h6>
 
-                    <h6 class="pull-right">Date: </h6>
+                                <h6 class="pull-right">Date: </h6>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
+
 
 
                 <a class="btn btn-danger btn-fill" href="index.jsp">Back</a>
