@@ -10,6 +10,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
 
 <%
 
@@ -96,8 +97,36 @@
                                 out.print(pName);
                             }%></textarea>
                             <br>
-                            <input type="text" name="Thresh" required><%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>
+                            <input type="text" name="Thresh" onkeypress='validate(event)' required><%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>
+<%--
+                            <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="text-center" name="PIThresh" value="<%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>">
+--%>
+                            <script>
+                                function onSTsholdChange(){
+                                    input = document.getElementById("STshold");
+                                    //input = btn.closest('.number-spinner').find('input');
 
+                                    if(parseInt(input.value) > parseInt(input.getAttribute("max"))){
+                                        input.value = input.getAttribute("max");
+                                    }else if(parseInt(input.value) < parseInt(input.getAttribute("min"))){
+                                        input.value = input.getAttribute("min");
+                                    }
+
+                                }
+
+
+                                function validate(evt) {
+                                    var theEvent = evt || window.event;
+                                    var key = theEvent.keyCode || theEvent.which;
+                                    key = String.fromCharCode( key );
+                                    var regex = /[0-9]|\./;
+                                    if( !regex.test(key) ) {
+                                        theEvent.returnValue = false;
+                                        if(theEvent.preventDefault) theEvent.preventDefault();
+                                    }
+                                }
+
+                            </script>
                         </div>
 
                         <br>
