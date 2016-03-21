@@ -54,6 +54,13 @@ public class TimeClass extends TimerTask {
 
     }
 
+    public String getBACKUP_DIRECTORY() {
+        return BACKUP_DIRECTORY;
+    }
+
+    public void setBACKUP_DIRECTORY(String BACKUP_DIRECTORY) {
+        this.BACKUP_DIRECTORY = BACKUP_DIRECTORY;
+    }
     /**
      * timeTest method used to run Backup Class weekly
      */
@@ -63,8 +70,8 @@ public class TimeClass extends TimerTask {
         // We use a class java.util.Timer to
         // schedule our task/job for execution
 
-        timer.cancel();
-        timer.schedule(this, 0, time);
+
+        timer.schedule(this, time, time);
 
 
     }

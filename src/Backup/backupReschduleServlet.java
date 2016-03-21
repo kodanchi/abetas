@@ -27,22 +27,30 @@ public class backupReschduleServlet extends HttpServlet {
 
         ServletContext context = getServletContext();
 
-        RescheduleTime t = (RescheduleTime) context.getAttribute("TimeClass");
+        TimeClass t = (TimeClass) context.getAttribute("TimeClass");
+        TimeClass newtimer = new TimeClass(t.getBACKUP_DIRECTORY());
+//        RescheduleTime timeResch = new RescheduleTime(t.getBACKUP_DIRECTORY());
         if(selctedTime.equals("daily")){
             context.setAttribute("backupTime","daily");
             //t.cancel();
-            t.TimerRecschedule(DAY);
+            newtimer.Reschedule(DAY);
+            t.cancel();
 
         }else if(selctedTime.equals("weekly")){
             context.setAttribute("backupTime","weekly");
-            t.TimerRecschedule(WEEK);
+            newtimer.Reschedule(WEEK);
+            t.cancel();
         }else if(selctedTime.equals("biweekly")){
             context.setAttribute("backupTime","biweekly");
-            t.TimerRecschedule(WEEK*2);
+            newtimer.Reschedule(WEEK*2);
+            t.cancel();
         }else if (selctedTime.equals("monthly")){
             context.setAttribute("backupTime","monthly");
-            t.TimerRecschedule(MONTH);
+            newtimer.Reschedule(MONTH);
+            t.cancel();
         }
+
+        context.setAttribute("TimeClass",newtimer);
 
 
         response.sendRedirect("/backup.jsp");
