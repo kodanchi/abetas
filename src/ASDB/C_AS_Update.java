@@ -415,7 +415,7 @@ public class C_AS_Update {
 
     }
 
-    public void updatePI(String name, int id) throws ClassNotFoundException, SQLException {
+    public void updatePI(String name,int Threshold, int id) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -435,11 +435,12 @@ public class C_AS_Update {
              * Execute the query
              */
             System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
-            String query = "update performance_indicator set PI_name = ? where PI_Label = ?";
+            String query = "update performance_indicator set PI_name = ?, Threshold = ? where PI_Label = ?";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString (1, name);
-            preparedStatement.setInt (2, id);
+            preparedStatement.setInt (2, Threshold);
+            preparedStatement.setInt (3, id);
 
             rs = preparedStatement.executeUpdate();
 
@@ -748,7 +749,7 @@ public class C_AS_Update {
     }
 
 
-    public void updateFormThredshold( int Link_ID, int Sum_threshold) throws ClassNotFoundException, SQLException {
+    /*public void updateFormThredshold( int Link_ID, int Sum_threshold) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -758,15 +759,15 @@ public class C_AS_Update {
         int rs = 0;
         try {
 
-            /*
+            *//*
              *  Get connection from the DataSource
-             */
+             *//*
 
             connection = dataSource.getConnection();
 
-            /*
+            *//*
              * Execute the query
-             */
+             *//*
             System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
             String query = "update summative set Sum_threshold = ? where FK_Link_ID = ?";
 
@@ -780,9 +781,9 @@ public class C_AS_Update {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            /*
+            *//*
              * finally block used to close resources
-             */
+             *//*
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -800,7 +801,7 @@ public class C_AS_Update {
 
         }
 
-    }
+    }*/
 
     public void updateSummativeFormSection( int Link_ID, int FK_Section_ID) throws ClassNotFoundException, SQLException {
 

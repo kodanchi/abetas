@@ -75,7 +75,7 @@ public class AddPI extends HttpServlet {
                     sendErrMsg(request.getParameter("PI")+" is already existed",request.getParameter("cycle"),request,response);
 
                 }else {
-                    dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("PILabel")));
+                    dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("Thresh")),Integer.parseInt(request.getParameter("PILabel")));
                     response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&programID="+request.getParameter("programID"));
 
                 }

@@ -83,13 +83,13 @@ public class SaveSummative extends HttpServlet {
 
 
                         if(name.startsWith("optionsRadios")){
-                            System.out.println("optionsRadios is : "+name);
+                            System.out.println("optionsRadios is : "+name + " = "+ item.getString());
                             String num = item.getFieldName().substring(13);
                             System.out.println("substering : "+num);
                             for (FileItem i:items){
                                 String SIDname = i.getFieldName();
                                 if(SIDname.equals("SID"+num)){
-                                    System.out.println("SID is : "+SIDname);
+                                    System.out.println("SID is : "+SIDname+ " = "+ item.getString());
                                     SID.add(i.getString());
                                     optionsRadios.add(item.getString());
                                 }

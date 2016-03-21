@@ -2411,18 +2411,19 @@ public class E_Select {
         try {
 
 
-            String query = "SELECT Sum_threshold \n" +
-                    "FROM  summative, link_out_pi, course, abetasdb.section\n" +
+            String query = "SELECT Threshold \n" +
+                    "FROM  performance_indicator, link_out_pi, course, abetasdb.section , summative\n" +
                     "where summative.FK_Link_ID = link_out_pi.Link_ID \n" +
                     "and LinkType='Summative' \n" +
                     "AND link_out_pi.FK_C_ID= course.C_code\n" +
                     "AND summative.FK_Section_ID=abetasdb.section.Section_ID\n" +
+                    "AND performance_indicator.PI_Label = link_out_pi.FK_pi_ID\n" +
                     "AND summative.Sum_submitted=1\n" +
-                    "AND summative.FK_Section_ID= ? \n" +
-                    "and link_out_pi.FK_pi_ID= ?  \n" +
-                    "and link_out_pi.FK_P_ID= ? \n" +
-                    "and link_out_pi.FK_T_ID= ? \n" +
-                    "AND link_out_pi.FK_C_ID= ?;";
+                    "AND summative.FK_Section_ID= '30' \n" +
+                    "and link_out_pi.FK_pi_ID= '143' \n" +
+                    "and link_out_pi.FK_P_ID= '222' \n" +
+                    "and link_out_pi.FK_T_ID= '356'\n" +
+                    "AND link_out_pi.FK_C_ID= 'CIS 325';";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
@@ -3735,7 +3736,7 @@ public class E_Select {
         return name;
     }
 
-    public int selectFormThreshold(int id) throws ClassNotFoundException, SQLException {
+    /*public int selectFormThreshold(int id) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -3747,15 +3748,15 @@ public class E_Select {
         int name=-1;
         try {
 
-            /*
+            *//*
              *  Get connection from the DataSource
-             */
+             *//*
 
             connection = dataSource.getConnection();
 
-            /*
+            *//*
              * Execute the query
-             */
+             *//*
             String querySelect = " SELECT Sum_threshold FROM summative where FK_Link_ID = ?";
 
             preparedStatement = connection.prepareStatement(querySelect);
@@ -3777,9 +3778,9 @@ public class E_Select {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            /*
+            *//*
              * finally block used to close resources
-             */
+             *//*
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -3797,7 +3798,7 @@ public class E_Select {
 
         }
         return name;
-    }
+    }*/
 
     public boolean isTermYearExist(String T_name, int FK_Cycle_ID) throws ClassNotFoundException, SQLException {
 

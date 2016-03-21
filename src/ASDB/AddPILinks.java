@@ -58,7 +58,7 @@ public class AddPILinks extends HttpServlet {
                         } else if (type.equals("Summative")) {
                             System.out.println("in if S");
                             for(int i=0;i<courseSections.size();i++) {
-                                dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")),courseSections.get(i));
+                                dba.addFormS(Link_id, courseSections.get(i));
                             }
                         } else {
                             System.out.println("id is not set");
@@ -129,13 +129,13 @@ public class AddPILinks extends HttpServlet {
                             System.out.println("in if S");
                             dbd.deleteForm(Link_id,0);
                             for(int i=0;i<courseSections.size();i++) {
-                                dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")),courseSections.get(i));
+                                dba.addFormS(Link_id,courseSections.get(i));
                             }
                         } else {
                             System.out.println("id is not set");
                         }
                     }else if (type.equals("Summative")){
-                        dbu.updateFormThredshold(Link_id,Integer.parseInt(request.getParameter("STshold")));
+                        //dbu.updateFormThredshold(Link_id,Integer.parseInt(request.getParameter("STshold")));
                     }
 
                     if(!request.getParameter("oldCourseValue").equals(request.getParameter("Course"))){
@@ -149,7 +149,7 @@ public class AddPILinks extends HttpServlet {
                             System.out.println("in if S");
                             dbd.deleteForm(Link_id,0);
                             for(int i=0;i<courseSections.size();i++) {
-                                dba.addFormS(Link_id, Integer.parseInt(request.getParameter("STshold")),courseSections.get(i));
+                                dba.addFormS(Link_id, courseSections.get(i));
                             }
                         } else {
                             System.out.println("id is not set");
