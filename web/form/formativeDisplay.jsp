@@ -325,9 +325,42 @@
                             </div>
                         </div>
 
-                            <label><strong>Faculty Name: </strong></label>
-                            <label>
-                                <strong>
+
+                    <div class="row">
+                        <h6>Faculty Name: </h6>
+                        <h6><%
+                            F_Select yselect = new F_Select();
+                            try {
+                                String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
+
+                                out.print(name);
+
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                        %>
+                        </h6>
+                        <h6 class="pull-right" id="date"><script>
+                            /*function myFunction() {
+                             var d = new Date();
+                             var n = d.getFullYear();
+                             document.getElementById("date").innerHTML = n;
+                             }*/
+                            (function(){
+                                var d = new Date();
+                                document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
+                            })();
+                        </script></h6>
+
+                        <h6 class="pull-right">Date: </h6>
+                    </div>
+
+
+                            <%--<h6><span>Faculty Name: </span></h6>
+                            <h6>
+                                <span>
                                 <%
                                 F_Select yselect = new F_Select();
                                 try {
@@ -341,10 +374,10 @@
                                     e.printStackTrace();
                                 }
                             %>
-                                </strong>
-                            </label>
+                                </span>
+                            </h6>
 
-                            <label class="pull-right"><strong>Date: <%=fDate%></strong></label>
+                            <h6 class="pull-right"><span>Date: <%=fDate%></span></h6>--%>
 
                     <div class="row">
                         <a class="btn btn-primary" href="index.jsp" >Back</a>

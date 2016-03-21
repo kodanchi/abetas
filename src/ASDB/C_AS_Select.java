@@ -807,7 +807,7 @@ public class C_AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT PI_label, PI_name FROM performance_indicator, program, cycle WHERE FK_P_ID = ? AND" +
+            String query = "SELECT PI_label, PI_name, Threshold FROM performance_indicator, program, cycle WHERE FK_P_ID = ? AND" +
                     " FK_C_ID = ? AND P_ID = FK_P_ID AND Cycle_ID = FK_C_ID  ;";
 
             /*
@@ -830,6 +830,7 @@ public class C_AS_Select {
                 RowDate = new ArrayList<String>();
                 RowDate.add(rs.getString(1));
                 RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
 
 
                 RsArr.add(RowDate);

@@ -90,10 +90,13 @@
                             <label>Performance Indicator</label>
                             <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                             <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
+                            <input type="hidden" name="PIThresh" value="<%=request.getParameter("PIThresh")%>">
                             <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}
                             else {
                                 out.print(pName);
                             }%></textarea>
+                            <br>
+                            <input type="text" name="Thresh" required><%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>
 
                         </div>
 

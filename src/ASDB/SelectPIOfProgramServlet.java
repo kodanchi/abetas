@@ -51,6 +51,7 @@ public class SelectPIOfProgramServlet extends HttpServlet {
                     "\n" +
                     "                                    <th>Label</th>\n" +
                     "                                    <th>Performance Indicator</th>\n" +
+                    "                                    <th>Threshold</th>\n" +
                     "                                    <th>Edit</th>\n" +
                     "                                    <th>Delete</th>\n" +
                     "\n" +
