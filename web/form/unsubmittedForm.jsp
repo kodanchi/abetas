@@ -30,7 +30,7 @@
     <div class="row">
         <h2 class="text-center">Ub-Submitted Forms</h2>
         <legend></legend>
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
 
             <div class="input-group"> <span class="input-group-addon">Filter</span>
 
@@ -40,7 +40,7 @@
             <!-- Table -->
             <table class="table table-striped table-bordered text-center">
                 <tr>
-                    <th>Un-submitted Form</th>
+                    <th>Performance Indicator</th>
                     <th>Course</th>
                     <th>Faculty</th>
                     <th>Type</th>

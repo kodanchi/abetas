@@ -20,6 +20,11 @@
 
 %>
 <header>
+    <style>
+        .block{
+            color:<%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;
+        }
+    </style>
     <div class="navbar-info" style=" background-color: <%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;">
         <div class="container">
             <nav class="navbar navbar-info navbar-inverse" role="navigation" style="margin-bottom:-0px; background-color: <%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;">

@@ -82,7 +82,7 @@ public class SaveSummative extends HttpServlet {
                         }
 
 
-                        if(name.startsWith("optionsRadios")){
+                        /*if(name.startsWith("optionsRadios")){
                             System.out.println("optionsRadios is : "+name + " = "+ item.getString());
                             String num = item.getFieldName().substring(13);
                             System.out.println("substering : "+num);
@@ -90,6 +90,19 @@ public class SaveSummative extends HttpServlet {
                                 String SIDname = i.getFieldName();
                                 if(SIDname.equals("SID"+num)){
                                     System.out.println("SID is : "+SIDname+ " = "+ item.getString());
+                                    SID.add(i.getString());
+                                    optionsRadios.add(item.getString());
+                                }
+                            }*/
+
+                        if(name.startsWith("optionsRadios")){
+                            System.out.println("optionsRadios is : "+name + " = "+ item.getString());
+                            String num = item.getFieldName().substring(13);
+                            System.out.println("substering : "+num);
+                            for (FileItem i:items){
+                                String SIDname = i.getFieldName();
+                                if(SIDname.equals("SID"+num)){
+                                    System.out.println("SID is : "+SIDname+ " = "+ i.getString());
                                     SID.add(i.getString());
                                     optionsRadios.add(item.getString());
                                 }
@@ -152,6 +165,7 @@ public class SaveSummative extends HttpServlet {
                         dbd.deleteSummRub(Integer.parseInt(Summative_ID));
                         for (int i =0; i < size; i++){
 
+                            System.out.println("student_rubric : "+optionsRadios.get(i)+",SID : "+SID.get(i));
                             dbi.addSummativeRubric(Integer.parseInt(Summative_ID),optionsRadios.get(i),Integer.parseInt(SID.get(i)));
                         }
                         sendMsg("Form No:"+Summative_ID+" has been successfully saved",request,response);
