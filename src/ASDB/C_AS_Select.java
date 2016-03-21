@@ -2945,7 +2945,7 @@ public class C_AS_Select {
             /*
              * Execute the query
              */
-            String querySelect = " SELECT Sum_threshold FROM summative where FK_Link_ID = ?";
+            String querySelect = " select Threshold from performance_indicator, link_out_pi where FK_pi_ID = PI_Label AND Link_ID= ?;";
 
             preparedStatement = connection.prepareStatement(querySelect);
             preparedStatement.setInt (1, id);
@@ -2956,7 +2956,7 @@ public class C_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 name= rsSelect.getInt(1);
-                System.out.println(name+"    Sum_threshold");
+                //System.out.println(name+"    Sum_threshold");
                 return name;
             }
 
