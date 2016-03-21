@@ -1163,7 +1163,7 @@ public class C_AS_Insert {
 
     }
 
-    public void addPI(String name, int FK_P_ID, int FK_C_ID ) throws ClassNotFoundException, SQLException {
+    public void addPI(String name, int Threshold, int FK_P_ID, int FK_C_ID) throws ClassNotFoundException, SQLException {
 
 
         connect();
@@ -1185,12 +1185,13 @@ public class C_AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into performance_indicator (PI_name, FK_P_ID, FK_C_ID)" + " values (?, ?, ?)";
+            String query = " insert into performance_indicator (PI_name, Threshold, FK_P_ID, FK_C_ID)" + " values (?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, FK_P_ID);
-            preparedStatement.setInt(3, FK_C_ID);
+            preparedStatement.setInt(2, Threshold);
+            preparedStatement.setInt(3, FK_P_ID);
+            preparedStatement.setInt(4, FK_C_ID);
 
             rs = preparedStatement.executeUpdate();
 

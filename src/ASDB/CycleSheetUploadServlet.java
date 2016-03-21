@@ -24,6 +24,7 @@ public class CycleSheetUploadServlet extends HttpServlet {
         String courseName = "";
         String section = "";
         String dataType = "";
+        String thresh="";
 
         if(request.getParameter("cycle") != null && request.getParameter("term") != null && request.getParameter("data-type") != null){
             cycle = request.getParameter("cycle");
@@ -33,6 +34,7 @@ public class CycleSheetUploadServlet extends HttpServlet {
             courseName = request.getParameter("courseName");
             section = request.getParameter("section");
             dataType = request.getParameter("data-type");
+            thresh = request.getParameter("Thresh");
         }
         //String dataId = request.getParameter("file");
         Object obj = request.getSession().getAttribute("sheetData");
@@ -57,7 +59,7 @@ public class CycleSheetUploadServlet extends HttpServlet {
                         sendErrorMsg(dataRow.get(0)+ " is already existed.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
                         break;
                     }else {
-                        dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle));
+                        dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(thresh), Integer.parseInt(cycle));
                     }
                 }else if(dataType.equals("courses")){
                     dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(cycle));

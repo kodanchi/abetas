@@ -29,11 +29,11 @@ public class AddPI extends HttpServlet {
                 programID=sdba.selectProgramID(request.getParameter("programName"));
                 if(sdba.isPIExist(request.getParameter("PI"), programID, Integer.parseInt(id))){
                     PVal = new String[]{request.getParameter("PI")};
-                    sendErrMsg(request.getParameter("PI")+" is already existed",request.getParameter("cycle"),request,response);
+                    sendErrMsg(request.getParameter("PI")+" already existed",request.getParameter("cycle"),request,response);
                 }else {
-                    System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           ");
+                    System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           "+"       ssssss "+ Integer.parseInt(request.getParameter("Thresh"))+"        xxxxx"+request.getParameter("Thresh") );
                     if (programID!=0) {
-                        dba.addPI(request.getParameter("PI"), programID, Integer.parseInt(id));
+                        dba.addPI(request.getParameter("PI"), Integer.parseInt(request.getParameter("Thresh")), programID, Integer.parseInt(id));
                     }else {
                         //Display error message.
                     }
