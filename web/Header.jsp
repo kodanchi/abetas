@@ -20,9 +20,9 @@
 
 %>
 <header>
-    <div class="navbar-info">
+    <div class="navbar-info" style=" background-color: <%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;">
         <div class="container">
-            <nav class="navbar navbar-inverse navbar-info" role="navigation" style="margin-bottom:-0px;">
+            <nav class="navbar navbar-info navbar-inverse" role="navigation" style="margin-bottom:-0px; background-color: <%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;">
                 <div class="row" style="margin-bottom:10px; margin-top: 20px;">
                     <div class="navbar-header" style="width:100%">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">

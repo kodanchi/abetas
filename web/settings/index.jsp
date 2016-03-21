@@ -178,7 +178,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-4 navbar-info paddingImg">
+                                <div class="col-md-4 col-sm-4 paddingImg" style="background-color: <%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>;">
                                     <img style="max-width: 270px" src="<%
                                     if(userData != null && userData.get(2)!= null){out.print(userData.get(2));
                                     }else { out.print("/img/logoHolder.png");}
@@ -192,8 +192,9 @@
                             <div class="row">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
+                                        <label>Header Background Color</label>
                                         <div class="input-group demo">
-                                            <input type="text" value="" class="form-control" />
+                                            <input type="text" name="color" value="<%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>" class="form-control" />
                                             <span class="input-group-addon"><i></i></span>
                                         </div>
                                         <script>
@@ -345,6 +346,7 @@
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/sys-usr-set.js"></script>
 <script src="/js/bootstrap-colorpicker.min.js"></script>
+<script src="/js/bootbox.min.js"></script>
 
 
 

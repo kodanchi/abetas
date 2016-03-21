@@ -62,12 +62,13 @@ public class InstallDB {
             /*
              * Execute the query
              */
-            String query = " insert into university (Uni_name, College_name, Uni_logo)" + " values (?, ?, ?)";
+            String query = " insert into university (Uni_name, College_name, Uni_logo, color)" + " values (?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, Uname);
             preparedStatement.setString(2, Cname);
             preparedStatement.setString(3, logo);
+            preparedStatement.setString(4, "#043366");
 
             rs = preparedStatement.executeUpdate();
 

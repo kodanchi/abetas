@@ -1646,7 +1646,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT  Uni_name, College_name, Uni_logo  FROM university LIMIT 1;";
+            String query = "SELECT  Uni_name, College_name, Uni_logo, color  FROM university LIMIT 1;";
 
             /*
              *  Get connection from the DataSource
@@ -1668,6 +1668,7 @@ public class AS_Select {
                 rowDate.add(rs.getString(1));
                 rowDate.add(rs.getString(2));
                 rowDate.add(rs.getString(3));
+                rowDate.add(rs.getString(4));
 
             }
 

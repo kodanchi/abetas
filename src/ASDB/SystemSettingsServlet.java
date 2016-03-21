@@ -20,7 +20,7 @@ import java.util.List;
 @WebServlet(name = "SystemSettingsServlet", urlPatterns = {"/sysSettingsUpdate"})
 public class SystemSettingsServlet extends HttpServlet {
 
-    private String uname,cname,ulogo = null;
+    private String uname,cname,ulogo,color = null;
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
     private boolean isValid = true;
@@ -55,6 +55,14 @@ public class SystemSettingsServlet extends HttpServlet {
                                 if(cname.equals("")){
                                     sendMsg("College name must be entered",request,response);
                                     isValid = false;
+                                }
+                                break;
+                            case "color":
+                                color = item.getString();
+                                if(color.equals("")){
+                                    /*sendMsg("College name must be entered",request,response);
+                                    isValid = false;*/
+                                    color = "#043366";
                                 }
                                 break;
                             default:
@@ -102,7 +110,7 @@ public class SystemSettingsServlet extends HttpServlet {
 
                     if(isValid){
                         Settings_Update adb = new Settings_Update();
-                        adb.updateSystemSettings(uname,cname,ulogo);
+                        adb.updateSystemSettings(uname,cname,ulogo,color);
                     }
 
 
