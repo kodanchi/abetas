@@ -303,8 +303,8 @@
                 </div>
 
                 <div class="row">
-                    <label>Faculty Name: </label>
-                    <label><%
+                    <h6>Faculty Name: </h6>
+                    <h6><%
                         F_Select yselect = new F_Select();
                         try {
                             String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -317,8 +317,8 @@
                             e.printStackTrace();
                         }
                     %>
-                    </label>
-                    <label class="pull-right" id="date"><script>
+                    </h6>
+                    <h6 class="pull-right" id="date"><script>
                         /*function myFunction() {
                          var d = new Date();
                          var n = d.getFullYear();
@@ -328,9 +328,9 @@
                             var d = new Date();
                             document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
                         })();
-                    </script></label>
+                    </script></h6>
 
-                    <label class="pull-right">Date: </label>
+                    <h6 class="pull-right">Date: </h6>
                 </div>
 
 

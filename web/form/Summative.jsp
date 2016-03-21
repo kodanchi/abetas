@@ -325,8 +325,8 @@
                             </div>
 
                             <div class="row">
-                                <label>Faculty Name: </label>
-                                <label><%
+                                <h6>Faculty Name: </h6>
+                                <h6><%
                                     F_Select yselect = new F_Select();
                                     try {
                                         String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -340,9 +340,9 @@
                                     }
                                     DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
                                     Date date = new Date();
-                                %></label>
-                                <input name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
-                                <label class="pull-right" id="date">Date: <%=fdate.format(date)%></label>
+                                %></h6>
+                                <h6 name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
+                                <h6 class="pull-right" id="date">Date: <%=fdate.format(date)%></h6>
 
 <%--
                                 <label class="pull-right">Date: </label>
