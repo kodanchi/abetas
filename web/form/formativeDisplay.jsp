@@ -287,7 +287,7 @@
 
                         <div>
 
-                            <h6>Written Rubrics</h6>
+                            <h6>Performance Report: </h6>
                             <div>
                                 <textarea class="form-control" rows="4" readonly style="background-color: white;"> <%=F_written_rubic%></textarea>
                                </div>
