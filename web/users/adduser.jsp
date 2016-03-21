@@ -143,20 +143,20 @@
                     <br>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="First Name" name="fname" id="fname" value="<%=ufname%>" required>
+                        <input type="text" class="form-control capit" placeholder="First Name" name="fname" id="fname" value="<%=ufname%>" required >
                     </div>
 
                     <div class="form-group">
 
                         <label>Middle Name</label>
 
-                        <input type="text" class="form-control" placeholder="Middle Name" name="mname" id="mname" value="<%=umname%>" required>
+                        <input type="text" class="form-control capit" placeholder="Middle Name" name="mname" id="mname" value="<%=umname%>" required>
 
                     </div>
 
                     <div class="form-group">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" name="lname" id="lname" value="<%=ulname%>" required>
+                        <input type="text" class="form-control capit" placeholder="Last Name" name="lname" id="lname" value="<%=ulname%>" required>
                     </div>
 
                     <div class="form-group">
@@ -181,6 +181,8 @@
                         document.getElementById("alert").style.visibility = "hidden";
                         document.getElementById("emailDiv").style.visibility = "hidden";
                         onUserTypeChng();
+
+
                     })
 
                 </script>

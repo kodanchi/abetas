@@ -14,6 +14,8 @@ import java.io.IOException;
 
 /**
  * Created by Ibrahim Abuaqel on 1/19/2016.
+ *
+ * http://stackoverflow.com/questions/1892765/capitalize-first-char-of-each-word-in-a-string-java
  */
 
 @WebServlet(name = "AddUser",
@@ -47,11 +49,11 @@ public class AddUser extends HttpServlet {
                             sendErrMsg("The Email is already exist",request,response);
                         }else{
                             if(userType.equals("Superuser")) {
-                                idb.addUser(0, uname, uemail, fname, mname, lname);
+                                idb.addUser(0, uname, uemail, capitalize(fname), capitalize(mname), capitalize(lname));
                                 Auditor.add((String) request.getSession().getAttribute("username"),
                                         "added new superuser :" + uname);
                             }else if (request.getParameter("userType").equals("Faculty_Member")) {
-                                idb.addUser(1, uname, uemail, fname, mname, lname);
+                                idb.addUser(1, uname, uemail, capitalize(fname), capitalize(mname), capitalize(lname));
                                 Auditor.add((String) request.getSession().getAttribute("username"),
                                         "added new Faculty Member :" + uname);
                             }
@@ -59,7 +61,7 @@ public class AddUser extends HttpServlet {
 
                         }
                     }else if (request.getParameter("userType").equals("Evaluator")){
-                        idb.addUser(2, uname, null, fname, mname, lname);
+                        idb.addUser(2, uname, null, capitalize(fname), capitalize(mname), capitalize(lname));
                         Auditor.add((String) request.getSession().getAttribute("username"),
                                 "added new Evaluator :" + uname);
                         response.sendRedirect("/users/index.jsp?status=userAdded"); 
@@ -123,6 +125,19 @@ public class AddUser extends HttpServlet {
             result = false;
         }
         return result;
+    }
+    public String capitalize(String string) {
+        char[] chars = string.toLowerCase().toCharArray();
+        boolean found = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!found && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                found = true;
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+                found = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
 }
