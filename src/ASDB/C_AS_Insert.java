@@ -1243,7 +1243,7 @@ public class C_AS_Insert {
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        public void addPIold(String name, String label, int type, int threshold) throws ClassNotFoundException, SQLException {
+/*        public void addPIold(String name, String label, int type, int threshold) throws ClassNotFoundException, SQLException {
 
 
             connect();
@@ -1256,15 +1256,15 @@ public class C_AS_Insert {
             int rs = 0;
             try {
 
-            /*
+            *//*
              *  Get connection from the DataSource
-             */
+             *//*
 
                 connection = dataSource.getConnection();
 
-            /*
+            *//*
              * Execute the query
-             */
+             *//*
                 String query = " insert into performance_indicator (PI_name, PI_label)" + " values (?, ?)";
 
                 preparedStatement = connection.prepareStatement(query);
@@ -1350,9 +1350,9 @@ public class C_AS_Insert {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            /*
+            *//*
              * finally block used to close resources
-             */
+             *//*
             try {
                 if (preparedStatement != null) {
                     preparedStatement.close();
@@ -1369,7 +1369,7 @@ public class C_AS_Insert {
             }
 
         }
-    }
+    }*/
 
     public void link_pi_course(int PI_ID, String C_code, String relation) throws ClassNotFoundException, SQLException {
 
@@ -1482,7 +1482,7 @@ public class C_AS_Insert {
         }
     }
 
-    public void addFormS(int FK_Link_ID, int Sum_threshold, int FK_Section_ID) throws ClassNotFoundException, SQLException {
+    public void addFormS(int FK_Link_ID, int FK_Section_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -1501,13 +1501,12 @@ public class C_AS_Insert {
             /*
              * Execute the query
              */
-            String query = " insert into summative (Sum_submitted, FK_Link_ID, Sum_threshold, FK_Section_ID)" + " values (?,?,?,?)";
+            String query = " insert into summative (Sum_submitted, FK_Link_ID, FK_Section_ID)" + " values (?,?,?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, 0);
             preparedStatement.setInt(2, FK_Link_ID);
-            preparedStatement.setInt(3, Sum_threshold);
-            preparedStatement.setInt(4, FK_Section_ID);
+            preparedStatement.setInt(3, FK_Section_ID);
 
             rs = preparedStatement.executeUpdate();
 
