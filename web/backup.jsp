@@ -93,9 +93,24 @@
                                         }
                                     }
                                 }
+
+                                String backupTime = (String) servletContext.getAttribute("backupTime");
                             %>
                         </table>
+                    <div class="">
+                        <form method="post" action="/setBackupTime">
+                            <div class="form-group">
+                                <select class="input-group select" name="timeList">
+                                    <option value="daily" <%if(backupTime.equals("daily"))out.print(" selected ");%>>Daily</option>
+                                    <option value="weekly" <%if(backupTime.equals("weekly"))out.print(" selected ");%>>Weekly</option>
+                                    <option value="biweekly" <%if(backupTime.equals("biweekly"))out.print(" selected ");%>>Biweekly</option>
+                                    <option value="monthly" <%if(backupTime.equals("monthly"))out.print(" selected ");%>>Monthly</option>
+                                </select>
+                                <input class="btn btn-danger" type="submit" value="Set">
+                            </div>
 
+                        </form>
+                    </div>
                     <form method="post" action="/Backup">
                     <button class="btn btn-primary" name="backupCreate">Create New Backup</button>
                     <button class="btn btn-primary pull-right">close</button>
@@ -106,55 +121,6 @@
 
                 <!-- End of row -->
             </div>
-
-            <!-- Restore Modal -->
-            <div class="modal fade" id="restoreModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabel">Backup Restore</h4>
-                        </div>
-                        <div class="modal-body">
-                            If you choose to restore this backup, you will lose any data entered after that time and will not be able to access them.
-                        </div>
-                        <div class="modal-footer">
-                            <div class="left-side">
-                                <a href="#" type="button" class="btn btn-default btn-simple">OK</a>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="right-side">
-                                <a href="#" type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!--  Modal -->
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h4 class="modal-title" id="myModalLabelbackup">Delete Backup</h4>
-                        </div>
-                        <div class="modal-body">
-                            If you choose to delete this backup, you will not be able to access it again.
-                        </div>
-                        <div class="modal-footer">
-                            <div class="left-side">
-                                <a href="#" type="button" class="btn btn-default btn-simple">OK</a>
-                            </div>
-                            <div class="divider"></div>
-                            <div class="right-side">
-                                <a href="#" type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End of modals -->
 
         </div>
     </div>

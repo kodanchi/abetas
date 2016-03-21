@@ -18,7 +18,7 @@ public class timerRun implements ServletContextListener {
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext context = servletContextEvent.getServletContext();
         String backupfolder =  context.getRealPath("/")+ "backup";
-        File theDir = new File(backupfolder);
+        //File theDir = new File(backupfolder);
 
         /*if (!theDir.exists()) {
             System.out.println("creating directory: " + backupfolder);
@@ -36,12 +36,16 @@ public class timerRun implements ServletContextListener {
             }
         }else {System.out.println("Backup already existed");}
 */
+        servletContextEvent.getServletContext().setAttribute("backupTime","weekly");
         TimeClass t = new TimeClass(backupfolder);
         t.timeTest();
+        servletContextEvent.getServletContext().setAttribute("TimeClass",t);
+
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent servletContextEvent) {
 
     }
+
 }

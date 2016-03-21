@@ -9,15 +9,19 @@ Timer for Backup
 
 import Backup.BackupTool;
 
+import javax.naming.Context;
+import javax.security.auth.message.callback.PrivateKeyCallback;
 import java.util.*;
 
 public class TimeClass extends TimerTask {
     private String BACKUP_DIRECTORY = null;
-
+    private Timer timer;
     public TimeClass(String bdir){
+        timer = new Timer();
         BACKUP_DIRECTORY = bdir;
     }
     public TimeClass(){
+        timer = new Timer();
     }
     /**
      * TimeClass used to run any function period of time depend on the function and its requiremtn time
@@ -45,9 +49,22 @@ public class TimeClass extends TimerTask {
         // We use a class java.util.Timer to
         // schedule our task/job for execution
 
-        Timer timer = new Timer();
-
         timer.schedule(this, 0, WEEK);
+
+
+    }
+
+    /**
+     * timeTest method used to run Backup Class weekly
+     */
+    public void Reschedule(int time){
+//        TimeClass task = new TimeClass(BACKUP_DIRECTORY);
+
+        // We use a class java.util.Timer to
+        // schedule our task/job for execution
+
+        timer.cancel();
+        timer.schedule(this, 0, time);
 
 
     }
