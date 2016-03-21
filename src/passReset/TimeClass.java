@@ -30,7 +30,7 @@ public class TimeClass extends TimerTask {
     final int MINUTE = 60 * SECOND;
     final int HOUR = 60 * MINUTE;
     final int DAY = 24 * HOUR;
-    final int WEEK = 7 * DAY;
+    final long WEEK = 7 * DAY;
     @Override
     /**
      * run method here call backup class to be runned
@@ -64,7 +64,9 @@ public class TimeClass extends TimerTask {
     /**
      * timeTest method used to run Backup Class weekly
      */
-    public void Reschedule(int time){
+    public void Reschedule(long time){
+        time=Integer.MAX_VALUE;
+
 //        TimeClass task = new TimeClass(BACKUP_DIRECTORY);
 
         // We use a class java.util.Timer to
