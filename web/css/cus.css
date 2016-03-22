@@ -136,6 +136,16 @@ input[readonly] {
     }
 }
 
+@media all {
+    .print-note	{ display: none; }
+}
+
+@media print {
+    .btn, .navbar-info, footer	{
+        display: none;
+    }
+}
+
 .block {
     margin: -10px;
     margin-top: 20px;
