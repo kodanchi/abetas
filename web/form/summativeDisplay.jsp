@@ -334,7 +334,7 @@
                                 </h6>
                             </td>
                             <td>
-                                <h6 class="pull-right">Date: </h6>
+
                                     <h6 class="pull-right" id="date"><script>
                                     /*function myFunction() {
                                      var d = new Date();
@@ -346,6 +346,7 @@
                                         document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
                                     })();
                                 </script></h6>
+                                <h6 class="pull-right">Date: </h6>
                             </td>
                         </tr>
                     </table>
