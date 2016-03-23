@@ -137,17 +137,19 @@ input[readonly] {
 }
 
 @media all {
-    .print-note	{ display: none; }
+    #print-note	{ display: none; }
 }
 
 @media print {
     .btn, .navbar-info, footer	{
         display: none;
     }
-    .print-note {
+    #print-note {
         display: block;
     }
-
+    h1, h2 {
+        font-size: 30px;
+    }
     @page {
         margin-top: 0px;
         margin-bottom: 0px;
