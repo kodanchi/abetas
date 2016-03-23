@@ -5,8 +5,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -77,7 +77,7 @@ public class ImportUserSheet {
                                         extension = item.getName().substring(i + 1);
                                         System.out.println("file ext !"+ extension);
                                     }
-                                    if (extension.equals("xls")) {
+                                    if (extension.equals("xls") || extension.equals("xlsx")) {
                                         item.write(new File(UPLOAD_DIRECTORY + "\\"+ File.separator + name));
                                         uploadFilePath = UPLOAD_DIRECTORY + "\\"+ name;
                                         //File uploaded successfully
@@ -90,13 +90,13 @@ public class ImportUserSheet {
 
 
                                     } else {
-                                        System.out.println("university logo must be type of PNG");
-                                        Error_Msg = "Logo image's size exceeds 2mb";
+                                        System.out.println("File must be excel");
+                                        Error_Msg = "The uploaded file must be excel of following extensions: xls or xlsx";
                                         return false;
                                     }
                                 } else {
-                                    System.out.println("Logo image's size exceeds 2mb");
-                                    Error_Msg = "Logo image's size exceeds 2mb";
+                                    System.out.println("file size must be less than 2 MB");
+                                    Error_Msg = "The uploaded file's size must be less than 2 MB";
                                     return false;
                                 }
                             }else{
@@ -131,102 +131,17 @@ public class ImportUserSheet {
 
     }
 
-    public boolean importSheetForString(String[] sheetChecker){
-        try {
-
-            FileInputStream file = new FileInputStream(new File(uploadFilePath));
-
-            //Get the workbook instance for XLS file
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
-
-            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
-
-            //Get first sheet from the workbook
-            HSSFSheet sheet = workbook.getSheetAt(0);
-
-            //Set the sheet checker in Array
-            String[] sheetCheckerArr = sheetChecker;
-            boolean validFormHead = true;
-
-
-            //Iterate through each rows from first sheet
-            Iterator<Row> rowIterator = sheet.iterator();
-            while(rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-
-                //For each row, iterate through each columns
-                Iterator<Cell> cellIterator = row.cellIterator();
-                //while(cellIterator.hasNext()) {
-                for (int j=0;j<sheetCheckerArr.length;j++){
-
-
-                    Cell cell = null;
-                    try {
-                        cell = cellIterator.next();
-                    }catch (NoSuchElementException e){
-                        Error_Msg = "Some of the data are missing in the sheet or the sheet is not in the proper format, " +
-                                "please add them in the sheet and try upload it again, or choose another file. ";
-                        file.close();
-                        return false;
-                    }
-
-                    if(validFormHead) {
-                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                            if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
-                                System.out.print(cell.getStringCellValue() + "\t\t");
-                            } else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "errrrrr not same format";
-                                file.close();
-                                return false;
-                            }
-                        } else {
-                            System.out.print("errrrrr not string");
-                            Error_Msg = "errrrrr not string";
-                            file.close();
-                            return false;
-                        }
-                    }else {
-                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                            System.out.print(cell.getStringCellValue() + "\t\t");
-                        }else {
-                            System.out.print("errrrrr not same format");
-                            file.close();
-                            return false;
-                        }
-                    }
-
-
-                }
-                validFormHead = false;
-                System.out.println("");
-            }
-            file.close();
-            FileOutputStream pout =
-                    new FileOutputStream(new File(uploadFilePath));
-            workbook.write(pout);
-            pout.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
     public boolean UserSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
-            FileInputStream file = new FileInputStream(new File(uploadFilePath));
+            InputStream file = new FileInputStream(new File(uploadFilePath));
 
-            //Get the workbook instance for XLS file
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
 
-            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
+            //Set the api to work on the file
+            Workbook workbook = WorkbookFactory.create(file);
 
             //Get first sheet from the workbook
-            HSSFSheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
 
             //Set the sheet checker in Array
             String[] sheetCheckerArr = sheetChecker;
@@ -396,6 +311,8 @@ public class ImportUserSheet {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
             e.printStackTrace();
         }
         return true;

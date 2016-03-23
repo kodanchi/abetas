@@ -25,7 +25,9 @@ public class AddCourses extends HttpServlet {
         P_AS_Select dbaS=new P_AS_Select();
         try {
             courseVal = new String[]{request.getParameter("Code"),request.getParameter("Cname"),request.getParameter("level")};
-            if(!dbaS.isCoursesCodeExist(request.getParameter("Code"))){
+            if(request.getParameter("Code").equals("") || request.getParameter("Cname").equals("")){
+                sendErrMsg("You must fill the course name and code",request.getParameter("name"),request.getParameter("id"),request,response);
+            }else if(!dbaS.isCoursesCodeExist(request.getParameter("Code"))){
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.addCourse(request.getParameter("Code"),request.getParameter("Cname"),Integer.parseInt(request.getParameter("level")),0,Integer.parseInt(request.getParameter("id")));
                 //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));

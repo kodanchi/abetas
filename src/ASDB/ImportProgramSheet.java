@@ -3,10 +3,13 @@ package ASDB;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.omg.CORBA.portable.*;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -16,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,7 +41,7 @@ public class ImportProgramSheet {
     private String[] sheetCheckerArr;
     private ArrayList<ArrayList<String>> sheetData;
     private final int MAX_FILE_SIZE = 2000000;
-    private P_AS_Select db = new P_AS_Select();
+    private P_AS_Select dbs = new P_AS_Select();
 
 
     public ImportProgramSheet(HttpServletRequest request){
@@ -94,7 +98,7 @@ public class ImportProgramSheet {
                                         extension = item.getName().substring(i + 1);
                                         System.out.println("file ext !"+ extension);
                                     }
-                                    if (extension.equals("xls")) {
+                                    if (extension.equals("xls") || extension.equals("xlsx")) {
                                         item.write(new File(UPLOAD_DIRECTORY + "\\"+ File.separator + name));
                                         uploadFilePath = UPLOAD_DIRECTORY + "\\"+ name;
                                         //File uploaded successfully
@@ -107,13 +111,13 @@ public class ImportProgramSheet {
 
 
                                     } else {
-                                        System.out.println("university logo must be type of PNG");
-                                        Error_Msg = "Logo image's size exceeds 2mb";
+                                        System.out.println("File must be excel");
+                                        Error_Msg = "The uploaded file must be excel of following extensions: xls or xlsx";
                                         return false;
                                     }
                                 } else {
-                                    System.out.println("Logo image's size exceeds 2mb");
-                                    Error_Msg = "Logo image's size exceeds 2mb";
+                                    System.out.println("file size must be less than 2 MB");
+                                    Error_Msg = "The uploaded file's size must be less than 2 MB";
                                     return false;
                                 }
                             }else{
@@ -148,102 +152,18 @@ public class ImportProgramSheet {
 
     }
 
-    public boolean importSheetForString(String[] sheetChecker){
-        try {
-
-            FileInputStream file = new FileInputStream(new File(uploadFilePath));
-
-            //Get the workbook instance for XLS file
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
-
-            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
-
-            //Get first sheet from the workbook
-            HSSFSheet sheet = workbook.getSheetAt(0);
-
-            //Set the sheet checker in Array
-            String[] sheetCheckerArr = sheetChecker;
-            boolean validFormHead = true;
-
-
-            //Iterate through each rows from first sheet
-            Iterator<Row> rowIterator = sheet.iterator();
-            while(rowIterator.hasNext()) {
-                Row row = rowIterator.next();
-
-                //For each row, iterate through each columns
-                Iterator<Cell> cellIterator = row.cellIterator();
-                //while(cellIterator.hasNext()) {
-                for (int j=0;j<sheetCheckerArr.length;j++){
-
-
-                    Cell cell = null;
-                    try {
-                        cell = cellIterator.next();
-                    }catch (NoSuchElementException e){
-                        Error_Msg = "Some of the data are missing in the sheet or the sheet is not in the proper format, " +
-                                "please add them in the sheet and try upload it again, or choose another file. ";
-                        file.close();
-                        return false;
-                    }
-
-                    if(validFormHead) {
-                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                            if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
-                                System.out.print(cell.getStringCellValue() + "\t\t");
-                            } else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "errrrrr not same format";
-                                file.close();
-                                return false;
-                            }
-                        } else {
-                            System.out.print("errrrrr not string");
-                            Error_Msg = "errrrrr not string";
-                            file.close();
-                            return false;
-                        }
-                    }else {
-                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                            System.out.print(cell.getStringCellValue() + "\t\t");
-                        }else {
-                            System.out.print("errrrrr not same format");
-                            file.close();
-                            return false;
-                        }
-                    }
-
-
-                }
-                validFormHead = false;
-                System.out.println("");
-            }
-            file.close();
-            FileOutputStream pout =
-                    new FileOutputStream(new File(uploadFilePath));
-            workbook.write(pout);
-            pout.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
     public boolean objSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
-            FileInputStream file = new FileInputStream(new File(uploadFilePath));
+            InputStream file = new FileInputStream(new File(uploadFilePath));
 
-            //Get the workbook instance for XLS file
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
 
-            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
+            //Set the api to work on the file
+            Workbook workbook = WorkbookFactory.create(file);
 
             //Get first sheet from the workbook
-            HSSFSheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
+
 
             //Set the sheet checker in Array
             String[] sheetCheckerArr = sheetChecker;
@@ -342,6 +262,8 @@ public class ImportProgramSheet {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
             e.printStackTrace();
         }
         return true;
@@ -350,15 +272,14 @@ public class ImportProgramSheet {
     public boolean outcomesSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
-            FileInputStream file = new FileInputStream(new File(uploadFilePath));
+            InputStream file = new FileInputStream(new File(uploadFilePath));
 
-            //Get the workbook instance for XLS file
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
 
-            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
+            //Set the api to work on the file
+            Workbook workbook = WorkbookFactory.create(file);
 
             //Get first sheet from the workbook
-            HSSFSheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
 
             //Set the sheet checker in Array
             String[] sheetCheckerArr = sheetChecker;
@@ -457,6 +378,8 @@ public class ImportProgramSheet {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
             e.printStackTrace();
         }
         return true;
@@ -465,15 +388,14 @@ public class ImportProgramSheet {
     public boolean coursesSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
-            FileInputStream file = new FileInputStream(new File(uploadFilePath));
+            InputStream file = new FileInputStream(new File(uploadFilePath));
 
-            //Get the workbook instance for XLS file
-            HSSFWorkbook workbook = new HSSFWorkbook(file);
 
-            //HSSFWorkbook workbook2 = new HSSFWorkbook(file);
+            //Set the api to work on the file
+            Workbook workbook = WorkbookFactory.create(file);
 
             //Get first sheet from the workbook
-            HSSFSheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
 
             //Set the sheet checker in Array
             String[] sheetCheckerArr = sheetChecker;
@@ -519,11 +441,14 @@ public class ImportProgramSheet {
                         }
                     }else {
                         try {
-                            System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
 
-                            if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                                switch (j){
-                                    case 0:
+
+
+                            switch (j){
+                                case 0:
+
+                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                                        System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
                                         if(cell.getStringCellValue().equals("")){
                                             Error_Msg = "Some of the records are empty.";
                                             file.close();
@@ -531,34 +456,60 @@ public class ImportProgramSheet {
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-                                        break;
-                                    case 1:
-                                        if(String.valueOf(cell.getNumericCellValue()).equals("")){
-                                            Error_Msg = "Some of the records are empty.";
-                                            file.close();
-                                            return false;
-                                        }else {
-                                            dataRow.add(cell.getStringCellValue());
-                                        }
-                                        break;
-                                    case 2:
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+                                    break;
+                                case 1:
+                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+                                        System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of the records are empty.";
+                                            Error_Msg = "Some of course's codes, please follow the instructions " +
+                                                    "that shown in the import page";
+                                            file.close();
+                                            return false;
+                                        }else if(dbs.isCoursesCodeExist(cell.getStringCellValue())){
+                                            Error_Msg = "Course code: "+cell.getStringCellValue()+" is already existed, please change it in the excel sheet and" +
+                                                    " follow the instructions that shown in the import page";
                                             file.close();
                                             return false;
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-                                        break;
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+                                    break;
+                                case 2:
+                                    if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                                        System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getNumericCellValue()+"**");
+                                        if(cell.getNumericCellValue() <= 0 || cell.getNumericCellValue() > 10){
+                                            Error_Msg = "Course Level: "+cell.getCellType()+" is not in the range 1-10 ";
+                                            file.close();
+                                            return false;
+                                        }else {
+                                            String value = String.valueOf(cell.getNumericCellValue());
+                                            dataRow.add(String.valueOf(value.substring(0,value.indexOf("."))));
+                                        }
+                                }else {
+                                    System.out.print("errrrrr not same format");
+                                    Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                            "that shown in the import page";
+                                    file.close();
+                                    return false;
                                 }
-                                //System.out.print(cell.getStringCellValue() + "\t\t");
-                            }else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                        "that shown in the import page";
-                                file.close();
-                                return false;
+                                    break;
                             }
+                            //System.out.print(cell.getStringCellValue() + "\t\t");
+
                         }catch (NullPointerException e){
                             e.fillInStackTrace();
 
@@ -591,6 +542,8 @@ public class ImportProgramSheet {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidFormatException e) {
             e.printStackTrace();
         }
         return true;

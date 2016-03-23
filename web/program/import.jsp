@@ -12,6 +12,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
 
@@ -31,7 +32,7 @@
 
         <div class="container" id="space">
             <!-- Here is row -->
-            <div class="row">
+            <div class="row form-group">
                 <h2 class="text-center">Import Excel File</h2>
                 <div class="col-md-10 col-md-offset-1">
 
@@ -110,14 +111,14 @@
                             <div class="col-md-8 col-md-offset-2">
 
 
-                                <div class="input-group">
-    <span class="input-group-btn">
-                    <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
-                        Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>
-                    </span>
-    </span>
-                                    <input type="text" class="form-control" readonly>
-                                </div>
+                            <div class="form-group input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
+                                        Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>
+                                    </span>
+                                </span>
+                                <input type="text" class="form-control" readonly>
+                            </div>
                                 <!--    <input class="form-control" type="text" name="first" value="" size="50" /> -->
                                 <!--    <input class="btn btn-lg btn-success pull-right" type="submit" value="Browse" name="AddUser"/> -->
 

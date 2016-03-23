@@ -73,7 +73,13 @@ public class ProgramSheetImportServlet extends HttpServlet {
                     //request.setAttribute("sheetData", data);
                     //request.getRequestDispatcher("/").forward(request, response);
 
+
+
+                    importer.deleteFile();
                     importer.sendSuccessMsg(response,request);
+
+
+
 
                 }else {
                     importer.sendErrorMsg(response,request);
