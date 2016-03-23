@@ -144,6 +144,15 @@ input[readonly] {
     .btn, .navbar-info, footer	{
         display: none;
     }
+    .print-note {
+        display: block;
+    }
+
+    @page {
+        margin-top: 0px;
+        margin-bottom: 0px;
+
+    }
 }
 
 .block {
