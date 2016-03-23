@@ -301,7 +301,7 @@
 
                 </table>
 
-                <div class="row">
+                <div class="row evidenceRow">
                     <div class="col-md-8 col-sm-8">
                         <div class="form-group">
                             <%

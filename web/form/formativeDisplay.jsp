@@ -313,7 +313,7 @@
                                 </tr>
                             </table>
                     
-                        <div class="row">
+                        <div class="row evidenceRow">
                             <div class="col-md-4 col-sm-4">
                                      <%
                                     if(!F_evidence.equals("")){
