@@ -16,7 +16,8 @@
     }
 
     AS_Select dbs = new AS_Select();
-    ArrayList<String> uniData = dbs.selectUniversityLogo();
+    ArrayList<String> uniData = dbs.selectHeaderData();
+
 
 %>
 <header>
@@ -39,7 +40,7 @@
                                         "                            <img width=\"235px\" class=\"\" " +
                                         "src=\""+uniData.get(2)+"\" alt=\""+uniData.get(0)+"\"></a>");
                             }else {
-                                out.println("<div class=\"title-uppercase text-white text-center col-sm-3 col-sm-offset-2\">"+uniData.get(1)+"</div>");
+                                out.println("<div class=\"title-uppercase text-white text-center\">"+uniData.get(1)+"</div>");
                             }
                         %>
                         <%--<a class="navbar-brand centerI" href="http://www.uod.edu.sa">

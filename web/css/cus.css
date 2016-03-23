@@ -111,7 +111,7 @@ input[readonly] {
 
 @media(max-width:767px) {
     table {
-        font-size: 12;
+        font-size: 12px;
     }
     .centerI {
         margin-left: 0%;
@@ -147,8 +147,11 @@ input[readonly] {
     #print-note {
         display: block;
     }
-    h1, h2 {
-        font-size: 30px;
+    .text-center {
+        font-size: 10px;
+    }
+    table {
+        font-size: 10px;
     }
     @page {
         margin-top: 0px;
