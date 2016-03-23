@@ -28,7 +28,7 @@
 <div class="container">
     <!-- Here is row -->
     <div class="row">
-        <h2 class="text-center">Ub-Submitted Forms</h2>
+        <h2 class="text-center">Un-Submitted Forms</h2>
         <legend></legend>
         <div class="col-md-10 col-md-offset-1">
 

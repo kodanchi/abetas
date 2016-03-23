@@ -162,6 +162,7 @@ input[readonly] {
         margin-bottom: 0px;
 
     }
+    .pageBreak {page-break-after: always;}
 }
 
 .block {
@@ -207,6 +208,7 @@ input[readonly] {
     width:auto;
     display:none;
     border:none;
+    z-index: 100;
 }
 table{
     border-collapse:collapse;

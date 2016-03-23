@@ -47,8 +47,11 @@
 <body>
 
 
-<script src="/js/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <%--<script src="/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>--%>
+<script src="/js/bootbox.min.js" type="application/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="application/javascript"></script>
 <script src="/js/uploadInput.js" type="application/javascript"></script>
 <div id="page">
 <div id="header">
@@ -148,6 +151,8 @@
                             <div class="form-group">
                                 <label>University Name</label>
                                 <input type="text" id="uname" name="uname" class="form-control" placeholder="University Name" value="<%if(userData != null)out.print(userData.get(0));%>" required>
+                                <span data-alertid="uname"></span>
+
                             </div>
 
                             <div class="form-group">
@@ -155,39 +160,12 @@
                                 <label>Collage Name</label>
 
                                 <input type="text" id="cname" name="cname" class="form-control" placeholder="Collage Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
+                                <span data-alertid="cname"></span>
 
                             </div>
 
 
                             <br>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-8 col-sm-8">
-                                    <div class="form-group">
-                                        <label>University Logo</label>
-
-                                        <div class="input-group">
-
-                <span class="input-group-btn">
-                    <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
-                        Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
-                    </span>
-                </span>
-
-                                            <input type="text" class="form-control" value="" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-4 paddingImg" style="background-color: <%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>;">
-                                    <img style="max-width: 270px" src="<%
-                                    if(userData != null && userData.get(2)!= null){out.print(userData.get(2));
-                                    }else { out.print("/img/logoHolder.png");}
-                                    %>">
-
-                                </div>
-                                <p class="help-block">Allowed size and type: 2MB, png</p>
-
-                            </div>
 
                             <div class="row">
                                 <div class="col-md-8 col-sm-8">
@@ -195,7 +173,9 @@
                                         <label>Header Background Color</label>
                                         <div class="input-group demo">
                                             <input type="text" name="color" value="<%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>" class="form-control" />
+
                                             <span class="input-group-addon"><i></i></span>
+
                                         </div>
                                         <script>
                                             $(function(){
@@ -205,6 +185,40 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <br>
+                            <div class="row">
+                                <div class="col-md-8 col-sm-8">
+                                    <div class="form-group">
+                                        <label>University Logo</label>
+
+                                        <div class="input-group">
+
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
+                                                    Browse&hellip; <input type="file" id="ulogo" name="ulogo" accept="image/png">
+                                                </span>
+                                            </span>
+
+                                            <input type="text" class="form-control" value="" readonly>
+                                            <span data-alertid="ulogo"></span>
+
+                                        </div>
+                                        <p class="help-block">Allowed size and type: 2MB, png</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 paddingImg" style="background-color: <%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>;">
+                                    <img style="max-width: 270px" src="<%
+                                    if(userData != null && userData.get(2)!= null){out.print(userData.get(2));
+                                    }else { out.print("/img/logoHolder.png");}
+                                    %>">
+
+                                </div>
+
+
+                            </div>
+
+
 
 
                             <button type="button" onclick="onSubmitUpdateSystem()" class="btn btn-primary btn-fill addBtn">Apply changes</button>
@@ -245,6 +259,7 @@
                                 <label for="fname">First Name</label>
 
                                 <input type="text" id="fname" name="fname" class="form-control" placeholder="First Name" value="<%if(userData != null)out.print(userData.get(1));%>" required>
+                                <span data-alertid="fname"></span>
 
                             </div>
                             <div class="form-group">
@@ -252,12 +267,13 @@
                                 <label for="mname">Middle Name</label>
 
                                 <input type="text" id="mname" name="mname" class="form-control" placeholder="Middle Name" value="<%if(userData != null)out.print(userData.get(2));%>" required>
-
+                                <span data-alertid="mname"></span>
                             </div>
 
                             <div class="form-group">
                                 <label for="lname">Last Name</label>
                                 <input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name" value="<%if(userData != null)out.print(userData.get(3));%>" required>
+                                <span data-alertid="lname"></span>
                             </div>
 
 
@@ -265,6 +281,8 @@
                             <div class="form-group">
                                 <label for="uemail">Email</label>
                                 <input type="email" id="uemail" name="uemail" class="form-control" placeholder="Email" value="<%if(userData != null)out.print(userData.get(5));%>" required>
+                                <span data-alertid="email"></span>
+
                             </div>
 
                             <div class="form-group">
@@ -272,6 +290,7 @@
                                 <label for="uOldPassword">Current Password</label>
 
                                 <input type="password" id="uOldPassword" name="uOldPassword" class="form-control" placeholder="Current Password" required />
+                                <span data-alertid="password"></span>
 
                             </div>
 
@@ -291,7 +310,7 @@
                                             <label for="repassword">Re-enter new Password</label>
 
                                             <input type="password" name="reupassword" id="repassword" class="form-control" placeholder="new Password" required>
-
+                                            <span data-alertid="renewpassword"></span>
                                         </div>
 
 
@@ -336,8 +355,6 @@
 <div id="loading" ></div>
 </body>
 
-<script src="/js/bootstrap.js" type="text/javascript"></script>
-
 <!--  Plugins -->
 <%--<script src="/js/ct-paper-checkbox.js"></script>
 <script src="/js/ct-paper-radio.js"></script>
@@ -346,7 +363,7 @@
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/sys-usr-set.js"></script>
 <script src="/js/bootstrap-colorpicker.min.js"></script>
-<script src="/js/bootbox.min.js"></script>
+
 
 
 

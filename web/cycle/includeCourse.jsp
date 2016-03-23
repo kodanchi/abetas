@@ -44,7 +44,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="col-md-8">
                         <div class="dropdown">
-                            <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="btn btn-primary  dropdown-toggle" data-toggle="dropdown">
                                 <% if(request.getParameter("programID")!=null) {
                                     C_AS_Select sselect = new C_AS_Select();
                                     try {

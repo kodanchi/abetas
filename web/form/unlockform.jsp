@@ -51,11 +51,25 @@
 
                         for (ArrayList<String>formItem : formsList){
                             out.print("<tr>\n" +
-                                    "<td>"+formItem.get(2)+"</br>("+formItem.get(1)+")("+formItem.get(3)+" "+formItem.get(4)+")" +
-                                    "<div class=\"pull-right\">"+formItem.get(5)+"</div>" +
-                                    "</td>\n" +
-                                    "<td><a id=\"confirm\" class=\"btn btn-link btn-Y\" href=\"/unlockForm?fid="+formItem.get(0)+"&ftype="+formItem.get(5)+"\"><i class=\"fa fa-unlock-alt fa-3x\"></i></a></td>" +
+                                    "<td>");
+
+                            if(formItem.get(5).equals("formative")){
+                                out.print("<a href=\"index.jsp?page=showForm&type=formative&id="+formItem.get(0)+"\" class=\"list-group-item\">"+
+                                        formItem.get(2)+"</br>("+formItem.get(1)+")("+formItem.get(3)+" "+formItem.get(4)+")</br>");
+                                out.print("<div class=\"pull-right\">Formative</div></br>");
+                                out.print("</a>");
+                            }else if(formItem.get(5).equals("summative")){
+                                out.print("<a href=\"index.jsp?page=showForm&type=summative&id="+formItem.get(0)+"\" class=\"list-group-item\">"+
+                                        formItem.get(2)+"</br>("+formItem.get(1)+")("+formItem.get(3)+" "+formItem.get(4)+")</br>");
+                                out.print("<div class=\"pull-right\">Summative</div></br>");
+                                out.print("</a>");
+                            }
+
+
+                            out.print("</td><td><a id=\"confirm\" class=\"btn btn-link btn-Y\" href=\"/unlockForm?fid="+
+                                    formItem.get(0)+"&ftype="+formItem.get(5)+"\"><i class=\"fa fa-unlock-alt fa-3x\"></i></a></td>" +
                                     "</tr>");
+
                         }
 
                     } catch (ClassNotFoundException e) {

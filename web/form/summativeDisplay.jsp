@@ -74,7 +74,7 @@
 <%
     if(uniData.get(2)!= null){
         out.println("<div id=\"print-note\" class=\" centerI\" > \n" +
-                "                            <img width=\"235px\" class=\"\" " +
+                "                            <img width=\"135px\" class=\"\" " +
                 "src=\""+uniData.get(2)+"\" alt=\""+uniData.get(0)+"\"></div>");
     }
 %>
@@ -318,7 +318,7 @@
                     <table>
                         <tr>
                             <td>
-                                <h6>Faculty Name: <%
+                                <h6 class="pull-left">Faculty Name: <%
                                     F_Select yselect = new F_Select();
                                     try {
                                         String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -353,7 +353,7 @@
                 </div>
 
 
-                <a class="btn btn-danger btn-fill" href="index.jsp">Back</a>
+                <a class="btn btn-danger btn-fill" href="<%=request.getHeader("Referer")%>">Back</a>
                 <a id="print" class="btn btn-primary pull-right" onclick="window.print();" >Print</a>
 
 

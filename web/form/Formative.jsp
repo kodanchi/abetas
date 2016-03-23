@@ -326,10 +326,10 @@
                             </table>
 --%>
 
-                        <div class="row">
+                        <div class="row form-group">
                                 <div class="col-md-8 col-sm-8">
                                     <div class="form-group">
-                                        <h6>Evidence:</h6>
+                                        <strong>Evidence:</strong>
 
                                         <div class="input-group">
                                             <span class="input-group-btn" >
@@ -346,30 +346,34 @@
                                     if(!F_evidence.equals("")){
 
                                         out.print("<a  target=\"_blank\" href=\""+F_evidence+"\">Click here to view the evidence</a>");
-                                    }else { out.print("<h4>no evidence were uploaded</h4>");}
+                                    }else { out.print("<p>no evidence were uploaded</p>");}
                                     %>
 
                                 </div>
                         </div>
                         <div class="row">
-                            <h6>Faculty Name: </h6>
-                            <h6><%
-                                F_Select yselect = new F_Select();
-                                try {
-                                    String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
+                            <div class="col-md-8 col-sm-8">
+                                <h7><strong>Faculty Name: </strong>
+                                <%
+                                    F_Select yselect = new F_Select();
+                                    try {
+                                        String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
 
-                                            out.print(name);
+                                                out.print(name);
 
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                                DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
-                                Date date = new Date();
-                            %></h6>
-                            <h6 name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
-                            <h6 class="pull-right" id="date">Date: <%=fdate.format(date)%></h6>
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                    DateFormat fdate = new SimpleDateFormat("EEE, d MMM yyyy");
+                                    Date date = new Date();
+                                %></h7>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <input type="text" name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
+                                <h7 class="pull-right" id="date"><strong>Date: </strong><%=fdate.format(date)%></h7>
+                            </div>
 
                     </div>
                     <div class="row">
