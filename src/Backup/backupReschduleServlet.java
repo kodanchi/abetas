@@ -19,8 +19,8 @@ public class backupReschduleServlet extends HttpServlet {
     final int MINUTE = 60 * SECOND;
     final int HOUR = 60 * MINUTE;
     final int DAY = 24 * HOUR;
-    final int WEEK = 7 * DAY;
-    final int MONTH = 4 * WEEK;
+    final long WEEK = 7 * DAY;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String selctedTime = request.getParameter("timeList");
@@ -46,7 +46,7 @@ public class backupReschduleServlet extends HttpServlet {
             t.cancel();
         }else if (selctedTime.equals("monthly")){
             context.setAttribute("backupTime","monthly");
-            newtimer.Reschedule(MONTH);
+            newtimer.Reschedule(WEEK*4);
             t.cancel();
         }
 
