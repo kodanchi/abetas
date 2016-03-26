@@ -12,6 +12,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/scrolled-table-head.js" type="text/javascript"></script>
 
 <%
 
@@ -86,10 +87,7 @@
     <div class="row">
         <h2 class="text-center">Summative Data Collection Sheet</h2>
         <legend></legend>
-        <div class="col-md-10 col-md-offset-1">
-
-            <div class="panel panel-default">
-                <!-- Default panel contents -->
+        <div class="col-md-12">
 
                 <!-- Table -->
                 <table class="table table-striped table-bordered text-center">
@@ -146,13 +144,11 @@
                         %></td>
                     </tr>
                 </table>
-            </div>
 
 
             <form id="summativeForm" name="summativeForm" enctype="multipart/form-data" method="post">
 
-                <input type="hidden" name="Summative_ID" value="<%=summativeID%>">
-                <input type="hidden" name="Section_ID" value="<%=section%>">
+
 
                 <table class="table table-striped table-bordered text-center">
                     <tr>
@@ -210,6 +206,7 @@
                 <!-- Table -->
                 <table class="table table-striped table-bordered text-center">
 
+                    <thead style="background-color: #e7e7e7">
                     <tr>
                         <th class="text-center">Name</th>
                         <th class="text-center">Student ID</th>
@@ -218,15 +215,11 @@
                         <th class="text-center"><%out.print(N3);%></th>
                         <th class="text-center"><%out.print(N4);%></th>
                     </tr>
-                    <%--<tr>
-                        <td class="text-center"></td>
-                        <td class="text-center"></td>
-                        <th class="text-center"><%out.print(D1);%></th>
-                        <th class="text-center"><%out.print(D2);%></th>
-                        <th class="text-center"><%out.print(D3);%></th>
-                        <th class="text-center"><%out.print(D4);%></th>
-                    </tr>--%>
-                    <tr>
+                    </thead>
+
+
+                    <tbody>
+
 
                             <%
 
@@ -299,10 +292,12 @@
 
                                     %>
 
+                    </tbody>
+
                 </table>
 
                 <div class="row evidenceRow">
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-sm-8">
                         <div class="form-group">
                             <%
                                 if(evidance != null){
@@ -315,10 +310,9 @@
                 </div>
 
                 <div class="row">
-                    <table>
-                        <tr>
-                            <td>
-                                <h6 class="pull-left">Faculty Name: <%
+                    <div class="col-md-8 col-sm-8">
+                        <h7><strong>Faculty Name:</strong>
+                                <%
                                     F_Select yselect = new F_Select();
                                     try {
                                         String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
@@ -331,25 +325,12 @@
                                         e.printStackTrace();
                                     }
                                 %>
-                                </h6>
-                            </td>
-                            <td>
+                        </h7>
+                    </div>
+                    <div class="col-md-4 col-sm-4">
+                                <h7 class="pull-right"><strong>Date: </strong> <%=fDate%></h7>
+                    </div>
 
-                                    <h6 class="pull-right" id="date"><script>
-                                    /*function myFunction() {
-                                     var d = new Date();
-                                     var n = d.getFullYear();
-                                     document.getElementById("date").innerHTML = n;
-                                     }*/
-                                    (function(){
-                                        var d = new Date();
-                                        document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
-                                    })();
-                                </script></h6>
-                                <h6 class="pull-right">Date: </h6>
-                            </td>
-                        </tr>
-                    </table>
                 </div>
 
 

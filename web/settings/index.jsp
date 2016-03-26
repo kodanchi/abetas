@@ -107,13 +107,30 @@
                         out.print("\n" +
                                 "bootbox.alert(\""+request.getSession().getAttribute("Msg")+"\");");
 
+                        if(request.getSession().getAttribute("Msg").toString().startsWith("System")){
+
+                            out.println("$(function(){\n");
+                            out.println("$('#usrSection').hide();\n");
+                            out.println("$('#sysSection').show();\n");
+                            out.println("});\n");
+                        }else {
+                            out.println("$(function(){\n");
+                            out.println("$('#usrSection').show();\n");
+                            out.println("$('#sysSection').hide();\n");
+                            out.println("$('#sysBtn').removeClass(\"active\");\n" +
+                                    "    $('#usrBtn').addClass(\"active\");\n");
+
+                            out.println("});\n");
+                        }
                         out.print("</script>");
 
                         request.getSession().removeAttribute("Msg");
-                    }
+                    }else {
                         out.print("<script>$(function(){\n" +
                                 "      $('#usrSection').hide();\n" +
                                 "  });</script>");
+                    }
+
 
                     }else {
 
@@ -132,7 +149,11 @@
                 %>
 
 
+<script>
 
+
+
+</script>
 
                 <div class="col-md-10 col-md-offset-1">
 

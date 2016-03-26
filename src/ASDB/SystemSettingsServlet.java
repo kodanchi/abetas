@@ -119,7 +119,7 @@ public class SystemSettingsServlet extends HttpServlet {
                 }
 
                 //response.sendRedirect("/settings/index.jsp?status=SystemUpdated");
-                sendMsg("user Updated",request,response);
+                sendMsg("System settings has been updated",request,response);
                 response.sendRedirect("/settings/index.jsp");
             }else{
                 System.out.println("not multipart!");
@@ -142,29 +142,6 @@ public class SystemSettingsServlet extends HttpServlet {
             request.getSession().setAttribute("Msg",msg);
 
 
-        /*System.out.println("ErrMsg : "+msg);
-
-        System.out.println("session is : "+request.getSession().getId());
-        request.getSession().setAttribute("errMsg",msg);
-        //request.getSession().setAttribute("userValue",userVal);
-
-
-        try {
-            response.sendRedirect("/settings/index.jsp?page=update");
-            //request.getRequestDispatcher("/settings/index.jsp?page=update").forward(request,response);
-        } *//*catch (ServletException e) {
-            e.printStackTrace();
-        }*//* catch (IOException e) {
-            e.printStackTrace();
-        }
-        *//*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        try {
-            response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*//*
-
-        return;*/
     }
 
 }

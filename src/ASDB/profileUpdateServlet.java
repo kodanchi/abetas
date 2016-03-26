@@ -104,7 +104,7 @@ public class profileUpdateServlet extends HttpServlet {
                     }
 
 
-                    sendMsg("user Updated",request,response);
+                    sendMsg("User profile has been updated",request,response);
                     response.sendRedirect("/settings/index.jsp");
                 }
             }
