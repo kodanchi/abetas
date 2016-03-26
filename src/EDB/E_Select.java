@@ -2419,11 +2419,11 @@ public class E_Select {
                     "AND summative.FK_Section_ID=abetasdb.section.Section_ID\n" +
                     "AND performance_indicator.PI_Label = link_out_pi.FK_pi_ID\n" +
                     "AND summative.Sum_submitted=1\n" +
-                    "AND summative.FK_Section_ID= '30' \n" +
-                    "and link_out_pi.FK_pi_ID= '143' \n" +
-                    "and link_out_pi.FK_P_ID= '222' \n" +
-                    "and link_out_pi.FK_T_ID= '356'\n" +
-                    "AND link_out_pi.FK_C_ID= 'CIS 325';";
+                    "AND summative.FK_Section_ID= ?\n" +
+                    "and link_out_pi.FK_pi_ID= ? \n" +
+                    "and link_out_pi.FK_P_ID= ? \n" +
+                    "and link_out_pi.FK_T_ID= ? \n" +
+                    "AND link_out_pi.FK_C_ID= ?;";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
