@@ -246,6 +246,8 @@ public class U_AS_Insert {
 
             }else if(type==2){
 
+                String calPass = Fname.substring(0,3)+Lname.substring(0,3)+"123";
+
                 /*
                  * Execute the query
                  */
@@ -257,7 +259,7 @@ public class U_AS_Insert {
                     preparedStatement.setString(2, Fname);
                     preparedStatement.setString(3, Mname);
                     preparedStatement.setString(4, Lname);
-                    preparedStatement.setString(5, rn);
+                    preparedStatement.setString(5, Password.getSaltedHash(calPass));
                     rs = preparedStatement.executeUpdate();
 
 

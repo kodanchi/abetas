@@ -324,7 +324,7 @@
                                             <label for="upassword">New Password</label>
 
                                             <input type="password" id="upassword" name="upassword" class="form-control" placeholder="New Password" required>
-
+                                            <span data-alertid="newpassword"></span>
                                         </div>
                                         <div class="form-group">
 

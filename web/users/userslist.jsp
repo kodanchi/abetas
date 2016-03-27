@@ -12,6 +12,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
     <div class="container">
@@ -27,6 +28,33 @@
                                 "       bootbox.alert(\""+request.getParameter("status")+"\")\n" +
                                 "    });\n" +
                                 "</script>");
+                    }
+                %>
+
+
+                <%
+
+                    if(request.getSession().getAttribute("Msg")!= null){
+                        String msg = (String) request.getSession().getAttribute("Msg");
+                        out.print("<script>");
+                        out.print("$(document).ready(function(){\n" +
+                                "bootbox.alert(\""+msg+"\");\n");
+                        if(msg.startsWith("Faculty_Member")){
+                            /*out.print("$(this).ready(function(){\n");
+                            out.print("showFTable()");
+                            out.print("});");*/
+                            out.print("$('#FTable').show();\n" +
+                                    "                        $('#ETable').hide();\n" +
+                                    "                        $('#ASTable').hide();");
+                        }else {
+                            out.print("$('#ETable').show();\n" +
+                                    "                        $('#ASTable').hide();\n" +
+                                    "                        $('#FTable').hide();");
+                        }
+
+                        out.print("\n});\n</script>");
+
+                        request.getSession().removeAttribute("Msg");
                     }
                 %>
 
@@ -97,7 +125,13 @@
                                         suRow = suArr.get(i);
                                         out.print("<tr class=\"textContainer\" >");
                                         for (int j=1; j<suRow.size() - 1;j++) {
-                                            out.print("<td>"+suRow.get(j)+"</td>");
+                                            switch (j){
+                                                case 2:
+                                                    out.print("<td>"+suRow.get(j).substring(0,1)+"</td>");
+                                                    break;
+                                                default:
+                                                    out.print("<td >"+suRow.get(j)+"</td>");
+                                            }
                                         }
 
                                         if(!suRow.get(6).equals("1")){
@@ -168,7 +202,14 @@
                                         fmRow = fmArr.get(i);
                                         out.print("<tr class=\"textContainer\" >");
                                         for (int j=1; j<fmRow.size();j++) {
-                                            out.print("<td >"+fmRow.get(j)+"</td>");
+                                            switch (j){
+                                                case 2:
+                                                    out.print("<td>"+fmRow.get(j).substring(0,1)+"</td>");
+                                                    break;
+                                                default:
+                                                    out.print("<td >"+fmRow.get(j)+"</td>");
+                                            }
+
                                         }
 
                                         out.print("<td>" +
@@ -236,6 +277,9 @@
                                                     out.print("<td>"+eRow.get(j)+"</td>");
                                                     break;
                                                 case 2:
+                                                    out.print("<td>"+eRow.get(j).substring(0,1)+"</td>");
+                                                    break;
+                                                case 3:
                                                     calPass += eRow.get(j).substring(0,3);
                                                     out.print("<td>"+eRow.get(j)+"</td>");
                                                     break;

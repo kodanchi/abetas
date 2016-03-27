@@ -57,14 +57,16 @@ public class AddUser extends HttpServlet {
                                 Auditor.add((String) request.getSession().getAttribute("username"),
                                         "added new Faculty Member :" + uname);
                             }
-                            response.sendRedirect("/users/index.jsp?status=userAdded");
+                            sendMsg(userType+" : "+capitalize(fname)+" has been added Successfully",request);
+                            response.sendRedirect("/users/index.jsp");
 
                         }
                     }else if (request.getParameter("userType").equals("Evaluator")){
                         idb.addUser(2, uname, null, capitalize(fname), capitalize(mname), capitalize(lname));
                         Auditor.add((String) request.getSession().getAttribute("username"),
                                 "added new Evaluator :" + uname);
-                        response.sendRedirect("/users/index.jsp?status=userAdded"); 
+                        sendMsg(userType+" : "+capitalize(fname)+" has been added Successfully",request);
+                        response.sendRedirect("/users/index.jsp");
                     }
                 }
             }
@@ -89,6 +91,14 @@ public class AddUser extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    protected void sendMsg(String msg, HttpServletRequest request) {
+
+        if (request.getSession().getAttribute("Msg") == null)
+            request.getSession().setAttribute("Msg", msg);
+
+    }
+
     protected void sendErrMsg(String msg,HttpServletRequest request, HttpServletResponse response){
 
 

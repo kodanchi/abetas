@@ -17,7 +17,8 @@ function onSubmitUpdateUser(){
 
 
 
-    $(document).trigger("clear-alert-id.repassword");
+    $(document).trigger("clear-alert-id.newpassword");
+    $(document).trigger("clear-alert-id.renewpassword");
     $(document).trigger("clear-alert-id.password");
     $(document).trigger("clear-alert-id.uemail");
     $(document).trigger("clear-alert-id.fname");
@@ -27,6 +28,7 @@ function onSubmitUpdateUser(){
 
     //alert(selectedValue+"\n"+fname.value+"\n"+mname.value+"\n"+lname.value+"\n"+uname.value+"\n"+email.value)
 
+    //checking the first name START
     if(fname.value == "") {
         $(document).trigger("clear-alert-id.fname");
         $(document).trigger("set-alert-id-fname", [
@@ -37,7 +39,31 @@ function onSubmitUpdateUser(){
         ]);
         fname.focus();
         return false;
-    }else if(mname.value == "") {
+    }else if (!/^[a-zA-Z]*$/g.test(fname.value)) {
+        $(document).trigger("clear-alert-id.fname");
+        $(document).trigger("set-alert-id-fname", [
+            {
+                message: "name must have only alphabetic letters",
+                priority: "error"
+            }
+        ]);
+        fname.focus();
+        return false;
+    }else if (fname.value.length < 3 || fname.value.length > 20) {
+        $(document).trigger("clear-alert-id.fname");
+        $(document).trigger("set-alert-id-fname", [
+            {
+                message: "first name must be in the range 3-20 characters",
+                priority: "error"
+            }
+        ]);
+        fname.focus();
+        return false;
+
+    }
+    //checking the first name END
+    //checking the middle name START
+    else if(mname.value == "") {
         $(document).trigger("clear-alert-id.mname");
         $(document).trigger("set-alert-id-mname", [
             {
@@ -47,7 +73,30 @@ function onSubmitUpdateUser(){
         ]);
         mname.focus();
         return false;
-    } if(lname.value == "") {
+    }else if (!/^[a-zA-Z]*$/g.test(mname.value)) {
+        $(document).trigger("clear-alert-id.mname");
+        $(document).trigger("set-alert-id-mname", [
+            {
+                message: "name must have only alphabetic letters",
+                priority: "error"
+            }
+        ]);
+        mname.focus();
+        return false;
+    }else if (mname.value.length < 3 || mname.value.length > 20) {
+        $(document).trigger("clear-alert-id.mname");
+        $(document).trigger("set-alert-id-mname", [
+            {
+                message: "middle name must be in the range 3-20 characters",
+                priority: "error"
+            }
+        ]);
+        mname.focus();
+        return false;
+    }
+    //checking the middle name END
+    //checking the last name START
+    else if(lname.value == "") {
         $(document).trigger("clear-alert-id.lname");
         $(document).trigger("set-alert-id-lname", [
             {
@@ -57,7 +106,30 @@ function onSubmitUpdateUser(){
         ]);
         lname.focus();
         return false;
-    }else if(email.value == "") {
+    }else if (!/^[a-zA-Z]*$/g.test(lname.value)) {
+        $(document).trigger("clear-alert-id.lname");
+        $(document).trigger("set-alert-id-lname", [
+            {
+                message: "name must have only alphabetic letters",
+                priority: "error"
+            }
+        ]);
+        lname.focus();
+        return false;
+    }else if (lname.value.length < 3 || lname.value.length > 20) {
+        $(document).trigger("clear-alert-id.lname");
+        $(document).trigger("set-alert-id-lname", [
+            {
+                message: "last name must be in the range 3-7 characters",
+                priority: "error"
+            }
+        ]);
+        lname.focus();
+        return false;
+    }
+    //checking the last name END
+
+    else if(email.value == "") {//checking the email
         $(document).trigger("clear-alert-id.email");
         $(document).trigger("set-alert-id-email", [
             {
@@ -67,26 +139,26 @@ function onSubmitUpdateUser(){
         ]);
         email.focus();
         return false;
-    }  else if(password.value == "") {
-        $(document).trigger("clear-alert-id.password");
-        $(document).trigger("set-alert-id-password", [
+    }else if ((newpassword.value.length < 6 || newpassword.value.length > 15 )&& (newpassword.value != "" || renewpassword.value != "")){
+        $(document).trigger("clear-alert-id.newpassword");
+        $(document).trigger("set-alert-id-newpassword", [
             {
-                message: "You must enter your password to apply the changes",
+                message: "Password must be in the range 6-15 characters",
                 priority: "error"
             }
         ]);
-        password.focus();
-    }else if ((newpassword.value == "" || renewpassword.value == "") && newpassword.value != renewpassword.value ){
+        newpassword.focus();
+    } else if ((newpassword.value != "" || renewpassword.value != "") && newpassword.value != renewpassword.value ){
         $(document).trigger("clear-alert-id.renewpassword");
         $(document).trigger("set-alert-id-renewpassword", [
             {
-                message: "You must enter your new password twice to confirm changes",
+                message: "You must enter your new password twice",
                 priority: "error"
             }
         ]);
         renewpassword.focus();
     }else {
-
+        //checking the email format
         var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (!re.test(email.value)) {
             $(document).trigger("clear-alert-id.email");
@@ -98,7 +170,16 @@ function onSubmitUpdateUser(){
             ]);
             email.focus();
             return false;
-        } else {
+        }else if(password.value == "") {
+            $(document).trigger("clear-alert-id.password");
+            $(document).trigger("set-alert-id-password", [
+                {
+                    message: "You must enter your password to apply the changes",
+                    priority: "error"
+                }
+            ]);
+            password.focus();
+        } else {//submit
             document.getElementById("usrform").submit();
         }
 

@@ -16,7 +16,7 @@
         pageName = null;
         String pageCall = request.getParameter("page");
         String cmdCall = request.getParameter("cmd");
-        String stutsCall = request.getParameter("status");
+        //String stutsCall = request.getParameter("status");
         System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
@@ -48,9 +48,9 @@
             }else if(cmdCall.equals("confirm")){
                 pageName = "upload.jsp";
             }
-        }else if(stutsCall != null){
+        }else /*if(stutsCall != null){
             pageName = "userslist.jsp?status="+stutsCall;
-        }else{
+        }else*/{
             pageName = "userslist.jsp";
         }
     }else if(request.getMethod().equals("POST")) {

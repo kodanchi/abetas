@@ -10,6 +10,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <%
 
     String id = "";
@@ -117,9 +118,7 @@
         <div class="row">
             <h2 class="text-center"><%=pageTitle%></h2>
             <div class="col-md-8 col-md-offset-2">
-                <div id="alert"  class="alert alert-danger fade in"  role="alert" >
-                    <strong id="alertt" ></strong>
-                </div>
+
 
                 <form id="UserAddForm" method="post" class="form-horizontal" action="<%=formURL%>">
 
@@ -128,22 +127,12 @@
                     <input name="olduname" value="<%=uname%>" hidden/>
                     <input name="olduemail" value="<%=uemail%>" hidden/>
 
-                    <div class="form-group">
-                        <label class="col-xs-3 control-label">User Type</label>
-                        <div class="col-xs-5 selectContainer">
-                            <select class="form-control" name="userType"  id="userType" onchange="onUserTypeChng()" >
-                                <option value="">User Type</option>
-                                <option value="Superuser"  <%if((ulvl.equals("Superuser"))){ %> selected <% }%> >Superuser</option>
-                                <option value="Faculty_Member"  <%if((ulvl.equals("Faculty_Member"))){%> selected <%}%> >Faculty_Member</option>
-                                <option value="Evaluator"  <%if((ulvl.equals("Evaluator"))){%> selected <%}%> >Evaluator</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <br>
                     <div class="form-group">
                         <label>First Name</label>
-                        <input type="text" class="form-control capit" placeholder="First Name" name="fname" id="fname" value="<%=ufname%>" required >
+                        <input type="text" class="form-control capit" placeholder="First Name" name="fname" id="fname"
+                               value="<%=ufname%>"  required >
+                        <span data-alertid="fname"></span>
                     </div>
 
                     <div class="form-group">
@@ -151,23 +140,40 @@
                         <label>Middle Name</label>
 
                         <input type="text" class="form-control capit" placeholder="Middle Name" name="mname" id="mname" value="<%=umname%>" required>
-
+                        <span data-alertid="mname"></span>
                     </div>
 
                     <div class="form-group">
                         <label>Last Name</label>
                         <input type="text" class="form-control capit" placeholder="Last Name" name="lname" id="lname" value="<%=ulname%>" required>
+                        <span data-alertid="lname"></span>
                     </div>
 
                     <div class="form-group">
                         <label>Username</label>
                         <input type="text" class="form-control" placeholder="Username" name="uname" id="uname" value="<%=uname%>" required>
+                        <span data-alertid="uname"></span>
                     </div>
+
+                    <div class="form-group">
+                        <label>User Type</label>
+                        <div class="selectContainer">
+                            <select class="form-control" name="userType"  id="userType" onchange="onUserTypeChng()" >
+                                <option value="">User Type</option>
+                                <option value="Superuser"  <%if((ulvl.equals("Superuser"))){ %> selected <% }%> >Superuser</option>
+                                <option value="Faculty_Member"  <%if((ulvl.equals("Faculty_Member"))){%> selected <%}%> >Faculty_Member</option>
+                                <option value="Evaluator"  <%if((ulvl.equals("Evaluator"))){%> selected <%}%> >Evaluator</option>
+                            </select>
+                            <span data-alertid="lvl"></span>
+                        </div>
+                    </div>
+
 
                     <div class="form-group" id="emailDiv">
 
                         <label>Email address</label>
                         <input type="email" name="uemail" id="userEmail" class="form-control" placeholder="Email" value="<%=uemail%>" required>
+                        <span data-alertid="email"></span>
                     </div>
 
                     <a type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></a>
@@ -178,7 +184,7 @@
                 </form>
                 <script>
                     $(this).ready(function(){
-                        document.getElementById("alert").style.visibility = "hidden";
+                        //document.getElementById("alert").style.visibility = "hidden";
                         document.getElementById("emailDiv").style.visibility = "hidden";
                         onUserTypeChng();
 

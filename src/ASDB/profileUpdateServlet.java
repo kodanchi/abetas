@@ -54,50 +54,48 @@ public class profileUpdateServlet extends HttpServlet {
 
                         if (userData != null) {
                             String userPassword = userData[1];
+                            System.out.println("uOldpass : "+uOldpass);
+                            System.out.println("userPassword : "+userPassword);
+                            System.out.println("check Password : "+Password.check(uOldpass,userPassword));
                             if(Password.check(uOldpass,userPassword)){
+                                if((!uNewpass.equals("") || !reuNewpass.equals(""))) {
 
+                                    if(uNewpass.equals(reuNewpass)){
+                                        String hashedPass = Password.getSaltedHash(uNewpass);
+
+                                        System.out.println("new hashed password : "+hashedPass);
+                                        //update the table needed
+                                        switch (ulvl){
+                                            case 0:
+                                            case 1:
+                                                udb.updateSuperuser(uid,fname,mname,lname,uname,uemail,hashedPass);
+                                                break;
+                                            case 2:
+                                                udb.updateFaculty(uid,fname,mname,lname,uname,uemail,hashedPass);
+                                                break;
+                                        }
+                                    }else {
+                                        sendMsg("New Password fields aren't matched!",request,response);
+                                    }
+
+                                }else {
+                                    //update the table needed
+                                    switch (ulvl){
+                                        case 0:
+                                        case 1:
+                                            udb.updateSuperuser(uid,fname,mname,lname,uname,uemail);
+                                            break;
+                                        case 2:
+                                            udb.updateFaculty(uid,fname,mname,lname,uname,uemail);
+                                            break;
+                                    }
+                                }
                             }else {
                                 sendMsg("Wrong password!",request,response);
                             }
                         }else {
-                            sendMsg("Wrong here!",request,response);
+                            sendMsg("User not found!",request,response);
                         }
-
-                        if((!uNewpass.equals("") || !reuNewpass.equals(""))) {
-
-                            if(uNewpass.equals(reuNewpass)){
-                                String hashedPass = Password.getSaltedHash(uNewpass);
-
-                                System.out.println("new hashed password : "+hashedPass);
-                                //update the table needed
-                                switch (ulvl){
-                                    case 0:
-                                    case 1:
-                                        udb.updateSuperuser(uid,fname,mname,lname,uname,uemail,hashedPass);
-                                        break;
-                                    case 2:
-                                        udb.updateFaculty(uid,fname,mname,lname,uname,uemail,hashedPass);
-                                        break;
-                                }
-                            }else {
-                                sendMsg("New Password fields aren't matched!",request,response);
-                            }
-
-
-
-                        }else {
-                            //update the table needed
-                            switch (ulvl){
-                                case 0:
-                                case 1:
-                                    udb.updateSuperuser(uid,fname,mname,lname,uname,uemail);
-                                    break;
-                                case 2:
-                                    udb.updateFaculty(uid,fname,mname,lname,uname,uemail);
-                                    break;
-                            }
-                        }
-
 
                     }else {
                         sendMsg("You must enter the password",request,response);
@@ -126,30 +124,9 @@ public class profileUpdateServlet extends HttpServlet {
 
     protected void sendMsg(String msg, HttpServletRequest request,HttpServletResponse response) throws IOException {
 
-
-        System.out.println("ErrMsg : "+msg);
-
-        //System.out.println("session is : "+request.getSession().getId());
-
         if(request.getSession().getAttribute("Msg") == null)
         request.getSession().setAttribute("Msg",msg);
-        //response.sendRedirect("/settings/index.jsp");
 
-        /*try {
-            response.sendRedirect("/settings/index.jsp?page=update");
-            //request.getRequestDispatcher("/settings/index.jsp?page=update").forward(request,response);
-        } *//*catch (ServletException e) {
-            e.printStackTrace();
-        }*//* catch (IOException e) {
-            e.printStackTrace();
-        }
-        *//*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        try {
-            response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*//*
-*/
     }
 
     protected boolean checkEmailValidation(String email) {
