@@ -250,7 +250,7 @@
 
 
                         <!-- Table -->
-                        <table class="table table-striped table-bordered text-center">
+                        <table  class="table table-striped table-bordered text-center">
                             <tr>
                                 <th class="text-center">Rubric(s)</th>
                                 <th class="text-center"><%
@@ -340,7 +340,32 @@
                         </div>
 
 
+
                     <div class="row">
+                        <div class="col-md-8 col-sm-8">
+                            <h7><strong>Faculty Name:</strong>
+                                <%
+                                    F_Select yselect = new F_Select();
+                                    try {
+                                        String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
+
+                                        out.print(name);
+
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %>
+                            </h7>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <h7 class="pull-right"><strong>Date: </strong> <%=fDate%></h7>
+                        </div>
+
+                    </div>
+
+                    <%--<div class="row">
                         <table>
                             <tr>
                                 <td>
@@ -378,7 +403,7 @@
                         </table>
 
 
-                    </div>
+                    </div>--%>
 
 
                             <%--<h6><span>Faculty Name: </span></h6>

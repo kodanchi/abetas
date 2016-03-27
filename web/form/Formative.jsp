@@ -15,6 +15,7 @@
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
 
 <%
@@ -298,9 +299,10 @@
                         <input type="hidden" name="evidenceV" value="<%=F_evidence%>">--%>
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
-                        <div>
+                        <div class="form-group">
                             <h6>Performance Report: <span class="label label-danger">required</span></h6>
-                            <textarea name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
+                            <textarea id="WrittenRubrics" name="WrittenRubrics" class="form-control" rows="4"><%=F_written_rubic%></textarea>
+                            <span data-alertid="WrittenRubrics"></span>
                         </div>
                         <br>
                         <br>
@@ -312,15 +314,18 @@
 --%>
                                 <div class="form-group">
                                     Comment(s) on Success/Failure in Achieving Performance Indicator: <h6 class="label label-danger mrgB">required</h6>
-                                    <textarea name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea>
+                                    <textarea id="Comments" name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea>
+                                    <span data-alertid="Comments"></span>
                                 </div>
                                 <div class="form-group">
                                     Obstacles in Achieving Desired Progress: <h6 class="label label-danger mrgB">required</h6>
-                                    <textarea name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea>
+                                    <textarea id="Obstacles" name="Obstacles" class="form-control" rows="4"><%=F_instructor_feedback_obstacle%></textarea>
+                                    <span data-alertid="Obstacles"></span>
                                 </div>
                                 <div class="form-group">
                                     Areas of Improvement: <h6 class="label label-danger mrgB">required</h6>
-                                    <textarea name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea>
+                                    <textarea id="Improvement" name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea>
+                                    <span data-alertid="Improvement"></span>
                                 </div>
 <%--
                             </table>
@@ -385,13 +390,63 @@
                         $(function () {
                             $("button#confirm").click(function(e) {
                                 e.preventDefault();
-                                var location = $(this).attr('formaction');
-                                bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
-                                        "data, are you sure you want to continue!?", function(confirmed) {
-                                    console.log("Confirmed: "+confirmed);
-                                    $('#formativeForm').attr('action', '/SubmitFormative');
-                                    $('#formativeForm').submit();
-                                });
+                                var wr = document.getElementById("WrittenRubrics");
+                                var comnts = document.getElementById("Comments");
+                                var obstcls = document.getElementById("Obstacles");
+                                var imprvmnts = document.getElementById("Improvement");
+
+
+                                $(document).trigger("clear-alert-id.WrittenRubrics");
+                                $(document).trigger("clear-alert-id.Comments");
+                                $(document).trigger("clear-alert-id.Obstacles");
+                                $(document).trigger("clear-alert-id.Improvement");
+
+                                if(wr.value == ""){
+                                    $(document).trigger("clear-alert-id.WrittenRubrics");
+                                    $(document).trigger("set-alert-id-WrittenRubrics", [
+                                        {
+                                            message: "Please enter the Performance Report",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    wr.focus();
+                                }else if(comnts.value==""){
+                                    $(document).trigger("clear-alert-id.Comments");
+                                    $(document).trigger("set-alert-id-Comments", [
+                                        {
+                                            message: "This area must be filled in",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    comnts.focus();
+                                }else if(obstcls.value==""){
+                                    $(document).trigger("clear-alert-id.Obstacles");
+                                    $(document).trigger("set-alert-id-Obstacles", [
+                                        {
+                                            message: "This area must be filled in",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    obstcls.focus();
+                                }else if(imprvmnts.value==""){
+                                    $(document).trigger("clear-alert-id.Improvement");
+                                    $(document).trigger("set-alert-id-Improvement", [
+                                        {
+                                            message: "This area must be filled in",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    imprvmnts.focus();
+                                }else {
+                                    var location = $(this).attr('formaction');
+                                    bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
+                                            "data, are you sure you want to continue!?", function(confirmed) {
+                                        console.log("Confirmed: "+confirmed);
+                                        $('#formativeForm').attr('action', '/SubmitFormative');
+                                        $('#formativeForm').submit();
+                                    });
+                                }
+
                             });
                         });
                     </script>
