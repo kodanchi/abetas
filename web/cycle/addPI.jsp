@@ -97,6 +97,7 @@
                                 out.print(pName);
                             }%></textarea>
                             <br>
+                            <label>Threshold</label>
                             <input type="text" name="Thresh" onkeypress='validate(event)' required><%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>
 <%--
                             <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="text-center" name="PIThresh" value="<%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>">
