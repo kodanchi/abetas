@@ -95,6 +95,20 @@
             <max-age>31536000</max-age>
         </cookie-config>
     </session-config>
-
-
+    <error-page>
+        <error-code>401</error-code>
+        <location>/WEB-INF/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/WEB-INF/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/error.jsp</location>
+    </error-page>
 </web-app>

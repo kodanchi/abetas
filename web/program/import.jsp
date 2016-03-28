@@ -38,14 +38,22 @@
 
                     <%
                         String dataType = "";
+                        String imgurl= "";
+                        String text="Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data. ";
                         if(request.getParameter("data") != null){
                             String importFile = request.getParameter("data");
                             if(importFile.equals("obj")){
                                 dataType = "obj";
+                                imgurl="/img/objectiveExecl.JPG";
+                                text=text+"The column name: objective";
                             }else if(importFile.equals("outcomes")){
                                 dataType = "outcomes";
+                                imgurl="/img/outcomeExecl.JPG";
+                                text=text+"The column name: outcome";
                             }else if(importFile.equals("courses")){
                                 dataType = "courses";
+                                imgurl="/img/coursesExecl.JPG";
+                                text=text+"The first column: course name the second column: course code the third column: course level \n Note: the course level is between 1 to 10";
                             }
                         }
 
@@ -96,11 +104,11 @@
 
 
                     <div class="row">
-                        <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
+                        <p class="col-md-6 lead pull-left"><%=text%></p>
 
 
                         <div class="col-md-6 img-responsive pull-right">
-                            <img src="http://i.stack.imgur.com/irt3e.jpg" class="img-responsive" alt="excel format">
+                            <img src="<%=imgurl%>" class="img-responsive" alt="excel format">
                         </div>
                     </div>
                     <form name="myform" action="/import/program" method="post" enctype="multipart/form-data">
