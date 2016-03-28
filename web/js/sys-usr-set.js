@@ -219,10 +219,10 @@ function onSubmitUpdateSystem(){
         cname.focus();
     }else if($('#ulogo').val()) {
         var input = document.getElementById("ulogo");
-        if(input.files && input.files.length == 1)
+        //if(input.files && input.files.length == 1)
+        if(input.files[0].size > 2000000)
         {
-            if (input.files[0].size > 2000000)
-            {
+
                 //document.getElementById("alert").style.visibility = "visible";
                 //$('#alertt').html('university logo must not exceeds 2 MB');
                 $(document).trigger("clear-alert-id.ulogo");
@@ -233,7 +233,9 @@ function onSubmitUpdateSystem(){
                     }
                 ]);
                 return false;
-            }
+
+        }else {
+            document.getElementById("sysform").submit();
         }
     }else {
         document.getElementById("sysform").submit();
