@@ -36,6 +36,7 @@
 
     <script src="/js/jquery-2.2.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootbox.min.js"></script>
     <script src="/js/flat-ui.min.js"></script>
     <script src="/js/prettify.js"></script>
     <script src="/js/jquery.bsFormAlerts.js"></script>
@@ -47,6 +48,7 @@
     <link href="/css/cus.css" rel="stylesheet">
 
 </head>
+
 
 <body class="register-background">
     <script>
@@ -110,6 +112,8 @@
                                     }
                                 }
                             %>
+
+
 
                             <div id="loginDiv" class="login-form">
                                 <form action="/login" method="post">
@@ -206,7 +210,85 @@
                             </div>
 
                             <div id="passResetDiv" class="login-form">
+                                <%
 
+                                    if(request.getSession().getAttribute("loginMsg")!= null){
+                                        String msg = (String) request.getSession().getAttribute("loginMsg");
+
+                                            out.println("<form >\n" +
+                                                    "                                    <div class=\"form-group\">\n" +
+                                                    "                                        <input data-toggle=\"tooltip\" title=\"Enter the new Password\" id=\"newPassword\" name=\"newPassword\"\n" +
+                                                    "                                               type=\"password\" class=\"form-control\" placeholder=\"New Passoword\" required autofocus/></div>\n" +
+                                                    "                                    <div class=\"form-group\">\n" +
+                                                    "                                        <input data-toggle=\"tooltip\" title=\"Re-Enter the new Password\" id=\"newRePassword\" name=\"newPassword\"\n" +
+                                                    "                                               type=\"password\" class=\"form-control\" placeholder=\"New Passoword\" required autofocus/>\n" +
+                                                    "                                        <span class=\"small\"  data-alertid=\"passwordMsg\" id=\"passwordMsg\"></span >\n" +
+                                                    "                                    </div>\n" +
+                                                    "                                    <button type=\"button\" class=\"btn btn-primary btn-block\" onclick=\"onEnterPasscode()\">Reset Password</button>\n" +
+                                                    "                                    <button type=\"button\" class=\"btn btn-default btn-block\" onclick=\"new function(){\n" +
+                                                    "                                                                        $('#loginDiv').show();\n" +
+                                                    "                                                                        $('#passResetDiv').hide();\n" +
+                                                    "                                                                    }\">Cancel</button>\n" +
+                                                    "                                </form>\n" +
+                                                    "                                <script>\n" +
+                                                    "                                    function onEnterPasscode(){\n" +
+                                                    "                                        var newPassword = document.getElementById(\"newPassword\");\n" +
+                                                    "                                        var newRePassword = document.getElementById(\"newRePassword\");\n" +
+                                                    "                                        $(document).trigger(\"clear-alert-id.passwordMsg\");\n" +
+                                                    "                                        if(newPassword.value == \"\" || newRePassword.value == \"\"){\n" +
+                                                    "                                            $(document).trigger(\"set-alert-id-passwordMsg\", [\n" +
+                                                    "                                                {\n" +
+                                                    "                                                    message: \"Please enter the new password twice\",\n" +
+                                                    "                                                    priority: \"error\"\n" +
+                                                    "                                                }\n" +
+                                                    "                                            ]);\n" +
+                                                    "                                            newPassword.focus();\n" +
+                                                    "                                        }else if(newPassword.value != newRePassword.value){\n" +
+                                                    "                                            $(document).trigger(\"set-alert-id-passwordMsg\", [\n" +
+                                                    "                                                {\n" +
+                                                    "                                                    message: \"Password in the two fields doesn't match!\",\n" +
+                                                    "                                                    priority: \"error\"\n" +
+                                                    "                                                }\n" +
+                                                    "                                            ]);\n" +
+                                                    "                                            newPassword.focus();\n" +
+                                                    "                                        }else {\n" +
+                                                    "                                            show('page', false);\n" +
+                                                    "                                            show('loading', true);\n" +
+                                                    "                                            $.ajax({\n" +
+                                                    "                                                type: 'POST',\n" +
+                                                    "                                                data: {\n" +
+                                                    "                                                    email: '"+msg+"',\n" +
+                                                    "                                                    pw: newPassword.value\n" +
+                                                    "                                                },\n" +
+                                                    "                                                url: '/passReset',\n" +
+                                                    "                                                success: function (result) {\n" +
+                                                    "                                                    $('#prinfo').html(result);\n" +
+                                                    "                                                    show('page', true);\n" +
+                                                    "                                                    show('loading', false);\n" +
+                                                    "\n" +
+                                                    "                                                }\n" +
+                                                    "\n" +
+                                                    "                                            })\n" +
+                                                    "                                        }\n" +
+                                                    "                                    }\n" +
+                                                    "                                $('#passResetDiv').show();\n" +
+                                                    "                                $('#passcodeDiv').hide();\n" +
+                                                    "                                </script>");
+                                            out.print("<script>");
+                                            out.print("$(document).ready( function(){\n");
+                                            out.print("$('#loginDiv').hide();\n");
+                                            out.print("$('#passResetDiv').show();\n");
+                                            out.print("\n" +
+                                                    "bootbox.alert(\"Welcome, this is the first time you logged in to the " +
+                                                    "system, so you need to change your password for security purposes\");\n");
+                                            out.print("});\n");
+                                            out.print("</script>");
+
+
+
+                                        request.getSession().removeAttribute("loginMsg");
+                                    }
+                                %>
                             </div>
 
 

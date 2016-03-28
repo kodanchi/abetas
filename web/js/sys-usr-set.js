@@ -139,6 +139,16 @@ function onSubmitUpdateUser(){
         ]);
         email.focus();
         return false;
+    }else if ((newpassword.value.toLowerCase().indexOf("abetas") >= 0)){
+        $(document).trigger("clear-alert-id.newpassword");
+        $(document).trigger("set-alert-id-newpassword", [
+            {
+                message: "Password must not contains the word abetas",
+                priority: "error"
+            }
+        ]);
+        newpassword.value = "";
+        newpassword.focus();
     }else if ((newpassword.value.length < 6 || newpassword.value.length > 15 )&& (newpassword.value != "" || renewpassword.value != "")){
         $(document).trigger("clear-alert-id.newpassword");
         $(document).trigger("set-alert-id-newpassword", [
@@ -147,15 +157,18 @@ function onSubmitUpdateUser(){
                 priority: "error"
             }
         ]);
+        newpassword.value = "";
         newpassword.focus();
     } else if ((newpassword.value != "" || renewpassword.value != "") && newpassword.value != renewpassword.value ){
         $(document).trigger("clear-alert-id.renewpassword");
         $(document).trigger("set-alert-id-renewpassword", [
             {
-                message: "You must enter your new password twice",
+                message: "You must enter your new password again",
                 priority: "error"
             }
         ]);
+
+        renewpassword.value = "";
         renewpassword.focus();
     }else {
         //checking the email format

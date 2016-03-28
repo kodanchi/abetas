@@ -161,7 +161,9 @@ public class U_AS_Insert {
 
 
             SessionIdentifierGenerator randomPassword = new SessionIdentifierGenerator();
-            String rn = randomPassword.nextSessionId().substring(0, 8);
+
+            String userPass = randomPassword.nextSessionId().substring(0, 4) +
+                    "abetas"+ randomPassword.nextSessionId().substring(0, 4);
 
             /*
                  *  Get connection from the DataSource
@@ -188,7 +190,7 @@ public class U_AS_Insert {
                     preparedStatement.setString(4, Mname);
                     preparedStatement.setString(5, Lname);
                     preparedStatement.setInt(6, 0);
-                    preparedStatement.setString(7, Password.getSaltedHash(rn));
+                    preparedStatement.setString(7, Password.getSaltedHash(userPass));
                     rs = preparedStatement.executeUpdate();
 
 
@@ -205,7 +207,7 @@ public class U_AS_Insert {
                         " you can do that by going to settings page and change your password.\n" +
                         "\n" +
                         "Thank you,\n" +
-                        "ABETS Management.",Fname,Uname,rn);
+                        "ABETS Management.",Fname,Uname,userPass);
 
                 msg.sendMsg(emailMsg,"Welcome to ABETAS",email);
 
@@ -222,7 +224,7 @@ public class U_AS_Insert {
                     preparedStatement.setString(3, Fname);
                     preparedStatement.setString(4, Mname);
                     preparedStatement.setString(5, Lname);
-                    preparedStatement.setString(6, rn);
+                    preparedStatement.setString(6, Password.getSaltedHash(userPass));
                     rs = preparedStatement.executeUpdate();
 
 
@@ -239,7 +241,7 @@ public class U_AS_Insert {
                         " you can do that by going to settings page and change your password.\n" +
                         "\n" +
                         "Thank you,\n" +
-                        "ABETS Management.",Fname,Uname,rn);
+                        "ABETS Management.",Fname,Uname,userPass);
 
                 msg.sendMsg(emailMsg,"Welcome to ABETAS",email);
 

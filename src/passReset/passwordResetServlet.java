@@ -55,7 +55,7 @@ public class passwordResetServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        out.print("Password has been reset!" +
+        out.print("<strong class=\"green\">Password has been reset!</strong>" +
                 "<script>" +
                 "$('#loginDiv').show();\n" +
                 "$('#passResetDiv').hide();\n" +

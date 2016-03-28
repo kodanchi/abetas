@@ -10,6 +10,7 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <%
 
@@ -177,7 +178,7 @@
                     </div>
 
                     <a type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></a>
-                    <a type="cancel" href="index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
+                    <a type="cancel" href="/index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
 
 
 
