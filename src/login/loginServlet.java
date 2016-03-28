@@ -53,31 +53,40 @@ public class loginServlet extends HttpServlet {
                             System.out.println("checking :" + Password.check(password, userPassword));
                             if (Password.check(password, userPassword)) {
 
+                                String firstPass = password.length() > 13 ? password.substring(4,10) :
+                                        password ;
+                                System.out.println("firstPass : "+firstPass);
                                 //login success
+                                if(firstPass.equals("abetas")){
+                                    sendMsg(userEmail,request);
+                                    forward = "/login.jsp";
+                                }else {
+                                    // Session Object
+                                    HttpSession session = request.getSession();
+                                    session.setAttribute("username",username);
+                                    session.setAttribute("userEmail",userEmail);
+                                    session.setAttribute("userLvl",userLvl);
+                                    session.setAttribute("userId",userID);
+                                    System.out.println("Session username : "+request.getSession().getAttribute("username"));
+                                    System.out.println("Session userEmail : "+request.getSession().getAttribute("userEmail"));
+                                    System.out.println("Session userLvl : "+request.getSession().getAttribute("userLvl"));
+                                    System.out.println("Session userID : "+request.getSession().getAttribute("userId"));
 
+                                    //cookie
+                                    //System.out.println("checking value : "+request.getParameter("remember"));
+                                    if (request.getParameter("remember") != null) {
+                                        CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 60 * 30);
+                                    } else {
+                                        CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 2);
+                                    }
 
-                                // Session Object
-                                HttpSession session = request.getSession();
-                                session.setAttribute("username",username);
-                                session.setAttribute("userEmail",userEmail);
-                                session.setAttribute("userLvl",userLvl);
-                                session.setAttribute("userId",userID);
-                                System.out.println("Session username : "+request.getSession().getAttribute("username"));
-                                System.out.println("Session userEmail : "+request.getSession().getAttribute("userEmail"));
-                                System.out.println("Session userLvl : "+request.getSession().getAttribute("userLvl"));
-                                System.out.println("Session userID : "+request.getSession().getAttribute("userId"));
-
-                                //cookie
-                                //System.out.println("checking value : "+request.getParameter("remember"));
-                                if (request.getParameter("remember") != null) {
-                                    CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 60 * 30);
-                                } else {
-                                    CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 2);
+                                    successLogin = true;
+                                    response.getWriter().print("Login Success!");
+                                    forward ="/index.jsp";
                                 }
 
-                                successLogin = true;
-                                response.getWriter().print("Login Success!");
-                                forward ="/index.jsp";
+
+
 
 
                             } else {
@@ -107,7 +116,12 @@ public class loginServlet extends HttpServlet {
         }
 
     }
+    protected void sendMsg(String msg, HttpServletRequest request){
 
+        if(request.getSession().getAttribute("loginMsg") == null)
+            request.getSession().setAttribute("loginMsg",msg);
+
+    }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //response.sendRedirect("/login.jsp");
