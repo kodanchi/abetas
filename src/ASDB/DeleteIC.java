@@ -26,6 +26,8 @@ public class DeleteIC extends HttpServlet {
         try {
             //System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           ");
                 dba.deleteIC(request.getParameter("Code"),Integer.parseInt(Termid));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Excluded course from term (Course ID : "+request.getParameter("Courseid")+")");
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

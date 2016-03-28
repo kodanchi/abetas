@@ -30,6 +30,8 @@ public class IncludeCourse extends HttpServlet {
             for (int i=0;i<code.length; i++) {
                 System.out.println(code[i]);
                 dba.includeCourse(code[i],Integer.parseInt(Termid));
+                Auditor.add((String)request.getSession().getAttribute("username"),"Included course to term (Course ID: "
+                        +request.getParameter("Courseid")+", Term ID: "+Termid+")");
 
             }
 

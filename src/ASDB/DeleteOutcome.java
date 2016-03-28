@@ -24,6 +24,8 @@ public class DeleteOutcome extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteOut(Integer.parseInt(request.getParameter("Outid")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted outcome (ID : "+request.getParameter("Outid")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

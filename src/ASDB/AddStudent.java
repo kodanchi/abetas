@@ -51,7 +51,11 @@ public class AddStudent extends HttpServlet {
                     StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
                     sendErrMsg("Student ID: "+request.getParameter("Student_ID")+" is exist already in this section",request.getParameter("cycle"),request,response);
                 }else {
+
                     dba.addStudent(request.getParameter("Sname"),Long.parseLong(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")));
+
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new student (Section ID : "+request.getParameter("section")+")");
+
                     response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
 
                 }
@@ -105,6 +109,9 @@ public class AddStudent extends HttpServlet {
                 }else {
                     //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
                     udb.updateStudent(Long.parseLong(request.getParameter("Student_ID")),request.getParameter("Sname"),Integer.parseInt(request.getParameter("S_ID")));
+
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Updated student (Student ID : "+request.getParameter("Student_ID")+")");
+
                     response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
 
                 }

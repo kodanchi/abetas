@@ -178,7 +178,7 @@
                     </div>
 
                     <a type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></a>
-                    <a type="cancel" href="/index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
+                    <a type="cancel" href="index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
 
 
 

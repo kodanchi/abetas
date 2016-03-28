@@ -28,6 +28,7 @@ public class AddLinkObjOut extends HttpServlet {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 System.out.println("        "+request.getParameter("id")+"        LLLLLLLLLLLLLLLLL      Obj      "+Integer.parseInt(request.getParameter("Obj"))+"        Out            "+Integer.parseInt(request.getParameter("Out")));
                 dba.addLinkObj_Out(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("Obj")),Integer.parseInt(request.getParameter("id")));
+                Auditor.add((String)request.getSession().getAttribute("username"),"added new Outcome/Objective Link (Program ID: "+request.getParameter("id")+")");
                 response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
                 response.setHeader("Location", "/program/index.jsp?page=LinkOutObj&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
             }else {
@@ -60,6 +61,7 @@ public class AddLinkObjOut extends HttpServlet {
                     //id=dbaS.selectProgram(request.getParameter("Pname"));
                     dba.updateLinkObj_Out(Integer.parseInt(request.getParameter("Linkid")), Integer.parseInt(request.getParameter("Obj")), Integer.parseInt(request.getParameter("Out")));
                     System.out.println(Integer.parseInt(request.getParameter("Linkid"))+"           "+Integer.parseInt(request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':')))+"                     "+Integer.parseInt(request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':')))+"          Update   AdObj Servlet");
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Updated Outcome/Objective Link (Program ID: "+request.getParameter("id")+")");
 
                 }else {
 

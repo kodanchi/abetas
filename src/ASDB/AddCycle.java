@@ -22,6 +22,8 @@ public class AddCycle extends HttpServlet {
 
 
                 id = dba.addCycle();
+                Auditor.add((String)request.getSession().getAttribute("username"),"added new cycle (ID: "+id+")");
+
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();

@@ -39,8 +39,12 @@ public class userSheetUploadServlet extends HttpServlet {
                     db.addUser(2,dataRow.get(3),dataRow.get(4),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"");
                 }
 
-
+                Auditor.add((String) request.getSession().getAttribute("username"),"added new "+dataRow.get(5)+" user ("+
+                        dataRow.get(4)+") via excel sheet");
             }
+
+            response.sendRedirect("/users/index.jsp?status=Success");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
@@ -51,13 +55,13 @@ public class userSheetUploadServlet extends HttpServlet {
             //response.setStatus(HttpServletResponse.SC_CONTINUE);
             //response.setHeader("Location","/users/index.jsp?status=Success");
 
-            response.getWriter().print("<!DOCTYPE HTML>\n" +
+            /*response.getWriter().print("<!DOCTYPE HTML>\n" +
                     "<html lang=\"en-US\">\n" +
                     "    <head>\n" +
                     "        <meta charset=\"UTF-8\">\n" +
-                    "        <meta http-equiv=\"refresh\" content=\"1;url=/users/index.jsp?status=Success\">" +
+                    "        <meta http-equiv=\"refresh\" content=\"1;url=\">" +
                     "</head>" +
-                    "</html>");
+                    "</html>");*/
         }
 
         //importer. request.getParameter("file");

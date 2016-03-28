@@ -111,6 +111,7 @@ public class SystemSettingsServlet extends HttpServlet {
                     if(isValid){
                         Settings_Update adb = new Settings_Update();
                         adb.updateSystemSettings(uname,cname,ulogo,color);
+                        Auditor.add((String)request.getSession().getAttribute("username"),"Updated the system settings");
                     }
 
 

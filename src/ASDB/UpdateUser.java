@@ -65,6 +65,8 @@ public class UpdateUser extends HttpServlet {
                                 else if (userNewType.equals("Faculty_Member"))
                                     udb.updateFaculty(Integer.parseInt(request.getParameter("id")),fname,mname,lname,uname,uemail);
 
+
+
                             }else { //if the user lvl changed
 
                                 //delete the userdata form the old table
@@ -79,9 +81,12 @@ public class UpdateUser extends HttpServlet {
                                 else if (userNewType.equals("Faculty_Member"))
                                     idb.addUser(1, request.getParameter("uname"),uemail ,fname,mname,lname);
 
-
+                                Auditor.add((String)request.getSession().getAttribute("username"),"Changed user type of user ("+request.getParameter("uname")+
+                                        ") from "+userOldType+" to "+userNewType);
                             }
 
+
+                            Auditor.add((String)request.getSession().getAttribute("username"),"updated user ("+request.getParameter("uname")+")");
                             response.sendRedirect("/users/index.jsp?status=userAdded");
 
                         }

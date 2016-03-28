@@ -43,6 +43,8 @@ public class AddPILinks extends HttpServlet {
                     R=dba.addRubric(request.getParameter("firstD"),request.getParameter("secondD"),request.getParameter("thirdD"),request.getParameter("forthD"));
                     Link_id=dba.addPILink(Integer.parseInt(request.getParameter("Out")),Integer.parseInt(request.getParameter("PI")),Integer.parseInt(request.getParameter("programID")), R, request.getParameter("Course"),Integer.parseInt(Termid),request.getParameter("Type"));
 
+
+
                     ArrayList<Integer> courseSections = sdba.selectTermCourseSection(request.getParameter("Course"), Integer.parseInt(Termid));
                     if (Link_id!=0) {
                         System.out.println("in if "+Link_id);
@@ -64,6 +66,8 @@ public class AddPILinks extends HttpServlet {
                             System.out.println("id is not set");
                         }
                     }
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new Performance Indicator Link (Cycle ID : "+id+")");
+
 
                     response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
 
@@ -156,6 +160,7 @@ public class AddPILinks extends HttpServlet {
                         }
                     }
 
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Updated Performance Indicator Link (ID : "+Link_id+")");
 
                     response.sendRedirect("/cycle/index.jsp?cycle="+id+"&term="+Termid+"&page=LinkPIOutList&programID="+request.getParameter("programID"));
 

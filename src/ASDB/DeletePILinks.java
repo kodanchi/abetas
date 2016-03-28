@@ -27,6 +27,8 @@ public class DeletePILinks extends HttpServlet {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteRubric(Integer.parseInt(request.getParameter("RubricValue")));
             dba.deletePILink(Integer.parseInt(request.getParameter("LinkID")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted performance indicator link (ID : "+request.getParameter("LinkID")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -25,6 +25,8 @@ public class AddTerm extends HttpServlet {
                 if(!sdb.isTermYearExist(request.getParameter("termName"),request.getParameter("fyear")+"-"+request.getParameter("tyear"),id)){
                     Termid = dba.addTerm(request.getParameter("termName"),request.getParameter("fyear")+"-"+request.getParameter("tyear"),id);
                     System.out.println("ttrttttttttttttttttttttttttt  id          " +String.valueOf(id)+"ttrttttttttttttttttttttttttt  Termid          " +String.valueOf(Termid));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new term (Cycle ID : "+id+")");
+
                     response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
                 }else {
                     TermVal = new  String[]{request.getParameter("termName"),request.getParameter("fyear"),request.getParameter("tyear")};

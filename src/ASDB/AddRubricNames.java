@@ -26,6 +26,8 @@ public class AddRubricNames extends HttpServlet {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 System.out.println("        ooooooooooooooo            "+request.getParameter("firstR"));
                 dba.addRubricNames(request.getParameter("firstR"),request.getParameter("secondR"),request.getParameter("thirdR"),request.getParameter("forthR"),Integer.parseInt(id));
+                Auditor.add((String)request.getSession().getAttribute("username"),"Added Rubrics names (Cycle ID : "+id+")");
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {

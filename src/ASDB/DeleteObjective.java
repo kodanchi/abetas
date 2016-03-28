@@ -24,6 +24,8 @@ public class DeleteObjective extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteObj(Integer.parseInt(request.getParameter("Objid")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted objective (ID : "+request.getParameter("Objid")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

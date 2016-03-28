@@ -30,6 +30,7 @@ public class AddCourses extends HttpServlet {
             }else if(!dbaS.isCoursesCodeExist(request.getParameter("Code"))){
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.addCourse(request.getParameter("Code"),request.getParameter("Cname"),Integer.parseInt(request.getParameter("level")),0,Integer.parseInt(request.getParameter("id")));
+                Auditor.add((String)request.getSession().getAttribute("username"),"Added new course (ID: "+request.getParameter("Code")+")");
                 //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
                 response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
                 //response.setHeader("Location", "/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
@@ -65,6 +66,7 @@ public class AddCourses extends HttpServlet {
                         //id=dbaS.selectProgram(request.getParameter("Pname"));
                         System.out.println(request.getParameter("Code") + "           " + request.getParameter("Cname") + "          Update   AdObj Servlet");
                         dba.updateCourse(Integer.parseInt(request.getParameter("Cid")), request.getParameter("Code"), request.getParameter("Cname"), Integer.parseInt(request.getParameter("level")));
+                        Auditor.add((String)request.getSession().getAttribute("username"),"updated course (ID: "+request.getParameter("Code")+")");
                     }else {
                         sendErrMsg("Course code is already exists",request.getParameter("name"),request.getParameter("id"),request,response);
 

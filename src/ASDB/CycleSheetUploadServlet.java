@@ -53,6 +53,8 @@ public class CycleSheetUploadServlet extends HttpServlet {
                 if(dataType.equals("students")){
                     System.out.println("dataType : "+dataType);
                     dba.addStudent(dataRow.get(1), Integer.parseInt(dataRow.get(0)), Integer.parseInt(section));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
+
                 }else if(dataType.equals("pis")){
                     if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle))){
                         isValid = false;
@@ -60,9 +62,13 @@ public class CycleSheetUploadServlet extends HttpServlet {
                         break;
                     }else {
                         dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(thresh), Integer.parseInt(cycle));
+                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new performance indicator via excel sheet (Cycle ID : "+cycle+")");
+
                     }
                 }else if(dataType.equals("courses")){
                     dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(cycle));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new course via excel sheet (Cycle ID : "+cycle+")");
+
                 }
             }
         } catch (ClassNotFoundException e) {

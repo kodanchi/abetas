@@ -24,6 +24,7 @@ public class DeletePI extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deletePI(Integer.parseInt(request.getParameter("PILabel")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted performance indicator (ID : "+request.getParameter("PILabel")+")");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

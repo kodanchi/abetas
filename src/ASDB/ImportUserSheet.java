@@ -209,23 +209,28 @@ public class ImportUserSheet {
 
                                         break;
                                     case 4: //checking if the emails already exist or not in db
-                                        if(db.selectEmailIfExist(cell.getStringCellValue())){
-                                            Error_Msg = "The Email: "+cell.getStringCellValue()+" is already exist in the" +
-                                                    "database, please change it in the sheet and try upload it again, or choose" +
-                                                    " another file.";
-                                            file.close();
-                                            return false;
-                                        }else {
-                                            if(!checkEmailValidation(cell.getStringCellValue())){
-                                                Error_Msg = "The Email: "+cell.getStringCellValue()+" is not in the proper " +
-                                                        "format, please change it in the sheet and try upload it again, or choose " +
-                                                        "another file.";
+                                        if(!row.getCell(j+1).equals("evaluator")){
+                                            if(db.selectEmailIfExist(cell.getStringCellValue())){
+                                                Error_Msg = "The Email: "+cell.getStringCellValue()+" is already exist in the" +
+                                                        "database, please change it in the sheet and try upload it again, or choose" +
+                                                        " another file.";
                                                 file.close();
                                                 return false;
                                             }else {
-                                                dataRow.add(cell.getStringCellValue());
+                                                if(!checkEmailValidation(cell.getStringCellValue())){
+                                                    Error_Msg = "The Email: "+cell.getStringCellValue()+" is not in the proper " +
+                                                            "format, please change it in the sheet and try upload it again, or choose " +
+                                                            "another file.";
+                                                    file.close();
+                                                    return false;
+                                                }else {
+                                                    dataRow.add(cell.getStringCellValue());
+                                                }
                                             }
+                                        }else {
+                                            dataRow.add("");
                                         }
+
                                         break;
                                     case 5:
                                         if(!cell.getStringCellValue().equalsIgnoreCase("superuser") &&

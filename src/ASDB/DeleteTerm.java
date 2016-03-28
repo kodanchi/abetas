@@ -24,6 +24,8 @@ public class DeleteTerm extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteTerm(Integer.parseInt(request.getParameter("term")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted term (ID : "+request.getParameter("term")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -24,6 +24,8 @@ public class DeleteProgram extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteProgram(Integer.parseInt(request.getParameter("id")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted program (ID : "+request.getParameter("id")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

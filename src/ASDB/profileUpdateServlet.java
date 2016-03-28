@@ -101,6 +101,7 @@ public class profileUpdateServlet extends HttpServlet {
                         sendMsg("You must enter the password",request,response);
                     }
 
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Updated user profile");
 
                     sendMsg("User profile has been updated",request,response);
                     response.sendRedirect("/settings/index.jsp");

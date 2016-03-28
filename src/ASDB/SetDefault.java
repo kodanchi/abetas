@@ -22,6 +22,8 @@ public class SetDefault extends HttpServlet {
         try {
 
             dba.updateDefault(Integer.parseInt(request.getParameter("term")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Set term to default (Term ID: "+request.getParameter("term")+")");
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

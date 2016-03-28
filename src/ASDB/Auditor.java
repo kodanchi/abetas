@@ -12,10 +12,6 @@ import java.util.Date;
  * Created by Ibrahim Abuaqel on 3/10/2016.
  */
 public class Auditor {
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
-    DataSource dataSource = null;
 
     public static void add(String userName, String action){
         U_AS_Insert dbs = new U_AS_Insert();

@@ -42,10 +42,15 @@ public class ProgramSheetUploadServlet extends HttpServlet {
                 if(dataType.equals("obj")){
                     System.out.println("dataType : "+dataType);
                     dba.addObject(dataRow.get(0), Integer.parseInt(id));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"added new objective (Program ID: "+id+")");
                 }else if(dataType.equals("outcomes")){
                     dba.addOutcome(dataRow.get(0), Integer.parseInt(id));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"added new outcome (Program ID: "+id+")");
+
                 }else if(dataType.equals("courses")){
                     dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(id));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"added new objective (Program ID: "+id+")");
+
                 }
             }
         } catch (ClassNotFoundException e) {

@@ -41,6 +41,8 @@ public class AddProgram extends HttpServlet {
                 if(!dbaS.isProgramNameExist(request.getParameter("Pname"))){
                     data=dba.addProgramm(request.getParameter("Pname"), request.getParameter("Pmission"));
                     id=dbaS.selectProgramID(request.getParameter("Pname"));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new Program (ID : "+id+")");
+
                     response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
                     response.setHeader("Location", "/program/index.jsp?page=ObjList&name="+data.get(0)+"&id="+String.valueOf(id));
                 }else {
@@ -86,6 +88,7 @@ public class AddProgram extends HttpServlet {
                     dba.updateProgram(Integer.parseInt((request.getParameter("id"))), request.getParameter("Pname"), request.getParameter("Pmission"));
 
                     name = dbaS.selectProgramName(Integer.parseInt((request.getParameter("id"))));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Updated Program (ID : "+request.getParameter("id")+")");
 
                     //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
                     response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);

@@ -25,6 +25,7 @@ public class AddSection extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             id=dba.addSection(Integer.parseInt(request.getParameter("term")),Integer.parseInt(request.getParameter("F_ID")),request.getParameter("courseCode"));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Added new section (Course ID : "+request.getParameter("courseCode")+")");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -54,6 +55,8 @@ public class AddSection extends HttpServlet {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 //System.out.println(request.getParameter("Code")+"           "+request.getParameter("Cname")+"          Update   AdObj Servlet");
                 dba.updateSection(Integer.parseInt(request.getParameter("section")), Integer.parseInt(request.getParameter("F_ID")));
+                Auditor.add((String)request.getSession().getAttribute("username"),"Updated section (ID : "+request.getParameter("section")+")");
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {

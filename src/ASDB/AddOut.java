@@ -26,6 +26,8 @@ public class AddOut extends HttpServlet {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             System.out.println("        "+request.getParameter("id")+"        ooooooooooooooo            "+request.getParameter("Out"));
             dba.addOutcome(request.getParameter("Out"),Integer.parseInt(request.getParameter("id")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"added new outcome (ID program: "+request.getParameter("id")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -51,6 +53,8 @@ public class AddOut extends HttpServlet {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.updateOutcome(Integer.parseInt(request.getParameter("Outid")), request.getParameter("Out"));
                 System.out.println(request.getParameter("id")+"           "+request.getParameter("name")+"          Update   AdObj Servlet");
+                Auditor.add((String)request.getSession().getAttribute("username"),"Updated outcome (ID : "+request.getParameter("Outid")+")");
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {

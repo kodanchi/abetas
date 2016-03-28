@@ -34,6 +34,8 @@ public class AddPI extends HttpServlet {
                     System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           "+"       ssssss "+ Integer.parseInt(request.getParameter("Thresh"))+"        xxxxx"+request.getParameter("Thresh") );
                     if (programID!=0) {
                         dba.addPI(request.getParameter("PI"), Integer.parseInt(request.getParameter("Thresh")), programID, Integer.parseInt(id));
+                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new Performance Indicator (Cycle ID : "+id+")");
+
                     }else {
                         //Display error message.
                     }
@@ -76,6 +78,8 @@ public class AddPI extends HttpServlet {
 
                 }else {
                     dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("Thresh")),Integer.parseInt(request.getParameter("PILabel")));
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Updated Performance Indicator (ID : "+request.getParameter("PILabel")+")");
+
                     response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&programID="+request.getParameter("programID"));
 
                 }

@@ -24,6 +24,8 @@ public class DeleteSection extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteSection(Integer.parseInt(request.getParameter("section")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted section (ID : "+request.getParameter("section")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

@@ -28,6 +28,8 @@ public class AddObj extends HttpServlet {
             try {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.addObject(request.getParameter("Obj"), Integer.parseInt(request.getParameter("id")));
+                Auditor.add((String)request.getSession().getAttribute("username"),"added new objective (Program ID: "+request.getParameter("id")+")");
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -55,6 +57,8 @@ public class AddObj extends HttpServlet {
                 //id=dbaS.selectProgram(request.getParameter("Pname"));
                 dba.updateObjective(Integer.parseInt(request.getParameter("Objid")), request.getParameter("Obj"));
                 System.out.println(request.getParameter("id")+"           "+request.getParameter("name")+"          Update   AdObj Servlet");
+                Auditor.add((String)request.getSession().getAttribute("username"),"Updated objective (ID: "+request.getParameter("Objid")+")");
+
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {

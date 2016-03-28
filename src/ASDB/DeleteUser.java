@@ -33,6 +33,9 @@ public class DeleteUser extends HttpServlet {
                 else if (userType.equals("Evaluator"))
                     ddb.deleteEvaluator(Integer.parseInt(request.getParameter("id")));
 
+
+                Auditor.add((String)request.getSession().getAttribute("username"),"Deleted user of type "+userType+" (ID : "+request.getParameter("id")+")");
+
                 response.sendRedirect("/users/index.jsp?status=userDeleted");
 
             }else {

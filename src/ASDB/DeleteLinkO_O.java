@@ -24,6 +24,8 @@ public class DeleteLinkO_O extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteLinkO_O(Integer.parseInt(request.getParameter("Linkid")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted Outcome/Objective link (ID : "+request.getParameter("Linkid")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

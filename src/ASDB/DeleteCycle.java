@@ -24,6 +24,8 @@ public class DeleteCycle extends HttpServlet {
         try {
             //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteCycle(Integer.parseInt(request.getParameter("id")));
+            Auditor.add((String)request.getSession().getAttribute("username"),"Deleted cycle (Course ID : "+request.getParameter("id")+")");
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (Exception e) {

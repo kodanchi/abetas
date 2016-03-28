@@ -33,6 +33,9 @@ public class UnclockFormsServlet extends HttpServlet {
                 } else if(request.getParameter("ftype").equals("formative")) {
                     dbu.updateUnlockFormF(Integer.parseInt(request.getParameter("fid")));
                 }
+                Auditor.add((String)request.getSession().getAttribute("username"),"Unlocked form (Type: "+request.getParameter("ftype")+
+                        ", Form ID: "+request.getParameter("fid")+")");
+
                 sendMsg("Form has been unlocked",request,response);
             } else {
                 sendMsg("unvalid form ",request,response);
