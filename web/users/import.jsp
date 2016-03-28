@@ -37,11 +37,17 @@
 
 
                     <div class="row ">
-                        <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
+                        <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data. The first column: firstname the second column: middlename the third column: lastname the fourth column: username the fifth column: email the sixth column: level
+                           </p>
+                           <p class="col-md-6 lead pull-left">Note: the level should be number between 0 to 2 and the evaluator email should be empty</p>
+                        <p class="col-md-6 lead pull-left">0 ==> Superuser</p>
+                        <p class="col-md-6 lead pull-left">1 ==> Faculty</p>
+                        <p class="col-md-6 lead pull-left">2 ==> Evaluator</p>
+
 
 
                         <div class="col-md-6 img-responsive pull-right">
-                            <img src="http://i.stack.imgur.com/irt3e.jpg" class="img-responsive" alt="excel format">
+                            <img src="/img/userExecl.JPG" class="img-responsive" alt="excel format">
                         </div>
                     </div>
                     <form name="myform" action="/import/users" method="post" enctype="multipart/form-data">

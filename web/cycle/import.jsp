@@ -41,12 +41,18 @@
 
                     <%
                         String dataType = "";
+                        String imgurl="";
+                        String text="Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data. ";
                         if(request.getParameter("data") != null){
                             String importFile = request.getParameter("data");
                             if(importFile.equals("students")){
                                 dataType = "students";
+                                imgurl="/img/studentsExecl.JPG";
+                                text=text+"The first column: student ID the second column: student name";
                             }else if(importFile.equals("pis")){
                                 dataType = "pis";
+                                imgurl="/img/PIsExecl.JPG";
+                                text=text+"The column name: performance indicator";
                             }
                         }
 
@@ -55,11 +61,11 @@
 
 
                     <div class="row">
-                        <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data.</p>
+                        <p class="col-md-6 lead pull-left"><%=text%></p>
 
 
                         <div class="col-md-6 img-responsive pull-right form-group">
-                            <img src="http://i.stack.imgur.com/irt3e.jpg" class="img-responsive" alt="excel format">
+                            <img src="<%=imgurl%>" class="img-responsive" alt="excel format">
                         </div>
                     </div>
                     <form name="myform" action="/import/cycle" method="post" enctype="multipart/form-data">
