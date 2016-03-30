@@ -149,7 +149,7 @@ public class U_AS_Insert {
 
     }
 
-    public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
+    public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname, String E_program) throws ClassNotFoundException, SQLException {
 
 
         connect();
@@ -253,17 +253,18 @@ public class U_AS_Insert {
                 /*
                  * Execute the query
                  */
-                    String query = " insert into evaluator (E_Username, E_Fname, E_Mname, E_Lname, E_Password)" +
-                            " values (?, ?, ?, ?, ?)";
-
+                    String query = " insert into evaluator (E_Username, E_Fname, E_Mname, E_Lname, E_Password, E_program)" +
+                            " values (?, ?, ?, ?, ?, ?)";
+                System.out.println("E_program         "+E_program);
                     preparedStatement = connection.prepareStatement(query);
                     preparedStatement.setString(1, Uname);
                     preparedStatement.setString(2, Fname);
                     preparedStatement.setString(3, Mname);
                     preparedStatement.setString(4, Lname);
                     preparedStatement.setString(5, Password.getSaltedHash(calPass));
+                    preparedStatement.setString(6, E_program);
                     rs = preparedStatement.executeUpdate();
-
+System.out.print("E_program         "+E_program);
 
             }
         }catch(Exception e){

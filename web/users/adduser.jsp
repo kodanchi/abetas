@@ -8,6 +8,7 @@
 <%@ page import="ASDB.U_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
+<%@ page import="ASDB.P_AS_Select" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
@@ -31,6 +32,7 @@
     String ulname = "";
     String uname = "";
     String uemail = "";
+    String evaluatorPro = "";
 
 
     if(id != null && type != null){
@@ -78,6 +80,7 @@
                 ulname = selUsrData.get(3);
                 uname = selUsrData.get(4);
                 //uemail = selUsrData.get(5);
+                //evaluatorPro = selUsrData.get(6);
                 pageTitle = "Update User";
                 submit = "Update";
                 formURL = "/updateUser";
@@ -127,6 +130,7 @@
                     <input name="id" value="<%=id%>" hidden/>
                     <input name="olduname" value="<%=uname%>" hidden/>
                     <input name="olduemail" value="<%=uemail%>" hidden/>
+                    <input name="oldEProgram" value="<%=evaluatorPro%>" hidden/>
 
 
                     <div class="form-group">
@@ -177,6 +181,47 @@
                         <span data-alertid="email"></span>
                     </div>
 
+
+
+
+
+                    <div class="form-group" id="evaluatorDiv">
+                        <label>Evaluator Program</label>
+                        <div class="selectContainer">
+                            <select class="form-control" name="evaluatorProg"  id="evaluatorProgram" required>
+                                <option value="">Evaluator Program</option>
+                                <%
+
+                                    P_AS_Select aselect = new P_AS_Select();
+                                    try {
+                                        ArrayList<ArrayList<String>> rs = aselect.selectProgram();
+                                        ArrayList<String> rsRow ;
+
+                                        for (int i=0; i<rs.size();i++){
+                                            rsRow = new ArrayList<String>();
+                                            rsRow = rs.get(i);
+                                            for (int j=1; j<rsRow.size();j++) {
+                                            }
+                                            rsRow.get(1);
+                                            out.print("<option value=\"");out.print(rsRow.get(1));out.print("\"");
+                                if ((evaluatorPro.equals(rsRow.get(1)))){  out.print("selected");  } out.print(">");out.print(rsRow.get(1));out.print("</option>");
+                                        }
+
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                %>
+
+                            </select>
+
+                            <span data-alertid="evaluatorProgram"></span>
+                        </div>
+                    </div>
+
+
                     <a type="submit" onclick="onSubmitAddUser()" class="btn btn-primary" value="Add"><%=submit%></a>
                     <a type="cancel" href="index.jsp" class="btn btn-default pull-right" value="Cancel">Cancel</a>
 
@@ -187,6 +232,7 @@
                     $(this).ready(function(){
                         //document.getElementById("alert").style.visibility = "hidden";
                         document.getElementById("emailDiv").style.visibility = "hidden";
+                        document.getElementById("evaluatorDiv").style.visibility = "hidden";
                         onUserTypeChng();
 
 
