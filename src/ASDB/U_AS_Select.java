@@ -1878,7 +1878,7 @@ public class U_AS_Select {
 
 
 
-    public ArrayList<ArrayList<String>> auditingList() throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> auditingList(int limit, int records) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -1890,7 +1890,7 @@ public class U_AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM abetasdb.auditing order by audit_ID DESC;";
+            String query = String.format("SELECT * FROM abetasdb.auditing order by audit_ID DESC limit %d offset %d;",records,limit);
 
             /*
              *  Get connection from the DataSource
@@ -1902,7 +1902,8 @@ public class U_AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            //preparedStatement.setInt(1, limit);
+            //preparedStatement.setInt(2, records);
 
             rs = preparedStatement.executeQuery();
 
@@ -1970,6 +1971,69 @@ public class U_AS_Select {
              */
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, email);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                result = rs.getInt(1);
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return result;
+
+        }
+
+    }
+
+
+    public int selectNumberOfRecords(String table) throws ClassNotFoundException, SQLException {
+
+        int result = -1;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = String.format("SELECT COUNT(*) FROM %s ;",table);
+
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            //preparedStatement.setString(1, table);
 
             rs = preparedStatement.executeQuery();
 

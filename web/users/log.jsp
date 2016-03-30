@@ -15,7 +15,7 @@
             <div class="row">
                 <h2 class="text-center">System Log</h2>
                 <div class="col-md-10 col-md-offset-1">
-                    <a class="btn btn-primary pull-right mrgB" href="/index.jsp">Back</a>
+
 
                     <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
@@ -25,11 +25,22 @@
                             <th>Time</th>
                         </tr>
                         <%
+                            int pageNum = 1;
+                            int recordsPerPage = 20;
+                            int noOfPages = 0;
+                            if(request.getParameter("pnum")!= null){
+                                pageNum = Integer.valueOf(request.getParameter("pnum"));
+                            }
 
                             U_AS_Select dbs = new U_AS_Select();
 
+
+
                             try {
-                                ArrayList<ArrayList<String>> rs = dbs.auditingList();
+
+                                int records = dbs.selectNumberOfRecords("abetasdb.auditing");
+
+                                ArrayList<ArrayList<String>> rs = dbs.auditingList((pageNum-1)*recordsPerPage,recordsPerPage);
                                 ArrayList<String> rsRow ;
 
                                 for (int i=0; i<rs.size();i++){
@@ -41,14 +52,47 @@
                                     out.print("</tr>");
                                 }
 
+                                noOfPages = (int) Math.ceil(records * 1.0 / recordsPerPage);
+
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             } catch (SQLException e) {
                                 e.printStackTrace();
                             }
 
+
+
                         %>
+                        <tfoot>
+
+                        </tfoot>
                     </table>
+                    <div class="row">
+                        <a class="btn btn-primary pull-right mrgB" href="/index.jsp">Back</a>
+                        <ul class="pagination">
+
+                            <li class="previous pull-left" >
+                                <%=pageNum!=1?"<a href=\"index.jsp?page=log&pnum="+(pageNum-1)+"\">Previous</a>":""%>
+                            </li>
+                            <%
+                                for (int i=1;i<=noOfPages;i++){
+                                    out.println("                   <li><a \n" );
+
+
+                                    if(pageNum == i) {
+                                        out.print(" class=\"active\" ");
+                                    }else {
+                                        out.println("  href=\"index.jsp?page=log&pnum=" + i+"\"" );
+                                    }
+                                    out.print(">"+i +"</a></li>");
+                                }
+                            %>
+
+                            <li class="next pull-right">
+                                <%=pageNum!=noOfPages?"<a href=\"index.jsp?page=log&pnum="+(pageNum+1)+"\">Next</a>":""%>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
 

@@ -32,7 +32,11 @@
             }else if(pageCall.equals("import")){
                 pageName = "import.jsp";
             }else if(pageCall.equals("log")){
-                pageName = "log.jsp";
+                if(request.getParameter("pnum")!= null) {
+                    pageName = "log.jsp?pnum="+request.getParameter("pnum");
+                }else {
+                    pageName = "log.jsp";
+                }
             }else {
                 pageName = "userslist.jsp";
             }
