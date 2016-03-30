@@ -89,9 +89,15 @@
                         <select id="courseListSelect" onchange="onCourseChange(<%=tid%>,<%=pid%>,<%=id%>);" data-live-search="true">
                             <option value="overall" datat-token="overall" >Overall</option>
                             <%
-                            ArrayList<ArrayList<String>> coursesList = dbs.selectCoursesOfSummativeToEvaluate(Integer.parseInt(tid),
-                                    Integer.parseInt(pid));
-                            for(ArrayList<String> course : coursesList){
+                                ArrayList<ArrayList<String>> coursesList = null;
+                                try {
+                                    coursesList = dbs.selectCoursesOfSummativeToEvaluate(Integer.parseInt(tid), Integer.parseInt(pid));
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                } catch (SQLException e) {
+                                    e.printStackTrace();
+                                }
+                                for(ArrayList<String> course : coursesList){
                                 out.print(" <option value=\""+course.get(0)+"\" data-tokens=\""+course.get(1)+"\">"+course.get(1)+"</option>");
                             }
                         %>

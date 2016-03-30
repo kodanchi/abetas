@@ -2164,6 +2164,247 @@ public class E_Select {
     }
 
 
+    public ArrayList<ArrayList<String>> selectPIofOutcomeSummativeToEvaluate(int FK_T_ID, int FK_P_ID, int FK_out) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
+                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
+                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
+
+            String query = "SELECT distinct FK_pi_ID, PI_name \n" +
+                    "From abetasdb.link_out_pi, abetasdb.performance_indicator, program , summative\n" +
+                    "WHERE FK_T_ID = ? \n" +
+                    "AND FK_PI_ID = PI_Label\n" +
+                    "AND link_out_pi.FK_P_ID = ? \n" +
+                    "AND link_out_pi.FK_out = ? \n" +
+                    "AND program.P_ID = link_out_pi.FK_P_ID\n" +
+                    "AND summative.Sum_submitted = 1\n" +
+                    "AND summative.FK_Link_ID= link_out_pi.Link_ID;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_out);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
+
+    public ArrayList<ArrayList<String>> selectPIofOutcomeFormativeToEvaluate(int FK_T_ID, int FK_P_ID, int FK_out) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
+                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
+                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
+
+            String query = "SELECT FK_pi_ID, PI_name, FK_Section_ID \n" +
+                    "From abetasdb.link_out_pi,abetasdb.performance_indicator, program , formative \n" +
+                    "WHERE FK_T_ID = ? \n" +
+                    "AND FK_PI_ID = PI_Label\n" +
+                    "AND link_out_pi.FK_P_ID = ? \n" +
+                    "AND link_out_pi.FK_out = ? \n" +
+                    "AND program.P_ID = link_out_pi.FK_P_ID \n" +
+                    "AND formative.F_submitted = 1\n" +
+                    "AND formative.FK_Link_ID = link_out_pi.Link_ID ;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_out);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+                RowDate.add(rs.getString(3));
+
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
+
+    public ArrayList<ArrayList<String>> selectOutcomesToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
+        ArrayList<String> RowDate;
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
+                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
+                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
+
+            String query = "SELECT distinct FK_out, Student_outcome \n" +
+                    "From abetasdb.link_out_pi, abetasdb.p_student_outcome, program\n" +
+                    "WHERE FK_T_ID = ? \n" +
+                    "AND FK_out = Outcome_label\n" +
+                    "AND link_out_pi.FK_P_ID = ? \n" +
+                    "AND program.P_ID = link_out_pi.FK_P_ID\n;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T_ID);
+            preparedStatement.setInt(2, FK_P_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                RowDate = new ArrayList<String>();
+                RowDate.add(rs.getString(1));
+                RowDate.add(rs.getString(2));
+
+                RsArr.add(RowDate);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return RsArr;
+
+        }
+
+    }
+
+
 
     public ArrayList<ArrayList<String>> selectCoursesOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
@@ -2441,6 +2682,71 @@ public class E_Select {
             preparedStatement.setInt(4, FK_T_ID);
             preparedStatement.setInt(3, FK_P_ID);
             preparedStatement.setString(5, FK_C_ID);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                data = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+
+    public int selectThresholdToEvaluate(int PI_Label) throws ClassNotFoundException, SQLException {
+
+        int data = -1;
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+
+            String query = "SELECT Threshold \n" +
+                    "FROM abetasdb.performance_indicator\n" +
+                    "where PI_Label = ?;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, PI_Label);
 
             rs = preparedStatement.executeQuery();
 

@@ -25,8 +25,10 @@ public class SelectTermServlet extends HttpServlet {
             ArrayList<ArrayList<String>> programList = dbs.selectAllProgramsToEvaluate();
 
             PrintWriter out = response.getWriter();
+            out.print("<a href=\"#programs"+"-"+tid+"\" class=\"list-group-item \" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Programs</a>");
+            out.print(" <div class=\"list-group collapse \" id=\"programs"+"-"+tid+"\" >");
             for (ArrayList<String> program : programList){
-                out.print("<a href=\"dddd.jsp\" class=\"list-group-item \"" +
+                out.print("<a href=\"#program-"+program.get(0)+"-"+tid+"\" class=\"list-group-item list-group-item-info \" " +
                         "onclick=\"new function (){\n" +
                         "                    show('page', false);\n" +
                         "                    show('loading', true);\n" +
@@ -38,14 +40,32 @@ public class SelectTermServlet extends HttpServlet {
                         "                       },\n" +
                         "                       url:'/SelectProgramServlet',\n" +
                         "                       success: function(result){\n" +
-                        "                        $('#pIList').html(result);\n" +
+                        "                        $('#program-"+program.get(0)+"-"+tid+"').html(result);\n" +
                         "                        show('page', true);\n" +
                         "                        show('loading', false);\n" +
+                        "                        scrollTo('program-"+program.get(0)+"-"+tid+"');" +
                         "                       }\n" +
                         "                    })\n" +
                         "                }\"" +
-                        "\"> "+program.get(1)+"</a>");
+                        "data-toggle=\"collapse\">\n" +
+                        "                            <i class=\"glyphicon glyphicon-chevron-right\"></i>"+program.get(1)+"\n" +
+                        "                        </a>\n" +
+                        "                        <div class=\"list-group collapse\" id=\"program-"+program.get(0)+"-"+tid+"\" name=\"program-"+program.get(0)+"-"+tid+"\">\n" +
+                        "                        </div>" );
             }
+            out.print("</div>");
+
+            out.print("<script>");
+            out.print("$(function() {\n" +
+                    "\n" +
+                    "                    $('.list-group-item').on('click', function() {\n" +
+                    "                        $('.glyphicon', this)\n" +
+                    "                                .toggleClass('glyphicon-chevron-right')\n" +
+                    "                                .toggleClass('glyphicon-chevron-down');\n" +
+                    "                    });\n" +
+                    "\n" +
+                    "                });");
+            out.print("</script>");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
