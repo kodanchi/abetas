@@ -47,9 +47,14 @@
                 </tr>
                 <tbody class="searchable">
                 <%
+
+                    ArrayList<String> emailLists = new ArrayList<String>();
+
                     AS_Select dbs = new AS_Select();
+                    String emailList = "";
                     try {
                         ArrayList<ArrayList<String>> formsList = dbs.selectAllUnsubmittedFormsForValidTerm();
+                        int x=0;
 
                         for (ArrayList<String>formItem : formsList){
                             out.print("<tr>\n" +
@@ -58,14 +63,26 @@
                                     "<td>"+formItem.get(3)+" "+formItem.get(4)+"</td>\n" +
                                     "<td> "+formItem.get(5)+"</td>\n" +
                                     "</tr>");
+
+
+                            emailList += formItem.get(6)+";";
+
+                            emailLists.add(formItem.get(6));
+
                         }
 
+//                        System.out.println("    size    "+emailList.lastIndexOf(';'));
+//                        x=emailList.lastIndexOf(';');
+
+                        System.out.println("    xxxxxxxx    "+x);
+//                        emailList=emailList.substring(0,x);
+                        System.out.println("    emlist    "+emailList);
+                        System.out.println("Hello from Unsubmit form "+emailList);
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-
 
                 %>
                 </tbody>
@@ -105,7 +122,11 @@
                 </script>
             </table>
 
-
+ <form method="post" action="/Emailrem">
+<input name="emailList"  value="<%=emailLists%>" hidden />
+ <button  type="submit" title="Send Reminder" class="btn btn-primary pull-left ">Send Reminder</button>
+ </td>
+ </form>
             <a class="btn btn-primary pull-right" href="/index.jsp">Back</a>
 
 

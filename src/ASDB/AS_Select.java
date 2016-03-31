@@ -1571,12 +1571,12 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT Summative_ID As 'ID' ,C_name , PI_name, Faculty_Fname, Faculty_Lname, 'summative' As 'type'  " +
+            String query = "SELECT Summative_ID As 'ID' ,C_name , PI_name, Faculty_Fname, Faculty_Lname, 'summative' As 'type',Faculty_Email  " +
                     "FROM summative, faculty_member, abetasdb.section , term, cycle, link_out_pi , course, performance_indicator " +
                     "where FK_Section_ID=Section_ID and term.current = 1 and Sum_submitted = 0 and FK_F= Faculty_ID and FK_T= T_ID " +
                     "and FK_Cycle_ID = Cycle_ID and FK_Link_ID=Link_ID and PI_Label=FK_pi_ID and course.C_code = link_out_pi.FK_C_ID " +
                     "union all " +
-                    "select  Formative_ID ,C_name , PI_name, Faculty_Fname, Faculty_Lname, 'formative' FROM formative, faculty_member, " +
+                    "select  Formative_ID ,C_name , PI_name, Faculty_Fname, Faculty_Lname, 'formative', Faculty_Email FROM formative, faculty_member, " +
                     "abetasdb.section , term, cycle, link_out_pi , course, performance_indicator where FK_Section_ID=Section_ID and " +
                     "term.current = 1 and F_submitted = 0 and FK_F= Faculty_ID and FK_T= T_ID  and FK_Cycle_ID = Cycle_ID and " +
                     "FK_Link_ID=Link_ID and PI_Label=FK_pi_ID and course.C_code=link_out_pi.FK_C_ID";
@@ -1604,6 +1604,8 @@ public class AS_Select {
                 rsRow.add(rs.getString(4));
                 rsRow.add(rs.getString(5));
                 rsRow.add(rs.getString(6));
+                rsRow.add(rs.getString(7));
+
                 result.add(rsRow);
             }
 
