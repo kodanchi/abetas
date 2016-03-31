@@ -246,14 +246,7 @@
         String pageCall = request.getParameter("page");
         System.out.println(pageCall);
         if(pageCall != null){
-            if(pageCall.equals("update")){
-                String id = request.getParameter("id");
-                if(id != null){
-                    pageName = "cycleView.jsp?id="+id;
-                }else {
-                    pageName = "cycleList.jsp";
-                }
-            }else if(pageCall.equals("addTerm")) {
+             if(pageCall.equals("addTerm")) {
 
                 if(request.getParameter("cycle") != null){
                     pageName = "addTerm.jsp?cycle="+request.getParameter("cycle");

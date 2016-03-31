@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
 <%
 
@@ -70,7 +71,7 @@
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Enter");%> performance indicator for the <%out.print(programName);%> program</p>
 
-                    <form name="myform" action="/AddPI" method="post">
+                    <form name="piform" id="piform" action="/AddPI" method="post">
 
                         <div class="form-group">
 
@@ -92,19 +93,40 @@
                             <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                             <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
                             <input type="hidden" name="PIThresh" value="<%=request.getParameter("PIThresh")%>">
-                            <textarea class="form-control" rows="4" cols="50" name="PI" placeholder="Performance Indicator" required><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}
+                            <textarea id="piInput" class="form-control" rows="4"  name="PI" placeholder="Performance Indicator" ><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}
                             else {
                                 out.print(pName);
                             }%></textarea>
-                            <br>
+                            <span data-alertid="pi"></span>
+                        </div>
+
+
+                        <div class="form-group">
                             <label>Threshold</label>
-                            <input type="text" name="Thresh" onkeypress='validate(event)' required><%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>
-<%--
+                            <div class="input-group number-spinner">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+                                    </span>
+                                <input id="threshold"  onchange="onSTsholdChange();" type="text" min="0" max="100" class="form-control
+                                    text-center" name="STshold" value="<%if (request.getParameter("PIThresh")!=null)
+                                    {out.print(request.getParameter("PIThresh"));}
+                                    else {out.print("0");}%>">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+                                    </span>
+
+                            </div>
+                            <span data-alertid="ts"></span>
+                        </div>
+
+
+
+                        <%--
                             <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="text-center" name="PIThresh" value="<%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>">
 --%>
                             <script>
                                 function onSTsholdChange(){
-                                    input = document.getElementById("STshold");
+                                    input = document.getElementById("threshold");
                                     //input = btn.closest('.number-spinner').find('input');
 
                                     if(parseInt(input.value) > parseInt(input.getAttribute("max"))){
@@ -116,7 +138,7 @@
                                 }
 
 
-                                function validate(evt) {
+                               /* function validate(evt) {
                                     var theEvent = evt || window.event;
                                     var key = theEvent.keyCode || theEvent.which;
                                     key = String.fromCharCode( key );
@@ -125,10 +147,42 @@
                                         theEvent.returnValue = false;
                                         if(theEvent.preventDefault) theEvent.preventDefault();
                                     }
-                                }
+                                }*/
+
+                                $(function(){
+                                    $('#piform').submit(function(){
+                                        $(document).trigger("clear-alert-id.pi");
+                                        $(document).trigger("clear-alert-id.ts");
+                                        var pi = document.getElementById("piInput");
+                                        var ts = document.getElementById("thredshold");
+
+                                        if(pi.value == ""){
+                                            $(document).trigger("clear-alert-id.pi");
+                                            $(document).trigger("set-alert-id-pi", [
+                                                {
+                                                    message: "Enter performance indicator",
+                                                    priority: "error"
+                                                }
+                                            ]);
+                                            pi.focus();
+                                            return false;
+                                        } else if(ts.value < 0 || ts.value > 100){
+                                            $(document).trigger("clear-alert-id.ts");
+                                            $(document).trigger("set-alert-id-ts", [
+                                                {
+                                                    message: "Threshold must be between 0 and 100",
+                                                    priority: "error"
+                                                }
+                                            ]);
+                                            ts.focus();
+                                            return false;
+                                        }
+                                    });
+
+                                });
 
                             </script>
-                        </div>
+
 
                         <br>
                         <button class="btn btn-primary pull-left" type="submit"><%if (request.getParameter("PIValue")!=null) {out.print("Update");} else out.print("Add");%></button>

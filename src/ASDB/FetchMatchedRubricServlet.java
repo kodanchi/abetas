@@ -76,37 +76,41 @@ public class FetchMatchedRubricServlet extends HttpServlet {
 
             out.println("<div class=\"form-group\">\n" +
                     "                                        <label>First rubrics</label>\n" +
-                    "                                        <input type=\"text\" class=\"form-control\" size=\"25\" name=\"firstR\" readonly value=\""+A+"\" required>\n" +
+                    "                                        <p >"+A+"</p>\n" +
                     "                                    </div>\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"firstD\" required>"+E+"</textarea>\n" +
+                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"firstD\"  id=\"firstD\" >"+E+"</textarea>\n" +
+                    "                                       <span data-alertid=\"firstD\"></span>" +
                     "                                    </div>\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Second rubrics</label>\n" +
-                    "                                        <input type=\"text\" class=\"form-control\" size=\"25\" name=\"secondR\" readonly value=\""+B+"\" required>\n" +
+                    "                                        <p >"+B+"</p>\n" +
                     "                                    </div>\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"secondD\" required>"+F+"</textarea>\n" +
+                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"secondD\" id=\"secondD\" >"+F+"</textarea>\n" +
+                    "                                       <span data-alertid=\"secondD\"></span>" +
                     "                                    </div>\n" +
                     "\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Third rubrics</label>\n" +
-                    "                                        <input type=\"text\" class=\"form-control\" size=\"25\" name=\"thirdR\" readonly value=\""+C+"\" required>\n" +
+                    "                                        <p >"+C+"</p>\n" +
                     "                                    </div>\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"thirdD\" required>"+G+"</textarea>\n" +
+                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"thirdD\" id=\"thirdD\" >"+G+"</textarea>\n" +
+                    "                                       <span data-alertid=\"thirdD\"></span>" +
                     "                                    </div>\n" +
                     "\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Forth rubrics</label>\n" +
-                    "                                        <input type=\"text\" class=\"form-control\" size=\"25\" name=\"forthR\" readonly value=\""+D+"\" required>\n" +
+                    "                                        <p >"+D+"</p>\n" +
                     "                                    </div>\n" +
                     "                                    <div class=\"form-group\">\n" +
                     "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"forthD\" required>"+H+"</textarea>\n" +
+                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"forthD\"  id=\"forthD\">"+H+"</textarea>\n" +
+                    "                                       <span data-alertid=\"forthD\"></span>" +
                     "                                    </div>\n");
 
 

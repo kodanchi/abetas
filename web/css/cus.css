@@ -141,7 +141,7 @@ input[readonly] {
 }
 
 @media print {
-    .btn, .navbar-info, .evidenceRow, footer	{
+    .btn, .navbar-info, .evidenceRow, footer, .input-group, .notPrintable	{
         display: none;
     }
     #print-note {

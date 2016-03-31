@@ -9,10 +9,10 @@ import java.io.File;
  */
 
 /**
- * timerRun class used to initiate time class and TImeTest method when the server is start
+ * contextListener class used to initiate time class and TImeTest method when the server is start
  * that's done though  contextInitialized method
  */
-public class timerRun implements ServletContextListener {
+public class contextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {

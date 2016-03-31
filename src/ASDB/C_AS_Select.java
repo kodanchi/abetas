@@ -3464,4 +3464,72 @@ public class C_AS_Select {
     }
 
 
+
+    public int selectThreshold(int PI_Label) throws ClassNotFoundException, SQLException {
+
+        int data = -1;
+
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+
+            String query = "SELECT Threshold \n" +
+                    "FROM abetasdb.performance_indicator\n" +
+                    "where PI_Label = ?;";
+            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, PI_Label);
+
+            rs = preparedStatement.executeQuery();
+
+            //
+            while (rs.next()){
+                data = rs.getInt(1);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+
+
+
 }

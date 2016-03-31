@@ -10,8 +10,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
-<script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
-<script src="/js/flat-ui.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
+<script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
+
 
 <%
 
@@ -80,55 +81,63 @@
                 <div class="col-md-10 col-md-offset-1">
                     <p>Select a student outcome, performance indicator, course and type of form link them for <%out.print(programName);%> program:</p>
 
-                    <form name="myform" action="/AddPILinks" method="post">
+                    <form name="piLinkForm" id="piLinkForm" action="/AddPILinks" method="post">
 
+                        <input type="hidden" name="LinkID" value="<%=request.getParameter("LinkID")%>">
+                        <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
+                        <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
+                        <input type="hidden" name="CourseValue" value="<%=request.getParameter("CourseValue")%>">
+                        <input type="hidden" name="oldCourseValue" value="<%=request.getParameter("CourseValue")%>">
+                        <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
+                        <input type="hidden" name="PValue" value="<%=request.getParameter("PValue")%>">
+                        <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
+                        <input type="hidden" name="oldTypeValue" value="<%=request.getParameter("TypeValue")%>">
+                        <input type="hidden" name="RubricValue" value="<%=request.getParameter("RubricValue")%>">
+                        <input type="hidden" name="TermValue" value="<%=request.getParameter("TermValue")%>">
+                        <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
+                        <input type="hidden" name="cycle" value="<%=id%>">
+                        <input type="hidden" name="term" value="<%=Termid%>">
                         <div class="form-group">
 
-                            <label>Student Outcome: </label>
+                            <label for="Out">Student Outcome: </label>
 
-                            <div class="btn-group">
+                            <select class="selectpicker"  name="Out" id="Out" onchange="onRubricFetch();"  data-live-search="true">
+                                <%
+                                    C_AS_Select bselect = new C_AS_Select();
+                                    try {
+                                        ArrayList<String> rs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("programID")));
 
-                                <input type="hidden" name="LinkID" value="<%=request.getParameter("LinkID")%>">
-                                <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
-                                <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
-                                <input type="hidden" name="CourseValue" value="<%=request.getParameter("CourseValue")%>">
-                                <input type="hidden" name="oldCourseValue" value="<%=request.getParameter("CourseValue")%>">
-                                <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
-                                <input type="hidden" name="PValue" value="<%=request.getParameter("PValue")%>">
-                                <input type="hidden" name="TypeValue" value="<%=request.getParameter("TypeValue")%>">
-                                <input type="hidden" name="oldTypeValue" value="<%=request.getParameter("TypeValue")%>">
-                                <input type="hidden" name="RubricValue" value="<%=request.getParameter("RubricValue")%>">
-                                <input type="hidden" name="TermValue" value="<%=request.getParameter("TermValue")%>">
-                                <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
-                                <input type="hidden" name="cycle" value="<%=id%>">
-                                <input type="hidden" name="term" value="<%=Termid%>">
-
-                                    <select class="form-control" name="Out" onchange="onRubricFetch();" id="OutList">
-                                        <%
-                                            C_AS_Select bselect = new C_AS_Select();
-                                            try {
-                                                ArrayList<String> rs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("programID")));
-
-                                                for (int i=0; i<rs.size();i++) {
-                                                    out.print("<option value=\""+rs.get(i).substring(0, rs.get(i).indexOf(':')));
-                                                    out.print("\"");
-                                                    if (request.getParameter("OutValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("OutValue"))) {
-                                                        System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
-                                                        out.print(" selected");
-                                                    }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lout)){
-                                                        out.print(" selected");
-                                                    }
-                                                    out.print(">");
-                                                    out.print(rs.get(i)+"</option>");
-                                                }
-                                            } catch (ClassNotFoundException e) {
-                                                e.printStackTrace();
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
+                                        for (int i=0; i<rs.size();i++) {
+                                            out.print("<option value=\""+rs.get(i).substring(0, rs.get(i).indexOf(':')));
+                                            out.print("\"");
+                                            if (request.getParameter("OutValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("OutValue"))) {
+                                                System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
+                                                out.print(" selected");
+                                            }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lout)){
+                                                out.print(" selected");
                                             }
-                                        %>
-                                    </select>
-                            </div>
+                                            out.print(">");
+
+                                            if(rs.get(i).length()> 150){
+                                                out.print(rs.get(i).substring(0,150)+"..."+"</option>");
+                                            }else {
+                                                out.print(rs.get(i)+"</option>");
+                                            }
+
+                                        }
+                                    } catch (ClassNotFoundException e) {
+                                        e.printStackTrace();
+                                    } catch (SQLException e) {
+                                        e.printStackTrace();
+                                    }
+                                %>
+                            </select>
+                            <span data-alertid="out"></span>
+
+
+
+
+
                         </div>
 
                             <div class="form-group">
@@ -137,7 +146,7 @@
 
                                 <div class="btn-group">
 
-                                        <select class="form-control" name="PI" onchange="onRubricFetch();" id="PIList">
+                                        <select class="selectpicker"  data-live-search="true" name="PI" id="PI" onchange="onRubricFetch();" >
                                             <%
                                                 C_AS_Select cselect = new C_AS_Select();
                                                 try {
@@ -163,6 +172,7 @@
                                                 }
                                             %>
                                         </select>
+                                    <span data-alertid="pi"></span>
                                 </div>
                             </div>
 
@@ -172,7 +182,7 @@
 
                             <div class="btn-group">
 
-                                    <select class="form-control" name="Course" onchange="onRubricFetch();" id="courseList">
+                                    <select class="selectpicker"  data-live-search="true" name="Course" id="Course" onchange="onRubricFetch();" >
                                         <%
                                             C_AS_Select dselect = new C_AS_Select();
                                             try {
@@ -201,6 +211,7 @@
                                             }
                                         %>
                                     </select>
+                                <span data-alertid="course"></span>
                             </div>
                         </div>
 
@@ -216,7 +227,7 @@
                             <label>Type: </label>
 </li>
                                 <li>
-                                 <select class="form-control" name="Type" id="Type" onchange="onFormTypeChange();">
+                                 <select class="selectpicker"  data-live-search="true" name="Type" id="Type" >
                                         <option value="Summative"
                                         <% if (request.getParameter("TypeValue") != null && "Summative".equals(request.getParameter("TypeValue"))) {
                                             out.print(" selected");
@@ -239,76 +250,24 @@
                                         %>
 
                                     </select>
+                                    <span data-alertid="type"></span>
                                 </li>
                                 </ul>
                             </div>
 
 
 
-                        <div class="btn-group" id="thresholdInput">
 
-                            <label>Threshold: </label>
-
-                            <div class="btn-group">
-                                <div class="input-group number-spinner">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
-                                    </span>
-                                    <%
-                                        int formThreshold = 0;
-
-                                        if(request.getParameter("TypeValue") != null){
-                                            formThreshold = dselect.selectFormThreshold(Integer.parseInt(request.getParameter("LinkID")));
-                                        }
-
-
-                                    %>
-                                                    <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="form-control text-center" name="STshold" value="<%=formThreshold%>">
-
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
                         <script>
-                            $(document).ready(function(){
-                                onFormTypeChange();
-                            });
 
-                            function onSTsholdChange(){
-                                input = document.getElementById("STshold");
-                                //input = btn.closest('.number-spinner').find('input');
-
-                                if(parseInt(input.value) > parseInt(input.getAttribute("max"))){
-                                    input.value = input.getAttribute("max");
-                                }else if(parseInt(input.value) < parseInt(input.getAttribute("min"))){
-                                    input.value = input.getAttribute("min");
-                                }
-
-                            }
-
-                            function onFormTypeChange(){
-                                var ddl = document.getElementById("Type");
-                                var selectedValue = ddl.options[ddl.selectedIndex].value;
-                                if (selectedValue == "Summative")
-                                {
-                                    $('#thresholdInput').show();
-                                    //document.getElementById("thresholdInput").style.visibility = "visible";
-                                }else {
-                                    $('#thresholdInput').hide();
-                                    //document.getElementById("thresholdInput").style.visibility = "hidden";
-                                    /*document.getElementById("emailDiv").value = "";*/
-                                }
-                            }
                             function onRubricFetch(){
-                                var ol = document.getElementById("OutList");
+                                var ol = document.getElementById("Out");
                                 var oid = ol.options[ol.selectedIndex].value;
 
-                                var pil = document.getElementById("PIList");
+                                var pil = document.getElementById("PI");
                                 var pIid = pil.options[pil.selectedIndex].value;
 
-                                var cl = document.getElementById("courseList");
+                                var cl = document.getElementById("Course");
                                 var cId = cl.options[cl.selectedIndex].value;
                                 show('page', false);
                                 show('loading', true);
@@ -386,37 +345,41 @@
 
                                         <div class="form-group">
                                             <label>First rubrics</label>
-                                            <input type="text" class="form-control" size="25" name="firstR" readonly value="<%out.print(A);%>" required>
+                                            <p ><%out.print(A);%></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" name="firstD" required><%if (request.getParameter("RubricValue")!=null) {out.print(E);}%></textarea>
+                                            <textarea class="form-control" rows="3" name="firstD" id="firstD" ><%if (request.getParameter("RubricValue")!=null) {out.print(E);}%></textarea>
+                                            <span data-alertid="firstD"></span>
                                         </div>
                                         <div class="form-group">
                                             <label>Second rubrics</label>
-                                            <input type="text" class="form-control" size="25" name="secondR" readonly value="<%out.print(B);%>" required>
+                                            <p ><%out.print(B);%></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" name="secondD" required><%if (request.getParameter("RubricValue")!=null) {out.print(F);}%></textarea>
+                                            <textarea class="form-control" rows="3" name="secondD" id="secondD" ><%if (request.getParameter("RubricValue")!=null) {out.print(F);}%></textarea>
+                                            <span data-alertid="secondD"></span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Third rubrics</label>
-                                            <input type="text" class="form-control" size="25" name="thirdR" readonly value="<%out.print(C);%>" required>
+                                            <p><%out.print(C);%></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" name="thirdD" required><%if (request.getParameter("RubricValue")!=null) {out.print(G);}%></textarea>
+                                            <textarea class="form-control" rows="3" name="thirdD" id="thirdD" ><%if (request.getParameter("RubricValue")!=null) {out.print(G);}%></textarea>
+                                            <span data-alertid="thirdD"></span>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Forth rubrics</label>
-                                            <input type="text" class="form-control" size="25" name="forthR" readonly value="<%out.print(D);%>" required>
+                                            <p><%out.print(D);%></p>
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
-                                            <textarea class="form-control" rows="3" name="forthD" required><%if (request.getParameter("RubricValue")!=null) {out.print(H);}%></textarea>
+                                            <textarea class="form-control" rows="3" name="forthD" id="forthD" ><%if (request.getParameter("RubricValue")!=null) {out.print(H);}%></textarea>
+                                            <span data-alertid="forthD"></span>
                                         </div>
 
                                     </div>
@@ -431,6 +394,104 @@
 
                     </form>
                     <!-- End of col -->
+                    <script>
+                        $(function(){
+
+                            $('#piLinkForm').submit(function(){
+                                $(document).trigger("clear-alert-id.out");
+                                $(document).trigger("clear-alert-id.pi");
+                                $(document).trigger("clear-alert-id.course");
+                                $(document).trigger("clear-alert-id.firstD");
+                                $(document).trigger("clear-alert-id.secondD");
+                                $(document).trigger("clear-alert-id.thirdD");
+                                $(document).trigger("clear-alert-id.forthD");
+                                if($('#Out').val() == ""){
+                                    $(document).trigger("clear-alert-id.out");
+                                    $(document).trigger("set-alert-id-out", [
+                                        {
+                                            message: "Choose an outcome",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#Out').focus();
+                                    return false;
+                                }else if ($('#PI').val() == ""){
+                                    $(document).trigger("clear-alert-id.pi");
+                                    $(document).trigger("set-alert-id-pi", [
+                                        {
+                                            message: "Choose a performance indicator",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#PI').focus();
+                                    return false;
+                                }else if ($('#Course').val() == ""){
+                                    $(document).trigger("clear-alert-id.course");
+                                    $(document).trigger("set-alert-id-course", [
+                                        {
+                                            message: "Choose a course",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#Course').focus();
+                                    return false;
+                                }else if ($('#Type').val() == ""){
+                                    $(document).trigger("clear-alert-id.type");
+                                    $(document).trigger("set-alert-id-type", [
+                                        {
+                                            message: "Choose a link type",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#Type').focus();
+                                    return false;
+                                }else if ($('#firstD').val() == ""){
+                                    $(document).trigger("clear-alert-id.firstD");
+                                    $(document).trigger("set-alert-id-firstD", [
+                                        {
+                                            message: "Enter first rubric",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#firstD').focus();
+                                    return false;
+                                }else if ($('#secondD').val() == ""){
+                                    $(document).trigger("clear-alert-id.secondD");
+                                    $(document).trigger("set-alert-id-secondD", [
+                                        {
+                                            message: "Enter second rubric",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#secondD').focus();
+                                    return false;
+                                }else if ($('#thirdD').val() == ""){
+                                    $(document).trigger("clear-alert-id.thirdD");
+                                    $(document).trigger("set-alert-id-thirdD", [
+                                        {
+                                            message: "Enter third rubric",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#thirdD').focus();
+                                    return false;
+                                }else if ($('#forthD').val() == ""){
+                                    $(document).trigger("clear-alert-id.forthD");
+                                    $(document).trigger("set-alert-id-forthD", [
+                                        {
+                                            message: "Enter fourth rubric",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    $('#forthD').focus();
+                                    return false;
+                                }
+                            });
+                        });
+                        /*$(document).ready(function(){
+                            $('.selectpicker').selectpicker();
+                        });*/
+                    </script>
                 </div>
 
                 <!-- End of row -->

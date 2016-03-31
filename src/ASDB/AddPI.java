@@ -31,9 +31,9 @@ public class AddPI extends HttpServlet {
                     PVal = new String[]{request.getParameter("PI")};
                     sendErrMsg(request.getParameter("PI")+" already existed",request.getParameter("cycle"),request,response);
                 }else {
-                    System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           "+"       ssssss "+ Integer.parseInt(request.getParameter("Thresh"))+"        xxxxx"+request.getParameter("Thresh") );
+                    System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           "+"       STshold "+ Integer.parseInt(request.getParameter("STshold"))+"        pi"+request.getParameter("PI") );
                     if (programID!=0) {
-                        dba.addPI(request.getParameter("PI"), Integer.parseInt(request.getParameter("Thresh")), programID, Integer.parseInt(id));
+                        dba.addPI(request.getParameter("PI"), Integer.parseInt(request.getParameter("STshold")), programID, Integer.parseInt(id));
                         Auditor.add((String)request.getSession().getAttribute("username"),"Added new Performance Indicator (Cycle ID : "+id+")");
 
                     }else {
@@ -77,7 +77,7 @@ public class AddPI extends HttpServlet {
                     sendErrMsg(request.getParameter("PI")+" is already existed",request.getParameter("cycle"),request,response);
 
                 }else {
-                    dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("Thresh")),Integer.parseInt(request.getParameter("PILabel")));
+                    dba.updatePI(request.getParameter("PI"),Integer.parseInt(request.getParameter("STshold")),Integer.parseInt(request.getParameter("PILabel")));
                     Auditor.add((String)request.getSession().getAttribute("username"),"Updated Performance Indicator (ID : "+request.getParameter("PILabel")+")");
 
                     response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&programID="+request.getParameter("programID"));

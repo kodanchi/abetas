@@ -12,7 +12,7 @@
     </resource-ref>
 
     <listener>
-        <listener-class>passReset.timerRun</listener-class>
+        <listener-class>passReset.contextListener</listener-class>
     </listener>
     <listener>
         <listener-class>sessionListener.CustomHttpSessionListener</listener-class>
