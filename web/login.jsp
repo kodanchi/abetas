@@ -1,4 +1,4 @@
-<%--
+<%@ page import="sessionListener.CookiesControl" %><%--
 <%@ page import="sessionListener.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
 --%>
@@ -137,8 +137,14 @@
 
 
                                     </div>--%>
-                                    <p ><input type="checkbox" name="remember" id="test1" /><label  for="test1"><span class="ui"></span>Remember me</label></p>
-
+                                    <p ><input type="checkbox" name="remember" id="test1"
+                                             <%
+                                                 String HEIL = CookiesControl.getCookieValue(request,"rememberCookie");
+                                                 if (HEIL!=null && HEIL.equals("true")){
+                                                     out.print("checked");
+                                                 }
+                                             %>
+                                    /><label  for="test1"><span class="ui"></span>Remember me</label></p>
                                     <input type="hidden" name="backURL" value="<%if (request.getParameter("logout")==null) {
                                     if(request.getHeader("referer")!=null) {
                                         out.print(request.getHeader("referer"));

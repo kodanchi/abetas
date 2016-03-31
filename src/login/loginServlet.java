@@ -76,8 +76,10 @@ public class loginServlet extends HttpServlet {
                                     //System.out.println("checking value : "+request.getParameter("remember"));
                                     if (request.getParameter("remember") != null) {
                                         CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 60 * 30);
+                                        response.addCookie(new Cookie("rememberCookie","true"));
                                     } else {
                                         CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 2);
+                                        response.addCookie(new Cookie("rememberCookie","false"));
                                         session.setMaxInactiveInterval(1200);
                                     }
 
