@@ -57,6 +57,8 @@ public class AuthFilter implements Filter {
         }
 
         if(!isAllowed){
+            request.getHeader("referer");
+            System.out.println(request.getHeader("referer")+"                          888888888888888");
             response.sendRedirect("/login.jsp");
         }else {
             chain.doFilter(req, resp);
