@@ -78,7 +78,7 @@
                     <nav>
                         <ol class="cd-breadcrumb triangle small">
                             <li ><em>PI</em></li>
-                            <li class="current"><em>Rubric Names</em></li>
+                            <li class="current"><em>Rubrics Names</em></li>
                             <li><em>Terms</em></li>
                         </ol>
                     </nav>
@@ -87,10 +87,10 @@
 
             <!-- Here is row -->
             <div class="row">
-                <h2 class="text-center">Specify Rubric Names</h2>
+                <h2 class="text-center">Rubrics Names</h2>
 
                 <div class="col-md-10 col-md-offset-1">
-                    <p>Enter the four rubric names</p>
+                    <p>Enter the four rubrics names</p>
 
                     <form name="myform" action="/AddRubricNames" method="post">
 

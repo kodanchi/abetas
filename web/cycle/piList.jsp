@@ -63,7 +63,7 @@
                     <nav>
                         <ol class="cd-breadcrumb triangle small">
                             <li class="current"><em>PI</em></li>
-                            <li><em>Rubric Names</em></li>
+                            <li><em>Rubrics Names</em></li>
                             <li><em>Terms</em></li>
                         </ol>
                     </nav>
