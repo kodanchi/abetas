@@ -123,7 +123,7 @@
             </table>
 
  <form method="post" action="/Emailrem">
-<input name="emailList"  value="<%=emailLists%>" hidden />
+     <input name="emailList"  value="<%=emailLists%>" hidden />
  <button  type="submit" title="Send Reminder" class="btn btn-primary pull-left ">Send Reminder</button>
  </td>
  </form>
