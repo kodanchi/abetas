@@ -1,5 +1,7 @@
 <%@ page import="FDB.F_Select" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ASDB.AS_Select" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/24/2016
@@ -68,6 +70,70 @@
     <div class="col-md-3">
         <div class="list-group">
             <h4>Completed forms</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+            <%
+
+
+                AS_Select dbs = new AS_Select();
+                ArrayList<String> fInfo = new ArrayList<String>();
+
+                String name = "";
+                String userName = "";
+
+                try {
+                    fInfo = dbs.selectFaculty(fid);
+
+//                        System.out.println("    size    "+emailList.lastIndexOf(';'));
+//                        x=emailList.lastIndexOf(';');
+
+                    for (int i=0;i<fInfo.size();i++){
+                        System.out.println("    xxxxxxxx    ");
+                        System.out.println(fInfo.get(1));
+                        System.out.println(fInfo.get(2));
+                        System.out.println(fInfo.get(3));
+                        System.out.println(fInfo.get(1)+" "+fInfo.get(2)+" "+fInfo.get(3));
+                        name = fInfo.get(1)+" "+fInfo.get(2)+" "+fInfo.get(3);
+                        System.out.println(name);
+                        userName = fInfo.get(4);
+                        System.out.println(userName);
+                    }
+                    System.out.println("    xxxxxxxx    ");
+//                        emailList=emailList.substring(0,x);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <%
 
                 if(fid != null){
@@ -79,7 +145,15 @@
                         out.print("<a href=\"index.jsp?page=showForm&type=formative&id="+frsRow.get(0)+"\" class=\"list-group-item\">"+
                                 frsRow.get(2)+" </br> (Course : "+frsRow.get(1)+")</br>");
                         out.print("<div class=\"pull-right\">Formative</div></br>");
-                        out.print("</a>");
+                        out.print("<form method=\"post\" action=\"/Emailreq\">");
+                        out.print("<input type=\"hidden\" name=\"Fullname\" value=\""); out.print(name); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"Username\" value=\""); out.print(userName); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"course\" value=\""); out.print(frsRow.get(1)); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"pi\" value=\""); out.print(frsRow.get(2)); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"type\" value=\""); out.print("Formative"); out.print("\" hidden />");
+                        out.print("<button  type=\"submit\" title=\"Send Request\" class=\"btn btn-primary pull-left \">Send Request</button>\n" +
+                                " </form>");
+                        out.print("</br></br></a>");
                     }
 
 
@@ -91,7 +165,15 @@
                         out.print("<a href=\"index.jsp?page=showForm&type=summative&id="+srsRow.get(0)+"\" class=\"list-group-item\">"+
                                 srsRow.get(2)+" </br> (Course : "+srsRow.get(1)+")</br>");
                         out.print("<div class=\"pull-right\">Summative</div></br>");
-                        out.print("</a>");
+                        out.print("<form method=\"post\" action=\"/Emailreq\">");
+                        out.print("<input type=\"hidden\" name=\"Fullname\" value=\""); out.print(name); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"Username\" value=\""); out.print(userName); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"course\" value=\""); out.print(srsRow.get(1)); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"pi\" value=\""); out.print(srsRow.get(2)); out.print("\" hidden />");
+                        out.print("<input type=\"hidden\" name=\"type\" value=\""); out.print("Summative"); out.print("\" hidden />");
+                        out.print("<button  type=\"submit\" title=\"Send Request\" class=\"btn btn-primary pull-left \">Send Request</button>\n" +
+                                " </form>");
+                        out.print("</br></br></a>");
                     }
 
 
