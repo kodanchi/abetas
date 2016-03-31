@@ -37,7 +37,7 @@
     String F_instructor_feedback_improvement = "";
     String F_evidence = "";
 
-    String Formative_ID = null;
+    String Formative_Section_ID = null;
     String faculatyId = null;
     String fDate = null;
 
@@ -45,12 +45,12 @@
         ArrayList<String> fData = new ArrayList<String>();
         try {
             if(request.getParameter("id") != null) {
-                Formative_ID = dbs.selectFormmativeIdToEvaluate(Integer.parseInt(request.getParameter("id")));
+                Formative_Section_ID = dbs.selectFormmativeIdToEvaluate(Integer.parseInt(request.getParameter("id")));
                 System.out.println("id : " + request.getParameter("id"));
             }
 
             
-            fData = dbs.selectFormative(Integer.parseInt(Formative_ID));
+            fData = dbs.selectFormative(Integer.parseInt(Formative_Section_ID));
             if(fData != null){
                 F_written_rubic = fData.get(0);
                 F_instructor_feedback_comment = fData.get(1);
@@ -79,10 +79,10 @@
     //Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
     String FK_Link_ID="";
-    if(Formative_ID!=null) {
+    if(Formative_Section_ID !=null) {
     E_Select select = new E_Select();
     try {
-        FK_Link_ID = select.selectLinkIDOfFormF(Integer.parseInt(Formative_ID));
+        FK_Link_ID = select.selectLinkIDOfFormF(Integer.parseInt(Formative_Section_ID));
     } catch (ClassNotFoundException e) {
         e.printStackTrace();
     } catch (SQLException e) {
@@ -273,7 +273,7 @@
                                         ArrayList<String> rubricsNames = new ArrayList<String>();
                                         try {
                                             rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
-                                            rubricsNames = zselect.selectRubricsFormativeNames(Integer.parseInt(Formative_ID));
+                                            rubricsNames = zselect.selectRubricsFormativeNames(Integer.parseInt(Formative_Section_ID));
                                             out.print(rubricsNames.get(0));
                                             N1 = rubricsNames.get(0);
                                             D1 = rubrics.get(0);

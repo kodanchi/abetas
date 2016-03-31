@@ -35,6 +35,7 @@ public class UpdateUser extends HttpServlet {
             String mname = request.getParameter("mname");
             String lname = request.getParameter("lname");
             String uemail = (request.getParameter("uemail") != null ? request.getParameter("uemail") : "");
+            String program = request.getParameter("evaluatorProg");
             String oldUemail = (request.getParameter("olduemail") != null ? request.getParameter("olduemail") : "");
             userVal = new String[]{request.getParameter("id"),userType, fname, mname, lname, uname, uemail};
 
@@ -77,9 +78,9 @@ public class UpdateUser extends HttpServlet {
 
                                 //insert the new userdata to the new level table
                                 if(userNewType.equals("Superuser"))
-                                    idb.addUser(0, request.getParameter("uname"),uemail ,fname,mname,lname);
+                                    idb.addUser(0, request.getParameter("uname"),uemail ,fname,mname,lname,program);
                                 else if (userNewType.equals("Faculty_Member"))
-                                    idb.addUser(1, request.getParameter("uname"),uemail ,fname,mname,lname);
+                                    idb.addUser(1, request.getParameter("uname"),uemail ,fname,mname,lname,program);
 
                                 Auditor.add((String)request.getSession().getAttribute("username"),"Changed user type of user ("+request.getParameter("uname")+
                                         ") from "+userOldType+" to "+userNewType);
@@ -103,7 +104,7 @@ public class UpdateUser extends HttpServlet {
                                 ddb.deleteEvaluator(Integer.parseInt(request.getParameter("id")));
 
                             //insert the new userdata to the new level table
-                                idb.addUser(2, request.getParameter("uname"), null, fname, mname, lname);
+                                idb.addUser(2, request.getParameter("uname"), null, fname, mname, lname,program);
 
                             response.sendRedirect("/users/index.jsp?status=userUpdated");
 

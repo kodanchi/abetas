@@ -28,21 +28,54 @@ public class SelectProgramServlet extends HttpServlet {
         int tid = Integer.parseInt(request.getParameter("tid"));
         int pid = Integer.parseInt(request.getParameter("pid"));
         try {
-            ArrayList<ArrayList<String>> pIListS = dbs.selectPIofSummativeToEvaluate(tid, pid);
-
             PrintWriter out = response.getWriter();
-            for (ArrayList<String> PI : pIListS){
+
+            //ArrayList<ArrayList<String>> pIListF = dbs.selectOutcomesToEvaluate(tid, pid);
 
 
-                out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType="+PI.get(2)+"&piname="+EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item\">"+PI.get(1)+"</br><div class=\"pull-right\" >"+PI.get(2)+"</div></br></a>");
+
+            ArrayList<ArrayList<String>> outcomeList =  dbs.selectOutcomesToEvaluate(tid, pid);
+            out.print("<a href=\"#pis"+"-"+tid+"\" class=\"list-group-item \" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Performance Indicators</a>");
+            out.print(" <div class=\"list-group collapse \" id=\"pis"+"-"+tid+"\" >");
+            for (ArrayList<String> outcome : outcomeList){
+                out.print("<a href=\"#outcomeList\"  class=\"list-group-item\" " +
+                        "onclick=\"new function (){\n" +
+                        "                    show('page', false);\n" +
+                        "                    show('loading', true);\n" +
+                        "                    $.ajax({\n" +
+                        "                       type: 'POST',\n" +
+                        "                       data:{" +
+                        "                           tid: "+tid+"," +
+                        "                           pid: "+pid+"," +
+                        "                           oid: "+outcome.get(0)+"," +
+                        "                           oName:'"+ EncDec.getEncr(outcome.get(1))+"'"+
+                        "                       },\n" +
+                        "                       url:'/SelectOutcomeServlet',\n" +
+                        "                       success: function(result){\n" +
+                        "                        $('#outcomeList').html(result);\n" +
+                        "                        show('page', true);\n" +
+                        "                        show('loading', false);\n" +
+                        "                        scrollTo('outcomeList');" +
+                        "                       }\n" +
+                        "                    });\n" +
+                        "                }\"" +
+                        ">" +outcome.get(1)+"\n" +
+                        "                        </a>\n"
+                         );
             }
+            out.print("</div>");
 
-
-            ArrayList<ArrayList<String>> pIListF = dbs.selectPIofFormativeToEvaluate(tid, pid);
-
-            for (ArrayList<String> PI : pIListF){
-                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(3)) + "&type="+EncDec.getEncr("formative")+"\" class=\"list-group-item\">" + PI.get(1) + "</br><div class=\"pull-right\" >" + PI.get(2) + "</div></br></br></a>");
-            }
+            out.print("<script>");
+            out.print("$(function() {\n" +
+                    "\n" +
+                    "                    $('.list-group-item').on('click', function() {\n" +
+                    "                        $('.glyphicon', this)\n" +
+                    "                                .toggleClass('glyphicon-chevron-right')\n" +
+                    "                                .toggleClass('glyphicon-chevron-down');\n" +
+                    "                    });\n" +
+                    "\n" +
+                    "                });");
+            out.print("</script>");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

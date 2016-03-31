@@ -33,6 +33,7 @@ public class AddUser extends HttpServlet {
             String mname = request.getParameter("mname");
             String lname = request.getParameter("lname");
             String uemail = (request.getParameter("uemail") != null ? request.getParameter("uemail").toLowerCase() : "");
+            String program = request.getParameter("evaluatorProg");
             userVal = new String[]{userType, fname, mname, lname, uname, uemail};
 
             System.out.println(userType);
@@ -49,11 +50,11 @@ public class AddUser extends HttpServlet {
                             sendErrMsg("The Email is already exist",request,response);
                         }else{
                             if(userType.equals("Superuser")) {
-                                idb.addUser(0, uname, uemail, capitalize(fname), capitalize(mname), capitalize(lname));
+                                idb.addUser(0, uname, uemail, capitalize(fname), capitalize(mname), capitalize(lname), null);
                                 Auditor.add((String) request.getSession().getAttribute("username"),
                                         "added new superuser :" + uname);
                             }else if (request.getParameter("userType").equals("Faculty_Member")) {
-                                idb.addUser(1, uname, uemail, capitalize(fname), capitalize(mname), capitalize(lname));
+                                idb.addUser(1, uname, uemail, capitalize(fname), capitalize(mname), capitalize(lname), null);
                                 Auditor.add((String) request.getSession().getAttribute("username"),
                                         "added new Faculty Member :" + uname);
                             }
@@ -62,7 +63,7 @@ public class AddUser extends HttpServlet {
 
                         }
                     }else if (request.getParameter("userType").equals("Evaluator")){
-                        idb.addUser(2, uname, null, capitalize(fname), capitalize(mname), capitalize(lname));
+                        idb.addUser(2, uname, null, capitalize(fname), capitalize(mname), capitalize(lname), program);
                         Auditor.add((String) request.getSession().getAttribute("username"),
                                 "added new Evaluator :" + uname);
                         sendMsg(userType+" : "+capitalize(fname)+" has been added Successfully",request);

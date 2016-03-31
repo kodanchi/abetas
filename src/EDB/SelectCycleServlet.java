@@ -24,8 +24,12 @@ public class SelectCycleServlet extends HttpServlet {
             ArrayList<ArrayList<String>> termList = dbs.selectTermToEvaluate(cid);
 
             PrintWriter out = response.getWriter();
+
+            out.print("<a href=\"#terms"+"-"+cid+"\" class=\"list-group-item \" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Terms</a>");
+            out.print(" <div class=\"list-group collapse \" id=\"terms"+"-"+cid+"\" >");
             for (ArrayList<String> term : termList){
-                out.print("<a href=\"#\" class=\"list-group-item \"" +
+
+                out.print("<a href=\"#term-"+term.get(0)+"-"+cid+"\" class=\"list-group-item list-group-item-warning \" " +
                         "onclick=\"new function (){\n" +
                         "                    show('page', false);\n" +
                         "                    show('loading', true);\n" +
@@ -36,14 +40,32 @@ public class SelectCycleServlet extends HttpServlet {
                         "                       },\n" +
                         "                       url:'/SelectTermServlet',\n" +
                         "                       success: function(result){\n" +
-                        "                        $('#programList').html(result);\n" +
+                        "                        $('#term-"+term.get(0)+"-"+cid+"').html(result);\n" +
                         "                        show('page', true);\n" +
                         "                        show('loading', false);\n" +
+                        "                        scrollTo('term-"+term.get(0)+"-"+cid+"');" +
                         "                       }\n" +
                         "                    })\n" +
                         "                }\"" +
-                        "\">"+term.get(1)+" "+term.get(2)+"</a>");
+                        "data-toggle=\"collapse\">\n" +
+                        "                            <i class=\"glyphicon glyphicon-chevron-right\"></i>"+term.get(1)+" "+term.get(2)+"\n" +
+                        "                        </a>\n" +
+                        "                        <div class=\"list-group collapse\" id=\"term-"+term.get(0)+"-"+cid+"\">\n" +
+                        "                        </div>" );
             }
+            out.print("</div>");
+
+            out.print("<script>");
+            out.print("$(function() {\n" +
+                    "\n" +
+                    "                    $('.list-group-item').on('click', function() {\n" +
+                    "                        $('.glyphicon', this)\n" +
+                    "                                .toggleClass('glyphicon-chevron-right')\n" +
+                    "                                .toggleClass('glyphicon-chevron-down');\n" +
+                    "                    });\n" +
+                    "\n" +
+                    "                });");
+            out.print("</script>");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

@@ -10,10 +10,18 @@ function onUserTypeChng()
     if (selectedValue == "Superuser" || selectedValue == "Faculty_Member")
     {
         document.getElementById("emailDiv").style.visibility = "visible";
+        $('#emailDiv').show();
+
         document.getElementById("userEmail").focus();
-    }else {
-        document.getElementById("emailDiv").style.visibility = "hidden";
+        document.getElementById("evaluatorDiv").style.visibility = "hidden";
+        document.getElementById("evaluatorProgram").value = "";
+    }else if (selectedValue == "Evaluator"){
+        //document.getElementById("emailDiv").style.visibility = "hidden";
+        $('#emailDiv').hide();
         document.getElementById("userEmail").value = "";
+        document.getElementById("evaluatorDiv").style.visibility = "visible";
+        document.getElementById("evaluatorProgram").value = "";
+
     }
 }
 
@@ -35,11 +43,19 @@ function onSubmitAddUser(){
 
     var lvl = document.getElementById("userType");
     var selectedValue = lvl.options[lvl.selectedIndex].value;
+
     if (selectedValue == "Superuser" || selectedValue == "Faculty_Member")
     {
         var email = document.getElementById("userEmail");
     }
 
+    var programValue = "";
+
+    if (selectedValue == "Evaluator")
+    {
+        var program = document.getElementById("evaluatorProgram");
+        programValue = program.options[program.selectedIndex].value;
+    }
 
     if(fname.value == "") {
         $(document).trigger("clear-alert-id.fname");
@@ -188,6 +204,16 @@ function onSubmitAddUser(){
             email.focus();
             return false;
         }
+    }else if(selectedValue == "Evaluator" && programValue == ""){
+        $(document).trigger("clear-alert-id.evaluatorProgram");
+        $(document).trigger("set-alert-id-evaluatorProgram", [
+            {
+                message: "You must select program for the evaluator",
+                priority: "error"
+            }
+        ]);
+        evaluatorProgram.focus();
+        return false;
     }else {
         document.getElementById("UserAddForm").submit();
     }
