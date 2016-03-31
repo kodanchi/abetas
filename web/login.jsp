@@ -142,9 +142,9 @@
                                     <input type="hidden" name="backURL" value="<%if (request.getParameter("logout")==null) {
                                     if(request.getHeader("referer")!=null) {
                                         out.print(request.getHeader("referer"));
-                                        }else {
-                                            out.print("/index.jsp");
-                                        }
+                                    }else {
+                                        out.print("/index.jsp");
+                                    }
                                     }else {
                                     out.print("/index.jsp");
                                     }%>" />

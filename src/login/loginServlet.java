@@ -78,7 +78,7 @@ public class loginServlet extends HttpServlet {
                                         CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 60 * 30);
                                     } else {
                                         CookiesControl.addCookie(response, "userCookie", userEmail, 60 * 60 * 2);
-                                        session.setMaxInactiveInterval(30);
+                                        session.setMaxInactiveInterval(1200);
                                     }
 
                                     successLogin = true;
