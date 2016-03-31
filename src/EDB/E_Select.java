@@ -527,7 +527,7 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM cycle;";
+            String query = "SELECT * FROM cycle ORDER BY Cycle_ID DESC ;";
 
             /*
              *  Get connection from the DataSource

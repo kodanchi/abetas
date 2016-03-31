@@ -47,8 +47,7 @@ public class SelectOutcomeServlet extends HttpServlet {
             PIRubrics = dbs.selectRubricsToEvaluate(tid);
 
 
-            out.print("<div class=\"list-group list-group-root\">");
-            out.print("<div class=\"list-group list-group-root\">");
+            out.print("<div class=\"list-group well\">");
             for (ArrayList<String> PI : pIListS){
 
                 PIResults = dbs.selectSummativeRubricResultsToEvaluate(Integer.valueOf(PI.get(0)),pid,tid);
@@ -95,10 +94,11 @@ public class SelectOutcomeServlet extends HttpServlet {
             ArrayList<ArrayList<String>> pIListF = dbs.selectPIofOutcomeFormativeToEvaluate(tid, pid,oid);
 
             for (ArrayList<String> PI : pIListF){
-                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(2)) + "&type="+EncDec.getEncr("formative")+"\" class=\"list-group-item\">" + PI.get(1) + "</br><div class=\"pull-right\" >Formative</div></br></br></a>");
+                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(2)) + "&type="+EncDec.getEncr("formative")+
+                        "\" class=\"list-group-item\">" + PI.get(1) + "</br><div class=\"pull-right\" >Formative</div></br></a>");
             }
             out.print("</div>");
-            out.print("<div>");
+            out.print("<div  class=\"jumbotron\">");
             out.print(String.format("Passed Performance Indicators: %s out of %s",passPis,pIListS.size()));
             out.print("</div>");
 

@@ -35,10 +35,10 @@ public class SelectProgramServlet extends HttpServlet {
 
 
             ArrayList<ArrayList<String>> outcomeList =  dbs.selectOutcomesToEvaluate(tid, pid);
-            out.print("<a href=\"#pis"+"-"+tid+"\" class=\"list-group-item \" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Performance Indicators</a>");
+            out.print("<a href=\"#pis"+"-"+tid+"\" class=\"list-group-item list-group-item-warning\" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Outcomes</a>");
             out.print(" <div class=\"list-group collapse \" id=\"pis"+"-"+tid+"\" >");
             for (ArrayList<String> outcome : outcomeList){
-                out.print("<a href=\"#outcomeList\"  class=\"list-group-item\" " +
+                out.print("<a href=\"#outcomeList\"  class=\"list-group-item \" " +
                         "onclick=\"new function (){\n" +
                         "                    show('page', false);\n" +
                         "                    show('loading', true);\n" +

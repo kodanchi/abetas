@@ -1,5 +1,6 @@
 <%@ page import="EDB.E_Select" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 2/27/2016
@@ -13,20 +14,30 @@
 
 <div class="container">
     <div class="row">
+        <h3 class="text-center">Result</h3>
         <div class="col-md-6">
-            <h5>Cycles</h5>
+
+
             <div class="just-padding">
 
 
                 <div class="list-group well">
-                    <a href="#cycles" class="list-group-item " data-toggle="collapse"><i class="glyphicon glyphicon-chevron-right"></i>Cycles</a>
+                    <p>Please choose the cycle down to the outcome to view the evaluation result:</p>
+                    <a href="#cycles" class="list-group-item list-group-item-info" data-toggle="collapse"><i class="glyphicon glyphicon-chevron-right"></i>Cycles</a>
                     <div class="list-group collapse" id="cycles">
                     <%
                         E_Select dbs = new E_Select();
-                        ArrayList<Integer> cycleList = dbs.selectCycle();
+                        ArrayList<Integer> cycleList = null;
+                        try {
+                            cycleList = dbs.selectCycle();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
 
                         for (Integer cycleId : cycleList){
-                            out.print("<a href=\"#cycle-"+cycleId+"\" class=\"list-group-item list-group-item-success\" onclick=\"new function (){\n" +
+                            out.print("<a href=\"#cycle-"+cycleId+"\" class=\"list-group-item \" onclick=\"new function (){\n" +
                                     "                    show('page', false);\n" +
                                     "                    show('loading', true);\n" +
                                     "                    $.ajax({\n" +

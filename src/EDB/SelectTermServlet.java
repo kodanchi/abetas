@@ -25,10 +25,10 @@ public class SelectTermServlet extends HttpServlet {
             ArrayList<ArrayList<String>> programList = dbs.selectAllProgramsToEvaluate();
 
             PrintWriter out = response.getWriter();
-            out.print("<a href=\"#programs"+"-"+tid+"\" class=\"list-group-item \" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Programs</a>");
-            out.print(" <div class=\"list-group collapse \" id=\"programs"+"-"+tid+"\" >");
+            out.print("<a href=\"#programs"+"-"+tid+"\" class=\"list-group-item list-group-item-info\" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Programs</a>");
+            out.print(" <div class=\"list-group  collapse \" id=\"programs"+"-"+tid+"\" >");
             for (ArrayList<String> program : programList){
-                out.print("<a href=\"#program-"+program.get(0)+"-"+tid+"\" class=\"list-group-item list-group-item-info \" " +
+                out.print("<a href=\"#program-"+program.get(0)+"-"+tid+"\" class=\"list-group-item  \" " +
                         "onclick=\"new function (){\n" +
                         "                    show('page', false);\n" +
                         "                    show('loading', true);\n" +

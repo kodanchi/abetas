@@ -25,11 +25,11 @@ public class SelectCycleServlet extends HttpServlet {
 
             PrintWriter out = response.getWriter();
 
-            out.print("<a href=\"#terms"+"-"+cid+"\" class=\"list-group-item \" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Terms</a>");
-            out.print(" <div class=\"list-group collapse \" id=\"terms"+"-"+cid+"\" >");
+            out.print("<a href=\"#terms"+"-"+cid+"\" class=\"list-group-item list-group-item-warning\" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Terms</a>");
+            out.print(" <div class=\"list-group  collapse \" id=\"terms"+"-"+cid+"\" >");
             for (ArrayList<String> term : termList){
 
-                out.print("<a href=\"#term-"+term.get(0)+"-"+cid+"\" class=\"list-group-item list-group-item-warning \" " +
+                out.print("<a href=\"#term-"+term.get(0)+"-"+cid+"\" class=\"list-group-item  \" " +
                         "onclick=\"new function (){\n" +
                         "                    show('page', false);\n" +
                         "                    show('loading', true);\n" +
