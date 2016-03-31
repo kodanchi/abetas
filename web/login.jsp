@@ -139,6 +139,16 @@
                                     </div>--%>
                                     <p ><input type="checkbox" name="remember" id="test1" /><label  for="test1"><span class="ui"></span>Remember me</label></p>
 
+                                    <input type="hidden" name="backURL" value="<%if (request.getParameter("logout")==null) {
+                                    if(request.getHeader("referer")!=null) {
+                                        out.print(request.getHeader("referer"));
+                                        }else {
+                                            out.print("/index.jsp");
+                                        }
+                                    }else {
+                                    out.print("/index.jsp");
+                                    }%>" />
+
                                     <button type="submit" name="login" value="Login" class="btn btn-primary btn-block">Login</button>
                                     <div class="forgot">
                                         <button type="button" class="btn btn-default btn-block" onclick="new function(){

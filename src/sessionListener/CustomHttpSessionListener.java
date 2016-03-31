@@ -2,9 +2,11 @@ package sessionListener;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
@@ -31,6 +33,6 @@ public class CustomHttpSessionListener implements HttpSessionListener {
         HashMap<String, HttpSession> activeUsers = (HashMap<String, HttpSession>)context.getAttribute("activeUsers");
         activeUsers.remove(session.getId());
         System.out.println("userSession removed from activeUsers");*/
-
+System.out.println("kjcdnskcms,dcdscdscdskckjdschdjkhckhvhsfvsh dhdhbghgdhghg");
     }
 }
