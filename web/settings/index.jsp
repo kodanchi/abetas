@@ -35,6 +35,7 @@
     <link href="/css/flat-ui.css" rel="stylesheet" />
     <link href="/css/cus.css" rel="stylesheet" />
     <link href="/css/bootstrap-colorpicker.css" rel="stylesheet" />
+    <link href="/css/checkbox.css" rel="stylesheet" />
 
 
 <%--
@@ -53,6 +54,7 @@
 <script src="/js/bootbox.min.js" type="application/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="application/javascript"></script>
 <script src="/js/uploadInput.js" type="application/javascript"></script>
+<script src="/js/prettify.js" type="application/javascript"></script>
 <div id="page">
 <div id="header">
     <jsp:include page="/Header.jsp"/>
@@ -226,6 +228,11 @@
 
                                         </div>
                                         <p class="help-block">Allowed size and type: 2MB, png</p>
+                                        <label>Remove logo? </label>
+                                        <div class="checkbox">
+
+                                            <input type="checkbox" name="removeLogo" id="rl" /><label  for="rl"><span class="ui"></span>Remove</label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4 paddingImg" style="background-color: <%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>;">
@@ -349,7 +356,7 @@
                             <input name="uOldemail" value="<%if(userData != null)out.print(userData.get(5));%>" hidden >
                             <input name="uid" value="<%if(userData != null)out.print(userData.get(0));%>" hidden>
                             <input name="uname" value="<%if(userData != null)out.print(userData.get(4));%>" hidden>
-                            <input name="ulvl" value="<%if(request.getSession().getAttribute("userLvl") != null)out.print((Integer) request.getSession().getAttribute("userLvl"));%>" hidden>
+                            <input name="ulvl" value="<%if(request.getSession().getAttribute("userLvl") != null)out.print(request.getSession().getAttribute("userLvl"));%>" hidden>
                             <button type="button" onclick="onSubmitUpdateUser()" class="btn btn-primary" >Apply changes</button>
 
                         </form>

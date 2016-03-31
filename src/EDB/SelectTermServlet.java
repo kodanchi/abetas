@@ -22,7 +22,17 @@ public class SelectTermServlet extends HttpServlet {
         dbs = new E_Select();
         int tid = Integer.parseInt(request.getParameter("tid"));
         try {
-            ArrayList<ArrayList<String>> programList = dbs.selectAllProgramsToEvaluate();
+
+            Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
+            ArrayList<ArrayList<String>> programList = null;
+
+            if(userLvl ==3){
+                Integer eid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
+                programList = dbs.selectAllProgramsofEvaluatorToEvaluate(eid);
+            }else {
+                programList = dbs.selectAllProgramsToEvaluate();
+            }
+
 
             PrintWriter out = response.getWriter();
             out.print("<a href=\"#programs"+"-"+tid+"\" class=\"list-group-item list-group-item-info\" data-toggle=\"collapse\"><i class=\"glyphicon glyphicon-chevron-right\"></i>Programs</a>");

@@ -193,6 +193,8 @@ function onSubmitUpdateUser(){
             ]);
             password.focus();
         } else {//submit
+
+
             document.getElementById("usrform").submit();
         }
 
@@ -248,9 +250,17 @@ function onSubmitUpdateSystem(){
                 return false;
 
         }else {
+
             document.getElementById("sysform").submit();
         }
     }else {
+        /*if ($('#removeLogo').is(":checked"))
+        {
+            // it is checked
+            $('#ulogo').val("removed");
+        }else {
+            $('#ulogo').val(null)
+        }*/
         document.getElementById("sysform").submit();
     }
 

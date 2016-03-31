@@ -5,6 +5,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +21,7 @@ import java.util.List;
 @WebServlet(name = "SystemSettingsServlet", urlPatterns = {"/sysSettingsUpdate"})
 public class SystemSettingsServlet extends HttpServlet {
 
-    private String uname,cname,ulogo,color = null;
+    private String uname,cname,ulogo,color,removeLogo = null;
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
     private boolean isValid = true;
@@ -65,6 +66,15 @@ public class SystemSettingsServlet extends HttpServlet {
                                     color = "#043366";
                                 }
                                 break;
+                            case "removeLogo":
+                                removeLogo = item.getString();
+                                System.out.println("removeLogo : "+removeLogo);
+                                /*if(color.equals("")){
+                                    *//*sendMsg("College name must be entered",request,response);
+                                    isValid = false;*//*
+                                    color = "#043366";
+                                }*/
+                                break;
                             default:
                                 System.out.println("default fired!");
                         }
@@ -103,14 +113,33 @@ public class SystemSettingsServlet extends HttpServlet {
                                     isValid = false;
                                 }
                             }else{
-                                ulogo = null;
+                                ulogo = "same";
                             }
                         }
                     }
 
                     if(isValid){
+
+                        ServletContext context = request.getServletContext();
                         Settings_Update adb = new Settings_Update();
-                        adb.updateSystemSettings(uname,cname,ulogo,color);
+
+                        if(removeLogo != null && removeLogo.equals("on")){
+                            adb.updateSystemSettings(uname,cname,null,color);
+                            context.setAttribute("ulogo",null);
+                        }else if (ulogo.equals("same")){
+                            adb.updateSystemSettings(uname,cname,(String) context.getAttribute("ulogo"),color);
+
+                        }else {
+                            adb.updateSystemSettings(uname,cname,ulogo,color);
+                            context.setAttribute("ulogo",ulogo);
+                        }
+
+
+                        context.setAttribute("uname",uname);
+                        context.setAttribute("cname",cname);
+                        context.setAttribute("color",color);
+
+
                         Auditor.add((String)request.getSession().getAttribute("username"),"Updated the system settings");
                     }
 

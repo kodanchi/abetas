@@ -15,32 +15,37 @@
         System.out.println("from header, username is : "+username);
     }
 
-    AS_Select dbs = new AS_Select();
-    ArrayList<String> uniData = dbs.selectHeaderData();
+    String ulogo = (String) request.getServletContext().getAttribute("ulogo");
+    String uname = (String) request.getServletContext().getAttribute("uname");
+    String cname = (String) request.getServletContext().getAttribute("cname");
+    String color = (String) request.getServletContext().getAttribute("color");
+
+    /*AS_Select dbs = new AS_Select();
+    ArrayList<String> uniData = dbs.selectHeaderData();*/
 
 
 %>
 <header>
     <style>
         .block{
-            color:<%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;
+            color:<%if(color!= null){out.print(color);}%>;
         }
     </style>
-    <div class="navbar-info" style=" background-color: <%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;">
+    <div class="navbar-info" style=" background-color: <%if(color!= null){out.print(color);}%>;">
         <div class="container">
-            <nav class="navbar navbar-info navbar-inverse" role="navigation" style="margin-bottom:-0px; background-color: <%if(uniData != null && uniData.get(3)!= null){out.print(uniData.get(3));}%>;">
+            <nav class="navbar navbar-info navbar-inverse" role="navigation" style="margin-bottom:-0px; background-color: <%if(color!= null){out.print(color);}%>;">
                 <div class="row" style="margin-bottom:10px; margin-top: 20px;">
                     <div class="navbar-header" style="width:100%">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
                             <span class="sr-only">Toggle navigation</span>
                         </button>
                         <%
-                            if(uniData.get(2)!= null){
+                            if(ulogo!= null){
                                 out.println("<a class=\" centerI\" > \n" +
                                         "                            <img width=\"235px\" class=\"\" " +
-                                        "src=\""+uniData.get(2)+"\" alt=\""+uniData.get(0)+"\"></a>");
+                                        "src=\""+ulogo+"\" alt=\""+uname+"\"></a>");
                             }else {
-                                out.println("<div class=\"title-uppercase text-white text-center\">"+uniData.get(1)+"</div>");
+                                out.println("<div class=\"title-uppercase white text-center\">"+cname+"</div>");
                             }
                         %>
                         <%--<a class="navbar-brand centerI" href="http://www.uod.edu.sa">

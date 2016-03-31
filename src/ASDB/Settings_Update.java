@@ -399,17 +399,17 @@ public class Settings_Update {
              * Execute the query
              */
             String query = null;
-            if(ulogo != null) {
+            /*if(ulogo != null) {*/
                 query = "UPDATE university SET Uni_name=?, College_name=?, Color=?, Uni_logo=? LIMIT 1;";
-            }else {
+            /*}else {
                 query = "UPDATE university SET `Uni_name`=?, `College_name`=?, Color=? LIMIT 1;";
-            }
+            }*/
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, uname);
             preparedStatement.setString(2, cname);
             preparedStatement.setString(3, color);
-            if(ulogo != null)
+            //if(ulogo != null)
             preparedStatement.setString(4, ulogo);
 
             //preparedStatement.setString(4, oldUname);

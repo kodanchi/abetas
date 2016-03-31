@@ -2942,6 +2942,76 @@ public class E_Select {
 
 
 
+
+    public ArrayList<ArrayList<String>> selectAllProgramsofEvaluatorToEvaluate(int evaluator) throws ClassNotFoundException, SQLException {
+
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        ArrayList<String> dataRow = new ArrayList<String>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT P_ID, P_name \n" +
+                    "FROM abetasdb.program, evaluator\n" +
+                    "WHERE E_program = P_name\n" +
+                    "AND E_ID = ?;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, evaluator);
+
+            rs = preparedStatement.executeQuery();
+            //
+            while (rs.next()) {
+                dataRow = new ArrayList<String>();
+                dataRow.add(rs.getString(1));
+                dataRow.add(rs.getString(2));
+                data.add(dataRow);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */
+            rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+        }
+
+        return data;
+
+    }
+
+
+
+
     public ArrayList<ArrayList<String>> selectAllProgramsToEvaluate() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
