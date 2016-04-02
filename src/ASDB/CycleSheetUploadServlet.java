@@ -51,17 +51,22 @@ public class CycleSheetUploadServlet extends HttpServlet {
                 dataRow = dataArr.get(i);
 
                 if(dataType.equals("students")){
-                    System.out.println("dataType : "+dataType);
-                    dba.addStudent(dataRow.get(1), Integer.parseInt(dataRow.get(0)), Integer.parseInt(section));
-                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
-
+                    if(dbs.isStudentIDExist(dataRow.get(0),Integer.parseInt(section))){
+                        isValid = false;
+                        sendErrorMsg(dataRow.get(0)+ " is already existed in this section.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
+                        break;
+                    }else {
+                        System.out.println("dataType : "+dataType);
+                        dba.addStudent(dataRow.get(1), dataRow.get(0), Integer.parseInt(section));
+                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
+                    }
                 }else if(dataType.equals("pis")){
                     if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle))){
                         isValid = false;
                         sendErrorMsg(dataRow.get(0)+ " is already existed.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
                         break;
                     }else {
-                        dba.addPI(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(thresh), Integer.parseInt(cycle));
+                        dba.addPI(dataRow.get(0), Integer.parseInt(dataRow.get(1)) ,Integer.parseInt(programID), Integer.parseInt(cycle));
                         Auditor.add((String)request.getSession().getAttribute("username"),"Added new performance indicator via excel sheet (Cycle ID : "+cycle+")");
 
                     }
