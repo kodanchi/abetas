@@ -48,13 +48,18 @@ public class SystemSettingsServlet extends HttpServlet {
                                 if(uname.equals("")){
                                     sendMsg("University name must be entered",request,response);
                                     isValid = false;
+                                } else if (!uname.matches("/^[a-zA-Z]*$/g")) {
+                                    sendMsg("Name must have only alphabetic letters", request, response);
+                                    isValid = false;
                                 }
-
                                 break;
                             case "cname":
                                 cname = item.getString();
                                 if(cname.equals("")){
                                     sendMsg("College name must be entered",request,response);
+                                    isValid = false;
+                                } else if (!cname.matches("/^[a-zA-Z]*$/g")) {
+                                    sendMsg("Name must have only alphabetic letters",request,response);
                                     isValid = false;
                                 }
                                 break;
@@ -99,8 +104,6 @@ public class SystemSettingsServlet extends HttpServlet {
                                         ulogo = "/" + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
                                         System.out.println("File Uploaded Successfully!"+ulogo);
-
-
 
                                     } else {
                                         sendMsg("university logo must be type of PNG",request,response);

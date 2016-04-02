@@ -199,6 +199,14 @@
                                                                                         priority: "error"
                                                                                     }
                                                                                 ]);
+                                                                            }else if((toInput.value - fromInput.value)>1){
+                                                                                toInput.focus();
+                                                                                $(document).trigger("set-alert-id-yearAlert", [
+                                                                                    {
+                                                                                        message: "Year period is not valid",
+                                                                                        priority: "error"
+                                                                                    }
+                                                                                ]);
                                                                             }
                                                                         }
 
