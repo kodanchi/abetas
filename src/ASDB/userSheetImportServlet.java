@@ -25,7 +25,7 @@ public class userSheetImportServlet extends HttpServlet {
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String[] sheetChecker = {"firstname","middlename","lastname","username","email","level"};
+        String[] sheetChecker = {"firstname","middlename","lastname","username","level","email"};
         ImportUserSheet importer = new ImportUserSheet(request);
         //PrintWriter out = response.getWriter();
 

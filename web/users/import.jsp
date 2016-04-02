@@ -42,7 +42,7 @@
                             <p class="text-justify">Please insure that the excel file format is following the same
                                 format as the figure, you are responsible for any wrong important data. The first column:
                                 firstname the second column: middlename the third column: lastname the fourth column:
-                                username the fifth column: email the sixth column: level</p>
+                                username the fifth column: level the sixth column: email.</p>
                             <p>Note: the evaluator email should be empty</p>
                             <p class="red"><strong>You must enter the Evaluator program manually</strong></p>
                            </div>
@@ -74,7 +74,7 @@
                             </div>
                         </div>
                         <button type="submit"  class="btn btn-primary">Upload</button>
-                        <a class="btn btn-primary pull-right" href="index.jsp">Back</a>
+                        <a class="btn btn-primary pull-right" href="/users/index.jsp">Back</a>
                     </form>
 
 

@@ -33,6 +33,6 @@ public class CustomHttpSessionListener implements HttpSessionListener {
         HashMap<String, HttpSession> activeUsers = (HashMap<String, HttpSession>)context.getAttribute("activeUsers");
         activeUsers.remove(session.getId());
         System.out.println("userSession removed from activeUsers");*/
-System.out.println("kjcdnskcms,dcdscdscdskckjdschdjkhckhvhsfvsh dhdhbghgdhghg");
+System.out.println("Session ended : "+httpSessionEvent.getSession().getId());
     }
 }

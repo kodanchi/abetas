@@ -86,7 +86,7 @@
                 if(j == 3 && dbs.selectUserIfExist(dataRow.get(3))){
                     out.print("<td class=\"danger\">");
                     isValid = false;
-                }else if(j == 4 && dbs.selectEmailIfExist(dataRow.get(4))){
+                }else if(j == 5 && dbs.selectEmailIfExist(dataRow.get(5))){
                     out.print("<td class=\"danger\">");
                     isValid = false;
                 }else {

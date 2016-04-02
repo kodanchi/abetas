@@ -198,24 +198,41 @@ public class ImportUserSheet {
                         }
                     }else {
                         try {
+                            //cell.setCellType(Cell.CELL_TYPE_STRING);
                             System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
 
-                            if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                                switch (j){
-                                    case 1:
+                            switch (j){
+                                case 1:
+                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+
+                                        //System.out.print(cell.getStringCellValue() + "\t\t");
+
+
                                         if(cell.getStringCellValue().equals(" ")){
                                             dataRow.add(" ");
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-                                        break;
-                                    case 3: //checking if the usernames already exist or not in db
-                                        /*if(db.selectUserIfExist(cell.getStringCellValue())){
-                                            Error_Msg = "The username: "+ cell.getStringCellValue()+" is already exist in the " +
-                                                    "database, please change it in the sheet and try upload it again, or choose another file.";
-                                            file.close();
-                                            return false;
-                                        }else*/ if(cell.getStringCellValue().equals("")){
+
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+
+                                    break;
+                                case 3: //checking if the usernames already exist or not in db
+
+
+
+                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+
+                                        //System.out.print(cell.getStringCellValue() + "\t\t");
+
+
+                                        if(cell.getStringCellValue().equals("")){
                                             System.out.print("errrrrr not same format");
                                             Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
                                                     "                                        \"that shown in the import page";
@@ -225,16 +242,52 @@ public class ImportUserSheet {
                                             dataRow.add(cell.getStringCellValue());
                                         }
 
-                                        break;
-                                    case 4: //checking if the emails already exist or not in db
-                                        if(!row.getCell(j+1).equals("evaluator")){
-                                            /*if(db.selectEmailIfExist(cell.getStringCellValue())){
-                                                Error_Msg = "The Email: "+cell.getStringCellValue()+" is already exist in the" +
-                                                        "database, please change it in the sheet and try upload it again, or choose" +
-                                                        " another file.";
-                                                file.close();
-                                                return false;
-                                            }else*/ if(cell.getStringCellValue().equals("")){
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+                                    break;
+                                case 4://checking if the emails already exist or not in db
+
+                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+
+                                        if(!cell.getStringCellValue().equalsIgnoreCase("superuser") &&
+                                                !cell.getStringCellValue().equalsIgnoreCase("faculty") &&
+                                                !cell.getStringCellValue().equalsIgnoreCase("evaluator")){
+                                            Error_Msg = "The Level: "+cell.getStringCellValue()+" is not what it must be specified " +
+                                                    "in the sheet!, please go back and change then try upload it again, or choose " +
+                                                    "another file.";
+                                            file.close();
+                                            return false;
+                                        }else {
+                                            dataRow.add(cell.getStringCellValue());
+                                        }
+
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+
+
+                                    break;
+                                case 5:
+
+                                    System.out.println("col 5 :"+row.getCell(j-1));
+                                    if(row.getCell(j-1).getStringCellValue().equals("evaluator")){
+                                        dataRow.add(" ");
+                                        System.out.println("yess no need 4 email");
+                                    }else {
+
+
+                                        if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+
+                                            if(cell.getStringCellValue().equals("")){
                                                 System.out.print("errrrrr not same format");
                                                 Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
                                                         "                                        \"that shown in the import page";
@@ -251,42 +304,30 @@ public class ImportUserSheet {
                                                     dataRow.add(cell.getStringCellValue());
                                                 }
                                             }
-                                        }else {
-                                            dataRow.add("");
-                                        }
 
-                                        break;
-                                    case 5:
-                                        if(!cell.getStringCellValue().equalsIgnoreCase("superuser") &&
-                                                !cell.getStringCellValue().equalsIgnoreCase("faculty") &&
-                                                !cell.getStringCellValue().equalsIgnoreCase("evaluator")){
-                                            Error_Msg = "The Level: "+cell.getStringCellValue()+" is not what it must be specified " +
-                                                    "in the sheet!, please go back and change then try upload it again, or choose " +
-                                                    "another file.";
+                                        }else {
+                                            System.out.print("errrrrr not same format");
+                                            Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                    "that shown in the import page";
                                             file.close();
                                             return false;
-                                        }else {
-                                            dataRow.add(cell.getStringCellValue());
-                                        }
-                                        break;
-                                    default:
-
-                                        if(cell.getStringCellValue().equals(" ")){
-                                            dataRow.add(" ");
-                                        }else {
-                                            dataRow.add(cell.getStringCellValue());
                                         }
 
+                                    }
 
-                                }
-                                //System.out.print(cell.getStringCellValue() + "\t\t");
-                            }else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                        "that shown in the import page";
-                                file.close();
-                                return false;
+                                    break;
+                                default:
+
+                                    if(cell.getStringCellValue().equals(" ")){
+                                        dataRow.add(" ");
+                                    }else {
+                                        dataRow.add(cell.getStringCellValue());
+                                    }
+
+
                             }
+
+
                         }catch (NullPointerException e){
                             e.fillInStackTrace();
 
