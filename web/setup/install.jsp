@@ -457,7 +457,7 @@ InstallDB dbCon = new InstallDB(null);
                 $(document).trigger("clear-alert-id.fname");
                 $(document).trigger("set-alert-id-fname", [
                     {
-                        message: "username must be in range 3-20 characters",
+                        message: "first name must be in range 3-20 characters",
                         priority: "error"
                     }
                 ]);
@@ -496,7 +496,7 @@ InstallDB dbCon = new InstallDB(null);
                 $(document).trigger("clear-alert-id.mname");
                 $(document).trigger("set-alert-id-mname", [
                     {
-                        message: "first name must be in range 3-20 characters",
+                        message: "middle name must be in range 3-20 characters",
                         priority: "error"
                     }
                 ]);
@@ -521,6 +521,32 @@ InstallDB dbCon = new InstallDB(null);
                 //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.lname");
                 $(document).trigger("set-alert-id-lname", [
+                    {
+                        message: "name must have only alphabetic letters",
+                        priority: "error"
+                    }
+                ]);
+                $('#rootwizard').find("a[href*='tab5']").trigger('click');
+                $('#adminLastName').focus();
+                return false;
+            }else if(!/^[a-zA-Z]*$/g.test($('#uname').val())) {
+                //document.getElementById("alert").style.visibility = "visible";
+                //$('#alertt').html('You must enter admin first name');
+                $(document).trigger("clear-alert-id.uname");
+                $(document).trigger("set-alert-id-uname", [
+                    {
+                        message: "name must have only alphabetic letters",
+                        priority: "error"
+                    }
+                ]);
+                $('#rootwizard').find("a[href*='tab5']").trigger('click');
+                $('#adminLastName').focus();
+                return false;
+            }else if(!/^[a-zA-Z]*$/g.test($('#cname').val())) {
+                //document.getElementById("alert").style.visibility = "visible";
+                //$('#alertt').html('You must enter admin first name');
+                $(document).trigger("clear-alert-id.cname");
+                $(document).trigger("set-alert-id-cname", [
                     {
                         message: "name must have only alphabetic letters",
                         priority: "error"

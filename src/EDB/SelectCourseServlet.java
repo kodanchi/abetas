@@ -133,8 +133,25 @@ public class SelectCourseServlet extends HttpServlet {
                         "                                    })\n" +
                         "                                }\n" +
                         "                            }\n" +
-                        "                        </script>");
+                        "                        ");
 
+                int threshold;
+                threshold = dbs.selectThresholdToEvaluate(pIid);
+                out.print("document.getElementById(\"writtenResult\").innerHTML='");
+                float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
+                float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
+                float passOrFailresults = developed + exemplary;
+                System.out.println("developed + exemplary = "+ passOrFailresults);
+                if(passOrFailresults > threshold ) {
+                    out.print("<Strong style=\"color:Green;\">The requirements were met for this course</Strong>");
+                    out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
+                            ( passOrFailresults - threshold)));
+                }else {
+                    out.print("<Strong style=\"color:Red;\">The requirements were not met for this course</Strong>");
+                    out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
+                            (threshold - passOrFailresults)));
+                }
+                out.print("' </script>");
 
             }
 

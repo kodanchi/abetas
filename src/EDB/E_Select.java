@@ -2639,7 +2639,7 @@ public class E_Select {
     }
 
 
-    public int selectThresholdOfSummativeToEvaluate(int FK_Section_ID, int FK_pi_ID, int FK_T_ID, int FK_P_ID, String FK_C_ID) throws ClassNotFoundException, SQLException {
+    public int selectThresholdOfSummativeToEvaluate(int PI_Label) throws ClassNotFoundException, SQLException {
 
         int data = -1;
 
@@ -2652,19 +2652,9 @@ public class E_Select {
         try {
 
 
-            String query = "SELECT Threshold \n" +
-                    "FROM  performance_indicator, link_out_pi, course, abetasdb.section , summative\n" +
-                    "where summative.FK_Link_ID = link_out_pi.Link_ID \n" +
-                    "and LinkType='Summative' \n" +
-                    "AND link_out_pi.FK_C_ID= course.C_code\n" +
-                    "AND summative.FK_Section_ID=abetasdb.section.Section_ID\n" +
-                    "AND performance_indicator.PI_Label = link_out_pi.FK_pi_ID\n" +
-                    "AND summative.Sum_submitted=1\n" +
-                    "AND summative.FK_Section_ID= ?\n" +
-                    "and link_out_pi.FK_pi_ID= ? \n" +
-                    "and link_out_pi.FK_P_ID= ? \n" +
-                    "and link_out_pi.FK_T_ID= ? \n" +
-                    "AND link_out_pi.FK_C_ID= ?;";
+            String query = "select Threshold\n" +
+                    "from performance_indicator\n" +
+                    "where performance_indicator.PI_Label = ?";
             //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
@@ -2677,11 +2667,7 @@ public class E_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, FK_Section_ID);
-            preparedStatement.setInt(2, FK_pi_ID);
-            preparedStatement.setInt(4, FK_T_ID);
-            preparedStatement.setInt(3, FK_P_ID);
-            preparedStatement.setString(5, FK_C_ID);
+            preparedStatement.setInt(1, PI_Label);
 
             rs = preparedStatement.executeQuery();
 
