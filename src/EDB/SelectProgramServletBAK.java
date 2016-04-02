@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * http://stackoverflow.com/questions/23947992/how-to-encrypt-encode-url-parameters-in-jsp
  */
-@WebServlet(name = "SelectProgramServlet", urlPatterns = {"/SelectProgramServlet"})
+@WebServlet(name = "SelectProgramServletBAK", urlPatterns = {"/5"})
 public class SelectProgramServletBAK extends HttpServlet {
     private E_Select dbs;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
