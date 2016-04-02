@@ -31,12 +31,12 @@ public class userSheetUploadServlet extends HttpServlet {
         try {
             for(int i=0;i<dataArr.size();i++){
                 dataRow = dataArr.get(i);
-                if(dataRow.get(5).equalsIgnoreCase("superuser")){
-                    db.addUser(0,dataRow.get(3),dataRow.get(4),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"",null);
-                }else if(dataRow.get(5).equalsIgnoreCase("faculty")){
-                    db.addUser(1,dataRow.get(3),dataRow.get(4),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"",null);
-                }else if(dataRow.get(5).equalsIgnoreCase("evaluator")){
-                    db.addUser(2,dataRow.get(3),dataRow.get(4),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"",null);
+                if(dataRow.get(4).equalsIgnoreCase("superuser")){
+                    db.addUser(0,dataRow.get(3),dataRow.get(5),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"",null);
+                }else if(dataRow.get(4).equalsIgnoreCase("faculty")){
+                    db.addUser(1,dataRow.get(3),dataRow.get(5),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"",null);
+                }else if(dataRow.get(4).equalsIgnoreCase("evaluator")){
+                    db.addUser(2,dataRow.get(3),dataRow.get(5),dataRow.get(0)+"",dataRow.get(1)+"",dataRow.get(2)+"",null);
                 }
 
                 Auditor.add((String) request.getSession().getAttribute("username"),"added new "+dataRow.get(5)+" user ("+
