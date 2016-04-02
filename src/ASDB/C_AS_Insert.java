@@ -1163,7 +1163,7 @@ public class C_AS_Insert {
 
     }
 
-    public void addPI(String name, int Threshold, int FK_P_ID, int FK_C_ID) throws ClassNotFoundException, SQLException {
+    public void addPI(String name, double Threshold, int FK_P_ID, int FK_C_ID) throws ClassNotFoundException, SQLException {
 
 
         connect();
@@ -1189,7 +1189,7 @@ public class C_AS_Insert {
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, name);
-            preparedStatement.setInt(2, Threshold);
+            preparedStatement.setDouble(2, Threshold);
             preparedStatement.setInt(3, FK_P_ID);
             preparedStatement.setInt(4, FK_C_ID);
 

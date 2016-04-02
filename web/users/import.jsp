@@ -43,7 +43,7 @@
                         <p class="col-md-6 lead pull-left">0 ==> Superuser</p>
                         <p class="col-md-6 lead pull-left">1 ==> Faculty</p>
                         <p class="col-md-6 lead pull-left">2 ==> Evaluator</p>
-                        <p class="col-md-6 lead pull-left">You must enter the Evaluator program manually</p>
+                        <p class="col-md-6 lead pull-left" style="color: #b92c28"><strong>You must enter the Evaluator program manually</strong></p>
 
 
                         <div class="col-md-6 img-responsive pull-right">

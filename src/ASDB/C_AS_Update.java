@@ -415,7 +415,7 @@ public class C_AS_Update {
 
     }
 
-    public void updatePI(String name,int Threshold, int id) throws ClassNotFoundException, SQLException {
+    public void updatePI(String name,double Threshold, int id) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -439,7 +439,7 @@ public class C_AS_Update {
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString (1, name);
-            preparedStatement.setInt (2, Threshold);
+            preparedStatement.setDouble (2, Threshold);
             preparedStatement.setInt (3, id);
 
             rs = preparedStatement.executeUpdate();

@@ -53,7 +53,7 @@
                             }else if(importFile.equals("pis")){
                                 dataType = "pis";
                                 imgurl="/img/PIsExecl.JPG";
-                                text=text+"The column name: performance indicator";
+                                text=text+"The first column name: performance indicator the second column: threshold";
                             }
                         }
 
