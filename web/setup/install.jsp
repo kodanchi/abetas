@@ -540,7 +540,7 @@ InstallDB dbCon = new InstallDB(null);
                     }
                 ]);
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
-                $('#adminLastName').focus();
+                $('#uname').focus();
                 return false;
             }else if(!/^[a-zA-Z]*$/g.test($('#cname').val())) {
                 //document.getElementById("alert").style.visibility = "visible";
@@ -553,7 +553,7 @@ InstallDB dbCon = new InstallDB(null);
                     }
                 ]);
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
-                $('#adminLastName').focus();
+                $('#cname').focus();
                 return false;
             }else if($('#adminLastName').length < 3 || $('#adminLastName').length > 20) {
                 //document.getElementById("alert").style.visibility = "visible";
