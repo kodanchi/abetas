@@ -378,7 +378,7 @@ public class Settings_Update {
     }
 
 
-    public  void updateSystemSettings(String uname, String cname, String ulogo, String color) throws SQLException, ClassNotFoundException {
+    public  void    updateSystemSettings(String uname, String cname, String ulogo, String color) throws SQLException, ClassNotFoundException {
 
         connect();
 

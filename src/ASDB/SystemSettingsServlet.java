@@ -21,12 +21,13 @@ import java.util.List;
 @WebServlet(name = "SystemSettingsServlet", urlPatterns = {"/sysSettingsUpdate"})
 public class SystemSettingsServlet extends HttpServlet {
 
-    private String uname,cname,ulogo,color,removeLogo = null;
+    private String uname,cname,ulogo,color,removeLogo;
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
-    private boolean isValid = true;
+    private boolean isValid;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        uname = cname = ulogo = color = removeLogo = null;
+        isValid = true;
 
         SERVER_DIRECTORY = getServletContext().getRealPath("/");
 
@@ -48,20 +49,20 @@ public class SystemSettingsServlet extends HttpServlet {
                                 if(uname.equals("")){
                                     sendMsg("University name must be entered",request,response);
                                     isValid = false;
-                                } else if (!uname.matches("/^[a-zA-Z]*$/g")) {
+                                } /*else if (!uname.matches("/^[a-zA-Z]*$/g")) {
                                     sendMsg("Name must have only alphabetic letters", request, response);
                                     isValid = false;
-                                }
+                                }*/
                                 break;
                             case "cname":
                                 cname = item.getString();
                                 if(cname.equals("")){
                                     sendMsg("College name must be entered",request,response);
                                     isValid = false;
-                                } else if (!cname.matches("/^[a-zA-Z]*$/g")) {
+                                } /*else if (!cname.matches("/^[a-zA-Z]*$/g")) {
                                     sendMsg("Name must have only alphabetic letters",request,response);
                                     isValid = false;
-                                }
+                                }*/
                                 break;
                             case "color":
                                 color = item.getString();
@@ -123,21 +124,30 @@ public class SystemSettingsServlet extends HttpServlet {
 
                     if(isValid){
 
+                        System.out.println("Ulogo : "+ ulogo);
                         ServletContext context = request.getServletContext();
                         Settings_Update adb = new Settings_Update();
 
-                        if(removeLogo != null && removeLogo.equals("on")){
+                        if(removeLogo != null && removeLogo.equals("remove")){
+                            System.out.println("inside if ----");
                             adb.updateSystemSettings(uname,cname,null,color);
+                            context.removeAttribute("ulogo");
                             context.setAttribute("ulogo",null);
                         }else if (ulogo.equals("same")){
-                            adb.updateSystemSettings(uname,cname,(String) context.getAttribute("ulogo"),color);
+                            System.out.println("inside if else ----");
+                            adb.updateSystemSettings(uname,cname,context.getAttribute("ulogo") != null ? (String)  context.getAttribute("ulogo"):null,color);
 
                         }else {
+                            System.out.println("inside else ----");
                             adb.updateSystemSettings(uname,cname,ulogo,color);
+                            context.removeAttribute("ulogo");
                             context.setAttribute("ulogo",ulogo);
                         }
 
 
+                        context.removeAttribute("uname");
+                        context.removeAttribute("cname");
+                        context.removeAttribute("color");
                         context.setAttribute("uname",uname);
                         context.setAttribute("cname",cname);
                         context.setAttribute("color",color);

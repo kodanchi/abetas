@@ -231,7 +231,7 @@
                                         <label>Remove logo? </label>
                                         <div class="checkbox">
 
-                                            <input type="checkbox" name="removeLogo" id="rl" /><label  for="rl"><span class="ui"></span>Remove</label>
+                                            <input type="checkbox" value="remove" name="removeLogo" id="rl" /><label  for="rl"><span class="ui"></span>Remove</label>
                                         </div>
                                     </div>
                                 </div>

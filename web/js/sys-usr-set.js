@@ -100,7 +100,7 @@ function onSubmitUpdateUser(){
         $(document).trigger("clear-alert-id.lname");
         $(document).trigger("set-alert-id-lname", [
             {
-                message: "Please enter middle name",
+                message: "Please enter last name",
                 priority: "error"
             }
         ]);
@@ -223,6 +223,16 @@ function onSubmitUpdateSystem(){
             }
         ]);
         uname.focus();
+    }else if (!/^[A-Za-z\s]+$/g.test(uname.value)) {
+        $(document).trigger("clear-alert-id.uname");
+        $(document).trigger("set-alert-id-uname", [
+            {
+                message: "name must have only alphabetic letters",
+                priority: "error"
+            }
+        ]);
+        uname.focus();
+        return false;
     }else if(cname.value == ""){
         $(document).trigger("clear-alert-id.cname");
         $(document).trigger("set-alert-id-cname", [
@@ -232,6 +242,16 @@ function onSubmitUpdateSystem(){
             }
         ]);
         cname.focus();
+    }else if (!/^[A-Za-z\s]+$/g.test(cname.value)) {
+        $(document).trigger("clear-alert-id.cname");
+        $(document).trigger("set-alert-id-cname", [
+            {
+                message: "name must have only alphabetic letters",
+                priority: "error"
+            }
+        ]);
+        cname.focus();
+        return false;
     }else if($('#ulogo').val()) {
         var input = document.getElementById("ulogo");
         //if(input.files && input.files.length == 1)
