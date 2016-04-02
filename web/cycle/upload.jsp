@@ -29,7 +29,7 @@
     <div class="container">
         <!--  Here is row -->
         <div class="row">
-            <h2 class="text-center">User Management</h2>
+            <h2 class="text-center">Import Excel Sheet</h2>
             <legend></legend>
             <div class="col-md-8 col-md-offset-2">
                 <p>Please confirm that the imported data are as intended, you can click re-upload to discard the current imported file and import it again.</p>
@@ -86,7 +86,7 @@ try {
                 }
 
             }else if (dataType.equals("pis")){
-                if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(request.getParameter("programID")), Integer.parseInt(id))){
+                if(j == 0 && dbs.isPIExist(dataRow.get(0), Integer.parseInt(request.getParameter("programID")), Integer.parseInt(id))){
                     out.print("<td class=\"danger\">");
                     isValid = false;
                 }else {
@@ -118,6 +118,13 @@ try {
 
 %>
                     </table>
+
+                    <%
+                        if(!isValid){
+                            out.print("<p class=\"red\">You cannot upload these data because the data which indicated red are already existed in the database,\n" +
+                                    "                    please change the data in the sheet and click re-upload to upload it again. </p>");
+                        }
+                    %>
                 </div>
 
                 <form method="post" action="/upload/cycle" >

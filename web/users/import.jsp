@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
         <div class="container" id="space">
@@ -37,13 +38,15 @@
 
 
                     <div class="row ">
-                        <p class="col-md-6 lead pull-left">Please insure that the excel file format is following the same format as the figure, you are responsible for any wrong important data. The first column: firstname the second column: middlename the third column: lastname the fourth column: username the fifth column: email the sixth column: level
-                           </p>
-                           <p class="col-md-6 lead pull-left">Note: the level should be number between 0 to 2 and the evaluator email should be empty</p>
-                        <p class="col-md-6 lead pull-left">0 ==> Superuser</p>
-                        <p class="col-md-6 lead pull-left">1 ==> Faculty</p>
-                        <p class="col-md-6 lead pull-left">2 ==> Evaluator</p>
-                        <p class="col-md-6 lead pull-left" style="color: #b92c28"><strong>You must enter the Evaluator program manually</strong></p>
+                        <div class="col-md-6 lead pull-left">
+                            <p class="text-justify">Please insure that the excel file format is following the same
+                                format as the figure, you are responsible for any wrong important data. The first column:
+                                firstname the second column: middlename the third column: lastname the fourth column:
+                                username the fifth column: email the sixth column: level</p>
+                            <p>Note: the evaluator email should be empty</p>
+                            <p class="red"><strong>You must enter the Evaluator program manually</strong></p>
+                           </div>
+
 
 
                         <div class="col-md-6 img-responsive pull-right">

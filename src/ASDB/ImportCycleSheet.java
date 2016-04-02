@@ -188,8 +188,23 @@ public class ImportCycleSheet {
             //Iterate through each rows from first sheet
             Iterator<Row> rowIterator = sheet.iterator();
 
+
+
+
             //Store the data in ArrayList
             sheetData = new ArrayList<ArrayList<String>>();
+
+
+
+            System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
+            if(sheet.getPhysicalNumberOfRows() == 0){
+                System.out.print("errrrrr not same format");
+                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                        "                                        \"that shown in the import page";
+                file.close();
+                return false;
+            }
+
 
             //Iterate through each rows as an ArrayList
             ArrayList<String>  dataRow;
@@ -319,11 +334,23 @@ public class ImportCycleSheet {
             //Store the data in ArrayList
             sheetData = new ArrayList<ArrayList<String>>();
 
+
+            System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
+            if(sheet.getPhysicalNumberOfRows() == 0){
+                System.out.print("errrrrr not same format");
+                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                        "                                        \"that shown in the import page";
+                file.close();
+                return false;
+            }
+
+
             //Iterate through each rows as an ArrayList
             ArrayList<String>  dataRow;
             while(rowIterator.hasNext()) {
                 dataRow = new ArrayList<String>();
                 Row row = rowIterator.next();
+
 
                 //For each row, iterate through each columns
                 Iterator<Cell> cellIterator = row.cellIterator();

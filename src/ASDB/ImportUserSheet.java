@@ -154,6 +154,18 @@ public class ImportUserSheet {
             //Store the data in ArrayList
             sheetData = new ArrayList<ArrayList<String>>();
 
+
+            System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
+            if(sheet.getPhysicalNumberOfRows() == 0){
+                System.out.print("errrrrr not same format");
+                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                        "                                        \"that shown in the import page";
+                file.close();
+                return false;
+            }
+
+
+
             //Iterate through each rows as an ArrayList
             ArrayList<String>  dataRow;
             while(rowIterator.hasNext()) {
@@ -198,9 +210,15 @@ public class ImportUserSheet {
                                         }
                                         break;
                                     case 3: //checking if the usernames already exist or not in db
-                                        if(db.selectUserIfExist(cell.getStringCellValue())){
+                                        /*if(db.selectUserIfExist(cell.getStringCellValue())){
                                             Error_Msg = "The username: "+ cell.getStringCellValue()+" is already exist in the " +
                                                     "database, please change it in the sheet and try upload it again, or choose another file.";
+                                            file.close();
+                                            return false;
+                                        }else*/ if(cell.getStringCellValue().equals("")){
+                                            System.out.print("errrrrr not same format");
+                                            Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                                                    "                                        \"that shown in the import page";
                                             file.close();
                                             return false;
                                         }else {
@@ -210,10 +228,16 @@ public class ImportUserSheet {
                                         break;
                                     case 4: //checking if the emails already exist or not in db
                                         if(!row.getCell(j+1).equals("evaluator")){
-                                            if(db.selectEmailIfExist(cell.getStringCellValue())){
+                                            /*if(db.selectEmailIfExist(cell.getStringCellValue())){
                                                 Error_Msg = "The Email: "+cell.getStringCellValue()+" is already exist in the" +
                                                         "database, please change it in the sheet and try upload it again, or choose" +
                                                         " another file.";
+                                                file.close();
+                                                return false;
+                                            }else*/ if(cell.getStringCellValue().equals("")){
+                                                System.out.print("errrrrr not same format");
+                                                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                                                        "                                        \"that shown in the import page";
                                                 file.close();
                                                 return false;
                                             }else {
