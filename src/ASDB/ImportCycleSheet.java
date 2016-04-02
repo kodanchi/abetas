@@ -352,8 +352,8 @@ public class ImportCycleSheet {
                         }
                     }else {
                         try {
-                            cell.setCellType(Cell.CELL_TYPE_STRING);
-                            System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
+/*                            cell.setCellType(Cell.CELL_TYPE_STRING);
+                            System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");*/
 
                             switch (j){
                                 case 0:

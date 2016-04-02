@@ -12,6 +12,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
 <%
@@ -52,7 +53,7 @@
                             }else if(importFile.equals("pis")){
                                 dataType = "pis";
                                 imgurl="/img/PIsExecl.JPG";
-                                text=text+"The column name: performance indicator";
+                                text=text+"The first column name: performance indicator the second column: threshold";
                             }
                         }
 
