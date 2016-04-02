@@ -48,7 +48,7 @@ public class SelectSectionServlet extends HttpServlet {
                 System.out.println("inside else");
 
                 evidence = dbs.selectEvidenceOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
-                threshold = dbs.selectThresholdOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
+                threshold = dbs.selectThresholdOfSummativeToEvaluate(pIid);
                 PIRubrics = dbs.selectRubricsToEvaluate(tid);
                 PIResults = dbs.selectSummativeRubricResultsOfSectionToEvaluate(sid,pIid,pid,tid,cid);
 
@@ -69,22 +69,7 @@ public class SelectSectionServlet extends HttpServlet {
                 }
 
 
-                out.print("<div class=\"col-md-7 \" >");
-                float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
-                float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
-                float passOrFailresults = developed + exemplary;
-                System.out.println("developed + exemplary = "+ passOrFailresults);
-                if(passOrFailresults > threshold ) {
-                    out.print("<Strong style=\"color:Green;\">Pass</Strong>");
-                    out.print(String.format(": the result is more than the threshold(%s) by (%.2f)",threshold+"%",
-                            ( passOrFailresults - threshold)));
-                }else {
-                    out.print("<Strong style=\"color:Red;\">Fail</Strong>");
-                    out.print(String.format(": the result is less than the threshold(%s) by (%.2f)",threshold+"%",
-                            (threshold - passOrFailresults)));
-                }
 
-                out.print("</div>");
 
 
 
@@ -112,6 +97,24 @@ public class SelectSectionServlet extends HttpServlet {
                 out.print("];\n");
                 out.print("popChart(\"Section: "+sid+"\",\"rgba(164, 102, 40, 0.8)\",sResults);\n");
 
+
+                threshold = dbs.selectThresholdToEvaluate(pIid);
+                out.print("var str = ' ");
+                float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
+                float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
+                float passOrFailresults = developed + exemplary;
+                System.out.println("developed + exemplary = "+ passOrFailresults);
+                if(passOrFailresults > threshold ) {
+                    out.print("<Strong style=\"color:Green;\">The requirements were met for this section</Strong>");
+                    out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
+                            ( passOrFailresults - threshold)));
+                }else {
+                    out.print("<Strong style=\"color:Red;\">The requirements were not met for this section</Strong>");
+                    out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
+                            (threshold - passOrFailresults)));
+                }
+                out.print("';");
+                out.print("document.getElementById(\"writtenResult\").innerHTML=str");
 
                 out.println("</script>\n");
 
