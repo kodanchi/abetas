@@ -12,6 +12,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
 <%

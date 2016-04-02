@@ -115,7 +115,7 @@
                                         <li>
                                             <input type="text" id="StudentID" name="Student_ID" class="form-control" placeholder="Student ID"
                                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                                                   maxlength="10"
+                                                   maxlength="20"
                                                    required
                                                    rel="tooltip"
                                                    title="Less than 10 digits"
@@ -146,7 +146,7 @@
                                     document.getElementById("StudentID").addEventListener("change",function(){
                                         $(document).trigger("clear-alert-id.sIDAlert");
 
-                                        if($("#StudentID").val().length > 10){
+                                        if($("#StudentID").val().length > 20){
                                             $(document).trigger("set-alert-id-sIDAlert", [
                                                 {
                                                     message: "student ID must not longer than 10 digits",
@@ -175,7 +175,7 @@
                                             var sid = $("#StudentID").val();
                                             $(document).trigger("clear-alert-id.sNameAlert");
                                             $(document).trigger("clear-alert-id.sIDAlert");
-                                            if(sid.length > 10){
+                                            if(sid.length > 20){
                                                 $(document).trigger("set-alert-id-sIDAlert", [
                                                     {
                                                         message: "student ID is required",
@@ -209,9 +209,7 @@
 
                         </div>
                         <button class="btn btn-primary" type="submit"><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-default pull-right" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>
-                        &term=<%=request.getParameter("term")%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>
-                        &courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Cancel</a>
+                        <a class="btn btn-default pull-right" href="${pageContext.request.contextPath}/cycle/index.jsp?page=studentList&cycle=<%=request.getParameter("cycle")%>&term=<%=request.getParameter("term")%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>&courseName=<%=request.getParameter("courseName")%>&section=<%=request.getParameter("section")%>">Cancel</a>
 
                     </form>
                     <!-- End of col -->

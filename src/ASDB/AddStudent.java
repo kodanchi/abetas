@@ -1,11 +1,15 @@
 package ASDB;
 
+import com.mysql.jdbc.StringUtils;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 
 /**
  * Created by Ibrahim Abuaqel on 2/15/2016.
@@ -44,15 +48,18 @@ public class AddStudent extends HttpServlet {
                     StudentVal = new String[]{sid,sname};
                     sendErrMsg("Student ID and Name must be filled",request.getParameter("cycle"),request,response);
 
-                }else if(request.getParameter("Student_ID").length()>9){
+                }else if(request.getParameter("Student_ID").length()>20){
                     StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
-                    sendErrMsg("Student ID Must not be long than 10 digits",request.getParameter("cycle"),request,response);
-                }else if(dbs.isStudentIDExist(Long.parseLong(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")))){
+                    sendErrMsg("Student ID Must not be long than 20 digits",request.getParameter("cycle"),request,response);
+                }else if(!isNumeric(request.getParameter("Student_ID"))){
+                    StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
+                    sendErrMsg("Student ID Must be numeric",request.getParameter("cycle"),request,response);
+                }else if(dbs.isStudentIDExist(request.getParameter("Student_ID"),Integer.parseInt(request.getParameter("section")))){
                     StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
                     sendErrMsg("Student ID: "+request.getParameter("Student_ID")+" is exist already in this section",request.getParameter("cycle"),request,response);
                 }else {
 
-                    dba.addStudent(request.getParameter("Sname"),Long.parseLong(request.getParameter("Student_ID")),Integer.parseInt(request.getParameter("section")));
+                    dba.addStudent(request.getParameter("Sname"),request.getParameter("Student_ID"),Integer.parseInt(request.getParameter("section")));
 
                     Auditor.add((String)request.getSession().getAttribute("username"),"Added new student (Section ID : "+request.getParameter("section")+")");
 
@@ -180,6 +187,13 @@ public class AddStudent extends HttpServlet {
 
 
         return;
+    }
+    public static boolean isNumeric(String str)
+    {
+        NumberFormat formatter = NumberFormat.getInstance();
+        ParsePosition pos = new ParsePosition(0);
+        formatter.parse(str, pos);
+        return str.length() == pos.getIndex();
     }
 
 }

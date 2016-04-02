@@ -832,7 +832,7 @@ public class C_AS_Insert {
         }
         return id;
     }
-    public void addStudent(String Student_Name, long Student_ID, int FK_Section) throws ClassNotFoundException, SQLException {
+    public void addStudent(String Student_Name, String Student_ID, int FK_Section) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -855,7 +855,7 @@ public class C_AS_Insert {
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, Student_Name);
-            preparedStatement.setLong(2, Student_ID);
+            preparedStatement.setString(2, Student_ID);
             preparedStatement.setInt(3, FK_Section);
 
             rs = preparedStatement.executeUpdate();

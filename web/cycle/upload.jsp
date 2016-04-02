@@ -1,5 +1,6 @@
 
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="ASDB.C_AS_Select" %>
 <%--
   Created by IntelliJ IDEA.
   User: Mojahed
@@ -39,18 +40,21 @@
                     <table class="table table-hover table-striped table-bordered text-center">
                         <tr>
                             <%
+                                boolean isValid = true;
+                                C_AS_Select dbs = new C_AS_Select();
                                 if(dataType.equals("students")){
                                     out.print("<th>Student ID</th>");
                                     out.print("<th>Student Name</th>");
                                 }else if (dataType.equals("pis")){
                                     out.print("<th>Performance Indicator</th>");
-                                }else if(dataType.equals("course")){
-
+                                    out.print("<th>threshold</th>");
                                 }
                             %>
                         </tr>
 
 <%
+try {
+
 
 
     Object dataObj = request.getSession().getAttribute("sheetData");
@@ -65,10 +69,32 @@
     System.out.println(dataArr);
 
     for(int i=0;i<dataArr.size();i++){
-        dataRow = dataArr.get(i);
         out.print("<tr>");
+        dataRow = dataArr.get(i);
+
+
+
         for(int j=0;j<dataRow.size();j++){
-            out.print("<td>");
+
+
+            if(dataType.equals("students")){
+                if(j == 0 && dbs.isStudentIDExist(dataRow.get(0),Integer.parseInt(request.getParameter("section")))){
+                    out.print("<td class=\"danger\">");
+                    isValid = false;
+                }else {
+                    out.print("<td>");
+                }
+
+            }else if (dataType.equals("pis")){
+                if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(request.getParameter("programID")), Integer.parseInt(id))){
+                    out.print("<td class=\"danger\">");
+                    isValid = false;
+                }else {
+                    out.print("<td>");
+                }
+            }
+
+
             out.print(dataRow.get(j));
             out.print("</td>");
         }
@@ -84,7 +110,9 @@
 
 
 
-
+}catch (Exception e){
+    e.fillInStackTrace();
+}
 
 
 
@@ -93,7 +121,7 @@
                 </div>
 
                 <form method="post" action="/upload/cycle" >
-                    <a class="btn btn-success btn-fill" href="/program/index.jsp?name=<%=term%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
+                    <a class="btn btn-success btn-fill" href="/cycle/index.jsp?name=<%=term%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
                     <input name="data-type" value="<%=dataType%>" hidden>
                     <input type="text" name="cycle" value="<%=request.getParameter("cycle")%>" hidden/>
                     <input type="text" name="term" value="<%=request.getParameter("term")%>" hidden/>
@@ -104,9 +132,31 @@
                                     " <input type=\"text\" name=\"courseName\" value=\""+request.getParameter("courseName")+"\" hidden/>\n" +
                                     " <input type=\"text\" name=\"section\" value=\""+request.getParameter("section")+"\"  hidden/>");
                         }
+
+                        if(isValid){
+                            out.print("<button class=\"btn btn-primary\"  type=\"submit\">Upload</button>");
+
+                        }else {
+                            out.print("<script type=\"text/javascript\">\n" +
+                                    "    $(window).load(function(){\n" +
+                                    "       bootbox.alert(\"Some of the data are duplicated, please check the table below where red cells indicated\")\n" +
+                                    "    });\n" +
+                                    "</script>");
+                        }
+
                     %>
-                    <button class="btn btn-primary"  type="submit">Upload</button>
-                    <a href="/program/index.jsp?name=<%=term%>&id=<%=id%>&page=ObjList" class="btn btn-primary">Cancel</a>
+
+                    <a class="btn btn-default pull-right" href="<%
+                            if(dataType.equals("students")){
+                                out.print("/cycle/index.jsp?back="+ dataType +"&cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                                "&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+
+                                "&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
+                            }else if(dataType.equals("pis")){
+                                out.print("/cycle/index.jsp?back="+ dataType +"&cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
+                                "&programID="+request.getParameter("programID"));
+                            }
+                        %>">Cancel</a>
+
                 </form>
 
 
