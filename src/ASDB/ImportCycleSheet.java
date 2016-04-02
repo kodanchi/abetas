@@ -355,28 +355,60 @@ public class ImportCycleSheet {
                             cell.setCellType(Cell.CELL_TYPE_STRING);
                             System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
 
-                            if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-                                switch (j){
-                                    case 0:
+                            switch (j){
+                                case 0:
+
+                                    if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+
+                                        //System.out.print(cell.getStringCellValue() + "\t\t");
 
                                         if(cell.getStringCellValue().equals("")){
-                                            /*Error_Msg = "Some of the records are empty.";
-                                            file.close();*/
+                                            Error_Msg = "Some of the records are empty.";
+                                            file.close();
 
                                             return true;
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-                                        break;
-                                }
-                                //System.out.print(cell.getStringCellValue() + "\t\t");
-                            }else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                        "that shown in the import page";
-                                file.close();
-                                return false;
+
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+
+                                    break;
+
+                                case 1:
+
+                                    if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+
+                                        //System.out.print(cell.getStringCellValue() + "\t\t");
+
+                                        if(cell.getNumericCellValue()<0||cell.getNumericCellValue()>100){
+                                            Error_Msg = "Some of the records are empty or the value is not between 0 and 100.";
+                                            file.close();
+
+                                            return true;
+                                        }else {
+                                            dataRow.add(cell.getNumericCellValue()+"");
+                                        }
+
+                                    }else {
+                                        System.out.print("errrrrr not same format");
+                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                                "that shown in the import page";
+                                        file.close();
+                                        return false;
+                                    }
+
+                                    break;
+
                             }
+
+
                         }catch (NullPointerException e){
                             e.fillInStackTrace();
 
