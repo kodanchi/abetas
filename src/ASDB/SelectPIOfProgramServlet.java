@@ -80,6 +80,7 @@ public class SelectPIOfProgramServlet extends HttpServlet {
                         "                            <input name=\"PIValue\" value=\"" + rsRow.get(1) + "\" hidden />\n" +
                         "                            <input name=\"cycle\" value=\"" + id + "\" hidden />\n" +
                         "                            <input name=\"programID\" value=\"" + pid + "\" hidden />\n" +
+                        "                            <input name=\"PIThresh\" value=\"" + rsRow.get(2) + "\" hidden />\n" +
                         "                            <button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button>\n" +
                         "                               </td>" +
                         "                            <td></form>" +
