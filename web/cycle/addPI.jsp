@@ -97,6 +97,7 @@
                             else {
                                 out.print(pName);
                             }%></textarea>
+                            <!--Alert for numerical: Invalid performance indicator-->
                             <span data-alertid="pi"></span>
                         </div>
 
@@ -132,6 +133,9 @@
                                     if(parseInt(input.value) > parseInt(input.getAttribute("max"))){
                                         input.value = input.getAttribute("max");
                                     }else if(parseInt(input.value) < parseInt(input.getAttribute("min"))){
+                                        input.value = input.getAttribute("min");
+                                    }
+                                    else if(input.value==""){
                                         input.value = input.getAttribute("min");
                                     }
 

@@ -34,7 +34,7 @@ public class EmailRequestUnlook extends HttpServlet {
                 System.out.println(type);
                 System.out.println("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator");
 
-                //sendemail.sendMsg("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator", "Request Un-Look Form", ABETAS EMAIL);
+                sendemail.sendMsg("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator", "Request Un-Look Form","mulhimmm@gmail.com");
                 sendMsg("Email was sent requesting to un-look the form",request);
                 response.sendRedirect("/form/index.jsp");
     }

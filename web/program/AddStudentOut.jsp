@@ -34,9 +34,9 @@
                             <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
                             <input type="hidden" name="Outid" value="<%=request.getParameter("Outid")%>">
                             <input type="hidden" name="OutValue" value="<%=request.getParameter("OutValue")%>">
-                            <textarea class="form-control" rows="4" cols="50" name="Out" placeholder="Student Outcome" required>
-                                <%if (request.getParameter("OutValue")!=null) {out.print(request.getParameter("OutValue"));}%></textarea>
-
+                            <textarea class="form-control" rows="4"  name="Out" placeholder="Student Outcome" required><%if (request.getParameter("OutValue")!=null) {out.print(request.getParameter("OutValue"));}%></textarea>
+                        <!--Alert for empty: Enter the student outcome
+                         Alert for numerical: Invalid student outcome-->
                         </div>
 
                         <br>
