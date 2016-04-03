@@ -80,12 +80,12 @@
                 <div class="col-md-10 col-md-offset-1">
                     <p><%if (request.getParameter("NValue")!=null) {out.print("Update");} else out.print("Enter");%> the student information</p>
 
-                    <form name="addStudentform" action="/AddStudent" method="post">
+                    <form name="addStudentform" id="addStudentform" action="/AddStudent" method="post">
 
                         <div class="row">
 
                             <!-- Large button group -->
-                            <div class="form-group">
+                            <div class="">
 
                                 <input type="hidden" name="programName" value="<%=programName%>">
                                 <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
@@ -107,7 +107,7 @@
                                     //System.out.println(request.getParameter("programName"));
 
                                 %>
-                                <div class="col-md-6">
+                                <div class="form-group">
                                     <ul class="list-inline">
                                         <li>
                                             <label>Student ID </label>
@@ -116,16 +116,15 @@
                                             <input type="text" id="StudentID" name="Student_ID" class="form-control" placeholder="Student ID"
                                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                                    maxlength="20"
-                                                   required
                                                    rel="tooltip"
-                                                   title="Less than 10 digits"
+                                                   title="Less than 20 digits"
                                                    value="<%if (request.getParameter("IDValue")!=null) {out.print(request.getParameter("IDValue"));}
                                 else {out.print(sID);}%>"><!--Alert empty: Enter the student ID-->
                                         </li>
                                     </ul>
                                     <span data-alertid="sIDAlert"></span>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="form-group">
                                     <ul class="list-inline">
                                     <li>
                                         <label>Student Name </label>
@@ -133,8 +132,7 @@
                                     <li>
                                         <input type="text" id="Sname" class="form-control" name="Sname" placeholder="Student Name"
                                                rel="tooltip"
-                                               title="Full Name"
-                                               required
+                                               title="Full Student Name"
                                                value="<%if (request.getParameter("NValue")!=null) {out.print(request.getParameter("NValue"));}
                                 else {out.print(sName);}%>">
                                     </li>
@@ -171,30 +169,58 @@
 
                                     $(function(){
                                         $("#addStudentform").submit(function() {
-                                            var name = $("#Sname").val();
-                                            var sid = $("#StudentID").val();
+                                            var name = document.getElementById("Sname");
+                                            var sid = document.getElementById("StudentID");
+
                                             $(document).trigger("clear-alert-id.sNameAlert");
                                             $(document).trigger("clear-alert-id.sIDAlert");
-                                            if(sid.length > 20){
+
+                                            if(sid.value == ""){
                                                 $(document).trigger("set-alert-id-sIDAlert", [
                                                     {
-                                                        message: "student ID is required",
+                                                        message: "Enter the student ID",
                                                         priority: "error"
                                                     }
                                                 ]);
+                                                sid.focus();
                                                 return false;
-                                            }
-                                            if(name == ""){
+                                            }else if(sid.value.length > 20){
+                                                $(document).trigger("set-alert-id-sIDAlert", [
+                                                    {
+                                                        message: "student ID must be less than 20 digits",
+                                                        priority: "error"
+                                                    }
+                                                ]);
+                                                sid.focus();
+                                                return false;
+                                            } else if(name.value == ""){
                                                 $(document).trigger("set-alert-id-sNameAlert", [
                                                     {
-                                                        message: "student Name is required",
+                                                        message: "Enter the student Name",
                                                         priority: "error"
                                                     }
                                                 ]);
+                                                name.focus();
+                                                return false;
+                                            }else if(!/^[a-zA-Z]*$/g.test(name.value)){
+                                                $(document).trigger("clear-alert-id.sNameAlert");
+                                                $(document).trigger("set-alert-id-sNameAlert", [
+                                                    {
+                                                        message: "student name must have only alphabetic letters",
+                                                        priority: "error"
+                                                    }
+                                                ]);
+                                                name.focus();
                                                 return false;
                                             }
 
                                         });
+
+
+                                    });
+
+                                    $(document).ready(function(){
+                                        $('[data-toggle="tooltip"]').tooltip();
                                     });
                                 </script>
 

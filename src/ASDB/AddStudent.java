@@ -106,16 +106,16 @@ public class AddStudent extends HttpServlet {
                     StudentVal = new String[]{sid,sname};
                     sendErrMsg("Student ID and Name must be filled",request.getParameter("cycle"),request,response);
 
-                }else if(request.getParameter("Student_ID").length()>10){
+                }else if(request.getParameter("Student_ID").length()>20){
                     StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
-                    sendErrMsg("Student ID Must not be long than 10 digits",request.getParameter("cycle"),request,response);
-                }else if(dbs.isStudentIDExistExcept(Long.parseLong(request.getParameter("Student_ID")), Integer.parseInt(request.getParameter("section")),Integer.parseInt(request.getParameter("S_ID")))){
+                    sendErrMsg("Student ID Must not be long than 20 digits",request.getParameter("cycle"),request,response);
+                }else if(dbs.isStudentIDExistExcept(request.getParameter("Student_ID"), Integer.parseInt(request.getParameter("section")),Integer.parseInt(request.getParameter("S_ID")))){
                     StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
                     sendErrMsg("Student ID: "+request.getParameter("Student_ID")+" is exist already in this section",request.getParameter("cycle"),request,response);
 
                 }else {
                     //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
-                    udb.updateStudent(Long.parseLong(request.getParameter("Student_ID")),request.getParameter("Sname"),Integer.parseInt(request.getParameter("S_ID")));
+                    udb.updateStudent(request.getParameter("Student_ID"),request.getParameter("Sname"),Integer.parseInt(request.getParameter("S_ID")));
 
                     Auditor.add((String)request.getSession().getAttribute("username"),"Updated student (Student ID : "+request.getParameter("Student_ID")+")");
 

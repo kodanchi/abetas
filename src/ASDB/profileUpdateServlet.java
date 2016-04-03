@@ -91,14 +91,14 @@ public class profileUpdateServlet extends HttpServlet {
                                     }
                                 }
                             }else {
-                                sendMsg("Wrong password!",request,response);
+                                sendMsg("Enter your current password correctly",request,response);
                             }
                         }else {
                             sendMsg("User not found!",request,response);
                         }
 
                     }else {
-                        sendMsg("You must enter the password",request,response);
+                        sendMsg("Enter your current password",request,response);
                     }
 
                     Auditor.add((String)request.getSession().getAttribute("username"),"Updated user profile");

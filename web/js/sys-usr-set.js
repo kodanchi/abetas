@@ -163,7 +163,7 @@ function onSubmitUpdateUser(){
         $(document).trigger("clear-alert-id.renewpassword");
         $(document).trigger("set-alert-id-renewpassword", [
             {
-                message: "You must enter your new password again",
+                message: "new password fields aren't matched!",
                 priority: "error"
             }
         ]);

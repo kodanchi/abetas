@@ -3118,7 +3118,7 @@ public class C_AS_Select {
         return isExist == 0 ? false : true;
     }
 
-    public boolean isStudentIDExistExcept(long Student_ID, int FK_Section, int S_ID) throws ClassNotFoundException, SQLException {
+    public boolean isStudentIDExistExcept(String Student_ID, int FK_Section, int S_ID) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -3143,7 +3143,7 @@ public class C_AS_Select {
                     "(SELECT  Student_ID FROM students WHERE S_ID = ? ));";
 
             preparedStatement = connection.prepareStatement(querySelect);
-            preparedStatement.setLong (1, Student_ID);
+            preparedStatement.setString (1, Student_ID);
             preparedStatement.setInt (2, FK_Section);
             preparedStatement.setInt (3, S_ID);
 
