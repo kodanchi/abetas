@@ -93,10 +93,13 @@
                             <input type="hidden" name="PIValue" value="<%=request.getParameter("PIValue")%>">
                             <input type="hidden" name="PILabel" value="<%=request.getParameter("PILabel")%>">
                             <input type="hidden" name="PIThresh" value="<%=request.getParameter("PIThresh")%>">
-                            <textarea id="piInput" class="form-control" rows="4"  name="PI" placeholder="Performance Indicator" ><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}
+                            <textarea id="piInput" class="form-control" rows="4"  name="PI" placeholder="Performance Indicator"
+
+                            ><%if (request.getParameter("PIValue")!=null) {out.print(request.getParameter("PIValue"));}
                             else {
                                 out.print(pName);
                             }%></textarea>
+                            <!--Alert for numerical: Invalid performance indicator-->
                             <span data-alertid="pi"></span>
                         </div>
 
@@ -108,7 +111,7 @@
                                         <button class="btn btn-default" type="button" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
                                     </span>
                                 <input id="threshold"  onchange="onSTsholdChange();" type="text" min="0" max="100" class="form-control
-                                    text-center" name="STshold" value="<%if (request.getParameter("PIThresh")!=null)
+                                    text-center" name="STshold" onkeypress='return event.charCode >= 48 && event.charCode <= 57' value="<%if (request.getParameter("PIThresh")!=null)
                                     {out.print(request.getParameter("PIThresh"));}
                                     else {out.print("0");}%>">
                                     <span class="input-group-btn">
@@ -134,6 +137,9 @@
                                     }else if(parseInt(input.value) < parseInt(input.getAttribute("min"))){
                                         input.value = input.getAttribute("min");
                                     }
+                                    else if(input.value==""){
+                                        input.value = input.getAttribute("min");
+                                    }
 
                                 }
 
@@ -151,10 +157,12 @@
 
                                 $(function(){
                                     $('#piform').submit(function(){
+
                                         $(document).trigger("clear-alert-id.pi");
                                         $(document).trigger("clear-alert-id.ts");
+
                                         var pi = document.getElementById("piInput");
-                                        var ts = document.getElementById("thredshold");
+                                        var ts = document.getElementById("threshold");
 
                                         if(pi.value == ""){
                                             $(document).trigger("clear-alert-id.pi");
@@ -165,6 +173,26 @@
                                                 }
                                             ]);
                                             pi.focus();
+                                            return false;
+                                        }else if(!/^[a-zA-Z]*$/g.test(pi.value)){
+                                            $(document).trigger("clear-alert-id.pi");
+                                            $(document).trigger("set-alert-id-pi", [
+                                                {
+                                                    message: "name must have only alphabetic letters",
+                                                    priority: "error"
+                                                }
+                                            ]);
+                                            pi.focus();
+                                            return false;
+                                        } else if(/^[a-zA-Z]*$/g.test(ts.value)){
+                                            $(document).trigger("clear-alert-id.ts");
+                                            $(document).trigger("set-alert-id-ts", [
+                                                {
+                                                    message: "threshold must be only numerical",
+                                                    priority: "error"
+                                                }
+                                            ]);
+                                            ts.focus();
                                             return false;
                                         } else if(ts.value < 0 || ts.value > 100){
                                             $(document).trigger("clear-alert-id.ts");
