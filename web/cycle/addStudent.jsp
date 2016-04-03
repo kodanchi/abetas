@@ -120,7 +120,7 @@
                                                    rel="tooltip"
                                                    title="Less than 10 digits"
                                                    value="<%if (request.getParameter("IDValue")!=null) {out.print(request.getParameter("IDValue"));}
-                                else {out.print(sID);}%>">
+                                else {out.print(sID);}%>"><!--Alert empty: Enter the student ID-->
                                         </li>
                                     </ul>
                                     <span data-alertid="sIDAlert"></span>

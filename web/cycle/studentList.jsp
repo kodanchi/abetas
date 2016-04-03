@@ -164,6 +164,9 @@
                                                     "                        </form></td>" +
                                                     "</tr>");
                                         }
+                                        //alert more than 10 digits: Student ID should be less than ten digits
+                                        //alert student name empty: Enter the student name
+                                        //alert student name numerical: student outcome must have aphanitic letter
 
                                     } catch (ClassNotFoundException e) {
                                         e.printStackTrace();
