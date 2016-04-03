@@ -37,12 +37,33 @@
 <div class="main">
     <div class="section">
         <div class="container">
+
             <!-- Here is row -->
             <div class="row">
                 <h2 class="text-center">Backup History</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
                     <p>Click "Create New Backup" to store a new backup</p>
+
+                    <div class="row">
+                        <form method="post" action="/setBackupTime">
+                            <div class="form-group">
+                                <%
+                                    ServletContext servletContext = request.getSession().getServletContext();
+
+                                    String backupTime = (String) servletContext.getAttribute("backupTime");
+                                %>
+                                <select class=" select select-default mbl" name="timeList">
+                                    <option value="daily" <%if(backupTime.equals("daily"))out.print(" selected ");%>>Daily</option>
+                                    <option value="weekly" <%if(backupTime.equals("weekly"))out.print(" selected ");%>>Weekly</option>
+                                    <option value="biweekly" <%if(backupTime.equals("biweekly"))out.print(" selected ");%>>Biweekly</option>
+                                    <option value="monthly" <%if(backupTime.equals("monthly"))out.print(" selected ");%>>Monthly</option>
+                                </select>
+                                <input class="btn btn-success" type="submit" value="Set">
+                            </div>
+
+                        </form>
+                    </div>
 
                         <!-- Table -->
                         <table class="table table-striped table-bordered text-center">
@@ -61,32 +82,44 @@
                              */
 
 
-                                ServletContext servletContext = request.getSession().getServletContext();
-                                String files= servletContext.getRealPath("/")+"backup";
-                                File folder = new File(files);
+                                int pageNum = 1;
+                                int recordsPerPage = 10;
+                                int noOfPages = 0;
+                                if(request.getParameter("p")!= null){
+                                    pageNum = Integer.valueOf(request.getParameter("p"));
+                                }
+
+                                String file = servletContext.getRealPath("/")+"backup";
+                                File folder = new File(file);
                                 File[] listOfFiles = folder.listFiles();
 
+                                int recordLimit = (pageNum-1)*recordsPerPage+recordsPerPage < listOfFiles.length ?
+                                        (pageNum-1)*recordsPerPage+recordsPerPage : listOfFiles.length;
 
-                                for (int i = 0; i < listOfFiles.length; i++)
+                                System.out.println("recordLimit : "+recordLimit);
+                                for (int i = (pageNum-1)*recordsPerPage; i < recordLimit; i++)
                                 {
+                                    System.out.print(",i :"+i);
 
                                     if (listOfFiles[i].isFile())
                                     {
                                         BasicFileAttributes view
                                                 = Files.getFileAttributeView(listOfFiles[i].toPath(), BasicFileAttributeView.class)
                                                 .readAttributes();
-                                        files = listOfFiles[i].getName();
-                                        if (files.endsWith(".sql") || files.endsWith(".SQL"))
+                                        file = listOfFiles[i].getName();
+                                        if (file.endsWith(".sql") || file.endsWith(".SQL"))
                                         {
 
 
-                                            out.print("<tr><td>"+files+"</td>\n" +
+                                            out.print("<tr><td>"+ file +"</td>\n" +
                                                     "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                                                     .format(view.creationTime().toMillis())+"</td>\n" +
                                                     "                                <form method=\"post\" action=\"/RestoreDB\">\n" +
-                                                    "                                    <td><input hidden name=\"restoreAction\" value="+files+"><button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button></td></form>\n"+
+                                                    "                                    <td><input hidden name=\"restoreAction\" value="+ file +"><button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button></td></form>\n"+
                                                     "                                <form method=\"post\" action=\"/BackupDel\">\n" +
-                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+files+"><button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button></td></form>\n");
+                                                    "                                    <td ><input name=\"deleteAction\" hidden value="+ file +"><button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button></td>" +
+                                                    "</tr>" +
+                                                    "</form>\n");
 
 
 
@@ -94,27 +127,39 @@
                                     }
                                 }
 
-                                String backupTime = (String) servletContext.getAttribute("backupTime");
+
+
+                                noOfPages = (int) Math.ceil(listOfFiles.length * 1.0 / recordsPerPage);
                             %>
                         </table>
-                    <div class="">
-                        <form method="post" action="/setBackupTime">
-                            <div class="form-group">
-                                <select class="form-control select select-primary select-block mbl" name="timeList">
-                                    <option value="daily" <%if(backupTime.equals("daily"))out.print(" selected ");%>>Daily</option>
-                                    <option value="weekly" <%if(backupTime.equals("weekly"))out.print(" selected ");%>>Weekly</option>
-                                    <option value="biweekly" <%if(backupTime.equals("biweekly"))out.print(" selected ");%>>Biweekly</option>
-                                    <option value="monthly" <%if(backupTime.equals("monthly"))out.print(" selected ");%>>Monthly</option>
-                                </select>
-                                <input class="btn btn-danger" type="submit" value="Set">
-                            </div>
+                    <ul class="pagination">
 
-                        </form>
-                    </div>
+                        <li class="previous pull-left" >
+                            <%=pageNum!=1?"<a href=\"backup.jsp?p="+(pageNum-1)+"\">Previous</a>":""%>
+                        </li>
+                        <%
+                            for (int i=1;i<=noOfPages;i++){
+                                out.println("                   <li><a \n" );
+
+
+                                if(pageNum == i) {
+                                    out.print(" class=\"active\" ");
+                                }else {
+                                    out.println("  href=\"backup.jsp?p=" + i+"\"" );
+                                }
+                                out.print(">"+i +"</a></li>");
+                            }
+                        %>
+
+                        <li class="next pull-right">
+                            <%=pageNum!=noOfPages?"<a href=\"backup.jsp?p="+(pageNum+1)+"\">Next</a>":""%>
+                        </li>
+                    </ul>
+
                     <form method="post" action="/Backup">
-                    <button class="btn btn-primary" name="backupCreate">Create New Backup</button>
-                    <button class="btn btn-primary pull-right" href="/index,jsp">Back</button>
+                    <button class="btn btn-primary pull-left" name="backupCreate">Create New Backup</button>
                     </form>
+                    <a class="btn btn-primary pull-right" href="index.jsp">Back</a>
 
                     <!-- End of col -->
                 </div>
@@ -147,23 +192,5 @@
 
 <script src="js/flat-ui.min.js"></script>
 <script src="js/flat-ui-select.js"></script>
-<script>
-    $("#slider-range").slider({
-        range: true,
-        min: 0,
-        max: 500,
-        values: [75, 300],
-    });
-    $("#slider-default").slider({
-        value: 70,
-        orientation: "horizontal",
-        range: "min",
-        animate: true
-    });
-    $('.btn-tooltip').tooltip('show');
-    $('.radio').on('toggle', function () {});
-
-
-</script>
 
 </html>

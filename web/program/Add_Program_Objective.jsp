@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
+
 
 <!doctype html>
         <div class="container">
@@ -18,7 +20,7 @@
 
 
 
-                    <form role="form" name="myform" action="/Add Program Objective" method="post">
+                    <form role="form" id="addObj" name="myform" action="/Add Program Objective" method="post">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-4">
@@ -32,14 +34,14 @@
 
                                                <label>Program Objectives:</label>
 
-                                <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
-                                <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
-                                <input type="hidden" name="Objid" value="<%=request.getParameter("Objid")%>">
-                                <input type="hidden" name="ObjValue" value="<%=request.getParameter("ObjValue")%>">
-                                                    <textarea class="form-control" rows="5" id="comment" name="Obj"><%if (request.getParameter("ObjValue")!=null) {out.print(request.getParameter("ObjValue"));}%></textarea>
-
+                                                    <textarea class="form-control" rows="5" id="objTxt" name="Obj"><%if (request.getParameter("ObjValue")!=null) {out.print(request.getParameter("ObjValue"));}%></textarea>
+                            <span data-alertid="obj"></span>
 
                         </div>
+                        <input type="hidden" name="id" value="<%=request.getParameter("id")%>">
+                        <input type="hidden" name="name" value="<%=request.getParameter("name")%>">
+                        <input type="hidden" name="Objid" value="<%=request.getParameter("Objid")%>">
+                        <input type="hidden" name="ObjValue" value="<%=request.getParameter("ObjValue")%>">
 
                         <button class="btn btn-primary" type="submit"><%if (request.getParameter("ObjValue")!=null) {out.print("Update");} else out.print("Add");%></button>
                         <a class="btn btn-default pull-right" href="index.jsp?page=ObjList&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
@@ -58,3 +60,40 @@
         </div>
 
 </html>
+
+<script>
+
+    $(function(){
+        $('#addObj').submit(function(){
+
+            var objTxt = document.getElementById("objTxt");
+
+
+            $(document).trigger("clear-alert-id.obj");
+
+            if(objTxt.value == "") {
+                $(document).trigger("clear-alert-id.obj");
+                $(document).trigger("set-alert-id-obj", [
+                    {
+                        message: "Enter the program objective",
+                        priority: "error"
+                    }
+                ]);
+                objTxt.focus();
+                return false;
+            }else if (/^\d+$/g.test(objTxt.value)) {
+                $(document).trigger("clear-alert-id.obj");
+                $(document).trigger("set-alert-id-obj", [
+                    {
+                        message: "program objective must have alphabetic letters",
+                        priority: "error"
+                    }
+                ]);
+                objTxt.focus();
+                return false;
+            }
+        });
+    });
+
+
+</script>

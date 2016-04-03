@@ -228,11 +228,19 @@
 
                                         </div>
                                         <p class="help-block">Allowed size and type: 2MB, png</p>
-                                        <label>Remove logo? </label>
-                                        <div class="checkbox">
 
-                                            <input type="checkbox" value="remove" name="removeLogo" id="rl" /><label  for="rl"><span class="ui"></span>Remove</label>
-                                        </div>
+                                        <%
+                                            if( userData != null && userData.get(2)!= null ){
+                                                out.print("<label>Remove logo? </label>\n" +
+                                                        "                                        \n" +
+                                                        "                                        \n" +
+                                                        "                                        <div class=\"checkbox\">\n" +
+                                                        "\n" +
+                                                        "                                            <input type=\"checkbox\" value=\"remove\" name=\"removeLogo\" id=\"rl\" /><label  for=\"rl\"><span class=\"ui\"></span>Remove</label>\n" +
+                                                        "                                        </div>");
+                                            }
+                                        %>
+
                                     </div>
                                 </div>
                                 <div class="col-md-4 col-sm-4 paddingImg" style="background-color: <%if(userData != null && userData.get(3)!= null){out.print(userData.get(3));}%>;">

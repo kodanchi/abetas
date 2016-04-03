@@ -131,7 +131,7 @@ public class SystemSettingsServlet extends HttpServlet {
                         if(removeLogo != null && removeLogo.equals("remove")){
                             System.out.println("inside if ----");
                             adb.updateSystemSettings(uname,cname,null,color);
-                            context.removeAttribute("ulogo");
+                            //context.removeAttribute("ulogo");
                             context.setAttribute("ulogo",null);
                         }else if (ulogo.equals("same")){
                             System.out.println("inside if else ----");
@@ -140,14 +140,14 @@ public class SystemSettingsServlet extends HttpServlet {
                         }else {
                             System.out.println("inside else ----");
                             adb.updateSystemSettings(uname,cname,ulogo,color);
-                            context.removeAttribute("ulogo");
+                            //context.removeAttribute("ulogo");
                             context.setAttribute("ulogo",ulogo);
                         }
 
 
-                        context.removeAttribute("uname");
-                        context.removeAttribute("cname");
-                        context.removeAttribute("color");
+                        //context.removeAttribute("uname");
+                        //context.removeAttribute("cname");
+                        //context.removeAttribute("color");
                         context.setAttribute("uname",uname);
                         context.setAttribute("cname",cname);
                         context.setAttribute("color",color);

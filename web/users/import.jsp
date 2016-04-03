@@ -50,7 +50,7 @@
 
 
                         <div class="col-md-6 img-responsive pull-right">
-                            <img src="/img/userExecl.JPG" class="img-responsive" alt="excel format">
+                            <img src="/img/userExcel.JPG" class="img-responsive" alt="excel format">
                         </div>
                     </div>
                     <form name="myform" action="/import/users" method="post" enctype="multipart/form-data">

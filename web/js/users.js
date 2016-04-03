@@ -61,7 +61,7 @@ function onSubmitAddUser(){
         $(document).trigger("clear-alert-id.fname");
         $(document).trigger("set-alert-id-fname", [
             {
-                message: "Enter first name",
+                message: "Enter the first name",
                 priority: "error"
             }
         ]);
@@ -91,7 +91,7 @@ function onSubmitAddUser(){
         $(document).trigger("clear-alert-id.mname");
         $(document).trigger("set-alert-id-mname", [
             {
-                message: "Please enter middle name",
+                message: "Enter the middle name",
                 priority: "error"
             }
         ]);
@@ -121,7 +121,7 @@ function onSubmitAddUser(){
         $(document).trigger("clear-alert-id.lname");
         $(document).trigger("set-alert-id-lname", [
             {
-                message: "Please enter middle name",
+                message: "Enter the last name",
                 priority: "error"
             }
         ]);
@@ -151,7 +151,7 @@ function onSubmitAddUser(){
         $(document).trigger("clear-alert-id.uname");
         $(document).trigger("set-alert-id-uname", [
             {
-                message: "You must enter user's username",
+                message: "Enter the username",
                 priority: "error"
             }
         ]);
@@ -171,7 +171,7 @@ function onSubmitAddUser(){
         $(document).trigger("clear-alert-id.lvl");
         $(document).trigger("set-alert-id-lvl", [
             {
-                message: "You must select user type",
+                message: "Enter the user type",
                 priority: "error"
             }
         ]);
