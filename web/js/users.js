@@ -184,7 +184,7 @@ function onSubmitAddUser(){
                 $(document).trigger("clear-alert-id.email");
                 $(document).trigger("set-alert-id-email", [
                     {
-                        message: "You must enter valid email format",
+                        message: "Email format must be a valid Ex: user@company.com",
                         priority: "error"
                     }
                 ]);
@@ -197,7 +197,7 @@ function onSubmitAddUser(){
             $(document).trigger("clear-alert-id.email");
             $(document).trigger("set-alert-id-email", [
                 {
-                    message: "You must enter a valid email",
+                    message: "Enter a valid email",
                     priority: "error"
                 }
             ]);
@@ -208,7 +208,7 @@ function onSubmitAddUser(){
         $(document).trigger("clear-alert-id.evaluatorProgram");
         $(document).trigger("set-alert-id-evaluatorProgram", [
             {
-                message: "You must select program for the evaluator",
+                message: "Select a program for evaluator",
                 priority: "error"
             }
         ]);

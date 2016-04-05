@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
 
@@ -74,7 +75,7 @@
                                         <%
                                             P_AS_Select aselect = new P_AS_Select();
                                             try {
-                                                ArrayList<String> rs = aselect.selectObjForLink(Integer.parseInt(request.getParameter("id")));
+                                                ArrayList<String> objRs = aselect.selectObjForLink(Integer.parseInt(request.getParameter("id")));
 
                                                 /*for (int i=0; i<rs.size();i++) {
                                                     out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
@@ -82,8 +83,8 @@
                                                 String objValue = request.getParameter("ObjLinkValue")!= null ?
                                                         request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':')):
                                                         "";
-                                                for (int i=0; i<rs.size();i++) {
-                                                    String optValue = rs.get(i).substring(0, rs.get(i).indexOf(':'));
+                                                for (int i=0; i<objRs.size();i++) {
+                                                    String optValue = objRs.get(i).substring(0, objRs.get(i).indexOf(':'));
                                                     out.print("<option value=\""+optValue);
                                                     out.print("\"");
 
@@ -94,18 +95,14 @@
                                                         out.print(" selected");
                                                     }
                                                     out.print(">");
-                                                    if(rs.get(i).length()> 150){
-                                                        out.print(rs.get(i).substring(0,150)+"..."+"</option>");
+                                                    if(objRs.get(i).length()> 150){
+                                                        out.print(objRs.get(i).substring(0,150)+"..."+"</option>");
                                                     }else {
-                                                        out.print(rs.get(i)+"</option>");
+                                                        out.print(objRs.get(i)+"</option>");
                                                     }
 
                                                 }
-                                            } catch (ClassNotFoundException e) {
-                                                e.printStackTrace();
-                                            } catch (SQLException e) {
-                                                e.printStackTrace();
-                                            }
+
                                         %>
                                     </select>
                         </div>
@@ -117,9 +114,9 @@
 
                                         <select class="selectpicker"  name="Out" data-live-search="true">
                                             <%
-                                                P_AS_Select bselect = new P_AS_Select();
-                                                try {
-                                                    ArrayList<String> rs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("id")));
+                                                    P_AS_Select bselect = new P_AS_Select();
+
+                                                    ArrayList<String> outRs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("id")));
 
                                                     /*for (int i=0; i<rs.size();i++) {
                                                         out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
@@ -127,8 +124,8 @@
                                                     String outValue = request.getParameter("OutLinkValue") != null ?
                                                             request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':')):
                                                             "";
-                                                    for (int i=0; i<rs.size();i++) {
-                                                        String optValue = rs.get(i).substring(0, rs.get(i).indexOf(':'));
+                                                    for (int i=0; i<outRs.size();i++) {
+                                                        String optValue = outRs.get(i).substring(0, outRs.get(i).indexOf(':'));
                                                         out.print("<option value=\""+optValue);
                                                         out.print("\"");
 
@@ -138,22 +135,37 @@
                                                             out.print(" selected");
                                                         }
                                                         out.print(">");
-                                                        if(rs.get(i).length()> 150){
-                                                            out.print(rs.get(i).substring(0,150)+"..."+"</option>");
+                                                        if(outRs.get(i).length()> 150){
+                                                            out.print(outRs.get(i).substring(0,150)+"..."+"</option>");
                                                         }else {
-                                                            out.print(rs.get(i)+"</option>");
+                                                            out.print(outRs.get(i)+"</option>");
                                                         }
                                                     }
-                                                } catch (ClassNotFoundException e) {
-                                                    e.printStackTrace();
-                                                } catch (SQLException e) {
-                                                    e.printStackTrace();
-                                                }
-                                            %>
-                                        </select>
-                            </div>
 
-                                <button class="btn btn-primary" type="submit"><%if (request.getParameter("ObjLinkValue")!=null) {out.print("Update");} else out.print("Add");%></button>
+                                                    out.print("</select>\n" +
+"                            </div>");
+
+                                                    if(objRs.size() > 0 && outRs.size() > 0){
+                                                        out.print("<button class=\"btn btn-primary\" type=\"submit\">");
+                                                        if (request.getParameter("ObjLinkValue")!=null) {
+                                                            out.print("Update");
+                                                        } else {
+                                                            out.print("Add");
+                                                        }
+                                                        out.print("</button>");
+                                                    }else {
+                                                        out.print("<p class=\"red\" >In order to add a link you must add at least one objecive or outcome</p>");
+                                                    }
+                                                    } catch (ClassNotFoundException e) {
+                                                        e.printStackTrace();
+                                                    } catch (SQLException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                            %>
+
+
+
+
                                 <a class="btn btn-default pull-right" href="index.jsp?page=LinkOutObj&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>">Cancel</a>
 
                     </form>

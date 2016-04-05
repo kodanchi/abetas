@@ -174,11 +174,11 @@
                                             ]);
                                             pi.focus();
                                             return false;
-                                        }else if(!/^[a-zA-Z]*$/g.test(pi.value)){
+                                        }else if(/^\d+$/g.test(pi.value)){
                                             $(document).trigger("clear-alert-id.pi");
                                             $(document).trigger("set-alert-id-pi", [
                                                 {
-                                                    message: "name must have only alphabetic letters",
+                                                    message: "performance indicator must have alphabetic letters",
                                                     priority: "error"
                                                 }
                                             ]);

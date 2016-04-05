@@ -202,7 +202,7 @@
                                                 ]);
                                                 name.focus();
                                                 return false;
-                                            }else if(!/^[a-zA-Z]*$/g.test(name.value)){
+                                            }else if(!/^[A-Za-z\s]+$/g.test(name.value)){
                                                 $(document).trigger("clear-alert-id.sNameAlert");
                                                 $(document).trigger("set-alert-id-sNameAlert", [
                                                     {

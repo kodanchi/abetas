@@ -218,7 +218,7 @@ function onSubmitUpdateSystem(){
         $(document).trigger("clear-alert-id.uname");
         $(document).trigger("set-alert-id-uname", [
             {
-                message: "You must enter a University name",
+                message: "University name must be entered",
                 priority: "error"
             }
         ]);
@@ -237,7 +237,7 @@ function onSubmitUpdateSystem(){
         $(document).trigger("clear-alert-id.cname");
         $(document).trigger("set-alert-id-cname", [
             {
-                message: "You must enter a College name",
+                message: "College name must be entered",
                 priority: "error"
             }
         ]);
