@@ -362,7 +362,7 @@ InstallDB dbCon = new InstallDB(null);
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#adminUsername').focus();
                 return false;
-            }else if($('#adminUsername').length < 4 || $('#adminUsername').length > 20) {
+            }else if($('#adminUsername').val().length < 4 || $('#adminUsername').val().length > 20) {
                 //document.getElementById("alert").style.visibility = "visible";
                 //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.username");
@@ -388,18 +388,18 @@ InstallDB dbCon = new InstallDB(null);
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
                 $('#txtPassword').focus();
                 return false;
-            }else if($('#txtPassword').length < 6 || $('#txtPassword').length > 15) {
-                $(document).trigger("clear-alert-id.repassword");
-                $(document).trigger("set-alert-id-repassword", [
+            }else if($('#txtPassword').val().length < 6 || $('#txtPassword').val().length > 15) {
+                $(document).trigger("clear-alert-id.password");
+                $(document).trigger("set-alert-id-password", [
                     {
                         message: "Password must be in the range 6-15 characters",
                         priority: "error"
                     }
                 ]);
                 $('#rootwizard').find("a[href*='tab4']").trigger('click');
-                $('#txtConfirmPassword').focus();
+                $('#txtPassword').focus();
                 return false;
-            }else if((!$('#txtPassword').val() || !$('#txtConfirmPassword').val()) && ($('#txtPassword').val() != $('#txtConfirmPassword').val())) {
+            }else if(($('#txtPassword').val() != "" || $('#txtConfirmPassword').val() != "") && ($('#txtPassword').val() != $('#txtConfirmPassword').val())) {
                 //document.getElementById("alert").style.visibility = "visible";
                 //$('#alertt').html('You must re-enter the same new password');
                 $(document).trigger("clear-alert-id.repassword");
@@ -419,6 +419,19 @@ InstallDB dbCon = new InstallDB(null);
                 $(document).trigger("set-alert-id-uemail", [
                     {
                         message: "Please enter admin email",
+                        priority: "error"
+                    }
+                ]);
+                $('#rootwizard').find("a[href*='tab4']").trigger('click');
+                $('#adminemail').focus();
+                return false;
+            }else if($('#adminemail').val() && !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($('#adminemail').val()) ) {
+                //document.getElementById("alert").style.visibility = "visible";
+                //$('#alertt').html('You must enter admin email');
+                $(document).trigger("clear-alert-id.uemail");
+                $(document).trigger("set-alert-id-uemail", [
+                    {
+                        message: "Enter valid admin email",
                         priority: "error"
                     }
                 ]);
@@ -451,7 +464,7 @@ InstallDB dbCon = new InstallDB(null);
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminFirstName').focus();
                 return false;
-            }else if($('#adminFirstName').length < 3 || $('#adminFirstName').length > 20) {
+            }else if($('#adminFirstName').val().length < 3 || $('#adminFirstName').val().length > 20) {
                 //document.getElementById("alert").style.visibility = "visible";
                 //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.fname");
@@ -490,7 +503,7 @@ InstallDB dbCon = new InstallDB(null);
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminMiddleName').focus();
                 return false;
-            }else if($('#adminMiddleName').length < 3 || $('#adminMiddleName').length > 20) {
+            }else if($('#adminMiddleName').val().length < 3 || $('#adminMiddleName').val().length > 20) {
                 //document.getElementById("alert").style.visibility = "visible";
                 //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.mname");
@@ -555,7 +568,7 @@ InstallDB dbCon = new InstallDB(null);
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#cname').focus();
                 return false;
-            }else if($('#adminLastName').length < 3 || $('#adminLastName').length > 20) {
+            }else if($('#adminLastName').val().length < 3 || $('#adminLastName').val().length > 20) {
                 //document.getElementById("alert").style.visibility = "visible";
                 //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.lname");

@@ -74,7 +74,16 @@ public class FetchMatchedRubricServlet extends HttpServlet {
 
             PrintWriter out = response.getWriter();
 
-            out.println("<div class=\"form-group\">\n" +
+            out.println("<script>\n" +
+                    "                        $(function(){\n" +
+                    "                             document.getElementById(\"firstD\").innerHTML=\""+A+"\";\n" +
+                    "                             document.getElementById(\"secondD\").innerHTML=\""+B+"\";\n" +
+                    "                             document.getElementById(\"thirdD\").innerHTML=\""+C+"\";\n" +
+                    "                             document.getElementById(\"forthD\").innerHTML=\""+D+"\";\n" +
+                    "                        });\n" +
+                    "                    </script>" +
+/*
+                    "<div class=\"form-group\">\n" +
                     "                                        <label>First rubrics</label>\n" +
                     "                                        <p >"+A+"</p>\n" +
                     "                                    </div>\n" +
@@ -111,7 +120,9 @@ public class FetchMatchedRubricServlet extends HttpServlet {
                     "                                        <label>Description</label>\n" +
                     "                                        <textarea class=\"form-control\" rows=\"3\" name=\"forthD\"  id=\"forthD\">"+H+"</textarea>\n" +
                     "                                       <span data-alertid=\"forthD\"></span>" +
-                    "                                    </div>\n");
+                    "                                    </div>\n" +
+*/
+                    "");
 
 
         } catch (ClassNotFoundException e) {

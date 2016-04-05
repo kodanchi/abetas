@@ -23,7 +23,9 @@
     }
 %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+
 
 
     <div class="container">
@@ -80,6 +82,7 @@ try {
             if(dataType.equals("students")){
                 if(j == 0 && dbs.isStudentIDExist(dataRow.get(0),Integer.parseInt(request.getParameter("section")))){
                     out.print("<td class=\"danger\">");
+                    out.print("<p  data-toggle=\"tooltip\"  title=\"Student ID existed\">");
                     isValid = false;
                 }else {
                     out.print("<td>");
@@ -88,6 +91,8 @@ try {
             }else if (dataType.equals("pis")){
                 if(j == 0 && dbs.isPIExist(dataRow.get(0), Integer.parseInt(request.getParameter("programID")), Integer.parseInt(id))){
                     out.print("<td class=\"danger\">");
+                    out.print("<p  data-toggle=\"tooltip\"  title=\"Performance Indicator existed\">");
+
                     isValid = false;
                 }else {
                     out.print("<td>");
@@ -95,7 +100,9 @@ try {
             }
 
 
+
             out.print(dataRow.get(j));
+            out.print("</p>");
             out.print("</td>");
         }
         out.print("</tr>");
@@ -118,14 +125,14 @@ try {
 
 %>
                     </table>
-
+                </div>
                     <%
                         if(!isValid){
                             out.print("<p class=\"red\">You cannot upload these data because the data which indicated red are already existed in the database,\n" +
                                     "                    please change the data in the sheet and click re-upload to upload it again. </p>");
                         }
                     %>
-                </div>
+
 
                 <form method="post" action="/upload/cycle" >
                     <a class="btn btn-success btn-fill" href="/cycle/index.jsp?name=<%=term%>&id=<%=id%>&page=import&data=<%=dataType%>">re-upload</a>
@@ -166,7 +173,11 @@ try {
 
                 </form>
 
-
+                <script>
+                    $(document).ready(function(){
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
+                </script>
 
 
                 <!-- End of col -->

@@ -85,7 +85,7 @@
             <%
 
 
-                AS_Select dbs = new AS_Select();
+                F_Select dbs = new F_Select();
                 ArrayList<String> fInfo = new ArrayList<String>();
 
                 String name = "";

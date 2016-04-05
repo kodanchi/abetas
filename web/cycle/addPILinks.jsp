@@ -12,6 +12,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 
 <%
@@ -282,7 +283,7 @@
                                     },
                                     url: '/fetchRubrics',
                                     success: function (result) {
-                                        $('#rubricsDiv').html(result);
+                                        $('#fetchedRubricsDiv').html(result);
                                         //$('#rubricsDiv').show();
                                         show('page', true);
                                         show('loading', false);
@@ -291,6 +292,7 @@
 
                                 })
                             }
+
                         </script>
 
 
@@ -341,7 +343,8 @@
                                     }
                                 }
                             %>
-                                    <div id="rubricsDiv">
+                                    <div id="fetchedRubricsDiv"></div>
+                                    <div id="">
 
                                         <div class="form-group">
                                             <label>First rubrics</label>
@@ -389,13 +392,14 @@
                         <br>
 
                         <button class="btn btn-primary btn-fill" type="submit"><%if (request.getParameter("OutValue")!=null) {out.print("Update");} else out.print("Add");%></button>
-                        <a class="btn btn-default pull-right" href="index.jsp?cycle=<%=id%>&term=<%=Termid%>&page=LinkPIOutList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
+                        <a  class="btn btn-default pull-right" href="index.jsp?cycle=<%=id%>&term=<%=Termid%>&page=LinkPIOutList&programID=<%=request.getParameter("programID")%>" >Cancel</a>
 
 
                     </form>
                     <!-- End of col -->
                     <script>
                         $(function(){
+
 
                             $('#piLinkForm').submit(function(){
                                 $(document).trigger("clear-alert-id.out");

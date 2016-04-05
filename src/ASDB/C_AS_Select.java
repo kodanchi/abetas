@@ -3087,7 +3087,7 @@ public class C_AS_Select {
                 //data.add((termName= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 isExist= rsSelect.getInt(1);
-                System.out.println(isExist+"    isTermYearExist");
+                System.out.println(isExist+"    isStudentIDExist");
             }
 
             ////Need to display the temp password to the screen

@@ -141,7 +141,7 @@ public class SaveFormative extends HttpServlet {
                         } else {
                             dba.updateFormF(WrittenRubrics, Comments, Obstacles, Improvement, null, Integer.parseInt(Formative_ID));
                         }
-                        sendMsg("user Updated",request,response);
+                        sendMsg("Form is saved",request,response);
                         //redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }else {
                         redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;

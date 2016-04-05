@@ -50,17 +50,17 @@ public class CycleSheetUploadServlet extends HttpServlet {
             for(int i=0;i<dataArr.size();i++) {
                 dataRow = dataArr.get(i);
 
-                /*if(dataType.equals("students")){
+                if(dataType.equals("students")){
                     if(dbs.isStudentIDExist(dataRow.get(0),Integer.parseInt(section))){
                         isValid = false;
-                        sendErrorMsg(dataRow.get(0)+ " is already existed in this section.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
+                        sendErrorMsg(dataRow.get(0)+ " is already existed twice in this section.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
                         break;
                     }else {
                         System.out.println("dataType : "+dataType);
                         dba.addStudent(dataRow.get(1), dataRow.get(0), Integer.parseInt(section));
                         Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
                     }
-                }else*/ if(dataType.equals("pis")){
+                }else if(dataType.equals("pis")){
                     if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle))){
                         isValid = false;
                         sendErrorMsg(dataRow.get(0)+ " is already existed.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);

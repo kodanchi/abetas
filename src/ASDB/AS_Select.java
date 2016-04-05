@@ -1363,7 +1363,7 @@ public class AS_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT * FROM faculty_member where Faculty_ID= "+id+";";
+            String query = "SELECT * FROM faculty_member where Faculty_ID= ?;";
 
             /*
              *  Get connection from the DataSource
@@ -1375,7 +1375,7 @@ public class AS_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setInt(1, id);
 
             rs = preparedStatement.executeQuery();
 
@@ -1388,7 +1388,6 @@ public class AS_Select {
                 rowDate.add(rs.getString(7));
                 rowDate.add(rs.getString(2));
                 rowDate.add(rs.getString(4));
-                rowDate.add(rs.getString(8));
             }
 
 

@@ -1,6 +1,7 @@
 package passReset;
 
 import ASDB.AS_Select;
+import ASDB.InstallDB;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -27,22 +28,29 @@ public class contextListener implements ServletContextListener {
         createIfNotExisted(backupfolder);
         createIfNotExisted(uploadsfolder);
 
-
-        AS_Select dbs = new AS_Select();
-
-        ArrayList<String> headerData = null;
         try {
-             headerData = dbs.selectHeaderData();
+            InstallDB dbCon = new InstallDB(null);
+            if(dbCon.setUpChk()){
+                AS_Select dbs = new AS_Select();
+
+                ArrayList<String> headerData = null;
+
+                headerData = dbs.selectHeaderData();
+
+                servletContextEvent.getServletContext().setAttribute("ulogo",headerData.get(2));
+                servletContextEvent.getServletContext().setAttribute("uname",headerData.get(0));
+                servletContextEvent.getServletContext().setAttribute("cname",headerData.get(1));
+                servletContextEvent.getServletContext().setAttribute("color",headerData.get(3));
+
+            }
+
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        servletContextEvent.getServletContext().setAttribute("ulogo",headerData.get(2));
-        servletContextEvent.getServletContext().setAttribute("uname",headerData.get(0));
-        servletContextEvent.getServletContext().setAttribute("cname",headerData.get(1));
-        servletContextEvent.getServletContext().setAttribute("color",headerData.get(3));
 
 
         servletContextEvent.getServletContext().setAttribute("backupTime","weekly");

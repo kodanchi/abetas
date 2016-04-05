@@ -183,6 +183,13 @@ public class InstallServlet extends HttpServlet {
 
 
                 db.init(uname, cname, ulogo, afname, amname, alname, ausername, Password.getSaltedHash(apassword), aemail);
+
+                request.getServletContext().setAttribute("ulogo",ulogo);
+                request.getServletContext().setAttribute("uname",uname);
+                request.getServletContext().setAttribute("cname",cname);
+                request.getServletContext().setAttribute("color","#043366");
+
+
                 out.print("<br>\n" +
                         "        <p>Congratulations, ABETAS setup done successfully, now you need to add a superuser so he can enter the programs, course, create an evaluation cycle. Click on User Management to add and manage users.</p>\n" +
                         "        <br>\n" +

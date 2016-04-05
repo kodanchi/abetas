@@ -73,14 +73,14 @@ public class SelectOutcomeServlet extends HttpServlet {
                 System.out.println("developed + exemplary = "+ passOrFailresults);
                 if(passOrFailresults > threshold ) {
 
-                    out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+
+                    out.print("<a target=\"_blank\" href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+
                             EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-success\">"+PI.get(1)+
                             "</br><div class=\"pull-right\" >Summative | Thredshold: "+threshold+"%</div></br></a>");
 
                     passPis++;
                 }else {
 
-                    out.print("<a href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+
+                    out.print("<a target=\"_blank\" href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+
                             EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-danger\">"+PI.get(1)+
                             "</br><div class=\"pull-right\" >Summative | Thredshold: "+threshold+"%</div></br></a>");
 

@@ -419,7 +419,7 @@
                                     $(document).trigger("clear-alert-id.WrittenRubrics");
                                     $(document).trigger("set-alert-id-WrittenRubrics", [
                                         {
-                                            message: "Please enter the Performance Report",
+                                            message: "Fill the performance report",
                                             priority: "error"
                                         }
                                     ]);
@@ -428,7 +428,7 @@
                                     $(document).trigger("clear-alert-id.Comments");
                                     $(document).trigger("set-alert-id-Comments", [
                                         {
-                                            message: "This area must be filled in",
+                                            message: "Fill the comment(s)",
                                             priority: "error"
                                         }
                                     ]);
@@ -437,7 +437,7 @@
                                     $(document).trigger("clear-alert-id.Obstacles");
                                     $(document).trigger("set-alert-id-Obstacles", [
                                         {
-                                            message: "This area must be filled in",
+                                            message: "Fill the obstacles",
                                             priority: "error"
                                         }
                                     ]);
@@ -446,7 +446,7 @@
                                     $(document).trigger("clear-alert-id.Improvement");
                                     $(document).trigger("set-alert-id-Improvement", [
                                         {
-                                            message: "This area must be filled in",
+                                            message: "Fill the areas of improvement",
                                             priority: "error"
                                         }
                                     ]);
