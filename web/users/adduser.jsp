@@ -21,7 +21,7 @@
         id = request.getParameter("id");
         type = request.getParameter("type");
     }
-    String pageTitle = "Add User";
+    String pageTitle = "Add New User";
     String formURL = "/addUser";
     String submit = "Add";
 

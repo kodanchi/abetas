@@ -128,7 +128,7 @@ public class ImportCycleSheet {
 
                                     } else {
                                         System.out.println("university logo must be type of PNG");
-                                        Error_Msg = "The uploaded file must be excel of following extensions: xls or xlsx";
+                                        Error_Msg = "The uploaded file must have one of the following extensions: xls, xlsx";
                                         return false;
                                     }
                                 } else {
@@ -247,7 +247,7 @@ public class ImportCycleSheet {
                                     case 0:
 
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of the records are empty.";
+                                            Error_Msg = "All students IDs are required, change it in the sheet and try upload it again, or choose another file";
                                             file.close();
                                             return false;
                                         }else {
@@ -256,7 +256,7 @@ public class ImportCycleSheet {
                                         break;
                                     case 1:
                                         if(cell.getStringCellValue().equals("")){
-                                        Error_Msg = "Some of the records are empty.";
+                                        Error_Msg = "All students names are required, change it in the sheet and try upload it again, or choose another file";
                                         file.close();
                                         return false;
                                     }else {
@@ -266,8 +266,8 @@ public class ImportCycleSheet {
                                 }
                                 //System.out.print(cell.getStringCellValue() + "\t\t");
                             }else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                System.out.print("err not same format");
+                                Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
                                         "that shown in the import page";
                                 file.close();
                                 return false;
@@ -337,7 +337,7 @@ public class ImportCycleSheet {
 
             System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
             if(sheet.getPhysicalNumberOfRows() == 0){
-                System.out.print("errrrrr not same format");
+                System.out.print("err not same format");
                 Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
                         "                                        \"that shown in the import page";
                 file.close();
@@ -365,7 +365,7 @@ public class ImportCycleSheet {
                             if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
                                 System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
-                                System.out.print("errrrrr not same format");
+                                System.out.print("err not same format");
                                 Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
                                         "                                        \"that shown in the import page";
                                 file.close();
@@ -390,7 +390,7 @@ public class ImportCycleSheet {
                                         //System.out.print(cell.getStringCellValue() + "\t\t");
 
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of the records are empty.";
+                                            Error_Msg = "All performance indicator names are required, change it in the sheet and try upload it again, or choose another file";
                                             file.close();
 
                                             return true;
@@ -415,7 +415,7 @@ public class ImportCycleSheet {
                                         //System.out.print(cell.getStringCellValue() + "\t\t");
 
                                         if(cell.getNumericCellValue()<0||cell.getNumericCellValue()>100){
-                                            Error_Msg = "Some of the records are empty or the value is not between 0 and 100.";
+                                            Error_Msg = "All threshold values are required and must between 0 and 100, change it in the sheet and try upload it again, or choose another file";
                                             file.close();
 
                                             return true;

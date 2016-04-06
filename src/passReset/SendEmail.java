@@ -43,7 +43,19 @@ public class SendEmail {
             message.setSubject(title);
             message.setText(msg);
 
-            Transport.send(message);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Transport.send(message);
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                        throw new RuntimeException(e);
+                    }
+                }
+            });
+
+
 
             System.out.println("Done");
 

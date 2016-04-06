@@ -24,6 +24,8 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
+<script src="/js/excel-validation.js" type="text/javascript"></script>
     <div class="container">
         <!-- Here is row -->
         <div class="row">
@@ -85,9 +87,15 @@
             out.print("<tr>");
             for(int j=0;j<dataRow.size();j++){
 
-                if((j == 0 || j == 1 || j == 2) && (dataRow.get(j).length() < 3 && dataRow.get(j).length() > 20) ){
-                    out.print("<td  class=\"danger\">");
-                    out.print("<p  data-toggle=\"tooltip\"  title=\"First name must be in the range 3-20 characters\">");
+                if((j == 0 || j == 1 || j == 2)){
+                    if(dataRow.get(j).length() < 3 && dataRow.get(j).length() > 20){
+                        out.print("<td  class=\"danger\">");
+                        out.print("<p  data-toggle=\"tooltip\"  title=\"First name must be in the range 3-20 characters\">");
+                    }else if(dataRow.get(j).matches("\\d+")) {
+                        out.print("<td  class=\"danger\">");
+                        out.print("<p  data-toggle=\"tooltip\"  title=\"name must have only alphabetic letters\">");
+                    }
+
 
                     isValid = false;
                 }else if(j == 3 && dbs.selectUserIfExist(dataRow.get(3))){

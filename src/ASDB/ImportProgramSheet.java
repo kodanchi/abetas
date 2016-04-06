@@ -112,7 +112,7 @@ public class ImportProgramSheet {
 
                                     } else {
                                         System.out.println("File must be excel");
-                                        Error_Msg = "The uploaded file must be excel of following extensions: xls or xlsx";
+                                        Error_Msg = "The uploaded file must have one of the following extensions: xls, xlsx";
                                         return false;
                                     }
                                 } else {
@@ -181,7 +181,7 @@ public class ImportProgramSheet {
             System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
             if(sheet.getPhysicalNumberOfRows() == 0){
                 System.out.print("errrrrr not same format");
-                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
+                Error_Msg = "The selected file is not in proper format, please follow the instructions \" +\n" +
                         "                                        \"that shown in the import page";
                 file.close();
                 return false;
@@ -207,7 +207,7 @@ public class ImportProgramSheet {
                             if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
                                 System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
-                                System.out.print("errrrrr not same format");
+                                System.out.print("err not same format");
                                 Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
                                         "                                        \"that shown in the import page";
                                 file.close();
@@ -248,7 +248,7 @@ public class ImportProgramSheet {
 
                             switch (j){
                                 case 0:
-                                    Error_Msg="Some of the records are empty, change it in the sheet and try upload it again, or choose another file.";
+                                    Error_Msg="All program objectives are required,Please change it in the sheet and try upload it again, or choose another file";
                                     file.close();
                                     return false;
                             }
@@ -308,8 +308,8 @@ public class ImportProgramSheet {
             System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
             if(sheet.getPhysicalNumberOfRows() == 0){
                 System.out.print("errrrrr not same format");
-                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
-                        "                                        \"that shown in the import page";
+                Error_Msg = "The selected file is not in a proper format, please follow the instructions \" +\n" +
+                        "                                        \"that is shown below";
                 file.close();
                 return false;
             }
@@ -354,7 +354,7 @@ public class ImportProgramSheet {
                                 switch (j){
                                     case 0:
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of the records are empty.";
+                                            Error_Msg = "All student outcomes are required,Please change it in the sheet and try upload it again, or choose another file";
                                             file.close();
                                             return false;
                                         }else {
@@ -365,7 +365,7 @@ public class ImportProgramSheet {
                             }else {
                                 System.out.print("errrrrr not same format");
                                 Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                        "that shown in the import page";
+                                        "that is shown in the import page";
                                 file.close();
                                 return false;
                             }
@@ -484,7 +484,7 @@ public class ImportProgramSheet {
                                     if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                                         System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of the records are empty.";
+                                            Error_Msg = "All courses names are required, change it in the sheet and try upload it again, or choose another file";
                                             file.close();
                                             return false;
                                         }else {
@@ -502,12 +502,11 @@ public class ImportProgramSheet {
                                     if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                                         System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
                                         if(cell.getStringCellValue().equals("")){
-                                            Error_Msg = "Some of course's codes, please follow the instructions " +
-                                                    "that shown in the import page";
+                                            Error_Msg = "All courses codes are required, change it in the sheet and try upload it again, or choose another file";
                                             file.close();
                                             return false;
                                         }else if(dbs.isCoursesCodeExist(cell.getStringCellValue())){
-                                            Error_Msg = "Course code: "+cell.getStringCellValue()+" is already existed, please change it in the excel sheet and" +
+                                            Error_Msg = "Course code: "+cell.getStringCellValue()+" is already existed, change it in the excel sheet and" +
                                                     " follow the instructions that shown in the import page";
                                             file.close();
                                             return false;
@@ -516,13 +515,14 @@ public class ImportProgramSheet {
                                         }
                                     }else {
                                         System.out.print("errrrrr not same format");
-                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                                "that shown in the import page";
+                                        Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                "that is shown below";
                                         file.close();
                                         return false;
                                     }
                                     break;
                                 case 2:
+                                    cell.setCellType(Cell.CELL_TYPE_NUMERIC);
                                     if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
                                         System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getNumericCellValue()+"**");
                                         if(cell.getNumericCellValue() <= 0 || cell.getNumericCellValue() > 10){
@@ -535,7 +535,7 @@ public class ImportProgramSheet {
                                         }
                                 }else {
                                     System.out.print("errrrrr not same format");
-                                    Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                    Error_Msg = "The selected file is not in the proper format, follow the instructions " +
                                             "that shown in the import page";
                                     file.close();
                                     return false;

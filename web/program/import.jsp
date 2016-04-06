@@ -13,7 +13,8 @@
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <script src="/js/uploadInput.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
-
+<script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
+<script src="/js/excel-validation.js" type="text/javascript"></script>
 <%
 
     if(request.getSession().getAttribute("errMsg") != null){
@@ -111,7 +112,7 @@
                             <img src="<%=imgurl%>" class="img-responsive" alt="excel format">
                         </div>
                     </div>
-                    <form name="myform" action="/import/program" method="post" enctype="multipart/form-data">
+                    <form  id="import" name="myform" action="/import/program" method="post" enctype="multipart/form-data">
                         <input type="text" name="data-type" value="<%=dataType%>" hidden/>
                         <input type="text" name="id" value="<%=request.getParameter("id")%>" hidden/>
                         <input type="text" name="name" value="<%=request.getParameter("name")%>" hidden/>
@@ -119,14 +120,18 @@
                             <div class="col-md-8 col-md-offset-2">
 
 
-                            <div class="form-group input-group">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
-                                        Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" required>
+                            <div class="form-group ">
+                                <div class=" input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
+                                            Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" id="excelInput" >
+                                        </span>
                                     </span>
-                                </span>
-                                <input type="text" class="form-control" readonly>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                                <span data-alertid="exceli"></span>
                             </div>
+
                                 <!--    <input class="form-control" type="text" name="first" value="" size="50" /> -->
                                 <!--    <input class="btn btn-lg btn-success pull-right" type="submit" value="Browse" name="AddUser"/> -->
 

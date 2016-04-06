@@ -91,7 +91,7 @@ public class ImportUserSheet {
 
                                     } else {
                                         System.out.println("File must be excel");
-                                        Error_Msg = "The uploaded file must be excel of following extensions: xls or xlsx";
+                                        Error_Msg = "The uploaded file must have one of the following extensions: xls, xlsx";
                                         return false;
                                     }
                                 } else {
@@ -158,8 +158,8 @@ public class ImportUserSheet {
             System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
             if(sheet.getPhysicalNumberOfRows() == 0){
                 System.out.print("errrrrr not same format");
-                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
-                        "                                        \"that shown in the import page";
+                Error_Msg = "The selected file is not in proper format, please follow the instructions \" +\n" +
+                        "                                        \"that'a shown shown below";
                 file.close();
                 return false;
             }
@@ -185,14 +185,16 @@ public class ImportUserSheet {
                             if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
                                 System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
-                                System.out.print("errrrrr not same format");
-                                Error_Msg = "errrrrr not same format";
+                                System.out.print("err not same format");
+                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                        "that shown in the import page";
                                 file.close();
                                 return false;
                             }
                         } else {
                             System.out.print("errrrrr not string");
-                            Error_Msg = "errrrrr not string";
+                            Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
+                                    "that shown in the import page";
                             file.close();
                             return false;
                         }
@@ -215,7 +217,7 @@ public class ImportUserSheet {
                                         }
 
                                     }else {
-                                        System.out.print("errrrrr not same format");
+                                        System.out.print("er not in proper format");
                                         Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
                                                 "that shown in the import page";
                                         file.close();
@@ -233,10 +235,9 @@ public class ImportUserSheet {
 
 
                                         if(cell.getStringCellValue().equals("")){
-                                            System.out.print("errrrrr not same format");
-                                            Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
-                                                    "                                        \"that shown in the import page";
-                                            file.close();
+                                            System.out.print("err not in proper format");
+                                            Error_Msg = "The selected file is not in proper format, please follow the instructions \" +\n" +
+                                                    "                                        \"that'a shown shown below";                                            file.close();
                                             return false;
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
@@ -258,7 +259,7 @@ public class ImportUserSheet {
                                                 !cell.getStringCellValue().equalsIgnoreCase("faculty") &&
                                                 !cell.getStringCellValue().equalsIgnoreCase("evaluator")){
                                             Error_Msg = "The Level: "+cell.getStringCellValue()+" is not what it must be specified " +
-                                                    "in the sheet!, please go back and change then try upload it again, or choose " +
+                                                    "in the sheet!, please go back and change it then try to upload it again, or choose " +
                                                     "another file.";
                                             file.close();
                                             return false;
@@ -267,7 +268,7 @@ public class ImportUserSheet {
                                         }
 
                                     }else {
-                                        System.out.print("errrrrr not same format");
+                                        System.out.print("err not same format");
                                         Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
                                                 "that shown in the import page";
                                         file.close();
@@ -281,22 +282,21 @@ public class ImportUserSheet {
                                     System.out.println("col 5 :"+row.getCell(j-1));
                                     if(row.getCell(j-1).getStringCellValue().equals("evaluator")){
                                         dataRow.add(" ");
-                                        System.out.println("yess no need 4 email");
                                     }else {
 
 
                                         if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
 
                                             if(cell.getStringCellValue().equals("")){
-                                                System.out.print("errrrrr not same format");
+                                                System.out.print("err not same format");
                                                 Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
                                                         "                                        \"that shown in the import page";
                                                 file.close();
                                                 return false;
                                             }else {
                                                 if(!checkEmailValidation(cell.getStringCellValue())){
-                                                    Error_Msg = "The Email: "+cell.getStringCellValue()+" is not in the proper " +
-                                                            "format, please change it in the sheet and try upload it again, or choose " +
+                                                    Error_Msg = "The Email: "+cell.getStringCellValue()+" is not in a proper " +
+                                                            "format, please change it in the sheet and try to upload it again, or choose " +
                                                             "another file.";
                                                     file.close();
                                                     return false;
@@ -306,7 +306,7 @@ public class ImportUserSheet {
                                             }
 
                                         }else {
-                                            System.out.print("errrrrr not same format");
+                                            System.out.print("err not same format");
                                             Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
                                                     "that shown in the import page";
                                             file.close();
@@ -334,19 +334,19 @@ public class ImportUserSheet {
 
                             switch (j){
                                 case 1:
-                                    Error_Msg="First names for all users are required, change it in the sheet and try upload it again, or choose another file.";
+                                    Error_Msg="First names for all users are required, change it in the sheet and try to upload it again, or choose another file.";
                                     file.close();
                                     return false;
                                 case 3: //checking if the usernames already exist or not in db
-                                    Error_Msg="usernames for all users are required, change it in the sheet and try upload it again, or choose another file.";
+                                    Error_Msg="usernames for all users are required, change it in the sheet and try to upload it again, or choose another file.";
                                     file.close();
                                     return false;
                                 case 4: //checking if the emails already exist or not in db
-                                    Error_Msg="Emails for all users are required, change it in the sheet and try upload it again, or choose another file.";
+                                    Error_Msg="Emails for all users are required, change it in the sheet and try to upload it again, or choose another file.";
                                     file.close();
                                     return false;
                                 case 5:
-                                    Error_Msg="Levels for all users are required, change it in the sheet and try upload it again, or choose another file.";
+                                    Error_Msg="Levels for all users are required, change it in the sheet and try to upload it again, or choose another file.";
                                     file.close();
                                     return false;
                                 default:
