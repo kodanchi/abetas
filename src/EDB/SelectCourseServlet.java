@@ -108,6 +108,7 @@ public class SelectCourseServlet extends HttpServlet {
                         "                                var sid = cl.options[cl.selectedIndex].value;\n" +
                         "                                if(sid == \"overall\"){\n" +
                         "                                    courseOverall();\n" +
+                        "                                    document.getElementById(\"writtenResult\").innerHTML = ovr; \n" +
                         "                                    $(\"#evidence\").hide();" +
                         "                                }else {\n" +
                         "                                    show('page', false);\n" +
@@ -151,7 +152,9 @@ public class SelectCourseServlet extends HttpServlet {
                     out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
                             (threshold - passOrFailresults)));
                 }
-                out.print("' </script>");
+                out.print("'\n" +
+                        "var ovr = document.getElementById(\"writtenResult\").innerHTML;\n" +
+                        " </script>\n");
 
             }
 

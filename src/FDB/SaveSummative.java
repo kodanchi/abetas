@@ -124,7 +124,7 @@ public class SaveSummative extends HttpServlet {
                             System.out.println("else fired!"+ item.getSize());
                             if(item.getSize() != 0) {
                                 name = new File(item.getName()).getName();
-                                if (item.getSize() < 5000000) {
+                                if (item.getSize() < 100000000) {
 
                                     String extension = "";
 
@@ -149,7 +149,7 @@ public class SaveSummative extends HttpServlet {
 
 
                                 } else {
-                                    sendMsg("Logo image's size exceeds 5 mb",request,response);
+                                    sendMsg("Evidence file's size exceeds 100 mb",request,response);
                                     isValid = false;
                                 }
                             }else{
