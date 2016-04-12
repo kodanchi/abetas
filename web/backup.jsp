@@ -25,6 +25,8 @@
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
 
+    <script src="js/jquery-2.2.0.min.js" type="text/javascript"></script>
+
 </head>
 
 <body>
@@ -32,6 +34,25 @@
 <div id="header">
     <jsp:include page="/Header.jsp"/>
 </div>
+
+
+    <%
+
+
+        if(request.getSession().getAttribute("Msg") != null){
+
+
+            out.print("<script type=\"text/javascript\">\n" +
+                    "    $(window).load(function(){\n" +
+                    "       bootbox.alert(\""+request.getSession().getAttribute("Msg")+"\")\n" +
+                    "    });\n" +
+                    "</script>");
+            request.getSession().removeAttribute("Msg");
+
+
+        }
+
+    %>
 
 
 <div class="main">
@@ -114,9 +135,9 @@
                                             out.print("<tr><td>"+ file +"</td>\n" +
                                                     "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                                                     .format(view.creationTime().toMillis())+"</td>\n" +
-                                                    "                                <form method=\"post\" action=\"/RestoreDB\">\n" +
+                                                    "                                <form method=\"post\" class=\"RestoreForm\" action=\"/RestoreDB\">\n" +
                                                     "                                    <td><input hidden name=\"restoreAction\" value="+ file +"><button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button></td></form>\n"+
-                                                    "                                <form method=\"post\" action=\"/BackupDel\">\n" +
+                                                    "                                <form method=\"post\" class=\"delForm\" action=\"/BackupDel\">\n" +
                                                     "                                    <td ><input name=\"deleteAction\" hidden value="+ file +"><button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button></td>" +
                                                     "</tr>" +
                                                     "</form>\n");
@@ -171,6 +192,23 @@
     </div>
 </div>
 
+    <script>
+        $(function(){
+            $('form.RestoreForm').on('submit',function (e){
+                e.preventDefault();
+                var form = $(this);
+                bootbox.confirm('Are you sure want to Restore the database ?', function(result) {
+                    if(result == true){
+                        //var form = $(this).parents('form:first');
+                        $('form.RestoreForm').off('submit');
+                        form.submit();
+                        //alert('fdf');
+                    }
+                });
+
+            });
+        });
+    </script>
 
 <div id="footer">
     <jsp:include page="/Footer.jsp"/>
@@ -179,8 +217,6 @@
 <div id="loading" ></div>
 </body>
 
-<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
 <!-- <script src="code.jquery.com/jquery-1.10.2.js"></script> -->
 <script src="js/bootstrap.js" type="text/javascript"></script>
 
@@ -192,5 +228,7 @@
 
 <script src="js/flat-ui.min.js"></script>
 <script src="js/flat-ui-select.js"></script>
+<script src="js/bootbox.min.js"></script>
+<script src="js/del-form-listener.js"></script>
 
 </html>

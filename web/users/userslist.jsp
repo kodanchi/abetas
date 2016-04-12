@@ -39,10 +39,13 @@
                         out.print("<script>");
                         out.print("$(document).ready(function(){\n" +
                                 "bootbox.alert(\""+msg+"\");\n");
+
+                        out.print("$(function(){\n");
                         if(msg.startsWith("Faculty_Member")){
                             /*out.print("$(this).ready(function(){\n");
                             out.print("showFTable()");
                             out.print("});");*/
+
                             out.print("$('#FTable').show();\n" +
                                     "                        $('#ETable').hide();\n" +
                                     "                        $('#ASTable').hide();");
@@ -51,7 +54,7 @@
                                     "                        $('#ASTable').hide();\n" +
                                     "                        $('#FTable').hide();");
                         }
-
+                        out.print("});\n");
                         out.print("\n});\n</script>");
 
                         request.getSession().removeAttribute("Msg");
@@ -255,6 +258,7 @@
                                 <th>Username</th>
                                 <th>Password</th>
                                 <th>Access level</th>
+                                <th>Program</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
