@@ -14,6 +14,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
     <div class="container">
         <!-- Here is row -->
@@ -100,18 +101,20 @@
 
                     <div id="ASTable">
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center"  >
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTablee" >
+                            <thead>
                             <tr class="textContainer">
-                                <th>First name</th>
-                                <th>Middle name</th>
-                                <th>Last name</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Access level</th>
+                                <th data-sort="string">First name</th>
+                                <th data-sort="string">Middle name</th>
+                                <th data-sort="string">Last name</th>
+                                <th data-sort="string">Username</th>
+                                <th data-sort="string">Email</th>
+                                <th data-sort="string">Access level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
                             </tr>
+                            </thead>
                             <%
 
 
@@ -177,18 +180,20 @@
 
                     <div id="FTable">
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center"  >
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTableee" >
+                            <thead>
                             <tr class="textContainer">
-                                <th>First name</th>
-                                <th>Middle name</th>
-                                <th>Last name</th>
-                                <th>Username</th>
-                                <th>Email</th>
+                                <th data-sort="string">First name</th>
+                                <th data-sort="string">Middle name</th>
+                                <th data-sort="string">Last name</th>
+                                <th data-sort="string">Username</th>
+                                <th data-sort="string">Email</th>
                                 <th>Access level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
                             </tr>
+                            </thead>
                             <%
 
 
@@ -247,18 +252,23 @@
 
                     <div id="ETable">
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center" >
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
+
                             <tr class="textContainer">
-                                <th>First name</th>
-                                <th>Middle name</th>
-                                <th>Last name</th>
-                                <th>Username</th>
-                                <th>Password</th>
+                                <th data-sort="string">First name</th>
+                                <th data-sort="string">Middle name</th>
+                                <th data-sort="string">Last name</th>
+                                <th data-sort="string">Username</th>
+                                <th data-sort="string">Password</th>
                                 <th>Access level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
                             </tr>
+
+                            </thead>
+
                             <%
 
                                 try {
@@ -327,6 +337,15 @@
 
                         </table >
                     </div>
+                <script>
+                    $("#sTable").stupidtable();
+                </script>
+                <script>
+                    $("#sTablee").stupidtable();
+                </script>
+                <script>
+                    $("#sTableee").stupidtable();
+                </script>
 
                 <button class="btn btn-primary"  onclick="importPopup('index.jsp?page=import','index.jsp?page=add',
                             'Add new user',

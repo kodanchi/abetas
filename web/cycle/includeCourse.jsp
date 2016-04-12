@@ -12,6 +12,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
 <%
 
@@ -166,16 +167,20 @@
                         <input id="filter" type="text" class="form-control" placeholder=" by course code, name or level ">
                     </div>
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
+
                             <tr>
 
-                                <th>Code</th>
-                                <th>Name</th>
-                                <th>Level</th>
+                                <th data-sort="string-ins">Code</th>
+                                <th data-sort="string">Name</th>
+                                <th data-sort="int">Level</th>
                                 <th>Course Info.</th>
                                 <th>Delete</th>
 
                             </tr>
+                            </thead>
+
                             <tbody class="searchable">
                                 <%
 
@@ -236,6 +241,10 @@
                     "&term="+Termid+"&programID="+request.getParameter("programID")+"\">Next</a>\n");
                         }
                     %>
+
+                    <script>
+                        $("#sTable").stupidtable();
+                    </script>
 
                     <!-- End of col -->
                 </div>
