@@ -313,7 +313,7 @@ public class U_AS_Update {
     }
 
 
-    public  void updateEvaluator(int id,String fname, String mname, String lname, String username) throws SQLException, ClassNotFoundException {
+    public  void updateEvaluator(int id,String fname, String mname, String lname, String username, String program) throws SQLException, ClassNotFoundException {
 
         connect();
 
@@ -333,14 +333,15 @@ public class U_AS_Update {
             /*
              * Execute the query
              */
-            String query = "UPDATE evaluator SET `E_Username`=?, `E_Fname`=?, `E_Mname`=?, `E_Lname`=? WHERE `E_ID`=?;";
+            String query = "UPDATE evaluator SET `E_Username`=?, `E_Fname`=?, `E_Mname`=?, `E_Lname`=?, `E_program`= ? WHERE `E_ID`=?;";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, fname);
             preparedStatement.setString(3, mname);
             preparedStatement.setString(4, lname);
-            preparedStatement.setInt(5, id);
+            preparedStatement.setString(5, program);
+            preparedStatement.setInt(6, id);
             rs = preparedStatement.executeUpdate();
 
 
