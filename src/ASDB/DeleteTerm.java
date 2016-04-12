@@ -6,23 +6,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-/**
- * Created by Ibrahim Abuaqel on 2/8/2016.
- */
+
 @WebServlet(name = "DeleteTerm",
         urlPatterns = {"/DeleteTerm"})
 public class DeleteTerm extends HttpServlet {
+    /**
+     * connect to the database and call delete method to delete term by ID, then add to system log and add this event to the system log.
+     * Redirect to the cycle term list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        System.out.println(request.getParameter("term")+"           ");
-        //ArrayList<String> data = new ArrayList<String>();
+
         String cid= request.getParameter("cycle");
         C_AS_Delete dba=new C_AS_Delete();
-        //C_AS_Select dbaS=new C_AS_Select();
         try {
-            //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteTerm(Integer.parseInt(request.getParameter("term")));
             Auditor.add((String)request.getSession().getAttribute("username"),"Deleted term (ID : "+request.getParameter("term")+")");
 
@@ -31,18 +32,8 @@ public class DeleteTerm extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
-        //out.println("logo: " + request.getParameter("logo"));
-        //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
-        System.out.println(cid+"                vdgfsg            ");
-        //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        //response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
         try {
-            //request.getSession().setAttribute("id",String.valueOf(id));
-            //request.getRequestDispatcher("/cycle/index.jsp?page=addTerm").forward(request,response);
             response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+cid);
         }catch (NullPointerException e){
             e.fillInStackTrace();
