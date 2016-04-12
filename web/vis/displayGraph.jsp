@@ -105,38 +105,7 @@
 
                         </select>
 
-                        <script>
-                            function onCourseChange(tid,pid,pIid){
-                                var cl = document.getElementById("courseListSelect");
-                                var cid = cl.options[cl.selectedIndex].value;
-                                if(cid == "overall"){
-                                    pIOverviewChart();
-                                    $("#sectionList").hide();
-                                    $("#evidence").hide();
-                                }else {
-                                    show('page', false);
-                                    show('loading', true);
-                                    $.ajax({
-                                        type: 'POST',
-                                        data: {
-                                            tid: tid,
-                                            pid: pid,
-                                            cid: cid,
-                                            pIid: pIid
-                                        },
-                                        url: '/SelectCourseServlet',
-                                        success: function (result) {
-                                            $('#sectionList').html(result);
-                                            $('#sectionList').show();
-                                            show('page', true);
-                                            show('loading', false);
 
-                                        }
-
-                                    })
-                                }
-                            }
-                        </script>
 
 
 
@@ -198,6 +167,7 @@
                                         }
                                     });
 
+
                                 };
 
                                 function pIOverviewChart() {
@@ -243,32 +213,72 @@
 
                     </div>
 
-                    <%
-
-                        int threshold;
-                        threshold = dbs.selectThresholdToEvaluate(Integer.parseInt(id));
-                        out.print("<div class=\"col-md-7 \" id=\"writtenResult\">");
-                        float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
-                        float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
-                        float passOrFailresults = developed + exemplary;
-                        System.out.println("developed + exemplary = "+ passOrFailresults);
-                        if(passOrFailresults > threshold ) {
-                            out.print("<Strong style=\"color:Green;\">The requirements were met</Strong>");
-                            out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
-                                    ( passOrFailresults - threshold)));
-                        }else {
-                            out.print("<Strong style=\"color:Red;\">The requirements were not met</Strong>");
-                            out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
-                                    (threshold - passOrFailresults)));
-                        }
-
-                        out.print("</div>");
-                    %>
+                    <div class="col-md-7 " id="writtenResult"></div>
 
                 </div>
 
 
+                <script>
+                    function covr(){
+                        document.getElementById("writtenResult").innerHTML = '<%
+                                    int threshold =0;
+                                        try {
+                                                threshold = dbs.selectThresholdToEvaluate(Integer.parseInt(id));} catch (ClassNotFoundException e) {
+                                                    e.printStackTrace();
+                                                } catch (SQLException e) {
+                                                    e.printStackTrace();
+                                                }
+                                    float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
+                                    float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
+                                    float passOrFailresults = developed + exemplary;
+                                    System.out.println("developed + exemplary = "+ passOrFailresults);
+                                    if(passOrFailresults > threshold ) {
+                                        out.print("<Strong style=\"color:Green;\">The requirements were met</Strong>");
+                                        out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
+                                                ( passOrFailresults - threshold)));
+                                    }else {
+                                        out.print("<Strong style=\"color:Red;\">The requirements were not met</Strong>");
+                                        out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
+                                                (threshold - passOrFailresults)));
+                                    }
+                                    %>';
+                    }
+                    function onCourseChange(tid,pid,pIid){
+                        var cl = document.getElementById("courseListSelect");
+                        var cid = cl.options[cl.selectedIndex].value;
+                        if(cid == "overall"){
+                            pIOverviewChart();
+                            $("#sectionList").hide();
+                            $("#evidence").hide();
+                            covr();
+                        }else {
+                            show('page', false);
+                            show('loading', true);
+                            $.ajax({
+                                type: 'POST',
+                                data: {
+                                    tid: tid,
+                                    pid: pid,
+                                    cid: cid,
+                                    pIid: pIid
+                                },
+                                url: '/SelectCourseServlet',
+                                success: function (result) {
+                                    $('#sectionList').html(result);
+                                    $('#sectionList').show();
+                                    show('page', true);
+                                    show('loading', false);
+                                    sovr();
 
+                                }
+
+                            })
+                        }
+                    }
+                    $(function(){
+                        covr();
+                    });
+                </script>
 
 
 

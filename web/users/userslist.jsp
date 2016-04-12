@@ -14,6 +14,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
     <div class="container">
         <!-- Here is row -->
@@ -39,10 +40,13 @@
                         out.print("<script>");
                         out.print("$(document).ready(function(){\n" +
                                 "bootbox.alert(\""+msg+"\");\n");
+
+                        out.print("$(function(){\n");
                         if(msg.startsWith("Faculty_Member")){
                             /*out.print("$(this).ready(function(){\n");
                             out.print("showFTable()");
                             out.print("});");*/
+
                             out.print("$('#FTable').show();\n" +
                                     "                        $('#ETable').hide();\n" +
                                     "                        $('#ASTable').hide();");
@@ -51,7 +55,7 @@
                                     "                        $('#ASTable').hide();\n" +
                                     "                        $('#FTable').hide();");
                         }
-
+                        out.print("});\n");
                         out.print("\n});\n</script>");
 
                         request.getSession().removeAttribute("Msg");
@@ -100,18 +104,20 @@
 
                     <div id="ASTable">
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center"  >
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTablee" >
+                            <thead>
                             <tr class="textContainer">
-                                <th>First name</th>
-                                <th>Middle name</th>
-                                <th>Last name</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Access level</th>
+                                <th data-sort="string">First name</th>
+                                <th data-sort="string">Middle name</th>
+                                <th data-sort="string">Last name</th>
+                                <th data-sort="string">Username</th>
+                                <th data-sort="string">Email</th>
+                                <th data-sort="string">Access level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
                             </tr>
+                            </thead>
                             <%
 
 
@@ -177,18 +183,20 @@
 
                     <div id="FTable">
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center"  >
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTableee" >
+                            <thead>
                             <tr class="textContainer">
-                                <th>First name</th>
-                                <th>Middle name</th>
-                                <th>Last name</th>
-                                <th>Username</th>
-                                <th>Email</th>
+                                <th data-sort="string">First name</th>
+                                <th data-sort="string">Middle name</th>
+                                <th data-sort="string">Last name</th>
+                                <th data-sort="string">Username</th>
+                                <th data-sort="string">Email</th>
                                 <th>Access level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
                             </tr>
+                            </thead>
                             <%
 
 
@@ -247,18 +255,24 @@
 
                     <div id="ETable">
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center" >
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
+
                             <tr class="textContainer">
-                                <th>First name</th>
-                                <th>Middle name</th>
-                                <th>Last name</th>
-                                <th>Username</th>
-                                <th>Password</th>
+                                <th data-sort="string">First name</th>
+                                <th data-sort="string">Middle name</th>
+                                <th data-sort="string">Last name</th>
+                                <th data-sort="string">Username</th>
+                                <th data-sort="string">Password</th>
                                 <th>Access level</th>
+                                <th>Program</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
 
                             </tr>
+
+                            </thead>
+
                             <%
 
                                 try {
@@ -327,6 +341,15 @@
 
                         </table >
                     </div>
+                <script>
+                    $("#sTable").stupidtable();
+                </script>
+                <script>
+                    $("#sTablee").stupidtable();
+                </script>
+                <script>
+                    $("#sTableee").stupidtable();
+                </script>
 
                 <button class="btn btn-primary"  onclick="importPopup('index.jsp?page=import','index.jsp?page=add',
                             'Add new user',

@@ -94,7 +94,7 @@ public class SelectOutcomeServlet extends HttpServlet {
             ArrayList<ArrayList<String>> pIListF = dbs.selectPIofOutcomeFormativeToEvaluate(tid, pid,oid);
 
             for (ArrayList<String> PI : pIListF){
-                out.print("<a href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(2)) + "&type="+EncDec.getEncr("formative")+
+                out.print("<a target=\"_blank\" href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(2)) + "&type="+EncDec.getEncr("formative")+
                         "\" class=\"list-group-item\">" + PI.get(1) + "</br><div class=\"pull-right\" >Formative</div></br></a>");
             }
             out.print("</div>");

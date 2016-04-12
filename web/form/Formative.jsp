@@ -456,8 +456,10 @@
                                     bootbox.confirm("when submitting this form you cannot access it again to edit the entered " +
                                             "data, are you sure you want to continue!?", function(confirmed) {
                                         console.log("Confirmed: "+confirmed);
-                                        $('#formativeForm').attr('action', '/SubmitFormative');
-                                        $('#formativeForm').submit();
+                                        if(confirmed){
+                                            $('#formativeForm').attr('action', '/SubmitFormative');
+                                            $('#formativeForm').submit();
+                                        }
                                     });
                                 }
 

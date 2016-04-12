@@ -2860,6 +2860,202 @@ public class C_AS_Select {
 
     }
 
+    public ArrayList<Integer> selectSFormsofSameCourse(int FK_T, String FK_C) throws ClassNotFoundException, SQLException {
+
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            System.out.println("FK_T : "+FK_T);
+            System.out.println("FK_C : "+FK_C);
+
+            String query = "SELECT distinct summative.FK_Link_ID\n" +
+                    "FROM abetasdb.section , summative\n" +
+                    "where section.Section_ID = summative.FK_Section_ID\n" +
+                    "AND FK_T= ? \n" +
+                    "AND FK_C= ? ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T);
+            preparedStatement.setString(2, FK_C);
+
+            rs = preparedStatement.executeQuery();
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getInt(1));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+    public ArrayList<Integer> selectFFormsofSameCourse(int FK_T, String FK_C) throws ClassNotFoundException, SQLException {
+
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT distinct formative.FK_Link_ID\n" +
+                    "FROM abetasdb.section , formative\n" +
+                    "where abetasdb.section.Section_ID = formative.FK_Section_ID\n" +
+                    "AND FK_T= ? \n" +
+                    "AND FK_C= ? ;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, FK_T);
+            preparedStatement.setString(2, FK_C);
+
+            rs = preparedStatement.executeQuery();
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getInt(1));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
+    public ArrayList<Integer> selectPiforNewSectionSameCourse(int Link_ID) throws ClassNotFoundException, SQLException {
+
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        connect();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        ResultSet rs = null;
+        try {
+
+            String query = "SELECT FK_out , FK_PI_ID, FK_P_ID,FK_R_ID \n" +
+                    "FROM abetasdb.link_out_pi\n" +
+                    "where Link_ID= ?;";
+
+            /*
+             *  Get connection from the DataSource
+             */
+
+            connection = dataSource.getConnection();
+
+            /*
+             * Execute the query
+             */
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, Link_ID);
+
+
+            rs = preparedStatement.executeQuery();
+            //
+            int i=-1;
+            while (rs.next()){
+                data.add(rs.getInt(1));
+                data.add(rs.getInt(2));
+                data.add(rs.getInt(3));
+                data.add(rs.getInt(4));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            /*
+             * finally block used to close resources
+             */rs.close();
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            }
+
+            return data;
+
+        }
+
+    }
+
     public String selectFormType(int id) throws ClassNotFoundException, SQLException {
 
         connect();

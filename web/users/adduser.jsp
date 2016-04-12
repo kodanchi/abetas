@@ -79,6 +79,7 @@
                 umname = selUsrData.get(2);
                 ulname = selUsrData.get(3);
                 uname = selUsrData.get(4);
+                evaluatorPro = selUsrData.get(5);
                 //uemail = selUsrData.get(5);
                 //evaluatorPro = selUsrData.get(6);
                 pageTitle = "Update User";
@@ -188,23 +189,22 @@
                     <div class="form-group" id="evaluatorDiv">
                         <label>Evaluator Program</label>
                         <div class="selectContainer">
-                            <select class="form-control" name="evaluatorProg"  id="evaluatorProgram" required>
-                                <option value="">Evaluator Program</option>
+                            <select class="form-control" name="evaluatorProg"  id="evaluatorProgram">
+                                <option >Evaluator Program</option>
                                 <%
 
-                                    P_AS_Select aselect = new P_AS_Select();
+                                    U_AS_Select dbs = new U_AS_Select();
                                     try {
-                                        ArrayList<ArrayList<String>> rs = aselect.selectProgram();
-                                        ArrayList<String> rsRow ;
+                                        ArrayList<String> rs = dbs.selectProgramNames();
 
                                         for (int i=0; i<rs.size();i++){
-                                            rsRow = new ArrayList<String>();
-                                            rsRow = rs.get(i);
-                                            for (int j=1; j<rsRow.size();j++) {
+
+                                            out.print("<option value=\"");out.print(rs.get(i));out.print("\"");
+                                            if (evaluatorPro.equals(rs.get(i))) {
+                                                out.print(" selected ");
                                             }
-                                            rsRow.get(1);
-                                            out.print("<option value=\"");out.print(rsRow.get(1));out.print("\"");
-                                if ((evaluatorPro.equals(rsRow.get(1)))){  out.print("selected");  } out.print(">");out.print(rsRow.get(1));out.print("</option>");
+
+                                            out.print(">");out.print(rs.get(i));out.print("</option>");
                                         }
 
                                     } catch (ClassNotFoundException e) {
@@ -229,14 +229,20 @@
 
                 </form>
                 <script>
-                    $(this).ready(function(){
+                    /*$(this).ready(function(){
                         //document.getElementById("alert").style.visibility = "hidden";
                         document.getElementById("emailDiv").style.visibility = "hidden";
-                        document.getElementById("evaluatorDiv").style.visibility = "hidden";
+                        $('#evaluatorDiv').hide();
                         onUserTypeChng();
 
 
-                    })
+                    })*/
+
+                    $(function(){
+                        document.getElementById("emailDiv").style.visibility = "hidden";
+                        $('#evaluatorDiv').hide();
+                        onUserTypeChng();
+                    });
 
                 </script>
 

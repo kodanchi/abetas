@@ -52,6 +52,7 @@ public class backupReschduleServlet extends HttpServlet {
 
         context.setAttribute("TimeClass",newtimer);
 
+        sendMsg("Backup rescheduled to be "+selctedTime,request);
 
         response.sendRedirect("/backup.jsp");
     }
@@ -59,4 +60,15 @@ public class backupReschduleServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    protected void sendMsg(String msg, HttpServletRequest request){
+
+
+        System.out.println("Msg : "+msg);
+
+        System.out.println("session is : "+request.getSession().getId());
+        request.getSession().setAttribute("Msg",msg);
+
+    }
+
 }

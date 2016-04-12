@@ -75,8 +75,8 @@
                     <p><%if (request.getParameter("section")!=null) {
                         out.print("Update");
                     } else {
-                        out.print("Enter");
-                    }%> the student information</p>
+                        out.print("Select");
+                    }%> Faculty member</p>
 
                     <form name="myform" action="/AddSection" method="post">
 
