@@ -12,18 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-/**
- * Created by Ibrahim Abuaqel on 1/19/2016.
- *
- * http://stackoverflow.com/questions/1892765/capitalize-first-char-of-each-word-in-a-string-java
- */
+
 
 @WebServlet(name = "AddUser",
         urlPatterns = {"/addUser"})
 public class AddUser extends HttpServlet {
     String[] userVal;
+
+    /**
+     * insert users , then redirect to the users list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("#############################Add user#############################");
         U_AS_Insert idb = new U_AS_Insert();
         U_AS_Select sdb = new U_AS_Select();
         try {
@@ -36,7 +39,6 @@ public class AddUser extends HttpServlet {
             String program = request.getParameter("evaluatorProg");
             userVal = new String[]{userType, fname, mname, lname, uname, uemail};
 
-            System.out.println(userType);
             if(uname.equals("")){
                 sendErrMsg("username Required!",request,response);
             }else {
@@ -79,20 +81,19 @@ public class AddUser extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
-        out.println("update");
-*/
 
-        // New location to be redirected
-        // String site = new String("http://localhost:8081/");
-        // response.setHeader("Location", site);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     * show message
+     * @param msg
+     * @param request
+     */
     protected void sendMsg(String msg, HttpServletRequest request) {
 
         if (request.getSession().getAttribute("Msg") == null)
@@ -100,12 +101,16 @@ public class AddUser extends HttpServlet {
 
     }
 
+    /**
+     * show error message
+     * @param msg
+     * @param request
+     * @param response
+     */
     protected void sendErrMsg(String msg,HttpServletRequest request, HttpServletResponse response){
 
 
-        System.out.println("ErrMsg : "+msg);
 
-            System.out.println("session is : "+request.getSession().getId());
             request.getSession().setAttribute("errMsg",msg);
             request.getSession().setAttribute("userValue",userVal);
 
@@ -117,16 +122,16 @@ public class AddUser extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        try {
-            response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*/
+
 
         return;
     }
 
+    /**
+     * checking the validation by Email
+     * @param email
+     * @return
+     */
     protected boolean checkEmailValidation(String email) {
         boolean result = true;
         try {
@@ -137,6 +142,12 @@ public class AddUser extends HttpServlet {
         }
         return result;
     }
+
+    /**
+     * capitalize the first letter of the word
+     * @param string
+     * @return
+     */
     public String capitalize(String string) {
         char[] chars = string.toLowerCase().toCharArray();
         boolean found = false;
@@ -144,7 +155,7 @@ public class AddUser extends HttpServlet {
             if (!found && Character.isLetter(chars[i])) {
                 chars[i] = Character.toUpperCase(chars[i]);
                 found = true;
-            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') { // You can add other chars here
+            } else if (Character.isWhitespace(chars[i]) || chars[i]=='.' || chars[i]=='\'') {
                 found = false;
             }
         }

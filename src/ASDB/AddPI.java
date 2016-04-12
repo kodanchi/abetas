@@ -7,19 +7,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Ibrahim Abuaqel on 2/9/2016.
- */
+
 @WebServlet(name = "AddPI",
         urlPatterns = {"/AddPI"})
 public class AddPI extends HttpServlet {
     String[] PVal;
+
+    /**
+     * insert or update performance indicator , then redirect to the performance indicator list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################      "+request.getParameter("PIValue"));
 
         if (request.getParameter("PIValue").equals("null")) {
-            System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
             C_AS_Insert dba = new C_AS_Insert();
             C_AS_Select sdba = new C_AS_Select();
             String id = request.getParameter("cycle");
@@ -31,13 +34,10 @@ public class AddPI extends HttpServlet {
                     PVal = new String[]{request.getParameter("PI")};
                     sendErrMsg(request.getParameter("PI")+" already existed",request.getParameter("cycle"),request,response);
                 }else {
-                    System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           "+"       STshold "+ Double.parseDouble(request.getParameter("STshold"))+"        pi"+request.getParameter("PI") );
                     if (programID!=0) {
                         dba.addPI(request.getParameter("PI"), Double.parseDouble(request.getParameter("STshold")), programID, Integer.parseInt(id));
                         Auditor.add((String)request.getSession().getAttribute("username"),"Added new Performance Indicator (Cycle ID : "+id+")");
 
-                    }else {
-                        //Display error message.
                     }
 
                     response.sendRedirect("/cycle/index.jsp?page=piList&cycle="+id+"&programID="+request.getParameter("programID"));
@@ -49,26 +49,16 @@ public class AddPI extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            /*PrintWriter out = response.getWriter();
-            //out.println("name: " + request.getParameter("name"));
-            //out.println("logo: " + request.getParameter("logo"));
-            out.println("H");*/
-            System.out.println("ttrttttttttttttttttttttttttt  Programid          " + programID + "ttrttttttttttttttttttttttttt           ");
-            /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
+
             try {
-                //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request, response);
 
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
             }
         } else {
-            System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
             C_AS_Update dba = new C_AS_Update();
             C_AS_Select dbs = new C_AS_Select();
             String id = request.getParameter("cycle");
-            System.out.println("ttrttttttttttttttttttttttttt  PI name          " + request.getParameter("PI") + "   ttrttttttttttttttttttttttttt           ");
-            System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwww  PI id          " + Integer.parseInt(request.getParameter("PILabel")) + "   wwwwwwwwwwwwwwww           ");
             try {
 
                 if(dbs.isPIExistExcept(request.getParameter("PI"),Integer.parseInt(request.getParameter("programID")),
@@ -89,16 +79,7 @@ public class AddPI extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            /*PrintWriter out = response.getWriter();
-            //out.println("name: " + request.getParameter("name"));
-            //out.println("logo: " + request.getParameter("logo"));
-            out.println("H");*/
-
-
-            /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
             try {
-                //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request, response);
 
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
@@ -111,9 +92,6 @@ public class AddPI extends HttpServlet {
     }
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 
-        System.out.println("ErrMsg : "+msg);
-
-        System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("errMsg",msg);
         request.getSession().setAttribute("PVal", PVal);
 
@@ -125,25 +103,9 @@ public class AddPI extends HttpServlet {
                 response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
                 response.setHeader("Location","/cycle/index.jsp?page=updatePI&cycle="+cycle+
                         "&programID="+request.getParameter("programID")+"&PILabel="+request.getParameter("PILabel")+"&PIValue="+request.getParameter("PI"));
-                /*response.sendRedirect("/cycle/index.jsp?page=updatePI&cycle="+cycle+"&term="+request.getParameter("term")+
-                        "&programID="+request.getParameter("programID"));*/
             }
-            /*if(request.getParameter("cycle")!= null) {
 
-                //response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+cycle);
-                response.sendRedirect("/cycle/index.jsp?page=addPI&cycle="+cycle+"&term="+request.getParameter("term")+
-                        "&programID="+request.getParameter("programID"));
-            }else {
-
-                *//*String termName = request.getParameter("termName");
-                String fyear = request.getParameter("fyear");
-                String tyear = request.getParameter("tyear");*//*
-                //request.getRequestDispatcher("/program/index.jsp?page=update").forward(request, response);
-                //response.sendRedirect("/program/index.jsp?page=updateLink&name="+cycle+"&id="+pid+"&Linkid="+ Linkid+"&ObjLinkValue="+ObjLinkValue+"&OutLinkValue="+OutLinkValue);
-            }*/
-        } /*catch (ServletException e) {
-            e.printStackTrace();
-        }*/ catch (IOException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         }
 

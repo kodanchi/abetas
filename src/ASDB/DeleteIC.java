@@ -11,6 +11,14 @@ import java.io.IOException;
 @WebServlet(name = "DeleteIC",
         urlPatterns = {"/DeleteIC"})
 public class DeleteIC extends HttpServlet {
+    /**
+     * connect to the database and call delete method to delete include course by ID, then add to system log and add this event to the system log.
+     * Redirect to the cycle course list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         C_AS_Delete dba = new C_AS_Delete();
