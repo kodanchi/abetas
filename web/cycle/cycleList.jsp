@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
 
         <div class="container">
@@ -23,13 +24,14 @@
                         <input id="filter" type="text" class="form-control" placeholder=" by cycle ID  ">
                     </div>
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center">
-                            <tr>
-                                <th>Cycle ID</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
-
-                            </tr>
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
+                                <tr>
+                                    <th data-sort="int">Cycle ID</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
                             <tbody class="searchable">
                                 <%
 
@@ -74,6 +76,10 @@
                             </tbody>
 
                         </table>
+
+                    <script>
+                        $("#sTable").stupidtable();
+                    </script>
 
                     <form name="myform" action="/AddCycle" method="post">
                         <a  class="btn btn-primary pull-right" href="/index.jsp">Back</a>
