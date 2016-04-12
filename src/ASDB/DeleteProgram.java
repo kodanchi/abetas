@@ -6,23 +6,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-/**
- * Created by Ibrahim Abuaqel on 2/4/2016.
- */
+
 @WebServlet(name = "DeleteProgram",
         urlPatterns = {"/DeleteProgram"})
 public class DeleteProgram extends HttpServlet {
+    /**
+     * connect to the database and call delete method to delete program by ID, then add to system log and add this event to the system log.
+     * Redirect to the program list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        System.out.println(request.getParameter("id")+"           ");
-        //ArrayList<String> data = new ArrayList<String>();
-        int id=0;
+
         P_AS_Delete dba=new P_AS_Delete();
-        //P_AS_Select dbaS=new P_AS_Select();
         try {
-            //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteProgram(Integer.parseInt(request.getParameter("id")));
             Auditor.add((String)request.getSession().getAttribute("username"),"Deleted program (ID : "+request.getParameter("id")+")");
 
@@ -31,14 +31,8 @@ public class DeleteProgram extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
-        //out.println("logo: " + request.getParameter("logo"));
-        //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
-        //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
         response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
         response.setHeader("Location", "/program/index.jsp");
     }
 

@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 <%
 
     if(request.getParameter("status") != null){
@@ -49,14 +50,16 @@
                         <input id="filter" type="text" class="form-control" placeholder=" by course name, code or level">
                     </div>
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
                             <tr>
-                                <th>Code</th>
-                                <th>Name</th>
-                                <th>Level</th>
+                                <th data-sort="string">Code</th>
+                                <th data-sort="string">Name</th>
+                                <th data-sort="int">Level</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
+                            </thead>
                             <tbody class="searchable">
                                 <%
 
@@ -108,6 +111,9 @@
                             </tbody>
                         </table>
 
+                    <script>
+                        $("#sTable").stupidtable();
+                    </script>
 
                     <a class="btn btn-primary" onclick="importPopup('index.jsp?name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>&page=import&data=courses',
                             'index.jsp?page=addCourses&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>',

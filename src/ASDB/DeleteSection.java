@@ -6,23 +6,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-/**
- * Created by Ibrahim Abuaqel on 2/10/2016.
- */
+
 @WebServlet(name = "DeleteSection",
         urlPatterns = {"/DeleteSection"})
 public class DeleteSection extends HttpServlet {
+    /**
+     * connect to the database and call delete method to delete section by ID, then add to system log and add this event to the system log.
+     * Redirect to the cycle section list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
-        System.out.println(request.getParameter("section")+"    <<section ID       ");
-        //ArrayList<String> data = new ArrayList<String>();
-        int id=0;
+
         C_AS_Delete dba=new C_AS_Delete();
-        //C_AS_Select dbaS=new C_AS_Select();
         try {
-            //id=dbaS.selectProgram(request.getParameter("Pname"));
             dba.deleteSection(Integer.parseInt(request.getParameter("section")));
             Auditor.add((String)request.getSession().getAttribute("username"),"Deleted section (ID : "+request.getParameter("section")+")");
 
@@ -31,18 +31,8 @@ public class DeleteSection extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
-        //out.println("logo: " + request.getParameter("logo"));
-        //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
 
-        System.out.println(request.getParameter("cycle")+"                vdgfsg            ");
-        //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        //response.setHeader("Location", "http://localhost:8081/cycle/index.jsp?page=cycleList");
         try {
-            //request.getSession().setAttribute("id",String.valueOf(id));
-            //request.getRequestDispatcher("/cycle/index.jsp?page=piList").forward(request,response);
             response.sendRedirect("/cycle/index.jsp?page=CourseInfo&cycle="+request.getParameter("cycle")+"&term="+request.getParameter("term")+
                     "&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode"));
         }catch (NullPointerException e){

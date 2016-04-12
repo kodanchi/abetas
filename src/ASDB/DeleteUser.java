@@ -7,18 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
-/**
- * Created by Ibrahim Abuaqel on 1/19/2016.
- */
+
 
 @WebServlet(name = "DeleteUser",
         urlPatterns = {"/deleteUser"})
 public class DeleteUser extends HttpServlet {
+    /**
+     * connect to the database and call delete method to delete user by ID, then add to system log and add this event to the system log.
+     * Redirect to the user list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("########################Delete#######################");
         U_AS_Delete ddb = new U_AS_Delete();
         try {
 
@@ -51,14 +55,10 @@ public class DeleteUser extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
-        out.println("update");
 
 
-        // New location to be redirected
-        // String site = new String("http://localhost:8081/");
-        // response.setHeader("Location", site);
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

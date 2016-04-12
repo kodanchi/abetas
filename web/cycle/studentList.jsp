@@ -11,6 +11,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
+
 
 <%
 
@@ -108,16 +110,18 @@
                         <!-- Default panel contents -->
                         <div class="input-group"> <span class="input-group-addon">Filter</span>
 
-                            <input id="filter" type="text" class="form-control" placeholder=" by student name or ID  ">
+                            <input id="filter" type="text" class="form-control" placeholder=" by student name or ID ">
                         </div>
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Student ID</th>
+                                <th data-sort="string">Name</th>
+                                <th data-sort="int">Student ID</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
+                            </thead>
                             <tbody class="searchable">
                                 <%
 
@@ -188,7 +192,9 @@
 
                     <a class="btn btn-primary pull-right"  href="index.jsp?page=CourseInfo&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>&courseCode=<%=request.getParameter("courseCode")%>" >Finish</a>
 
-
+                    <script>
+                        $("#sTable").stupidtable();
+                    </script>
 
                     <!-- End of col -->
                 </div>

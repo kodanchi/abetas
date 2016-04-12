@@ -11,7 +11,7 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
-
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 <%
 
     if(request.getSession().getAttribute("Msg")!= null){
@@ -38,13 +38,16 @@
             </div>
 
             <!-- Table -->
-            <table class="table table-striped table-bordered text-center">
+            <table class="table table-striped table-bordered text-center" id="sTable">
+                <thead>
                 <tr>
-                    <th>Performance Indicator</th>
-                    <th>Course</th>
-                    <th>Faculty</th>
-                    <th>Type</th>
+                    <th data-sort="string">Performance Indicator</th>
+                    <th data-sort="string">Course</th>
+                    <th data-sort="string">Faculty</th>
+                    <th data-sort="string">Type</th>
                 </tr>
+                </thead>
+
                 <tbody class="searchable">
                 <%
 
@@ -121,6 +124,10 @@
                     });
                 </script>
             </table>
+
+            <script>
+                $("#sTable").stupidtable();
+            </script>
 
  <form method="post" action="/Emailrem">
      <input name="emailList"  value="<%=emailLists%>" hidden />
