@@ -8,7 +8,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 4/12/2016.
+ * SetupFilter is used to filter the access to the setup servlet page which will be accessible only when the install.jsp
+ * under setup folder is exist otherwise, the user will be redirected to the home page.
  */
 @WebFilter(filterName = "SetupFilter")
 public class SetupFilter implements Filter {

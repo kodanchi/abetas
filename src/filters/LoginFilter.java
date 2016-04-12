@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 2/10/2016.
+ * LoginFilter is used to filter the access to login page which will be accessible only when the current session is invalid
+ * otherwise, the user will be redirected to the home page.
  */
 @WebFilter(filterName = "LoginFilter")
 public class LoginFilter implements Filter {
@@ -23,7 +24,6 @@ public class LoginFilter implements Filter {
         if( request.getSession(false)!= null) {
             if (request.getSession().getAttribute("username") != null) {
                 if (CookiesControl.getCookieValue(request, "userCookie") != null) {
-                    System.out.print("From LoginFilter : sessionCookie is on");
                     response.sendRedirect("/index.jsp");
                 }
             }

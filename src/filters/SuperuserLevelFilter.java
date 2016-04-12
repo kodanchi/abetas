@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 2/10/2016.
+ * SuperuserLevelFilter is used to filter the files under cycle, program and users folders and other files (specified in
+ * web.xml file) which will be accessible only by superusers otherwise, the user will be redirected to the home page.
  */
 @WebFilter(filterName = "SuperuserLevelFilter")
 public class SuperuserLevelFilter implements Filter {

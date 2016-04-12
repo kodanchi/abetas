@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 2/10/2016.
+ * UserLevelFilter is used to filter the index.jsp (home page) which can be accessible only by superusers otherwise, the
+ * user will be redirected to form main page for faculty member users or to report main page for evaluator users.
  */
 @WebFilter(filterName = "UserLevelFilter")
 public class UserLevelFilter implements Filter {
@@ -30,11 +31,10 @@ public class UserLevelFilter implements Filter {
                         response.sendRedirect("/form/");
                         break;
                     case 3:
-                        response.sendRedirect("/vis/");
+                        response.sendRedirect("/report/");
                         break;
 
                 }
-                //chain.doFilter(req, resp);
 
             }else {
                 request.getSession().invalidate();
