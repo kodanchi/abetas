@@ -1,8 +1,5 @@
 package filters;
 
-import sessionListener.CookiesControl;
-
-import javax.jms.Session;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;

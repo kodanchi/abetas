@@ -16,7 +16,7 @@
     <div class="row">
         <h3 class="text-center">Result</h3>
         <div class="col-md-6">
-
+            <h4>Cycle List</h4>
 
             <div class="just-padding">
 
@@ -112,7 +112,7 @@
 
         <div class="col-md-6">
             <div class="">
-                <h4>Outcome</h4>
+
                 <div id="outcomeList"></div>
             </div>
 

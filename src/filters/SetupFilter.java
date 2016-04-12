@@ -1,18 +1,17 @@
 package filters;
 
-import Listeners.CookiesControl;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 2/10/2016.
+ * Created by Mojahed on 4/12/2016.
  */
-@WebFilter(filterName = "LoginFilter")
-public class LoginFilter implements Filter {
+@WebFilter(filterName = "SetupFilter")
+public class SetupFilter implements Filter {
     public void destroy() {
     }
 
@@ -20,15 +19,13 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        if( request.getSession(false)!= null) {
-            if (request.getSession().getAttribute("username") != null) {
-                if (CookiesControl.getCookieValue(request, "userCookie") != null) {
-                    System.out.print("From LoginFilter : sessionCookie is on");
-                    response.sendRedirect("/index.jsp");
-                }
-            }
+        File f = new File(request.getServletContext().getRealPath("/")+"setup/install.jsp");
+
+        if (f.exists()) {
+            chain.doFilter(req, resp);
+        }else {
+            response.sendRedirect("/index.jsp");
         }
-        chain.doFilter(req, resp);
     }
 
     public void init(FilterConfig config) throws ServletException {

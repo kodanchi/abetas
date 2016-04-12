@@ -12,10 +12,10 @@
     </resource-ref>
 
     <listener>
-        <listener-class>passReset.contextListener</listener-class>
+        <listener-class>Listeners.ContextListener</listener-class>
     </listener>
     <listener>
-        <listener-class>sessionListener.CustomHttpSessionListener</listener-class>
+        <listener-class>Listeners.CustomHttpSessionListener</listener-class>
     </listener>
 
 
@@ -87,6 +87,14 @@
     <filter-mapping>
         <filter-name>FacultyFilter</filter-name>
         <url-pattern>/form/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>SetupFilter</filter-name>
+        <filter-class>filters.SetupFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SetupFilter</filter-name>
+        <url-pattern>/setup</url-pattern>
     </filter-mapping>
 
     <session-config>
