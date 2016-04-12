@@ -1,8 +1,9 @@
-package ASDB;
+package Setup;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import java.io.File;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class InstallDB {
     DataSource dataSource = null;
     private static String jdbcDriver = "com.mysql.jdbc.Driver";
     private static String dbName = "abetasdb";
+
 
     public InstallDB(PrintWriter out) {
         pout = out;
@@ -579,6 +581,8 @@ public class InstallDB {
 
 
 
+
+
     }
 
     public void createTable(String sql) throws ClassNotFoundException, SQLException {
@@ -680,6 +684,7 @@ public class InstallDB {
 
         }
     }
+
 
 
     public boolean setUpChk() throws SQLException, ClassNotFoundException {

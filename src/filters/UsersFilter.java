@@ -1,6 +1,6 @@
 package filters;
 
-import sessionListener.CookiesControl;
+import Listeners.CookiesControl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

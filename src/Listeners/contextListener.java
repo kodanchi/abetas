@@ -1,7 +1,8 @@
-package passReset;
+package Listeners;
 
 import ASDB.AS_Select;
-import ASDB.InstallDB;
+import Setup.InstallDB;
+import passReset.TimeClass;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -14,10 +15,10 @@ import java.util.ArrayList;
  */
 
 /**
- * contextListener class used to initiate time class and TImeTest method when the server is start
+ * ContextListener class used to initiate time class and TImeTest method when the server is start
  * that's done though  contextInitialized method
  */
-public class contextListener implements ServletContextListener {
+public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
