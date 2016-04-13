@@ -5,16 +5,15 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
 
-/**
- * Created by Ibrahim Abuaqel on 2/4/2016.
- */
+
 public class U_AS_Update {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
-    DataSource dataSource = null;
 
+    DataSource dataSource = null;
+    /**
+     * connect method used to connect to the databse as pool connections
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void connect() throws ClassNotFoundException, SQLException {
 
         try
@@ -34,63 +33,25 @@ public class U_AS_Update {
         }
 
     }
+    /**
+     *
+     * @param rs do the query to the database and close the connection after that
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void closRS(ResultSet rs) throws SQLException {
         rs.close();
     }
 
-    public void updateObjective(int Objective_label, String Objective) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-
-            String query = "update p_objective set Objective = ? where Objective_label = ?";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (1, Objective);
-            preparedStatement.setInt (2, Objective_label);
-
-            rs = preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
+    /**
+     * updateSuperuser method used to update the superuser account
+     * @param id is the uperuser ID
+     * @param fname is the first name of the superuser
+     * @param mname is the middle name of the superuser
+     * @param lname is the last name of the superuser
+     * @param username is the username of the superuser
+     * @param email is the email of the superuser
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public  void updateSuperuser(int id,String fname, String mname, String lname, String username, String email) throws SQLException, ClassNotFoundException {
 
         connect();
@@ -147,7 +108,12 @@ public class U_AS_Update {
         }
     }
 
-
+    /**
+     * updateSuperuserPassword method used to update the superuser password
+     * @param password is the password of superuser
+     * @param email is the email of superuser
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public  void updateSuperuserPassword(String password, String email) throws SQLException, ClassNotFoundException {
 
         connect();
@@ -201,7 +167,16 @@ public class U_AS_Update {
         }
     }
 
-
+    /**
+     *updateFaculty method used to update the faculty member account
+     * @param id is the faculty member ID
+     * @param fname is the first name of the faculty member
+     * @param mname is the middle name of the faculty member
+     * @param lname is the last name of the faculty member
+     * @param username is the username of the faculty member
+     * @param email is the email of the faculty member
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public  void updateFaculty(int id,String fname, String mname, String lname, String username, String email) throws SQLException, ClassNotFoundException {
 
         connect();
@@ -258,6 +233,12 @@ public class U_AS_Update {
         }
     }
 
+    /**
+     * updateFacultyPassword method used to update the faculty member
+     * @param password is the password of faculty member
+     * @param email is the email of faculty member
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public  void updateFacultyPassword(String password, String email) throws SQLException, ClassNotFoundException {
 
@@ -312,6 +293,16 @@ public class U_AS_Update {
         }
     }
 
+    /**
+     *
+     * @param id is the faculty member ID
+     * @param fname is the first name of the evaluator
+     * @param mname is the middle name of the evaluator
+     * @param lname is the last name of the evaluator
+     * @param username is the username of the evaluator
+     * @param program is the program that the evaluator is responsible for
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public  void updateEvaluator(int id,String fname, String mname, String lname, String username, String program) throws SQLException, ClassNotFoundException {
 

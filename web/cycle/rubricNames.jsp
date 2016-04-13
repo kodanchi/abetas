@@ -1,55 +1,22 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 3/2/2016
-  Time: 11:07 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
-<%--<%
-
-    String firstR = "";
-    String secondR = "";
-    String thirdR = "";
-    String fourthR = "";
-
-    if(request.getSession().getAttribute("errMsg") != null){
-
-        String[] OldVal = (request.getSession().getAttribute("LinkVal") != null ? (String[]) request.getSession().getAttribute("LinkVal") : null);
-        System.out.print("arry of user data : "+ OldVal[1]);
-        if(OldVal != null){
-
-            firstR = OldVal[0];
-            secondR = OldVal[1];
-            thirdR = OldVal[2];
-            fourthR = OldVal[3];
-
-            request.getSession().removeAttribute("LinkVal");
-        }
-
-
-
-        out.print("<script type=\"text/javascript\">\n" +
-                "    $(window).load(function(){\n" +
-                "       bootbox.alert(\""+request.getSession().getAttribute("errMsg")+"\")\n" +
-                "    });\n" +
-                "</script>");
-        request.getSession().removeAttribute("errMsg");
-
-
-    }
-
-%>--%>
 
 
 <%
+
+
+    /**
+     * used to display rubrics names for selected cycle.
+     */
+
+
 
     String id = "";
     if(request.getParameter("cycle") != null){
@@ -58,19 +25,6 @@
 
 %>
 
-<%
-    C_AS_Select aselect = new C_AS_Select();
-    String programName = "";
-    try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
-        programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
-
-    } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-%>
 
         <div class="container" id="space">
 
@@ -100,7 +54,6 @@
                                 <input type="hidden" name="NB" value="<%=request.getParameter("NB")%>">
                                 <input type="hidden" name="NC" value="<%=request.getParameter("NC")%>">
                                 <input type="hidden" name="ND" value="<%=request.getParameter("ND")%>">
-                                <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
                                 <input type="hidden" name="cycle" value="<%=id%>">
 
 
@@ -155,11 +108,8 @@
 
                         <br>
 
-                        <a class="btn btn-primary" href="piList.jsp">Back</a>
+                        <a class="btn btn-primary" href="index.jsp?page=piList&cycle=<%=id%>">Back</a>
                         <button class="btn btn-primary pull-right" type="submit">Next</button>
-<%--
-                        <button class="btn btn-default pull-right" href="index.jsp?cycle=<%=id%>&page=piList&programID=<%=request.getParameter("programID")%>" >Cancel</button>
---%>
 
                     <!-- End of col -->
 

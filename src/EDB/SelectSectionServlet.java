@@ -11,14 +11,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Mojahed on 2/27/2016.
+ *  * SelectSectionServlet is used by ajax to display the selected section nad calculate the result of the student as graph
+
  */
 @WebServlet(name = "SelectSectionServlet", urlPatterns = {"/SelectSectionServlet"})
 public class SelectSectionServlet extends HttpServlet {
     private E_Select dbs;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("/////////////////////////SelectSectionServlet ");
         response.setContentType("text/plain");
         dbs = new E_Select();
         int tid = Integer.parseInt(request.getParameter("tid"));
@@ -42,10 +42,8 @@ public class SelectSectionServlet extends HttpServlet {
             if(cid.equals("Overall")){
 
 
-                System.out.print("Overall");
 
             }else {
-                System.out.println("inside else");
 
                 evidence = dbs.selectEvidenceOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
                 threshold = dbs.selectThresholdOfSummativeToEvaluate(pIid);
@@ -56,7 +54,6 @@ public class SelectSectionServlet extends HttpServlet {
 
 
                 for (String sRubric : PIResults){
-                    System.out.println("SectionResults: "+sRubric);
                     if(sRubric.equals(PIRubrics.get(0))){
                         results[0]++;
                     }else if(sRubric.equals(PIRubrics.get(1))){
@@ -103,7 +100,6 @@ public class SelectSectionServlet extends HttpServlet {
                 float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
                 float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
                 float passOrFailresults = developed + exemplary;
-                System.out.println("developed + exemplary = "+ passOrFailresults);
                 if(passOrFailresults > threshold ) {
                     out.print("<Strong style=\"color:Green;\">The requirements were met for this section</Strong>");
                     out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",

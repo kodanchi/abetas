@@ -1,19 +1,18 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="FDB.F_Select" %>
-<%@ page import="ASDB.AS_Select" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/21/2016
-  Time: 3:02 PM
-  To change this template use File | Settings | File Templates.
---%>
+
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
+
+    /**
+     * used to display formative form display page.
+     */
 
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");
@@ -24,10 +23,8 @@
 
         request.getSession().removeAttribute("Msg");
     }
-%>
 
 
-<%
     String F_written_rubic = "";
     String F_instructor_feedback_comment = "";
     String F_instructor_feedback_obstacle = "";
@@ -80,8 +77,7 @@
     }
 }
     ArrayList<String> linkValues = new ArrayList<String>();
-    //AS_Select ASdbs = new AS_Select();
-    //ArrayList<String> uniData = ASdbs.selectUniversityData();
+
 
     if(!FK_Link_ID.equals("")) {
         F_Select aselect = new F_Select();
@@ -369,67 +365,6 @@
 
                     </div>
 
-                    <%--<div class="row">
-                        <table>
-                            <tr>
-                                <td>
-                                    <h6 class="pull-left">Faculty Name: <%
-                                        F_Select yselect = new F_Select();
-                                        try {
-                                            String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
-
-                                            out.print(name);
-
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        } catch (SQLException e) {
-                                            e.printStackTrace();
-                                        }
-                                    %>
-                                    </h6>
-                                </td>
-                                <td>
-
-                                    <h6 class="pull-right" id="date"><script>
-                                        /*function myFunction() {
-                                         var d = new Date();
-                                         var n = d.getFullYear();
-                                         document.getElementById("date").innerHTML = n;
-                                         }*/
-                                        (function(){
-                                            var d = new Date();
-                                            document.getElementById("date").innerHTML = "&nbsp;"+d.toDateString();
-                                        })();
-                                    </script></h6>
-                                    <h6 class="pull-right">Date: </h6>
-                                </td>
-                            </tr>
-                        </table>
-
-
-                    </div>--%>
-
-
-                            <%--<h6><span>Faculty Name: </span></h6>
-                            <h6>
-                                <span>
-                                <%
-                                F_Select yselect = new F_Select();
-                                try {
-                                    String name = yselect.selectFacultyForForm(Integer.parseInt(faculatyId));
-
-                                            out.print(name);
-
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
-                                } catch (SQLException e) {
-                                    e.printStackTrace();
-                                }
-                            %>
-                                </span>
-                            </h6>
-
-                            <h6 class="pull-right"><span>Date: <%=fDate%></span></h6>--%>
 
                     <div class="row">
                         <a class="btn btn-primary" href="<%=request.getHeader("Referer")%>" >Back</a>

@@ -13,8 +13,8 @@ import java.io.IOException;
 public class AddRubricNames extends HttpServlet {
     /**
      * insert or update rubric names , then redirect to the term list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -32,7 +32,7 @@ public class AddRubricNames extends HttpServlet {
                 e.printStackTrace();
             }
 
-            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
+            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id+"&programID="+request.getParameter("programID"));
         }
 
     }

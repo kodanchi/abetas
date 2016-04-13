@@ -1,13 +1,7 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/11/2016
-  Time: 4:41 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
@@ -16,6 +10,10 @@
 
 
 <%
+    /**
+     * used to display add performance indicator link page.
+     */
+
 
     String lout = "";
     String lpi = "";
@@ -25,7 +23,6 @@
     if(request.getSession().getAttribute("errMsg") != null){
 
         String[] OldVal = (request.getSession().getAttribute("LinkVal") != null ? (String[]) request.getSession().getAttribute("LinkVal") : null);
-        System.out.print("arry of user data : "+ OldVal[1]);
         if(OldVal != null){
 
             lout = OldVal[0];
@@ -65,7 +62,6 @@
     C_AS_Select aselect = new C_AS_Select();
     String programName = "";
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
 
     } catch (ClassNotFoundException e) {
@@ -112,7 +108,6 @@
                                             out.print("<option value=\""+rs.get(i).substring(0, rs.get(i).indexOf(':')));
                                             out.print("\"");
                                             if (request.getParameter("OutValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("OutValue"))) {
-                                                System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
                                                 out.print(" selected");
                                             }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lout)){
                                                 out.print(" selected");
@@ -158,7 +153,6 @@
                                                         out.print("<option value=\""+rs.get(i).substring(0, rs.get(i).indexOf(':')));
                                                         out.print("\"");
                                                         if (request.getParameter("PIValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("PIValue"))) {
-                                                            System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
                                                             out.print(" selected");
                                                         }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lpi)){
                                                             out.print(" selected");
@@ -195,7 +189,6 @@
                                                     out.print("<option value=\""+rs.get(i).substring(0, rs.get(i).indexOf(':')));
                                                     out.print("\"");
                                                     if (request.getParameter("CourseValue") != null && rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(request.getParameter("CourseValue"))) {
-                                                        System.out.println("fdvfdfdgdbfjkvbjk njkrenjk nejrklnj jkl njkln gjklng jkngjlk nglknl gknkl kn krenrklelkg klnlg nreklnrklenjreklgnklregklgn kl grgrre");
                                                         out.print(" selected");
                                                     }else if(rs.get(i).substring(0, rs.get(i).indexOf(':')).equals(lcourse)){
                                                         out.print(" selected");
@@ -284,7 +277,6 @@
                                     url: '/fetchRubrics',
                                     success: function (result) {
                                         $('#fetchedRubricsDiv').html(result);
-                                        //$('#rubricsDiv').show();
                                         show('page', true);
                                         show('loading', false);
 
@@ -492,9 +484,7 @@
                                 }
                             });
                         });
-                        /*$(document).ready(function(){
-                            $('.selectpicker').selectpicker();
-                        });*/
+
                     </script>
                 </div>
 

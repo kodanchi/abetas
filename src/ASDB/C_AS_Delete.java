@@ -4,21 +4,18 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * Created by Ibrahim Abuaqel on 1/31/2016.
- */
+
+
 public class C_AS_Delete {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
+
     DataSource dataSource = null;
 
+    /**
+     * connect method used to connect to the databse as pool connections
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void connect() throws ClassNotFoundException, SQLException {
 
         try
@@ -38,10 +35,21 @@ public class C_AS_Delete {
         }
 
     }
+
+    /**
+     *
+     * @param rs do the query to the database and close the connection after that
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void closRS(ResultSet rs) throws SQLException {
         rs.close();
     }
 
+    /**
+     * deleteCycle method used to delete the cycle by finding it in the databse and delete it
+     * @param id represents the cycle ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void deleteCycle(int id) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -93,158 +101,13 @@ public class C_AS_Delete {
 
     }
 
-    public void deleteCourse(String code) throws ClassNotFoundException, SQLException {
 
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from course where C_code = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, code);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void deleteEvaluator(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from evaluator where E_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void deleteFaculty(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from faculty_member where Faculty_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
+    /**
+     * deleteIC method used to delete the course
+     * @param code is the course code that need to be deleted
+     * @param id is the term ID that the course belong to it
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public void deleteIC(String code, int id) throws ClassNotFoundException, SQLException {
 
@@ -298,158 +161,11 @@ public class C_AS_Delete {
 
     }
 
-    public void deleteFormative(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from formative where Formative_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void deleteObj(int label) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from p_objective where Objective_label = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, label);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void deleteOut(int label) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from p_student_outcome where Outcome_label = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, label);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
+    /**
+     * deletePi method used to delete the performance indicator
+     * @param id contains the performance ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public void deletePI(int id) throws ClassNotFoundException, SQLException {
 
@@ -502,6 +218,11 @@ public class C_AS_Delete {
 
     }
 
+    /**
+     * deletePILink method used to delete the performance indicator link
+     * @param id is the performance link id
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void deletePILink(int id) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -553,6 +274,11 @@ public class C_AS_Delete {
 
     }
 
+    /**
+     * deleteSection merthod used to delete the section
+     * @param Section_ID is the section ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void deleteSection(int Section_ID) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -604,6 +330,11 @@ public class C_AS_Delete {
 
     }
 
+    /**
+     * deleteRubric method is used to delete the rubric
+     * @param id is the rubric ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void deleteRubric(int id) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -655,158 +386,11 @@ public class C_AS_Delete {
 
     }
 
-    public void deleteProgram(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from program where P_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void deleteSummative(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from summative where Summative_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void deleteSuperuser(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from superuser where Super_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
+    /**
+     * deleteStudent method used to delete the student
+     * @param id is the student ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public void deleteStudent(int id) throws ClassNotFoundException, SQLException {
 
@@ -859,6 +443,11 @@ public class C_AS_Delete {
 
     }
 
+    /**
+     * deleteTerm method is used to delete the term
+     * @param id is the term ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void deleteTerm(int id) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -910,56 +499,11 @@ public class C_AS_Delete {
 
     }
 
-    public void deleteSummRub(int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = "delete from summative_rubric where FK_Student_ID = ?";
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
+    /**
+     * deleteLink0_0 method is used to delete the link
+     * @param id is the link ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public void deleteLinkO_O(int id) throws ClassNotFoundException, SQLException {
 
@@ -1012,7 +556,12 @@ public class C_AS_Delete {
 
     }
 
-
+    /**
+     * deleteForm method is used to delete the form
+     * @param id is the form ID
+     * @param formType is the type of the form (summative/formative)
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void deleteForm(int id, int formType) throws ClassNotFoundException, SQLException {
 
         connect();

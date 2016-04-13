@@ -14,8 +14,8 @@ public class DeleteTerm extends HttpServlet {
     /**
      * connect to the database and call delete method to delete term by ID, then add to system log and add this event to the system log.
      * Redirect to the cycle term list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */

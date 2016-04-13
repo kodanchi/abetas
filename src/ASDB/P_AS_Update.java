@@ -5,16 +5,17 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
 
-/**
- * Created by Ibrahim Abuaqel on 2/4/2016.
- */
+
 public class P_AS_Update {
 
     private Connection conn;
     private Statement stmt;
     private ResultSet result;
     DataSource dataSource = null;
-
+    /**
+     * connect method used to connect to the databse as pool connections
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void connect() throws ClassNotFoundException, SQLException {
 
         try
@@ -34,10 +35,21 @@ public class P_AS_Update {
         }
 
     }
+    /**
+     *
+     * @param rs do the query to the database and close the connection after that
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void closRS(ResultSet rs) throws SQLException {
         rs.close();
     }
 
+    /**
+     * updateObjective method used to update objective
+     * @param Objective_label is the objective ID
+     * @param Objective is the objective name
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void updateObjective(int Objective_label, String Objective) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -91,6 +103,12 @@ public class P_AS_Update {
 
     }
 
+    /**
+     * updateOutcome method used to update student outcome
+     * @param Outcome_label is the outcome ID
+     * @param Student_outcome is the student outcome
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void updateOutcome(int Outcome_label, String Student_outcome) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -144,6 +162,13 @@ public class P_AS_Update {
 
     }
 
+    /**
+     * updateLinkObj_Out method used update the link objective outcome
+     * @param Link_ID is the student ID
+     * @param FK_obj is the foreign key objective
+     * @param FK_out is the foreign key student outcome
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void updateLinkObj_Out(int Link_ID,int FK_obj, int FK_out) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -198,6 +223,14 @@ public class P_AS_Update {
 
     }
 
+    /**
+     * updateCourse method used to update the course
+     * @param Cid is the cycle ID
+     * @param C_code is the cycle code
+     * @param C_name is the cycle name
+     * @param C_level is the cycle level
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void updateCourse(int Cid, String C_code,String C_name, int C_level) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -253,6 +286,13 @@ public class P_AS_Update {
 
     }
 
+    /**
+     * updateProgram method used update the program
+     * @param P_ID is the program ID
+     * @param P_name is the program name
+     * @param P_mission is the program name
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void updateProgram(int P_ID, String P_name,String P_mission) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -279,118 +319,6 @@ public class P_AS_Update {
             preparedStatement.setString (1, P_name);
             preparedStatement.setString (2, P_mission);
             preparedStatement.setInt (3, P_ID);
-
-            rs = preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void updatePI(String name, int id) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
-            String query = "update performance_indicator set PI_name = ? where PI_Label = ?";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (1, name);
-            preparedStatement.setInt (2, id);
-
-            rs = preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
-    public void updatePILink(int Link_ID,int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
-            String query = "update link_out_pi set FK_out = ?, FK_pi_ID=?, FK_P_ID=?, FK_R_ID=?, FK_C_ID=?, FK_T_ID=?, LinkType=? where Link_ID = ?";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt (1, FK_out);
-            preparedStatement.setInt (2, FK_pi_ID);
-            preparedStatement.setInt (3, FK_P_ID);
-            preparedStatement.setInt (4, FK_R_ID);
-            preparedStatement.setString (5, FK_C_ID);
-            preparedStatement.setInt (6, FK_T_ID);
-            preparedStatement.setString (7, LinkType);
-            preparedStatement.setInt (8, Link_ID);
 
             rs = preparedStatement.executeUpdate();
 

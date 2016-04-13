@@ -14,8 +14,8 @@ public class AddTerm extends HttpServlet {
 
     /**
      * insert or update term , then redirect to the term list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -55,10 +55,10 @@ public class AddTerm extends HttpServlet {
 
     /**
      * show error message
-     * @param msg
-     * @param cycle
-     * @param request
-     * @param response
+     * @param msg String
+     * @param cycle String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      */
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 

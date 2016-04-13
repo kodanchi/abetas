@@ -80,7 +80,7 @@
             </div>
 
             <div class="col-md-3 col-sm-6 mainblock">
-                <a href="/vis">
+                <a href="/report">
                     <div class=" block">
 
                             <i class="fa fa-bar-chart"></i>

@@ -1,15 +1,13 @@
 package passReset;
 
-/**
- * Created by Mohammed on 1/21/2016.
- */
+
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
 public class SendEmail {
     /**
-     *
+     * This method has the SMTP configuration that used to send emails.
      * @param msg contains the message the the admin want to send to the user
      * @param reciever contain the reciever email address
      *                 sendMsg method contains the email configuration "smtp configuration"
@@ -43,17 +41,13 @@ public class SendEmail {
             message.setSubject(title);
             message.setText(msg);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Transport.send(message);
-                    } catch (MessagingException e) {
-                        e.printStackTrace();
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
+
+            try {
+                Transport.send(message);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+                throw new RuntimeException(e);
+            }
 
 
 

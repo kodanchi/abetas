@@ -1,18 +1,16 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/13/2016
-  Time: 8:34 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
+
+/**
+* used to display include courses to selected term.
+*/
 
 <%
 
@@ -22,9 +20,7 @@
         id  = request.getParameter("cycle");
         Termid  = request.getParameter("term");
     }
-
 %>
-
         <div class="container">
 
             <div class="row">
@@ -72,13 +68,9 @@
                                         ArrayList<ArrayList<String>> rs = select.selectAllPrograms();
                                         ArrayList<String> rsRow;
 
-
                                         for (int i=0; i<rs.size();i++) {
                                             rsRow = rs.get(i);
 
-                                            //pid.add(Integer.valueOf(rsRow.get(0)));
-                                            //System.out.println("pid : "+pid.get(i));
-                                            //out.print("<option value="+rsRow.get(0)+">"+rsRow.get(1)+"</option>");
                                             out.print("<li><a href=\"/cycle/index.jsp?page=includeCourse&cycle="+id+
                                                     "&term="+Termid+"&programID="+rsRow.get(0)+"\">"+rsRow.get(1)+"</a></li>");
 
@@ -130,13 +122,7 @@
                                         out.print("<select name=\"Code\"  class=\"selectpicker\" multiple>");
 
                                         for (int i = 0; i < rs.size(); i++) {
-                                            System.out.println(rs.get(i).substring(0, rs.get(i).indexOf(':')));
 
-
-                                           /* out.print("<label class=\"checkbox-inline\">");
-                                            out.print("<input type=\"checkbox\" name=\"Code\" value=\"" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + "\" >" + rs.get(i));
-                                            out.print("</label>");
-                                            */
                                             out.print("<option");
                                             out.print(" value=\"" + rs.get(i).substring(0, rs.get(i).indexOf(':')) + "\" >" + rs.get(i));
                                             out.print("</option>");
@@ -154,8 +140,6 @@
                                 } catch (SQLException e) {
                                     e.printStackTrace();
                                 }
-                            } else {
-                                System.out.println("no program");
                             }
                         %>
 
@@ -224,9 +208,6 @@
                                         } catch (SQLException e) {
                                             e.printStackTrace();
                                         }
-                                        System.out.println("  yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy           ");
-                                    }else {
-                                        System.out.println("  gsgsgsg    gsgsggssdfgs       djskvdsj    sgsgs   sgsgsgsg   fsdsdg            ");
                                     }
 
                                 %>

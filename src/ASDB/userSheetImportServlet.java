@@ -11,41 +11,40 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
- * Created by Mojahed on 2/2/2016.
+ * userSheetImportServlet is used receive import form of method post and multipart content under cycle folder which
+ * will initiates new object of ImportCycleSheet class to validate the data inside the imported sheet, then getting the
+ * request parameters of inputs (cycle id, term id, data type) and finally based on dataType (students,performance indicators)
+ * the columns names will be set in a string array and file data will be validated.
+ *
+ * After validation the data will be sent to the upload page otherwise, the user will be redirect to import page with
+ * error message.
  */
 @WebServlet(name = "userSheetImportServlet",urlPatterns = {"/import/users"})
 public class userSheetImportServlet extends HttpServlet {
-    String upload = "";
+
+    /**
+     *  called when servlet initiated
+     * @param config ServletConfig
+     * @throws ServletException
+     */
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        //Your code
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String[] sheetChecker = {"firstname","middlename","lastname","username","level","email"};
-        ImportUserSheet importer = new ImportUserSheet(request);
-        //PrintWriter out = response.getWriter();
-
-        if(importer.sheetVaildation(request,response)){
+        ImportUserSheet importer = new ImportUserSheet();
+        if(importer.sheetValidation(request)){
             try {
-                if(importer.UserSheetVaildation(sheetChecker)){
-                    /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-                    response.setHeader("Location","/users/index.jsp?cmd=upload&file="+upload);*/
+                if(importer.UserSheetValidation(sheetChecker)){
 
                     ArrayList<ArrayList<String>> data = importer.getSheetData();
 
                     HttpSession session = request.getSession();
-                    System.out.println("set new session :"+session.getId());
-                    String sheetDataId = UUID.randomUUID().toString();
-                    System.out.println("sheetDataId :"+sheetDataId);
                     session.setAttribute("sheetData", data);
-                    //request.setAttribute("sheetData", sheetDataId);
-
-                    //request.setAttribute("sheetData", data);
-                    //request.getRequestDispatcher("/").forward(request, response);
                     RequestDispatcher rd = request.getRequestDispatcher("/users/index.jsp?cmd=confirm");
 
                     try {
@@ -71,10 +70,6 @@ public class userSheetImportServlet extends HttpServlet {
 
 
         }
-
-
-
-
 
 
     }

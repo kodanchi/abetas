@@ -15,8 +15,8 @@ public class AddPI extends HttpServlet {
 
     /**
      * insert or update performance indicator , then redirect to the performance indicator list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -90,6 +90,14 @@ public class AddPI extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    /**
+     * send error message
+     * @param msg String
+     * @param cycle String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     */
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 
         request.getSession().setAttribute("errMsg",msg);

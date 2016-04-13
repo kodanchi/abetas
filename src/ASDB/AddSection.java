@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class AddSection extends HttpServlet {
     /**
      * insert or update section , then redirect to the section list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */

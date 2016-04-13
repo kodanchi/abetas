@@ -18,7 +18,10 @@ public class U_AS_Select {
     private Statement stmt;
     private ResultSet result;
     DataSource dataSource = null;
-
+    /**
+     * connect method used to connect to the databse as pool connections
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void connect() throws ClassNotFoundException, SQLException {
 
         try
@@ -38,1113 +41,20 @@ public class U_AS_Select {
         }
 
     }
+    /**
+     *
+     * @param rs do the query to the database and close the connection after that
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void closRS(ResultSet rs) throws SQLException {
         rs.close();
     }
 
-    public ArrayList<ArrayList<String>> selectUsers() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> rowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "select * FROM superuser";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                rowDate = new ArrayList<String>();
-                rowDate.add(rs.getString(5));
-                rowDate.add(rs.getString(6));
-                rowDate.add(rs.getString(7));
-                rowDate.add(rs.getString(2));
-                rowDate.add(rs.getString(4));
-                rowDate.add(rs.getString(8));
-                rsArr.add(rowDate);
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return rsArr;
-
-        }
-
-    }
-
-
-
-
-    public ArrayList<ArrayList<String>> selectProgram() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "select * FROM program";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-    public ArrayList<ArrayList<String>> selectObjective(int id) throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT P_name, Objective FROM abetasdb.program, abetasdb.p_objective where P_ID = "+ id +" ;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-    public ArrayList<ArrayList<String>> selectStudentOutcomeWithObjectives() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM link_out_obj, p_student_outcome where Student_outcome = "+ null +";";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-
-    public ArrayList<ArrayList<String>> selectStudentOutcomes() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM p_student_outcome;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(2));
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-    public ArrayList<ArrayList<String>> selectCourses() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM course;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-    public ArrayList<ArrayList<String>> selectCycle() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM cycle;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-    public ArrayList<ArrayList<String>> selectStudents() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM students;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(4));
-                RowDate.add(rs.getString(5));
-                RowDate.add(rs.getString(6));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-    public ArrayList<ArrayList<String>> selectTerm() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT  C_name, C_code, C_level ,Group_ID , C_include  FROM faculty_member_teach_course, course where FK_T_ID="+ null+";";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-                RowDate.add(rs.getString(3));
-                RowDate.add(rs.getString(4));
-                RowDate.add(rs.getString(5));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-    public ArrayList<ArrayList<String>> selectCycleManagement() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM term where FK_Cycle_ID = "+null +";";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(2));
-                RowDate.add(rs.getString(3));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-    public ArrayList<ArrayList<String>> selectAddPerformanceIndicators() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT PI_ID, Student_outcome FROM performance_indicator, p_student_outcome;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-    public ArrayList<ArrayList<String>> selectAddTerm() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM term;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(2));
-                RowDate.add(rs.getString(3));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-    public ArrayList<ArrayList<String>> selectLinkPIWithCourses() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT PI_ID , C_code From abetasdb.performance_indicator,abetasdb.course;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-    public ArrayList<ArrayList<String>> selectProgramManagementFig30(int id) throws ClassNotFoundException, SQLException {
-
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT C_name,C_code,C_level FROM abetasdb.program_has_course, course Where FK_program_ID="+ id +" and FK_course_code=C_code;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-                RowDate.add(rs.getString(3));
-
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
-
-    public ArrayList<ArrayList<String>> selectFormativeStudentOutcome() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM p_student_outcome;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-    public ArrayList<ArrayList<String>> selectFormativeRubric() throws ClassNotFoundException, SQLException {
-
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT * FROM pi_rubric;";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-
-
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
-
-
-
+    /**
+     * selectAllSuperusers arraylist used to list all contents of the superuser table
+     * @return arraylist of arraylist of strings which contains all superusers
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<ArrayList<String>> selectAllSuperusers() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
@@ -1214,6 +124,12 @@ public class U_AS_Select {
 
     }
 
+    /**
+     * selectSuperuser arraylist used to list all contents of the superuser table but for only specific superuser
+     * @param id is the superuser ID
+     * @return arraylist of arraylist of strings which contains the specific superuser
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectSuperuser(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> rowDate = null;
@@ -1281,71 +197,11 @@ public class U_AS_Select {
 
     }
 
-    public boolean selectSuperuser(String username) throws ClassNotFoundException, SQLException {
-
-        boolean isExist = false;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "SELECT EXISTS(SELECT * FROM superuser where Super_Username =\""+ username +"\");";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
-                if(rs.getInt(1) == 1){
-                    isExist = true;
-                    System.out.print("existtttt");
-                }
-            }
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return isExist;
-
-        }
-
-    }
-
-
+    /**
+     * selectAllFaculty arraylist used to list all contents of the faculty user table
+     * @return arraylist of arraylist of strings which contains all faculties users
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<ArrayList<String>> selectAllFaculty() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
@@ -1415,7 +271,12 @@ public class U_AS_Select {
 
     }
 
-
+    /**
+     * selectFaculty arraylist used to list all contents of the superuser table but for only specific faculty user
+     * @param id is the faculty ID
+     * @return arraylist of arraylist of strings which contains the specific faculty user
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectFaculty(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> rowDate = null;
@@ -1483,6 +344,12 @@ public class U_AS_Select {
 
     }
 
+    /**
+     * selectEvaluator arraylist used to list all contents of the superuser table but for only specific evaluator
+     * @param id is the evaluator ID
+     * @return arraylist of arraylist of strings which contains the specific evaluator user
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectEvaluator(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> rowDate = null;
@@ -1550,6 +417,11 @@ public class U_AS_Select {
 
     }
 
+    /**
+     * selectAllEvaluators arraylist used to list all contents of the evaluator user table
+     * @return arraylist of arraylist of strings which contains all evaluators users
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<ArrayList<String>> selectAllEvaluators() throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> rsArr = new ArrayList<ArrayList<String>>();
@@ -1620,7 +492,11 @@ public class U_AS_Select {
 
     }
 
-
+    /**
+     * selectProgramNames arraylist used to list all contents of the program table based on the name
+     * @return arraylist of arraylist of strings which contains the specific program based on the name
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectProgramNames() throws ClassNotFoundException, SQLException {
 
         ArrayList<String> RsArr = new ArrayList<String>();
@@ -1683,7 +559,12 @@ public class U_AS_Select {
 
     }
 
-
+    /**
+     * selectUserIfExist boolean method used to check if the user exist or not by the username
+     * @param username is the username
+     * @return true if the user exist or false if it is not exist
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public boolean selectUserIfExist(String username) throws ClassNotFoundException, SQLException {
 
@@ -1714,10 +595,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -1749,6 +628,12 @@ public class U_AS_Select {
 
     }
 
+    /**
+     * selectUserIfExist boolean method used to check if the email exist or not
+     * @param email is the email
+     * @return true if email exist or false if it is not
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public boolean selectEmailIfExist(String email) throws ClassNotFoundException, SQLException {
 
         boolean isExist = false;
@@ -1778,10 +663,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -1813,6 +696,13 @@ public class U_AS_Select {
 
     }
 
+    /**
+     * selectUserIfExist boolean method used to check if the user exist or not by the email to update the username
+     * @param username is the username of the user
+     * @param olduname is the old username of the user in case of update the username
+     * @return true if the user exists or false if it is not exists
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public boolean selectUserIfExist(String username, String olduname) throws ClassNotFoundException, SQLException {
 
@@ -1843,10 +733,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -1878,6 +766,13 @@ public class U_AS_Select {
 
     }
 
+    /**
+     * selectEmailIfExist boolean method used to check if the email exist or not by the email
+     * @param email is the user email
+     * @param olduEmail is the old email of the user in case of update the email
+     * @return true if the email exists or false if it is not exists
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public boolean selectEmailIfExist(String email, String olduEmail) throws ClassNotFoundException, SQLException {
 
         boolean isExist = false;
@@ -1907,10 +802,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -1942,7 +835,13 @@ public class U_AS_Select {
 
     }
 
-
+    /**
+     * auditingList arraylist used to list all contents of the auditing table
+     * @param limit is the limit of results
+     * @param records is the start point
+     * @return arraylist of arraylist of strings which contains the specific auditing lists
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public ArrayList<ArrayList<String>> auditingList(int limit, int records) throws ClassNotFoundException, SQLException {
 
@@ -2012,7 +911,12 @@ public class U_AS_Select {
 
     }
 
-
+    /**
+     * selectUserLevel method is used to select the level of the user (superuser/faculty/evaluator)
+     * @param email the emeail of the user
+     * @return the result of the query
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public int selectUserLevel(String email) throws ClassNotFoundException, SQLException {
 
         int result = -1;
@@ -2074,7 +978,12 @@ public class U_AS_Select {
 
     }
 
-
+    /**
+     * selectNumberOfRecords method used to list the records based on the selected table
+     * @param table is the selected table to retrieve the records
+     * @return the record of the specific table
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public int selectNumberOfRecords(String table) throws ClassNotFoundException, SQLException {
 
         int result = -1;

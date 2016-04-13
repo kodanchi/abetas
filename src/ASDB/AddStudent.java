@@ -18,8 +18,8 @@ public class AddStudent extends HttpServlet {
 
     /**
      * insert or update student , then redirect to the student list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -119,10 +119,10 @@ public class AddStudent extends HttpServlet {
 
     /**
      * show error message
-     * @param msg
-     * @param cycle
-     * @param request
-     * @param response
+     * @param msg String
+     * @param cycle String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      */
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 
@@ -156,7 +156,7 @@ public class AddStudent extends HttpServlet {
 
     /**
      * check if the string is numeric or not, return true or false.
-     * @param str
+     * @param str String
      * @return
      */
     public static boolean isNumeric(String str)

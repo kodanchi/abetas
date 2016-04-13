@@ -2,10 +2,6 @@ package passReset;
 
 import java.util.*;
 
-/**
- * Created by Mohammed on 1/25/2016.
- */
-
 public final class PassCodeMap {
     /**
      * PassCodeMap class used to store the random values that generated temporary to reset the passwor for the user

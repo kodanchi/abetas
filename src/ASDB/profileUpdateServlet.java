@@ -13,11 +13,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by Mojahed on 2/11/2016.
+ * profileUpdateServlet is used to update user profile information.
  */
 @WebServlet(name = "profileUpdateServlet", urlPatterns = {"/updateProfile"})
 public class profileUpdateServlet extends HttpServlet {
     String[] userVal;
+
+    /**
+     * update user profile information
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Settings_Update udb = new Settings_Update();
@@ -54,17 +62,12 @@ public class profileUpdateServlet extends HttpServlet {
 
                         if (userData != null) {
                             String userPassword = userData[1];
-                            System.out.println("uOldpass : "+uOldpass);
-                            System.out.println("userPassword : "+userPassword);
-                            System.out.println("check Password : "+Password.check(uOldpass,userPassword));
                             if(Password.check(uOldpass,userPassword)){
                                 if((!uNewpass.equals("") || !reuNewpass.equals(""))) {
 
                                     if(uNewpass.equals(reuNewpass)){
                                         String hashedPass = Password.getSaltedHash(uNewpass);
 
-                                        System.out.println("new hashed password : "+hashedPass);
-                                        //update the table needed
                                         switch (ulvl){
                                             case 0:
                                             case 1:
@@ -79,7 +82,6 @@ public class profileUpdateServlet extends HttpServlet {
                                     }
 
                                 }else {
-                                    //update the table needed
                                     switch (ulvl){
                                         case 0:
                                         case 1:
@@ -114,7 +116,6 @@ public class profileUpdateServlet extends HttpServlet {
             e.printStackTrace();
         }
         PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
         out.println("update");
 
     }
@@ -123,6 +124,13 @@ public class profileUpdateServlet extends HttpServlet {
 
     }
 
+    /**
+     * send message
+     * @param msg String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws IOException
+     */
     protected void sendMsg(String msg, HttpServletRequest request,HttpServletResponse response) throws IOException {
 
         if(request.getSession().getAttribute("Msg") == null)
@@ -130,6 +138,11 @@ public class profileUpdateServlet extends HttpServlet {
 
     }
 
+    /**
+     * checking the validation by Email
+     * @param email String
+     * @return true or false
+     */
     protected boolean checkEmailValidation(String email) {
         boolean result = true;
         try {

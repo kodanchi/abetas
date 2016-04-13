@@ -1,29 +1,24 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Abdullah
-  Date: 2/2/2016
-  Time: 7:51 م
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
-
+/**
+* used to display add term page.
+*/
 <%
 
     String tName = "";
     String tfYear = "";
-    String ttYear = "0";
+    String ttYear = "";
 
     if(request.getSession().getAttribute("errMsg") != null){
 
         String[] courseOldVal = (request.getSession().getAttribute("TermVal") != null ? (String[]) request.getSession().getAttribute("TermVal") : null);
-        System.out.print("arry of user data : "+ courseOldVal[1]);
         if(courseOldVal != null){
 
             tName = courseOldVal[0];
@@ -120,10 +115,6 @@
                                                                                 "<option value=\"Term 4\">Term 4</option>");
                                                                     }
                                                                 %>
-                                                                <%--<option value="Term 1" selected>Term 1</option>
-                                                                <option value="Term 2">Term 2</option>
-                                                                <option value="Term 3">Term 3</option>
-                                                                <option value="Term 4">Term 4</option>--%>
                                                             </select>
                                                             <input name="cycle" value="<%=id%>" hidden/>
                                                     </div>
@@ -151,20 +142,6 @@
 
 
                                                                 <script>
-
-
-                                                                    /*function myFunction() {
-                                                                     var d = new Date();
-                                                                     var n = d.getFullYear();
-                                                                     document.getElementById("date").innerHTML = n;
-                                                                     }*/
-                                                                    /*(function(){
-                                                                     var d = new Date();
-                                                                     var n = d.getFullYear();
-                                                                     document.getElementById("date").innerHTML = n;
-                                                                     }
-
-                                                                     )();*/
 
                                                                     function onYearChng(input){
                                                                         var d = new Date();
@@ -309,7 +286,6 @@
                                                                             out.print("<td>"+"Default"+"</td>");
                                                                         }
                                                                         else if (Integer.valueOf(rsRow.get(j))==0){
-                                                                            //out.print("<td>"+"-"+"</td>");
                                                                             out.print("<td><form method=\"post\" action=\"/SetDefault\">\n");
                                                                             out.print("<input name=\"term\" value=\""+rsRow.get(0)+"\" hidden />\n");
                                                                             out.print("<input name=\"cycle\" value=\""+id+"\" hidden />\n");
@@ -347,6 +323,7 @@
                                             </table>
                                         </div>
                                     </div>
+                            <a class="btn btn-primary" href="index.jsp?page=rubricNames&cycle=<%=id%>">Back</a>
 
                                     <a class="btn btn-info pull-right" href="index.jsp">Cycles List</a>
 

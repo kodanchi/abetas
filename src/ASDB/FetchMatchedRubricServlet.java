@@ -11,13 +11,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Mojahed on 3/15/2016.
+ * FetchMatchedRubricServlet is used by ajax to fetch rubrics descriptions when outcome, performance indicator and course
+ * are matched to a result in the database>
  */
 @WebServlet(name = "FetchMatchedRubricServlet", urlPatterns = {"/fetchRubrics"})
 public class FetchMatchedRubricServlet extends HttpServlet {
+    /**
+     * write the four rubric name
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("/////////////////////////FetchMatchedRubricServlet ");
         response.setContentType("text/plain");
 
         try {
@@ -29,11 +36,7 @@ public class FetchMatchedRubricServlet extends HttpServlet {
             String id = request.getParameter("cid");
             String corId = request.getParameter("cor");
 
-            System.out.println("outId : "+outId);
-            System.out.println("PIId : "+PIId);
-            System.out.println("pId : "+pId);
-            System.out.println("id : "+id);
-            System.out.println("corId : "+corId);
+
 
 
             String A="";
@@ -82,46 +85,6 @@ public class FetchMatchedRubricServlet extends HttpServlet {
                     "                             document.getElementById(\"forthD\").innerHTML=\""+D+"\";\n" +
                     "                        });\n" +
                     "                    </script>" +
-/*
-                    "<div class=\"form-group\">\n" +
-                    "                                        <label>First rubrics</label>\n" +
-                    "                                        <p >"+A+"</p>\n" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"firstD\"  id=\"firstD\" >"+E+"</textarea>\n" +
-                    "                                       <span data-alertid=\"firstD\"></span>" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Second rubrics</label>\n" +
-                    "                                        <p >"+B+"</p>\n" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"secondD\" id=\"secondD\" >"+F+"</textarea>\n" +
-                    "                                       <span data-alertid=\"secondD\"></span>" +
-                    "                                    </div>\n" +
-                    "\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Third rubrics</label>\n" +
-                    "                                        <p >"+C+"</p>\n" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"thirdD\" id=\"thirdD\" >"+G+"</textarea>\n" +
-                    "                                       <span data-alertid=\"thirdD\"></span>" +
-                    "                                    </div>\n" +
-                    "\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Forth rubrics</label>\n" +
-                    "                                        <p >"+D+"</p>\n" +
-                    "                                    </div>\n" +
-                    "                                    <div class=\"form-group\">\n" +
-                    "                                        <label>Description</label>\n" +
-                    "                                        <textarea class=\"form-control\" rows=\"3\" name=\"forthD\"  id=\"forthD\">"+H+"</textarea>\n" +
-                    "                                       <span data-alertid=\"forthD\"></span>" +
-                    "                                    </div>\n" +
-*/
                     "");
 
 

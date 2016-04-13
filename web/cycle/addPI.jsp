@@ -1,19 +1,16 @@
 <%@ page import="ASDB.C_AS_Select" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/3/2016
-  Time: 5:00 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-number-input.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
 <%
+    /**
+     * used to display add performance indicators page
+     */
+
 
     String pName = "";
     
@@ -21,7 +18,7 @@
     if(request.getSession().getAttribute("errMsg") != null){
 
         String[] OldVal = (request.getSession().getAttribute("PVal") != null ? (String[]) request.getSession().getAttribute("PVal") : null);
-        System.out.print("arry of user data : "+ OldVal[0]);
+
         if(OldVal != null){
 
             pName = OldVal[0];
@@ -54,7 +51,6 @@
     C_AS_Select aselect = new C_AS_Select();
     String programName = "";
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
 
     } catch (ClassNotFoundException e) {
@@ -99,7 +95,6 @@
                             else {
                                 out.print(pName);
                             }%></textarea>
-                            <!--Alert for numerical: Invalid performance indicator-->
                             <span data-alertid="pi"></span>
                         </div>
 
@@ -123,10 +118,6 @@
                         </div>
 
 
-
-                        <%--
-                            <input id="STshold" onchange="onSTsholdChange();" type="text" min="0" max="100" class="text-center" name="PIThresh" value="<%if (request.getParameter("PIThresh")!=null) {out.print(request.getParameter("PIThresh"));}%>">
---%>
                             <script>
                                 function onSTsholdChange(){
                                     input = document.getElementById("threshold");
@@ -142,18 +133,6 @@
                                     }
 
                                 }
-
-
-                               /* function validate(evt) {
-                                    var theEvent = evt || window.event;
-                                    var key = theEvent.keyCode || theEvent.which;
-                                    key = String.fromCharCode( key );
-                                    var regex = /[0-9]|\./;
-                                    if( !regex.test(key) ) {
-                                        theEvent.returnValue = false;
-                                        if(theEvent.preventDefault) theEvent.preventDefault();
-                                    }
-                                }*/
 
                                 $(function(){
                                     $('#piform').submit(function(){
