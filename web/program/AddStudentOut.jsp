@@ -4,9 +4,11 @@
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
 
-/**
-* used to display add student outcome page.
-*/
+<%
+    /**
+     * used to display add student outcome page.
+     */
+%>
 
 <html>
         <div class="container" id="space">

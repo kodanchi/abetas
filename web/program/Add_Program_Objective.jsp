@@ -3,9 +3,11 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
-/**
-* used to display add program objectives page.
-*/
+<%
+    /**
+     * used to display add program objectives page.
+     */
+%>
 
 
 <!doctype html>

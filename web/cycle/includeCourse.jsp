@@ -8,11 +8,13 @@
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
-/**
-* used to display include courses to selected term.
-*/
+
 
 <%
+    /**
+     * used to display include courses to selected term.
+     */
+
 
     String id = "";
     String Termid = "";

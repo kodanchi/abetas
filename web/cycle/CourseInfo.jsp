@@ -6,10 +6,11 @@
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
-/**
-* used to display course details (sections list).
-*/
+
 <%
+    /**
+     * used to display course details (sections list).
+     */
 
     String id = "";
     String Termid = "";

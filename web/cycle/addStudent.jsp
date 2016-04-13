@@ -6,11 +6,12 @@
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
-/**
-* used to display add student for a section.
-*/
+
 
 <%
+    /**
+     * used to display add student for a section.
+     */
 
     String sName = "";
     String sID = "";

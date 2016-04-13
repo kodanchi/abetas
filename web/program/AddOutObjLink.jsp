@@ -8,6 +8,9 @@
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
+    /**
+     * used to display add student outcomes/program objectives page.
+     */
 
     if(request.getSession().getAttribute("errMsg") != null){
 

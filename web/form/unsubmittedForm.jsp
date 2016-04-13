@@ -53,7 +53,7 @@
                     ArrayList<String> emailLists = new ArrayList<String>();
 
                     AS_Select dbs = new AS_Select();
-                    String emailList;
+                    String emailList = "";
                     try {
                         ArrayList<ArrayList<String>> formsList = dbs.selectAllUnsubmittedFormsForValidTerm();
                         int x=0;

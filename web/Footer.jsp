@@ -1,6 +1,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+    /**
+     * used to display the footer section.
+     */
+%>
+
 <footer>
     <div class="container" style="margin-top:50px;">
         <div class="row">

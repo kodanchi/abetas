@@ -1,28 +1,20 @@
-<%@ page import="ASDB.AS_Select" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: Abdullah
-  Date: 1/27/2016
-  Time: 7:35 م
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+
+    /**
+     * used to display the header section.
+     */
+
     String username = "Vistor";
     if(session.getAttribute("username")!= null){
         username = (String) session.getAttribute("username");
-        System.out.println("from header, session is : "+request.getSession().getId());
-        System.out.println("from header, username is : "+username);
     }
 
     String ulogo = (String) request.getServletContext().getAttribute("ulogo");
     String uname = (String) request.getServletContext().getAttribute("uname");
     String cname = (String) request.getServletContext().getAttribute("cname");
     String color = (String) request.getServletContext().getAttribute("color");
-
-    /*AS_Select dbs = new AS_Select();
-    ArrayList<String> uniData = dbs.selectHeaderData();*/
-
 
 %>
 <header>
@@ -48,8 +40,7 @@
                                 out.println("<div class=\"title-uppercase white text-center\">"+cname+"</div>");
                             }
                         %>
-                        <%--<a class="navbar-brand centerI" href="http://www.uod.edu.sa">
-                            <img width="235px" class="checkboxgroup" src="https://vle.uod.edu.sa/bbcswebdav/institution/LoginPage/logo.png" alt="University Of Dammam"></a>--%>
+
                     </div>
                 </div>
                 <div class="row ">
@@ -63,6 +54,7 @@
                                         Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                                         if(userLvl != 3)
                                         out.print("<li><a href=\"/settings\">Setting</a></li>");
+                                        out.print("<li><a href=\"/user_manual.pdf\">Help</a></li>");
                                     }
                                 %>
                                 <li><a href="/logout">Logout</a></li>

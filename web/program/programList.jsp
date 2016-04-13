@@ -4,9 +4,11 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-/**
-* used to display programs list page.
-*/
+<%
+    /**
+     * used to display programs list page.
+     */
+%>
 
 
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>

@@ -1,15 +1,11 @@
-<%--<%@ page import="Listeners.CookiesControl" %>
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.ArrayList" %>--%>
-<%--
-<%@ page import="javax.persistence.criteria.CriteriaBuilder" %>
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/19/2016
-  Time: 4:39 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    /**
+     * used to display the home page of superuser.
+     */
+%>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
 <!DOCTYPE html>

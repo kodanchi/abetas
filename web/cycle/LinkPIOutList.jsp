@@ -7,12 +7,14 @@
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
-/**
-* used to display list of performance indicator/outcome links page.
-*/
+
 
 
 <%
+    /**
+     * used to display list of performance indicator/outcome links page.
+     */
+
 
     String id = "";
     String Termid = "";

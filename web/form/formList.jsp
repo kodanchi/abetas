@@ -7,11 +7,13 @@
 <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 <script src="/js/bootbox.min.js" type="application/javascript"></script>
 
+<%
 
-/**
-* used to display form list page form faculty member.
-*/
+    /**
+     * used to display form list page form faculty member.
+     */
 
+%>
 
 <div class="row">
     <!-- Here is row -->
@@ -19,6 +21,7 @@
         <div class="list-group">
             <h4>Uncompleted forms</h4>
             <%
+                try{
 
                 if(request.getSession().getAttribute("Msg")!= null){
                     out.print("<script>");
@@ -29,8 +32,8 @@
 
                     request.getSession().removeAttribute("Msg");
                 }
-            %>
-            <%
+
+
                 F_Select sdb = new F_Select();
                 Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
@@ -130,6 +133,9 @@
 
 
 
+                }
+                }catch (Exception e){
+                    e.fillInStackTrace();
                 }
             %>
         </div>

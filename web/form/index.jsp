@@ -94,6 +94,7 @@
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/jquery.bsFormAlerts.js"></script>
 <script src="/js/uploadInput.js"></script>
+<script src="/js/pageloading.js"></script>
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
