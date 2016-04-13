@@ -9,20 +9,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-/**
- * Created by Mojahed on 1/27/2016.
- */
 @WebServlet(name = "SetupServlet", urlPatterns = "/setup")
 public class SetupServlet extends HttpServlet {
+
+    /**
+     * This function will ask the user whether to remove the database if it exists or not.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();
         InstallDB dbcon = new InstallDB(out);
 
-        System.out.println("this is post");
         if(request.getParameter("dbRemove")!=null)
         {
-            System.out.println(request.getParameter("dbRemove"));
             switch (request.getParameter("dbRemove")){
 
                 case "yes":
@@ -41,11 +44,16 @@ public class SetupServlet extends HttpServlet {
             }
         }
 
-
     }
 
+    /**
+     * This method contains the required html content in order to ask whether to setup the system or not.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("this is get");
 
         PrintWriter out = response.getWriter();
         InstallDB dbcon = new InstallDB(out);

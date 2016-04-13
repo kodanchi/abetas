@@ -1,13 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/29/2016
-  Time: 3:40 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
---%>
-<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page import="Listeners.CookiesControl" %>
 
 <%@ page import="ASDB.Settings_Select" %>
@@ -38,11 +29,6 @@
     <link href="/css/checkbox.css" rel="stylesheet" />
 
 
-<%--
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>--%>
 
 </head>
 <body>
@@ -68,7 +54,10 @@
                 <legend></legend>
 
                 <%
-
+                    /**
+                     * used to display the structure of the user pages by including header and footer and main container based on the
+                     * request parameter
+                     */
                     //session = request.getSession(false);
                     boolean isAS = false;
                     if(request.getSession().getAttribute("userLvl") != null){
@@ -268,14 +257,11 @@
                             Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                             String uname = (String) request.getSession().getAttribute("username");
                             String userId = (String) request.getSession().getAttribute("userId");
-                            System.out.println("uname :"+ uname);
-                            System.out.println("userId :"+ userId);
                             switch (userLvl){
                                 case 0:
                                 case 1:
                                      userData = adb.selectSuperuserForSettings(Integer.valueOf(userId));
 
-                                    System.out.println("userData :"+ userData);
                                     break;
                                 case 2:
                                     userData = adb.selectFaculty(uname);

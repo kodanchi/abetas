@@ -1,7 +1,6 @@
 package ASDB;
 
 import login.Password;
-import passReset.PassCodeMap;
 import passReset.SendEmail;
 
 import javax.naming.Context;

@@ -7,9 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-/**
- * Created by Mohammed on 1/26/2016.
- */
+
 @WebServlet(name = "passcode",
         urlPatterns = {"/Passcode"})
 public class passCode extends HttpServlet {

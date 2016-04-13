@@ -1,14 +1,4 @@
-<%@ page import="Listeners.CookiesControl" %><%--
 <%@ page import="Listeners.CookiesControl" %>
-<%@ page import="java.util.HashMap" %>
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/8/2016
-  Time: 4:01 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
@@ -64,36 +54,15 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-4 col-md-offset-4">
 
-                        <%--<div class="login">
-                            <div class="login-screen">
-                                <div class="login-icon">
-                                    <img src="img/logo.png" alt="Welcome to Mail App">
-                                    <h4>Welcome to <small>ABETAS</small></h4>
-                                </div>
-
-                                <div class="login-form">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control login-field" value="" placeholder="Enter your name" id="login-name">
-                                        <label class="login-field-icon fui-user" for="login-name"></label>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="password" class="form-control login-field" value="" placeholder="Password" id="login-pass">
-                                        <label class="login-field-icon fui-lock" for="login-pass"></label>
-                                    </div>
-
-                                    <a class="btn btn-primary btn-lg btn-block" href="#">Log in</a>
-                                    <a class="login-link" href="#">Lost your password?</a>
-                                </div>
-                            </div>
-                        </div>--%>
 
                         <div class="register-card">
                             <div class="title"><img width="200px" src="/img/logowhite.png"></div>
 
 
                             <%
-
+                            /**
+                                 * login page used to login to the system , forget password and reset password
+                             */
                                 if(request.getParameter("status")!= null){
                                     if(request.getParameter("status").equals("failedLogin")){
                                                             /*out.print("<p class=\"bg-danger\">");

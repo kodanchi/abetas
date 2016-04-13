@@ -1,23 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/29/2016
-  Time: 3:40 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
---%>
-<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    System.out.println(request.getMethod());
+    /**
+     * used to display the structure of the user pages by including header and footer and main container based on the
+     * request parameter
+     */
     String pageName = "userslist.jsp";
     if(request.getMethod().equals("GET")){
         pageName = null;
         String pageCall = request.getParameter("page");
         String cmdCall = request.getParameter("cmd");
         //String stutsCall = request.getParameter("status");
-        System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
                 pageName = "adduser.jsp";
@@ -61,7 +54,6 @@
         pageName = null;
         String pageCall = request.getParameter("page");
         String cmdCall = request.getParameter("cmd");
-        System.out.println(pageCall);
         if(pageCall != null){
             if(pageCall.equals("add")) {
                 if(request.getParameter("status")!= null){

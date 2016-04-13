@@ -1,13 +1,7 @@
 <%@ page import="EDB.E_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="EDB.EncDec" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/27/2016
-  Time: 7:13 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="EDB.EncDec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -26,6 +20,9 @@
                     <p>Please choose the cycle down to the outcome to view the evaluation result:</p>
 
                     <%
+                        /**
+                         * evaList page used to list the cycle and outcomes lists
+                         */
                         Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
 
 
