@@ -15,8 +15,8 @@ public class AddCourses extends HttpServlet {
 
     /**
      * insert or update the course details, then redirect to the program course list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -75,6 +75,14 @@ public class AddCourses extends HttpServlet {
 
     }
 
+    /**
+     * send error message
+     * @param msg String
+     * @param pname String
+     * @param pid String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     */
     protected void sendErrMsg(String msg,String pname,String pid,HttpServletRequest request, HttpServletResponse response){
 
 

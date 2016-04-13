@@ -21,8 +21,8 @@ public class AddUser extends HttpServlet {
 
     /**
      * insert users , then redirect to the users list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -91,8 +91,8 @@ public class AddUser extends HttpServlet {
 
     /**
      * show message
-     * @param msg
-     * @param request
+     * @param msg String
+     * @param request HttpServletRequest
      */
     protected void sendMsg(String msg, HttpServletRequest request) {
 
@@ -103,9 +103,9 @@ public class AddUser extends HttpServlet {
 
     /**
      * show error message
-     * @param msg
-     * @param request
-     * @param response
+     * @param msg String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      */
     protected void sendErrMsg(String msg,HttpServletRequest request, HttpServletResponse response){
 
@@ -129,8 +129,8 @@ public class AddUser extends HttpServlet {
 
     /**
      * checking the validation by Email
-     * @param email
-     * @return
+     * @param email String
+     * @return true or false
      */
     protected boolean checkEmailValidation(String email) {
         boolean result = true;
@@ -145,8 +145,8 @@ public class AddUser extends HttpServlet {
 
     /**
      * capitalize the first letter of the word
-     * @param string
-     * @return
+     * @param string String
+     * @return capitalize string
      */
     public String capitalize(String string) {
         char[] chars = string.toLowerCase().toCharArray();

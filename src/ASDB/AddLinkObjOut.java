@@ -13,8 +13,8 @@ import java.io.IOException;
 public class AddLinkObjOut extends HttpServlet {
     /**
      * insert or update link objective with student outcome, then redirect to the link objective with student outcome page.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -66,6 +66,15 @@ public class AddLinkObjOut extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    /**
+     * send error message
+     * @param msg String
+     * @param pname String
+     * @param pid String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     */
     protected void sendErrMsg(String msg,String pname,String pid,HttpServletRequest request, HttpServletResponse response){
 
 
