@@ -595,10 +595,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -665,10 +663,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -737,10 +733,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
@@ -808,10 +802,8 @@ public class U_AS_Select {
 
             //
             while (rs.next()){
-                System.out.print("valuee"+rs.getInt(1));
                 if(rs.getInt(1) == 1){
                     isExist = true;
-                    System.out.print("existtttt");
                 }
             }
 
