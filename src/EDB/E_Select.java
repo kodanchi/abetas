@@ -2262,7 +2262,7 @@ public class E_Select {
                     "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
                     "program.P_ID = link_out_pi.FK_P_ID ;";*/
 
-            String query = "SELECT FK_pi_ID, PI_name, FK_Section_ID \n" +
+            String query = "SELECT distinct FK_pi_ID, PI_name, FK_Section_ID \n" +
                     "From abetasdb.link_out_pi,abetasdb.performance_indicator, program , formative \n" +
                     "WHERE FK_T_ID = ? \n" +
                     "AND FK_PI_ID = PI_Label\n" +
@@ -2419,7 +2419,7 @@ public class E_Select {
         try {
 
 
-            String query = "SELECT C_code,C_name \n" +
+            String query = "SELECT distinct C_code,C_name \n" +
                     "FROM course, abetasdb.link_out_pi, performance_indicator,summative\n" +
                     "where LinkType='Summative'\n" +
                     "AND Link_ID = FK_Link_ID\n" +
@@ -2496,7 +2496,7 @@ public class E_Select {
         try {
 
 
-            String query = "SELECT  summative.FK_Section_ID\n" +
+            String query = "SELECT distinct summative.FK_Section_ID\n" +
                     "FROM course, abetasdb.link_out_pi, performance_indicator,summative\n" +
                     "where LinkType='Summative'\n" +
                     "AND Link_ID = FK_Link_ID\n" +

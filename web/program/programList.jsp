@@ -13,6 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
 
 <div class="container">
@@ -29,14 +30,16 @@
                     <input id="filter" type="text" class="form-control" placeholder=" by program name or mission">
                 </div>
                     <!-- Table -->
-                    <table class="table table-hover table-striped table-bordered text-center" id="table-sever-list" >
+                    <table class="table table-hover table-striped table-bordered text-center" id="table-sever-list">
+                        <thead>
                         <tr class="textContainer">
-                            <th>Name</th>
+                            <th data-sort="string">Name</th>
                             <th>Mission</th>
                             <th>Edit</th>
                             <th>Delete</th>
 
                         </tr>
+                        </thead>
                         <tbody class="searchable">
                             <%
 
@@ -81,6 +84,10 @@
                         </tbody>
 
                     </table >
+                <script>
+                    $("#table-sever-list").stupidtable();
+                </script>
+
                 <a  class="btn btn-primary pull-right" href="/index.jsp">Back</a>
                 <a class="btn btn-primary" href="index.jsp?page=add">Add</a>
 

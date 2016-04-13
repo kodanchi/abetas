@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
 <%
 
@@ -54,12 +55,14 @@
                         <input id="filter" type="text" class="form-control" placeholder=" by student outcome">
                     </div>
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
                             <tr>
-                                <th>Outcome</th>
+                                <th data-sort="string">Outcome</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
+                            </thead>
                             <tbody class="searchable">
                                 <%
                                     P_AS_Select aselect = new P_AS_Select();
@@ -106,6 +109,12 @@
                                 %>
                             </tbody>
                         </table>
+
+                    <script>
+                        $("#sTable").stupidtable();
+                    </script>
+
+
                     <a class="btn btn-default pull-right " href="index.jsp?page=programList">Cancel</a>
                     <a class="btn btn-primary" onclick="importPopup('index.jsp?name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>&page=import&data=outcomes',
                     'index.jsp?page=addOut&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>',

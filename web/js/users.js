@@ -13,14 +13,13 @@ function onUserTypeChng()
         $('#emailDiv').show();
 
         document.getElementById("userEmail").focus();
-        document.getElementById("evaluatorDiv").style.visibility = "hidden";
-        document.getElementById("evaluatorProgram").value = "";
+        $('#evaluatorDiv').hide();
+
     }else if (selectedValue == "Evaluator"){
         //document.getElementById("emailDiv").style.visibility = "hidden";
         $('#emailDiv').hide();
         document.getElementById("userEmail").value = "";
-        document.getElementById("evaluatorDiv").style.visibility = "visible";
-        document.getElementById("evaluatorProgram").value = "";
+        $('#evaluatorDiv').show();
 
     }
 }
@@ -55,6 +54,7 @@ function onSubmitAddUser(){
     {
         var program = document.getElementById("evaluatorProgram");
         programValue = program.options[program.selectedIndex].value;
+        $('#evaluatorDiv').show();
     }
 
     if(fname.value == "") {

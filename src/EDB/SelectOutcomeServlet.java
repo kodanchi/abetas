@@ -30,7 +30,8 @@ public class SelectOutcomeServlet extends HttpServlet {
 
             PrintWriter out = response.getWriter();
 
-            out.print("<div class=\"jumbotron\" >");
+            out.print("<h4>Outcome</h4>\n" +
+                    "<div class=\"jumbotron\" >");
                 out.print("<h7>"+oname+"</h7>");
             out.print("</div>");
 

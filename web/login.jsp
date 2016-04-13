@@ -1,5 +1,5 @@
-<%@ page import="sessionListener.CookiesControl" %><%--
-<%@ page import="sessionListener.CookiesControl" %>
+<%@ page import="Listeners.CookiesControl" %><%--
+<%@ page import="Listeners.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
 --%>
 <%--

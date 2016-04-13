@@ -88,15 +88,17 @@ public class UpdateUser extends HttpServlet {
 
 
                             Auditor.add((String)request.getSession().getAttribute("username"),"updated user ("+request.getParameter("uname")+")");
-                            response.sendRedirect("/users/index.jsp?status=userAdded");
+                            sendMsg(userNewType+" updated",request);
+                            response.sendRedirect("/users/index.jsp");
 
                         }
                     }else if (request.getParameter("userType").equals("Evaluator")){
                         if(userNewType.equals(userOldType)){ //if the user lvl the same
 
                             //update the table needed
-                                udb.updateEvaluator(Integer.parseInt(request.getParameter("id")),fname,mname,lname,uname);
-                            response.sendRedirect("/users/index.jsp?status=userUpdated");
+                            udb.updateEvaluator(Integer.parseInt(request.getParameter("id")),fname,mname,lname,uname,program);
+                            sendMsg(userNewType+" updated",request);
+                            response.sendRedirect("/users/index.jsp");
 
                         }else { //if the user lvl changed
 
@@ -105,8 +107,8 @@ public class UpdateUser extends HttpServlet {
 
                             //insert the new userdata to the new level table
                                 idb.addUser(2, request.getParameter("uname"), null, fname, mname, lname,program);
-
-                            response.sendRedirect("/users/index.jsp?status=userUpdated");
+                            sendMsg(userNewType+" updated",request);
+                            response.sendRedirect("/users/index.jsp");
 
 
 
@@ -161,6 +163,17 @@ public class UpdateUser extends HttpServlet {
         }*/
 
         return;
+    }
+
+
+    protected void sendMsg(String msg,HttpServletRequest request){
+
+
+        System.out.println("Msg : "+msg);
+
+        System.out.println("session is : "+request.getSession().getId());
+        request.getSession().setAttribute("Msg",msg);
+
     }
 
     protected boolean checkEmailValidation(String email) {

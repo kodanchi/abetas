@@ -12,10 +12,10 @@
     </resource-ref>
 
     <listener>
-        <listener-class>passReset.contextListener</listener-class>
+        <listener-class>Listeners.ContextListener</listener-class>
     </listener>
     <listener>
-        <listener-class>sessionListener.CustomHttpSessionListener</listener-class>
+        <listener-class>Listeners.CustomHttpSessionListener</listener-class>
     </listener>
 
 
@@ -46,18 +46,6 @@
     </filter-mapping>
 
 
-    <!--<filter>
-        <filter-name>UsersFilters</filter-name>
-        <filter-class>filters.UsersFilter</filter-class>
-        <init-param>
-            <param-name>avoid-urls</param-name>
-            <param-value>css,js,login</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>UsersFilters</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
 
     <filter>
         <filter-name>LevelFilter</filter-name>
@@ -80,6 +68,18 @@
         <filter-name>SUFilter</filter-name>
         <url-pattern>/program/*</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/users/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/form/unlockform.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/form/unsubmittedForm.jsp</url-pattern>
+    </filter-mapping>
     <filter>
         <filter-name>FacultyFilter</filter-name>
         <filter-class>filters.FacultyLevelFilter</filter-class>
@@ -87,6 +87,14 @@
     <filter-mapping>
         <filter-name>FacultyFilter</filter-name>
         <url-pattern>/form/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>SetupFilter</filter-name>
+        <filter-class>filters.SetupFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SetupFilter</filter-name>
+        <url-pattern>/setup</url-pattern>
     </filter-mapping>
 
     <session-config>

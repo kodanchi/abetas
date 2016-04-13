@@ -11,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
+<script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
 
 <%
@@ -61,16 +62,20 @@
                         <input id="filter" type="text" class="form-control" placeholder=" by students outcome, performance indicator, course code or type  ">
                     </div>
                         <!-- Table -->
-                        <table class="table table-hover table-striped table-bordered text-center">
+                        <table class="table table-hover table-striped table-bordered text-center" id="sTable">
+                            <thead>
+
                             <tr>
-                                <th>Students Outcome</th>
-                                <th>Performance Indicator</th>
-                                <th>Course</th>
-                                <th>Type</th>
-                                <th>Threshold</th>
+                                <th data-sort="string-ins">Students Outcome</th>
+                                <th data-sort="string-ins">Performance Indicator</th>
+                                <th data-sort="string-ins">Course</th>
+                                <th data-sort="string">Type</th>
+                                <th data-sort="int">Threshold</th>
                                 <th class="notPrintable">Edit</th>
                                 <th class="notPrintable">Delete</th>
                             </tr>
+                            </thead>
+
                             <tbody class="searchable">
                                 <%
 
@@ -142,6 +147,10 @@
                                 %>
                             </tbody>
                         </table>
+
+                    <script>
+                        $("#sTable").stupidtable();
+                    </script>
 
                     <a class="btn btn-primary pull-left" href="index.jsp?page=addPILinks&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Add</a>
                     <a class="btn btn-primary pull-right" href="index.jsp?page=addTerm&cycle=<%=id%>&term=<%=Termid%>">Finish</a>

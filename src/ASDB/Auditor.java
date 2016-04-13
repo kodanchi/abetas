@@ -1,18 +1,16 @@
 package ASDB;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.*;
 import java.util.Date;
 
-/**
- * Created by Ibrahim Abuaqel on 3/10/2016.
- */
-public class Auditor {
 
+public class Auditor {
+    /**
+     * record date and time for every event
+     * @param userName String
+     * @param action String
+     */
     public static void add(String userName, String action){
         U_AS_Insert dbs = new U_AS_Insert();
         try {

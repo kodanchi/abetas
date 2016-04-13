@@ -1,7 +1,8 @@
-package passReset;
+package Listeners;
 
 import ASDB.AS_Select;
-import ASDB.InstallDB;
+import Setup.InstallDB;
+import passReset.TimeClass;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -9,15 +10,14 @@ import javax.servlet.ServletContextListener;
 import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
-/**
- * Created by Mohammed on 2/6/2016.
- */
 
 /**
- * contextListener class used to initiate time class and TImeTest method when the server is start
- * that's done though  contextInitialized method
+ * ContextListener class used when the server started/restarted to create folders for backup and uploads if not exist
+ * and set several context attributes to hold data needed for the pages header (logo path, university name, college name,
+ * header color). Furthermore ContextListener class used to initiate time class and TImeTest method that's done though
+ * contextInitialized method.
  */
-public class contextListener implements ServletContextListener {
+public class ContextListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -65,12 +65,15 @@ public class contextListener implements ServletContextListener {
 
     }
 
+    /**
+     * used to create new folder if not existed
+     * @param dir real path of the directory to be checked
+     */
     public void createIfNotExisted(String dir){
 
         File theDir = new File(dir);
 
         if (!theDir.exists()) {
-            System.out.println("creating directory: " + dir);
             boolean result = false;
 
             try{
@@ -78,12 +81,12 @@ public class contextListener implements ServletContextListener {
                 result = true;
             }
             catch(SecurityException se){
-                //handle it
+                se.printStackTrace();
             }
             if(result) {
                 System.out.println("DIR created");
             }
-        }else {System.out.println("DIR already existed");}
+        }
 
     }
 

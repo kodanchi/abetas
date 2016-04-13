@@ -7,7 +7,6 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-
 public class P_AS_Select {
 
 

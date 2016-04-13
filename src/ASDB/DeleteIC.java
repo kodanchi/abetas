@@ -7,24 +7,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by Ibrahim Abuaqel on 2/14/2016.
- */
+
 @WebServlet(name = "DeleteIC",
         urlPatterns = {"/DeleteIC"})
 public class DeleteIC extends HttpServlet {
+    /**
+     * connect to the database and call delete method to delete include course by ID, then add to system log and add this event to the system log.
+     * Redirect to the cycle course list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        System.out.println("####################################"+request.getParameter("Code")+"######################      "+request.getParameter("programID"));
         C_AS_Delete dba = new C_AS_Delete();
         String id = request.getParameter("cycle");
         String Termid = request.getParameter("term");
 
-        int programID = 0;
 
         try {
-            //System.out.println("ttrttttttttttttttttttttttttt  Program name          " + request.getParameter("programName") + "ttrttttttttttttttttttttttttt           ");
                 dba.deleteIC(request.getParameter("Code"),Integer.parseInt(Termid));
             Auditor.add((String)request.getSession().getAttribute("username"),"Excluded course from term (Course ID : "+request.getParameter("Courseid")+")");
 
@@ -35,15 +37,8 @@ public class DeleteIC extends HttpServlet {
             e.printStackTrace();
         }
 
-            /*PrintWriter out = response.getWriter();
-            //out.println("name: " + request.getParameter("name"));
-            //out.println("logo: " + request.getParameter("logo"));
-            out.println("H");*/
-        //System.out.println("ttrttttttttttttttttttttttttt  Programid          " + programID + "ttrttttttttttttttttttttttttt           ");
-            /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
+
         try {
-            //request.getRequestDispatcher("/cycle/index.jsp?page=includeCourse").forward(request, response);
             response.sendRedirect("/cycle/index.jsp?page=includeCourse&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID"));
 
         } catch (NullPointerException e) {
