@@ -1,13 +1,11 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Abdullah
-  Date: 2/2/2016
-  Time: 3:46 م
-  To change this template use File | Settings | File Templates.
---%>
+
+/**
+* used to display cycle list page.
+*/
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>

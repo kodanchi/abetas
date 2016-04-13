@@ -1,17 +1,14 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/13/2016
-  Time: 4:37 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
-
+/**
+* used to display course details (sections list).
+*/
 <%
 
     String id = "";
@@ -21,16 +18,13 @@
         Termid  = request.getParameter("term");
     }
 
-%>
 
-<%
     C_AS_Select aselect = new C_AS_Select();
     String programName = "";
     String courseName = "";
     String courseCode = request.getParameter("courseCode");
 
     try {
-        System.out.println("programID     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
         courseName = aselect.selectCourseName(request.getParameter("courseCode"));
 
@@ -74,7 +68,6 @@
 
                                         String facultyName = null;
 
-                                        //C_AS_Select aselect = new C_AS_Select();
                                         try {
                                             ArrayList<ArrayList<String>> rs = aselect.selectCourseSections(Integer.parseInt(request.getParameter("term")),request.getParameter("courseCode"));
                                             ArrayList<String> rsRow;
@@ -121,9 +114,6 @@
                                         } catch (SQLException e) {
                                             e.printStackTrace();
                                         }
-                                        System.out.println("  yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy           "+ request.getParameter("programID"));
-                                    }else {
-                                        System.out.println("  gsgsgsg    gsgsggssdfgs       djskvdsj    sgsgs   sgsgsgsg   fsdsdg            ");
                                     }
 
                                 %>
@@ -135,26 +125,6 @@
 
                         <form name="myform" action="index.jsp" method="post">
 
-                            <%--<div class="col-xl-50 selectContainer" >
-                                <p>Select a faculty member to teach this course:</p>
-                                <select class="form-control" name="F_ID" required>
-                                    <%
-                                        C_AS_Select cselect = new C_AS_Select();
-                                        try {
-                                            ArrayList<String> rs = cselect.selectFacultyForCourse();
-
-                                            for (int i=0; i<rs.size();i++) {
-                                                out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i).replaceAll(".*:", "")+"</option>");
-                                            }
-                                        } catch (ClassNotFoundException e) {
-                                            e.printStackTrace();
-                                        } catch (SQLException e) {
-                                            e.printStackTrace();
-                                        }
-                                    %>
-                                </select>
-
-                            </div>--%>
 
                                 <input type="hidden" name="page" value="addSection">
                                 <input type="hidden" name="cycle" value="<%=id%>">
@@ -163,18 +133,11 @@
                                 <input type="hidden" name="courseName" value="<%=courseName%>">
                                 <input type="hidden" name="programID" value="<%=request.getParameter("programID")%>">
                                 <input type="hidden" name="programName" value="<%=programName%>">
-
-                            <%--<div class="panel panel-default">
-
-                            </div>
-                            <p>*Click "Next" to add student</p>--%>
                             <button class="btn btn-primary pull-left" type="submit">Add</button>
 
                         </form>
 
                         <a class="btn btn-primary pull-right" href="index.jsp?page=includeCourse&cycle=<%=id%>&term=<%=Termid%>&programID=<%=request.getParameter("programID")%>">Finish</a>
-
-
 
                         <!-- End of col -->
                     </div>

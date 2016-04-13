@@ -10,7 +10,10 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-
+/**
+ * FetchMatchedRubricServlet is used by ajax to fetch rubrics descriptions when outcome, performance indicator and course
+ * are matched to a result in the database>
+ */
 @WebServlet(name = "FetchMatchedRubricServlet", urlPatterns = {"/fetchRubrics"})
 public class FetchMatchedRubricServlet extends HttpServlet {
     /**

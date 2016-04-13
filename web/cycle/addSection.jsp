@@ -1,15 +1,14 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/13/2016
-  Time: 6:24 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <%
+
+    /**
+     * used to display add section for a course.
+     */
 
     String id = "";
     String Termid = "";
@@ -25,7 +24,6 @@
     String programName = "";
 
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
 
     } catch (ClassNotFoundException e) {
@@ -34,14 +32,12 @@
         e.printStackTrace();
     }
     String sectionId = request.getParameter("section");
-    System.out.println("SID : "+sectionId);
 
     int fid = 0;
     if(request.getParameter("section") != null){
 
 
         try {
-            System.out.println("scscsc     "+Integer.parseInt(request.getParameter("section")));
             fid = aselect.selectSectionFacultyID(Integer.parseInt(request.getParameter("section")));
 
         } catch (ClassNotFoundException e) {
@@ -96,46 +92,32 @@
 
 
 
-                                <%
-                                    System.out.println(request.getParameter("programName"));
-                                    System.out.println(request.getParameter("programID"));
-                                    System.out.println(request.getParameter("courseCode"));
-                                    System.out.println(request.getParameter("courseName"));
-                                    System.out.println(request.getParameter("programName"));
-
-                                %>
-
-
                             <div class="form-group">
 
-                                        <p>Select a faculty member to teach this course:</p>
-                                        <select class="form-control" name="F_ID" required>
-                                            <%
-                                                C_AS_Select cselect = new C_AS_Select();
-                                                try {
-                                                    ArrayList<String> rs = cselect.selectFacultyForCourse();
+                                <p>Select a faculty member to teach this course:</p>
+                                <select class="form-control" name="F_ID" required>
+                                    <%
+                                        C_AS_Select cselect = new C_AS_Select();
+                                        try {
+                                            ArrayList<String> rs = cselect.selectFacultyForCourse();
 
-                                                    for (int i=0; i<rs.size();i++) {
-                                                        out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':')));
+                                            for (int i=0; i<rs.size();i++) {
+                                                out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':')));
 
-                                                        System.out.println("fid : "+fid + "  "+ rs.get(i).substring(0, rs.get(i).indexOf(':')));
-                                                        if(Integer.parseInt(rs.get(i).substring(0, rs.get(i).indexOf(':'))) == fid){
-                                                           out.print(" selected ");
-                                                        }
-                                                        out.print(">"+rs.get(i).replaceAll(".*:", "")+"</option>");
-                                                    }
-                                                } catch (ClassNotFoundException e) {
-                                                    e.printStackTrace();
-                                                } catch (SQLException e) {
-                                                    e.printStackTrace();
+                                                if(Integer.parseInt(rs.get(i).substring(0, rs.get(i).indexOf(':'))) == fid){
+                                                    out.print(" selected ");
                                                 }
-                                            %>
-                                        </select>
-
+                                                out.print(">"+rs.get(i).replaceAll(".*:", "")+"</option>");
+                                            }
+                                        } catch (ClassNotFoundException e) {
+                                            e.printStackTrace();
+                                        } catch (SQLException e) {
+                                            e.printStackTrace();
+                                        }
+                                    %>
+                                </select>
                             </div>
-
-
-                            </div>
+                        </div>
 
 
 

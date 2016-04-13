@@ -1,21 +1,14 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="java.util.ArrayList" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/13/2016
-  Time: 6:24 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/469357/html-text-input-allow-only-numeric-input
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
-
+/**
+* used to display add student for a section.
+*/
 
 <%
 
@@ -25,7 +18,6 @@
     if(request.getSession().getAttribute("errMsg") != null){
 
         String[] OldVal = (request.getSession().getAttribute("StudentVal") != null ? (String[]) request.getSession().getAttribute("StudentVal") : null);
-        System.out.print("arry of user data : "+ OldVal[1]);
         if(OldVal != null){
 
             sID = OldVal[0];
@@ -63,7 +55,6 @@
     String programName = "";
 
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
 
     } catch (ClassNotFoundException e) {
@@ -92,21 +83,10 @@
                                 <input type="hidden" name="courseCode" value="<%=request.getParameter("courseCode")%>">
                                 <input type="hidden" name="courseName" value="<%=request.getParameter("courseName")%>">
                                 <input type="hidden" name="section" value="<%=request.getParameter("section")%>">
-<%--
-                                <input type="hidden" name="programName" value="<%=request.getParameter("programName")%>">
---%>
                                 <input type="hidden" name="cycle" value="<%=id%>">
                                 <input type="hidden" name="term" value="<%=Termid%>">
 
-                                <%
-                                    //System.out.println(request.getParameter("programName"));
-                                    System.out.println(request.getParameter("programID"));
-                                    System.out.println(request.getParameter("courseCode"));
-                                    System.out.println(request.getParameter("courseName"));
-                                    System.out.println(request.getParameter("section"));
-                                    //System.out.println(request.getParameter("programName"));
 
-                                %>
                                 <div class="form-group">
                                     <ul class="list-inline">
                                         <li>
@@ -119,7 +99,7 @@
                                                    rel="tooltip"
                                                    title="Less than 20 digits"
                                                    value="<%if (request.getParameter("IDValue")!=null) {out.print(request.getParameter("IDValue"));}
-                                else {out.print(sID);}%>"><!--Alert empty: Enter the student ID-->
+                                else {out.print(sID);}%>">
                                         </li>
                                     </ul>
                                     <span data-alertid="sIDAlert"></span>

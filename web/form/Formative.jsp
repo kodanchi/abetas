@@ -3,13 +3,8 @@
 <%@ page import="FDB.F_Select" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/21/2016
-  Time: 3:02 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.text.SimpleDateFormat" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -19,6 +14,10 @@
 
 
 <%
+
+    /**
+     * used to display Formative form page.
+     */
 
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");
@@ -306,11 +305,6 @@
 
 
                     <form id="formativeForm" name="formativeForm" method="post" enctype="multipart/form-data">
-                        <%--<input type="hidden" name="WrittenRubricsV" value="<%=F_written_rubic%>">
-                        <input type="hidden" name="CommentsV" value="<%=F_instructor_feedback_comment%>">
-                        <input type="hidden" name="ObstaclesV" value="<%=F_instructor_feedback_obstacle%>">
-                        <input type="hidden" name="ImprovementV" value="<%=F_instructor_feedback_improvement%>">
-                        <input type="hidden" name="evidenceV" value="<%=F_evidence%>">--%>
                         <input type="hidden" name="Formative_ID" value="<%=request.getParameter("Formative_ID")%>">
 
                         <div class="form-group">
@@ -323,9 +317,6 @@
                         <h6>Instructor Feedback:</h6>
 
 
-<%--
-                            <table>
---%>
                                 <div class="form-group">
                                     Comment(s) on Success/Failure in Achieving Performance Indicator: <h6 class="label label-danger mrgB">required</h6>
                                     <textarea id="Comments" name="Comments" class="form-control" rows="4"><%=F_instructor_feedback_comment%></textarea>
@@ -341,9 +332,7 @@
                                     <textarea id="Improvement" name="Improvement" class="form-control" rows="4"><%=F_instructor_feedback_improvement%></textarea>
                                     <span data-alertid="Improvement"></span>
                                 </div>
-<%--
-                            </table>
---%>
+
 
                         <div class="row form-group">
                                 <div class="col-md-8 col-sm-8">

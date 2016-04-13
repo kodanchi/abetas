@@ -9,20 +9,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Mojahed on 2/26/2016.
+ * UnlockFormServlet is used to unlock selected form by superuser from unlockForm page which updating form status in the
+ * database to be 0 and redirect to the same page.
  */
-@WebServlet(name = "UnclockFormsServlet" , urlPatterns = {"/unlockForm"})
-public class UnclockFormsServlet extends HttpServlet {
+@WebServlet(name = "UnlockFormServlet" , urlPatterns = {"/unlockForm"})
+public class UnlockFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.print("////////////////POST/ UnclockFormsServlet");
-
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        System.out.print("////////////////GET/ UnclockFormsServlet");
         AS_Update dbu = new AS_Update();
         String redirectURL= "/form/index.jsp?page=unlockForm";
         try {
@@ -33,12 +31,12 @@ public class UnclockFormsServlet extends HttpServlet {
                 } else if(request.getParameter("ftype").equals("formative")) {
                     dbu.updateUnlockFormF(Integer.parseInt(request.getParameter("fid")));
                 }
-                Auditor.add((String)request.getSession().getAttribute("username"),"Unlocked form (Type: "+request.getParameter("ftype")+
-                        ", Form ID: "+request.getParameter("fid")+")");
+                Auditor.add((String)request.getSession().getAttribute("username"),"Unlocked form (Type: "+
+                        request.getParameter("ftype")+", Form ID: "+request.getParameter("fid")+")");
 
-                sendMsg("Form has been unlocked",request,response);
+                sendMsg("Form has been unlocked",request);
             } else {
-                sendMsg("unvalid form ",request,response);
+                sendMsg("Error! un-valid form, Contact support! ",request);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -48,7 +46,12 @@ public class UnclockFormsServlet extends HttpServlet {
 
         response.sendRedirect(redirectURL);
     }
-    protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response) {
+    /**
+     * send success message through session attribute and redirect the user to the same page.
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
+     */
+    protected void sendMsg(String msg, HttpServletRequest request) {
 
         if (request.getSession().getAttribute("Msg") == null)
             request.getSession().setAttribute("Msg", msg);

@@ -13,15 +13,14 @@ import java.io.PrintWriter;
 
 
 /**
- * Created by Ibrahim Abuaqel on 1/19/2016.
+ * UpdateUser is used for updating existing user details in the database and then redirect the user to user list if no
+ * errors occurs otherwise, error message will be sent to the user.
  */
-
 @WebServlet(name = "UpdateUser",
         urlPatterns = {"/updateUser"})
 public class UpdateUser extends HttpServlet {
     String[] userVal;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################");
         U_AS_Insert idb = new U_AS_Insert();
         U_AS_Delete ddb = new U_AS_Delete();
         U_AS_Update udb = new U_AS_Update();
@@ -39,13 +38,9 @@ public class UpdateUser extends HttpServlet {
             String oldUemail = (request.getParameter("olduemail") != null ? request.getParameter("olduemail") : "");
             userVal = new String[]{request.getParameter("id"),userType, fname, mname, lname, uname, uemail};
 
-
             String userNewType = request.getParameter("userType");
             String userOldType = request.getParameter("oldLvl");
-            System.out.println(userOldType+" = = "+userNewType);
 
-
-            System.out.println(userType);
             if(uname.equals("")){
                 sendErrMsg("username Required!",request,response);
             }else {
@@ -59,15 +54,11 @@ public class UpdateUser extends HttpServlet {
                             sendErrMsg("The Email is already exist",request,response);
                         }else{
                             if(userNewType.equals(userOldType)){ //if the user lvl the same
-
                                 //update the table needed
                                 if(userNewType.equals("Superuser"))
                                     udb.updateSuperuser(Integer.parseInt(request.getParameter("id")),fname,mname,lname,uname,uemail);
                                 else if (userNewType.equals("Faculty_Member"))
                                     udb.updateFaculty(Integer.parseInt(request.getParameter("id")),fname,mname,lname,uname,uemail);
-
-
-
                             }else { //if the user lvl changed
 
                                 //delete the userdata form the old table
@@ -75,15 +66,13 @@ public class UpdateUser extends HttpServlet {
                                     ddb.deleteSuperuser(Integer.parseInt(request.getParameter("id")));
                                 else if (userOldType.equals("Faculty_Member"))
                                     ddb.deleteFaculty(Integer.parseInt(request.getParameter("id")));
-
                                 //insert the new userdata to the new level table
                                 if(userNewType.equals("Superuser"))
                                     idb.addUser(0, request.getParameter("uname"),uemail ,fname,mname,lname,program);
                                 else if (userNewType.equals("Faculty_Member"))
                                     idb.addUser(1, request.getParameter("uname"),uemail ,fname,mname,lname,program);
-
-                                Auditor.add((String)request.getSession().getAttribute("username"),"Changed user type of user ("+request.getParameter("uname")+
-                                        ") from "+userOldType+" to "+userNewType);
+                                Auditor.add((String)request.getSession().getAttribute("username"),"Changed user type of user ("+
+                                        request.getParameter("uname")+ ") from "+userOldType+" to "+userNewType);
                             }
 
 
@@ -104,13 +93,10 @@ public class UpdateUser extends HttpServlet {
 
                             //delete the userdata form the old table
                                 ddb.deleteEvaluator(Integer.parseInt(request.getParameter("id")));
-
                             //insert the new userdata to the new level table
                                 idb.addUser(2, request.getParameter("uname"), null, fname, mname, lname,program);
                             sendMsg(userNewType+" updated",request);
                             response.sendRedirect("/users/index.jsp");
-
-
 
                         }
                     }
@@ -138,15 +124,16 @@ public class UpdateUser extends HttpServlet {
 
     }
 
+    /**
+     * send error message through session attribute and redirect the user to the same page (users list page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     */
     protected void sendErrMsg(String msg,HttpServletRequest request, HttpServletResponse response){
 
-
-        System.out.println("ErrMsg : "+msg);
-
-        System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("errMsg",msg);
         request.getSession().setAttribute("userValue",userVal);
-
 
         try {
             request.getRequestDispatcher("/users/index.jsp?page=update").forward(request,response);
@@ -155,27 +142,25 @@ public class UpdateUser extends HttpServlet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        try {
-            response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*/
 
         return;
     }
 
-
+    /**
+     * send success message through session attribute and redirect the user to the same page (users list page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
+     */
     protected void sendMsg(String msg,HttpServletRequest request){
 
-
-        System.out.println("Msg : "+msg);
-
-        System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("Msg",msg);
-
     }
 
+    /**
+     * validate the format of given email string.
+     * @param email email string to be validated
+     * @return whether the email is valid
+     */
     protected boolean checkEmailValidation(String email) {
         boolean result = true;
         try {

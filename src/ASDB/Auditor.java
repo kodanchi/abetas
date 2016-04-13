@@ -4,12 +4,15 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+/**
+ * Auditor class is used to handle recording every action done by the users in the system by inserting new record to Auditor
+ * table in the database.
+ */
 public class Auditor {
     /**
-     * record date and time for every event
-     * @param userName String
-     * @param action String
+     * record date and time and action for every event
+     * @param userName username of the user as String
+     * @param action action done by the user as String
      */
     public static void add(String userName, String action){
         U_AS_Insert dbs = new U_AS_Insert();

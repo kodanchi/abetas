@@ -1,17 +1,16 @@
 
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ASDB.C_AS_Select" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/1/2016
-  Time: 5:20 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/4253660/passing-object-from-jsp-to-servlet
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+
+
+    /**
+     * used to display upload page.
+     */
+
+
     String id ="";
     String term ="";
     String dataType = "";
@@ -68,7 +67,6 @@ try {
     ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) dataObj;
     ArrayList<String> dataRow;
 
-    System.out.println(dataArr);
 
     for(int i=0;i<dataArr.size();i++){
         out.print("<tr>");
@@ -107,12 +105,6 @@ try {
         }
         out.print("</tr>");
     }
-
-    //String sheetDataId = UUID.randomUUID().toString();
-
-    //request.removeAttribute("sheetData");
-
-    //request.setAttribute("cData", dataArr);
 
 
 

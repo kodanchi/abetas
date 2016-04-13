@@ -1,13 +1,7 @@
 <%@ page import="ASDB.C_AS_Select" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/15/2016
-  Time: 8:17 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
@@ -15,6 +9,12 @@
 
 
 <%
+
+    /**
+     * used to display students list page
+     */
+
+
 
     String id = "";
     String Termid = "";
@@ -30,7 +30,6 @@
     String programName = "";
 
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("programID")));
         programName = aselect.selectProgramName(Integer.parseInt(request.getParameter("programID")));
 
     } catch (ClassNotFoundException e) {
@@ -42,7 +41,6 @@
     String facultyName = "";
 
     try {
-        System.out.println("scscsc     "+Integer.parseInt(request.getParameter("section")));
         facultyName = aselect.selectSectionFaculty(Integer.parseInt(request.getParameter("section")));
 
     } catch (ClassNotFoundException e) {
@@ -168,9 +166,6 @@
                                                     "                        </form></td>" +
                                                     "</tr>");
                                         }
-                                        //alert more than 10 digits: Student ID should be less than ten digits
-                                        //alert student name empty: Enter the student name
-                                        //alert student name numerical: student outcome must have aphanitic letter
 
                                     } catch (ClassNotFoundException e) {
                                         e.printStackTrace();

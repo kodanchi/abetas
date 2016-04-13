@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
+/**
+ * profileUpdateServlet is used to update user profile information.
+ */
 @WebServlet(name = "profileUpdateServlet", urlPatterns = {"/updateProfile"})
 public class profileUpdateServlet extends HttpServlet {
     String[] userVal;
