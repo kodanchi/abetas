@@ -11,15 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Mojahed on 2/27/2016.
- *
- * http://stackoverflow.com/questions/23947992/how-to-encrypt-encode-url-parameters-in-jsp
+ * SelectCourseServlet is used by ajax to display list of PI related to the selected outcome
  */
 @WebServlet(name = "SelectOutcomeServlet", urlPatterns = {"/SelectOutcomeServlet"})
 public class SelectOutcomeServlet extends HttpServlet {
     private E_Select dbs;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("/////////////////////////SelectOutcomeServlet ");
         response.setContentType("text/plain");
         dbs = new E_Select();
         int tid = Integer.parseInt(request.getParameter("tid"));
@@ -55,7 +52,6 @@ public class SelectOutcomeServlet extends HttpServlet {
                 threshold = dbs.selectThresholdToEvaluate(Integer.valueOf(PI.get(0)));
 
                 for (String sRubric : PIResults){
-                    System.out.println("PIResults: "+sRubric);
                     if(sRubric.equals(PIRubrics.get(0))){
                         results[0]++;
                     }else if(sRubric.equals(PIRubrics.get(1))){
@@ -71,7 +67,6 @@ public class SelectOutcomeServlet extends HttpServlet {
                 float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
                 float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
                 float passOrFailresults = developed + exemplary;
-                System.out.println("developed + exemplary = "+ passOrFailresults);
                 if(passOrFailresults > threshold ) {
 
                     out.print("<a target=\"_blank\" href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+

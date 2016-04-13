@@ -11,13 +11,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * Created by Mojahed on 2/27/2016.
+ * SelectCourseServlet is used by ajax to display the selected course nad calculate the result of the student as graph
  */
 @WebServlet(name = "SelectCourseServlet", urlPatterns = {"/SelectCourseServlet"})
 public class SelectCourseServlet extends HttpServlet {
     private E_Select dbs;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("/////////////////////////SelectCourseServlet ");
         response.setContentType("text/plain");
         dbs = new E_Select();
         int tid = Integer.parseInt(request.getParameter("tid"));
@@ -40,7 +39,6 @@ public class SelectCourseServlet extends HttpServlet {
 
 
             }else {
-                System.out.println("inside else");
 
                 SectionList = dbs.selectSectionsCourseOfSummativeToEvaluate(tid,pid,cid);
                 PIRubrics = dbs.selectRubricsToEvaluate(tid);
@@ -50,7 +48,6 @@ public class SelectCourseServlet extends HttpServlet {
 
 
                 for (String sRubric : PIResults){
-                    System.out.println("PIResults: "+sRubric);
                     if(sRubric.equals(PIRubrics.get(0))){
                         results[0]++;
                     }else if(sRubric.equals(PIRubrics.get(1))){
@@ -106,7 +103,6 @@ public class SelectCourseServlet extends HttpServlet {
                 float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
                 float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
                 float passOrFailresults = developed + exemplary;
-                System.out.println("developed + exemplary = "+ passOrFailresults);
                 if(passOrFailresults > threshold ) {
                     out.print("<Strong style=\"color:Green;\">The requirements were met for this course</Strong>");
                     out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
