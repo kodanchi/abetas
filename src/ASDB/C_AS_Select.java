@@ -45,77 +45,7 @@ public class C_AS_Select {
     }
 
 
-    /**
-     * selectProgram arraylist used to list all contents of the program table
-     * @return arraylist of arraylist of strings which containts the program
-     * @throws SQLException once the connection to the database aborted or wrong query occurred
-     */
-    public ArrayList<ArrayList<String>> selectProgram() throws ClassNotFoundException, SQLException {
 
-        ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
-        ArrayList<String> RowDate;
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rs = null;
-        try {
-
-            String query = "select * FROM program";
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
-
-            rs = preparedStatement.executeQuery();
-
-            //
-            while (rs.next()){
-                RowDate = new ArrayList<String>();
-                RowDate.add(rs.getString(1));
-                RowDate.add(rs.getString(2));
-                RowDate.add(rs.getString(3));
-
-                RsArr.add(RowDate);
-            }
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */rs.close();
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-            return RsArr;
-
-        }
-
-    }
     /**
      * selectAllProgram arraylist used to list all contents of the program table
      * @return arraylist of arraylist of strings which containts the program

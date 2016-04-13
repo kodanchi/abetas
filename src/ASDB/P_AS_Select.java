@@ -441,7 +441,6 @@ public class P_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 id= rsSelect.getInt(1);
-                System.out.println(id+"    dsgfdgdgs");
                 return id;
             }
 
@@ -512,7 +511,6 @@ public class P_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 name= rsSelect.getString(1);
-                System.out.println(name+"    dsgfdgdgs");
                 return name;
             }
 
@@ -582,7 +580,6 @@ public class P_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 isExist= rsSelect.getInt(1);
-                System.out.println(isExist+"    isProgramExist");
             }
 
             ////Need to display the temp password to the screen
@@ -653,7 +650,6 @@ public class P_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 isExist= rsSelect.getInt(1);
-                System.out.println(isExist+"    isProgramExist");
             }
 
             ////Need to display the temp password to the screen
@@ -725,7 +721,6 @@ public class P_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 isExist= rsSelect.getInt(1);
-                System.out.println(isExist+"    isProgramExist");
             }
 
             ////Need to display the temp password to the screen
@@ -757,7 +752,7 @@ public class P_AS_Select {
     }
 
     /**
-     * isExistLinkObj_Out boolean used to check if the link objective exist or not except specific link objective
+     * isExistLinkObj_Out boolean used to check if the link objective exist
      * @param obj is the objective
      * @param out is the outcome
      * @param pid is the program ID
@@ -801,7 +796,6 @@ public class P_AS_Select {
                 //data.add((id= rsSelect.getInt(1))+"");
                 //data.add(name = rsSelect.getString(1));
                 isExist= rsSelect.getInt(1);
-                System.out.println(isExist+"    isProgramExist");
             }
 
             ////Need to display the temp password to the screen
@@ -833,11 +827,10 @@ public class P_AS_Select {
     }
 
     /**
-     * 
-     * @param code
-     * @return
-     * @throws ClassNotFoundException
-     * @throws SQLException
+     * isCoursesCodeExist boolean used to check if the courses code   exist or not
+     * @param code is the course code
+     * @return true is the course exist or false if it isn't exist
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
      */
 
     public boolean isCoursesCodeExist(String code) throws ClassNotFoundException, SQLException {
@@ -874,7 +867,6 @@ public class P_AS_Select {
             //
             while (rs.next()){
                 isExist= rs.getInt(1);
-                System.out.println(isExist+"    isCourseCodeExist");
             }
 
 
@@ -906,7 +898,13 @@ public class P_AS_Select {
 
     }
 
-
+    /**
+     * isCoursesCodeExist boolean used to check if the courses code   exist or not except specific course code
+     * @param code is the course code
+     * @param cid is the specific course code which exist in the system
+     * @return true is the course exist or false if it isn't exist
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public boolean isCoursesCodeExistExcept(String code, int cid) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
@@ -942,7 +940,6 @@ public class P_AS_Select {
             //
             while (rs.next()){
                 isExist= rs.getInt(1);
-                System.out.println(isExist+"    isCourseCodeExist");
             }
 
 
@@ -975,7 +972,12 @@ public class P_AS_Select {
     }
 
 
-
+    /**
+     * selectObjForLink arraylist used to list all contents of the program,p_objective tables to select objective for link
+     * @param id is program ID
+     * @return arraylist of arraylist of strings which contains the specific objective for link
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectObjForLink(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
@@ -1035,6 +1037,12 @@ public class P_AS_Select {
 
     }
 
+    /**
+     * selectWholeObj arraylist used to list all contents of the p_objective table to select whole objective
+     * @param id is the program ID
+     * @return arraylist of arraylist of strings which contains the whole objective
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectWholeObj(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
@@ -1094,6 +1102,13 @@ public class P_AS_Select {
 
     }
 
+    /**
+     * selectOutForLink arraylist used to list all contents of the program, p_student_outcome tables to select the outcome
+     * for the link
+     * @param id is the program ID
+     * @return arraylist of arraylist of strings which contains the whole outcomes for links
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectOutForLink(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
@@ -1120,12 +1135,10 @@ public class P_AS_Select {
             //preparedStatement.setInt(1, 10);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
             //
             int i=-1;
             while (rs.next()){
                 data.add(rs.getString(1)+": "+rs.getString(2));
-                System.out.println("@@@@@@@@@@@@@@@@@@@     "+data.get(++i));
             }
 
         } catch (Exception e) {
@@ -1155,6 +1168,12 @@ public class P_AS_Select {
 
     }
 
+    /**
+     * selectWholeOut arraylist used to list all contents of the p_student_outcome table to select the whole outcomes
+     * @param id is the program ID
+     * @return arraylist of arraylist of strings which contains the whole outcomes for links
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> selectWholeOut(int id) throws ClassNotFoundException, SQLException {
 
         ArrayList<String> data = new ArrayList<String>();
