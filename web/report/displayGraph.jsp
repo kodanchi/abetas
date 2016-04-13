@@ -1,14 +1,7 @@
 <%@ page import="EDB.E_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="org.apache.commons.codec.binary.Base64" %>
-<%@ page import="EDB.EncDec" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/28/2016
-  Time: 2:43 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="EDB.EncDec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -19,6 +12,9 @@
 
 
 <%
+    /**
+     * displayGraph page used to display the evaluation graph
+     */
     E_Select dbs = new E_Select();
     String id = request.getParameter("id");
     String tid = request.getParameter("tid");
@@ -42,7 +38,6 @@
         results = new float[]{0,0,0,0};
 
         for (String sRubric : PIResults){
-            System.out.println("PIResults: "+sRubric);
             if(sRubric.equals(PIRubrics.get(0))){
                 results[0]++;
             }else if(sRubric.equals(PIRubrics.get(1))){
@@ -231,7 +226,6 @@
                                     float developed = results[2]!= 0 ? ( results[2] * 100 ) / PIResults.size() : 0;
                                     float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
                                     float passOrFailresults = developed + exemplary;
-                                    System.out.println("developed + exemplary = "+ passOrFailresults);
                                     if(passOrFailresults > threshold ) {
                                         out.print("<Strong style=\"color:Green;\">The requirements were met</Strong>");
                                         out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",

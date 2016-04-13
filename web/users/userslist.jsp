@@ -1,12 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/29/2016
-  Time: 4:47 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/10159067/show-hide-button-in-table-row-during-mouseover
---%>
 <%@ page import="ASDB.U_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
@@ -23,6 +15,9 @@
             <div class="col-md-12">
 
                 <%
+                    /**
+                     * userlist page used to display the list of users
+                     */
                     if(request.getParameter("status") != null){
                         out.print("<script type=\"text/javascript\">\n" +
                                 "    $(window).load(function(){\n" +

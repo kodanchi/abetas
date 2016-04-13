@@ -1,13 +1,7 @@
-<%@ page import="ASDB.Auditor" %>
+
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="ASDB.U_AS_Select" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 3/10/2016
-  Time: 5:11 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="ASDB.U_AS_Select" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 
@@ -25,6 +19,9 @@
                             <th>Time</th>
                         </tr>
                         <%
+                            /**
+                             * log page used to display the history
+                             */
                             int pageNum = 1;
                             int recordsPerPage = 20;
                             int noOfPages = 0;

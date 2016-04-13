@@ -1,20 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/29/2016
-  Time: 3:55 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page import="ASDB.U_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%@ page import="ASDB.P_AS_Select" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <%
-
+    /**
+     * adduser page used to list users,add new user,delete user and update user
+     */
     String id = "";
     String type = "";
     if(request.getParameter("id")!= null){
@@ -97,7 +92,6 @@
             if(request.getSession().getAttribute("errMsg") != null){
 
                 String[] userOldVal = (request.getSession().getAttribute("userValue") != null ? (String[]) request.getSession().getAttribute("userValue") : null);
-                System.out.print("arry of user data : "+ userOldVal);
                 if(userOldVal != null){
                         ulvl = userOldVal[0];
                         ufname = userOldVal[1];

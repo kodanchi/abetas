@@ -1,13 +1,5 @@
-<%@ page import="ASDB.U_AS_Select" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/1/2016
-  Time: 5:13 PM
-  To change this template use File | Settings | File Templates.
+<%@ page import="ASDB.U_AS_Select" %>
 
-  http://stackoverflow.com/questions/11832930/html-input-file-accept-attribute-file-type-csv
-  http://stackoverflow.com/questions/15201071/how-to-get-full-path-of-selected-file-on-change-of-input-type-file-using-jav
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
@@ -25,7 +17,9 @@
 
 
                     <%
-
+                    /**
+                         * import page used to display import page
+                     */
                         if(request.getParameter("err") != null){
 
                             out.print("<script type=\"text/javascript\">\n" +

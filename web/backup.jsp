@@ -1,5 +1,4 @@
-<%--
-<%@ page import="Backup.Backup" %>--%>
+
 <%@ page import="java.io.File" %>
 <%@ page import="java.nio.file.*" %>
 <%@ page import="java.nio.file.attribute.BasicFileAttributes" %>
@@ -38,7 +37,9 @@
 
     <%
 
-
+        /**
+         * backup page used to list backup files lists
+         */
         if(request.getSession().getAttribute("Msg") != null){
 
 
@@ -117,10 +118,8 @@
                                 int recordLimit = (pageNum-1)*recordsPerPage+recordsPerPage < listOfFiles.length ?
                                         (pageNum-1)*recordsPerPage+recordsPerPage : listOfFiles.length;
 
-                                System.out.println("recordLimit : "+recordLimit);
                                 for (int i = (pageNum-1)*recordsPerPage; i < recordLimit; i++)
                                 {
-                                    System.out.print(",i :"+i);
 
                                     if (listOfFiles[i].isFile())
                                     {

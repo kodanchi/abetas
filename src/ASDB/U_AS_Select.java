@@ -5,13 +5,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
-/**
- * Created by Ibrahim Abuaqel on 1/31/2016.
- */
+
+
 public class U_AS_Select {
 
     private Connection conn;

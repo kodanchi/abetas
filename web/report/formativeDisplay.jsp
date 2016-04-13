@@ -1,23 +1,16 @@
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="EDB.E_Select" %>
-<%@ page import="org.apache.commons.codec.binary.Base64" %>
-<%@ page import="org.apache.commons.codec.Encoder" %>
-<%@ page import="EDB.EncDec" %>
-<%@ page import="org.omg.Messaging.SYNC_WITH_TRANSPORT" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/21/2016
-  Time: 3:02 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
-
+    /**\
+     * formativeDisplay page used to list the formative lists
+     */
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");
         out.print("\n" +
@@ -46,7 +39,6 @@
         try {
             if(request.getParameter("id") != null) {
                 Formative_Section_ID = dbs.selectFormmativeIdToEvaluate(Integer.parseInt(request.getParameter("id")));
-                System.out.println("id : " + request.getParameter("id"));
             }
 
             
