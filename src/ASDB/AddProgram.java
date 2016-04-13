@@ -19,8 +19,8 @@ public class AddProgram extends HttpServlet {
 
     /**
      * insert or update program , then redirect to the program list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -99,11 +99,11 @@ public class AddProgram extends HttpServlet {
 
     /**
      * show error message
-     * @param msg
-     * @param pname
-     * @param pid
-     * @param request
-     * @param response
+     * @param msg String
+     * @param pname String
+     * @param pid String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      */
     protected void sendErrMsg(String msg,String pname,String pid,HttpServletRequest request, HttpServletResponse response){
 

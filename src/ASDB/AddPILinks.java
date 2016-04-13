@@ -16,8 +16,8 @@ public class AddPILinks extends HttpServlet {
 
     /**
      * insert or upload performance indicator links. in case of changing performance indicator from Formative to Summative or opposite it will be deleting from one and inserting to other. Redirect to the performance indicator links page.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */
@@ -162,10 +162,10 @@ public class AddPILinks extends HttpServlet {
 
     /**
      * show error message
-     * @param msg
-     * @param cycle
-     * @param request
-     * @param response
+     * @param msg String
+     * @param cycle String
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      */
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 

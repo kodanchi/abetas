@@ -5,9 +5,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.sql.*;
 
-/**
- * Created by Ibrahim Abuaqel on 2/4/2016.
- */
+
 public class P_AS_Update {
 
     private Connection conn;

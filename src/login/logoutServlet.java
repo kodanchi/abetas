@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by Mojahed on 2/9/2016.
- */
+
 @WebServlet(name = "logoutServlet", urlPatterns = {"/logout"})
 public class logoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,6 +18,13 @@ public class logoutServlet extends HttpServlet {
 
     }
 
+    /**
+     * remove cookie, and logout the user
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         PrintWriter out = response.getWriter();

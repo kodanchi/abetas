@@ -13,8 +13,8 @@ import java.io.IOException;
 public class AddObj extends HttpServlet {
     /**
      * insert or update objective , then redirect to the objective list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */

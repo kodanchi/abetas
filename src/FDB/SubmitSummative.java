@@ -27,12 +27,18 @@ public class SubmitSummative extends HttpServlet {
     private String SERVER_DIRECTORY ;
     private boolean isValid = true;
 
+    /**
+     * post method that serves by submitting summative form.
+     * That is done considering each student and his/her rubrics through the student's number and the evidence.
+     * The use of summmative ID parameter is a must to identify the specified form.
+     * The size of the evidence file must be checked so that it will not exceed the limits.
+     * The validation of the fields are also included.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println(request.getParameter("Summative_ID")+"            SaveSummative ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
-
-        //ArrayList<String> data = new ArrayList<String>();
-        System.out.println("#################################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
 
         SERVER_DIRECTORY = getServletContext().getRealPath("/");
@@ -52,8 +58,6 @@ public class SubmitSummative extends HttpServlet {
 
 
                     for(FileItem item : items){
-                        /*System.out.println(item.getString()+" ----item");
-                        System.out.println(item.getFieldName()+" --++--item");*/
 
                         String name = item.getFieldName();
                         switch (name) {
@@ -85,30 +89,21 @@ public class SubmitSummative extends HttpServlet {
                                     //isValid = false;
                                 }
                                 break;
-
                         }
 
-
                         if(name.startsWith("optionsRadios")){
-                            System.out.println("optionsRadios is : "+name + " = "+ item.getString());
                             String num = item.getFieldName().substring(13);
-                            System.out.println("substering : "+num);
                             for (FileItem i:items){
                                 String SIDname = i.getFieldName();
                                 if(SIDname.equals("SID"+num)){
-                                    System.out.println("SID is : "+SIDname+ " = "+ item.getString());
                                     SID.add(i.getString());
                                     optionsRadios.add(item.getString());
                                 }
                             }
-
-
                         }
-
 
                         if(!item.isFormField()){
 
-                            System.out.println("else fired!"+ item.getSize());
                             if(item.getSize() != 0) {
                                 name = new File(item.getName()).getName();
                                 if (item.getSize() < 100000000) {
@@ -118,22 +113,17 @@ public class SubmitSummative extends HttpServlet {
                                     int i = item.getName().lastIndexOf('.');
                                     if (i > 0) {
                                         extension = item.getName().substring(i + 1);
-                                        System.out.println("file ext !"+ extension);
                                     }
                                     if (extension.equals("pdf")) {
                                         item.write(new File(SERVER_DIRECTORY + File.separator + UPLOAD_DIRECTORY +
                                                 File.separator + name));
                                         evidence = "/" + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
-                                        System.out.println("File Uploaded Successfully!"+evidence);
-
-
 
                                     } else {
                                         sendMsg("file must be type of PDF",request,response);
                                         isValid = false;
                                     }
-
 
                                 } else {
                                     sendMsg("Evidence file's size exceeds 100 mb",request,response);
@@ -165,20 +155,16 @@ public class SubmitSummative extends HttpServlet {
                             dbi.addSummativeRubric(Integer.parseInt(Summative_ID),optionsRadios.get(i),Integer.parseInt(SID.get(i)));
                         }
                         sendMsg("Form No:"+Summative_ID+" has been successfully submitted",request,response);
-                        //redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }else {
                         redirectURL= "/form/index.jsp?page=fillForm&type=summative&id="+Summative_ID;
                     }
 
 
                 } catch (Exception ex) {
-                    System.out.println("File Upload Failed due to " + ex);
                 }
 
-                //response.sendRedirect("/settings/index.jsp?status=SystemUpdated");
 
             }else{
-                System.out.println("not multipart!");
                 redirectURL = "/form/index.jsp?page=fillForm&type=summative&id="+Summative_ID;
             }
 
@@ -190,61 +176,16 @@ public class SubmitSummative extends HttpServlet {
     }
 
 
-
-
-
-
-
-/*
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println(request.getParameter("Summative_ID")+"            SubmitSummative Servlet ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
-
-        //ArrayList<String> data = new ArrayList<String>();
-        System.out.println("#################################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
-        int id = 0;
-        F_Update dba = new F_Update();
-        F_Delete dbd = new F_Delete();
-        F_Insert dbi = new F_Insert();
-        //AS_Select dbaS=new AS_Select();
-        try {
-            //id=dbaS.selectProgram(request.getParameter("Pname"));
-            if (request.getParameter("evidence") != null) {
-                dba.updateFormS(request.getParameter("evidence"), Integer.parseInt(request.getParameter("Summative_ID")));
-
-            } else {
-                dba.updateFormS(null, Integer.parseInt(request.getParameter("Summative_ID")));
-            }
-            dba.updateSubmitFormS(Integer.parseInt(request.getParameter("Summative_ID")));
-            int size=0;
-            size=Integer.parseInt(request.getParameter("studentsNumber"));
-            dbd.deleteSummRub(Integer.parseInt(request.getParameter("Summative_ID")));
-            for (int i =0; i < size; i++){
-
-                dbi.addSummativeRubric(Integer.parseInt(request.getParameter("Summative_ID")),request.getParameter(("optionsRadios"+i)),Integer.parseInt(request.getParameter(("SID"+i))));
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        PrintWriter out = response.getWriter();
-        //out.println("name: " + request.getParameter("name"));
-        //out.println("logo: " + request.getParameter("logo"));
-        //out.println(id+"       fggfdggfdgdgdsffdgdgffgggdfdgdffd");
-
-        //System.out.println(data.get(0)+"                vdgfsg            "+data.get(1));
-        //response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        //response.setHeader("Location", "http://localhost:8081/program/index.jsp?page=OutcomeList&name="+request.getParameter("name")+"&id="+request.getParameter("id"));
-        response.sendRedirect( "/form/index.jsp");
-    }
-*/
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
+    /**
+     * Function that handels the message sending.
+     * @param msg
+     * @param request
+     * @param response
+     */
     protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response) {
 
         if (request.getSession().getAttribute("Msg") == null)

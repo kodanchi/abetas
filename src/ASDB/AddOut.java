@@ -13,8 +13,8 @@ import java.io.IOException;
 public class AddOut extends HttpServlet {
     /**
      * insert or update student outcome , then redirect to the student outcome list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */

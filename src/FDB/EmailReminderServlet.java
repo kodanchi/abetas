@@ -8,13 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
-/**
- * Created by Mohammed on 3/30/2016.
- */
+
 @WebServlet(name = "EmailReminderServlet", urlPatterns = {"/Emailrem"})
 public class EmailReminderServlet extends HttpServlet {
+    /**
+     * Send emails to all the faculty members who have one or more of un-submitted forms.
+     * This will go through all the emails and add each one after another with , after each email.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] e = request.getParameterValues("emailList");
 
@@ -30,7 +35,7 @@ public class EmailReminderServlet extends HttpServlet {
                 a = a.replace(']', ' ');
                 System.out.println(e[0].replace('[', ' '));
                 System.out.println(a);
-                sendemail.sendMsg("Hello this is reminder", "Reminder", a);
+                sendemail.sendMsg("Hello, this is reminder that you have one or more of un-submitted forms", "Reminder", a);
                 sendMsg("Email was sent to all the Faculty Members in the table",request);
                 response.sendRedirect("/form/index.jsp?page=unsubmitted");
             }

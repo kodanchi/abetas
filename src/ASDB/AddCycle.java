@@ -13,8 +13,8 @@ import java.io.IOException;
 public class AddCycle extends HttpServlet {
     /**
      * insert cycle , then redirect to the cycle list.
-     * @param request
-     * @param response
+     * @param request HttpServletRequest
+     * @param response HttpServletResponse
      * @throws ServletException
      * @throws IOException
      */

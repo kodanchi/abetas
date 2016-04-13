@@ -8,16 +8,15 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 
-/**
- * Created by Ibrahim Abuaqel on 1/31/2016.
- */
+
 public class P_AS_Insert {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
-    DataSource dataSource = null;
 
+    DataSource dataSource = null;
+    /**
+     * connect method used to connect to the databse as pool connections
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void connect() throws ClassNotFoundException, SQLException {
 
         try
@@ -37,116 +36,25 @@ public class P_AS_Insert {
         }
 
     }
+    /**
+     *
+     * @param rs do the query to the database and close the connection after that
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void closRS(ResultSet rs) throws SQLException {
         rs.close();
     }
 
-    public void initialization(String Uname, String Cname, String logo, String Fname, String Mname, String Lname, String Username, String password, String email) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = " insert into university (Uni_name, College_name, Uni_logo)" + " values (?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (1, Uname);
-            preparedStatement.setString (2, Cname);
-            preparedStatement.setString (3, logo);
-
-            rs = preparedStatement.executeUpdate();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-        connect();
-
-        connection = null;
-        preparedStatement = null;
-
-        rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = " insert into superuser (Super_Username, Super_Password, Super_Email, Super_Fname, Super_Mname, Super_Lname, Adm_ID)" + " values (?, ?, ?, ?, ?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString (1, Username);
-            preparedStatement.setString (2, password);
-            preparedStatement.setString (3, email);
-            preparedStatement.setString (4, Fname);
-            preparedStatement.setString (5, Mname);
-            preparedStatement.setString (6, Lname);
-            preparedStatement.setInt (7, 1);
-            rs = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
+    /**
+     * addUser method used to add the user
+     * @param type is the user type
+     * @param Uname is the username
+     * @param email is the email
+     * @param Fname is the first name
+     * @param Mname is the middle name
+     * @param Lname is the last name
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void addUser(int type, String Uname, String email, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -328,8 +236,14 @@ public class P_AS_Insert {
         }
     }
 
+    /**
+     * addProgram arraylist used to list all contents of the program table
+     * @param pName is the program name
+     * @param mission is the mission of the program
+     * @return arraylist of arraylist of strings which containts the program
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public ArrayList<String> addProgramm(String pName, String mission) throws ClassNotFoundException, SQLException {
-        //public void addProgramm(String pName, String mission, String sOutcome, String pObj, String outcomeLable, String objectiveLable ) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -366,20 +280,16 @@ public class P_AS_Insert {
             rsSelect = preparedStatement.executeQuery();
 
             if (rsSelect.next()){
-                //data.add((id= rsSelect.getInt(1))+"");
 
                 data.add(name = rsSelect.getString(1));
-                System.out.println(data.get(0));
                 return data;
             }
 
-            ////Need to display the temp password to the screen
 
 
         } catch (MySQLIntegrityConstraintViolationException e) {
             e.fillInStackTrace();
             throw e;
-            //e.printStackTrace();
         }catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -405,7 +315,13 @@ public class P_AS_Insert {
         return data;
     }
 
-
+    /**
+     * addObject method used to add the objective
+     * @param Objective is the objective of the course
+     * @param FK_P_ID is the foreign key of program ID
+     * @throws ClassNotFoundException
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
 
     public void addObject(String Objective, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
@@ -461,6 +377,12 @@ public class P_AS_Insert {
         }
     }
 
+    /**
+     * addoutcome method is used to add outcomes
+     * @param Student_outcome is the student outcomes saved as string
+     * @param FK_P_ID is the foreign key of program ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void addOutcome(String Student_outcome, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -515,6 +437,13 @@ public class P_AS_Insert {
         }
     }
 
+    /**
+     * addLinkObj_out method is used to add link between the objective and student outcomes
+     * @param Outcome_label is the outcome ID
+     * @param Objective_label is the objective ID
+     * @param FK_P_ID is the foreign key program ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void addLinkObj_Out(int Outcome_label, int Objective_label, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -572,6 +501,15 @@ public class P_AS_Insert {
     }
     }
 
+    /**
+     * addCourse method used to add course
+     * @param code is the course code
+     * @param name is the course name
+     * @param level is the course level
+     * @param include is the course include in the term or not
+     * @param FK_P_ID is the foreign key program ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void addCourse(String code, String name, int level,int include, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -646,7 +584,13 @@ public class P_AS_Insert {
             }
 
         }
-    }public void includeCourse(int include) throws ClassNotFoundException, SQLException {
+    }
+
+    /**
+     * includeCourse method used to include the course with term
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
+    public void includeCourse(int include) throws ClassNotFoundException, SQLException {
 
         connect();
 
@@ -699,127 +643,14 @@ public class P_AS_Insert {
         }
     }
 
-    public int addCycle() throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rsSelect = null;
-        int id = 0;
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-
-            String querySelect = " SELECT Cycle_ID FROM cycle ORDER BY Cycle_ID DESC LIMIT 1";
-
-            preparedStatement = connection.prepareStatement(querySelect);
-
-            rsSelect = preparedStatement.executeQuery();
-
-            if (rsSelect.next()){
-                id = rsSelect.getInt(1);
-            }
-
-                String query = " insert into cycle (Cycle_ID)" + " values (?)";
-                id++;
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setInt(1, id);
-                rs = preparedStatement.executeUpdate();
-
-            ////Need to display the temp password to the screen
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-        return id;
-    }
-
-    public void addStudent(int SID, String Fname, String Mname, String Lname) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = " insert into students (Student_ID, Student_Fname, Student_Mname, Student_Lname)" + " values (?, ?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, SID);
-            preparedStatement.setString(2, Fname);
-            preparedStatement.setString(3, Mname);
-            preparedStatement.setString(4, Lname);
-            rs = preparedStatement.executeUpdate();
-
-
-            ////Need to display the temp password to the screen
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-    }
-
+    /**
+     * addTerm method is used to add the term
+     * @param name is the name of the term
+     * @param year is the year of the term
+     * @param C_ID is the cycle ID
+     * @return the term ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public int addTerm(String name, String year, String C_ID) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -857,7 +688,6 @@ public class P_AS_Insert {
 
             if (rsSelect.next()){
                 id = rsSelect.getInt(1);
-                System.out.println("        dddd        "+id);
                 return id;
             }
 
@@ -884,147 +714,15 @@ public class P_AS_Insert {
 
         }
 
-        System.out.println("        ooooodddd        "+id);
         return id;
     }
 
-    public int addRubric(String PI_rubric_name_1, String PI_rubric_description_1,String PI_rubric_name_2, String PI_rubric_description_2,String PI_rubric_name_3, String PI_rubric_description_3,String PI_rubric_name_4, String PI_rubric_description_4) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        ResultSet rsSelect = null;
-        int rs = 0;
-        int id=0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-
-            String query = " insert into pi_rubric (PI_rubric_name_1, PI_rubric_description_1, PI_rubric_name_2, PI_rubric_description_2, PI_rubric_name_3, PI_rubric_description_3, PI_rubric_name_4, PI_rubric_description_4)" + " values (?, ?, ?, ?, ?, ?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, PI_rubric_name_1);
-            preparedStatement.setString(2, PI_rubric_description_1);
-            preparedStatement.setString(3, PI_rubric_name_2);
-            preparedStatement.setString(4, PI_rubric_description_2);
-            preparedStatement.setString(5, PI_rubric_name_3);
-            preparedStatement.setString(6, PI_rubric_description_3);
-            preparedStatement.setString(7, PI_rubric_name_4);
-            preparedStatement.setString(8, PI_rubric_description_4);
-            rs = preparedStatement.executeUpdate();
-
-
-            ////Need to display the temp password to the screen
-            String querySelect = " SELECT PI_rubric_ID FROM pi_rubric ORDER BY PI_rubric_ID DESC LIMIT 1";
-
-            preparedStatement = connection.prepareStatement(querySelect);
-
-            rsSelect = preparedStatement.executeQuery();
-
-            if (rsSelect.next()){
-                id = rsSelect.getInt(1);
-                System.out.println("        dddd        "+id);
-                return id;
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-        return id;
-    }
-
-    public void addPILink(int FK_out, int FK_pi_ID, int FK_P_ID, int FK_R_ID, String FK_C_ID, int FK_T_ID, String LinkType) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs1 = 0;
-        int rs2 = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-
-            ////Need to display the temp password to the screen
-
-
-            String query1 = " insert into link_out_pi (FK_out, FK_pi_ID, FK_P_ID, FK_R_ID, FK_C_ID, FK_T_ID, LinkType)" + " values (?, ?, ?, ?, ?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query1);
-            preparedStatement.setInt(1, FK_out);
-            preparedStatement.setInt(2, FK_pi_ID);
-            preparedStatement.setInt(3, FK_P_ID);
-            preparedStatement.setInt(4, FK_R_ID);
-            preparedStatement.setString(5, FK_C_ID);
-            preparedStatement.setInt(6, FK_T_ID);
-            preparedStatement.setString(7, LinkType);
-
-            rs2 = preparedStatement.executeUpdate();
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-
-    }
-
+    /**
+     * addPI method is used to add new performance indicator
+     * @param name is the name of performance indicator
+     * @param FK_P_ID is the foreign key program ID
+     * @throws SQLException once the connection to the database aborted or wrong query occurred
+     */
     public void addPI(String name, int FK_P_ID) throws ClassNotFoundException, SQLException {
 
 
@@ -1093,197 +791,5 @@ public class P_AS_Insert {
         }
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        /*public void addPIold(String name, String label, int type, int threshold) throws ClassNotFoundException, SQLException {
-
-
-            connect();
-
-            Connection connection = null;
-            PreparedStatement preparedStatement = null;
-
-            int piid=0;
-            ResultSet rsSelect = null;
-            int rs = 0;
-            try {
-
-            *//*
-             *  Get connection from the DataSource
-             *//*
-
-                connection = dataSource.getConnection();
-
-            *//*
-             * Execute the query
-             *//*
-                String query = " insert into performance_indicator (PI_name, PI_label)" + " values (?, ?)";
-
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, name);
-                preparedStatement.setString(2, label);
-                rs = preparedStatement.executeUpdate();
-
-
-                ////Need to display the temp password to the screen
-
-
-                String querySelect = " SELECT PI_ID FROM performance_indicator ORDER BY PI_ID DESC LIMIT 1";
-
-                preparedStatement = connection.prepareStatement(querySelect);
-
-                rsSelect = preparedStatement.executeQuery();
-
-                if (rsSelect.next()){
-                    piid = rsSelect.getInt(1);
-                }
-
-            if (piid!=0) {
-                if (type==0){
-                    int rsInsertS = 0;
-                    ResultSet rsSelectS = null;
-                    int sid=0;
-                    String queryInsertS = " insert into summative (Sum_threshold)" + " values (?)";
-
-                    preparedStatement = connection.prepareStatement(queryInsertS);
-                    preparedStatement.setInt(1, threshold);
-                    rsInsertS = preparedStatement.executeUpdate();
-
-
-                    String querySelectS = " SELECT Summative_ID FROM summative ORDER BY Summative_ID DESC LIMIT 1";
-
-                    preparedStatement = connection.prepareStatement(querySelectS);
-
-                    rsSelectS = preparedStatement.executeQuery();
-
-                    if (rsSelectS.next()){
-                        sid = rsSelect.getInt(1);
-                    }
-
-                    int rsSummative = 0;
-                    String querySummative = " insert into pi_type_summative (FK_Summative_ID, FK_PI_ID)" + " values (?, ?)";
-
-                    preparedStatement = connection.prepareStatement(querySummative);
-                    preparedStatement.setInt(1, piid);
-                    preparedStatement.setInt(2, sid);
-                    rs = preparedStatement.executeUpdate();
-
-                }else if (type==1){
-                    int rsFormative = 0;
-                    ResultSet rsSelectF = null;
-                    int fid=0;
-
-                    String queryInsertF = " insert into formative (F_written_rubic)" + " values (?)";
-
-                    preparedStatement = connection.prepareStatement(queryInsertF);
-                    preparedStatement.setString(1, "");
-                    rsFormative = preparedStatement.executeUpdate();
-
-
-                    String querySelectF = " SELECT Formative_ID FROM formative ORDER BY Formative_ID DESC LIMIT 1";
-
-                    preparedStatement = connection.prepareStatement(querySelectF);
-
-                    rsSelectF = preparedStatement.executeQuery();
-
-                    if (rsSelectF.next()){
-                        fid = rsSelect.getInt(1);
-                    }
-
-                    String queryFormative = " insert into pi_type_formative (FK_Formative_ID, FK_PI_ID)" + " values (?, ?)";
-
-                    preparedStatement = connection.prepareStatement(queryFormative);
-                    preparedStatement.setInt(1, piid);
-                    preparedStatement.setInt(2, fid);
-                    rs = preparedStatement.executeUpdate();
-                }//else display a message to the user that type is not set.
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            *//*
-             * finally block used to close resources
-             *//*
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-    }*/
-
-    public void link_pi_course(int PI_ID, String C_code, String relation) throws ClassNotFoundException, SQLException {
-
-        connect();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        int rs = 0;
-        try {
-
-            /*
-             *  Get connection from the DataSource
-             */
-
-            connection = dataSource.getConnection();
-
-            /*
-             * Execute the query
-             */
-            String query = " insert into pi_measure_course (FK_PI_ID, FK_C_code, Relation)" + " values (?, ?, ?)";
-
-            preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, PI_ID);
-            preparedStatement.setString(2, C_code);
-            preparedStatement.setString(3, relation);
-            rs = preparedStatement.executeUpdate();
-
-
-            ////Need to display the temp password to the screen
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            /*
-             * finally block used to close resources
-             */
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException sqlException) {
-                sqlException.printStackTrace();
-            }
-
-        }
-    }
 
 }
