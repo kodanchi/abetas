@@ -10,10 +10,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.UUID;
 
 /**
- * Created by Mojahed on 2/2/2016.
+ * CycleSheetImportServlet is used receive any import form of post method and multipart content under cycle folder which
+ * will initiate new object of ImportCycleSheet class to validate the data inside the imported sheet, then getting the
+ * request parameters of inputs (cycle id, term id, data type) and finally based on dataType (students,performance indicators)
+ * the columns names will be set in a string array and file data will be validated.
+ *
+ * After validation the data will be sent to the upload page otherwise, the user will be redirect to import page with
+ * error message.
  */
 @WebServlet(name = "CycleSheetImportServlet",urlPatterns = {"/import/cycle"})
 public class CycleSheetImportServlet extends HttpServlet {
@@ -24,20 +29,18 @@ public class CycleSheetImportServlet extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        //Your code
     }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //String[] sheetChecker = {"firstname","middlename","lastname","username","email","level"};
 
-        ImportCycleSheet importer = new ImportCycleSheet(request);
-        //PrintWriter out = response.getWriter();
+        ImportCycleSheet importer = new ImportCycleSheet();
 
 
         boolean dataIsValid = false;
 
 
-        if(importer.sheetVaildation(request,response)){
+        if(importer.sheetValidation(request)){
             try {
                 id = importer.getId();
                 name = importer.getName();
@@ -45,36 +48,20 @@ public class CycleSheetImportServlet extends HttpServlet {
 
                 if(dataType.equals("students")){
                     String[] sheetChecker = {"student ID","student name"};
-                    dataIsValid = importer.studentsSheetVaildation(sheetChecker);
+                    dataIsValid = importer.studentsSheetValidation(sheetChecker);
                 }else if(dataType.equals("pis")){
                     String[] sheetChecker = {"performance indicator","threshold"};
-                    dataIsValid = importer.PIsSheetVaildation(sheetChecker);
-                }else {
-                    System.out.println("no data type");
+                    dataIsValid = importer.PIsSheetValidation(sheetChecker);
                 }
+
                 if(dataIsValid){
-                    /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-                    response.setHeader("Location","/users/index.jsp?cmd=upload&file="+upload);*/
-
                     ArrayList<ArrayList<String>> data = importer.getSheetData();
-
                     HttpSession session = request.getSession();
-                    System.out.println("set new session :"+session.getId());
-                    String sheetDataId = UUID.randomUUID().toString();
-                    System.out.println("sheetDataId :"+sheetDataId);
-                    System.out.println("Data is  :"+data);
                     session.setAttribute("sheetData", data);
-                    //request.setAttribute("sheetData", sheetDataId);
-
-                    //request.setAttribute("sheetData", data);
-                    //request.getRequestDispatcher("/").forward(request, response);
-
-                    importer.sendSuccessMsg(response,request);
+                    importer.sendSuccessMsg(response);
 
                 }else {
                     importer.sendErrorMsg(response,request);
-
-
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -84,15 +71,7 @@ public class CycleSheetImportServlet extends HttpServlet {
 
         }else{
             importer.sendErrorMsg(response,request);
-
-
         }
-
-
-
-
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

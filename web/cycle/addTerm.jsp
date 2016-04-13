@@ -347,6 +347,7 @@
                                             </table>
                                         </div>
                                     </div>
+                            <a class="btn btn-primary" href="index.jsp?page=rubricNames&cycle=<%=id%>&programID=<%=request.getParameter("programID")%>">Back</a>
 
                                     <a class="btn btn-info pull-right" href="index.jsp">Cycles List</a>
 

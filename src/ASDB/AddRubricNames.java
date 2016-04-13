@@ -32,7 +32,7 @@ public class AddRubricNames extends HttpServlet {
                 e.printStackTrace();
             }
 
-            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id);
+            response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+id+"&programID="+request.getParameter("programID"));
         }
 
     }
