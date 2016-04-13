@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * CycleSheetImportServlet is used receive any import form of post method and multipart content under cycle folder which
- * will initiate new object of ImportCycleSheet class to validate the data inside the imported sheet, then getting the
+ * CycleSheetImportServlet is used receive import form of method post and multipart content under cycle folder which
+ * will initiates new object of ImportCycleSheet class to validate the data inside the imported sheet, then getting the
  * request parameters of inputs (cycle id, term id, data type) and finally based on dataType (students,performance indicators)
  * the columns names will be set in a string array and file data will be validated.
  *
@@ -22,28 +22,27 @@ import java.util.ArrayList;
  */
 @WebServlet(name = "CycleSheetImportServlet",urlPatterns = {"/import/cycle"})
 public class CycleSheetImportServlet extends HttpServlet {
-    String upload = "";
     String id ="";
     String name ="";
     String dataType ="";
 
+    /**
+     *  called when servlet initiated
+     * @param config ServletConfig
+     * @throws ServletException
+     */
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         ImportCycleSheet importer = new ImportCycleSheet();
-
-
         boolean dataIsValid = false;
-
-
         if(importer.sheetValidation(request)){
             try {
                 id = importer.getId();
-                name = importer.getName();
+                name = importer.getTerm();
                 dataType = importer.getDataType();
 
                 if(dataType.equals("students")){
@@ -58,6 +57,9 @@ public class CycleSheetImportServlet extends HttpServlet {
                     ArrayList<ArrayList<String>> data = importer.getSheetData();
                     HttpSession session = request.getSession();
                     session.setAttribute("sheetData", data);
+
+                        importer.deleteFile();
+
                     importer.sendSuccessMsg(response);
 
                 }else {

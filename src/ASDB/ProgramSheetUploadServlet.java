@@ -9,12 +9,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Mojahed on 2/3/2016.
+ * ProgramSheetUploadServlet is used to insert the imported data from excel file (objectives/outcomes/courses) that
+ * stored in session variable sheetData after validation.
  */
 @WebServlet(name = "sheetUploadServlet", urlPatterns = {"/upload/program"})
 public class ProgramSheetUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 
         String id = "";
         String name = "";
@@ -25,16 +25,12 @@ public class ProgramSheetUploadServlet extends HttpServlet {
             name = request.getParameter("name");
             dataType = request.getParameter("data-type");
         }
-        //String dataId = request.getParameter("file");
         Object obj = request.getSession().getAttribute("sheetData");
         ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) obj;
         ArrayList<String> dataRow;
 
-        System.out.println("dataArr"+ dataArr);
         P_AS_Insert dba = new P_AS_Insert();
-        //P_AS_Select dbaS=new P_AS_Select();
         try {
-            //id=dbaS.selectProgram(request.getParameter("Pname"));
 
             for(int i=0;i<dataArr.size();i++) {
                 dataRow = dataArr.get(i);
@@ -58,10 +54,6 @@ public class ProgramSheetUploadServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            //response.setStatus();
-            //request.getRequestDispatcher("/users/index.jsp?status=Success").forward(request,response);
-            //response.setStatus(HttpServletResponse.SC_CONTINUE);
-            //response.setHeader("Location","/users/index.jsp?status=Success");
             response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
             if(dataType.equals("obj")) {
                 response.setHeader("Location", "/program/index.jsp?page=ObjList&name=" + name + "&id=" + id + "&status=Success");
@@ -71,16 +63,8 @@ public class ProgramSheetUploadServlet extends HttpServlet {
                 response.setHeader("Location", "/program/index.jsp?page=CoursesList&name=" + name + "&id=" + id + "&status=Success");
             }
 
-            /*response.getWriter().print("<!DOCTYPE HTML>\n" +
-                    "<html lang=\"en-US\">\n" +
-                    "    <head>\n" +
-                    "        <meta charset=\"UTF-8\">\n" +
-                    "        <meta http-equiv=\"refresh\" content=\"1;url=/program/index.jsp?name=&id=&page="+dataType+"&status=Success\">" +
-                    "</head>" +
-                    "</html>");*/
         }
 
-        //importer. request.getParameter("file");
 
     }
 

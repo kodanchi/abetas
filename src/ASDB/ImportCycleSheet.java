@@ -5,8 +5,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -20,8 +18,7 @@ import java.util.List;
  * by cell.
  */
 public class ImportCycleSheet {
-    private HttpServletRequest request;
-    private HttpServletResponse response;
+
     private String uploadFilePath;
     private String UPLOAD_DIRECTORY;
     private String Error_Msg;
@@ -33,7 +30,6 @@ public class ImportCycleSheet {
     private String section;
     private String pdataType ;
     private ArrayList<ArrayList<String>> sheetData;
-    private final int MAX_FILE_SIZE = 5000000;
     private P_AS_Select dbs = new P_AS_Select();
 
 
@@ -48,13 +44,12 @@ public class ImportCycleSheet {
     }
 
     /**
-     * sheetValidation is used to check and store all form inputs, furthermore it will check uploaded file (ex: allowed size,
-     * file type)
+     * used to check and store all form inputs, furthermore it will check uploaded file (ex: allowed size, file type)
+     * otherwise the an error message will be sent to the user after redirecting to the import page.
      * @param request HttpServletRequest
      * @return indicates whether the uploaded file is valid or not.
      */
     public boolean sheetValidation(HttpServletRequest request){
-
 
         try {
             //process only if its multipart content
@@ -92,7 +87,7 @@ public class ImportCycleSheet {
                         if(!item.isFormField()){
                             if(item.getSize() != 0) {
                                 String name = new File(item.getName()).getName();
-
+                                int MAX_FILE_SIZE = 5000000;
                                 if (item.getSize() < MAX_FILE_SIZE) {
                                     String extension = "";
                                     int i = item.getName().lastIndexOf('.');
@@ -133,7 +128,7 @@ public class ImportCycleSheet {
     }
 
     /**
-     * studentsSheetValidation is used to check excel file contain students data which will be validated cell by cell.
+     * used to check excel file contain students data which will be validated cell by cell.
      * @param sheetChecker string array of columns names that need to be checked by.
      * @return indicates whether the uploaded file is valid or not.
      * @throws SQLException
@@ -174,7 +169,6 @@ public class ImportCycleSheet {
                     if(validFormHead) {
                         if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                             if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
-                                System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
                                 Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
                                         "that shown below";
@@ -253,7 +247,7 @@ public class ImportCycleSheet {
     }
 
     /**
-     * PIsSheetValidation is used to check excel file contain performance indicators data which will be validated cell by cell.
+     * used to check excel file contain performance indicators data which will be validated cell by cell.
      * @param sheetChecker string array of columns names that need to be checked by.
      * @return indicates whether the uploaded file is valid or not.
      * @throws SQLException
@@ -287,15 +281,12 @@ public class ImportCycleSheet {
             while(rowIterator.hasNext()) {
                 dataRow = new ArrayList<String>();
                 Row row = rowIterator.next();
-                //while(cellIterator.hasNext()) {
                 for (int j=0;j<sheetCheckerArr.length;j++){
-                    //Cell cell = cellIterator.next();
                     Cell cell = row.getCell(j);
 
                     if(validFormHead) {
                         if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                             if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
-                                System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
                                 Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
                                                            "that shown below";
@@ -346,11 +337,8 @@ public class ImportCycleSheet {
                                     }
                                     break;
                             }
-
                         }catch (NullPointerException e){
                             e.fillInStackTrace();
-
-
                             switch (j){
                                 case 0:
                                     Error_Msg="Some of the records are empty, change it in the sheet and try upload it " +
@@ -421,48 +409,43 @@ public class ImportCycleSheet {
         response.sendRedirect(url);
     }
 
+
     /**
-     * set request object to this
-     * @param request
+     * returns the imported data.
+     * @return sheet data as an Array of an Array of strings
      */
-    public void setRequest(HttpServletRequest request){
-        this.request = request;
-    }
-
-    public void setResponse(HttpServletResponse response){
-        this.response = response;
-    }
-
-    public static boolean checkEmailValidation(String email) {
-        boolean result = true;
-        try {
-            InternetAddress emailChecker = new InternetAddress(email);
-            emailChecker.validate();
-        } catch (AddressException ex) {
-            result = false;
-        }
-        return result;
-    }
-
     public ArrayList<ArrayList<String>> getSheetData(){
         return sheetData;
     }
 
-    public void setUploadFilePath(String uploadFilePath) { this.uploadFilePath = uploadFilePath;}
-
+    /**
+     * used to delete file from temp folder of the server.
+     */
     public void deleteFile() {
         File file = new File(uploadFilePath);
         file.delete();
     }
 
+    /**
+     * used to return the cycle id from form input.
+     * @return Cycle ID as String
+     */
     public String getId() {
         return cycle;
     }
 
-    public String getName() {
+    /**
+     * used to return the term id from form input.
+     * @return Term ID.
+     */
+    public String getTerm() {
         return term;
     }
 
+    /**
+     * used to return the DataType  from form input.
+     * @return Data Type as string.
+     */
     public String getDataType() {
         return pdataType;
     }

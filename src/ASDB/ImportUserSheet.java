@@ -3,15 +3,11 @@ package ASDB;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
-
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,33 +16,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 /**
- * Created by Mojahed on 2/3/2016.
+ * ImportUserSheet class is used to handle receiving multipart form inputs and validate uploaded excel sheets data cell
+ * by cell.
  */
 public class ImportUserSheet {
-    private HttpServletRequest request;
-    private HttpServletResponse response;
     private String uploadFilePath;
     private String UPLOAD_DIRECTORY;
     private String Error_Msg;
-    private String[] sheetCheckerArr;
     private ArrayList<ArrayList<String>> sheetData;
-    private final int MAX_FILE_SIZE = 2000000;
-    private U_AS_Select db = new U_AS_Select();
 
-
-    public ImportUserSheet(HttpServletRequest request){
+    /**
+     * Constructor is used to set upload file path and error message to null and upload directory to the temp file of the
+     * server.
+     */
+    public ImportUserSheet(){
         uploadFilePath = "";
         Error_Msg = "";
-        ServletContext context = request.getServletContext();
-        //UPLOAD_DIRECTORY = context.getInitParameter("file-upload");
         UPLOAD_DIRECTORY = System.getProperty("java.io.tmpdir");
     }
 
-    public boolean sheetVaildation(HttpServletRequest request,HttpServletResponse response){
-
+    /**
+     * used to check and store all form inputs, furthermore it will check uploaded file (ex: allowed size, file type)
+     * otherwise the an error message will be sent to the user after redirecting to the import page.
+     * @param request HttpServletRequest
+     * @return indicates whether the uploaded file is valid or not.
+     */
+    public boolean sheetValidation(HttpServletRequest request){
 
         try {
             //process only if its multipart content
@@ -55,47 +52,26 @@ public class ImportUserSheet {
                     List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
                     for(FileItem item : items){
-
-                        String name = item.getFieldName();
-                        System.out.println("Name ="+name);
-
-
-
                         if(!item.isFormField()){
 
-                            System.out.println("else fired!"+ item.getName());
                             if(item.getSize() != 0) {
-                                name = new File(item.getName()).getName();
-                                System.out.println("else name!"+ name);
-
+                                String name = new File(item.getName()).getName();
+                                int MAX_FILE_SIZE = 5000000;
                                 if (item.getSize() < MAX_FILE_SIZE) {
-
                                     String extension = "";
-
                                     int i = item.getName().lastIndexOf('.');
                                     if (i > 0) {
                                         extension = item.getName().substring(i + 1);
-                                        System.out.println("file ext !"+ extension);
                                     }
                                     if (extension.equals("xls") || extension.equals("xlsx")) {
                                         item.write(new File(UPLOAD_DIRECTORY + "\\"+ File.separator + name));
                                         uploadFilePath = UPLOAD_DIRECTORY + "\\"+ name;
-                                        //File uploaded successfully
-                                        System.out.println("File Uploaded Successfully!");
-                                        System.out.println("File Uploaded to " + uploadFilePath);
-
-
                                         return true;
-
-
-
                                     } else {
-                                        System.out.println("File must be excel");
                                         Error_Msg = "The uploaded file must have one of the following extensions: xls, xlsx";
                                         return false;
                                     }
                                 } else {
-                                    System.out.println("file size must be less than 2 MB");
                                     Error_Msg = "The uploaded file's size must be less than 2 MB";
                                     return false;
                                 }
@@ -105,66 +81,44 @@ public class ImportUserSheet {
                             }
                         }
                     }
-
-
                 } catch (Exception ex) {
-                    System.out.println("File Upload Failed due to " + ex);
                     Error_Msg = "File Upload Failed due to " + ex;
                     return false;
-
                 }
-
-
             }else{
-                System.out.println("not multipart!");
-                Error_Msg = "not multipart!";
+                Error_Msg = "Error! Contact the support team, CODE: NotMultipart!";
                 return false;
             }
-
 
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-
         return true;
-
     }
 
-    public boolean UserSheetVaildation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
+    public boolean UserSheetValidation(String[] sheetChecker) throws SQLException, ClassNotFoundException {
         try {
 
             InputStream file = new FileInputStream(new File(uploadFilePath));
-
-
             //Set the api to work on the file
             Workbook workbook = WorkbookFactory.create(file);
-
             //Get first sheet from the workbook
             Sheet sheet = workbook.getSheetAt(0);
-
             //Set the sheet checker in Array
             String[] sheetCheckerArr = sheetChecker;
             boolean validFormHead = true;
-
-
             //Iterate through each rows from first sheet
             Iterator<Row> rowIterator = sheet.iterator();
-
             //Store the data in ArrayList
             sheetData = new ArrayList<ArrayList<String>>();
 
-
-            System.out.println("Sheet size : "+sheet.getPhysicalNumberOfRows());
             if(sheet.getPhysicalNumberOfRows() == 0){
-                System.out.print("errrrrr not same format");
-                Error_Msg = "The selected file is not in proper format, please follow the instructions \" +\n" +
-                        "                                        \"that'a shown shown below";
+                Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                        "that shown below";
                 file.close();
                 return false;
             }
-
-
 
             //Iterate through each rows as an ArrayList
             ArrayList<String>  dataRow;
@@ -172,44 +126,28 @@ public class ImportUserSheet {
                 dataRow = new ArrayList<String>();
                 Row row = rowIterator.next();
 
-                //For each row, iterate through each columns
-                Iterator<Cell> cellIterator = row.cellIterator();
-                //while(cellIterator.hasNext()) {
-                    for (int j=0;j<sheetCheckerArr.length;j++){
-
-                    //Cell cell = cellIterator.next();
+                for (int j=0;j<sheetCheckerArr.length;j++){
                     Cell cell = row.getCell(j);
-
                     if(validFormHead) {
                         if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                             if (cell.getStringCellValue().equals(sheetCheckerArr[j])) {
-                                System.out.print(cell.getStringCellValue() + "\t\t");
                             } else {
-                                System.out.print("err not same format");
-                                Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                        "that shown in the import page";
+                                Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                        "that shown below";
                                 file.close();
                                 return false;
                             }
                         } else {
-                            System.out.print("errrrrr not string");
-                            Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                    "that shown in the import page";
+                            Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                    "that shown below";
                             file.close();
                             return false;
                         }
                     }else {
                         try {
-                            //cell.setCellType(Cell.CELL_TYPE_STRING);
-                            System.out.println("**"+j+"**"+cell.getCellType()+"**"+cell.getStringCellValue()+"**");
-
                             switch (j){
                                 case 1:
                                     if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-
-                                        //System.out.print(cell.getStringCellValue() + "\t\t");
-
-
                                         if(cell.getStringCellValue().equals(" ")){
                                             dataRow.add(" ");
                                         }else {
@@ -217,36 +155,25 @@ public class ImportUserSheet {
                                         }
 
                                     }else {
-                                        System.out.print("er not in proper format");
-                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                                "that shown in the import page";
+                                        Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                "that shown below";
                                         file.close();
                                         return false;
                                     }
-
                                     break;
                                 case 3: //checking if the usernames already exist or not in db
 
-
-
                                     if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-
-                                        //System.out.print(cell.getStringCellValue() + "\t\t");
-
-
                                         if(cell.getStringCellValue().equals("")){
-                                            System.out.print("err not in proper format");
-                                            Error_Msg = "The selected file is not in proper format, please follow the instructions \" +\n" +
-                                                    "                                        \"that'a shown shown below";                                            file.close();
+                                            Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                    "that shown below";
                                             return false;
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-
                                     }else {
-                                        System.out.print("errrrrr not same format");
-                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                                "that shown in the import page";
+                                        Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                "that shown below";
                                         file.close();
                                         return false;
                                     }
@@ -254,7 +181,6 @@ public class ImportUserSheet {
                                 case 4://checking if the emails already exist or not in db
 
                                     if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
-
                                         if(!cell.getStringCellValue().equalsIgnoreCase("superuser") &&
                                                 !cell.getStringCellValue().equalsIgnoreCase("faculty") &&
                                                 !cell.getStringCellValue().equalsIgnoreCase("evaluator")){
@@ -266,31 +192,23 @@ public class ImportUserSheet {
                                         }else {
                                             dataRow.add(cell.getStringCellValue());
                                         }
-
                                     }else {
-                                        System.out.print("err not same format");
-                                        Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                                "that shown in the import page";
+                                        Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                "that shown below";
                                         file.close();
                                         return false;
                                     }
-
-
                                     break;
                                 case 5:
 
-                                    System.out.println("col 5 :"+row.getCell(j-1));
                                     if(row.getCell(j-1).getStringCellValue().equals("evaluator")){
                                         dataRow.add(" ");
                                     }else {
-
-
                                         if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
 
                                             if(cell.getStringCellValue().equals("")){
-                                                System.out.print("err not same format");
-                                                Error_Msg = "The selected file is not in the proper format, please follow the instructions \" +\n" +
-                                                        "                                        \"that shown in the import page";
+                                                Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                        "that shown below";
                                                 file.close();
                                                 return false;
                                             }else {
@@ -306,15 +224,12 @@ public class ImportUserSheet {
                                             }
 
                                         }else {
-                                            System.out.print("err not same format");
-                                            Error_Msg = "The selected file is not in the proper format, please follow the instructions " +
-                                                    "that shown in the import page";
+                                            Error_Msg = "The selected file is not in a proper format, please follow the instructions " +
+                                                    "that shown below";
                                             file.close();
                                             return false;
                                         }
-
                                     }
-
                                     break;
                                 default:
 
@@ -323,14 +238,9 @@ public class ImportUserSheet {
                                     }else {
                                         dataRow.add(cell.getStringCellValue());
                                     }
-
-
                             }
-
-
                         }catch (NullPointerException e){
                             e.fillInStackTrace();
-
 
                             switch (j){
                                 case 1:
@@ -350,23 +260,12 @@ public class ImportUserSheet {
                                     file.close();
                                     return false;
                                 default:
-
-                                    System.out.println("empty cell");
                                     dataRow.add(" ");
                                     continue;
-
-
                             }
                         }
-
-
-
                     }
-
-
                 }
-
-                System.out.println("");
                 if(!validFormHead) {
                     sheetData.add(dataRow);
                 }
@@ -388,15 +287,14 @@ public class ImportUserSheet {
         return true;
     }
 
-    public String getErrorMsg(){
-        return Error_Msg;
-    }
-
+    /**
+     * send error message through session attribute and redirect the user to the same page (users import page).
+     * @param response HttpServletResponse
+     * @param request HttpServletRequest
+     * @throws IOException
+     */
     public void sendErrorMsg(HttpServletResponse response,HttpServletRequest request) throws IOException {
-
-        //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
         RequestDispatcher rd = request.getRequestDispatcher("/users/index.jsp?cmd=upload&err="+Error_Msg);
-
         try {
             rd.forward(request, response);
         } catch (ServletException e) {
@@ -404,14 +302,11 @@ public class ImportUserSheet {
         }
     }
 
-    public void setRequest(HttpServletRequest request){
-        this.request = request;
-    }
-
-    public void setResponse(HttpServletResponse response){
-        this.response = response;
-    }
-
+    /**
+     * validate the format of given email string.
+     * @param email email string to be validated
+     * @return whether the email is valid
+     */
     public static boolean checkEmailValidation(String email) {
         boolean result = true;
         try {
@@ -423,12 +318,17 @@ public class ImportUserSheet {
         return result;
     }
 
+    /**
+     * returns the imported data.
+     * @return sheet data as an Array of an Array of strings
+     */
     public ArrayList<ArrayList<String>> getSheetData(){
         return sheetData;
     }
 
-    public void setUploadFilePath(String uploadFilePath) { this.uploadFilePath = uploadFilePath;}
-
+    /**
+     * used to delete file from temp folder of the server.
+     */
     public void deleteFile() {
         File file = new File(uploadFilePath);
         file.delete();

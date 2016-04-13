@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Mojahed on 2/3/2016.
+ * CycleSheetUploadServlet is used to insert the imported data from excel file (students or performance indicators) that
+ * stored in session variable sheetData after validation.
  */
 @WebServlet(name = "CycleSheetUploadServlet", urlPatterns = {"/upload/cycle"})
 public class CycleSheetUploadServlet extends HttpServlet {
@@ -24,7 +25,6 @@ public class CycleSheetUploadServlet extends HttpServlet {
         String courseName = "";
         String section = "";
         String dataType = "";
-        String thresh="";
 
         if(request.getParameter("cycle") != null && request.getParameter("term") != null && request.getParameter("data-type") != null){
             cycle = request.getParameter("cycle");
@@ -34,18 +34,15 @@ public class CycleSheetUploadServlet extends HttpServlet {
             courseName = request.getParameter("courseName");
             section = request.getParameter("section");
             dataType = request.getParameter("data-type");
-            thresh = request.getParameter("Thresh");
         }
-        //String dataId = request.getParameter("file");
+
         Object obj = request.getSession().getAttribute("sheetData");
         ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) obj;
         ArrayList<String> dataRow;
 
-        System.out.println("dataArr"+ dataArr);
         C_AS_Insert dba = new C_AS_Insert();
         C_AS_Select dbs = new C_AS_Select();
         try {
-            //cycle=dbaS.selectProgram(request.getParameter("Pname"));
 
             for(int i=0;i<dataArr.size();i++) {
                 dataRow = dataArr.get(i);
@@ -53,27 +50,30 @@ public class CycleSheetUploadServlet extends HttpServlet {
                 if(dataType.equals("students")){
                     if(dbs.isStudentIDExist(dataRow.get(0),Integer.parseInt(section))){
                         isValid = false;
-                        sendErrorMsg(dataRow.get(0)+ " is already existed twice in this section.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
+                        sendErrorMsg(dataRow.get(0)+ " is already existed twice in this section.",dataType,cycle,term,
+                                programID,courseCode,courseName,section,response,request);
                         break;
                     }else {
-                        System.out.println("dataType : "+dataType);
                         dba.addStudent(dataRow.get(1), dataRow.get(0), Integer.parseInt(section));
-                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
+                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+
+                                dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
                     }
                 }else if(dataType.equals("pis")){
                     if(dbs.isPIExist(dataRow.get(0), Integer.parseInt(programID), Integer.parseInt(cycle))){
                         isValid = false;
-                        sendErrorMsg(dataRow.get(0)+ " is already existed.",dataType,cycle,term,programID,courseCode,courseName,section,response,request);
+                        sendErrorMsg(dataRow.get(0)+ " is already existed.",dataType,cycle,term,programID,courseCode,
+                                courseName,section,response,request);
                         break;
                     }else {
-                        dba.addPI(dataRow.get(0), Double.parseDouble(dataRow.get(1)) ,Integer.parseInt(programID), Integer.parseInt(cycle));
-                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new performance indicator via excel sheet (Cycle ID : "+cycle+")");
-
+                        dba.addPI(dataRow.get(0), Double.parseDouble(dataRow.get(1)) ,Integer.parseInt(programID),
+                                Integer.parseInt(cycle));
+                        Auditor.add((String)request.getSession().getAttribute("username"),"Added new performance indicator " +
+                                "via excel sheet (Cycle ID : "+cycle+")");
                     }
                 }else if(dataType.equals("courses")){
                     dba.addCourse(dataRow.get(1),dataRow.get(0), Integer.parseInt(dataRow.get(2)),0,Integer.parseInt(cycle));
-                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new course via excel sheet (Cycle ID : "+cycle+")");
-
+                    Auditor.add((String)request.getSession().getAttribute("username"),"Added new course via excel sheet " +
+                            "(Cycle ID : "+cycle+")");
                 }
             }
         } catch (ClassNotFoundException e) {
@@ -81,34 +81,22 @@ public class CycleSheetUploadServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
-            //response.setStatus();
-            //request.getRequestDispatcher("/users/index.jsp?status=Success").forward(request,response);
-            //response.setStatus(HttpServletResponse.SC_CONTINUE);
-            //response.setHeader("Location","/users/index.jsp?status=Success");
-
             if(isValid){
                 response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
                 if(dataType.equals("students")) {
-                    //response.setHeader("Location", "/program/index.jsp?page=ObjList&term=" + term + "&cycle=" + cycle + "&status=Success");
-                    response.setHeader("Location", "/cycle/index.jsp?page=studentList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
-                            "&courseName=" + courseName + "&section=" + section +"&status=Success");
+                    response.setHeader("Location", "/cycle/index.jsp?page=studentList&cycle="+ cycle +"&term="+ term  +
+                            "&programID=" + programID + "&courseCode=" + courseCode + "&courseName=" + courseName +
+                            "&section=" + section +"&status=Success");
                 }else if(dataType.equals("pis")){
-                    response.setHeader("Location", "/cycle/index.jsp?page=piList&cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&status=Success");
+                    response.setHeader("Location", "/cycle/index.jsp?page=piList&cycle="+ cycle +"&term="+ term  +
+                            "&programID=" + programID +"&status=Success");
                 }else if(dataType.equals("courses")){
-                    response.setHeader("Location", "/program/index.jsp?page=CoursesList&term=" + term + "&cycle=" + cycle + "&status=Success");
+                    response.setHeader("Location", "/program/index.jsp?page=CoursesList&term=" + term + "&cycle=" +
+                            cycle + "&status=Success");
                 }
             }
-
-            /*response.getWriter().print("<!DOCTYPE HTML>\n" +
-                    "<html lang=\"en-US\">\n" +
-                    "    <head>\n" +
-                    "        <meta charset=\"UTF-8\">\n" +
-                    "        <meta http-equiv=\"refresh\" content=\"1;url=/program/index.jsp?term=&cycle=&page="+dataType+"&status=Success\">" +
-                    "</head>" +
-                    "</html>");*/
         }
 
-        //importer. request.getParameter("file");
 
     }
 
@@ -116,13 +104,25 @@ public class CycleSheetUploadServlet extends HttpServlet {
 
     }
 
+    /**
+     * send error message through session attribute and redirect the user to the same page (students import or performance
+     * indicators import page).
+     * @param Error_Msg message that will
+     * @param pdataType data type that will be inserted to the database.
+     * @param cycle Cycle ID.
+     * @param term Term ID.
+     * @param programID Program ID.
+     * @param courseCode Course Code.
+     * @param courseName Course name.
+     * @param section Section ID.
+     * @param response HttpServletResponse
+     * @param request HttpServletRequest
+     * @throws IOException
+     */
     public void sendErrorMsg(String Error_Msg,String pdataType, String cycle, String term, String programID, String courseCode,
                              String courseName, String section, HttpServletResponse response, HttpServletRequest request) throws IOException {
 
         request.getSession().setAttribute("errMsg",Error_Msg);
-
-        //response.sendRedirect("/users/index.jsp?cmd=upload&err="+Error_Msg);
-        //response.sendRedirect("/cycle/index.jsp?cycle="+ cycle +"&term="+ term +"&cmd=upload&data="+pdataType);
         String url = null;
         if(pdataType.equals("students")){
             url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID + "&courseCode=" + courseCode +
@@ -131,12 +131,5 @@ public class CycleSheetUploadServlet extends HttpServlet {
             url ="/cycle/index.jsp?cycle="+ cycle +"&term="+ term  +"&programID=" + programID +"&cmd=upload&data="+pdataType;
         }
         response.sendRedirect(url);
-        /*RequestDispatcher rd = request.getRequestDispatcher("/program/index.jsp?name="+term+"&id="+cycle+"&cmd=upload&data="+pdataType+"&err="+Error_Msg);
-
-        try {
-            rd.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }*/
     }
 }

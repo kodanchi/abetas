@@ -1,6 +1,5 @@
 package ASDB;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,28 +30,28 @@ public class ProgramSheetImportServlet extends HttpServlet {
 
         //String[] sheetChecker = {"firstname","middlename","lastname","username","email","level"};
 
-        ImportProgramSheet importer = new ImportProgramSheet(request);
+        ImportProgramSheet importer = new ImportProgramSheet();
         //PrintWriter out = response.getWriter();
 
 
         boolean dataIsValid = false;
 
 
-        if(importer.sheetVaildation(request,response)){
+        if(importer.sheetValidation(request)){
             try {
                 id = importer.getId();
-                name = importer.getName();
+                name = importer.getTerm();
                 dataType = importer.getDataType();
 
                 if(dataType.equals("obj")){
                     String[] sheetChecker = {"objective"};
-                    dataIsValid = importer.objSheetVaildation(sheetChecker);
+                    dataIsValid = importer.objSheetValidation(sheetChecker);
                 }else if (dataType.equals("outcomes")){
                     String[] sheetChecker = {"outcome"};
-                    dataIsValid = importer.outcomesSheetVaildation(sheetChecker);
+                    dataIsValid = importer.outcomesSheetValidation(sheetChecker);
                 }else if (dataType.equals("courses")){
                     String[] sheetChecker = {"course name","course code","course level"};
-                    dataIsValid = importer.coursesSheetVaildation(sheetChecker);
+                    dataIsValid = importer.coursesSheetValidation(sheetChecker);
                 }else {
                     System.out.println("no data type");
                 }
