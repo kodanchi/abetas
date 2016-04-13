@@ -1,7 +1,6 @@
 package passReset;
 
 /**
- * Created by Mohammed on 2/6/2016.
  * http://www.in-example.com/?p=117
  * http://stackoverflow.com/questions/158336/is-there-a-way-to-run-a-method-class-only-on-tomcat-startup
 Timer for Backup

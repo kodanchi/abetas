@@ -1,6 +1,5 @@
 package passReset;
 
-import ASDB.AS_Select;
 import ASDB.U_AS_Select;
 import ASDB.U_AS_Update;
 import login.Password;
@@ -14,9 +13,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-/**
- * Created by Mojahed on 3/13/2016.
- */
+
 @WebServlet(name = "passwordResetServlet", urlPatterns = {"/passReset"})
 public class passwordResetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

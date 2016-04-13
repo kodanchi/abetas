@@ -3,13 +3,10 @@ package Setup;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
-import java.io.File;
 import java.io.PrintWriter;
 import java.sql.*;
-import java.util.ArrayList;
 
 /**
- * Created by Ibrahim Abuaqel on 1/24/2016.
  * source : http://tomcat.apache.org/tomcat-6.0-doc/jndi-datasource-examples-howto.html#MySQL_DBCP_Example
  */
 public class InstallDB {
@@ -26,6 +23,12 @@ public class InstallDB {
         pout = out;
     }
 
+    /**
+     * Function that provides database connection using connection pool for multi access usage.
+     *
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void connect() throws ClassNotFoundException, SQLException {
 
         try {
@@ -44,7 +47,20 @@ public class InstallDB {
     }
 
 
-
+    /**
+     * This function is used to initialize the system using university name, college name, logo, admin's first name, meddle name, last name, username, password and email.
+     * @param Uname
+     * @param Cname
+     * @param logo
+     * @param Fname
+     * @param Mname
+     * @param Lname
+     * @param Username
+     * @param password
+     * @param email
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void init(String Uname, String Cname, String logo, String Fname, String Mname, String Lname, String Username, String password, String email) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -153,6 +169,11 @@ public class InstallDB {
 
     }
 
+    /**
+     * This function connect to the database engine and provides each of the tables and alters sql statements to be created in the database.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void installDB() throws ClassNotFoundException, SQLException {
 
         connect();
@@ -170,8 +191,7 @@ public class InstallDB {
 
             /*
              *  Get connection from the DataSource
-             */
-            /*connection = dataSource.getConnection();*/
+            */
 
             Class.forName(jdbcDriver);
             conn = DriverManager.getConnection("jdbc:mysql://localhost/?user=root&password=abetas");
@@ -181,12 +201,7 @@ public class InstallDB {
 
             /*
              * Execute the query
-             *//*
-            String query = " CREATE DATABASE IF NOT EXISTS 'abetasdb'";
-
-            preparedStatement = connection.prepareStatement(query);
-
-            rs = preparedStatement.executeUpdate();*/
+             */
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -361,14 +376,6 @@ public class InstallDB {
 
 
 
-
-
-
-
-
-
-
-
         this.createTable("CREATE TABLE `program` (\n" +
                 "  `P_ID` int(11) NOT NULL AUTO_INCREMENT,\n" +
                 "  `P_name` varchar(255) NOT NULL,\n" +
@@ -520,11 +527,6 @@ public class InstallDB {
                 ") ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;\n");
 
 
-
-
-
-
-
         this.createTable("ALTER TABLE formative\n" +
                 "ADD CONSTRAINT `FFK_Section_ID` FOREIGN KEY (`FK_Section_ID`) REFERENCES `section` (`Section_ID`) ON DELETE CASCADE ON UPDATE CASCADE,\n" +
                 " ADD CONSTRAINT `formative_FK_L` FOREIGN KEY (`FK_Link_ID`) REFERENCES `link_out_pi` (`Link_ID`) ON DELETE CASCADE ON UPDATE CASCADE;\n");
@@ -552,11 +554,8 @@ public class InstallDB {
                 "add  CONSTRAINT `Performance_indicator_FK_C` FOREIGN KEY (`FK_C_ID`) REFERENCES `cycle` (`Cycle_ID`) ON DELETE CASCADE ON UPDATE CASCADE;\n");
 
 
-
-
         this.createTable("alter table p_objective\n" +
                 "add   CONSTRAINT `FK_P_objective` FOREIGN KEY (`FK_P_ID`) REFERENCES `program` (`P_ID`) ON DELETE CASCADE ON UPDATE CASCADE;\n");
-
 
 
 
@@ -580,11 +579,14 @@ public class InstallDB {
         pout.println("<h4>Tables Created!</h4>");
 
 
-
-
-
     }
 
+    /**
+     * This function connects to the database and create tables.
+     * @param sql
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void createTable(String sql) throws ClassNotFoundException, SQLException {
 
         connect();
@@ -635,6 +637,11 @@ public class InstallDB {
         }
     }
 
+    /**
+     * This function connects to the database engine and delete r=the database.
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void deleteDB() throws ClassNotFoundException, SQLException {
 
         connect();
@@ -685,16 +692,16 @@ public class InstallDB {
         }
     }
 
-
-
+    /**
+     * This function connects to the database and check whether the database exists or not.
+     * @return
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public boolean setUpChk() throws SQLException, ClassNotFoundException {
 
         connect();
 
-        //Connection connection = null;
-        //PreparedStatement preparedStatement = null;
-
-        //ResultSet rs = null;
         boolean rsr = false;
 
         Connection conn = null;
@@ -707,8 +714,6 @@ public class InstallDB {
             conn = DriverManager.getConnection("jdbc:mysql://localhost/?user=root&password=abetas");
             s = conn.createStatement();
 
-
-
             String query = "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'abetasdb';";
 
             Result = s.executeQuery(query);
@@ -717,15 +722,10 @@ public class InstallDB {
              *  Get connection from the DataSource
              */
 
-            //connection = dataSource.getConnection();
-
             /*
              * Execute the query
              */
-            //preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
 
-            //rs = preparedStatement.executeQuery();
             if(Result.next()){
                 rsr = true;
             }
@@ -736,7 +736,6 @@ public class InstallDB {
                 /*
                  * finally block used to close resources
                  */
-            //rs.close();
             try {
                 if (s != null) {
                     s.close();

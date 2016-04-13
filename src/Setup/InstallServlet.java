@@ -19,7 +19,6 @@ import java.util.List;
 
 
 /**
- * Created by Ibrahim Abuaqel on 1/19/2016.
  * http://www.javacodegeeks.com/2013/08/file-upload-example-in-servlet-and-jsp.html
  * http://javakart.blogspot.in/2012/11/file-upload-example-using-servlet.html
  * http://stackoverflow.com/questions/3571223/how-do-i-get-the-file-extension-of-a-file-in-java
@@ -31,8 +30,19 @@ public class InstallServlet extends HttpServlet {
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
     private String uname,cname,afname,amname,alname,ausername,apassword,arepassword,aemail,ulogo = null;
+
+    /**
+     * post method that handles the system's initialization.
+     * That is done considering the system setup providing the university and admin's information.
+     * The use of Formative ID parameter is a must to identify the specified form.
+     * The size of the evidence file must be checked so that it will not exceed the limits.
+     * The validation of the fields are also included.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################");
 
         SERVER_DIRECTORY = getServletContext().getRealPath("/");
 
@@ -50,7 +60,6 @@ public class InstallServlet extends HttpServlet {
                 "  <script src=\"/js/bootstrap.min.js\"></script>\n" +
                 "  <link rel=\"stylesheet\" href=\"/css/flat-ui.css\">\n" +
                 "  <link rel=\"stylesheet\" href=\"/css/cus.css\">\n" +
-
 
 
                 "</head>\n" +
@@ -86,8 +95,6 @@ public class InstallServlet extends HttpServlet {
 
         InstallDB db = new InstallDB(out);
 
-
-
         try {
             db.installDB();
         } catch (ClassNotFoundException e) {
@@ -104,8 +111,7 @@ public class InstallServlet extends HttpServlet {
                     List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
                     for(FileItem item : items){
-                        /*System.out.println(item.getString()+" ----item");
-                        System.out.println(item.getFieldName()+" --++--item");*/
+
 
                         String name = item.getFieldName();
                         switch (name) {
@@ -137,12 +143,10 @@ public class InstallServlet extends HttpServlet {
                                 alname = item.getString();
                                 break;
                             default:
-                                System.out.println("default fired!");
                         }
 
                         if(!item.isFormField()){
 
-                            System.out.println("else fired!"+ item.getSize());
                             if(item.getSize() != 0) {
                                 name = new File(item.getName()).getName();
                                 if (item.getSize() < 2000000) {
@@ -152,13 +156,11 @@ public class InstallServlet extends HttpServlet {
                                     int i = item.getName().lastIndexOf('.');
                                     if (i > 0) {
                                         extension = item.getName().substring(i + 1);
-                                        System.out.println("file ext !"+ extension);
                                     }
                                     if (extension.equals("png")) {
                                         item.write(new File(SERVER_DIRECTORY + UPLOAD_DIRECTORY + File.separator + name));
                                         ulogo = "/" + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
-                                        System.out.println("File Uploaded Successfully!");
 
                                     } else {
                                         out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
@@ -178,9 +180,7 @@ public class InstallServlet extends HttpServlet {
 
 
                 } catch (Exception ex) {
-                    System.out.println("File Upload Failed due to " + ex);
                 }
-
 
                 db.init(uname, cname, ulogo, afname, amname, alname, ausername, Password.getSaltedHash(apassword), aemail);
 
@@ -188,7 +188,6 @@ public class InstallServlet extends HttpServlet {
                 request.getServletContext().setAttribute("uname",uname);
                 request.getServletContext().setAttribute("cname",cname);
                 request.getServletContext().setAttribute("color","#043366");
-
 
                 deleteFile(SERVER_DIRECTORY+"setup/install.jsp");
 
@@ -203,10 +202,7 @@ public class InstallServlet extends HttpServlet {
                         "            <a href=\"index.jsp\" class=\"btn btn-primary btn-lg\" >Home Page</a>\n" +
                         "\n" +
                         "        </div>");
-            }else{
-                System.out.println("not multipart!");
             }
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -221,15 +217,6 @@ public class InstallServlet extends HttpServlet {
                 "\n" +
                 "</body>\n" +
                 "</html>");
-        //out.println("name: " + request.getParameter("name"));
-        //out.println("logo: " + request.getParameter("logo"));
-        //out.println("Insert");
-
-
-        //response.sendRedirect("http://localhost:8080/");
-        // New location to be redirected
-        // String site = new String("http://localhost:8081/");
-        // response.setHeader("Location", site);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -237,6 +224,10 @@ public class InstallServlet extends HttpServlet {
         response.sendRedirect("/index.jsp");
     }
 
+    /**
+     * This function deletes a file by providing the file path.
+     * @param filepath
+     */
     public void deleteFile(String filepath) {
         File file = new File(filepath);
         file.delete();
