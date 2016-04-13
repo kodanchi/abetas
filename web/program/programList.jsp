@@ -1,16 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/29/2016
-  Time: 4:47 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/10159067/show-hide-button-in-table-row-during-mouseover
---%>
 <%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+/**
+* used to display programs list page.
+*/
+
+
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
@@ -49,7 +47,6 @@
                                     ArrayList<String> rsRow ;
 
                                     for (int i=0; i<rs.size();i++){
-                                        rsRow = new ArrayList<String>();
                                         rsRow = rs.get(i);
                                         out.print("<tr class=\"textContainer\" >");
                                         for (int j=1; j<rsRow.size();j++) {

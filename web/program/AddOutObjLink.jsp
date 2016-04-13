@@ -1,13 +1,7 @@
 <%@ page import="ASDB.P_AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/3/2016
-  Time: 7:01 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap-select.min.js" type="text/javascript"></script>
@@ -15,28 +9,8 @@
 
 <%
 
-    String pname ="";
-    String pmission = "";
-
     if(request.getSession().getAttribute("errMsg") != null){
 
-        /*String[] programOldVal = (request.getSession().getAttribute("programVal") != null ? (String[]) request.getSession().getAttribute("programVal") : null);
-        System.out.print("arry of user data : "+ programOldVal[1]);
-        if(programOldVal != null){
-
-            pname = programOldVal[0];
-            pmission = programOldVal[1];
-            request.getSession().removeAttribute("programVal");
-        }*/
-
-                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*/
 
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
@@ -77,9 +51,6 @@
                                             try {
                                                 ArrayList<String> objRs = aselect.selectObjForLink(Integer.parseInt(request.getParameter("id")));
 
-                                                /*for (int i=0; i<rs.size();i++) {
-                                                    out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
-                                                }*/
                                                 String objValue = request.getParameter("ObjLinkValue")!= null ?
                                                         request.getParameter("ObjLinkValue").substring(0, request.getParameter("ObjLinkValue").indexOf(':')):
                                                         "";
@@ -118,9 +89,6 @@
 
                                                     ArrayList<String> outRs = bselect.selectOutForLink(Integer.parseInt(request.getParameter("id")));
 
-                                                    /*for (int i=0; i<rs.size();i++) {
-                                                        out.print("<option value="+rs.get(i).substring(0, rs.get(i).indexOf(':'))+">"+rs.get(i)+"</option>");
-                                                    }*/
                                                     String outValue = request.getParameter("OutLinkValue") != null ?
                                                             request.getParameter("OutLinkValue").substring(0, request.getParameter("OutLinkValue").indexOf(':')):
                                                             "";
@@ -143,7 +111,7 @@
                                                     }
 
                                                     out.print("</select>\n" +
-"                            </div>");
+                                                        "                            </div>");
 
                                                     if(objRs.size() > 0 && outRs.size() > 0){
                                                         out.print("<button class=\"btn btn-primary\" type=\"submit\">");

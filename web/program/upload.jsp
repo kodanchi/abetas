@@ -1,26 +1,12 @@
-<%@ page import="org.apache.poi.ss.usermodel.Cell" %>
-<%@ page import="java.util.Iterator" %>
-<%@ page import="java.io.*" %>
-<%@ page import="org.apache.poi.hssf.usermodel.HSSFWorkbook" %>
-<%@ page import="org.apache.poi.hssf.usermodel.HSSFSheet" %>
-<%@ page import="org.apache.poi.ss.usermodel.Row" %>
-<%@ page import="org.apache.commons.fileupload.servlet.ServletFileUpload" %>
-<%@ page import="org.apache.commons.fileupload.FileItem" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.apache.commons.fileupload.disk.DiskFileItemFactory" %>
-<%@ page import="ASDB.ImportProgramSheet" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.UUID" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/1/2016
-  Time: 5:20 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/4253660/passing-object-from-jsp-to-servlet
---%>
+<%@ page import="java.util.ArrayList" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    /**
+     * used to display objectives/outcomes/courses upload page.
+     */
+
     String id ="";
     String name ="";
     String dataType = "";
@@ -55,34 +41,11 @@
 
 <%
 
-    /*if(request.getAttribute("sheetData")== null){
-        response.getHeader("index.jsp");
-    }else if(request.getMethod().equals("post") && request.getParameter("file")!= null){
-        *//*System.out.println("inside if :"+request.getParameter("file"));
-        //ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) request.getAttribute("sheetData");
-        //request.setAttribute("Data", dataArr);
-        //request.getRequestDispatcher("/").forward(request, response);
-        //RequestDispatcher rd = request.getRequestDispatcher("/upload/users");
-
-        try {
-            rd.forward(request, response);
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }*//*
-    }*/
-    //String sheetDataId = request.getParameter("sheetData");
-    //System.out.println("sheetDataId in upload :"+sheetDataId);
-
     Object dataObj = request.getSession().getAttribute("sheetData");
-    //Object dataObj = request.getAttribute(sheetD);
-    //request.getSession().removeAttribute(sheetD);
-
 
 
     ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) dataObj;
     ArrayList<String> dataRow;
-
-    System.out.println(dataArr);
 
     for(int i=0;i<dataArr.size();i++){
         dataRow = dataArr.get(i);
@@ -94,18 +57,6 @@
         }
         out.print("</tr>");
     }
-
-    //String sheetDataId = UUID.randomUUID().toString();
-
-    //request.removeAttribute("sheetData");
-
-    //request.setAttribute("cData", dataArr);
-
-
-
-
-
-
 
 
 %>

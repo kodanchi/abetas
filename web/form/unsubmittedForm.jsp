@@ -1,18 +1,17 @@
 <%@ page import="ASDB.AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/26/2016
-  Time: 5:31 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.SQLException" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
 <%
+
+    /**
+     * used to display un-submitted forms page for superusers.
+     */
 
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");
@@ -54,7 +53,7 @@
                     ArrayList<String> emailLists = new ArrayList<String>();
 
                     AS_Select dbs = new AS_Select();
-                    String emailList = "";
+                    String emailList;
                     try {
                         ArrayList<ArrayList<String>> formsList = dbs.selectAllUnsubmittedFormsForValidTerm();
                         int x=0;
@@ -66,21 +65,10 @@
                                     "<td>"+formItem.get(3)+" "+formItem.get(4)+"</td>\n" +
                                     "<td> "+formItem.get(5)+"</td>\n" +
                                     "</tr>");
-
-
                             emailList += formItem.get(6)+";";
 
                             emailLists.add(formItem.get(6));
-
                         }
-
-//                        System.out.println("    size    "+emailList.lastIndexOf(';'));
-//                        x=emailList.lastIndexOf(';');
-
-                        System.out.println("    xxxxxxxx    "+x);
-//                        emailList=emailList.substring(0,x);
-                        System.out.println("    emlist    "+emailList);
-                        System.out.println("Hello from Unsubmit form "+emailList);
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     } catch (SQLException e) {
@@ -129,11 +117,11 @@
                 $("#sTable").stupidtable();
             </script>
 
- <form method="post" action="/Emailrem">
-     <input name="emailList"  value="<%=emailLists%>" hidden />
- <button  type="submit" title="Send Reminder" class="btn btn-primary pull-left ">Send Reminder</button>
- </td>
- </form>
+             <form method="post" action="/Emailrem">
+                 <input name="emailList"  value="<%=emailLists%>" hidden />
+             <button  type="submit" title="Send Reminder" class="btn btn-primary pull-left ">Send Reminder</button>
+             </td>
+             </form>
             <a class="btn btn-primary pull-right" href="/index.jsp">Back</a>
 
 

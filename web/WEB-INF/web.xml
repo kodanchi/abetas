@@ -80,6 +80,10 @@
         <filter-name>SUFilter</filter-name>
         <url-pattern>/form/unsubmittedForm.jsp</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/backup.jsp</url-pattern>
+    </filter-mapping>
     <filter>
         <filter-name>FacultyFilter</filter-name>
         <filter-class>filters.FacultyLevelFilter</filter-class>

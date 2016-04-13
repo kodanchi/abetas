@@ -1,18 +1,17 @@
 <%@ page import="ASDB.AS_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.sql.SQLException" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/26/2016
-  Time: 5:31 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.SQLException" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 
 <%
+
+    /**
+     * used to display unlock forms page.
+     */
 
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");

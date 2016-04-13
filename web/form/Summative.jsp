@@ -4,13 +4,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="ASDB.AS_Select" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/23/2016
-  Time: 5:56 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -20,6 +14,9 @@
 <script src="/js/scrolled-table-head.js" type="text/javascript"></script>
 
 <%
+    /**
+     * used to display summative form page.
+     */
 
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");
@@ -30,9 +27,7 @@
 
         request.getSession().removeAttribute("Msg");
     }
-%>
 
-<%
 
     Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
@@ -177,8 +172,6 @@
                                      try {
                                          rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
                                          rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
-                                         System.out.println("rubrics : "+ rubrics);
-                                         System.out.println("rubricsNames : "+ rubricsNames);
                                          N1 = rubricsNames.get(0);
                                          D1 = rubrics.get(0);
                                          N2 = rubricsNames.get(1);
@@ -364,9 +357,7 @@
                                 <input type="text" name="dateInput" id="dateInput" value="<%=fdate.format(date)%>" hidden/>
                                 <h7 class="pull-right" id="date"><strong>Date: </strong><%=fdate.format(date)%></h7>
                                </div>
-<%--
-                                <label class="pull-right">Date: </label>
---%>
+
                             </div>
 
 
@@ -419,16 +410,7 @@
                                             if(isGoodToGo){
                                                 $('#summativeForm').submit();
                                             }
-
                                         }
-
-
-                                        //$('#summativeForm').validate();
-                                        //if($('#summativeForm').valid){
-                                            //alert("form :"+$('#summativeForm').valid);
-
-                                        //}
-
                                     });
                                 });
                             });

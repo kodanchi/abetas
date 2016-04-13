@@ -1,17 +1,12 @@
 
-<%@ page import="Setup.InstallDB" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/26/2016
-  Time: 3:19 PM
-  To change this template use File | Settings | File Templates.
-
-  http://stackoverflow.com/questions/6327965/html-upload-max-file-size-does-not-appear-to-work
---%>
+<%@ page import="Setup.InstallDB" %>
 <%
-InstallDB dbCon = new InstallDB(null);
+    /**
+     * used to display the setup page of the system.
+     */
+
+    InstallDB dbCon = new InstallDB(null);
     if(dbCon.setUpChk()){
-        //System.out.println("insiiiiiide");
         response.sendRedirect("/setup");
     }
 %>
@@ -101,20 +96,17 @@ InstallDB dbCon = new InstallDB(null);
                                 <input type="text" class="form-control" readonly>
                             </div>
 
-                            <%--<input onchange="return fileChk(2000000);"  type="file" id="ulogo" name="ulogo" accept="image/png">--%>
                             <script >
                                 function fileChk(max_img_size) {
 
                                     $(document).trigger("clear-alert-id.ulogo");
                                     var input = document.getElementById("ulogo");
                                     var ext = $('#ulogo').val().split('.').pop().toLowerCase();
-                                    //alert("file chk "+input.files[0].size);
                                     if(input.files && input.files.length == 1)
                                     {
                                         if (input.files[0].size > max_img_size)
                                         {
                                             document.getElementById("alert").style.visibility = "visible";
-                                            //$('#alertt').html('university logo must not exceeds 2 MB');
                                             $(document).trigger("clear-alert-id.ulogo");
                                             $(document).trigger("set-alert-id-ulogo", [
                                                 {
@@ -126,7 +118,6 @@ InstallDB dbCon = new InstallDB(null);
                                             return false;
                                         }else if(ext != "png"){
                                             document.getElementById("alert").style.visibility = "visible";
-                                            //$('#alertt').html('university logo must be type of PNG');
                                             $(document).trigger("clear-alert-id.ulogo");
                                             $(document).trigger("set-alert-id-ulogo", [
                                                 {
@@ -138,14 +129,8 @@ InstallDB dbCon = new InstallDB(null);
                                             return false;
                                         }
                                     }
-                                    //document.getElementById("alert").style.visibility = "hidden";
                                     return true;
-                                    /*if($('#ulogo').files.length < 200000 ){
-                                        document.getElementById("alert").style.visibility = "visible";
-                                        $('#alertt').html('university logo must not exceeds 2 MB');
-                                        $('#rootwizard').find("a[href*='tab3']").trigger('click');
-                                        $('#ulogo').focus();
-                                    }*/
+
                                 }
                             </script>
                             <h5 class="help-block small">Allowed size and type: 2MB, png</h5>
@@ -240,46 +225,7 @@ InstallDB dbCon = new InstallDB(null);
 <script>
     $(document).ready(function() {
 
-        //document.getElementById("alert").style.visibility = "hidden";
         $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
-
-            if(index==2) {
-                $(document).trigger("clear-alert-id.uname");
-                $(document).trigger("clear-alert-id.cname");
-                // Make sure we entered the name
-                if(!$('#uname').val()) {
-                    //document.getElementById("alert").style.visibility = "visible";
-                    //$('#alertt').html('You must enter university name');
-                    $(document).trigger("clear-alert-id.uname");
-                    $(document).trigger("set-alert-id-uname", [
-                        {
-                            message: "Please enter university name",
-                            priority: "error"
-                        }
-                    ]);
-                    $('#uname').focus();
-                    return false;
-                }else if(!$('#cname').val()) {
-                    //document.getElementById("alert").style.visibility = "visible";
-                    //$('#alertt').html('You must enter college name');
-                    $(document).trigger("clear-alert-id.cname");
-                    $(document).trigger("set-alert-id-cname", [
-                        {
-                            message: "Please enter college name",
-                            priority: "error"
-                        }
-                    ]);
-                    $('#cname').focus();
-                    return false;
-                }
-            }
-            if(index==6) {
-
-
-            }
-
-            // Set the name for the next tab
-            //$('#tab3').html('Please Enter dean\'s of ' + $('#collegeName').val() + ' full name');
 
         }, onTabShow: function(tab, navigation, index) {
             var $total = navigation.find('li').length;
@@ -289,8 +235,6 @@ InstallDB dbCon = new InstallDB(null);
 
         }});
         $('#rootwizard .finish').click(function() {
-            //alert('Finished!, Starting over!');
-            //$('#rootwizard').find("a[href*='tab1']").trigger('click');
 
             $(document).trigger("clear-alert-id.uname");
             $(document).trigger("clear-alert-id.cname");
@@ -306,8 +250,6 @@ InstallDB dbCon = new InstallDB(null);
             var cnaSubmit = false;
             if(!$('#uname').val()) {
 
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter university name');
                 $(document).trigger("clear-alert-id.uname");
                 $(document).trigger("set-alert-id-uname", [
                     {
@@ -319,8 +261,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#uname').focus();
                 return false;
             }else if(!$('#cname').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter college name');
 
                 $(document).trigger("set-alert-id-cname", [
                     {
@@ -332,8 +272,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#cname').focus();
                 return false;
             }else if(!/^[A-Za-z\s]+$/g.test($('#uname').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.uname");
                 $(document).trigger("set-alert-id-uname", [
                     {
@@ -345,8 +283,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#uname').focus();
                 return false;
             }else if(!/^[A-Za-z\s]+$/g.test($('#cname').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.cname");
                 $(document).trigger("set-alert-id-cname", [
                     {
@@ -363,8 +299,6 @@ InstallDB dbCon = new InstallDB(null);
                 {
                     if (input.files[0].size > 2000000)
                     {
-                        //document.getElementById("alert").style.visibility = "visible";
-                        //$('#alertt').html('university logo must not exceeds 2 MB');
                         $(document).trigger("clear-alert-id.ulogo");
                         $(document).trigger("set-alert-id-ulogo", [
                             {
@@ -376,8 +310,6 @@ InstallDB dbCon = new InstallDB(null);
                     }
                 }
             }else if(!$('#adminUsername').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.username");
                 $(document).trigger("set-alert-id-username", [
                     {
@@ -389,8 +321,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminUsername').focus();
                 return false;
             }else if($('#adminUsername').val().length < 4 || $('#adminUsername').val().length > 20) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.username");
                 $(document).trigger("set-alert-id-username", [
                     {
@@ -402,8 +332,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminUsername').focus();
                 return false;
             }else if(!$('#txtPassword').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin password');
                 $(document).trigger("clear-alert-id.password");
                 $(document).trigger("set-alert-id-password", [
                     {
@@ -426,8 +354,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#txtPassword').focus();
                 return false;
             }else if(($('#txtPassword').val() != "" || $('#txtConfirmPassword').val() != "") && ($('#txtPassword').val() != $('#txtConfirmPassword').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must re-enter the same new password');
                 $(document).trigger("clear-alert-id.repassword");
                 $(document).trigger("set-alert-id-repassword", [
                     {
@@ -439,8 +365,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#txtConfirmPassword').focus();
                 return false;
             }else if(!$('#adminemail').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin email');
                 $(document).trigger("clear-alert-id.uemail");
                 $(document).trigger("set-alert-id-uemail", [
                     {
@@ -452,8 +376,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminemail').focus();
                 return false;
             }else if($('#adminemail').val() && !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test($('#adminemail').val()) ) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin email');
                 $(document).trigger("clear-alert-id.uemail");
                 $(document).trigger("set-alert-id-uemail", [
                     {
@@ -465,8 +387,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminemail').focus();
                 return false;
             }else if(!$('#adminFirstName').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.fname");
                 $(document).trigger("set-alert-id-fname", [
                     {
@@ -478,8 +398,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminFirstName').focus();
                 return false;
             }else if(!/^[a-zA-Z]*$/g.test($('#adminFirstName').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.fname");
                 $(document).trigger("set-alert-id-fname", [
                     {
@@ -491,8 +409,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminFirstName').focus();
                 return false;
             }else if($('#adminFirstName').val().length < 3 || $('#adminFirstName').val().length > 20) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.fname");
                 $(document).trigger("set-alert-id-fname", [
                     {
@@ -504,8 +420,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminFirstName').focus();
                 return false;
             }else if(!$('#adminMiddleName').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin middle name');
                 $(document).trigger("clear-alert-id.mname");
                 $(document).trigger("set-alert-id-mname", [
                     {
@@ -517,8 +431,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminMiddleName').focus();
                 return false;
             }else if(!/^[a-zA-Z]*$/g.test($('#adminMiddleName').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.mname");
                 $(document).trigger("set-alert-id-mname", [
                     {
@@ -530,8 +442,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminMiddleName').focus();
                 return false;
             }else if($('#adminMiddleName').val().length < 3 || $('#adminMiddleName').val().length > 20) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.mname");
                 $(document).trigger("set-alert-id-mname", [
                     {
@@ -543,8 +453,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminMiddleName').focus();
                 return false;
             }else if(!$('#adminLastName').val()) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin last name');
                 $(document).trigger("clear-alert-id.lname");
                 $(document).trigger("set-alert-id-lname", [
                     {
@@ -556,8 +464,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminLastName').focus();
                 return false;
             }else if(!/^[a-zA-Z]*$/g.test($('#adminLastName').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
                 $(document).trigger("clear-alert-id.lname");
                 $(document).trigger("set-alert-id-lname", [
                     {
@@ -569,8 +475,6 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminLastName').focus();
                 return false;
             }else if($('#adminLastName').val().length < 3 || $('#adminLastName').val().length > 20) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin username');
                 $(document).trigger("clear-alert-id.lname");
                 $(document).trigger("set-alert-id-lname", [
                     {
@@ -582,15 +486,11 @@ InstallDB dbCon = new InstallDB(null);
                 $('#adminLastName').focus();
                 return false;
             }else {
-                //$('#alertt').html('').className = "alert alert-danger hidden";
             }
 
             if($('#adminemail').val()) {
                 var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if(!re.test($('#adminemail').val())){
-                    //document.getElementById("alert").style.visibility = "visible";
-                    //$('#alertt').html('You must enter valid admin email');
-                    //alert('You must enter valid admin email');
                     $(document).trigger("clear-alert-id.uemail");
                     $(document).trigger("set-alert-id-uemail", [
                         {
@@ -604,18 +504,6 @@ InstallDB dbCon = new InstallDB(null);
                     canSubmit = true;
                 }
             }
-
-            /*//binds to onchange event of your input field
-            $('#ulogo').bind('change', function() {
-
-                //this.files[0].size gets the size of your file.
-                //alert("dd");
-                if(this.files[0].length < 200000 ){
-                    //$('#alertt').html('university logo must not exceeds 2 MB');
-                }
-
-            });
-*/
 
             if(canSubmit){
                 $('#setUpForm').submit();

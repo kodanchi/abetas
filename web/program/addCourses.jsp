@@ -1,24 +1,20 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/4/2016
-  Time: 11:45 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 
 <%
+    /**
+     * used to display add course page.
+     */
 
     String cCode = "";
     String cName = "";
-    String cLvl = "0";
+    String cLvl = "";
 
     if(request.getSession().getAttribute("errMsg") != null){
 
         String[] courseOldVal = (request.getSession().getAttribute("courseVal") != null ? (String[]) request.getSession().getAttribute("courseVal") : null);
-        System.out.print("arry of user data : "+ courseOldVal[1]);
         if(courseOldVal != null){
 
             cCode = courseOldVal[0];
@@ -26,15 +22,6 @@
             cLvl = courseOldVal[2];
             request.getSession().removeAttribute("courseVal");
         }
-
-                        /*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*/
 
         out.print("<script type=\"text/javascript\">\n" +
                 "    $(window).load(function(){\n" +
@@ -107,29 +94,13 @@
 
 
                                         if ( i == Integer.parseInt(cLvl)) {
-                                            System.out.println("the reqValue is :"+cLvl +" and level is :"+i);
                                             out.print(" selected");
                                         }
                                         out.print(">");
                                         out.print("Level "+i+"</option>");
-                                            /*out.print("<option value=\""+request.getParameter("CourseLevel")+"\""+" selected>Level "+
-                                                    request.getParameter("CourseLevel")+"</option>");*/
+
                                     }
-                                    /*if (request.getParameter("CourseName")!=null) {
 
-
-                                    }else {
-                                        out.print("<option value=\"1\">Level 1</option>\n" +
-                                                "                                <option value=\"2\">Level 2</option>\n" +
-                                                "                                <option value=\"3\">Level 3</option>\n" +
-                                                "                                <option value=\"4\">Level 4</option>\n" +
-                                                "                                <option value=\"5\">Level 5</option>\n" +
-                                                "                                <option value=\"6\">Level 6</option>\n" +
-                                                "                                <option value=\"7\">Level 7</option>\n" +
-                                                "                                <option value=\"8\">Level 8</option>\n" +
-                                                "                                <option value=\"9\">Level 9</option>\n" +
-                                                "                                <option value=\"10\">Level 10</option>");
-                                    }*/
                                 %>
                             </select>
                             <span data-alertid="level"></span>

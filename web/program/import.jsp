@@ -1,13 +1,4 @@
-<%@ page import="ASDB.P_AS_Select" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/1/2016
-  Time: 5:13 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/11832930/html-input-file-accept-attribute-file-type-csv
-  http://stackoverflow.com/questions/15201071/how-to-get-full-path-of-selected-file-on-change-of-input-type-file-using-jav
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.js" type="text/javascript"></script>
@@ -16,6 +7,10 @@
 <script src="/js/jquery.bsFormAlerts.js" type="text/javascript"></script>
 <script src="/js/excel-validation.js" type="text/javascript"></script>
 <%
+
+    /**
+     * used to display objectives/outcomes/courses import page.
+     */
 
     if(request.getSession().getAttribute("errMsg") != null){
 
@@ -58,48 +53,6 @@
                             }
                         }
 
-                    /*if(request.getParameter("err") != null){
-
-                        *//*out.print("<div id=\"alert\"  class=\"alert alert-danger fade in\"  role=\"alert\" >\n" +
-                                "                        <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n" +
-                                "                            <span aria-hidden=\"true\">&times;</span>\n" +
-                                "                        </button>\n" +
-                                "                        <strong id=\"alertt\" >\n" +
-                                "                            " + request.getParameter("err")+
-                                "                        </strong>\n" +
-                                "                    </div>");*//*
-
-                        out.print("<script type=\"text/javascript\">\n" +
-                                "    $(window).load(function(){\n" +
-                                "        $('#myMsgModal').modal('show');\n" +
-                                "    });\n" +
-                                "    function goToNormal(){\n" +
-                                "        window.location.href =\"/program/index.jsp?name="+request.getParameter("name")+"&id="+request.getParameter("id")+"&page=import&data="+request.getParameter("data")+"\";\n" +
-                                "    }\n" +
-                                "</script>" +
-                                "<!-- Modal -->\n" +
-                                "                    <div class=\"modal fade\" id=\"myMsgModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\n" +
-                                "                        <div class=\"modal-dialog\">\n" +
-                                "                            <div class=\"modal-content\">\n" +
-                                "                                <div class=\"modal-header\">\n" +
-                                "                                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n" +
-                                "                                    <h4 class=\"modal-title\" id=\"myModalLabel\">ERROR</h4>\n" +
-                                "                                </div>\n" +
-                                "                                <div class=\"modal-body\">\n" +
-                                                                        request.getParameter("err") +
-                                "                                </div>\n" +
-                                "                                <div class=\"modal-footer\">\n" +
-                                "\n" +
-                                "                                    <div class=\"text-center\">\n" +
-                                "                                        <a type=\"button\"  data-dismiss=\"modal\"   class=\"btn btn-default btn-simple\">OK</a>\n" +
-                                "                                    </div>\n" +
-                                "                                </div>\n" +
-                                "                            </div>\n" +
-                                "                        </div>\n" +
-                                "                    </div>");
-
-
-                    }*/
 
                 %>
 
@@ -131,9 +84,6 @@
                                 </div>
                                 <span data-alertid="exceli"></span>
                             </div>
-
-                                <!--    <input class="form-control" type="text" name="first" value="" size="50" /> -->
-                                <!--    <input class="btn btn-lg btn-success pull-right" type="submit" value="Browse" name="AddUser"/> -->
 
 
                             </div>

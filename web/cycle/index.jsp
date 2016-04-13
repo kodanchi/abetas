@@ -2,12 +2,11 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-/**
-* used to display the structure of the cycle pages by including header and footer and main container based on the request
-* parameters.
-*/
-
 <%
+    /**
+ * used to display the structure of the cycle pages by including header and footer and main container based on the request
+ * parameters.
+ */
     String pageName = "cycleList.jsp";
     if(request.getMethod().equals("GET")){
         pageName = null;

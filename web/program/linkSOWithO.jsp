@@ -1,18 +1,16 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="ASDB.P_AS_Select" %>
-<%@ page import="java.sql.SQLException" %><%--
-  Created by IntelliJ IDEA.
-  User: Abdullah
-  Date: 2/2/2016
-  Time: 2:59 م
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.SQLException" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
 
 <%
+    /**
+     * used to display list of student outcome/objective links page.
+     */
 
     if(request.getParameter("status") != null){
 
@@ -70,7 +68,6 @@
                                         ArrayList<String> rsRow ;
 
                                         for (int i=0; i<rs.size();i++){
-                                            rsRow = new ArrayList<String>();
                                             rsRow = rs.get(i);
                                             out.print("<tr >");
                                             for (int j=1; j<rsRow.size();j++) {

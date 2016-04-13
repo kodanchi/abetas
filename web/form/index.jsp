@@ -1,23 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 1/29/2016
-  Time: 3:40 PM
-  To change this template use File | Settings | File Templates.
 
-  http://stackoverflow.com/questions/25253391/javascript-loading-screen-while-page-loads
---%>
-<%--<%@ page import="java.io.*,java.util.*" %>--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-    System.out.println(request.getMethod());
+
+    /**
+     * used to display the structure of the form pages by including header and footer and main container based on the request
+     * parameters.
+     */
+
     String pageName = "formList.jsp";
     if(request.getMethod().equals("GET")){
         pageName = null;
         String pageCall = request.getParameter("page");
-        //String cmdCall = request.getParameter("cmd");
-        System.out.println(pageCall);
         if(pageCall != null){
              if(pageCall.equals("fillForm")) {
 
@@ -103,58 +97,6 @@
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-    /*$( "#slider-range" ).slider({
-     range: true,
-     min: 0,
-     max: 500,
-     values: [ 75, 300 ],
-     });
-     $( "#slider-default" ).slider({
-     value: 70,
-     orientation: "horizontal",
-     range: "min",
-     animate: true
-     });
-     $('.btn-tooltip').tooltip('show');
-     $('.radio').on('toggle', function() { });
-
-
-     $(function(){
-     //$("#header").load("/header.jsp");
-     //$("#main").load("userslist.jsp");
-     //$("#footer").load("/footer.jsp");
-     });
-
-
-     function addUser(){
-     $("#main").load("adduser.jsp");
-     }
-
-     function cancel(){
-     $("#main").load("userslist.jsp");
-     }
-
-     */
-
-    function onReady(callback) {
-        var intervalID = window.setInterval(checkReady, 1);
-        function checkReady() {
-            if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-            }
-        }
-    }
-
-    function show(id, value) {
-        document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
-
-    onReady(function () {
-        show('page', true);
-        show('loading', false);
-    });
-
 
 </script>
 

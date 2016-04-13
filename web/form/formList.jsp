@@ -1,17 +1,16 @@
 <%@ page import="FDB.F_Select" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="ASDB.AS_Select" %>
-<%@ page import="java.sql.SQLException" %><%--
-  Created by IntelliJ IDEA.
-  User: Mojahed
-  Date: 2/24/2016
-  Time: 2:38 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="java.sql.SQLException" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="application/javascript"></script>
 <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 <script src="/js/bootbox.min.js" type="application/javascript"></script>
+
+
+/**
+* used to display form list page form faculty member.
+*/
 
 
 <div class="row">
@@ -19,7 +18,6 @@
     <div class="col-md-3 col-md-offset-3">
         <div class="list-group">
             <h4>Uncompleted forms</h4>
-            <%--<a href="#" class="list-group-item">Performance Indicator </br> (Course Name)</a>--%>
             <%
 
                 if(request.getSession().getAttribute("Msg")!= null){
@@ -59,9 +57,6 @@
                         out.print("<div class=\"pull-right\" >Summative</div></br>");
                         out.print("</a><br>");
                     }
-
-
-
                 }
             %>
         </div>
@@ -72,69 +67,26 @@
             <h4>Completed forms</h4>
 
 
-
-
-
-
-
-
-
-
-
-
             <%
-
 
                 F_Select dbs = new F_Select();
                 ArrayList<String> fInfo = new ArrayList<String>();
-
                 String name = "";
                 String userName = "";
 
                 try {
                     fInfo = dbs.selectFaculty(fid);
-
-//                        System.out.println("    size    "+emailList.lastIndexOf(';'));
-//                        x=emailList.lastIndexOf(';');
-
                     for (int i=0;i<fInfo.size();i++){
-                        System.out.println("    xxxxxxxx    ");
-                        System.out.println(fInfo.get(1));
-                        System.out.println(fInfo.get(2));
-                        System.out.println(fInfo.get(3));
-                        System.out.println(fInfo.get(1)+" "+fInfo.get(2)+" "+fInfo.get(3));
                         name = fInfo.get(1)+" "+fInfo.get(2)+" "+fInfo.get(3);
-                        System.out.println(name);
+
                         userName = fInfo.get(4);
-                        System.out.println(userName);
                     }
-                    System.out.println("    xxxxxxxx    ");
-//                        emailList=emailList.substring(0,x);
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
 
-            %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <%
 
                 if(fid != null){
                     ArrayList<ArrayList<String>> formativeFormsList = sdb.selectFacultySubmittedFForms(fid);

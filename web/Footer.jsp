@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Abdullah
-  Date: 1/27/2016
-  Time: 7:35 م
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <footer>
@@ -12,7 +6,7 @@
         <div class="row">
             <div class="col-xs-10" style="color: #2c3e50;">
                 <h4 class="footer-title">ABETAS</h4>
-                <p>Designed and built as a graduation project in <a href="http://www.uod.edu.sa">UOD</a>. All Rights Reversed to ABETAS<br><a href="#">Back to top</a>
+                <p>College of Computer Science and Information Technology </br>  <a href="http://www.uod.edu.sa">University of Dammam</a> | All Rights Reversed to ABETAS<br><a href="#">Back to top</a>
                 </p>
 
 

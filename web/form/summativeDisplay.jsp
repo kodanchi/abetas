@@ -1,13 +1,8 @@
 <%@ page import="FDB.F_Select" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="ASDB.AS_Select" %><%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/23/2016
-  Time: 5:56 PM
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="ASDB.AS_Select" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootstrap.min.js" type="text/javascript"></script>
@@ -15,6 +10,9 @@
 <script src="/js/scrolled-table-head.js" type="text/javascript"></script>
 
 <%
+    /**
+     * used to display summative display page.
+     */
 
     if(request.getSession().getAttribute("Msg")!= null){
         out.print("<script>");
@@ -25,11 +23,8 @@
 
         request.getSession().removeAttribute("Msg");
     }
-%>
 
-<%
 
-    Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
     ArrayList<String> linkSectionData = null;
     int summativeID = 0;
@@ -173,8 +168,6 @@
                                 try {
                                     rubrics = zselect.selectRubrics(Integer.parseInt(linkValues.get(4)));
                                     rubricsNames = zselect.selectRubricsSummativeNames(summativeID);
-                                    System.out.println("rubrics : "+ rubrics);
-                                    System.out.println("rubricsNames : "+ rubricsNames);
                                     N1 = rubricsNames.get(0);
                                     D1 = rubrics.get(0);
                                     N2 = rubricsNames.get(1);
@@ -234,12 +227,10 @@
                                             ArrayList<ArrayList<String>> rs = Sselect.selectStudents(section);
                                             ArrayList<String> rsRow ;
 
-                                            //out.print("<input type=\"hidden\" name=\"studentsNumber\" value=\""+rs.size()+"\">");
 
                                             String studentRubric = null;
 
                                             for (int i=0; i<rs.size();i++){
-                                                rsRow = new ArrayList<String>();
                                                 rsRow = rs.get(i);
 
                                                 studentRubric = Sselect.selectStudentRubric(Integer.parseInt(rsRow.get(0)),summativeID);
@@ -253,7 +244,6 @@
                                                     out.print(rsRow.get(j));
                                                     out.print("</td>");
                                                 }
-                                                //out.print("<input type=\"hidden\" name=\"SID"+i+"\" value=\""+rsRow.get(0)+"\">");
                                                 out.print("<td>");
                                                 out.print(" <div class=\"checkboxgroup\"><label>\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N1)){
@@ -278,10 +268,6 @@
                                                 out.print("<td>");
                                                 out.print(" <div class=\"checkboxgroup\"><label>\n" );
                                                           if(studentRubric!=null && studentRubric.equals(N4)){
-                                                         /* out.print("<span> <i class=\"fui-check icon30\"></i> </span>");
-                                                          out.print(" <input type=\"radio\" readonly");
-                                                          out.print(" checked=\"checked\" ");
-                                                          out.print(" name=\"optionsRadios"+i+"\" data-toggle=\"radio\" id=\"optionsRadios2\"+i+\"\" value=\""+N4+"\">\n");*/
                                                             out.print("<i class=\"fa fa-check-circle green\"></i>\n");
                                                           }
                                                         out.print("</label></div>\n");
@@ -296,7 +282,6 @@
                                         }
 
                                     %>
-
                     </tbody>
 
                 </table>

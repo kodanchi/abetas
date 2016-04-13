@@ -1,18 +1,16 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.SQLException" %>
 <%@ page import="ASDB.P_AS_Select" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/4/2016
-  Time: 11:41 AM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
 <script src="/js/stupidtable.min.js" type="text/javascript"></script>
 <%
+
+    /**
+     * used to display courses list fot selected program.
+     */
 
     if(request.getParameter("status") != null){
 
@@ -70,7 +68,6 @@
                                         ArrayList<String> rsRow ;
 
                                         for (int i=0; i<rs.size();i++){
-                                            rsRow = new ArrayList<String>();
                                             rsRow = rs.get(i);
                                             out.print("<tr>");
                                             for (int j=1; j<rsRow.size();j++) {

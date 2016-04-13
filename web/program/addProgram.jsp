@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Ibrahim Abuaqel
-  Date: 2/1/2016
-  Time: 3:45 PM
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
 <script src="/js/bootbox.min.js" type="text/javascript"></script>
@@ -13,13 +7,17 @@
 
 <%
 
+    /**
+     * used to display add program page.
+     */
+
+
     String pname ="";
     String pmission = "";
 
     if(request.getSession().getAttribute("errMsg") != null){
 
         String[] programOldVal = (request.getSession().getAttribute("programVal") != null ? (String[]) request.getSession().getAttribute("programVal") : null);
-        System.out.print("arry of user data : "+ programOldVal[1]);
         if(programOldVal != null){
 
             pname = programOldVal[0];
