@@ -14,6 +14,14 @@ import java.io.IOException;
  */
 @WebServlet(name = "EmailRequestUnlook", urlPatterns = {"/Emailreq"})
 public class EmailRequestUnlook extends HttpServlet {
+    /**
+     * Send emails to the ABETAS email asking to un-lock a specific form.
+     * This will indicate the faculty member name, type, course and performance indicator.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String Fn = request.getParameter("Fullname");
         String Fu = request.getParameter("Username");
@@ -43,6 +51,11 @@ public class EmailRequestUnlook extends HttpServlet {
 
     }
 
+    /**
+     * Function that handels the message sending.
+     * @param msg
+     * @param request
+     */
     protected void sendMsg(String msg, HttpServletRequest request) {
 
         if (request.getSession().getAttribute("Msg") == null)

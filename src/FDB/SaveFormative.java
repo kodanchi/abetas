@@ -1,6 +1,5 @@
 package FDB;
 
-import ASDB.*;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -12,12 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
-/**
- * Created by Ibrahim Abuaqel on 2/23/2016.
- */
 @WebServlet(name = "SaveFormative",
         urlPatterns = {"/SaveFormative"})
 public class SaveFormative extends HttpServlet {
@@ -25,12 +20,19 @@ public class SaveFormative extends HttpServlet {
     private final String UPLOAD_DIRECTORY = "uploads";
     private String SERVER_DIRECTORY ;
     private boolean isValid = true;
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("##########################################################$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        System.out.println(request.getParameter("Formative_ID")+"            SaveFormative ))))))))))))))))))))))))))))))))))))))))))))))))))))))");
 
-        //ArrayList<String> data = new ArrayList<String>();
-            System.out.println("#################################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+    /**
+     * post method that serves by saving formative form.
+     * That is done considering the written rubrics, comments from the faculty members, their point of obstacles, where it can be improved and the evidence.
+     * The use of Formative ID parameter is a must to identify the specified form.
+     * The size of the evidence file must be checked so that it will not exceed the limits.
+     * The validation of the fields are also included.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
         SERVER_DIRECTORY = getServletContext().getRealPath("/");
@@ -44,51 +46,36 @@ public class SaveFormative extends HttpServlet {
                     List<FileItem> items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
                     for(FileItem item : items){
-                        /*System.out.println(item.getString()+" ----item");
-                        System.out.println(item.getFieldName()+" --++--item");*/
-
                         String name = item.getFieldName();
                         switch (name) {
                             case "Formative_ID":
                                 Formative_ID = item.getString();
                                 if (Formative_ID.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
                                 }
                                 break;
                             case "WrittenRubrics":
                                 WrittenRubrics = item.getString();
                                 if (WrittenRubrics.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
                                 }
                                 break;
                             case "Comments":
                                 Comments = item.getString();
                                 if (Comments.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
                                 }
                                 break;
                             case "Obstacles":
                                 Obstacles = item.getString();
                                 if (Obstacles.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
                                 }
                                 break;
                             case "Improvement":
                                 Improvement = item.getString();
                                 if (Improvement.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
                                 }
                                 break;
                             case "evidence":
                                 evidence = item.getString();
                                 if (evidence.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
                                 }
                                 break;
 
@@ -96,9 +83,7 @@ public class SaveFormative extends HttpServlet {
 
 
                         if(!item.isFormField()){
-
-                            System.out.println("else fired!"+ item.getSize());
-                            if(item.getSize() != 0) {
+                        if(item.getSize() != 0) {
                                 name = new File(item.getName()).getName();
                                 if (item.getSize() < 100000000) {
 
@@ -107,14 +92,12 @@ public class SaveFormative extends HttpServlet {
                                     int i = item.getName().lastIndexOf('.');
                                     if (i > 0) {
                                         extension = item.getName().substring(i + 1);
-                                        System.out.println("file ext !"+ extension);
                                     }
                                     if (extension.equals("pdf")) {
                                         item.write(new File(SERVER_DIRECTORY + File.separator + UPLOAD_DIRECTORY +
                                                 File.separator + name));
                                         evidence = "/" + UPLOAD_DIRECTORY + "/" + name;
                                         //File uploaded successfully
-                                        System.out.println("File Uploaded Successfully!"+evidence);
 
 
 
@@ -149,13 +132,10 @@ public class SaveFormative extends HttpServlet {
 
 
                 } catch (Exception ex) {
-                    System.out.println("File Upload Failed due to " + ex);
                 }
 
-                //response.sendRedirect("/settings/index.jsp?status=SystemUpdated");
 
             }else{
-                System.out.println("not multipart!");
                 redirectURL = "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
             }
 
@@ -169,36 +149,19 @@ public class SaveFormative extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    /**
+     * Function that handels the message sending.
+     * @param msg
+     * @param request
+     * @param response
+     */
     protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response){
 
 
         if(request.getSession().getAttribute("Msg") == null)
             request.getSession().setAttribute("Msg",msg);
 
-
-        /*System.out.println("ErrMsg : "+msg);
-
-        System.out.println("session is : "+request.getSession().getId());
-        request.getSession().setAttribute("errMsg",msg);
-        //request.getSession().setAttribute("userValue",userVal);
-
-
-        try {
-            response.sendRedirect("/settings/index.jsp?page=update");
-            //request.getRequestDispatcher("/settings/index.jsp?page=update").forward(request,response);
-        } *//*catch (ServletException e) {
-            e.printStackTrace();
-        }*//* catch (IOException e) {
-            e.printStackTrace();
-        }
-        *//*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-        try {
-            response.setHeader("Location","/users/index.jsp?page=add&status="+ URLEncoder.encode(msg, "UTF-8"));
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }*//*
-
-        return;*/
     }
 
 }
