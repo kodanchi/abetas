@@ -1,10 +1,5 @@
 <%--
 <%@ page import="Backup.Backup" %>--%>
-<%@ page import="java.io.File" %>
-<%@ page import="java.nio.file.*" %>
-<%@ page import="java.nio.file.attribute.BasicFileAttributes" %>
-<%@ page import="java.nio.file.attribute.BasicFileAttributeView" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 <!doctype html>
 <html lang="en">
 
@@ -22,7 +17,6 @@
     <link href="css/cus.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/fonts.css" rel="stylesheet">
 
 </head>

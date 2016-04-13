@@ -1,5 +1,5 @@
 
-<%@ page import="ASDB.InstallDB" %><%--
+<%@ page import="Setup.InstallDB" %><%--
   Created by IntelliJ IDEA.
   User: Mojahed
   Date: 1/26/2016
@@ -331,6 +331,32 @@ InstallDB dbCon = new InstallDB(null);
                 $('#rootwizard').find("a[href*='tab2']").trigger('click');
                 $('#cname').focus();
                 return false;
+            }else if(!/^[A-Za-z\s]+$/g.test($('#uname').val())) {
+                //document.getElementById("alert").style.visibility = "visible";
+                //$('#alertt').html('You must enter admin first name');
+                $(document).trigger("clear-alert-id.uname");
+                $(document).trigger("set-alert-id-uname", [
+                    {
+                        message: "name must have only alphabetic letters",
+                        priority: "error"
+                    }
+                ]);
+                $('#rootwizard').find("a[href*='tab2']").trigger('click');
+                $('#uname').focus();
+                return false;
+            }else if(!/^[A-Za-z\s]+$/g.test($('#cname').val())) {
+                //document.getElementById("alert").style.visibility = "visible";
+                //$('#alertt').html('You must enter admin first name');
+                $(document).trigger("clear-alert-id.cname");
+                $(document).trigger("set-alert-id-cname", [
+                    {
+                        message: "name must have only alphabetic letters",
+                        priority: "error"
+                    }
+                ]);
+                $('#rootwizard').find("a[href*='tab2']").trigger('click');
+                $('#cname').focus();
+                return false;
             }else if($('#ulogo').val()) {
                 var input = document.getElementById("ulogo");
                 if(input.files && input.files.length == 1)
@@ -541,32 +567,6 @@ InstallDB dbCon = new InstallDB(null);
                 ]);
                 $('#rootwizard').find("a[href*='tab5']").trigger('click');
                 $('#adminLastName').focus();
-                return false;
-            }else if(!/^[a-zA-Z]*$/g.test($('#uname').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
-                $(document).trigger("clear-alert-id.uname");
-                $(document).trigger("set-alert-id-uname", [
-                    {
-                        message: "name must have only alphabetic letters",
-                        priority: "error"
-                    }
-                ]);
-                $('#rootwizard').find("a[href*='tab5']").trigger('click');
-                $('#uname').focus();
-                return false;
-            }else if(!/^[a-zA-Z]*$/g.test($('#cname').val())) {
-                //document.getElementById("alert").style.visibility = "visible";
-                //$('#alertt').html('You must enter admin first name');
-                $(document).trigger("clear-alert-id.cname");
-                $(document).trigger("set-alert-id-cname", [
-                    {
-                        message: "name must have only alphabetic letters",
-                        priority: "error"
-                    }
-                ]);
-                $('#rootwizard').find("a[href*='tab5']").trigger('click');
-                $('#cname').focus();
                 return false;
             }else if($('#adminLastName').val().length < 3 || $('#adminLastName').val().length > 20) {
                 //document.getElementById("alert").style.visibility = "visible";

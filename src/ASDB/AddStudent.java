@@ -1,6 +1,5 @@
 package ASDB;
 
-import com.mysql.jdbc.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,35 +10,29 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 
-/**
- * Created by Ibrahim Abuaqel on 2/15/2016.
- */
+
 @WebServlet(name = "AddStudent",
         urlPatterns = {"/AddStudent"})
 public class AddStudent extends HttpServlet {
     String[] StudentVal;
+
+    /**
+     * insert or update student , then redirect to the student list.
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("NValue").equals("null")) {
-            System.out.println("#########################EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE  SID  "+  request.getParameter("Student_ID"));
 
             C_AS_Insert dba = new C_AS_Insert();
             C_AS_Select dbs = new C_AS_Select();
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");
-            System.out.println("##########################################################  Sname  "+request.getParameter("Sname")+"          ");
 
             try {
-                //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
-                System.out.println("@@@@@@@@@@@@@@@@@@@    2222");
-                System.out.println(request.getParameter("programName"));
-                System.out.println(request.getParameter("programID"));
-                System.out.println(request.getParameter("courseCode"));
-                System.out.println(request.getParameter("courseName"));
-                System.out.println(request.getParameter("F_ID"));
-                System.out.println(request.getParameter("programName"));
-                System.out.println("@@@@@@@@@@@@@@@@@@@    2222");
 
-                System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWW  " + request.getParameter("Sname")+"     "+Termid+"    "+request.getParameter("Student_ID")+"      "+request.getParameter("courseCode")+"     "+request.getParameter("F_ID")+"        "+Termid);
 
 
                 if(request.getParameter("Sname").equals("") || request.getParameter("Student_ID").equals("")){
@@ -66,7 +59,6 @@ public class AddStudent extends HttpServlet {
                     response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
 
                 }
-                //Display error message.
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
@@ -74,29 +66,14 @@ public class AddStudent extends HttpServlet {
                 StudentVal = new String[]{request.getParameter("Student_ID"),request.getParameter("Sname")};
                 sendErrMsg("Invalid Data!",request.getParameter("cycle"),request,response);
             }
-            /*PrintWriter out = response.getWriter();
-            //out.println("name: " + request.getParameter("name"));
-            //out.println("logo: " + request.getParameter("logo"));
-            out.println("H");*/
-            //System.out.println("ttrttttttttttttttttttttttttt  Rubric id          ttrttttttttttttttttttttttttt           ");
-            /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
-            /*try {
 
-                //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
-            } catch (NullPointerException e) {
-                e.fillInStackTrace();
-            }*/
         } else {
-            System.out.println("#########################NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
 
             C_AS_Update udb = new C_AS_Update();
             C_AS_Select dbs = new C_AS_Select();
 
             String id = request.getParameter("cycle");
             String Termid = request.getParameter("term");
-            System.out.println("##########################################################  Sname  "+request.getParameter("Sname")+"          ");
-            System.out.println("##########################################################  Student_ID  "+request.getParameter("Student_ID")+"          ");
 
 
             try {
@@ -114,7 +91,6 @@ public class AddStudent extends HttpServlet {
                     sendErrMsg("Student ID: "+request.getParameter("Student_ID")+" is exist already in this section",request.getParameter("cycle"),request,response);
 
                 }else {
-                    //System.out.println("ttrttttttttttttttttttttttttt  Program id          " + request.getParameter("programID") + "ttrttttttttttttttttttttttttt           ");
                     udb.updateStudent(request.getParameter("Student_ID"),request.getParameter("Sname"),Integer.parseInt(request.getParameter("S_ID")));
 
                     Auditor.add((String)request.getSession().getAttribute("username"),"Updated student (Student ID : "+request.getParameter("Student_ID")+")");
@@ -123,22 +99,13 @@ public class AddStudent extends HttpServlet {
 
                 }
 
-                //Display error message.
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            /*PrintWriter out = response.getWriter();
-            //out.println("name: " + request.getParameter("name"));
-            //out.println("logo: " + request.getParameter("logo"));
-            out.println("H");*/
-            //System.out.println("ttrttttttttttttttttttttttttt  Rubric id          ttrttttttttttttttttttttttttt           ");
-            /*response.setStatus(HttpServletResponse.SC_TEMPORARY_REDIRECT);
-            response.setHeader("Location", "/cycle/index.jsp?page=addTerm");*/
+
             try {
-                //response.sendRedirect("/cycle/index.jsp?page=studentList&cycle="+id+"&term="+Termid+"&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+"&courseName="+request.getParameter("courseName")+"&F_ID="+request.getParameter("F_ID"));
-                //request.getRequestDispatcher("/cycle/index.jsp?page=LinkPIOutList&programID="+request.getParameter("programID")).forward(request, response);
 
             } catch (NullPointerException e) {
                 e.fillInStackTrace();
@@ -149,12 +116,18 @@ public class AddStudent extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    /**
+     * show error message
+     * @param msg
+     * @param cycle
+     * @param request
+     * @param response
+     */
     protected void sendErrMsg(String msg,String cycle,HttpServletRequest request, HttpServletResponse response){
 
 
-        System.out.println("ErrMsg : "+msg);
 
-        System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("errMsg",msg);
         request.getSession().setAttribute("StudentVal", StudentVal);
 
@@ -162,7 +135,6 @@ public class AddStudent extends HttpServlet {
         try {
             if(request.getParameter("NValue").equals("null")) {
 
-                //response.sendRedirect("/cycle/index.jsp?page=addTerm&cycle="+cycle);
                 response.sendRedirect("/cycle/index.jsp?page=addStudent&cycle="+cycle+"&term="+request.getParameter("term")+
                         "&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+
                         "&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section"));
@@ -173,21 +145,20 @@ public class AddStudent extends HttpServlet {
                         "&programID="+request.getParameter("programID")+"&courseCode="+request.getParameter("courseCode")+
                         "&courseName="+request.getParameter("courseName")+"&section="+request.getParameter("section")+
                         "&NValue="+request.getParameter("NValue")+"&IDValue="+request.getParameter("IDValue"));
-                /*String termName = request.getParameter("termName");
-                String fyear = request.getParameter("fyear");
-                String tyear = request.getParameter("tyear");*/
-                //request.getRequestDispatcher("/program/index.jsp?page=update").forward(request, response);
-                //response.sendRedirect("/program/index.jsp?page=updateLink&name="+cycle+"&id="+pid+"&Linkid="+ Linkid+"&ObjLinkValue="+ObjLinkValue+"&OutLinkValue="+OutLinkValue);
             }
-        } /*catch (ServletException e) {
-            e.printStackTrace();
-        }*/ catch (IOException e) {
+        }  catch (IOException e) {
             e.printStackTrace();
         }
 
 
         return;
     }
+
+    /**
+     * check if the string is numeric or not, return true or false.
+     * @param str
+     * @return
+     */
     public static boolean isNumeric(String str)
     {
         NumberFormat formatter = NumberFormat.getInstance();

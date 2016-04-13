@@ -1,5 +1,5 @@
 
-package ASDB;
+package Setup;
 
 import login.Password;
 import org.apache.commons.fileupload.FileItem;
@@ -190,6 +190,10 @@ public class InstallServlet extends HttpServlet {
                 request.getServletContext().setAttribute("color","#043366");
 
 
+                deleteFile(SERVER_DIRECTORY+"setup/install.jsp");
+
+                out.println("<h4 class\"red\">setup/Install.jsp were deleted for security reasons.</h4>");
+
                 out.print("<br>\n" +
                         "        <p>Congratulations, ABETAS setup done successfully, now you need to add a superuser so he can enter the programs, course, create an evaluation cycle. Click on User Management to add and manage users.</p>\n" +
                         "        <br>\n" +
@@ -230,6 +234,12 @@ public class InstallServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        response.sendRedirect("/index.jsp");
+    }
+
+    public void deleteFile(String filepath) {
+        File file = new File(filepath);
+        file.delete();
     }
 }
 

@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 2/10/2016.
+ * FacultyLevelFilter is used to filter files under form folder which are only accessible by superusers/faculty users otherwise,
+ * the user will be redirected to home page.
  */
 @WebFilter(filterName = "FacultyLevelFilter")
 public class FacultyLevelFilter implements Filter {

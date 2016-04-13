@@ -1,4 +1,4 @@
-<%--<%@ page import="sessionListener.CookiesControl" %>
+<%--<%@ page import="Listeners.CookiesControl" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.ArrayList" %>--%>
 <%--

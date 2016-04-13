@@ -1,4 +1,4 @@
-package ASDB;
+package Setup;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +36,7 @@ public class SetupServlet extends HttpServlet {
                     response.sendRedirect("/setup/install.jsp");
                     break;
                 case "no":
-                    response.sendRedirect("http://localhost:8080/");
+                    response.sendRedirect("/index.jsp");
                     break;
             }
         }

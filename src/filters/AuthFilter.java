@@ -1,10 +1,9 @@
 package filters;
 
-import sessionListener.CookiesControl;
+import Listeners.CookiesControl;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -12,13 +11,18 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 /**
- * Created by Mojahed on 2/10/2016.
+ * AuthFilter is used to filter any access to the system files which will check for a valid session attribute (username)
+ * and a valid cookie (userCookie), if both true it will allow the user to access the requested page otherwise, the user
+ * will be redirected to the login.
+ * There are file and folders will be excluded to be filtered which been specified as a parameter called avoid-urls in
+ * web.xml (ex: js/css/images files)
  */
 @WebFilter(filterName = "AuthFilter")
 public class AuthFilter implements Filter {
 
     FilterConfig config = null;
     private ArrayList<String> urlList;
+
     public void destroy() {
     }
 
@@ -27,7 +31,6 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        System.out.println("param : "+config.getInitParameter("avoid-urls"));
 
         StringTokenizer token = new StringTokenizer(config.getInitParameter("avoid-urls"), ",");
 
@@ -53,12 +56,10 @@ public class AuthFilter implements Filter {
 
         if(urlList.contains(url.split("/",3)[1])) {
             isAllowed = true;
-            System.out.println("Allowed URL! : "+url.split("/",3)[1]);
         }
 
         if(!isAllowed){
             request.getHeader("referer");
-            System.out.println(request.getHeader("referer")+"                          888888888888888");
             response.sendRedirect("/login.jsp");
         }else {
             chain.doFilter(req, resp);

@@ -1,13 +1,8 @@
-package sessionListener;
+package Listeners;
 
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Created by Mojahed on 2/9/2016.
