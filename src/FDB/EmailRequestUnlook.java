@@ -31,16 +31,6 @@ public class EmailRequestUnlook extends HttpServlet {
 
         SendEmail sendemail = new SendEmail();
 
-            //System.out.println(e[i]);
-                //sendemail.sendMsg("Hello this is reminder", "Reminder", e[i].substring(1, ','));
-
-                System.out.println("      gggggggggggggggggggggggggggggg      ");
-                System.out.println(Fn);
-                System.out.println(Fu);
-                System.out.println(c);
-                System.out.println(pi);
-                System.out.println(type);
-                System.out.println("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator");
 
                 sendemail.sendMsg("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator", "Request Un-Look Form","mulhimmm@gmail.com");
                 sendMsg("Email was sent requesting to un-look the form",request);

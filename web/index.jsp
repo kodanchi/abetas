@@ -97,7 +97,7 @@
             </div>
 
             <div class="col-md-3 col-sm-6 mainblock">
-                <a href="/form/index.jsp?page=unlockForm">
+                <a href="/unlock/index.jsp?page=unlockForm">
                     <div class=" block">
                             <i class="fa fa-unlock-alt"></i>
                         <h6 class="-title text-uppercase" data-toggle="tooltip" title="Re-enabling submitted forms">Unlock Submitted Forms</h6>
@@ -106,7 +106,7 @@
                 </a>
             </div>
             <div class="col-md-3 col-sm-6 mainblock">
-                <a href="/form/index.jsp?page=unsubmitted">
+                <a href="/unlock/index.jsp?page=unsubmitted">
                     <div class=" block">
                         <i class="fa  fa fa-hourglass-half"></i>
                         <h6 class="-title text-uppercase" data-toggle="tooltip" title="List of all un-submitted forms">Un-submitted Forms</h6>
