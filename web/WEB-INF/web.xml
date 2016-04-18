@@ -82,14 +82,22 @@
         <filter-name>SUFilter</filter-name>
         <url-pattern>/backup.jsp</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>SUFilter</filter-name>
+        <url-pattern>/unlock/*</url-pattern>
+    </filter-mapping>
+
+
     <filter>
         <filter-name>FacultyFilter</filter-name>
         <filter-class>filters.FacultyLevelFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>FacultyFilter</filter-name>
         <url-pattern>/form/*</url-pattern>
     </filter-mapping>
+
     <filter>
         <filter-name>SetupFilter</filter-name>
         <filter-class>filters.SetupFilter</filter-class>
@@ -98,6 +106,7 @@
         <filter-name>SetupFilter</filter-name>
         <url-pattern>/setup</url-pattern>
     </filter-mapping>
+
 
     <session-config>
         <session-timeout>525600</session-timeout>

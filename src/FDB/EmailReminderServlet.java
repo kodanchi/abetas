@@ -36,7 +36,7 @@ public class EmailReminderServlet extends HttpServlet {
                 a = a.replace(']', ' ');
                 sendemail.sendMsg("Hello, this is reminder that you have one or more of un-submitted forms", "Reminder", a);
                 sendMsg("Email was sent to all the Faculty Members in the table",request);
-                response.sendRedirect("/form/index.jsp?page=unsubmitted");
+                response.sendRedirect("/unlock/index.jsp?page=unsubmitted");
             }
 
         }

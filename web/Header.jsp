@@ -54,7 +54,7 @@
                                         Integer userLvl = (Integer) request.getSession().getAttribute("userLvl");
                                         if(userLvl != 3)
                                         out.print("<li><a href=\"/settings\">Setting</a></li>");
-                                        out.print("<li><a href=\"/user_manual.pdf\">Help</a></li>");
+                                        out.print("<li><a href=\"/UserManual.pdf\" target=\"_blank\">Help</a></li>");
                                     }
                                 %>
                                 <li><a href="/logout">Logout</a></li>

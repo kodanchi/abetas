@@ -22,7 +22,7 @@ public class UnlockFormServlet extends HttpServlet {
 
 
         AS_Update dbu = new AS_Update();
-        String redirectURL= "/form/index.jsp?page=unlockForm";
+        String redirectURL= "/unlock/index.jsp?page=unlockForm";
         try {
 
             if (request.getParameter("fid") != null && request.getParameter("ftype") != null) {

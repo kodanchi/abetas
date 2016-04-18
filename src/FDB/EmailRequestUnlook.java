@@ -24,16 +24,14 @@ public class EmailRequestUnlook extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String Fn = request.getParameter("Fullname");
-        String Fu = request.getParameter("Username");
         String c = request.getParameter("course");
         String pi = request.getParameter("pi");
         String type = request.getParameter("type");
 
         SendEmail sendemail = new SendEmail();
-
-                sendemail.sendMsg("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator", "Request Un-Look Form","mulhimmm@gmail.com");
-                sendMsg("Email was sent requesting to un-look the form",request);
-                response.sendRedirect("/form/index.jsp");
+        sendemail.sendMsg("Faculty Member: "+Fn+" request to un-look a "+type+" form in "+c+" course for "+pi+" performance indicator", "Request Un-Look Form","mulhimmm@gmail.com");
+        sendMsg("Email was sent requesting to un-look the form",request);
+        response.sendRedirect("/form/index.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
