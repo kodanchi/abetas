@@ -5,6 +5,13 @@
 <%
     /**
      * login page used to login to the system , forget password and reset password
+     *
+     * done by:
+     * Mujahid Alzahrani
+     * Ibrahim Abuaqel
+     * Muhammed Almulhim
+     * Abdullah Alsaif
+     * Muhammed Aljallal
      */
 %>
 
@@ -22,7 +29,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>ABETAS</title>
+    <title>Welcome to ABETAS</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />

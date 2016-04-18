@@ -6,6 +6,13 @@
     /**
      * used to display the structure of the form pages by including header and footer and main container based on the request
      * parameters.
+     *
+     * * done by:
+     * Mujahid Alzahrani
+     * Ibrahim Abuaqel
+     * Muhammed Almulhim
+     * Abdullah Alsaif
+     * Muhammed Aljallal
      */
 
     String pageName = "unlockform.jsp";
@@ -48,7 +55,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>User Management</title>
+    <title>ABETAS - Form Management</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />

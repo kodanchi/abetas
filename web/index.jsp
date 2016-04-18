@@ -4,6 +4,13 @@
 <%
     /**
      * used to display the home page of superuser.
+     *
+     * * done by:
+     * Mujahid Alzahrani
+     * Ibrahim Abuaqel
+     * Muhammed Almulhim
+     * Abdullah Alsaif
+     * Muhammed Aljallal
      */
 %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
