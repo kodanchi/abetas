@@ -18,9 +18,6 @@
     <meta name="viewport" content="width=device-width" />
 
     <link href="/css/bootstrap.css" rel="stylesheet" />
-<%--
-    <link href="/css/ct-paper.css" rel="stylesheet"/>
---%>
     <link href="/css/demo.css" rel="stylesheet" />
     <link href="/css/users.css" rel="stylesheet" />
     <link href="/css/flat-ui.css" rel="stylesheet" />
@@ -58,7 +55,6 @@
                      * used to display the structure of the user pages by including header and footer and main container based on the
                      * request parameter
                      */
-                    //session = request.getSession(false);
                     boolean isAS = false;
                     if(request.getSession().getAttribute("userLvl") != null){
                         Integer ulvl = (Integer) request.getSession().getAttribute("userLvl");
@@ -357,12 +353,6 @@
                     </div>
 
 
-
-
-
-
-
-
                     <!-- End of col -->
                 </div>
 
@@ -377,77 +367,15 @@
 <div id="loading" ></div>
 </body>
 
-<!--  Plugins -->
-<%--<script src="/js/ct-paper-checkbox.js"></script>
-<script src="/js/ct-paper-radio.js"></script>
-<script src="/js/ct-paper.js"></script>--%>
 <script src="/js/bootstrap-select.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/sys-usr-set.js"></script>
 <script src="/js/bootstrap-colorpicker.min.js"></script>
-
-
-
-
+<script src="/js/pageloading.js"></script>
 
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-    /*$( "#slider-range" ).slider({
-        range: true,
-        min: 0,
-        max: 500,
-        values: [ 75, 300 ],
-    });
-    $( "#slider-default" ).slider({
-        value: 70,
-        orientation: "horizontal",
-        range: "min",
-        animate: true
-    });
-    $('.btn-tooltip').tooltip('show');
-    $('.radio').on('toggle', function() { });
-
-
-    $(function(){
-        //$("#header").load("/header.jsp");
-        //$("#main").load("userslist.jsp");
-        //$("#footer").load("/footer.jsp");
-    });
-
-
-    function addUser(){
-        $("#main").load("adduser.jsp");
-    }
-
-    function cancel(){
-        $("#main").load("userslist.jsp");
-    }
-
-     */
-
-    function onReady(callback) {
-        var intervalID = window.setInterval(checkReady, 100);
-        function checkReady() {
-            if (document.getElementsByTagName('body')[0] !== undefined) {
-                window.clearInterval(intervalID);
-                callback.call(this);
-            }
-        }
-    }
-
-
-
-
-
-    function show(id, value) {
-        document.getElementById(id).style.display = value ? 'block' : 'none';
-    }
-
-    onReady(function () {
-        show('page', true);
-        show('loading', false);
-    });
 
 
 </script>

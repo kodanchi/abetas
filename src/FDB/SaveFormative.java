@@ -102,13 +102,13 @@ public class SaveFormative extends HttpServlet {
 
 
                                     } else {
-                                        sendMsg("file must be type of PDF",request,response);
+                                        sendMsg("file must be type of PDF",request);
                                         isValid = false;
                                     }
 
 
                                 } else {
-                                    sendMsg("Evidence file's size exceeds 100 mb",request,response);
+                                    sendMsg("Evidence file's size exceeds 100 mb",request);
                                     isValid = false;
                                 }
                             }else{
@@ -124,8 +124,7 @@ public class SaveFormative extends HttpServlet {
                         } else {
                             dba.updateFormF(WrittenRubrics, Comments, Obstacles, Improvement, null, Integer.parseInt(Formative_ID));
                         }
-                        sendMsg("Form is saved",request,response);
-                        //redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
+                        sendMsg("Form is saved",request);
                     }else {
                         redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }
@@ -151,12 +150,11 @@ public class SaveFormative extends HttpServlet {
     }
 
     /**
-     * Function that handels the message sending.
-     * @param msg
-     * @param request
-     * @param response
+     * send success message through session attribute and redirect the user to the same page (form page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
      */
-    protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response){
+    protected void sendMsg(String msg, HttpServletRequest request){
 
 
         if(request.getSession().getAttribute("Msg") == null)

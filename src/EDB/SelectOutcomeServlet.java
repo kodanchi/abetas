@@ -44,7 +44,6 @@ public class SelectOutcomeServlet extends HttpServlet {
 
             PIRubrics = dbs.selectRubricsToEvaluate(tid);
 
-
             out.print("<div class=\"list-group well\">");
             for (ArrayList<String> PI : pIListS){
 
@@ -80,10 +79,8 @@ public class SelectOutcomeServlet extends HttpServlet {
                             EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-danger\">"+PI.get(1)+
                             "</br><div class=\"pull-right\" >Summative | Thredshold: "+threshold+"%</div></br></a>");
 
-
                     failPis++;
                 }
-
             }
 
 

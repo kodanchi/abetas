@@ -19,13 +19,10 @@
     String id = request.getParameter("id");
     String tid = request.getParameter("tid");
     String pid = request.getParameter("pid");
-    String dataType = request.getParameter("dataType");
 
     ArrayList<String> PIRubrics = null;
     ArrayList<String> PIResults = null;
-    String[] styles = null;
     float[] results = null;
-    int yAxis= 100;
 
     try {
 
@@ -48,9 +45,6 @@
                 results[3]++;
             }
         }
-
-        yAxis = (PIRubrics.size() * 100 )/PIResults.size();
-        styles = new String[]{"#b87333","silver","gold","#e5e4e2"};
 
 
     } catch (ClassNotFoundException e) {
@@ -96,13 +90,7 @@
                                 out.print(" <option value=\""+course.get(0)+"\" data-tokens=\""+course.get(1)+"\">"+course.get(1)+"</option>");
                             }
                         %>
-
-
                         </select>
-
-
-
-
 
                     </div>
 
@@ -173,14 +161,11 @@
                                         }
                                         %>];
 
-                                    //var ctx = document.getElementById("canvas").getContext("2d");
-
                                     window.mychart.clear();
                                     window.mychart.data.datasets[0].label = "PI: <%=id%>"
                                     window.mychart.data.datasets[0].data = Results;
                                     window.mychart.data.datasets[0].backgroundColor = "rgba(218, 165, 32, 0.8)";
                                     window.mychart.update();
-                                    //window.mychart.resize();
 
                                 };
 
@@ -188,17 +173,12 @@
 
 
                                     window.mychart.clear();
-                                    //window.mychart.addData(data,title);
                                     window.mychart.data.datasets[0].backgroundColor = backgroundColor;
                                     window.mychart.data.datasets[0].label = title;
                                     window.mychart.data.datasets[0].data = data;
                                     window.mychart.update();
-                                    //window.mychart.resize();
-
-
 
                                 };
-
 
                             </script>
 

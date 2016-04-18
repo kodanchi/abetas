@@ -3,7 +3,7 @@ package EDB;
 import org.apache.commons.codec.binary.Base64;
 
 /**
- * Created by Mojahed on 3/3/2016.
+ * EncDec is used to encrypt/decrypt http request parameters.
  */
 public class EncDec {
     /**

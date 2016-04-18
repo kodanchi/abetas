@@ -105,36 +105,13 @@
 
                                     %>
 
-
-
-
-
                                 </div>
                             <%
                                 }
                             %>
                         </div>
                         <%
-                            /*out.print("<a href=\"#cycle-"+cycleId+"\" class=\"list-group-item \" onclick=\"new function (){\n" +
-                                    "                    show('page', false);\n" +
-                                    "                    show('loading', true);\n" +
-                                    "                    $.ajax({\n" +
-                                    "                       type: 'POST',\n" +
-                                    "                       data:{cid: "+cycleId+"},\n" +
-                                    "                       url:'/SelectCycleServlet',\n" +
-                                    "                       success: function(result){\n" +
-                                    "                        $('#cycle-"+cycleId+"').html(result);\n" +
-                                    "                        show('page', true);\n" +
-                                    "                        show('loading', false);\n" +
-                                    "                        scrollTo('cycle-"+cycleId+"');" +
-                                    "                    }});" +
-                                    "                }\"" +
-                                    " data-toggle=\"collapse\">" +
-                                    "                        <i class=\"glyphicon glyphicon-chevron-right\"></i>Cycle-"+cycleId+"\n" +
-                                    "</a>" +
-                                    "                    <div class=\"list-group collapse\" id=\"cycle-"+cycleId+"\">" +
-                                    "                    </div>"
-                            );*/
+
                         }
 
                             } catch (ClassNotFoundException e) {
@@ -144,40 +121,12 @@
                             }
                     %>
 
-
-
-
-
-
                 </div>
 
             </div>
 
             <script>
-                /*$(document).on('click','#cycleList a',function(){
-                    $('#cycleList a').removeClass('active');
-                    $(this).addClass('active');
-                    $('#termList').html("");
-                    $('#programList').html("");
-                    $('#pIList').html("");
-                })
-                $(document).on('click','#termList a',function(e){
-                    e.preventDefault();
-                    $('#termList a').removeClass('active');
-                    $(this).addClass('active');
-                    $('#programList').html("");
-                    $('#pIList').html("");
-                })
-                $(document).on('click','#programList a',function(e){
-                    e.preventDefault();
-                    $('#programList a').removeClass('active');
-                    $(this).addClass('active');
-                    $('#pIList').html("");
-                })
-                $(document).on('click','#pIList a',function(){
-                    $('#pIList a').removeClass('active');
-                    $(this).addClass('active');
-                })*/
+
                 $(function() {
 
                     $('.list-group-item').on('click', function() {
@@ -201,10 +150,6 @@
             </div>
 
         </div>
-
-
-
-
 
 
     </div>

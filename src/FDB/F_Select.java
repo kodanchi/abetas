@@ -8,9 +8,6 @@ import java.util.ArrayList;
 
 public class F_Select {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
     DataSource dataSource = null;
 
     /**
@@ -303,8 +300,7 @@ public class F_Select {
             preparedStatement.setInt(1, id);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+id);
-            //
+
             int i=-1;
             while (rs.next()){
                 data.add(rs.getString(1));
@@ -378,8 +374,7 @@ public class F_Select {
             preparedStatement.setInt(1, Formative_ID);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  Formative_ID   "+Formative_ID);
-            //
+
             int i=-1;
             while (rs.next()){
                 data.add(rs.getString(1));
@@ -453,8 +448,7 @@ public class F_Select {
             preparedStatement.setInt(1, Summative_ID);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  Summative_ID   "+Summative_ID);
-            //
+
             int i=-1;
             while (rs.next()){
                 data.add(rs.getString(1));
@@ -523,12 +517,10 @@ public class F_Select {
             preparedStatement.setString(1, code);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  code   "+code);
-            //
+
             int i=-1;
             while (rs.next()){
                 name=rs.getString(1);
-                System.out.println("@@@@@@@@@@@@@@@@@@@     "+name);
                 return name;
 
             }
@@ -817,9 +809,7 @@ public class F_Select {
                 data.add(String.valueOf(rsSelect.getInt(4)));
                 data.add(String.valueOf(rsSelect.getInt(5)));
                 data.add(rsSelect.getString(6));
-                //name= rsSelect.getString(1);
-                //System.out.println(name+"    dsgfdgdgs");
-                //return name;
+
             }
 
             ////Need to display the temp password to the screen
@@ -1277,7 +1267,8 @@ public class F_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT Faculty_ID, Faculty_Fname, Faculty_Mname, Faculty_Lname FROM abetasdb.faculty_member WHERE Faculty_ID = ?;";
+            String query = "SELECT Faculty_ID, Faculty_Fname, Faculty_Mname, Faculty_Lname FROM abetasdb.faculty_member " +
+                    "WHERE Faculty_ID = ?;";
 
         /*
          *  Get connection from the DataSource
@@ -1654,8 +1645,8 @@ public class F_Select {
             preparedStatement.setInt(1, Formative_ID);
 
             rs = preparedStatement.executeQuery();
-            System.out.println("@@@@@@@@@@@@@@@@@@@  id   "+Formative_ID);
-            //
+
+
             int i=-1;
             while (rs.next()){
                 data.add(rs.getString(1));

@@ -198,10 +198,8 @@
                 var form = $(this);
                 bootbox.confirm('Are you sure want to Restore the database ?', function(result) {
                     if(result == true){
-                        //var form = $(this).parents('form:first');
                         $('form.RestoreForm').off('submit');
                         form.submit();
-                        //alert('fdf');
                     }
                 });
 
@@ -216,7 +214,6 @@
 <div id="loading" ></div>
 </body>
 
-<!-- <script src="code.jquery.com/jquery-1.10.2.js"></script> -->
 <script src="js/bootstrap.js" type="text/javascript"></script>
 
 <!--  Plugins -->

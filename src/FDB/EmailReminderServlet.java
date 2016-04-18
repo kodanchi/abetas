@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * EmailReminderServlet is used to send emails to all the faculty members who have one or more of un-submitted forms.
+ */
 
 @WebServlet(name = "EmailReminderServlet", urlPatterns = {"/Emailrem"})
 public class EmailReminderServlet extends HttpServlet {
@@ -26,15 +29,11 @@ public class EmailReminderServlet extends HttpServlet {
         SendEmail sendemail = new SendEmail();
 
         for (int i = 0; i < e.length; i++) {
-            //System.out.println(e[i]);
             if (i == 0) {
-                //sendemail.sendMsg("Hello this is reminder", "Reminder", e[i].substring(1, ','));
                 e[i].replace('[', ' ');
                 e[i].replace(']', ' ');
                 String a = e[0].replace('[', ' ');
                 a = a.replace(']', ' ');
-                System.out.println(e[0].replace('[', ' '));
-                System.out.println(a);
                 sendemail.sendMsg("Hello, this is reminder that you have one or more of un-submitted forms", "Reminder", a);
                 sendMsg("Email was sent to all the Faculty Members in the table",request);
                 response.sendRedirect("/form/index.jsp?page=unsubmitted");
@@ -47,7 +46,11 @@ public class EmailReminderServlet extends HttpServlet {
 
     }
 
-
+    /**
+     * send success message through session attribute and redirect the user to the same page (un-submitted forms page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
+     */
     protected void sendMsg(String msg, HttpServletRequest request) {
 
         if (request.getSession().getAttribute("Msg") == null)

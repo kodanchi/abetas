@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by Mohammed on 2/6/2016.
+ * RestoreDB is used to restore selected backup file to the database.
  */
 @WebServlet(name = "restoreDB",
         urlPatterns = {"/RestoreDB"})
@@ -33,7 +33,6 @@ public class RestoreDB extends HttpServlet {
          * then it will be redirected to the url "backup.jsp"
          * if the backup file not exist the user will get message till him that  restore files operation not successfully done
          */
-        System.out.println(request.getParameter("restoreAction"));
         String restoreBackup=request.getParameter("restoreAction");
         if (restoreBackup!=null)
         restoreDB(restoreBackup,request,response);
@@ -62,8 +61,6 @@ public class RestoreDB extends HttpServlet {
          * lastly message will apear to the user either the operation successfully done or not
          */
         String[] executeCmd = new String[]{"C:\\Program Files\\MySQL\\MySQL Server 5.7\\bin\\mysql.exe", dbName, "--user=" + dbUser, "--password=" + dbPass, "-e", "\" source " +SERVER_DIRECTORY +  UPLOAD_DIRECTORY +"\\"+restoreBackup+"\"" };
-        for(int i= 0 ;i<executeCmd.length;i++)
-        System.out.print(executeCmd[i]);
 
         Process runtimeProcess= null;
 

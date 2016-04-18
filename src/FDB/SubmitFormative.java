@@ -52,51 +52,45 @@ public class SubmitFormative extends HttpServlet {
                             case "Formative_ID":
                                 Formative_ID = item.getString();
                                 if (Formative_ID.equals("")) {
-                                    sendMsg("Invalid Form ID!", request, response);
+                                    sendMsg("Invalid Form ID!", request);
                                     isValid = false;
                                 }
                                 break;
                             case "WrittenRubrics":
                                 WrittenRubrics = item.getString();
                                 if (WrittenRubrics.equals("")) {
-                                    sendMsg("Written Rubrics must be entered", request, response);
+                                    sendMsg("Written Rubrics must be entered", request);
                                     isValid = false;
                                 }
                                 break;
                             case "Comments":
                                 Comments = item.getString();
                                 if (Comments.equals("")) {
-                                    sendMsg("Comments must be entered", request, response);
+                                    sendMsg("Comments must be entered", request);
                                     isValid = false;
                                 }
                                 break;
                             case "Obstacles":
                                 Obstacles = item.getString();
                                 if (Obstacles.equals("")) {
-                                    sendMsg("Obstacles must be entered", request, response);
+                                    sendMsg("Obstacles must be entered", request);
                                     isValid = false;
                                 }
                                 break;
                             case "Improvement":
                                 Improvement = item.getString();
                                 if (Improvement.equals("")) {
-                                    sendMsg("Improvement must be entered", request, response);
+                                    sendMsg("Improvement must be entered", request);
                                     isValid = false;
                                 }
                                 break;
                             case "evidence":
                                 evidence = item.getString();
-                                if (evidence.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
-                                }
+
                                 break;
                             case "dateInput":
                                 dateInput = item.getString();
-                                if (dateInput.equals("")) {
-                                    //sendMsg("University name must be entered", request, response);
-                                    //isValid = false;
-                                }
+
                                 break;
 
                         }
@@ -124,13 +118,13 @@ public class SubmitFormative extends HttpServlet {
 
 
                                     } else {
-                                        sendMsg("file must be type of PDF",request,response);
+                                        sendMsg("file must be type of PDF",request);
                                         isValid = false;
                                     }
 
 
                                 } else {
-                                    sendMsg("Evidence file's size exceeds 100 mb",request,response);
+                                    sendMsg("Evidence file's size exceeds 100 mb",request);
                                     isValid = false;
                                 }
                             }else{
@@ -147,7 +141,7 @@ public class SubmitFormative extends HttpServlet {
                             dba.updateFormF(WrittenRubrics, Comments, Obstacles, Improvement, null, Integer.parseInt(Formative_ID));
                         }
                         dba.updateSubmitFormF(Integer.parseInt(Formative_ID),dateInput);
-                        sendMsg("Form has been successfully submitted ",request,response);
+                        sendMsg("Form has been successfully submitted ",request);
                     }else {
                         redirectURL= "/form/index.jsp?page=fillForm&type=formative&id="+Formative_ID;
                     }
@@ -174,12 +168,11 @@ public class SubmitFormative extends HttpServlet {
     }
 
     /**
-     * Function that handels the message sending.
-     * @param msg
-     * @param request
-     * @param response
+     * send success message through session attribute and redirect the user to the same page (form page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
      */
-    protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response){
+    protected void sendMsg(String msg, HttpServletRequest request){
 
 
         if(request.getSession().getAttribute("Msg") == null)

@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Mojahed on 3/21/2016.
+ * backupRescheduleServlet is used to set the backup interval as user requested (daily, weekly,biweekly, monthly).
  */
-@WebServlet(name = "backupReschduleServlet", urlPatterns = {"/setBackupTime"})
-public class backupReschduleServlet extends HttpServlet {
+@WebServlet(name = "backupRescheduleServlet", urlPatterns = {"/setBackupTime"})
+public class backupRescheduleServlet extends HttpServlet {
     final int SECOND = 1000;
     final int MINUTE = 60 * SECOND;
     final int HOUR = 60 * MINUTE;
@@ -29,10 +29,8 @@ public class backupReschduleServlet extends HttpServlet {
 
         TimeClass t = (TimeClass) context.getAttribute("TimeClass");
         TimeClass newtimer = new TimeClass(t.getBACKUP_DIRECTORY());
-//        RescheduleTime timeResch = new RescheduleTime(t.getBACKUP_DIRECTORY());
         if(selctedTime.equals("daily")){
             context.setAttribute("backupTime","daily");
-            //t.cancel();
             newtimer.Reschedule(DAY);
             t.cancel();
 
@@ -61,14 +59,13 @@ public class backupReschduleServlet extends HttpServlet {
 
     }
 
+    /**
+     * send success message through session attribute and redirect the user to the same page (backup page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
+     */
     protected void sendMsg(String msg, HttpServletRequest request){
-
-
-        System.out.println("Msg : "+msg);
-
-        System.out.println("session is : "+request.getSession().getId());
         request.getSession().setAttribute("Msg",msg);
-
     }
 
 }

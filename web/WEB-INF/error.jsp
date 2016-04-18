@@ -12,12 +12,12 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
 
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/flat-ui.css" rel="stylesheet" />
-    <link href="css/cus.css" rel="stylesheet" />
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/flat-ui.css" rel="stylesheet" />
+    <link href="/css/cus.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="css/fonts.css" rel="stylesheet">
+    <link href="/css/fonts.css" rel="stylesheet">
 
 </head>
 
@@ -58,19 +58,11 @@
 <div id="loading" ></div>
 </body>
 
-<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
-<!-- <script src="code.jquery.com/jquery-1.10.2.js"></script> -->
-<script src="js/bootstrap.js" type="text/javascript"></script>
-
-<!--  Plugins -->
-<script src="js/bootstrap-select.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="/js/bootstrap.js" type="text/javascript"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
-<script src="js/flat-ui.min.js"></script>
-<script src="js/flat-ui-select.js"></script>
+<script src="/js/flat-ui.min.js"></script>
 <script>
     $("#slider-range").slider({
         range: true,

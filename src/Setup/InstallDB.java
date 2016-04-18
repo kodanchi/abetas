@@ -177,9 +177,6 @@ public class InstallDB {
     public void installDB() throws ClassNotFoundException, SQLException {
 
         connect();
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        int rs = 0;
 
 
         Connection conn = null;

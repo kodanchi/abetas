@@ -14,9 +14,7 @@
     <listener>
         <listener-class>Listeners.ContextListener</listener-class>
     </listener>
-    <listener>
-        <listener-class>Listeners.CustomHttpSessionListener</listener-class>
-    </listener>
+
 
 
 

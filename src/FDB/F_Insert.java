@@ -9,9 +9,7 @@ import java.sql.*;
 
 public class F_Insert {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
+
     DataSource dataSource = null;
 
     /**

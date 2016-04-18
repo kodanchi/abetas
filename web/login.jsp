@@ -2,7 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 
-
+<%
+    /**
+     * login page used to login to the system , forget password and reset password
+     */
+%>
 
 
 <!doctype html>
@@ -60,14 +64,10 @@
 
 
                             <%
-                            /**
-                                 * login page used to login to the system , forget password and reset password
-                             */
+
                                 if(request.getParameter("status")!= null){
                                     if(request.getParameter("status").equals("failedLogin")){
-                                                            /*out.print("<p class=\"bg-danger\">");
-                                                            out.print("wrong username or password!");
-                                                            out.print("</p>");*/
+
                                         out.print("\n" +
                                                 "<div class=\"alert alert-danger text-center fade in\">\n" +
                                                 "<a href=\"#\" class=\"close\" data-dismiss=\"alert\" aria-label=\"close\">&times;</a>"+
@@ -94,18 +94,6 @@
                                         <input name="userPassword" id="userPassword" type="password" class="form-control" placeholder="Password">
                                     </div>
 
-                                    <%--<div class="form-group">
-
-                                        <label class="checkbox" >
-
-                                            <input type="checkbox" name="remember" data-toggle="checkbox"   checked>
-
-                                            Remember me
-
-                                        </label>
-
-
-                                    </div>--%>
                                     <p ><input type="checkbox" name="remember" id="test1"
                                              <%
                                                  String HEIL = CookiesControl.getCookieValue(request,"rememberCookie");
@@ -147,15 +135,6 @@
                                                                         $('#forgotDiv').hide();
                                                                     }">Cancel</button>
                                 </form>
-                                <%--<script>
-                                    $(document).trigger("clear-alert-id.emailMsg");
-                                    $(document).trigger("set-alert-id-emailMsg", [
-                                        {
-                                            message: "Email Does not exist!, Try more time!",
-                                            priority: "info"
-                                        }
-                                    ]);
-                                </script>--%>
                                 <script>
                                     function onRecoverPassword(){
                                         var useremail = document.getElementById("userEmail");
@@ -288,61 +267,6 @@
         </div>
     </div>
     <div id="loading" ></div>
-
-
-<%--<div class="wrapper">
-    <div class="register-background">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
-                    <div class="register-card">
-                        <img src="./img/logo.png"/>
-                        <form class="login-form" method="post" action="/login">
-
-                            <%
-
-                                if(request.getParameter("status")!= null){
-                                    if(request.getParameter("status").equals("failedLogin")){
-                                        out.print("<p class=\"bg-danger\">");
-                                        out.print("wrong username or password!");
-                                        out.print("</p>");
-                                    }else if(request.getParameter("status").equals("missingData")){
-                                        out.print("<p class=\"bg-danger\">");
-                                        out.print("Missing username or password!");
-                                        out.print("</p>");
-                                    }
-                                }
-                            %>
-
-                            <div class="form-group">
-                                <label for="userName" class="title">Username</label>
-                                <input id="userName" name="userName" type="text" class="form-control" placeholder="Username" required autofocus>
-                            </div>
-                            <div class="form-group">
-
-                                <label for="userPassword" class="title">Password</label>
-                                <input id="userPassword" name="userPassword" type="password" class="form-control" placeholder="Password" required>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox" name="remember" value="remember-me"> Remember me
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" name="login" value="Login" class="btn btn-danger btn-block">Login</button>
-                        </form>
-                        <div class="forgot">
-                            <a href="#" class="btn btn-simple btn-danger">Forgot password?</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>--%>
 
 </body>
 </html>

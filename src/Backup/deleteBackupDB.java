@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by Mohammed on 2/6/2016.
+ * deleteBackupDB is used to delete the backup file from backup folder.
  */
 @WebServlet(name = "deleteBackupDB",
         urlPatterns = {"/BackupDel"})
@@ -35,29 +35,38 @@ public class deleteBackupDB extends HttpServlet {
          * then it will be redirected to the url "backup.jsp"
          * if the backup file not exist the user will get message till him that deleted files operation not successfully done
          */
-        String deleteAction=request.getParameter("deleteAction");
-        if(deleteAction!=null) {
-            deleteBackup(deleteAction, request, response);
-            response.sendRedirect("backup.jsp");
+
+        if(request.getParameter("deleteAction") !=null) {
+            if(deleteBackup(request)) {
+                response.sendRedirect("backup.jsp");
+            }else {
+                out.print("Wrong restore files");
+            }
         }
         else{
             out.print("Wrong restore files");
 
         }
     }
-    public void deleteBackup(String deleteDB,HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
-        deleteDB = request.getParameter("deleteAction");
+
+    /**
+     * The location of the backup files that need to be deleted
+     * then check if the file exist then delete otherwise tell the user that the file is not exist
+     *
+     * @param request HttpServletRequest
+     * @throws ServletException
+     * @throws IOException
+     */
+    public boolean deleteBackup(HttpServletRequest request) throws ServletException, IOException{
+
+        boolean isDeleted = false;
+        String deleteDB = request.getParameter("deleteAction");
     try{
-/**
- * The location of the backup files that need to be deleted
- * then check if the file exist then delete otherwise tell the user that the file is not exist
- */
+
         File file = new File(SERVER_DIRECTORY + "/" + UPLOAD_DIRECTORY + "/" +deleteDB);
 
         if(file.delete()){
-            System.out.println(file.getName() + " is deleted!");
-        }else{
-            System.out.println("Delete operation is failed.");
+            isDeleted = true;
         }
 
     }catch(Exception e){
@@ -65,6 +74,6 @@ public class deleteBackupDB extends HttpServlet {
         e.printStackTrace();
 
     }
-
+        return isDeleted;
     }
 }

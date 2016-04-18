@@ -111,13 +111,13 @@ public class SaveSummative extends HttpServlet {
                                         //File uploaded successfully
 
                                     } else {
-                                        sendMsg("file must be type of PDF",request,response);
+                                        sendMsg("file must be type of PDF",request);
                                         isValid = false;
                                     }
 
 
                                 } else {
-                                    sendMsg("Evidence file's size exceeds 100 mb",request,response);
+                                    sendMsg("Evidence file's size exceeds 100 mb",request);
                                     isValid = false;
                                 }
                             }else{
@@ -142,7 +142,7 @@ public class SaveSummative extends HttpServlet {
 
                             dbi.addSummativeRubric(Integer.parseInt(Summative_ID),optionsRadios.get(i),Integer.parseInt(SID.get(i)));
                         }
-                        sendMsg("Form No:"+Summative_ID+" has been successfully saved",request,response);
+                        sendMsg("Form No:"+Summative_ID+" has been successfully saved",request);
                     }else {
                         redirectURL= "/form/index.jsp?page=fillForm&type=summative&id="+Summative_ID;
                     }
@@ -169,12 +169,11 @@ public class SaveSummative extends HttpServlet {
     }
 
     /**
-     * Function that handels the message sending.
-     * @param msg
-     * @param request
-     * @param response
+     * send success message through session attribute and redirect the user to the same page (form page)
+     * @param msg message which will be sent to the user
+     * @param request HttpServletRequest
      */
-    protected void sendMsg(String msg, HttpServletRequest request, HttpServletResponse response) {
+    protected void sendMsg(String msg, HttpServletRequest request) {
 
         if (request.getSession().getAttribute("Msg") == null)
             request.getSession().setAttribute("Msg", msg);

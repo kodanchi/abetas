@@ -8,9 +8,6 @@ import java.sql.*;
 
 public class F_Delete {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
     DataSource dataSource = null;
 
     /**
@@ -73,7 +70,6 @@ public class F_Delete {
             String query = "delete from summative_rubric where FK_Summative_ID = ? ";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, id);
-            //preparedStatement.setInt(2, id);
 
             rs = preparedStatement.executeUpdate();
 

@@ -29,8 +29,6 @@ public class SelectSectionServlet extends HttpServlet {
         try {
             PrintWriter out = response.getWriter();
 
-
-            ArrayList<ArrayList<String>> SectionList = null;
             String evidence = null;
             int threshold;
             ArrayList<String> PIRubrics = null;
@@ -41,16 +39,10 @@ public class SelectSectionServlet extends HttpServlet {
 
             if(cid.equals("Overall")){
 
-
-
             }else {
-
                 evidence = dbs.selectEvidenceOfSummativeToEvaluate(sid,pIid,tid,pid,cid);
-                threshold = dbs.selectThresholdOfSummativeToEvaluate(pIid);
                 PIRubrics = dbs.selectRubricsToEvaluate(tid);
                 PIResults = dbs.selectSummativeRubricResultsOfSectionToEvaluate(sid,pIid,pid,tid,cid);
-
-
 
 
                 for (String sRubric : PIResults){
@@ -66,11 +58,6 @@ public class SelectSectionServlet extends HttpServlet {
                 }
 
 
-
-
-
-
-                //out.print("<div class=\"row\">\n");
                 if(evidence != null) {
                     out.print("<div class=\"col-md-4 pull-right\" >" +
                             "<a target=\"_blank\" class=\"btn btn-success btn-fill pull-right\" href=\""+evidence+"\" >Show Evidence</a>\n" +

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * logoutServlet is used to remove cookie and invalidate the user session.
+ */
 
 @WebServlet(name = "logoutServlet", urlPatterns = {"/logout"})
 public class logoutServlet extends HttpServlet {
@@ -27,11 +30,8 @@ public class logoutServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        PrintWriter out = response.getWriter();
         request.getSession().invalidate();
         CookiesControl.removeCookie(response,"userCookie");
-        out.println("success logout");
-
         response.sendRedirect("/login.jsp?logout=true");
 
 

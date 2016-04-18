@@ -32,7 +32,6 @@ public class SelectCourseServlet extends HttpServlet {
             ArrayList<String> PIResults = null;
 
             float[] results = new float[]{0,0,0,0};
-            //String[] styles = new String[]{"#b87333","silver","gold","#e5e4e2"};
 
 
             if(cid.equals("Overall")){
@@ -68,10 +67,6 @@ public class SelectCourseServlet extends HttpServlet {
                     out.print("<option value=\""+section.get(0)+"\" data-tokens=\""+section.get(0)+"\">"+section.get(0)+"</option>\n");
                 }
                 out.print("</select>\n");
-                /*out.println("<select id=\"sectionListSelect\" onchange=\"onSectionChange("+tid+","+pid+","+pIid+","+cid+")\" >\n" +
-                        "                        <option>gg</option>\n" +
-                        "                        <option>dd</option>\n" +
-                        "                    </select>");*/
 
 
                 out.print("<script type=\"text/javascript\">\n" );

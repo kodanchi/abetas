@@ -68,7 +68,6 @@
 
 
 <%
-    //Integer fid = Integer.parseInt((String) request.getSession().getAttribute("userId"));
 
     String FK_Link_ID="";
     if(Formative_Section_ID !=null) {

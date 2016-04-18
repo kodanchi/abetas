@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class="row ">
-                    <div style="max-width:500px; margin-right:auto; margin-left:auto;">
+                    <div class="col-md-6 col-md-offset-3" >
                         <div class="collapse navbar-collapse" id="navbar-collapse-01">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a >Hello <%=username%></a></li>

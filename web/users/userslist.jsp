@@ -38,9 +38,6 @@
 
                         out.print("$(function(){\n");
                         if(msg.startsWith("Faculty_Member")){
-                            /*out.print("$(this).ready(function(){\n");
-                            out.print("showFTable()");
-                            out.print("});");*/
 
                             out.print("$('#FTable').show();\n" +
                                     "                        $('#ETable').hide();\n" +
@@ -122,7 +119,6 @@
                                     ArrayList<String> suRow ;
 
                                     for (int i=0; i<suArr.size();i++){
-                                        //suRow = new ArrayList<String>();
                                         suRow = suArr.get(i);
                                         out.print("<tr class=\"textContainer\" >");
                                         for (int j=1; j<suRow.size() - 1;j++) {
@@ -276,7 +272,6 @@
 
                                     String calPass = null;
                                     for (int i=0; i<eArr.size();i++){
-                                        //suRow = new ArrayList<String>();
                                         eRow = eArr.get(i);
                                         out.print("<tr class=\"textContainer\" >");
                                         for (int j=1; j<eRow.size();j++) {

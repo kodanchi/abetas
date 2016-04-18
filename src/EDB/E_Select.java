@@ -49,7 +49,6 @@ public class E_Select {
      */
     public ArrayList<Integer> selectCycle() throws ClassNotFoundException, SQLException {
 
-        //ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<Integer> data = new ArrayList<Integer>();
         connect();
 
@@ -71,17 +70,13 @@ public class E_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
 
             rs = preparedStatement.executeQuery();
 
             //
             while (rs.next()){
-                //data = new ArrayList<String>();
                 data.add(rs.getInt(1));
 
-
-                //RsArr.add(data);
             }
 
 
@@ -122,7 +117,6 @@ public class E_Select {
     public String  selectFormmativeIdToEvaluate(int FK_Section_ID) throws ClassNotFoundException, SQLException {
 
         String data = null;
-        //ArrayList<String> RowDate;
         connect();
 
         Connection connection = null;
@@ -147,16 +141,13 @@ public class E_Select {
              */
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, FK_Section_ID);
-            //preparedStatement.setInt(2, FK_Summative_ID);
 
             rs = preparedStatement.executeQuery();
 
             //
             while (rs.next()){
-                //RowDate = new ArrayList<String>();
                 data = rs.getString(1);
 
-                //RsArr.add(RowDate);
             }
 
         } catch (Exception e) {
@@ -363,7 +354,6 @@ public class E_Select {
              */
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, FK_T_ID);
-            //preparedStatement.setString(4, LinkType);
 
             rs = preparedStatement.executeQuery();
             //
@@ -443,7 +433,6 @@ public class E_Select {
             preparedStatement.setInt(1, FK_pi_ID);
             preparedStatement.setInt(2, FK_P_ID);
             preparedStatement.setInt(3, FK_T_ID);
-            //preparedStatement.setString(1, LinkType);
 
             rs = preparedStatement.executeQuery();
 
@@ -662,7 +651,7 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT C_name FROM course WHERE C_code = '"+code+"' ;";
+            String query = "SELECT C_name FROM course WHERE C_code = ? ;";
 
             /*
              *  Get connection from the DataSource
@@ -674,7 +663,7 @@ public class E_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setString(1, code);
 
             rs = preparedStatement.executeQuery();
             //
@@ -903,7 +892,6 @@ public class E_Select {
                     "AND program.P_ID = link_out_pi.FK_P_ID\n" +
                     "AND summative.Sum_submitted = 1\n" +
                     "AND summative.FK_Link_ID= link_out_pi.Link_ID;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -979,9 +967,6 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
-                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
-                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
 
             String query = "SELECT distinct FK_pi_ID, PI_name, FK_Section_ID \n" +
                     "From abetasdb.link_out_pi,abetasdb.performance_indicator, program , formative \n" +
@@ -1074,7 +1059,6 @@ public class E_Select {
                     "AND FK_out = Outcome_label\n" +
                     "AND link_out_pi.FK_P_ID = ? \n" +
                     "AND program.P_ID = link_out_pi.FK_P_ID\n;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1156,7 +1140,6 @@ public class E_Select {
                     "AND summative.Sum_submitted = 1\n" +
                     "AND FK_T_ID= ?\n" +
                     "AND link_out_pi.FK_P_ID = ? ;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1241,7 +1224,6 @@ public class E_Select {
                     "AND FK_T_ID= ?\n" +
                     "AND link_out_pi.FK_P_ID = ? \n" +
                     "AND link_out_pi.FK_C_ID=?;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1329,7 +1311,6 @@ public class E_Select {
                     "and link_out_pi.FK_P_ID= ? \n" +
                     "and link_out_pi.FK_T_ID= ? \n" +
                     "AND link_out_pi.FK_C_ID= ?;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1403,7 +1384,6 @@ public class E_Select {
             String query = "select Threshold\n" +
                     "from performance_indicator\n" +
                     "where performance_indicator.PI_Label = ?";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1472,7 +1452,6 @@ public class E_Select {
             String query = "SELECT Threshold \n" +
                     "FROM abetasdb.performance_indicator\n" +
                     "where PI_Label = ?;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1539,9 +1518,7 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            /*String query = "SELECT FK_pi_ID, PI_name, LinkType From abetasdb.link_out_pi, abetasdb.performance_indicator, " +
-                    "program WHERE FK_T_ID = ? AND FK_PI_ID = PI_Label AND link_out_pi.FK_P_ID = ? AND " +
-                    "program.P_ID = link_out_pi.FK_P_ID ;";*/
+
 
             String query = "SELECT FK_pi_ID, PI_name, LinkType, FK_Section_ID From abetasdb.link_out_pi, " +
                     "abetasdb.performance_indicator, program , formative\n" +
@@ -1551,7 +1528,6 @@ public class E_Select {
                     "AND program.P_ID = link_out_pi.FK_P_ID \n" +
                     "AND formative.F_submitted = 1\n" +
                     "AND formative.FK_Link_ID = link_out_pi.Link_ID ;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
             /*
              *  Get connection from the DataSource
@@ -1707,7 +1683,6 @@ public class E_Select {
              * Execute the query
              */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
 
             rs = preparedStatement.executeQuery();
             //
@@ -1780,8 +1755,6 @@ public class E_Select {
             rsSelect = preparedStatement.executeQuery();
 
             if (rsSelect.next()){
-                //data.add((id= rsSelect.getInt(1))+"");
-                //data.add(name = rsSelect.getString(1));
                 name= rsSelect.getString(1);
                 return name;
             }
@@ -1901,7 +1874,6 @@ public class E_Select {
         try {
 
             String query = "SELECT FK_out, FK_pi_ID, FK_C_ID, LinkType, FK_R_ID, FK_P_ID, FK_T_ID From abetasdb.link_out_pi WHERE Link_ID = ?;";
-            //,abetasdb.course,abetasdb.performance_indicator,abetasdb.p_student_outcome,abetasdb.program,abetasdb.term
 
         /*
          *  Get connection from the DataSource
@@ -2103,7 +2075,7 @@ public class E_Select {
         ResultSet rs = null;
         try {
 
-            String query = "SELECT C_level FROM course WHERE C_code = '"+code+"' ;";
+            String query = "SELECT C_level FROM course WHERE C_code = ? ;";
 
         /*
          *  Get connection from the DataSource
@@ -2115,7 +2087,7 @@ public class E_Select {
          * Execute the query
          */
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, 10);
+            preparedStatement.setString(1, code);
 
             rs = preparedStatement.executeQuery();
             //
@@ -2188,8 +2160,6 @@ public class E_Select {
             rsSelect = preparedStatement.executeQuery();
 
             if (rsSelect.next()){
-                //data.add((id= rsSelect.getInt(1))+"");
-                //data.add(name = rsSelect.getString(1));
                 name= rsSelect.getString(1);
                 return name;
             }

@@ -33,13 +33,10 @@ public class loginServlet extends HttpServlet {
 
                 String username = request.getParameter("userName");
                 String password = request.getParameter("userPassword");
-                String hashedPass = "";
 
                 if ((username != null && password != null) && (!username.equals("") && !password.equals(""))) {
 
                     try {
-                        hashedPass = Password.getSaltedHash(password);
-
 
                         String[] userData = adb.login(username);
 
@@ -112,10 +109,6 @@ public class loginServlet extends HttpServlet {
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-
-
 
     }
 }

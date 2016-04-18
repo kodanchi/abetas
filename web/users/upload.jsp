@@ -90,18 +90,6 @@
         e.fillInStackTrace();
     }
 
-    //String sheetDataId = UUID.randomUUID().toString();
-
-    //request.removeAttribute("sheetData");
-
-    //request.setAttribute("cData", dataArr);
-
-
-
-
-
-
-
 
 %>
                     </table>

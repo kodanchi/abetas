@@ -8,9 +8,7 @@ import java.sql.*;
 
 public class F_Update {
 
-    private Connection conn;
-    private Statement stmt;
-    private ResultSet result;
+
     DataSource dataSource = null;
 
     /**
@@ -272,7 +270,6 @@ public class F_Update {
          * Execute the query
          */
 
-            System.out.println("WWWWWWWWWWWWWWWWWWWWw");
             String query = "update summative set Sum_submitted = 1, Sum_date = ? where Summative_ID = ?";
 
             preparedStatement = connection.prepareStatement(query);
@@ -343,16 +340,7 @@ public class F_Update {
                 preparedStatement.setInt(2, id);
 
                 rs = preparedStatement.executeUpdate();
-            } /*else{
-                System.out.println("WWWWWWWWWWWWWWWWWWWW");
-                String query = "update summative set Sum_evidence = ? where Summative_ID = ?";
-
-                preparedStatement = connection.prepareStatement(query);
-                preparedStatement.setString(1, Sum_evidence);
-                preparedStatement.setInt(2, id);
-
-                rs = preparedStatement.executeUpdate();
-            }*/
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

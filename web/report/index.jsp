@@ -11,7 +11,6 @@
     if(request.getMethod().equals("GET")){
         pageName = null;
         String pageCall = request.getParameter("page");
-        //String cmdCall = request.getParameter("cmd");
         if(pageCall != null){
              if(pageCall.equals("fillForm")) {
 
@@ -96,40 +95,6 @@
 
 <script>
     $.ajaxPrefilter(function( options, originalOptions, jqXHR ) { options.async = true; });
-    /*$( "#slider-range" ).slider({
-     range: true,
-     min: 0,
-     max: 500,
-     values: [ 75, 300 ],
-     });
-     $( "#slider-default" ).slider({
-     value: 70,
-     orientation: "horizontal",
-     range: "min",
-     animate: true
-     });
-     $('.btn-tooltip').tooltip('show');
-     $('.radio').on('toggle', function() { });
-
-
-     $(function(){
-     //$("#header").load("/header.jsp");
-     //$("#main").load("userslist.jsp");
-     //$("#footer").load("/footer.jsp");
-     });
-
-
-     function addUser(){
-     $("#main").load("adduser.jsp");
-     }
-
-     function cancel(){
-     $("#main").load("userslist.jsp");
-     }
-
-     */
-
-
 
 </script>
 

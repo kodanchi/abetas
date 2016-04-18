@@ -25,13 +25,11 @@ public final class PassCodeMap {
 
 
         EmailTimeClass currentTime = new EmailTimeClass();
-        System.out.println("From setPassCode is "+code);
-         ArrayList<String> listOne = new ArrayList<String>();
 
       myMap.put(email,new ArrayList<>());
         myMap.get(email).add(code);
 
-currentTime.timerCalculate(email);
+        currentTime.timerCalculate(email);
 
     }
 
@@ -64,13 +62,6 @@ currentTime.timerCalculate(email);
      */
     public static String getpassKey(String emailCode){
 
-        if(myMap.containsKey(emailCode)) {
-
-            System.out.println("The code from index 0  is " + myMap.get(emailCode).get(0));
-
-        }
-
-
         return myMap.get(emailCode).get(0);
     }
 
@@ -93,6 +84,5 @@ currentTime.timerCalculate(email);
         myMap.remove(email);
         return myMap.size();
     }
-
 
 }

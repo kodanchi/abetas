@@ -18,13 +18,10 @@ import java.sql.SQLException;
 public class passwordResetServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println("/////////////////////////passwordResetServlet ");
         response.setContentType("text/plain");
 
         String uEmail = request.getParameter("email");
         String uNewPassword = request.getParameter("pw");
-        System.out.println("uEmail : "+uEmail);
-        System.out.println("uNewPassword : "+uNewPassword);
 
         PrintWriter out=response.getWriter();
 
@@ -34,7 +31,6 @@ public class passwordResetServlet extends HttpServlet {
         try {
             String hashedPassword = Password.getSaltedHash(uNewPassword);
             int ulvl = dbs.selectUserLevel(uEmail);
-            System.out.println("ulvl : "+ulvl);
             switch (ulvl){
                 case 0:
                 case 1:

@@ -6,17 +6,12 @@ package passReset;
 Timer for Backup
  */
 
-import Backup.BackupTool;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class EmailTimeClass extends TimerTask {
-    private String BACKUP_DIRECTORY = null;
 
-    public EmailTimeClass(String bdir){
-        BACKUP_DIRECTORY = bdir;
-    }
     public EmailTimeClass(){
     }
     /**
@@ -53,15 +48,12 @@ public class EmailTimeClass extends TimerTask {
              * run method here used remove the hash map key and its value withing 24 hours
              */
             public void run() {
-                //String email="";
                 PassCodeMap remov = new PassCodeMap();
 
                 remov.removeElement(email);
-                System.out.println("This is from rmoving email and the size is "+ PassCodeMap.getMapSize());
 
                 if (PassCodeMap.getMapSize()==0){
                 cancel();
-
 
                 }
             }

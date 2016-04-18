@@ -19,7 +19,6 @@ public class passCode extends HttpServlet {
      * @throws IOException used to handle any inpout/output operation in dealing with windows operations
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("#######################################################");
         /**
          * getFromUser2 and getFromUser3 will take the email of the user and the passcode that he/she received
          * after that it will check in checkPasscode if the passcode matched or not
@@ -36,7 +35,6 @@ public class passCode extends HttpServlet {
             e.printStackTrace();
         }
 
-        //response.
     }
 
     /**
@@ -62,7 +60,6 @@ public class passCode extends HttpServlet {
 
                 if (Integer.parseInt(passcode) == Integer.parseInt(PassCodeMap.getpassKey(email))) {
 
-                    // out.print("Correct  " +email +passcode);
                     out.println("<script src=\"/js/jquery.bsFormAlerts.js\"></script>" +
                             "<form >\n" +
                             "                                    <div class=\"form-group\">\n" +
@@ -123,9 +120,7 @@ public class passCode extends HttpServlet {
                             "                                $('#passResetDiv').show();\n" +
                             "                                $('#passcodeDiv').hide();\n" +
                             "                                </script>");
-                    System.out.println("Done");
                 }
-                // response.sendRedirect("newPassword.jsp?code="+email+"&email="+passcode);
                 else {
                     out.print("<script>\n" +
                             "                                    $(document).trigger(\"clear-alert-id.passMsg\");\n" +
@@ -149,14 +144,9 @@ public class passCode extends HttpServlet {
                     "  alert('Wrong email or passcode');\n" +
 
                     "</script>\n");
-            System.out.println(" Email or passcode !!!!!   "+email);
 
         }
 
-
-
     }
-
-
 
 }

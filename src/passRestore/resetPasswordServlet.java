@@ -14,13 +14,10 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Random;
 
-/**
- * Created by Mohammed on 1/21/2016.
- */
+
 @WebServlet(name = "resetPasswordServlet",
         urlPatterns = {"/Reset"})
 public class resetPasswordServlet extends HttpServlet {
-    //Scanner in = new Scanner(System.in);
 
     /**
      *
@@ -31,14 +28,12 @@ public class resetPasswordServlet extends HttpServlet {
      * @throws IOException used to handle any inpout/output operation in dealing with windows operations
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("/////////////////////////resetPasswordServlet ");
         response.setContentType("text/plain");
         /**
          * String userEmail will Get the email that the user entered to reset the password
          */
         String userEmail = request.getParameter("email");
 
-        //loginDB d = new loginDB();
 
         String respondForm = "<script src=\"/js/jquery.bsFormAlerts.js\"></script>" +
                 "<form >\n" +
@@ -98,7 +93,6 @@ public class resetPasswordServlet extends HttpServlet {
              * through the email
              * otherwise message will appear to the user to tell him/her the email doesn't exist
              */
-            //if(CheckEmail.selectEmail(d, userEmail)){
             if(dbs.selectEmailIfExist(userEmail)){
 
                 if(!PassCodeMap.checkKey(userEmail) && !userEmail.equals("")){
@@ -109,14 +103,9 @@ public class resetPasswordServlet extends HttpServlet {
 
 
 
-                    System.out.println("The code is from loginDB "+PassCodeMap.getpassKey(userEmail));
-                    System.out.println(true);
-                    //return true;
-
                     SendEmail msg = new SendEmail();
 
                     msg.sendMsg("The code is  "+ PassCodeMap.getpassKey(userEmail)+"\n This passcode is valid for 24 hours only\n ABETAS Team","Reset password request",userEmail);
-                    //response.sendRedirect("enterPasscode.jsp");
 
                     out.println(respondForm);
 
@@ -124,16 +113,9 @@ public class resetPasswordServlet extends HttpServlet {
 
                 }else if(PassCodeMap.checkKey(userEmail)){
 
-                    System.out.println("Exist !!!!    " + userEmail);
-                    System.out.println("The code is "+PassCodeMap.getpassKey(userEmail));
-                    System.out.println(false);
-                    //System.out.println(PassCodeMap.obj);
-                    //return false;
-
                     out.println(respondForm);
 
                 }else{
-                    System.out.print("The email is not exist");
                     out.print("<script>\n" +
                             "                                    $(document).trigger(\"clear-alert-id.emailMsg\");\n" +
                             "                                    $(document).trigger(\"set-alert-id-emailMsg\", [\n" +
@@ -143,7 +125,6 @@ public class resetPasswordServlet extends HttpServlet {
                             "                                        }\n" +
                             "                                    ]);\n" +
                             "                                </script>");
-                    //return false;
                 }
 
 
@@ -151,7 +132,6 @@ public class resetPasswordServlet extends HttpServlet {
             }
             else{
 
-                //email does not exist
                 out.print("<script>\n" +
                         "                                    $(document).trigger(\"clear-alert-id.emailMsg\");\n" +
                         "                                    $(document).trigger(\"set-alert-id-emailMsg\", [\n" +
@@ -171,8 +151,5 @@ public class resetPasswordServlet extends HttpServlet {
             out.print("false");
 
         }
-
     }
-
-
 }

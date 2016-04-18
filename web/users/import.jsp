@@ -1,4 +1,3 @@
-<%@ page import="ASDB.U_AS_Select" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="/js/jquery-2.2.0.min.js" type="text/javascript"></script>
@@ -27,11 +26,8 @@
                                     "       bootbox.alert(\""+request.getParameter("err")+"\")\n" +
                                     "    });\n" +
                                     "</script>");
-
                         }
-
                     %>
-
 
                     <div class="row ">
                         <div class="col-md-6 lead pull-left">
@@ -56,11 +52,11 @@
 
                                 <div class="form-group">
                                     <div class="input-group">
-        <span class="input-group-btn">
-                        <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
-                            Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" id="excelInput">
-                        </span>
-        </span>
+                                    <span class="input-group-btn">
+                                                    <span class="btn btn-file" style="color:#ecf0f1; background-color: #7f8c8d;">
+                                                        Browse&hellip; <input type="file" ACCEPT="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" name="excelInput" id="excelInput">
+                                                    </span>
+                                    </span>
                                         <input type="text" class="form-control" readonly>
 
                                     </div>
@@ -73,15 +69,6 @@
                         <button type="submit"  class="btn btn-primary">Upload</button>
                         <a class="btn btn-primary pull-right" href="/users/index.jsp">Back</a>
                     </form>
-
-
-
-
-
-
-
-
-
 
 
                     <!-- End of col -->

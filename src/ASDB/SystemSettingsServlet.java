@@ -121,12 +121,9 @@ public class SystemSettingsServlet extends HttpServlet {
                             context.setAttribute("ulogo",ulogo);
                         }
 
-
-
                         context.setAttribute("uname",uname);
                         context.setAttribute("cname",cname);
                         context.setAttribute("color",color);
-
 
                         Auditor.add((String)request.getSession().getAttribute("username"),"Updated the system settings");
                     }
@@ -163,7 +160,6 @@ public class SystemSettingsServlet extends HttpServlet {
 
         if(request.getSession().getAttribute("Msg") == null)
             request.getSession().setAttribute("Msg",msg);
-
 
     }
 

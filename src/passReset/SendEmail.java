@@ -50,9 +50,6 @@ public class SendEmail {
             }
 
 
-
-            System.out.println("Done");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

@@ -75,8 +75,6 @@
                 ulname = selUsrData.get(3);
                 uname = selUsrData.get(4);
                 evaluatorPro = selUsrData.get(5);
-                //uemail = selUsrData.get(5);
-                //evaluatorPro = selUsrData.get(6);
                 pageTitle = "Update User";
                 submit = "Update";
                 formURL = "/updateUser";
@@ -223,14 +221,6 @@
 
                 </form>
                 <script>
-                    /*$(this).ready(function(){
-                        //document.getElementById("alert").style.visibility = "hidden";
-                        document.getElementById("emailDiv").style.visibility = "hidden";
-                        $('#evaluatorDiv').hide();
-                        onUserTypeChng();
-
-
-                    })*/
 
                     $(function(){
                         document.getElementById("emailDiv").style.visibility = "hidden";
