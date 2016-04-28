@@ -188,7 +188,6 @@ public class P_AS_Update {
             /*
              * Execute the query
              */
-            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
             String query = "update link_out_obj set FK_obj = ?, FK_out = ? where Link_ID = ?";
 
             preparedStatement = connection.prepareStatement(query);
@@ -250,7 +249,6 @@ public class P_AS_Update {
             /*
              * Execute the query
              */
-            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
             String query = "update course set C_code = ?, C_name = ?, C_level = ? where C_ID = ?";
 
             preparedStatement = connection.prepareStatement(query);
@@ -312,7 +310,6 @@ public class P_AS_Update {
             /*
              * Execute the query
              */
-            System.out.println("dfgsvfhdjsbghjfdjbhjsfdbjhgbjhfbghsbvjbhjsvbvbbfvbvfbhbfdbvbfd");
             String query = "update program set P_name = ?, P_mission = ? where P_ID = ?";
 
             preparedStatement = connection.prepareStatement(query);

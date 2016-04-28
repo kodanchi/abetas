@@ -116,7 +116,7 @@
                             'index.jsp?page=addCourses&name=<%=request.getParameter("name")%>&id=<%=request.getParameter("id")%>',
                             'Add new course',
                             'If you have new courses details in an Excel sheet, you can import the file to add them all at once');" >Add</a>
-                    <a class="btn btn-primary pull-right" href="/index.jsp">Finish</a>
+                    <a class="btn btn-primary pull-right" href="index.jsp">Finish</a>
 
 
                     <!-- End of col -->

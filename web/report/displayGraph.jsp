@@ -80,7 +80,7 @@
                             <%
                                 ArrayList<ArrayList<String>> coursesList = null;
                                 try {
-                                    coursesList = dbs.selectCoursesOfSummativeToEvaluate(Integer.parseInt(tid), Integer.parseInt(pid));
+                                    coursesList = dbs.selectCoursesOfSummativeToEvaluate(Integer.parseInt(tid), Integer.parseInt(pid), Integer.parseInt(id));
                                 } catch (ClassNotFoundException e) {
                                     e.printStackTrace();
                                 } catch (SQLException e) {
