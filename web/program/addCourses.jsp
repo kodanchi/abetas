@@ -10,7 +10,7 @@
 
     String cCode = "";
     String cName = "";
-    String cLvl = "";
+    String cLvl = "0";
 
     if(request.getSession().getAttribute("errMsg") != null){
 
@@ -48,11 +48,14 @@
 
                             <label>Course Name: </label>
 
-                            <input type="text" class="form-control" placeholder="Course Name" id="cname" name="Cname" value="<%if (request.getParameter("CourseName")!=null)
-                            {out.print(request.getParameter("CourseName"));
+                            <input type="text" class="form-control" placeholder="Course Name" id="cname" name="Cname" value="<%
+                            if (request.getParameter("CourseName")!=null)
+                            {
+                                out.print(request.getParameter("CourseName"));
                             }else {
-                            out.print(cName);
-                            }%>" >
+                                out.print(cName);
+                            }
+                            %>" >
                             <span data-alertid="cname"></span>
 
                         </div>
