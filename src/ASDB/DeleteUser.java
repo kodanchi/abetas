@@ -40,7 +40,7 @@ public class DeleteUser extends HttpServlet {
 
                 Auditor.add((String)request.getSession().getAttribute("username"),"Deleted user of type "+userType+" (ID : "+request.getParameter("id")+")");
 
-                response.sendRedirect("/users/index.jsp?status=userDeleted");
+                response.sendRedirect("/users/index.jsp?status=User is deleted");
 
             }else {
                 System.out.println("id & type = null");

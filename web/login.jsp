@@ -153,7 +153,17 @@
                                                     priority: "error"
                                                 }
                                             ]);
-                                        }else {
+                                        }else if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(useremail.value)) {
+
+                                                $(document).trigger("set-alert-id-emailMsg", [
+                                                    {
+                                                        message: "Email format must be a valid Ex: user@company.com",
+                                                        priority: "error"
+                                                    }
+                                                ]);
+                                                useremail.focus();
+                                                return false;
+                                            }else {
                                             show('page', false);
                                             show('loading', true);
                                             $.ajax({
@@ -169,7 +179,20 @@
                                                     show('page', true);
                                                     show('loading', false);
 
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    show('page', true);
+                                                    show('loading', false);
+                                                    $(document).trigger("set-alert-id-emailMsg", [
+                                                        {
+                                                            message: "Email Does not exist!, Try more time.",
+                                                            priority: "error"
+                                                        }
+                                                    ]);
+                                                    useremail.focus();
+
                                                 }
+
 
                                             })
                                         }

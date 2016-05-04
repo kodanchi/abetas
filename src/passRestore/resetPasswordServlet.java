@@ -28,7 +28,7 @@ public class resetPasswordServlet extends HttpServlet {
      * @throws IOException used to handle any inpout/output operation in dealing with windows operations
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/plain");
+
         /**
          * String userEmail will Get the email that the user entered to reset the password
          */
@@ -113,10 +113,12 @@ public class resetPasswordServlet extends HttpServlet {
 
                 }else if(PassCodeMap.checkKey(userEmail)){
 
+                    response.setContentType("text/plain");
                     out.println(respondForm);
 
                 }else{
-                    out.print("<script>\n" +
+                    response.sendError(500,"Errrrrrrrrrrrrr");
+                   /* out.print("<script>\n" +
                             "                                    $(document).trigger(\"clear-alert-id.emailMsg\");\n" +
                             "                                    $(document).trigger(\"set-alert-id-emailMsg\", [\n" +
                             "                                        {\n" +
@@ -124,15 +126,20 @@ public class resetPasswordServlet extends HttpServlet {
                             "                                            priority: \"info\"\n" +
                             "                                        }\n" +
                             "                                    ]);\n" +
-                            "                                </script>");
+                            "                                       $('#forgotDiv').show();\n" +
+                            "                                       $('#passcodeDiv').hide();\n" +
+                            "                                       " +
+                            "                                </script>");*/
+
+                    //out.print("header('HTTP/1.1 500 Internal Server Error')");
                 }
 
 
 
             }
             else{
-
-                out.print("<script>\n" +
+                response.sendError(500,"Errrrrrrrrrrrrr");
+                /*out.print("<script>\n" +
                         "                                    $(document).trigger(\"clear-alert-id.emailMsg\");\n" +
                         "                                    $(document).trigger(\"set-alert-id-emailMsg\", [\n" +
                         "                                        {\n" +
@@ -140,7 +147,7 @@ public class resetPasswordServlet extends HttpServlet {
                         "                                            priority: \"info\"\n" +
                         "                                        }\n" +
                         "                                    ]);\n" +
-                        "                                </script>");
+                        "                                </script>");*/
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
