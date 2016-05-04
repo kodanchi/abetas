@@ -387,7 +387,7 @@
                     <div class="row">
 
                         <a class="btn btn-default" href="index.jsp" >Cancel</a>
-                        <button class="btn btn-primary pull-right" formaction="/SaveFormative" type="submit">Save</button>
+                        <button class="btn btn-primary pull-right" id="saveBtn" formaction="/SaveFormative" type="submit">Save</button>
                         <button class="btn btn-primary pull-right" id="confirm" type="submit">Submit</button>
                     <script>
                         $(function () {
@@ -413,11 +413,29 @@
                                         }
                                     ]);
                                     wr.focus();
+                                }else if(wr.value.length > 512){
+                                    $(document).trigger("clear-alert-id.WrittenRubrics");
+                                    $(document).trigger("set-alert-id-WrittenRubrics", [
+                                        {
+                                            message: "performance report should be less than 512 characters",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    wr.focus();
                                 }else if(comnts.value==""){
                                     $(document).trigger("clear-alert-id.Comments");
                                     $(document).trigger("set-alert-id-Comments", [
                                         {
                                             message: "Fill the comment(s)",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    comnts.focus();
+                                }else if(comnts.value.length > 512){
+                                    $(document).trigger("clear-alert-id.Comments");
+                                    $(document).trigger("set-alert-id-Comments", [
+                                        {
+                                            message: "comment should be less than 512 characters",
                                             priority: "error"
                                         }
                                     ]);
@@ -431,11 +449,29 @@
                                         }
                                     ]);
                                     obstcls.focus();
+                                }else if(obstcls.value.length > 512){
+                                    $(document).trigger("clear-alert-id.Obstacles");
+                                    $(document).trigger("set-alert-id-Obstacles", [
+                                        {
+                                            message: "obstacles should be less than 512 characters",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    obstcls.focus();
                                 }else if(imprvmnts.value==""){
                                     $(document).trigger("clear-alert-id.Improvement");
                                     $(document).trigger("set-alert-id-Improvement", [
                                         {
                                             message: "Fill the areas of improvement",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    imprvmnts.focus();
+                                }else if(imprvmnts.value.length > 512){
+                                    $(document).trigger("clear-alert-id.Improvement");
+                                    $(document).trigger("set-alert-id-Improvement", [
+                                        {
+                                            message: "areas of improvement should be less than 512 characters",
                                             priority: "error"
                                         }
                                     ]);
@@ -447,6 +483,68 @@
                                         console.log("Confirmed: "+confirmed);
                                         if(confirmed){
                                             $('#formativeForm').attr('action', '/SubmitFormative');
+                                            $('#formativeForm').submit();
+                                        }
+                                    });
+                                }
+
+                            });
+                            $("button#saveBtn").click(function(e) {
+                                e.preventDefault();
+                                var wr = document.getElementById("WrittenRubrics");
+                                var comnts = document.getElementById("Comments");
+                                var obstcls = document.getElementById("Obstacles");
+                                var imprvmnts = document.getElementById("Improvement");
+
+
+                                $(document).trigger("clear-alert-id.WrittenRubrics");
+                                $(document).trigger("clear-alert-id.Comments");
+                                $(document).trigger("clear-alert-id.Obstacles");
+                                $(document).trigger("clear-alert-id.Improvement");
+
+                                if(wr.value.length > 512){
+                                    $(document).trigger("clear-alert-id.WrittenRubrics");
+                                    $(document).trigger("set-alert-id-WrittenRubrics", [
+                                        {
+                                            message: "performance report should be less than 512 characters",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    wr.focus();
+                                }else if(comnts.value.length > 512){
+                                    $(document).trigger("clear-alert-id.Comments");
+                                    $(document).trigger("set-alert-id-Comments", [
+                                        {
+                                            message: "comment should be less than 512 characters",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    comnts.focus();
+                                }else if(obstcls.value.length > 512){
+                                    $(document).trigger("clear-alert-id.Obstacles");
+                                    $(document).trigger("set-alert-id-Obstacles", [
+                                        {
+                                            message: "obstacles should be less than 512 characters",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    obstcls.focus();
+                                }else if(imprvmnts.value.length > 512){
+                                    $(document).trigger("clear-alert-id.Improvement");
+                                    $(document).trigger("set-alert-id-Improvement", [
+                                        {
+                                            message: "areas of improvement should be less than 512 characters",
+                                            priority: "error"
+                                        }
+                                    ]);
+                                    imprvmnts.focus();
+                                }else {
+                                    var location = $(this).attr('formaction');
+                                    bootbox.confirm("when save this form you can access it again to edit the entered " +
+                                            "data, are you sure you want to continue!?", function(confirmed) {
+                                        console.log("Confirmed: "+confirmed);
+                                        if(confirmed){
+                                            $('#formativeForm').attr('action', '/SaveFormative');
                                             $('#formativeForm').submit();
                                         }
                                     });

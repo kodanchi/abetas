@@ -74,7 +74,7 @@
                 umname = selUsrData.get(2);
                 ulname = selUsrData.get(3);
                 uname = selUsrData.get(4);
-                evaluatorPro = selUsrData.get(5);
+                evaluatorPro = selUsrData.get(5) != null ? selUsrData.get(5) : "";
                 pageTitle = "Update User";
                 submit = "Update";
                 formURL = "/updateUser";

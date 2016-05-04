@@ -14,16 +14,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <p>Please confirm that the imported data are as intended, you can click re-upload to discard the current imported file and import it again.</p>
 
-                    <!-- Table -->
-                    <table class="table table-hover table-striped table-bordered text-center">
-                        <tr>
-                            <th>Firstname</th>
-                            <th>Middlename</th>
-                            <th>Lastname</th>
-                            <th>Username</th>
-                            <th>Access level</th>
-                            <th>Email</th>
-                        </tr>
+
 
 <%
     /**
@@ -50,6 +41,16 @@
         ArrayList<ArrayList<String>> dataArr = (ArrayList<ArrayList<String>>) dataObj;
         ArrayList<String> dataRow;
 
+        out.println("<!-- Table -->\n" +
+                "                    <table class=\"table table-hover table-striped table-bordered text-center\">\n" +
+                "                        <tr>\n" +
+                "                            <th>Firstname</th>\n" +
+                "                            <th>Middlename</th>\n" +
+                "                            <th>Lastname</th>\n" +
+                "                            <th>Username</th>\n" +
+                "                            <th>Access level</th>\n" +
+                "                            <th>Email</th>\n" +
+                "                        </tr>");
 
         for(int i=0;i<dataArr.size();i++){
             dataRow = dataArr.get(i);
@@ -60,27 +61,38 @@
                     if(dataRow.get(j).length() < 3 && dataRow.get(j).length() > 20){
                         out.print("<td  class=\"danger\">");
                         out.print("<p  data-toggle=\"tooltip\"  title=\"First name must be in the range 3-20 characters\">");
+                        out.print(dataRow.get(j));
+                        out.print("</p>");
+                        isValid = false;
                     }else if(dataRow.get(j).matches("\\d+")) {
                         out.print("<td  class=\"danger\">");
                         out.print("<p  data-toggle=\"tooltip\"  title=\"name must have only alphabetic letters\">");
+                        out.print(dataRow.get(j));
+                        out.print("</p>");
+                        isValid = false;
+                    }else {
+                        out.print("<td>");
+                        out.print(dataRow.get(j));
                     }
 
 
-                    isValid = false;
                 }else if(j == 3 && dbs.selectUserIfExist(dataRow.get(3))){
                     out.print("<td  class=\"danger\">");
                     out.print("<p  data-toggle=\"tooltip\"  title=\"username existed\">");
-
+                    out.print(dataRow.get(j));
+                    out.print("</p>");
                     isValid = false;
                 }else if(j == 5 && dbs.selectEmailIfExist(dataRow.get(5))){
                     out.print("<td class=\"danger\">");
                     out.print("<p  data-toggle=\"tooltip\"  title=\"email existed\">");
+                    out.print(dataRow.get(j));
+                    out.print("</p>");
                     isValid = false;
                 }else {
                     out.print("<td>");
+                    out.print(dataRow.get(j));
                 }
-                out.print(dataRow.get(j));
-                out.print("</p>");
+
                 out.print("</td>");
             }
             out.print("</tr>");

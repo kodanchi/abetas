@@ -88,7 +88,7 @@ public class SelectOutcomeServlet extends HttpServlet {
 
             for (ArrayList<String> PI : pIListF){
                 out.print("<a target=\"_blank\" href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(2)) + "&type="+EncDec.getEncr("formative")+
-                        "\" class=\"list-group-item\">" + PI.get(1) + "</br><div class=\"pull-right\" >Formative</div></br></a>");
+                        "\" class=\"list-group-item\"> " + PI.get(1) + "</br><div class=\"pull-right\" >Formative</div><div class=\"pull-left\" >Section ID: "+PI.get(2)+"</div></br></a>");
             }
             out.print("</div>");
             out.print("<div  class=\"jumbotron\">");

@@ -60,7 +60,7 @@
                             }else if(formItem.get(5).equals("summative")){
                                 out.print("<a href=\"index.jsp?page=showForm&type=summative&id="+formItem.get(0)+"\" class=\"list-group-item\">"+
                                         formItem.get(2)+"</br>Form ID: "+formItem.get(0)+" | "+formItem.get(1)+"</br>");
-                                out.print("<div class=\"pull-right\"> "+formItem.get(3)+" "+formItem.get(4)+" | Formative</div></br>");
+                                out.print("<div class=\"pull-right\"> "+formItem.get(3)+" "+formItem.get(4)+" | Summative</div></br>");
                                 out.print("</a>");
                             }
 

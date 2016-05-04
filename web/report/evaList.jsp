@@ -68,6 +68,7 @@
                                             ArrayList<ArrayList<String>> outcomeList =  dbs.selectOutcomesToEvaluate(Integer.parseInt(term.get(0)),
                                                     Integer.parseInt(program.get(0)));
 
+                                            int n =1;
                                             for (ArrayList<String> outcome : outcomeList){
                                         %>
                                         <a href="#outcome-<%=outcome.get(0)%>" class="list-group-item"
@@ -91,12 +92,13 @@
                                                                }
                                                            });
                                                         }" >
-                                            <%=outcome.get(1)%>
+                                            <%="Outcome "+n+": "+outcome.get(1)%>
                                         </a>
                                         <div class="list-group " id="outcome-<%=outcome.get(0)%>">
 
                                         </div>
                                         <%
+                                                n++;
                                             }
                                         %>
                                     </div>
