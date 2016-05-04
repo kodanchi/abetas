@@ -225,6 +225,9 @@
 <script>
     $(document).ready(function() {
 
+
+        var cnaSubmit = false;
+        
         $('#rootwizard').bootstrapWizard({onNext: function(tab, navigation, index) {
 
         }, onTabShow: function(tab, navigation, index) {
@@ -247,7 +250,7 @@
             $(document).trigger("clear-alert-id.mname");
             $(document).trigger("clear-alert-id.lname");
 
-            var cnaSubmit = false;
+
             if(!$('#uname').val()) {
 
                 $(document).trigger("clear-alert-id.uname");
