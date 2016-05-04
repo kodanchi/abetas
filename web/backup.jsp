@@ -65,7 +65,7 @@
                 <h2 class="text-center">Backup History</h2>
                 <legend></legend>
                 <div class="col-md-8 col-md-offset-2">
-                    <p>Click "Create New Backup" to store a new backup</p>
+                    <p>Click "Create New Backup" to store a new backup or select the frequent period for backup and click "Set"</p>
 
                     <div class="row">
                         <form method="post" action="/setBackupTime">
