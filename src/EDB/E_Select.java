@@ -1118,7 +1118,7 @@ public class E_Select {
      * @return the summative course if it exists
      * @throws SQLException once the connection to the database aborted or wrong query occurred
      */
-    public ArrayList<ArrayList<String>> selectCoursesOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID) throws ClassNotFoundException, SQLException {
+    public ArrayList<ArrayList<String>> selectCoursesOfSummativeToEvaluate(int FK_T_ID, int FK_P_ID, int FK_pi_ID) throws ClassNotFoundException, SQLException {
 
         ArrayList<ArrayList<String>> RsArr = new ArrayList<ArrayList<String>>();
         ArrayList<String> RowDate;
@@ -1139,7 +1139,8 @@ public class E_Select {
                     "AND link_out_pi.FK_C_ID = C_code\n" +
                     "AND summative.Sum_submitted = 1\n" +
                     "AND FK_T_ID= ?\n" +
-                    "AND link_out_pi.FK_P_ID = ? ;";
+                    "AND link_out_pi.FK_P_ID = ? " +
+                    "AND link_out_pi.FK_pi_ID = ? ;";
 
             /*
              *  Get connection from the DataSource
@@ -1153,6 +1154,7 @@ public class E_Select {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, FK_T_ID);
             preparedStatement.setInt(2, FK_P_ID);
+            preparedStatement.setInt(3, FK_pi_ID);
 
             rs = preparedStatement.executeQuery();
 

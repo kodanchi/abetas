@@ -94,9 +94,9 @@ public class SelectPIOfProgramServlet extends HttpServlet {
                     "'If you have the Performance Indicators details in an Excel sheet, you can import the file to add them all at once');\"  >Add</a>" +
                     "<input type=\"hidden\" name=\"programID\" value=\""+pid+"\">");
 
-            if(size>0) {
+            /*if(size>0) {
                 out.print("<a class=\"btn btn-primary btn-fill pull-right\" href=\"index.jsp?page=rubricNames&cycle=" + id + "&programID=" + pid + "\">Next</a>");
-            }
+            }*/
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
