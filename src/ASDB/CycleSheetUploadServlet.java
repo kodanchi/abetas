@@ -54,7 +54,7 @@ public class CycleSheetUploadServlet extends HttpServlet {
                                 programID,courseCode,courseName,section,response,request);
                         break;
                     }else {
-                        dba.addStudent(dataRow.get(1), dataRow.get(0), Integer.parseInt(section));
+                        dba.addStudent(dataRow.get(0), dataRow.get(1), Integer.parseInt(section));
                         Auditor.add((String)request.getSession().getAttribute("username"),"Added new student ("+
                                 dataRow.get(1)+") via excel sheet (Section ID : "+section+")");
                     }
@@ -86,13 +86,13 @@ public class CycleSheetUploadServlet extends HttpServlet {
                 if(dataType.equals("students")) {
                     response.setHeader("Location", "/cycle/index.jsp?page=studentList&cycle="+ cycle +"&term="+ term  +
                             "&programID=" + programID + "&courseCode=" + courseCode + "&courseName=" + courseName +
-                            "&section=" + section +"&status=Success");
+                            "&section=" + section +"&status=The students' data were added successfully");
                 }else if(dataType.equals("pis")){
                     response.setHeader("Location", "/cycle/index.jsp?page=piList&cycle="+ cycle +"&term="+ term  +
-                            "&programID=" + programID +"&status=Success");
+                            "&programID=" + programID +"&status=The Performance Indicators' data were added successfully");
                 }else if(dataType.equals("courses")){
                     response.setHeader("Location", "/program/index.jsp?page=CoursesList&term=" + term + "&cycle=" +
-                            cycle + "&status=Success");
+                            cycle + "&status=The courses' data were added successfully");
                 }
             }
         }

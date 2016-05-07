@@ -208,11 +208,11 @@
                                     float passOrFailresults = developed + exemplary;
                                     if(passOrFailresults > threshold ) {
                                         out.print("<Strong style=\"color:Green;\">The requirements were met</Strong>");
-                                        out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
+                                        out.print(String.format("</br> The result is more than the threshold (%s) by (%.2f)",threshold+"%",
                                                 ( passOrFailresults - threshold)));
                                     }else {
                                         out.print("<Strong style=\"color:Red;\">The requirements were not met</Strong>");
-                                        out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
+                                        out.print(String.format("</br> The result is less than the threshold (%s) by (%.2f)",threshold+"%",
                                                 (threshold - passOrFailresults)));
                                     }
                                     %>';
@@ -256,7 +256,7 @@
 
 
 
-                <div class="row" id="evidence">
+                <div class="row notPrintable" id="evidence">
                     <div class="col-md-2 pull-right" >
 
                     </div>

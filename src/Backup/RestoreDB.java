@@ -77,9 +77,15 @@ public class RestoreDB extends HttpServlet {
         }
         if (processComplete == 0) {
             System.out.println("Restore taken successfully");
+            sendMsg("The data was restored successfully",request);
         } else {
             System.out.println("restore failure");
         }
     }
+
+    protected void sendMsg(String msg, HttpServletRequest request){
+        request.getSession().setAttribute("Msg",msg);
+    }
+
 }
 

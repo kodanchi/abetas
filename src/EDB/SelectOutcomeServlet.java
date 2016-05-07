@@ -69,14 +69,14 @@ public class SelectOutcomeServlet extends HttpServlet {
                 if(passOrFailresults > threshold ) {
 
                     out.print("<a target=\"_blank\" href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+
-                            EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-success\">"+PI.get(1)+
+                            EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-success\"> PI ID: "+PI.get(0)+" | "+PI.get(1)+
                             "</br><div class=\"pull-right\" >Summative | Thredshold: "+threshold+"%</div></br></a>");
 
                     passPis++;
                 }else {
 
                     out.print("<a target=\"_blank\" href=\"index.jsp?page=showGraph&id="+PI.get(0)+"&tid="+tid+"&pid="+pid+"&dataType=summative&piname="+
-                            EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-danger\">"+PI.get(1)+
+                            EncDec.getEncr(PI.get(1))+"\" class=\"list-group-item list-group-item-danger\"> PI ID: "+PI.get(0)+" | "+PI.get(1)+
                             "</br><div class=\"pull-right\" >Summative | Thredshold: "+threshold+"%</div></br></a>");
 
                     failPis++;
@@ -88,7 +88,7 @@ public class SelectOutcomeServlet extends HttpServlet {
 
             for (ArrayList<String> PI : pIListF){
                 out.print("<a target=\"_blank\" href=\"index.jsp?page=showForm&id="+ EncDec.getEncr(PI.get(2)) + "&type="+EncDec.getEncr("formative")+
-                        "\" class=\"list-group-item\"> " + PI.get(1) + "</br><div class=\"pull-right\" >Formative</div><div class=\"pull-left\" >Section ID: "+PI.get(2)+"</div></br></a>");
+                        "\" class=\"list-group-item\"> PI ID: "+PI.get(0)+" | "+ PI.get(1) + "</br><div class=\"pull-right\" >Formative</div><div class=\"pull-left\" >Section ID: "+PI.get(2)+"</div></br></a>");
             }
             out.print("</div>");
             out.print("<div  class=\"jumbotron\">");

@@ -186,7 +186,7 @@ public class ImportCycleSheet {
                             cell.setCellType(Cell.CELL_TYPE_STRING);
                             if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
                                 switch (j){
-                                    case 0:
+                                    case 1:
                                         if(cell.getStringCellValue().equals("")){
                                             Error_Msg = "All students IDs are required, change it in the sheet and try " +
                                                     "upload it again, or choose another file";
@@ -196,7 +196,7 @@ public class ImportCycleSheet {
                                             dataRow.add(cell.getStringCellValue());
                                         }
                                         break;
-                                    case 1:
+                                    case 0:
                                         if(cell.getStringCellValue().equals("")){
                                         Error_Msg = "All students names are required, change it in the sheet and try upload " +
                                                 "it again, or choose another file";

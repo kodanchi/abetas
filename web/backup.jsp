@@ -135,7 +135,7 @@
                                                     "                                <td>"+new SimpleDateFormat("dd/MM/yyyy HH:mm:ss")
                                                     .format(view.creationTime().toMillis())+"</td>\n" +
                                                     "                                <form method=\"post\" class=\"RestoreForm\" action=\"/RestoreDB\">\n" +
-                                                    "                                    <td><input hidden name=\"restoreAction\" value="+ file +"><button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-new icon30\"></i></button></td></form>\n"+
+                                                    "                                    <td><input hidden name=\"restoreAction\" value="+ file +"><button  type=\"submit\" title=\"Edit\" class=\"btn btn-link btn-Y \"><i class=\"fui-upload icon30\"></i></button></td></form>\n"+
                                                     "                                <form method=\"post\" class=\"delForm\" action=\"/BackupDel\">\n" +
                                                     "                                    <td ><input name=\"deleteAction\" hidden value="+ file +"><button  type=\"submit\" title=\"Delete\" class=\"btn btn-link btn-T \"><i class=\"fui-trash icon30\"></i></button></td>" +
                                                     "</tr>" +

@@ -40,7 +40,7 @@ public class userSheetUploadServlet extends HttpServlet {
                         dataRow.get(4)+") via excel sheet");
             }
 
-            response.sendRedirect("/users/index.jsp?status=Success");
+            response.sendRedirect("/users/index.jsp?status=The users' data were added successfully");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

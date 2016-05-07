@@ -43,9 +43,12 @@
                             <%
                                 boolean isValid = true;
                                 C_AS_Select dbs = new C_AS_Select();
+                                try {
+
+
                                 if(dataType.equals("students")){
-                                    out.print("<th>Student ID</th>");
                                     out.print("<th>Student Name</th>");
+                                    out.print("<th>Student ID</th>");
                                 }else if (dataType.equals("pis")){
                                     out.print("<th>Performance Indicator</th>");
                                     out.print("<th>threshold</th>");
@@ -54,7 +57,7 @@
                         </tr>
 
 <%
-try {
+
 
 
 
@@ -76,30 +79,37 @@ try {
 
 
             if(dataType.equals("students")){
-                if(j == 0 && dbs.isStudentIDExist(dataRow.get(0),Integer.parseInt(request.getParameter("section")))){
+                if(j == 1 && dbs.isStudentIDExist(dataRow.get(1),Integer.parseInt(request.getParameter("section")))){
                     out.print("<td class=\"danger\">");
                     out.print("<p  data-toggle=\"tooltip\"  title=\"Student ID existed\">");
+                    out.print(dataRow.get(j));
+                    out.print("</p>");
+                    out.print("</td>");
                     isValid = false;
                 }else {
                     out.print("<td>");
+                    out.print(dataRow.get(j));
+                    out.print("</td>");
                 }
 
             }else if (dataType.equals("pis")){
                 if(j == 0 && dbs.isPIExist(dataRow.get(0), Integer.parseInt(request.getParameter("programID")), Integer.parseInt(id))){
                     out.print("<td class=\"danger\">");
                     out.print("<p  data-toggle=\"tooltip\"  title=\"Performance Indicator existed\">");
-
+                    out.print(dataRow.get(j));
+                    out.print("</p>");
+                    out.print("</td>");
                     isValid = false;
                 }else {
                     out.print("<td>");
+                    out.print(dataRow.get(j));
+                    out.print("</td>");
                 }
             }
 
 
 
-            out.print(dataRow.get(j));
-            out.print("</p>");
-            out.print("</td>");
+
         }
         out.print("</tr>");
     }

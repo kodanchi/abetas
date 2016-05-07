@@ -88,13 +88,17 @@ public class SelectSectionServlet extends HttpServlet {
                 float exemplary = results[3]!= 0 ? ( results[3] * 100 ) / PIResults.size() : 0;
                 float passOrFailresults = developed + exemplary;
                 if(passOrFailresults > threshold ) {
+                    String res = String.format("%.0f", passOrFailresults - threshold);
+
                     out.print("<Strong style=\"color:Green;\">The requirements were met for this section</Strong>");
-                    out.print(String.format("</br> the result is more than the threshold (%s) by (%.2f)",threshold+"%",
-                            ( passOrFailresults - threshold)));
+                    out.print(String.format("</br> the result is more than the threshold (%s) by (%s)",threshold+"%",
+                            res+"%"));
                 }else {
+                    String res = String.format("%.0f", threshold - passOrFailresults);
+
                     out.print("<Strong style=\"color:Red;\">The requirements were not met for this section</Strong>");
-                    out.print(String.format("</br> the result is less than the threshold (%s) by (%.2f)",threshold+"%",
-                            (threshold - passOrFailresults)));
+                    out.print(String.format("</br> the result is less than the threshold (%s) by (%s)",threshold+"%",
+                            res+"%"));
                 }
                 out.print("';");
                 out.print("document.getElementById(\"writtenResult\").innerHTML=str");

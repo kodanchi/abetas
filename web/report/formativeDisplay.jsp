@@ -100,7 +100,7 @@
             <div class="row tim-row">
                 <h2 class="text-center">Formative Data Collection Sheet</h2>
                 <legend></legend>
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-10 col-md-offset-1">
                     <p>Outcome and performance Indicator Indicator:</p>
 
                     <div class="panel panel-default">
@@ -151,12 +151,12 @@
                         <table class="table table-striped table-bordered text-center">
                             <tr>
                                 <th class="text-center">Course Code:</th>
-                                <th class="text-center"><%
+                                <td class="text-center"><%
                                         out.print(linkValues.get(2));
-                                %></th>
+                                %></td>
                             </tr>
                             <tr>
-                                <td>Course title:</td>
+                                <th>Course title:</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         E_Select dselect = new E_Select();
@@ -175,7 +175,7 @@
                             </tr>
 
                             <tr>
-                                <td>Level & Program:</td>
+                                <th>Level & Program:</th>
                                 <td><%
                                     if(linkValues.size()!=0) {
                                         E_Select eselect = new E_Select();
@@ -298,13 +298,17 @@
                     <div>
 
 
-                        <div>
-                            <p>Written Rubrics</p>
-                            <div><%=F_written_rubic%></div>
-                        </div>
-                        <br>
-                        <br>
-                        <p>Instructor Feedback:</p>
+                        <div class="pageBreak">
+                        </div>        <br/>
+                        <br/>
+                            <h6>Performance Report: </h6>
+                            <div>
+                                <%=F_written_rubic%>
+                            </div>
+
+
+                        <br/>
+                        <h6>Instructor Feedback:</h6>
 
                         <div class="panel panel-default">
 
@@ -324,7 +328,7 @@
                             </table>
 
                         </div>
-                        <div class="row tim-row">
+                        <div class="row evidenceRow">
 
                                 <div class="col-md-4 col-sm-4">
                                      <%
@@ -336,7 +340,7 @@
 
                                 </div>
                         </div>
-                        <div class="row tim-row">
+                        <div class="row">
                             <label>Faculty Name: </label>
                             <label><%
                                 E_Select yselect = new E_Select();
