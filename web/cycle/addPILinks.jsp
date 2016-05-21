@@ -177,7 +177,7 @@
 
                             <div class="btn-group">
 
-                                    <select class="selectpicker"  data-live-search="true" name="Course" id="Course" onchange="onRubricFetch();" >
+                                    <select class="selectpicker"  data-live-search="true" name="Course" id="Course" onchange="onRubricFetch();" required>
                                         <%
                                             C_AS_Select dselect = new C_AS_Select();
                                             try {
